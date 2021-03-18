@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import _ from 'lodash';
 import React, { Component } from 'react';
@@ -209,7 +209,7 @@ class OnPremNodesList extends Component {
         provisionMessage = (
           <Alert bsStyle="warning" className="pre-provision-message">
             You need to pre-provision your nodes, Please execute the following script on the
-            Yugabyte Platform host machine once for each instance that you add here.
+            ZNbase Platform host machine once for each instance that you add here.
             <YBCodeBlock>
               {onPremKey.keyInfo.provisionInstanceScript + ' --ip '}
               <b>{'<IP Address> '}</b>

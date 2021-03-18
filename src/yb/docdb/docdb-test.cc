@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -238,7 +238,7 @@ SubDocKey(DocKey([], ["mydockey", 123456]), ["subkey_b", "subkey_d"; HT{ physica
         DocDBDebugDumpToStr());
 
     // TODO(dtxn) - check both transaction and non-transaction path?
-    // https://yugabyte.atlassian.net/browse/ENG-2177
+    // https://ZNbase.atlassian.net/browse/ENG-2177
     auto encoded_subdoc_key = subdoc_key.EncodeWithoutHt();
     GetSubDoc(
         encoded_subdoc_key, &doc_from_rocksdb, &subdoc_found_in_rocksdb,
@@ -3033,7 +3033,7 @@ TEST_P(DocDBTestWrapper, BloomFilterCorrectness) {
 }
 
 TEST_P(DocDBTestWrapper, MergingIterator) {
-  // Test for the case described in https://yugabyte.atlassian.net/browse/ENG-1677.
+  // Test for the case described in https://ZNbase.atlassian.net/browse/ENG-1677.
 
   // Turn off "next instead of seek" optimization, because this test rely on DocDB to do seeks.
   FLAGS_max_nexts_to_avoid_seek = 0;

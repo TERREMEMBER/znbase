@@ -2,7 +2,7 @@
 title: Bulk import for YCQL
 headerTitle: Bulk import
 linkTitle: Bulk import
-description: Export data from Apache Cassandra and MySQL and bulk import data into YugabyteDB for YCQL.
+description: Export data from Apache Cassandra and MySQL and bulk import data into ZNbaseDB for YCQL.
 aliases:
   - /latest/manage/data-migration/bulk-import/
 menu:
@@ -23,13 +23,13 @@ showAsideToc: true
   </li>
 </ul>
 
-Depending on the data volume imported, various bulk import tools can be used to load data into YugabyteDB. This page documents bulk import for YugabyteDB’s [Cassandra-compatible YCQL API](../../../../api/ycql).
+Depending on the data volume imported, various bulk import tools can be used to load data into ZNbaseDB. This page documents bulk import for ZNbaseDB’s [Cassandra-compatible YCQL API](../../../../api/ycql).
 
-We will first export data from existing Apache Cassandra and MySQL tables. Thereafter, we will import the data using the various bulk load options supported by YugabyteDB. We will use a generic IoT time series data use case as a running example to illustrate the import process.
+We will first export data from existing Apache Cassandra and MySQL tables. Thereafter, we will import the data using the various bulk load options supported by ZNbaseDB. We will use a generic IoT time series data use case as a running example to illustrate the import process.
 
 ## Create Destination Table
 
-Following is the schema of the destination YugabyteDB table.
+Following is the schema of the destination ZNbaseDB table.
 
 ```sql
 CREATE KEYSPACE example;
@@ -118,14 +118,14 @@ By default, `COPY` exports timestamps in `yyyy-MM-dd HH:mm:ss.SSSZ` format.
 
 ### Large datasets (GBs)
 
-[`cassandra-loader`](https://github.com/brianmhess/cassandra-loader) is a general purpose bulk loader for CQL that supports various types of delimited files (particularly CSV files). For more details, review the README of the [YugabyteDB cassandra-loader fork](https://github.com/yugabyte/cassandra-loader/). Note that cassandra-loader requires quotes for collection types (for example, “[1,2,3]” rather than [1,2,3] for lists).
+[`cassandra-loader`](https://github.com/brianmhess/cassandra-loader) is a general purpose bulk loader for CQL that supports various types of delimited files (particularly CSV files). For more details, review the README of the [ZNbaseDB cassandra-loader fork](https://github.com/ZNbase/cassandra-loader/). Note that cassandra-loader requires quotes for collection types (for example, “[1,2,3]” rather than [1,2,3] for lists).
 
 #### Install cassandra-loader
 
 You can do this as shown below.
 
 ```sh
-$ wget https://github.com/yugabyte/cassandra-loader/releases/download/v0.0.27-yb-2/cassandra-loader
+$ wget https://github.com/ZNbase/cassandra-loader/releases/download/v0.0.27-yb-2/cassandra-loader
 ```
 
 ```sh
@@ -142,4 +142,4 @@ time ./cassandra-loader \
   -schema "example.SensorData(customer_name, device_id, ts, sensor_data)"
 ```
 
-For additional options, refer to the [cassandra-loader options](https://github.com/yugabyte/cassandra-loader#options).
+For additional options, refer to the [cassandra-loader options](https://github.com/ZNbase/cassandra-loader#options).

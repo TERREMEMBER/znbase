@@ -2,7 +2,7 @@
 title: Third party software
 headerTitle: Third party software
 linkTitle: Third party software
-description: Learn about the third party software contained in YugabyteDB.
+description: Learn about the third party software contained in ZNbaseDB.
 aliases:
   - /latest/
 menu:
@@ -16,17 +16,17 @@ showAsideToc: true
 
 ## Acknowledgements
 
-Yugabyte proudly participates in the open source community and appreciates all open source contributions that have been incorporated into the YugabyteDB open source project. The YugabyteDB codebase has leveraged several open source projects as a starting point, including the following:
+ZNbase proudly participates in the open source community and appreciates all open source contributions that have been incorporated into the ZNbaseDB open source project. The ZNbaseDB codebase has leveraged several open source projects as a starting point, including the following:
 
 - PostgreSQL stateless language layer for implementing YSQL.
 - PostgreSQL scanner and parser modules (`.y` and `.l` files) were used as a starting point for implementing the YCQL scanner and parser in C++.
 - The DocDB document store uses a customized and enhanced version of [RocksDB](https://github.com/facebook/rocksdb). Some of the customizations and enhancements are described in [DocDB store](/latest/architecture/docdb/).
-- The Apache Kudu Raft implementation and server framework were used as a starting point. Since then, Yugabyte has implemented several enhancements, such as leader leases and pre-voting state during learner mode for correctness, improvements to the network stack, auto balancing of tablets on failures, zone/DC aware data placement, leader-balancing, ability to do full cluster moves in a online manner, and more.
+- The Apache Kudu Raft implementation and server framework were used as a starting point. Since then, ZNbase has implemented several enhancements, such as leader leases and pre-voting state during learner mode for correctness, improvements to the network stack, auto balancing of tablets on failures, zone/DC aware data placement, leader-balancing, ability to do full cluster moves in a online manner, and more.
 - Google libraries (`glog`, `gflags`, `protocol buffers`, `snappy`, `gperftools`, `gtest`, `gmock`).
 
 ## Third party software components
 
-Yugabyte products incorporate third party software, which includes the copyrighted, patented, or otherwise legally protected software of third parties. Included here is a list of the third party open source software components that are incorporated into YugabyteDB products.
+ZNbase products incorporate third party software, which includes the copyrighted, patented, or otherwise legally protected software of third parties. Included here is a list of the third party open source software components that are incorporated into ZNbaseDB products.
 
 |  **Component Name** | **Version** | **License** |
 | :--- | :--- | :--- |
@@ -54,7 +54,7 @@ Yugabyte products incorporate third party software, which includes the copyright
 |  zlib compression | 1.2.11 | Zlib |
 |  RocksDB (significantly modified) | Based on version e8e6cf0173849ee323cf6972121a179d085505b1 | Apache-2.0 |
 |  Apache Kudu (significantly modified) | Based on version 1ad16aa0b742a75b86152cd7034f150674070606 | Apache-2.0 |
-|  Cassandra (DataStax) Java driver with Yugabyte modifications | 3.9.0-yb-5 | Apache-2.0 |
+|  Cassandra (DataStax) Java driver with ZNbase modifications | 3.9.0-yb-5 | Apache-2.0 |
 |  autoconf | 2.69 | GPL-2.0 |
 |  automake | 1.15.1 | GPL-2.0 |
 |  flex | 2.6.4 | BSD-2-Clause |

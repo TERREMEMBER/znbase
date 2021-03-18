@@ -1,6 +1,6 @@
 ---
 title: "DataTypes"
-metaTitle: "DataTypes | YugabyteDB Tutorials"
+metaTitle: "DataTypes | ZNbaseDB Tutorials"
 type: "COURSE"
 description: "Coming soon!"
 ---

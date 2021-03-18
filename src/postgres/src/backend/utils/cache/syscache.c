@@ -1114,7 +1114,7 @@ YBSysTablePrimaryKey(Oid relid)
 }
 
 /*
- * Utility function for YugaByte mode. Is used to automatically add entries
+ * Utility function for ZNbase mode. Is used to automatically add entries
  * from common catalog tables to the cache immediately after they are inserted.
  */
 void YBSetSysCacheTuple(Relation rel, HeapTuple tup)
@@ -1146,7 +1146,7 @@ void YBSetSysCacheTuple(Relation rel, HeapTuple tup)
 }
 
 /*
- * In YugaByte mode preload the given cache with data from master.
+ * In ZNbase mode preload the given cache with data from master.
  * If no index cache is associated with the given cache (most of the time), its id should be -1.
  */
 void
@@ -1307,7 +1307,7 @@ YBPreloadCatalogCache(int cache_id, int idx_cache_id)
 }
 
 /*
- * In YugaByte mode load up the caches with data from some essential tables
+ * In ZNbase mode load up the caches with data from some essential tables
  * that are looked up often during regular usage.
  *
  * Used during initdb.

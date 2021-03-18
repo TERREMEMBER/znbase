@@ -1,15 +1,15 @@
 ---
-title: Install YugabyteDB on macOS
-headerTitle: 1. Install YugabyteDB
-linkTitle: 1. Install YugabyteDB
-description: Download and install YugabyteDB on macOS in less than five minutes.
+title: Install ZNbaseDB on macOS
+headerTitle: 1. Install ZNbaseDB
+linkTitle: 1. Install ZNbaseDB
+description: Download and install ZNbaseDB on macOS in less than five minutes.
 aliases:
   - /quick-start/install/
   - /latest/quick-start/install/
 menu:
   latest:
     parent: quick-start
-    name: 1. Install YugabyteDB
+    name: 1. Install ZNbaseDB
     identifier: install-1-macos
     weight: 110
 type: page
@@ -123,18 +123,18 @@ showAsideToc: true
 
     You might have to `unload` the service before loading it.
 
-## Download YugabyteDB
+## Download ZNbaseDB
 
-1. Download the YugabyteDB `tar.gz` file using the following `wget` command.
+1. Download the ZNbaseDB `tar.gz` file using the following `wget` command.
 
     ```sh
-    $ wget https://downloads.yugabyte.com/yugabyte-2.5.3.1-darwin.tar.gz
+    $ wget https://downloads.ZNbase.com/ZNbase-2.5.3.1-darwin.tar.gz
     ```
 
-1. Extract the package and then change directories to the YugabyteDB home.
+1. Extract the package and then change directories to the ZNbaseDB home.
 
     ```sh
-    $ tar xvfz yugabyte-2.5.3.1-darwin.tar.gz && cd yugabyte-2.5.3.1/
+    $ tar xvfz ZNbase-2.5.3.1-darwin.tar.gz && cd ZNbase-2.5.3.1/
     ```
 
 ## Configure

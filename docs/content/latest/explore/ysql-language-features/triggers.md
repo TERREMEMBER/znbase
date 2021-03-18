@@ -21,7 +21,7 @@ In YSQL, a function invoked automatically when an event associated with a table 
 
 You create a trigger by defining a function and then attaching this trigger function to a table. You can create a trigger at a row level or a statement level, depending on the number of times the trigger is to be invoked and when. For example, when executing an `UPDATE` statement that affects five rows, the row-level trigger is invoked five times, whereas the statement-level trigger is invoked only once. In addition, you can enable the trigger to be invoked before or after an event: when the trigger is invoked before an event, it may skip the operation for the current row or modify the row itself; if the trigger is invoked after the event, the trigger has access to all the changes.
 
-When YugabyteDB is being used by different applications, triggers allow you to keep the cross-functional behavior within the database that is performed automatically every time the table data is modified. In addition, triggers let you maintain data integrity rules that can only be implemented at the database level. 
+When ZNbaseDB is being used by different applications, triggers allow you to keep the cross-functional behavior within the database that is performed automatically every time the table data is modified. In addition, triggers let you maintain data integrity rules that can only be implemented at the database level. 
 
 When using triggers, it is important to be aware of their existence and understand their logic. Otherwise, it is difficult to predict the timing and effects of data changes.
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -14,9 +14,9 @@
 #
 
 """
-Copyright (c) YugaByte, Inc.
+Copyright (c) ZNbase, Inc.
 
-Finds all Linux dynamic libraries that have to be packaged with the YugaByte distribution tarball by
+Finds all Linux dynamic libraries that have to be packaged with the ZNbase distribution tarball by
 starting from a small set of executables and walking the dependency graph. Creates a self-sufficient
 distribution directory.
 
@@ -47,7 +47,7 @@ from yb.common_util import get_thirdparty_dir, YB_SRC_ROOT, sorted_grouped_by, \
 
 # A resolved shared library dependency shown by ldd.
 # Example (split across two lines):
-#   libmaster.so => /home/mbautin/code/yugabyte/build/debug-gcc-dynamic/lib/libmaster.so
+#   libmaster.so => /home/mbautin/code/ZNbase/build/debug-gcc-dynamic/lib/libmaster.so
 #   (0x00007f941fa5f000)
 RESOLVED_DEP_RE = re.compile(r'^\s*(\S+)\s+=>\s+(\S.*\S)\s+[(]')
 
@@ -115,8 +115,8 @@ class Dependency:
     def get_category(self):
         """
         Categorizes binaries into a few buckets:
-        - yb -- YugaByte product itself
-        - yb-thirdparty -- built with YugaByte
+        - yb -- ZNbase product itself
+        - yb-thirdparty -- built with ZNbase
         - linuxbrew -- built using Linuxbrew
         - system -- grabbed from a system-wide library directory
         """
@@ -148,7 +148,7 @@ class Dependency:
 
         raise RuntimeError(
             ("Could not determine the category of this binary "
-             "(yugabyte / yb-thirdparty / linuxbrew / system): '{}'. "
+             "(ZNbase / yb-thirdparty / linuxbrew / system): '{}'. "
              "Does not reside in the Linuxbrew directory ({}), "
              "YB third-party directory ('{}'), "
              "YB build directory ('{}'), "

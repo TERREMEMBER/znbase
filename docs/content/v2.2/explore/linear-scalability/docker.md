@@ -2,7 +2,7 @@
 title: Explore linear scalability on Docker
 headerTitle: Linear scalability
 linkTitle: Linear scalability
-description: Learn how to scale a local three-node YugabyteDB cluster (on Docker) while a workload is running.
+description: Learn how to scale a local three-node ZNbaseDB cluster (on Docker) while a workload is running.
 block_indexing: true
 menu:
   v2.2:
@@ -45,16 +45,16 @@ showAsideToc: true
 
 </ul>
 
-With YugabyteDB, you can add nodes to scale your cluster up very efficiently and reliably in order to achieve more read and write IOPS (input/output operations per second). In this tutorial, you will look at how YugabyteDB can scale while a workload is running. You will run a read-write workload using the prepackaged [YugabyteDB workload generator](https://github.com/yugabyte/yb-sample-apps) against a three-node local cluster with a replication factor of 3, and add nodes to it while the workload is running. Next, you can observe how the cluster scales out by verifying that the number of read and write IOPS are evenly distributed across all the nodes at all times.
+With ZNbaseDB, you can add nodes to scale your cluster up very efficiently and reliably in order to achieve more read and write IOPS (input/output operations per second). In this tutorial, you will look at how ZNbaseDB can scale while a workload is running. You will run a read-write workload using the prepackaged [ZNbaseDB workload generator](https://github.com/ZNbase/yb-sample-apps) against a three-node local cluster with a replication factor of 3, and add nodes to it while the workload is running. Next, you can observe how the cluster scales out by verifying that the number of read and write IOPS are evenly distributed across all the nodes at all times.
 
 ## Prerequisite
 
-Install a local YugabyteDB universe on Docker using the steps below.
+Install a local ZNbaseDB universe on Docker using the steps below.
 
 ```sh
-mkdir ~/yugabyte && cd ~/yugabyte
-wget https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/bin/yb-docker-ctl && chmod +x yb-docker-ctl
-docker pull yugabytedb/yugabyte
+mkdir ~/ZNbase && cd ~/ZNbase
+wget https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/bin/yb-docker-ctl && chmod +x yb-docker-ctl
+docker pull ZNbasedb/ZNbase
 ```
 
 ## 1. Create universe
@@ -71,16 +71,16 @@ Start a new three-node local cluster with replication factor of `3`. Configure t
 $ ./yb-docker-ctl create --rf 3 --num_shards_per_tserver 4
 ```
 
-## 2. Run YugabyteDB workload generator
+## 2. Run ZNbaseDB workload generator
 
-Pull the [yb-sample-apps](https://github.com/yugabyte/yb-sample-apps) docker container. This container has built-in Java client programs for various workloads, including SQL inserts and updates.
+Pull the [yb-sample-apps](https://github.com/ZNbase/yb-sample-apps) docker container. This container has built-in Java client programs for various workloads, including SQL inserts and updates.
 
 ```sh
-$ docker pull yugabytedb/yb-sample-apps
+$ docker pull ZNbasedb/yb-sample-apps
 ```
 
 ```sh
-$ docker run --name yb-sample-apps --hostname yb-sample-apps --net yb-net yugabytedb/yb-sample-apps --workload SqlInserts \
+$ docker run --name yb-sample-apps --hostname yb-sample-apps --net yb-net ZNbasedb/yb-sample-apps --workload SqlInserts \
 	--nodes yb-tserver-n1:5433 \
 	--num_threads_write 1 \
 	--num_threads_read 4
@@ -124,11 +124,11 @@ Remove the recently added node from the universe.
 $ ./yb-docker-ctl remove_node 4
 ```
 
-- Refresh the <a href='http://localhost:7000/tablet-servers' target="_blank">tablet-servers</a> page to see the stats update. The `Time since heartbeat` value for that node will keep increasing. Once that number reaches 60s (i.e. 1 minute), YugabyteDB will change the status of that node from ALIVE to DEAD. Note that at this time the universe is running in an under-replicated state for some subset of tablets.
+- Refresh the <a href='http://localhost:7000/tablet-servers' target="_blank">tablet-servers</a> page to see the stats update. The `Time since heartbeat` value for that node will keep increasing. Once that number reaches 60s (i.e. 1 minute), ZNbaseDB will change the status of that node from ALIVE to DEAD. Note that at this time the universe is running in an under-replicated state for some subset of tablets.
 
 ![Read and write IOPS with 4th node dead](/images/ce/linear-scalability-4-nodes-dead-docker.png)
 
-- After 300s (5 minutes), YugabyteDB's remaining nodes will re-spawn new tablets that were lost with the loss of node 4. Each remaining node's tablet count will increase from 18 to 24.
+- After 300s (5 minutes), ZNbaseDB's remaining nodes will re-spawn new tablets that were lost with the loss of node 4. Each remaining node's tablet count will increase from 18 to 24.
 
 ## 6. Clean up (optional)
 

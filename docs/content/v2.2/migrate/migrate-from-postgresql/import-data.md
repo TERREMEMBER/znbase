@@ -3,7 +3,7 @@
 title: Import Data
 headerTitle: Import Data
 linkTitle: Import Data
-description: How to import data into YugabyteDB.
+description: How to import data into ZNbaseDB.
 block_indexing: true
 menu:
   v2.2:
@@ -14,7 +14,7 @@ isTocNested: false
 showAsideToc: true
 ---
 
-The next step is to import the data that was previously exported into YugabyteDB.
+The next step is to import the data that was previously exported into ZNbaseDB.
 
 {{< note title="Note" >}}
 After the data import step, remember to recreate any constraints and triggers that might have been disabled to speed up loading the data. This would ensure that the database will perform relational integrity checking for data going forward.

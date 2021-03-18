@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 #ifndef YB_CONSENSUS_LEADER_LEASE_H
 #define YB_CONSENSUS_LEADER_LEASE_H

@@ -3,7 +3,7 @@ title: Node level issues
 linkTitle: Node level issues
 description: Node level issues
 image: /images/section_icons/quick_start/create_cluster.png
-headcontent: Diagnose and solve issues on an individual YugabyteDB node.
+headcontent: Diagnose and solve issues on an individual ZNbaseDB node.
 block_indexing: true
 menu:
   v2.1:
@@ -20,7 +20,7 @@ menu:
         <div class="title">Check processes</div>
       </div>
       <div class="body">
-        Check the status and accessibility of YugabyteDB nodes.
+        Check the status and accessibility of ZNbaseDB nodes.
       </div>
     </a>
   </div>
@@ -32,7 +32,7 @@ menu:
         <div class="title">Inspect logs</div>
       </div>
       <div class="body">
-        Diagnose issues by inspecting the YugabyteDB logs.
+        Diagnose issues by inspecting the ZNbaseDB logs.
       </div>
     </a>
   </div>
@@ -44,7 +44,7 @@ menu:
         <div class="title">Get system stats</div>
       </div>
       <div class="body">
-        Get state information and metrics for YugabyteDB processes.
+        Get state information and metrics for ZNbaseDB processes.
       </div>
     </a>
   </div>

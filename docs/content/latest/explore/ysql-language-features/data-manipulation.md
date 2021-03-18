@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This section describes how to manipulate data in YugabyteDB using the YSQL `INSERT`, `UPDATE`, and `DELETE` statements.
+This section describes how to manipulate data in ZNbaseDB using the YSQL `INSERT`, `UPDATE`, and `DELETE` statements.
 
 ## Inserting Rows
 
@@ -44,7 +44,7 @@ INSERT INTO employees (employee_no, name, department) VALUES (1, 'John Smith', '
 You can always view your changes by executing the following command:
 
 ```shell
-yugabyte=# \d employees
+ZNbase=# \d employees
 ```
 
 ### Default Values
@@ -113,7 +113,7 @@ COPY employees TO '/home/mydir/employees.txt.sql' DELIMITER ',';
 
 ## Backing Up a Database
 
-You can back up a single instance of a YugabyteDB database into a plain-text SQL file by using the  `ysql_dump` is a utility, as follows:
+You can back up a single instance of a ZNbaseDB database into a plain-text SQL file by using the  `ysql_dump` is a utility, as follows:
 
 ```
 ysql_dump mydb > mydb.sql

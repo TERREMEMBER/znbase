@@ -81,7 +81,7 @@ This clause is used to specify a default value for the column. If an `INSERT` st
 ### Deferrable constraints
 
 Constraints can be deferred using the `DEFERRABLE` clause. Currently, only foreign key constraints
-can be deferred in YugabyteDB. A constraint that is not deferrable will be checked after every row
+can be deferred in ZNbaseDB. A constraint that is not deferrable will be checked after every row
 within a statement. In the case of deferrable constraints, the checking of the constraint can be postponed
 until the end of the transaction.
 
@@ -101,7 +101,7 @@ Presplitting tablets, using `SPLIT INTO`, distributes write and read workloads o
 
 {{< note title="Note" >}}
 
-By default, YugabyteDB presplits a table in `ysql_num_shards_per_tserver * num_of_tserver` shards. The `SPLIT INTO` clause can be used to override that setting on a per-table basis.
+By default, ZNbaseDB presplits a table in `ysql_num_shards_per_tserver * num_of_tserver` shards. The `SPLIT INTO` clause can be used to override that setting on a per-table basis.
 
 {{< /note >}}
 
@@ -135,7 +135,7 @@ In the example above, there are three split points and so four tablets will be c
 ### COLOCATED
 
 For colocated databases, specify `false` to opt this table out of colocation. This means that the table won't be stored on the same tablet as the rest of the tables for this database, but instead, will have its own set of tablets.
-Use this option for large tables that need to be scaled out. See [colocated tables architecture](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/ysql-colocated-tables.md) for more details on when colocation is useful.
+Use this option for large tables that need to be scaled out. See [colocated tables architecture](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/ysql-colocated-tables.md) for more details on when colocation is useful.
 
 Note that `COLOCATED = true` has no effect if the database that this table is part of is not colocated since colocation today is supported only at the database level.
 
@@ -148,7 +148,7 @@ Storage parameters, [as defined by PostgreSQL](https://www.postgresql.org/docs/1
 ### Table with primary key
 
 ```plpgsql
-yugabyte=# CREATE TABLE sample(k1 int,
+ZNbase=# CREATE TABLE sample(k1 int,
                                k2 int,
                                v1 int,
                                v2 text,
@@ -158,7 +158,7 @@ yugabyte=# CREATE TABLE sample(k1 int,
 In this example, the first column `k1` will be `HASH`, while second column `k2` will be `ASC`.
 
 ```
-yugabyte=# \d sample
+ZNbase=# \d sample
                Table "public.sample"
  Column |  Type   | Collation | Nullable | Default
 --------+---------+-----------+----------+---------
@@ -173,7 +173,7 @@ Indexes:
 ### Table with range primary key
 
 ```plpgsql
-yugabyte=# CREATE TABLE range(k1 int,
+ZNbase=# CREATE TABLE range(k1 int,
                               k2 int,
                               v1 int,
                               v2 text,
@@ -183,7 +183,7 @@ yugabyte=# CREATE TABLE range(k1 int,
 ### Table with check constraint
 
 ```plpgsql
-yugabyte=# CREATE TABLE student_grade(student_id int,
+ZNbase=# CREATE TABLE student_grade(student_id int,
                                       class_id int,
                                       term_id int,
                                       grade int CHECK (grade >= 0 AND grade <= 10),
@@ -193,7 +193,7 @@ yugabyte=# CREATE TABLE student_grade(student_id int,
 ### Table with default value
 
 ```plpgsql
-yugabyte=# CREATE TABLE cars(id int PRIMARY KEY,
+ZNbase=# CREATE TABLE cars(id int PRIMARY KEY,
                              brand text CHECK (brand in ('X', 'Y', 'Z')),
                              model text NOT NULL,
                              color text NOT NULL DEFAULT 'WHITE' CHECK (color in ('RED', 'WHITE', 'BLUE')));
@@ -204,9 +204,9 @@ yugabyte=# CREATE TABLE cars(id int PRIMARY KEY,
 Define two tables with a foreign keys constraint.
 
 ```plpgsql
-yugabyte=# CREATE TABLE products(id int PRIMARY KEY,
+ZNbase=# CREATE TABLE products(id int PRIMARY KEY,
                                  descr text);
-yugabyte=# CREATE TABLE orders(id int PRIMARY KEY,
+ZNbase=# CREATE TABLE orders(id int PRIMARY KEY,
                                pid int REFERENCES products(id) ON DELETE CASCADE,
                                amount int);
 ```
@@ -214,11 +214,11 @@ yugabyte=# CREATE TABLE orders(id int PRIMARY KEY,
 Insert some rows.
 
 ```plpgsql
-yugabyte=# SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-yugabyte=# INSERT INTO products VALUES (1, 'Phone X'), (2, 'Tablet Z');
-yugabyte=# INSERT INTO orders VALUES (1, 1, 3), (2, 1, 3), (3, 2, 2);
+ZNbase=# SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+ZNbase=# INSERT INTO products VALUES (1, 'Phone X'), (2, 'Tablet Z');
+ZNbase=# INSERT INTO orders VALUES (1, 1, 3), (2, 1, 3), (3, 2, 2);
 
-yugabyte=# SELECT o.id AS order_id, p.id as product_id, p.descr, o.amount FROM products p, orders o WHERE o.pid = p.id;
+ZNbase=# SELECT o.id AS order_id, p.id as product_id, p.descr, o.amount FROM products p, orders o WHERE o.pid = p.id;
 ```
 
 ```
@@ -233,7 +233,7 @@ order_id | product_id |  descr   | amount
 Inserting a row referencing a non-existent product is not allowed.
 
 ```plpgsql
-yugabyte=# INSERT INTO orders VALUES (1, 3, 3);
+ZNbase=# INSERT INTO orders VALUES (1, 3, 3);
 ```
 
 ```
@@ -244,8 +244,8 @@ DETAIL:  Key (pid)=(3) is not present in table "products".
 Deleting a product will cascade to all orders (as defined in the `CREATE TABLE` statement above).
 
 ```plpgsql
-yugabyte=# DELETE from products where id = 1;
-yugabyte=# SELECT o.id AS order_id, p.id as product_id, p.descr, o.amount FROM products p, orders o WHERE o.pid = p.id;
+ZNbase=# DELETE from products where id = 1;
+ZNbase=# SELECT o.id AS order_id, p.id as product_id, p.descr, o.amount FROM products p, orders o WHERE o.pid = p.id;
 ```
 
 ```
@@ -258,7 +258,7 @@ yugabyte=# SELECT o.id AS order_id, p.id as product_id, p.descr, o.amount FROM p
 ### Table with unique constraint
 
 ```plpgsql
-yugabyte=# CREATE TABLE translations(message_id int UNIQUE,
+ZNbase=# CREATE TABLE translations(message_id int UNIQUE,
                                      message_txt text);
 ```
 
@@ -267,15 +267,15 @@ yugabyte=# CREATE TABLE translations(message_id int UNIQUE,
 To specify the number of tablets for a table, you can use the `CREATE TABLE` statement with the [`SPLIT INTO`](#split-into) clause.
 
 ```plpgsql
-yugabyte=# CREATE TABLE tracking (id int PRIMARY KEY) SPLIT INTO 10 TABLETS;
+ZNbase=# CREATE TABLE tracking (id int PRIMARY KEY) SPLIT INTO 10 TABLETS;
 ```
 
 ### Opt a table out of colocation
 
 ```plpgsql
-yugabyte=# CREATE DATABASE company WITH colocated = true;
+ZNbase=# CREATE DATABASE company WITH colocated = true;
 
-yugabyte=# CREATE TABLE employee(id INT PRIMARY KEY, name TEXT) WITH (colocated = false);
+ZNbase=# CREATE TABLE employee(id INT PRIMARY KEY, name TEXT) WITH (colocated = false);
 ```
 
 In this example, database `company` is colocated and all tables other than the `employee` table are stored on a single tablet.

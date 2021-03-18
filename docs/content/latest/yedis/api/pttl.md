@@ -25,7 +25,7 @@ Returns TTL in milliseconds, encoded as integer response.
 ## Examples
 
 ```sh
-$ SET yugakey "Yugabyte"
+$ SET yugakey "ZNbase"
 ```
 
 ```

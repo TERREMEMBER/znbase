@@ -1,10 +1,10 @@
 /*-------------------------------------------------------------------------
  *
  * pg_yb_utils.c
- *	  Utilities for YugaByte/PostgreSQL integration that have to be defined on
+ *	  Utilities for ZNbase/PostgreSQL integration that have to be defined on
  *	  the PostgreSQL side.
  *
- * Copyright (c) YugaByte, Inc.
+ * Copyright (c) ZNbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License.  You may obtain a copy
@@ -81,10 +81,10 @@ static void YBCInstallTxnDdlHook();
 bool yb_read_from_followers = false;
 
 bool
-IsYugaByteEnabled()
+IsZNbaseEnabled()
 {
 	/* We do not support Init/Bootstrap processing modes yet. */
-	return YBCPgIsYugaByteEnabled();
+	return YBCPgIsZNbaseEnabled();
 }
 
 void
@@ -104,13 +104,13 @@ CheckIsYBSupportedRelationByKind(char relkind)
 
 		ereport(ERROR,
 				(errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
-								errmsg("This feature is not supported in YugaByte.")));
+								errmsg("This feature is not supported in ZNbase.")));
 }
 
 bool
 IsYBRelation(Relation relation)
 {
-	if (!IsYugaByteEnabled()) return false;
+	if (!IsZNbaseEnabled()) return false;
 
 	const char relkind = relation->rd_rel->relkind;
 
@@ -199,7 +199,7 @@ static Bitmapset *GetTablePrimaryKeyBms(Relation rel,
 	Bitmapset      *pkey         = NULL;
 	YBCPgTableDesc ybc_tabledesc = NULL;
 
-	/* Get the primary key columns 'pkey' from YugaByte. */
+	/* Get the primary key columns 'pkey' from ZNbase. */
 	HandleYBStatus(YBCPgGetTableDesc(dboid, relid, &ybc_tabledesc));
 	for (AttrNumber attnum = minattr; attnum <= natts; attnum++)
 	{
@@ -283,7 +283,7 @@ YBTransactionsEnabled()
 	{
 		cached_value = YBCIsEnvVarTrueWithDefault("YB_PG_TRANSACTIONS_ENABLED", true);
 	}
-	return IsYugaByteEnabled() && cached_value;
+	return IsZNbaseEnabled() && cached_value;
 }
 
 void
@@ -400,7 +400,7 @@ YBInitPostgresBackend(
 
 	/*
 	 * Enable "YB mode" for PostgreSQL so that we will initiate a connection
-	 * to the YugaByte cluster right away from every backend process. We only
+	 * to the ZNbase cluster right away from every backend process. We only
 
 	 * do this if this env variable is set, so we can still run the regular
 	 * PostgreSQL "make check".
@@ -419,7 +419,7 @@ YBInitPostgresBackend(
 
 		/*
 		 * For each process, we create one YBC session for PostgreSQL to use
-		 * when accessing YugaByte storage.
+		 * when accessing ZNbase storage.
 		 *
 		 * TODO: do we really need to DB name / username here?
 		 */
@@ -436,7 +436,7 @@ YBOnPostgresBackendShutdown()
 void
 YBCRecreateTransaction()
 {
-	if (!IsYugaByteEnabled())
+	if (!IsZNbaseEnabled())
 		return;
 	HandleYBStatus(YBCPgRecreateTransaction());
 }
@@ -444,7 +444,7 @@ YBCRecreateTransaction()
 void
 YBCRestartTransaction()
 {
-	if (!IsYugaByteEnabled())
+	if (!IsZNbaseEnabled())
 		return;
 	HandleYBStatus(YBCPgRestartTransaction());
 }
@@ -452,7 +452,7 @@ YBCRestartTransaction()
 void
 YBCCommitTransaction()
 {
-	if (!IsYugaByteEnabled())
+	if (!IsZNbaseEnabled())
 		return;
 
 	HandleYBStatus(YBCPgFlushBufferedOperations());
@@ -462,7 +462,7 @@ YBCCommitTransaction()
 void
 YBCAbortTransaction()
 {
-	if (!IsYugaByteEnabled())
+	if (!IsZNbaseEnabled())
 		return;
 
 	YBCPgDropBufferedOperations();
@@ -628,15 +628,15 @@ YBCPgDataTypeToStr(YBCPgDataType yb_type) {
 }
 
 void
-YBReportIfYugaByteEnabled()
+YBReportIfZNbaseEnabled()
 {
 	if (YBIsEnabledInPostgresEnvVar()) {
 		ereport(LOG, (errmsg(
-			"YugaByte is ENABLED in PostgreSQL. Transactions are %s.",
+			"ZNbase is ENABLED in PostgreSQL. Transactions are %s.",
 			YBCIsEnvVarTrue("YB_PG_TRANSACTIONS_ENABLED") ?
 			"enabled" : "disabled")));
 	} else {
-		ereport(LOG, (errmsg("YugaByte is NOT ENABLED -- "
+		ereport(LOG, (errmsg("ZNbase is NOT ENABLED -- "
 							"this is a vanilla PostgreSQL server!")));
 	}
 }
@@ -742,7 +742,7 @@ YBRaiseNotSupportedSignal(const char *msg, int issue_no, int signal_level)
 		ereport(signal_level,
 				(errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
 				 errmsg("%s", msg),
-				 errhint("See https://github.com/YugaByte/yugabyte-db/issues/%d. "
+				 errhint("See https://github.com/ZNbase/ZNbase-db/issues/%d. "
 						 "Click '+' on the description to raise its priority", issue_no)));
 	}
 	else
@@ -751,7 +751,7 @@ YBRaiseNotSupportedSignal(const char *msg, int issue_no, int signal_level)
 				(errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
 				 errmsg("%s", msg),
 				 errhint("Please report the issue on "
-						 "https://github.com/YugaByte/yugabyte-db/issues")));
+						 "https://github.com/ZNbase/ZNbase-db/issues")));
 	}
 }
 

@@ -4,11 +4,11 @@ Certificate:
         Serial Number:
             5f:42:75:5d:d1:b6:8e:b5:3a:a4:d3:7a:3e:47:57:cd:a3:b9:9a:87
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: CN = YugaByte CA
+        Issuer: CN = ZNbase CA
         Validity
             Not Before: Nov 25 21:59:45 2019 GMT
             Not After : Nov 22 21:59:45 2029 GMT
-        Subject: O = YugaByte, CN = yugabyte
+        Subject: O = ZNbase, CN = ZNbase
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (2048 bit)

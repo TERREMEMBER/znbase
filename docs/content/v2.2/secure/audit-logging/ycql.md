@@ -2,7 +2,7 @@
 title: Audit logging logging for the YCQL API
 headerTitle: Audit logging for the YCQL API
 linkTitle: Audit logging
-description: Use audit logging in YugabyteDB for the YCQL API.
+description: Use audit logging in ZNbaseDB for the YCQL API.
 menu:
   v2.2:
     identifier: audit-logging-2-ycql
@@ -21,7 +21,7 @@ menu:
 
 </ul>
 
-This document describes how to enable and configure audit logging in YugabyteDB for the YCQL API.
+This document describes how to enable and configure audit logging in ZNbaseDB for the YCQL API.
 
 ## Synopsis
 

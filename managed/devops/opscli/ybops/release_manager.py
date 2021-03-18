@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 import glob
 import logging
@@ -20,7 +20,7 @@ from ybops.common.exceptions import YBOpsRuntimeError
 
 
 class ReleaseManager(object):
-    """ReleaseManager class is used to package yugabyte specific builds.
+    """ReleaseManager class is used to package ZNbase specific builds.
     """
 
     RELEASE_MANIFEST_NAME = "yb_release_manifest.json"
@@ -99,11 +99,11 @@ class ReleaseManager(object):
                                                 self.build_type)
         ybutils.log_message(logging.INFO, "Exporting release tarball")
 
-        # TODO(bogdan,ram): hack around yugabyte untaring into a top-level dir named by repo.
+        # TODO(bogdan,ram): hack around ZNbase untaring into a top-level dir named by repo.
         # This should only be the repo name passed in from the respective yb_release.py in either
-        # yugabyte or devops.
+        # ZNbase or devops.
         prefix_dir = ""
-        if self.release_name == "yugabyte":
+        if self.release_name == "ZNbase":
             prefix_dir = "{}-{}".format(
                 self.release_name, ybutils.get_default_release_version(self.repository))
 

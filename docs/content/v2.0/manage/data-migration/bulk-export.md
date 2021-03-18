@@ -3,7 +3,7 @@ title: Bulk export
 linkTitle: Bulk export
 description: Bulk export
 image: /images/section_icons/manage/enterprise.png
-headcontent: Bulk export data from YugabyteDB.
+headcontent: Bulk export data from ZNbaseDB.
 block_indexing: true
 menu:
   v2.0:
@@ -12,7 +12,7 @@ menu:
     weight: 707
 ---
 
-This page documents the options for exporting data out of YugabyteDB.
+This page documents the options for exporting data out of ZNbaseDB.
 
 <ul class="nav nav-tabs nav-tabs-yb">
   <li>

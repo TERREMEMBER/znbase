@@ -1,6 +1,6 @@
 package redis.clients.jedis.tests;
 
-import com.yugabyte.jedis.BaseJedisTest;
+import com.ZNbase.jedis.BaseJedisTest;
 
 import org.junit.Before;
 import org.junit.BeforeClass;

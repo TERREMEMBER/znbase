@@ -2,7 +2,7 @@
 title: Benchmark scalability
 headerTitle: Scalability
 linkTitle: Scalability
-description: Benchmark scalability of queries and datasets in YugabyteDB.
+description: Benchmark scalability of queries and datasets in ZNbaseDB.
 image: /images/section_icons/deploy/enterprise.png
 headcontent: Benchmark adjusting capacity to meet demand
 block_indexing: true

@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -97,7 +97,7 @@ DEFINE_string(yb_test_name, "",
 DEFINE_bool(TEST_check_broadcast_address, true, "Break connectivity in test mini cluster to "
             "check broadcast address.");
 
-DEFINE_test_flag(string, public_hostname_suffix, ".ip.yugabyte", "Suffix for public hostnames.");
+DEFINE_test_flag(string, public_hostname_suffix, ".ip.ZNbase", "Suffix for public hostnames.");
 
 DEFINE_test_flag(bool, simulate_port_conflict_error, false,
                  "Simulate a port conflict error during initialization.");
@@ -547,10 +547,10 @@ Status RpcAndWebServerBase::GetRegistration(ServerRegistrationPB* reg, RpcOnly r
 }
 
 string RpcAndWebServerBase::GetEasterEggMessage() const {
-  return "Congratulations on installing YugabyteDB. "
+  return "Congratulations on installing ZNbaseDB. "
          "We'd like to welcome you to the community with a free t-shirt and pack of stickers! "
-         "Please claim your reward here: <a href='https://www.yugabyte.com/community-rewards/'>"
-         "https://www.yugabyte.com/community-rewards/</a>";
+         "Please claim your reward here: <a href='https://www.ZNbase.com/community-rewards/'>"
+         "https://www.ZNbase.com/community-rewards/</a>";
 
 }
 

@@ -2,7 +2,7 @@
 title: LDAP Authentication
 headerTitle: LDAP Authentication
 linkTitle: LDAP Authentication
-description: Configuring YugabyteDB to use an external LDAP authentication service.
+description: Configuring ZNbaseDB to use an external LDAP authentication service.
 menu:
   stable:
     identifier: ldap-authentication
@@ -23,7 +23,7 @@ showAsideToc: true
 
 The ldap authentication method is similar to the password method, except that it uses LDAP to verify the password. Therefore, before LDAP can be used for authentication, the user must already exist in the database (and have appropriate permissions). 
 
-LDAP Authentication can be enabled in the YugabyteDB cluster by setting the LDAP configuration with <code>[--ysql_hba_conf](/latest/reference/configuration/yb-tserver/#ysql-hba-conf)</code> flag. YugabyteDB supports two modes for LDAP authentication: 
+LDAP Authentication can be enabled in the ZNbaseDB cluster by setting the LDAP configuration with <code>[--ysql_hba_conf](/latest/reference/configuration/yb-tserver/#ysql-hba-conf)</code> flag. ZNbaseDB supports two modes for LDAP authentication: 
 
 * <strong>simple-bind</strong> mode
 *  <strong>search+bind</strong> mode
@@ -36,7 +36,7 @@ In **simple-bind** mode, YB-TServer will bind to the Distinguished Name (â€œDNâ€
 
 
 ```
---ysql_hba_conf_csv='host all yugabyte 127.0.0.1/0 password,"host   all         all      0.0.0.0/0  ldap ldapserver=ldap.yugabyte.com ldapprefix=""uid="" ldapsuffix="", ou=DBAs, dc=example, dc=com"" ldapport=389"'
+--ysql_hba_conf_csv='host all ZNbase 127.0.0.1/0 password,"host   all         all      0.0.0.0/0  ldap ldapserver=ldap.ZNbase.com ldapprefix=""uid="" ldapsuffix="", ou=DBAs, dc=example, dc=com"" ldapport=389"'
 ```
 
 
@@ -95,7 +95,7 @@ Here is an example for search + bind mode
 
 
 ```
---ysql_hba_conf_csv='host all yugabyte 127.0.0.1/0 password,"host   all         all      0.0.0.0/0  ldap ldapserver=ldap.yugabyte.com ldapbasedn=""dc=yugabyte, dc=com"" ldapsearchattribute=uid"'
+--ysql_hba_conf_csv='host all ZNbase 127.0.0.1/0 password,"host   all         all      0.0.0.0/0  ldap ldapserver=ldap.ZNbase.com ldapbasedn=""dc=ZNbase, dc=com"" ldapsearchattribute=uid"'
 ```
 
 
@@ -170,55 +170,55 @@ The configurations supported for search + bind mode
 
 ## Example
 
-To use LDAP password authentication on a new YugabyteDB cluster, follow these steps
+To use LDAP password authentication on a new ZNbaseDB cluster, follow these steps
 
 
 
-1. Use  `--ysql_hba_conf_csv` config flag to enable LDAP authentication on YB-TServer. Use the below configuration to start a YugabyteDB cluster.
+1. Use  `--ysql_hba_conf_csv` config flag to enable LDAP authentication on YB-TServer. Use the below configuration to start a ZNbaseDB cluster.
 
     ```
-    --ysql_hba_conf_csv='host all yugabyte 127.0.0.1/0 password,"host   all         all      0.0.0.0/0  ldap ldapserver=ldap.forumsys.com ldapprefix=""uid="" ldapsuffix="", dc=example, dc=com"" ldapport=389"'
+    --ysql_hba_conf_csv='host all ZNbase 127.0.0.1/0 password,"host   all         all      0.0.0.0/0  ldap ldapserver=ldap.forumsys.com ldapprefix=""uid="" ldapsuffix="", dc=example, dc=com"" ldapport=389"'
     ```
 
     {{< note title="Note" >}}
-    In the above sample configuration, we are using an [online LDAP test server](https://www.forumsys.com/tutorials/integration-how-to/ldap/online-ldap-test-server/) for setting up the LDAP authentication with YugabyteDB.
+    In the above sample configuration, we are using an [online LDAP test server](https://www.forumsys.com/tutorials/integration-how-to/ldap/online-ldap-test-server/) for setting up the LDAP authentication with ZNbaseDB.
     {{< /note >}}
 
 
     For Convenience we use two host based authentication (HBA) rules. 
 
-    *   The first HBA rule` host all yugabyte 127.0.0.1/0 password` allows access from the localhost (127.0.0.1) to the admin user (yugabyte) with password authentication. This allows the administrator to log in with the yugabyte user for setting up the roles (and permissions) for the LDAP users.
+    *   The first HBA rule` host all ZNbase 127.0.0.1/0 password` allows access from the localhost (127.0.0.1) to the admin user (ZNbase) with password authentication. This allows the administrator to log in with the ZNbase user for setting up the roles (and permissions) for the LDAP users.
     *   The second HBA rule configures LDAP authentication for all other user/host pairs. We use simple bind with a uid-based username (ldapprefix) and a suffix defining the domain component (dc).
 
 
 
-2. Start the YugabyteDB cluster.
+2. Start the ZNbaseDB cluster.
 
-3. Open the YSQL shell (ysqlsh), specifying the `yugabyte` user and prompting for the password.
+3. Open the YSQL shell (ysqlsh), specifying the `ZNbase` user and prompting for the password.
 
     ```
-    $ ./ysqlsh -U yugabyte -W
+    $ ./ysqlsh -U ZNbase -W
     ```
 
-    When prompted for the password, enter the yugabyte password (default is `yugabyte`). You should be able to login and see a response like below.
+    When prompted for the password, enter the ZNbase password (default is `ZNbase`). You should be able to login and see a response like below.
 
 
     ```
     ysqlsh (11.2-YB-2.3.3.0-b0)
     Type "help" for help.
 
-    yugabyte=#
+    ZNbase=#
     ```
 
 
 4. To display the current values in the` ysql_hba.conf` file, run the following `SHOW` statement to get the file location:
 
     ```
-    yugabyte=# SHOW hba_file;
+    ZNbase=# SHOW hba_file;
 
                          hba_file
     -------------------------------------------------------
-     /Users/yugabyte/yugabyte-data/node-1/disk-1/pg_data/ysql_hba.conf
+     /Users/ZNbase/ZNbase-data/node-1/disk-1/pg_data/ysql_hba.conf
     (1 row)
     ```
 
@@ -229,7 +229,7 @@ To use LDAP password authentication on a new YugabyteDB cluster, follow these st
 
     ```
     # This is an autogenerated file, do not edit manually!
-    host all yugabyte 127.0.0.1/0 trust
+    host all ZNbase 127.0.0.1/0 trust
     host   all         all      0.0.0.0/0  ldap ldapserver=ldap.forumsys.com ldapprefix="uid=" ldapsuffix=", dc=example, dc=com" ldapport=389
     ```
 
@@ -240,8 +240,8 @@ To use LDAP password authentication on a new YugabyteDB cluster, follow these st
 ```
   We are creating a ROLE for username riemann supported by the test LDAP server. 
 
-  yugabyte=# CREATE ROLE riemann WITH LOGIN;
-  yugabyte=# GRANT ALL ON DATABASE yugabyte T0 riemann;
+  ZNbase=# CREATE ROLE riemann WITH LOGIN;
+  ZNbase=# GRANT ALL ON DATABASE ZNbase T0 riemann;
 
 ```
 
@@ -262,7 +262,7 @@ To use LDAP password authentication on a new YugabyteDB cluster, follow these st
 
 
     ```
-    yugabyte=# SELECT current_user;
+    ZNbase=# SELECT current_user;
      current_user
     --------------
      riemann

@@ -2,8 +2,8 @@
 title: Multi-Region Deployments
 headerTitle: Multi-Region Deployments
 linkTitle: Multi-Region Deployments
-description: Multi-Region Deployments in YugabyteDB.
-headcontent: Multi-Region Deployments in YugabyteDB.
+description: Multi-Region Deployments in ZNbaseDB.
+headcontent: Multi-Region Deployments in ZNbaseDB.
 image: /images/section_icons/secure/authorization.png
 aliases:
   - /secure/authorization/
@@ -14,14 +14,14 @@ menu:
     weight: 234
 ---
 
-YugabyteDB supports a rich set of multi-region deployment topologies. This section explains some of these deployments. The predominant deployments include:
+ZNbaseDB supports a rich set of multi-region deployment topologies. This section explains some of these deployments. The predominant deployments include:
 
 * **Default synchronous** replication across regions
 * **Geo-partitioning** to keep data pinned to different geographic locations based on policy
 * **xCluster asynchronous replication** for unidirectional and bidirectional replication
 * **Read replicas** which internally use asynchronous replication and can only serve reads
 
-The table below summarizes these different multi-region deployments in YugabyteDB along with some of their key characteristics.
+The table below summarizes these different multi-region deployments in ZNbaseDB along with some of their key characteristics.
 
 
 |                             | [Default](synchronous-replication-ysql/) | [Geo-partitioning](row-level-geo-partitioning/) | [xCluster](asynchronous-replication-ysql/) | Read replicas
@@ -45,7 +45,7 @@ The different deployments are explained in the sections below.
         <div class="title">Synchronous Replication</div>
       </div>
       <div class="body">
-          Achieve synchronous replication across 3 or more regions in YugabyteDB.
+          Achieve synchronous replication across 3 or more regions in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -57,7 +57,7 @@ The different deployments are explained in the sections below.
         <div class="title">Asynchronous Replication</div>
       </div>
       <div class="body">
-          Achieve asynchronous replication across 2 or more regions in YugabyteDB.
+          Achieve asynchronous replication across 2 or more regions in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -69,7 +69,7 @@ The different deployments are explained in the sections below.
         <div class="title">Row-Level Geo-Partitioning</div>
       </div>
       <div class="body">
-          Using row-level geo-partitioning in YugabyteDB.
+          Using row-level geo-partitioning in ZNbaseDB.
       </div>
     </a>
   </div>

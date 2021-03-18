@@ -30,13 +30,13 @@ showAsideToc: true
 
 </ul>
 
-This topic lists the various data types available in YugabyteDB’s [Cassandra-compatible YCQL API](../../../api/ycql).
+This topic lists the various data types available in ZNbaseDB’s [Cassandra-compatible YCQL API](../../../api/ycql).
 
 ## JSONB
 
 There are a number of different serialization formats for JSON data, one of the popular formats being JSONB to efficiently model document data. And just in case you were wondering, JSONB stands for JSON Better.
 
-The YCQL API supports the [JSONB data type](../../../api/ycql/type_jsonb/) to parse, store and query JSON documents natively. This data type is similar in query language syntax and functionality to the one supported by PostgreSQL. JSONB serialization allows for easy search and retrieval of attributes inside the document. This is achieved by storing all the JSON attributes in a sorted order, which allows for efficient binary search of keys. Similarly arrays are stored such that random access for a particular array index into the serialized json document is possible. [DocDB](../../../architecture/concepts/persistence/), YugabyteDB’s underlying storage engine, is document-oriented in itself which makes storing the data of the JSON data type lot more simple than otherwise possible.
+The YCQL API supports the [JSONB data type](../../../api/ycql/type_jsonb/) to parse, store and query JSON documents natively. This data type is similar in query language syntax and functionality to the one supported by PostgreSQL. JSONB serialization allows for easy search and retrieval of attributes inside the document. This is achieved by storing all the JSON attributes in a sorted order, which allows for efficient binary search of keys. Similarly arrays are stored such that random access for a particular array index into the serialized json document is possible. [DocDB](../../../architecture/concepts/persistence/), ZNbaseDB’s underlying storage engine, is document-oriented in itself which makes storing the data of the JSON data type lot more simple than otherwise possible.
 
 Let us take the example of an ecommerce app of an online bookstore. The database for such a bookstore needs to store details of various books, some of which may have custom attributes. Below is an example of a JSON document that captures the details of a particular book, Macbeth written by William Shakespeare.
 
@@ -68,7 +68,7 @@ cqlsh> CREATE TABLE store.books ( id int PRIMARY KEY, details jsonb );
 ```
 
 ### Insert Data
-Next we insert some sample data for a few books into this store. You can copy and paste the following commands into the cqlsh shell for YugabyteDB to insert the data. Note that you would need a cqlsh that has the enhancement to work with YugabyteDB JSON documents, you can download it using the documentation here.
+Next we insert some sample data for a few books into this store. You can copy and paste the following commands into the cqlsh shell for ZNbaseDB to insert the data. Note that you would need a cqlsh that has the enhancement to work with ZNbaseDB JSON documents, you can download it using the documentation here.
 
 ```sql
 INSERT INTO store.books (id, details) VALUES (1, 
@@ -121,7 +121,7 @@ Running the following default select query will return all attributes of each bo
 cqlsh> SELECT * FROM store.books;
 
 ```
-But a number of times we may want to query just a subset of attributes from YugabyteDB database. Below is an example of a query that retrieves just the id and name for all the books.
+But a number of times we may want to query just a subset of attributes from ZNbaseDB database. Below is an example of a query that retrieves just the id and name for all the books.
 
 ```sql
 cqlsh> SELECT id, details->>'name' as book_title FROM store.books;

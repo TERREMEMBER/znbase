@@ -2,7 +2,7 @@
 title: Universe 
 headerTitle: Universe
 linkTitle: Universe
-description: Learn about the YugabyteDB universe (or cluster).
+description: Learn about the ZNbaseDB universe (or cluster).
 block_indexing: true
 menu:
   v2.1:
@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-A YugabyteDB universe is a group of nodes (VMs, physical machines, or containers) that collectively function as a resilient and scalable distributed database.
+A ZNbaseDB universe is a group of nodes (VMs, physical machines, or containers) that collectively function as a resilient and scalable distributed database.
 
 {{< note title="Note" >}}
 
@@ -29,9 +29,9 @@ The universe can be deployed in a variety of configurations depending on busines
 
 ## Organization of user data
 
-A YugabyteDB *universe* can consist of one or more namespaces. Each of these namespaces can contain one or more user tables.
+A ZNbaseDB *universe* can consist of one or more namespaces. Each of these namespaces can contain one or more user tables.
 
-YugabyteDB automatically shards, replicates and load balances these tables across the nodes in the universe, while respecting user intent such as cross-AZ or region placement requirements, desired replication factor, and so on. YugabyteDB automatically handles failures (such as node, disk, AZ or region failures), and re-distributes and re-replicates data back to desired levels across the remaining available nodes while still respecting any replica placement requirements.
+ZNbaseDB automatically shards, replicates and load balances these tables across the nodes in the universe, while respecting user intent such as cross-AZ or region placement requirements, desired replication factor, and so on. ZNbaseDB automatically handles failures (such as node, disk, AZ or region failures), and re-distributes and re-replicates data back to desired levels across the remaining available nodes while still respecting any replica placement requirements.
 
 ### YSQL
 
@@ -47,7 +47,7 @@ A universe comprises of two sets of servers, **YB-TServer** and **YB-Master**. T
 
 {{< note title="Note" >}}
 
-YugabyteDB is architected to not have any single point of failure.
+ZNbaseDB is architected to not have any single point of failure.
 
 {{< /note >}}
 
@@ -55,23 +55,23 @@ These serve different purposes as described below.
 
 ### YB-TServer
 
-The **YB-TServer** (aka the *YugabyteDB Tablet Server*) service is responsible for hosting/serving user data (for example, tables). They deal with all the user queries.
+The **YB-TServer** (aka the *ZNbaseDB Tablet Server*) service is responsible for hosting/serving user data (for example, tables). They deal with all the user queries.
 
 For details, see [YB-TServer](../yb-tserver).
 
 ### YB-Master
 
-The **YB-Master** (aka the *YugabyteDB Master Server*) service is responsible for keeping system metadata, coordinating system-wide operations, such as create/alter/drop tables, and initiating maintenance operations such as load balancing.
+The **YB-Master** (aka the *ZNbaseDB Master Server*) service is responsible for keeping system metadata, coordinating system-wide operations, such as create/alter/drop tables, and initiating maintenance operations such as load balancing.
 
 For details, see [YB-Master](../yb-master).
 
-Below is an illustration of a simple 4-node YugabyteDB universe:
+Below is an illustration of a simple 4-node ZNbaseDB universe:
 
 ![4 node cluster](/images/architecture/4_node_cluster.png)
 
 ## Universe vs cluster
 
-A YugabyteDB universe comprises of exactly one primary cluster and zero or more read replica clusters. 
+A ZNbaseDB universe comprises of exactly one primary cluster and zero or more read replica clusters. 
 
 - A primary cluster can perform both writes and reads. Replication between nodes in a primary cluster is performed synchronously.
 

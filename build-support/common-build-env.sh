@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -30,7 +30,7 @@ fi
 readonly YB_COMMON_BUILD_ENV_SOURCED=1
 
 # -------------------------------------------------------------------------------------------------
-# Initialize submodules and load yugabyte-bash-common
+# Initialize submodules and load ZNbase-bash-common
 # -------------------------------------------------------------------------------------------------
 
 set_yb_src_root() {
@@ -51,7 +51,7 @@ if [[ $YB_SRC_ROOT == */ ]]; then
   fatal "YB_SRC_ROOT ends with '/' (not allowed): '$YB_SRC_ROOT'"
 fi
 
-YB_BASH_COMMON_DIR=$YB_SRC_ROOT/submodules/yugabyte-bash-common
+YB_BASH_COMMON_DIR=$YB_SRC_ROOT/submodules/ZNbase-bash-common
 
 # Initialize submodules. Only do this when the source directory is a git directory.
 #
@@ -63,8 +63,8 @@ if [[ ! -d $YB_BASH_COMMON_DIR     || -z "$( ls -A "$YB_BASH_COMMON_DIR" )" ||
   ( cd "$YB_SRC_ROOT"; git submodule update --init --recursive )
 fi
 
-# shellcheck source=submodules/yugabyte-bash-common/src/yugabyte-bash-common.sh
-. "$YB_SRC_ROOT/submodules/yugabyte-bash-common/src/yugabyte-bash-common.sh"
+# shellcheck source=submodules/ZNbase-bash-common/src/ZNbase-bash-common.sh
+. "$YB_SRC_ROOT/submodules/ZNbase-bash-common/src/ZNbase-bash-common.sh"
 
 # -------------------------------------------------------------------------------------------------
 # Constants
@@ -324,7 +324,7 @@ set_real_build_root_path() {
 ensure_build_root_is_set() {
   if [[ -z ${BUILD_ROOT:-} ]]; then
     fatal "The BUILD_ROOT environment variable is not set. This must point to the absolute path" \
-          "of the build root directory, e.g. '<yugabyte_src_dir>/build/debug'."
+          "of the build root directory, e.g. '<ZNbase_src_dir>/build/debug'."
   fi
 }
 
@@ -926,7 +926,7 @@ find_compiler_by_type() {
         local clang_paths_to_try=(
           "$YB_THIRDPARTY_DIR/clang-toolchain/bin/clang"
           # clang is present in this location in pre-built third-party archives built before
-          # the transition to Linuxbrew (https://phabricator.dev.yugabyte.com/D982). This can be
+          # the transition to Linuxbrew (https://phabricator.dev.ZNbase.com/D982). This can be
           # removed when the transition is complete.
           "$YB_THIRDPARTY_DIR/installed/common/bin/clang"
         )
@@ -1228,7 +1228,7 @@ install_linuxbrew() {
   local linuxbrew_dir=$YB_LINUXBREW_LOCAL_ROOT/$linuxbrew_dirname
   local linuxbrew_archive="${linuxbrew_dir}.tar.gz"
   local linuxbrew_archive_checksum="${linuxbrew_archive}.sha256"
-  local url="https://github.com/YugaByte/brew-build/releases/download/$version/\
+  local url="https://github.com/ZNbase/brew-build/releases/download/$version/\
 linuxbrew-$version.tar.gz"
   mkdir -p "$YB_LINUXBREW_LOCAL_ROOT"
   if [[ ! -f $linuxbrew_archive ]]; then
@@ -1655,7 +1655,7 @@ is_jenkins_phabricator_build() {
   return 1  # No, some other kind of Jenkins job.
 }
 
-# Check if we're using an NFS partition in YugaByte's build environment.
+# Check if we're using an NFS partition in ZNbase's build environment.
 is_src_root_on_nfs() {
   if [[ $YB_SRC_ROOT =~ $YB_NFS_PATH_RE ]]; then
     return 0
@@ -1731,7 +1731,7 @@ configure_remote_compilation() {
           log "This is not GCP."
         fi
         if is_src_root_on_nfs; then
-          log "YB_SRC_ROOT ($YB_SRC_ROOT) appears to be on NFS in YugaByte's distributed" \
+          log "YB_SRC_ROOT ($YB_SRC_ROOT) appears to be on NFS in ZNbase's distributed" \
               "build setup."
         fi
       fi
@@ -1986,7 +1986,7 @@ handle_build_root_from_current_dir() {
     d=${d%/*}
   done
 
-  fatal "Working directory of the compiler '$PWD' is not within a valid Yugabyte build root: " \
+  fatal "Working directory of the compiler '$PWD' is not within a valid ZNbase build root: " \
         "'$BUILD_ROOT_BASENAME_RE'"
 }
 

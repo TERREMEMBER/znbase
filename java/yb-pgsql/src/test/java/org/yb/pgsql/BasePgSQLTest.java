@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -62,10 +62,10 @@ public class BasePgSQLTest extends BaseMiniClusterTest {
   private static final Logger LOG = LoggerFactory.getLogger(BasePgSQLTest.class);
 
   // Postgres settings.
-  protected static final String DEFAULT_PG_DATABASE = "yugabyte";
-  protected static final String DEFAULT_PG_USER = "yugabyte";
-  protected static final String DEFAULT_PG_PASS = "yugabyte";
-  public static final String TEST_PG_USER = "yugabyte_test";
+  protected static final String DEFAULT_PG_DATABASE = "ZNbase";
+  protected static final String DEFAULT_PG_USER = "ZNbase";
+  protected static final String DEFAULT_PG_PASS = "ZNbase";
+  public static final String TEST_PG_USER = "ZNbase_test";
 
   // Non-standard PSQL states defined in yb_pg_errcodes.h
   protected static final String SERIALIZATION_FAILURE_PSQL_STATE = "40001";
@@ -322,7 +322,7 @@ public class BasePgSQLTest extends BaseMiniClusterTest {
     }
 
     // A temporary workaround for a failure to look up a user name by uid in an LDAP environment.
-    pgRegressEnvVars.put("YB_PG_FALLBACK_SYSTEM_USER_NAME", "yugabyte");
+    pgRegressEnvVars.put("YB_PG_FALLBACK_SYSTEM_USER_NAME", "ZNbase");
 
     return pgRegressEnvVars;
   }
@@ -1148,7 +1148,7 @@ public class BasePgSQLTest extends BaseMiniClusterTest {
 
   /**
    * Whether or not this select query requires filtering by Postgres (i.e. not all
-   * conditions can be pushed down to YugaByte).
+   * conditions can be pushed down to ZNbase).
    */
   protected boolean doesNeedPgFiltering(Statement stmt, String query) throws SQLException {
     return doesQueryPlanContainsSubstring(stmt, query, "Filter:");

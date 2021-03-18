@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -709,7 +709,7 @@ Status SubDocumentReaderBuilder::UpdateWithParentWriteInfo(
   RETURN_NOT_OK(Value::DecodePrimitiveValueType(value, &value_type, &merge_flags, &value_ttl));
 
   if (!iter_->valid() || value_type == ValueType::kInvalid) {
-    // TODO -- see if we can remove this (https://github.com/yugabyte/yugabyte-db/issues/7487).
+    // TODO -- see if we can remove this (https://github.com/ZNbase/ZNbase-db/issues/7487).
     return Status::OK();
   }
 

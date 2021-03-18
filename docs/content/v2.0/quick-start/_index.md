@@ -3,7 +3,7 @@ title: Quick start
 linkTitle: Quick start
 description: Quick start
 image: /images/section_icons/index/quick_start.png
-headcontent: The easiest way to test YugabyteDB's basic features and APIs is to create a local cluster on a single host.
+headcontent: The easiest way to test ZNbaseDB's basic features and APIs is to create a local cluster on a single host.
 type: page
 section: GET STARTED
 block_indexing: true
@@ -15,7 +15,7 @@ menu:
 
 {{< note title="Note" >}}
 
-The local cluster setup on a single host is intended for development and learning. For production deployment, performance benchmarking, or deploying a true multi-node on multi-host setup, see [Deploy YugabyteDB](../../latest/deploy).
+The local cluster setup on a single host is intended for development and learning. For production deployment, performance benchmarking, or deploying a true multi-node on multi-host setup, see [Deploy ZNbaseDB](../../latest/deploy).
 
 {{< /note >}}
 
@@ -26,7 +26,7 @@ The local cluster setup on a single host is intended for development and learnin
     <a class="section-link icon-offset" href="install/">
       <div class="head">
         <img class="icon" src="/images/section_icons/quick_start/install.png" aria-hidden="true" />
-        <div class="title">1. Install YugabyteDB</div>
+        <div class="title">1. Install ZNbaseDB</div>
       </div>
       <div class="body">
         Install the binary on macOS or Linux or use a Docker image to run on the operating system of your choice.
@@ -53,7 +53,7 @@ The local cluster setup on a single host is intended for development and learnin
         <div class="title">3. Explore YSQL</div>
       </div>
       <div class="body">
-        Explore Yugabyte SQL (YSQL).
+        Explore ZNbase SQL (YSQL).
       </div>
     </a>
   </div>

@@ -30,7 +30,7 @@ Specify the name of the sequence.
 ### Create a sequence
 
 ```plpgsql
-yugabyte=# CREATE SEQUENCE s;
+ZNbase=# CREATE SEQUENCE s;
 ```
 
 ```
@@ -40,7 +40,7 @@ CREATE SEQUENCE
 Call `nextval()`.
 
 ```plpgsql
-yugabyte=# SELECT nextval('s');
+ZNbase=# SELECT nextval('s');
 ```
 
 ```
@@ -51,7 +51,7 @@ yugabyte=# SELECT nextval('s');
 ```
 
 ```plpgsql
-yugabyte=# SELECT currval('s');
+ZNbase=# SELECT currval('s');
 ```
 
 ```
@@ -64,7 +64,7 @@ yugabyte=# SELECT currval('s');
 Call `currval()` before `nextval()` is called.
 
 ```plpgsql
-yugabyte=# CREATE SEQUENCE s2;
+ZNbase=# CREATE SEQUENCE s2;
 ```
 
 ```

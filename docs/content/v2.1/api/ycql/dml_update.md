@@ -19,7 +19,7 @@ Use the `UPDATE` statement to update one or more column values for a row in tabl
 
 {{< note title="Note" >}}
 
-YugabyteDB can only update one row at a time. Updating multiple rows is currently not supported.
+ZNbaseDB can only update one row at a time. Updating multiple rows is currently not supported.
 
 {{< /note >}}
 

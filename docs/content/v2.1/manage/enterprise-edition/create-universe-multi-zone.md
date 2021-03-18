@@ -1,8 +1,8 @@
 ---
-title: Create a multi-zone universe using Yugabyte Platform
+title: Create a multi-zone universe using ZNbase Platform
 headerTitle: Create a multi-zone universe
 linkTitle: Create a multi-zone universe
-description: Use Yugabyte Platform to create a YugabyteDB universe that spans multiple availability zones.
+description: Use ZNbase Platform to create a ZNbaseDB universe that spans multiple availability zones.
 block_indexing: true
 menu:
   v2.1:
@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This section will describe how to create a universe in one geographic region across multiple availability zones. We will examine the various nodes created by the Yugabyte Platform, run some workloads against this universe and take a look at the metrics against the running universe.
+This section will describe how to create a universe in one geographic region across multiple availability zones. We will examine the various nodes created by the ZNbase Platform, run some workloads against this universe and take a look at the metrics against the running universe.
 
 ## 1. Create the universe
 
@@ -79,17 +79,17 @@ This should bring up a dialog showing how to connect to the nodes.
 
 ![Multi-zone universe nodes](/images/ee/multi-zone-universe-nodes-connect.png)
 
-Copy the first command (highlighted above) and run it from the Yugabyte Platform server. This will connect us to the first node, `yb-dev-helloworld1-n1`.
+Copy the first command (highlighted above) and run it from the ZNbase Platform server. This will connect us to the first node, `yb-dev-helloworld1-n1`.
 
 ```
-centos@yugaware-1:~$ sudo ssh -i /opt/yugabyte/yugaware/data/keys/b933ff7a-be8a-429a-acc1-145882d90dc0/yb-dev-google-compute-key.pem centos@10.138.0.4
+centos@yugaware-1:~$ sudo ssh -i /opt/ZNbase/yugaware/data/keys/b933ff7a-be8a-429a-acc1-145882d90dc0/yb-dev-google-compute-key.pem centos@10.138.0.4
 Are you sure you want to continue connecting (yes/no)? yes
 [centos@yb-dev-helloworld1-n1 ~]$
 ```
 
 ## 4. Running workloads
 
-Yugabyte Platform comes with a pre-packaged set of sample applications. You will run a simple key-value workload against the YCQL API and the YEDIS API.
+ZNbase Platform comes with a pre-packaged set of sample applications. You will run a simple key-value workload against the YCQL API and the YEDIS API.
 
 ### Prerequisites
 
@@ -101,19 +101,19 @@ You can do this as shown below.
 $ sudo yum install java-1.8.0-openjdk.x86_64 -y
 ```
 
-- **Switch to the `yugabyte` user**
+- **Switch to the `ZNbase` user**
 
 ```sh
-$ sudo su - yugabyte
+$ sudo su - ZNbase
 ```
 
 - **Export the `YCQL_ENDPOINTS` env variable**
 
-Export an environment variable telling the IP addresses for nodes in the cluster. Browse to the **Universe Overview** tab in the YugabyteDB Admin Console and click **YCQL Endpoints**. A new tab opens with a list of IP addresses.
+Export an environment variable telling the IP addresses for nodes in the cluster. Browse to the **Universe Overview** tab in the ZNbaseDB Admin Console and click **YCQL Endpoints**. A new tab opens with a list of IP addresses.
 
 ![YCQL end points](/images/ee/multi-zone-universe-ycql-endpoints.png)
 
-Export this into a shell variable on the database node `yb-dev-helloworld1-n1` you had connected to. Remember to replace the IP addresses below with those shown by the YugabyteDB Admin Console.
+Export this into a shell variable on the database node `yb-dev-helloworld1-n1` you had connected to. Remember to replace the IP addresses below with those shown by the ZNbaseDB Admin Console.
 
 ```sh
 $ export YCQL_ENDPOINTS="10.138.0.3:9042,10.138.0.4:9042,10.138.0.5:9042"
@@ -136,7 +136,7 @@ $ export YEDIS_ENDPOINTS="10.138.0.3:6379,10.138.0.4:6379,10.138.0.5:6379"
 To start the workload, run the following command.
 
 ```sh
-$ java -jar /home/yugabyte/tserver/java/yb-sample-apps.jar \
+$ java -jar /home/ZNbase/tserver/java/yb-sample-apps.jar \
             --workload CassandraKeyValue \
             --nodes $YCQL_ENDPOINTS \
             --num_threads_write 2 \
@@ -156,7 +156,7 @@ Read: 47419.99 ops/sec (0.67 ms/op), 1053156 total ops | Write: 1303.85 ops/sec 
 Read: 47220.98 ops/sec (0.68 ms/op), 1289285 total ops | Write: 1311.67 ops/sec (1.52 ms/op), 35979 total ops
 ```
 
-Browse to the **Metrics** tab of the universe in the YugabyteDB Admin Console. You should be able to see the metrics show up. The metrics tab displays a variety of metrics, a few are shown in the screenshot below. Note that these numbers (server side metrics) tally with what the load tester reports (client side metrics).
+Browse to the **Metrics** tab of the universe in the ZNbaseDB Admin Console. You should be able to see the metrics show up. The metrics tab displays a variety of metrics, a few are shown in the screenshot below. Note that these numbers (server side metrics) tally with what the load tester reports (client side metrics).
 
 ![YCQL Load Metrics](/images/ee/multi-zone-universe-ycql-load-metrics.png)
 
@@ -171,7 +171,7 @@ Let us stop the load tester and run a yedis workload.
 To start the workload, run the following command.
 
 ```sh
-$ java -jar /home/yugabyte/tserver/java/yb-sample-apps.jar \
+$ java -jar /home/ZNbase/tserver/java/yb-sample-apps.jar \
             --workload RedisKeyValue \
             --nodes $YEDIS_ENDPOINTS \
             --num_threads_write 2 \
@@ -189,7 +189,7 @@ Read: 50209.09 ops/sec (0.64 ms/op), 908653 total ops  | Write: 1454.87 ops/sec 
 Read: 50016.18 ops/sec (0.64 ms/op), 1158794 total ops | Write: 1463.26 ops/sec (1.37 ms/op), 33443 total ops
 ```
 
-Browse to the **Metrics** tab of the universe in the YugabyteDB Admin Console. You should be able to see the metrics show up. The metrics tab displays a variety of metrics, a few are shown in the screenshot below. Note that these numbers (server side metrics) tally with what the load tester reports (client side metrics).
+Browse to the **Metrics** tab of the universe in the ZNbaseDB Admin Console. You should be able to see the metrics show up. The metrics tab displays a variety of metrics, a few are shown in the screenshot below. Note that these numbers (server side metrics) tally with what the load tester reports (client side metrics).
 
 ![YEDIS Load Metrics Per Node](/images/ee/multi-zone-universe-yedis-load-metrics.png)
 
@@ -200,7 +200,7 @@ Stop the sample application.
 You can connect to the YCQL service by running the following command.
 
 ```sh
-$ /home/yugabyte/tserver/bin/ycqlsh <ip address of the node>
+$ /home/ZNbase/tserver/bin/ycqlsh <ip address of the node>
 ```
 
 You can view the table schema as well as the data entered as shown below.
@@ -233,7 +233,7 @@ ycqlsh> SELECT * FROM ybdemo_keyspace.cassandrakeyvalue LIMIT 5;
 You can connect to the YEDIS service by running the following command.
 
 ```sh
-$ /home/yugabyte/tserver/bin/redis-cli -h <ip address of the node>
+$ /home/ZNbase/tserver/bin/redis-cli -h <ip address of the node>
 ```
 
 You can view the data by running the following commands.

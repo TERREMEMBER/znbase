@@ -1,14 +1,14 @@
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 version: '2'
 
 services:
   yugaware:
-    image: quay.io/yugabyte/yugaware:latest
+    image: quay.io/ZNbase/yugaware:latest
     volumes:
-      - $HOME/.yugabyte:/root/.yugabyte
+      - $HOME/.ZNbase:/root/.ZNbase
       - /etc/yugaware
-      - app-volume:/opt/yugabyte/
-      - thirdparty-deps:/opt/yugabyte/third-party
+      - app-volume:/opt/ZNbase/
+      - thirdparty-deps:/opt/ZNbase/third-party
       - nginx-conf:/etc/yugaware/nginx
     expose:
       - 9000
@@ -26,14 +26,14 @@ services:
           - yugaware
     container_name: yugaware
 
-  yugabyte-base:
-    image: quay.io/yugabyte/base-image:latest
-    container_name: yugabyte-base
+  ZNbase-base:
+    image: quay.io/ZNbase/base-image:latest
+    container_name: ZNbase-base
 
   thirdparty-deps:
     volumes:
       - thirdparty-deps:/opt/third-party
-    image: quay.io/yugabyte/thirdparty-deps:latest
+    image: quay.io/ZNbase/thirdparty-deps:latest
     networks:
       default:
         aliases:
@@ -62,7 +62,7 @@ services:
     image: nginx:latest
     volumes:
       - nginx-conf:/etc/nginx/conf.d/
-      - app-volume:/opt/yugabyte
+      - app-volume:/opt/ZNbase
     links:
       - yugaware
     ports:
@@ -81,7 +81,7 @@ services:
       - yugaware
     command:
       - '-config.file=/etc/yugaware/prometheus/prometheus.yml'
-      - '-storage.local.path=/opt/yugabyte/prometheus'
+      - '-storage.local.path=/opt/ZNbase/prometheus'
     expose:
       - 9090
     ports:

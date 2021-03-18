@@ -96,7 +96,7 @@ In each shell, check the only the rows from the current transaction are visible.
 1st shell.
 
 ```plpgsql
-yugabyte=# SELECT * FROM sample; -- run in first shell
+ZNbase=# SELECT * FROM sample; -- run in first shell
 ```
 
 ```
@@ -110,7 +110,7 @@ yugabyte=# SELECT * FROM sample; -- run in first shell
 2nd shell
 
 ```plpgsql
-yugabyte=# SELECT * FROM sample; -- run in second shell
+ZNbase=# SELECT * FROM sample; -- run in second shell
 ```
 
 ```
@@ -136,7 +136,7 @@ ABORT TRANSACTION; -- run second shell.
 In each shell check that only the rows from the committed transaction are visible.
 
 ```plpgsql
-yugabyte=# SELECT * FROM sample; -- run in first shell.
+ZNbase=# SELECT * FROM sample; -- run in first shell.
 ```
 
 ```
@@ -148,7 +148,7 @@ yugabyte=# SELECT * FROM sample; -- run in first shell.
 ```
 
 ```plpgsql
-yugabyte=# SELECT * FROM sample; -- run in second shell.
+ZNbase=# SELECT * FROM sample; -- run in second shell.
 ```
 
 ```

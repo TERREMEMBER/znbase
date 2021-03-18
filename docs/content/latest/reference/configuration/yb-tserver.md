@@ -2,7 +2,7 @@
 title: yb-tserver configuration reference
 headerTitle: yb-tserver
 linkTitle: yb-tserver
-description: YugabyteDB Tablet Server (yb-tserver) binary and configuration flags to store and manage data for client applications.
+description: ZNbaseDB Tablet Server (yb-tserver) binary and configuration flags to store and manage data for client applications.
 menu:
   latest:
     identifier: yb-tserver
@@ -14,7 +14,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Use the `yb-tserver` binary and its flags to configure the [YB-TServer](../../../architecture/concepts/yb-tserver/) server. The `yb-tserver` executable file is located in the `bin` directory of YugabyteDB home.
+Use the `yb-tserver` binary and its flags to configure the [YB-TServer](../../../architecture/concepts/yb-tserver/) server. The `yb-tserver` executable file is located in the `bin` directory of ZNbaseDB home.
 
 ## Syntax
 
@@ -34,7 +34,7 @@ $ ./bin/yb-tserver \
 
 ### Online help
 
-To display the online help, run `yb-tserver --help` from the YugabyteDB home directory.
+To display the online help, run `yb-tserver --help` from the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/yb-tserver --help
@@ -174,7 +174,7 @@ Default: `9000`
 
 The monitoring web server home directory..
 
-Default: The `www` directory in the YugabyteDB home directory.
+Default: The `www` directory in the ZNbaseDB home directory.
 
 ---
 
@@ -329,11 +329,11 @@ Default: `64`
 
 The number of shards per YB-TServer for each YCQL table when a user table is created.
 
-Default: `-1` (server internally sets default value). For servers with up to two CPU cores, the default value is `4`. For three or more CPU cores, the default value is `8`. Local cluster installations, created with `yb-ctl` and `yb-docker-ctl`, use a value of `2` for this flag. Clusters created with `yugabyted` use a default value of `1`.
+Default: `-1` (server internally sets default value). For servers with up to two CPU cores, the default value is `4`. For three or more CPU cores, the default value is `8`. Local cluster installations, created with `yb-ctl` and `yb-docker-ctl`, use a value of `2` for this flag. Clusters created with `ZNbased` use a default value of `1`.
 
 {{< note title="Important" >}}
 
-This value must match on all `yb-master` and `yb-tserver` configurations of a YugabyteDB cluster.
+This value must match on all `yb-master` and `yb-tserver` configurations of a ZNbaseDB cluster.
 
 {{< /note >}}
 
@@ -347,11 +347,11 @@ On a per-table basis, the [`CREATE TABLE ... WITH TABLETS = <num>`](../../../api
 
 The number of shards per YB-TServer for each YSQL table when a user table is created.
 
-Default: `-1` (server internally sets default value). For servers with up to two CPU cores, the default value is `2`. For servers with three or four CPU cores, the default value is `4`. Beyond four cores, the default value is `8`. Local cluster installations, created with `yb-ctl` and `yb-docker-ctl`, use a value of `2` for this flag. Clusters created with `yugabyted` use a default value of `1`.
+Default: `-1` (server internally sets default value). For servers with up to two CPU cores, the default value is `2`. For servers with three or four CPU cores, the default value is `4`. Beyond four cores, the default value is `8`. Local cluster installations, created with `yb-ctl` and `yb-docker-ctl`, use a value of `2` for this flag. Clusters created with `ZNbased` use a default value of `1`.
 
 {{< note title="Important" >}}
 
-This value must match on all `yb-master` and `yb-tserver` configurations of a YugabyteDB cluster.
+This value must match on all `yb-master` and `yb-tserver` configurations of a ZNbaseDB cluster.
 
 {{< /note >}}
 
@@ -409,9 +409,9 @@ Enables YSQL authentication.
 
 {{< note title="Note" >}}
 
-**Release 2.0:** Assign a password for the default `yugabyte` user to be able to sign in after enabling YSQL authentication.
+**Release 2.0:** Assign a password for the default `ZNbase` user to be able to sign in after enabling YSQL authentication.
 
-**Release 2.0.1:** When YSQL authentication is enabled, you can sign into `ysqlsh` using the default `yugabyte` user that has a default password of `yugabyte`.
+**Release 2.0.1:** When YSQL authentication is enabled, you can sign into `ysqlsh` using the default `ZNbase` user that has a default password of `ZNbase`.
 
 {{< /note >}}
 
@@ -505,7 +505,7 @@ Default: `REPEATABLE READ`
 
 {{< note title="Note" >}}
 
-YugabyteDB supports only two transaction isolation levels: `REPEATABLE READ` (aka snapshot) and `SERIALIZABLE`. The transaction isolation levels of `READ UNCOMMITTED` and `READ COMMITTED` are implemented in YugabyteDB as `REPEATABLE READ`.
+ZNbaseDB supports only two transaction isolation levels: `REPEATABLE READ` (aka snapshot) and `SERIALIZABLE`. The transaction isolation levels of `READ UNCOMMITTED` and `READ COMMITTED` are implemented in ZNbaseDB as `REPEATABLE READ`.
 
 {{< /note >}}
 
@@ -513,7 +513,7 @@ YugabyteDB supports only two transaction isolation levels: `REPEATABLE READ` (ak
 
 Set this flag to `false` to enable online index backfill. When set to `false`, online index builds run while online, without failing other concurrent writes and traffic.
 
-For details on how online index backfill works, see the [Online Index Backfill](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/online-index-backfill.md) design document.
+For details on how online index backfill works, see the [Online Index Backfill](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/online-index-backfill.md) design document.
 
 Default: `false`
 
@@ -579,7 +579,7 @@ Default: `false`
 
 Set this flag to `false` to enable online index backfill. When set to `false`, online index builds run while online, without failing other concurrent writes and traffic.
 
-For details on how online index backfill works, see the [Online Index Backfill](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/online-index-backfill.md) design document.
+For details on how online index backfill works, see the [Online Index Backfill](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/online-index-backfill.md) design document.
 
 Default: `true`
 
@@ -698,7 +698,7 @@ Default: `false`
 
 ##### --use_node_to_node_encryption
 
-Enable server-server, or node-to-node, encryption between YugabyteDB YB-Master and YB-TServer servers in a cluster or universe. To work properly, all YB-Master servers must also have their [`--use_node_to_node_encryption`](../yb-master/#use-node-to-node-encryption) setting enabled. When enabled, then [`--allow_insecure_connections`](#allow-insecure-connections) must be disabled.
+Enable server-server, or node-to-node, encryption between ZNbaseDB YB-Master and YB-TServer servers in a cluster or universe. To work properly, all YB-Master servers must also have their [`--use_node_to_node_encryption`](../yb-master/#use-node-to-node-encryption) setting enabled. When enabled, then [`--allow_insecure_connections`](#allow-insecure-connections) must be disabled.
 
 Default: `false`
 

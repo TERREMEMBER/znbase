@@ -1,4 +1,4 @@
-// Copyright (c) Yugabyte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 @import "./_colors.scss";
 
@@ -64,7 +64,7 @@
     &.active {
       height: 375px;
     }
-    
+
     .caption {
       margin-right: 40px;
       vertical-align: middle;
@@ -218,7 +218,7 @@
     &::placeholder {
       color: rgba(#fff, .3) !important;
     }
-    
+
     &::-moz-placeholder,
     &:-ms-input-placeholder,
     &:-moz-placeholder {

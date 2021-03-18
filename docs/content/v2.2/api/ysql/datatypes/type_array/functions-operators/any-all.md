@@ -148,7 +148,7 @@ This section explains the semantics: when one, or both, of the LHS _element_ and
 - If either the LHS _element_ or the RHS array `IS NULL`, then both the `ANY` result `IS NULL` and the `ALL` result `IS NULL`.
 
 - If both the LHS _element_ `IS NOT NULL`and the RHS array `IS NOT NULL` and the RHS array has zero _elements_, then the `ANY` result is `FALSE`.
-- If both the LHS _element_ `IS NOT NULL`and the RHS array `IS NOT NULL` and the RHS array has zero _elements_, then the `ALL` result is `TRUE`. You might think that this is a counter-intuitive rule definition. But the [PostgreSQL documentation for Version 11.2](https://www.postgresql.org/docs/11/functions-comparisons.html#id-1.5.8.28.17) states this clearly. And the first example in [Semantics demonstration](./#semantics-demonstration) is consistent with this definition. Moreover, and as is required to be the case, the behavior of the example is identical using YugabyteDB and PostgreSQL Version 11.2.
+- If both the LHS _element_ `IS NOT NULL`and the RHS array `IS NOT NULL` and the RHS array has zero _elements_, then the `ALL` result is `TRUE`. You might think that this is a counter-intuitive rule definition. But the [PostgreSQL documentation for Version 11.2](https://www.postgresql.org/docs/11/functions-comparisons.html#id-1.5.8.28.17) states this clearly. And the first example in [Semantics demonstration](./#semantics-demonstration) is consistent with this definition. Moreover, and as is required to be the case, the behavior of the example is identical using ZNbaseDB and PostgreSQL Version 11.2.
 
 ## Semantics demonstration
 

@@ -2,7 +2,7 @@
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe and are able to interact with it using the CQL shell. If not, please follow these steps in the [quick start guide](../../../quick-start/test-cassandra/).
+- installed ZNbaseDB, created a universe and are able to interact with it using the CQL shell. If not, please follow these steps in the [quick start guide](../../../quick-start/test-cassandra/).
 - installed Visual Studio
 
 ## Writing a HelloWorld C# app
@@ -26,7 +26,7 @@ using System;
 using System.Linq;
 using Cassandra;
 
-namespace Yugabyte_CSharp_Demo
+namespace ZNbase_CSharp_Demo
 {
     class Program
     {
@@ -68,7 +68,7 @@ namespace Yugabyte_CSharp_Demo
             }
             catch (Cassandra.NoHostAvailableException)
             {
-                Console.WriteLine("Make sure YugabyteDB is running locally!.");
+                Console.WriteLine("Make sure ZNbaseDB is running locally!.");
             }
             catch (Cassandra.InvalidQueryException ie)
             {

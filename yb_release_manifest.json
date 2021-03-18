@@ -23,7 +23,7 @@
       "bin/configure",
       "bin/log_cleanup.sh",
       "bin/yb-check-consistency.py",
-      "bin/yugabyted",
+      "bin/ZNbased",
       "build-support/post_install.sh",
       "scripts/installation/bin/yb-ctl",
       "thirdparty/installed/common/bin/redis-cli",

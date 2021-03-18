@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import Cookies from 'js-cookie';
 import React from 'react';

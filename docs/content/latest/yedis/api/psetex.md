@@ -25,7 +25,7 @@ Returns status string.
 ## Examples
 
 ```sh
-$ PSETEX yugakey 1000 "Yugabyte"
+$ PSETEX yugakey 1000 "ZNbase"
 ```
 
 ```
@@ -37,7 +37,7 @@ $ GET yugakey
 ```
 
 ```
-"Yugabyte"
+"ZNbase"
 ```
 
 ```sh

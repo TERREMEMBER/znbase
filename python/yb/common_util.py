@@ -1,5 +1,5 @@
 """
-Copyright (c) YugaByte, Inc.
+Copyright (c) ZNbase, Inc.
 
 This module provides common utility functions.
 """
@@ -119,10 +119,10 @@ def set_to_comma_sep_str(items):
 
 def convert_to_non_ninja_build_root(build_root):
     """
-    >>> convert_to_non_ninja_build_root('/foo/bar-ninja-bar/yugabyte/build/some-build-ninja')
-    '/foo/bar-ninja-bar/yugabyte/build/some-build'
-    >>> convert_to_non_ninja_build_root('/foo/bar-ninja-bar/yugabyte/build/some-build-ninja-foo')
-    '/foo/bar-ninja-bar/yugabyte/build/some-build-foo'
+    >>> convert_to_non_ninja_build_root('/foo/bar-ninja-bar/ZNbase/build/some-build-ninja')
+    '/foo/bar-ninja-bar/ZNbase/build/some-build'
+    >>> convert_to_non_ninja_build_root('/foo/bar-ninja-bar/ZNbase/build/some-build-ninja-foo')
+    '/foo/bar-ninja-bar/ZNbase/build/some-build-foo'
     """
     directory = os.path.dirname(build_root)
     basename = os.path.basename(build_root)
@@ -157,7 +157,7 @@ def get_yb_src_root_from_build_root(build_dir, verbose=False, must_succeed=False
     while current_dir != '/':
         subdir_candidates = [current_dir]
         # Handle the "external build" directory case, in which the code is located in e.g.
-        # ~/code/yugabyte, and the build directories are inside ~/code/yugabyte__build.
+        # ~/code/ZNbase, and the build directories are inside ~/code/ZNbase__build.
         if current_dir.endswith('__build'):
             subdir_candidates.append(current_dir[:-7])
             if subdir_candidates[-1].endswith('/'):

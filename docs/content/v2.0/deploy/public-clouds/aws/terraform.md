@@ -22,7 +22,7 @@ Common commands:
 
 ## 1. Create a terraform config file
 
-Create a terraform config file called `yugabyte-db-config.tf` and add following details to it. The terraform module can be found in the [terraform-aws-yugabyte github repository](https://github.com/yugabyte/terraform-aws-yugabyte).
+Create a terraform config file called `ZNbase-db-config.tf` and add following details to it. The terraform module can be found in the [terraform-aws-ZNbase github repository](https://github.com/ZNbase/terraform-aws-ZNbase).
 
 ```sh
 provider "aws" {
@@ -32,9 +32,9 @@ provider "aws" {
   region     = "us-west-2"
 }
 
-module "yugabyte-db-cluster" {
+module "ZNbase-db-cluster" {
   # The source module used for creating AWS clusters.
-  source = "github.com/Yugabyte/terraform-aws-yugabyte"
+  source = "github.com/ZNbase/terraform-aws-ZNbase"
 
   # The name of the cluster to be created, change as per need.
   cluster_name = "test-cluster"
@@ -52,7 +52,7 @@ module "yugabyte-db-cluster" {
   vpc_id = "VPC_ID_HERE"
   subnet_ids = ["SUBNET_ID_HERE"]
 
-  # Replication factor of the YugabyteDB cluster.
+  # Replication factor of the ZNbaseDB cluster.
   replication_factor = "3"
 
   # The number of nodes in the cluster, this cannot be lower than the replication factor.
@@ -63,12 +63,12 @@ module "yugabyte-db-cluster" {
 **NOTE:** If you do not have a custom security group, you would need to remove the `${var.custom_security_group_id}` variable in `main.tf`, so that the `aws_instance` looks as follows:
 
 ```sh
-resource "aws_instance" "yugabyte_nodes" {
+resource "aws_instance" "ZNbase_nodes" {
   count                       = "${var.num_instances}"
   ...
   vpc_security_group_ids      = [
-    "${aws_security_group.yugabyte.id}",
-    "${aws_security_group.yugabyte_intra.id}",
+    "${aws_security_group.ZNbase.id}",
+    "${aws_security_group.ZNbase_intra.id}",
     "${var.custom_security_group_id}"
   ]
 
@@ -91,7 +91,7 @@ $ terraform apply
 Once the cluster is created, you can go to the URL `http://<node ip or dns name>:7000` to view the UI. You can find the node's ip or dns by running the following:
 
 ```sh
-$ terraform state show aws_instance.yugabyte_nodes[0]
+$ terraform state show aws_instance.ZNbase_nodes[0]
 ```
 
 You can access the cluster UI by going to any of the following URLs.
@@ -106,19 +106,19 @@ $ terraform show
 
 The following resources are created by this module:
 
-- `module.yugabyte-db-cluster.aws_instance.yugabyte_nodes` The AWS instances.
+- `module.ZNbase-db-cluster.aws_instance.ZNbase_nodes` The AWS instances.
 
 For cluster named `test-cluster`, the instances will be named `yb-ce-test-cluster-n1`, `yb-ce-test-cluster-n2`, `yb-ce-test-cluster-n3`.
 
-- `module.yugabyte-db-cluster.aws_security_group.yugabyte` The security group that allows the various clients to access the YugabyteDB cluster.
+- `module.ZNbase-db-cluster.aws_security_group.ZNbase` The security group that allows the various clients to access the ZNbaseDB cluster.
 
 For cluster named `test-cluster`, this security group will be named `yb-ce-test-cluster` with the ports 7000, 9000, 9042 and 6379 open to all other instances in the same security group.
 
-- `module.yugabyte-db-cluster.aws_security_group.yugabyte_intra` The security group that allows communication internal to the cluster.
+- `module.ZNbase-db-cluster.aws_security_group.ZNbase_intra` The security group that allows communication internal to the cluster.
 
 For cluster named `test-cluster`, this security group will be named `yb-ce-test-cluster-intra` with the ports 7100, 9100 open to all other instances in the same security group.
 
-- `module.yugabyte-db-cluster.null_resource.create_yugabyte_universe` A local script that configures the newly created instances to form a new YugabyteDB universe.
+- `module.ZNbase-db-cluster.null_resource.create_ZNbase_universe` A local script that configures the newly created instances to form a new ZNbaseDB universe.
 
 ## 4. [Optional] Destroy the cluster
 

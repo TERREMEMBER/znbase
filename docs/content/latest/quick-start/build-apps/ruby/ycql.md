@@ -2,7 +2,7 @@
 title: Build a Ruby application that uses YCQL
 headerTitle: Build a Ruby application
 linkTitle: Ruby
-description: Build a sample Ruby application with the Yugabyte Ruby Driver for YCQL.
+description: Build a sample Ruby application with the ZNbase Ruby Driver for YCQL.
 menu:
   latest:
     parent: build-apps
@@ -35,12 +35,12 @@ showAsideToc: true
   </li>
 </ul>
 
-## Install the Yugabyte Ruby Driver for YCQL
+## Install the ZNbase Ruby Driver for YCQL
 
-To install the [Yugabyte Ruby Driver for YCQL](https://github.com/yugabyte/cassandra-ruby-driver), run the following `gem install` command:
+To install the [ZNbase Ruby Driver for YCQL](https://github.com/ZNbase/cassandra-ruby-driver), run the following `gem install` command:
 
 ```sh
-$ gem install yugabyte-ycql-driver
+$ gem install ZNbase-ycql-driver
 ```
 
 ## Create a sample Ruby application
@@ -49,7 +49,7 @@ $ gem install yugabyte-ycql-driver
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe, and are able to interact with it using the YCQL shell. If not, follow the steps in [Quick start YCQL](../../../../api/ycql/quick-start/).
+- installed ZNbaseDB, created a universe, and are able to interact with it using the YCQL shell. If not, follow the steps in [Quick start YCQL](../../../../api/ycql/quick-start/).
 
 ### Write the sample Ruby application
 

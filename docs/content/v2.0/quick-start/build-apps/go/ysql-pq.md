@@ -35,15 +35,15 @@ showAsideToc: true
   </li>
 </ul>
 
-The following tutorial creates a simple Go application that connects to a YugabyteDB cluster using the [Go PostgreSQL driver](https://godoc.org/github.com/lib/pq), performs a few basic database operations — creating a table, inserting data, and running a SQL query — and then prints the results to the screen.
+The following tutorial creates a simple Go application that connects to a ZNbaseDB cluster using the [Go PostgreSQL driver](https://godoc.org/github.com/lib/pq), performs a few basic database operations — creating a table, inserting data, and running a SQL query — and then prints the results to the screen.
 
 ## Before you begin
 
 This tutorial assumes that you have satisfied the following prerequisites.
 
-### YugabyteDB
+### ZNbaseDB
 
-YugabyteDB is up and running. If not, please follow these steps in the [Quick Start guide](../../../../quick-start/explore-ysql/).
+ZNbaseDB is up and running. If not, please follow these steps in the [Quick Start guide](../../../../quick-start/explore-ysql/).
 
 ### Go
 
@@ -77,9 +77,9 @@ import (
 const (
   host     = "127.0.0.1"
   port     = 5433
-  user     = "yugabyte"
-  password = "yugabyte"
-  dbname   = "yugabyte"
+  user     = "ZNbase"
+  password = "ZNbase"
+  dbname   = "ZNbase"
 )
 
 func main() {

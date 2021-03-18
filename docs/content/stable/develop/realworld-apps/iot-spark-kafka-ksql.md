@@ -2,7 +2,7 @@
 title: IoT fleet management example application
 headerTitle: IoT fleet management
 linkTitle: IoT fleet management
-description: Run this fleet management application built with Kafka, KSQL, Apache Spark, and YugabyteDB.
+description: Run this fleet management application built with Kafka, KSQL, Apache Spark, and ZNbaseDB.
 menu:
   stable:
     identifier: iot-spark-kafka
@@ -14,7 +14,7 @@ showAsideToc: true
 
 ## Overview
 
-This is an end-to-end functional application with source code and installation instructions available on [GitHub](https://github.com/yugabyte/yb-iot-fleet-management). It is a blueprint for an IoT application built on top of YugabyteDB (using the Cassandra-compatible YCQL API) as the database, Confluent Kafka as the message broker, KSQL or Apache Spark Streaming for real-time analytics and Spring Boot as the application framework.
+This is an end-to-end functional application with source code and installation instructions available on [GitHub](https://github.com/ZNbase/yb-iot-fleet-management). It is a blueprint for an IoT application built on top of ZNbaseDB (using the Cassandra-compatible YCQL API) as the database, Confluent Kafka as the message broker, KSQL or Apache Spark Streaming for real-time analytics and Spring Boot as the application framework.
 
 ## Scenario
 
@@ -31,28 +31,28 @@ This app renders a dashboard showing both of the above. Below is a view of the r
 
 This application has the following subcomponents:
 
-- Data Store - YugabyteDB for storing raw events from Kafka as well as the aggregates from the Data Processor
+- Data Store - ZNbaseDB for storing raw events from Kafka as well as the aggregates from the Data Processor
 - Data Producer - Test program writing into Kafka
 - Data Processor - KSQL or Apache Spark Streaming reading from Kafka, computing the aggregates and store results in the Data Store
 - Data Dashboard - Spring Boot app using web sockets, jQuery and bootstrap
 
 We will look at each of these components in detail. Below is an architecture diagram showing how these components fit together.
 
-### Confluent Kafka, KSQL, and YugabyteDB (CKY Stack)
+### Confluent Kafka, KSQL, and ZNbaseDB (CKY Stack)
 
-App architecture with the CKY stack is shown below. The same [Kafka Connect Sink Connector for YugabyteDB](https://github.com/yugabyte/yb-kafka-connector) is used for storing both the raw events as well as the aggregate data (that's generated using KSQL).
+App architecture with the CKY stack is shown below. The same [Kafka Connect Sink Connector for ZNbaseDB](https://github.com/ZNbase/yb-kafka-connector) is used for storing both the raw events as well as the aggregate data (that's generated using KSQL).
 
 ![YB IoT Fleet Management Architecture with KSQL](/images/develop/realworld-apps/iot-spark-kafka-ksql/yb-iot-fleet-mgmt-arch-kafka-ksql.png)
 
-### Spark, Kafka, and YugabyteDB (SKY Stack)
+### Spark, Kafka, and ZNbaseDB (SKY Stack)
 
-App architecture with the SKY stack is shown below. The Kafka Connect Sink Connector for YugabyteDB is used for storing raw events from Kafka to YugabyteDB. The aggregate data generated via Apache Spark Streaming is persisted in YugabyteDB using the Spark-Cassandra Connector.
+App architecture with the SKY stack is shown below. The Kafka Connect Sink Connector for ZNbaseDB is used for storing raw events from Kafka to ZNbaseDB. The aggregate data generated via Apache Spark Streaming is persisted in ZNbaseDB using the Spark-Cassandra Connector.
 
 ![YB IoT Fleet Management Architecture with Apache Spark](/images/develop/realworld-apps/iot-spark-kafka-ksql/yb-iot-fleet-mgmt-arch-kafka-spark.png)
 
 ## Data store
 
-Stores all the user-facing data. YugabyteDB is used here, with the Cassandra-compatible [YCQL](../../../api/ycql) as the programming language.
+Stores all the user-facing data. ZNbaseDB is used here, with the Cassandra-compatible [YCQL](../../../api/ycql) as the programming language.
 
 All the data is stored in the keyspace `TrafficKeySpace`:
 
@@ -125,7 +125,7 @@ A single data point is a JSON payload and looks as follows:
 }
 ```
 
-The [Kafka Connect Sink Connector for YugabyteDB](https://github.com/yugabyte/yb-kafka-connector) reads the above `iot-data-event` topic, transforms the event into a YCQL `INSERT` statement and then calls YugabyteDB to persist the event in the `TrafficKeySpace.Origin_Table` table.
+The [Kafka Connect Sink Connector for ZNbaseDB](https://github.com/ZNbase/yb-kafka-connector) reads the above `iot-data-event` topic, transforms the event into a YCQL `INSERT` statement and then calls ZNbaseDB to persist the event in the `TrafficKeySpace.Origin_Table` table.
 
 ## Data processor
 
@@ -150,7 +150,7 @@ CREATE STREAM traffic_stream (
            TIMESTAMP_FORMAT='yyyy-MM-dd HH:mm:ss');
 ```
 
-Various aggreations/queries can now be run on the above stream with results of each type of query stored in a topic of its own. This application uses 3 such queries/topics. Thereafter, the [Kafka Connect Sink Connector for YugabyteDB](https://github.com/yugabyte/yb-kafka-connector) reads these 3 topics and persists the results into the 3 corresponding tables in YugabyteDB.
+Various aggreations/queries can now be run on the above stream with results of each type of query stored in a topic of its own. This application uses 3 such queries/topics. Thereafter, the [Kafka Connect Sink Connector for ZNbaseDB](https://github.com/ZNbase/yb-kafka-connector) reads these 3 topics and persists the results into the 3 corresponding tables in ZNbaseDB.
 
 ```sql
 CREATE TABLE total_traffic
@@ -199,9 +199,9 @@ CREATE STREAM poi_traffic
 
 ### Apache Spark streaming
 
-This is a Apache Spark streaming application that consumes the data stream from the Kafka topic, converts them into meaningful insights and writes the resulting aggregate data back to YugabyteDB.
+This is a Apache Spark streaming application that consumes the data stream from the Kafka topic, converts them into meaningful insights and writes the resulting aggregate data back to ZNbaseDB.
 
-Spark communicates with YugabyteDB using the Spark-Cassandra connector. This is done as follows:
+Spark communicates with ZNbaseDB using the Spark-Cassandra connector. This is done as follows:
 
 ```java
 SparkConf conf =
@@ -233,7 +233,7 @@ It computes the following:
 
 ## Data dashboard
 
-This is a [Spring Boot](http://projects.spring.io/spring-boot/) application which queries the data from YugabyteDB and pushes the data to the webpage using [Web Sockets](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html#websocket-intro) and [jQuery](https://jquery.com/). The data is pushed to the web page in fixed intervals so data will be refreshed automatically. Dashboard displays data in charts and tables. This web page uses [bootstrap.js](http://getbootstrap.com/) to display the dashboard containing charts and tables.
+This is a [Spring Boot](http://projects.spring.io/spring-boot/) application which queries the data from ZNbaseDB and pushes the data to the webpage using [Web Sockets](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html#websocket-intro) and [jQuery](https://jquery.com/). The data is pushed to the web page in fixed intervals so data will be refreshed automatically. Dashboard displays data in charts and tables. This web page uses [bootstrap.js](http://getbootstrap.com/) to display the dashboard containing charts and tables.
 
 We create entity classes for the three tables `Total_Traffic`, `Window_Traffic` and `Poi_Traffic`, and DAO interfaces for all the entities extending `CassandraRepository`. For example, you create the DAO class for `TotalTrafficData` entity as follows.
 
@@ -245,13 +245,13 @@ public interface TotalTrafficDataRepository extends CassandraRepository<TotalTra
 }
 ```
 
-In order to connect to YugabyteDB cluster and get connection for database operations, you write the assandraConfig class. This is done as follows:
+In order to connect to ZNbaseDB cluster and get connection for database operations, you write the assandraConfig class. This is done as follows:
 
 ```java
 public class CassandraConfig extends AbstractCassandraConfiguration {
   @Bean
   public CassandraClusterFactoryBean cluster() {
-    // Create a Cassandra cluster to access YugabyteDB using CQL.
+    // Create a Cassandra cluster to access ZNbaseDB using CQL.
     CassandraClusterFactoryBean cluster = new CassandraClusterFactoryBean();
     // Set the database host.
     cluster.setContactPoints(environment.getProperty("com.iot.app.cassandra.host"));
@@ -266,4 +266,4 @@ Note that currently the Dashboard does not use the raw events table and relies o
 
 ## Summary
 
-This application is a blue print for building IoT applications. The instructions to build and run the application, as well as the source code can be found in the [IoT Fleet Management GitHub repository](https://github.com/yugabyte/yb-iot-fleet-management).
+This application is a blue print for building IoT applications. The instructions to build and run the application, as well as the source code can be found in the [IoT Fleet Management GitHub repository](https://github.com/ZNbase/yb-iot-fleet-management).

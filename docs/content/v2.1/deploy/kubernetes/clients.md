@@ -2,7 +2,7 @@
 title: Connect remote clients to Kubernetes clusters
 headerTitle: Connect clients to Kubernetes clusters
 linkTitle: Connect clients
-description: Connect remote clients to YugabyteDB clusters deployed within Kubernetes.
+description: Connect remote clients to ZNbaseDB clusters deployed within Kubernetes.
 block_indexing: true
 menu:
   v2.1:
@@ -16,11 +16,11 @@ showAsideToc: true
 
 ## Introduction
 
-This document describes the different options to connect to a Yugabyte cluster deployed within Kubernetes.
+This document describes the different options to connect to a ZNbase cluster deployed within Kubernetes.
 
 ## Prerequisites
 
-You must have set up a Yugabyte cluster according to the [Kubernetes deployment instructions.](../../kubernetes).
+You must have set up a ZNbase cluster according to the [Kubernetes deployment instructions.](../../kubernetes).
 
 ## Connecting from within the Kubernetes cluster
 
@@ -35,15 +35,15 @@ yb-tservers   ClusterIP   None         <none>        7100/TCP,9000/TCP,6379/TCP,
 Here is an example of a client that uses the YSQL shell ([`ysqlsh`](../../../admin/ysqlsh)) to connect.
 
 ```sh
-$ kubectl run ysqlsh-client -it --rm  --image yugabytedb/yugabyte-client --command -- ysqlsh -h yb-tservers.yb-demo.svc.cluster.local
-yugabyte=# CREATE TABLE demo(id INT PRIMARY KEY);
+$ kubectl run ysqlsh-client -it --rm  --image ZNbasedb/ZNbase-client --command -- ysqlsh -h yb-tservers.yb-demo.svc.cluster.local
+ZNbase=# CREATE TABLE demo(id INT PRIMARY KEY);
 CREATE TABLE
 ```
 
 Here is an example of a client that uses the YCQL shell ([`ycqlsh`](../../../admin/cqlsh)) to connect.
 
 ```sh
-$ kubectl run cqlsh-shell -it --rm  --image yugabytedb/yugabyte-client --command -- cqlsh yb-tservers.yb-demo.svc.cluster.local 9042
+$ kubectl run cqlsh-shell -it --rm  --image ZNbasedb/ZNbase-client --command -- cqlsh yb-tservers.yb-demo.svc.cluster.local 9042
 ycqlsh> CREATE KEYSPACE demo;
 ycqlsh> use demo;
 ycqlsh:demo> CREATE TABLE t_demo(id INT PRIMARY KEY);
@@ -67,15 +67,15 @@ yb-tservers          ClusterIP      None            <none>        7100/TCP,9000/
 Here is an example of a client that uses the YSQL shell ([`ysqlsh`](../../../admin/ysqlsh) to connect.
 
 ```sh
-$ docker run yugabytedb/yugabyte-client ysqlsh -h 98.138.219.232
-yugabyte=# CREATE TABLE demo(id INT PRIMARY KEY);
+$ docker run ZNbasedb/ZNbase-client ysqlsh -h 98.138.219.232
+ZNbase=# CREATE TABLE demo(id INT PRIMARY KEY);
 CREATE TABLE
 ```
 
 Here is an example of a client that uses the YCQL shell ([`ycqlsh`](../../../admin/cqlsh)) to connect.
 
 ```sh
-$ docker run yugabytedb/yugabyte-client ycqlsh 98.138.219.232 9042
+$ docker run ZNbasedb/ZNbase-client ycqlsh 98.138.219.232 9042
 ycqlsh> CREATE KEYSPACE demo;
 ycqlsh> use demo;
 ycqlsh:demo> CREATE TABLE t_demo(id INT PRIMARY KEY);

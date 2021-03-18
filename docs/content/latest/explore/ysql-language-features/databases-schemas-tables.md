@@ -17,10 +17,10 @@ This section covers basic topics such as the YSQL shell `ysqlsh`, databases, sch
 
 ## `ysqlsh` SQL shell
 
-The recommended command line shell to interact with a Yugabyte SQL database cluster is using the `ysqlsh` shell utility.
+The recommended command line shell to interact with a ZNbase SQL database cluster is using the `ysqlsh` shell utility.
 
 {{< tip title="Tip" >}}
-All the `psql` commands just work as is in `ysqlsh`. This is because the `ysqlsh` shell is in turn derived from PostgreSQL shell `psql` code base - the default settings such as the database default port and the output format of some of the schema commands have been modified for YugabyteDB.
+All the `psql` commands just work as is in `ysqlsh`. This is because the `ysqlsh` shell is in turn derived from PostgreSQL shell `psql` code base - the default settings such as the database default port and the output format of some of the schema commands have been modified for ZNbaseDB.
 {{< /tip >}}
 
 Connect to any node of the database cluster as shown below:
@@ -35,16 +35,16 @@ This should bring up the following prompt, which prints the version of `ysqlsh` 
 ysqlsh (11.2-YB-2.5.0.0-b0)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 You can check the version of the database server by running the following.
 
 ```sql
-yugabyte=# SELECT version();
+ZNbase=# SELECT version();
 ```
 
-The output shows that the YugabyteDB server version is 2.5.0.0-b0, and is a fork of PostgreSQL v11.2:
+The output shows that the ZNbaseDB server version is 2.5.0.0-b0, and is a fork of PostgreSQL v11.2:
 ```
                                               version
 ----------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ The output shows that the YugabyteDB server version is 2.5.0.0-b0, and is a fork
 By default the timing of query results will be displayed in milliseconds in `ysqlsh`. You can toggle this off (and on again) by using the `\timing` command.
 
 ```
-yugabyte=# \timing
+ZNbase=# \timing
 Timing is off.
 ```
 
@@ -65,7 +65,7 @@ Timing is off.
 
 List all databases using the following statements.
 ```sql
-yugabyte=# \l
+ZNbase=# \l
 ```
 Output:
 ```
@@ -78,7 +78,7 @@ Output:
                  |          |          |         |             | postgres=CTc/postgres
  template1       | postgres | UTF8     | C       | en_US.UTF-8 | =c/postgres          +
                  |          |          |         |             | postgres=CTc/postgres
- yugabyte        | postgres | UTF8     | C       | en_US.UTF-8 |
+ ZNbase        | postgres | UTF8     | C       | en_US.UTF-8 |
 (5 rows)
 ```
 
@@ -86,20 +86,20 @@ Output:
 
 You can list all schemas using `\dn` as shown here.
 ```sql
-yugabyte=# \dn
+ZNbase=# \dn
 ```
 Example:
 ```
 # Create an example schema.
-yugabyte=# create schema example;
+ZNbase=# create schema example;
 CREATE SCHEMA
 
 # List all schemas.
-yugabyte=# \dn
+ZNbase=# \dn
   List of schemas
   Name   |  Owner
 ---------+----------
- example | yugabyte
+ example | ZNbase
  public  | postgres
 ```
 
@@ -107,22 +107,22 @@ yugabyte=# \dn
 
 You can list all the tables in a database by using the `\d` command.
 ```sql
-yugabyte=# \d
+ZNbase=# \d
 ```
 Output:
 ```
                  List of relations
  Schema |        Name         |   Type   |  Owner
 --------+---------------------+----------+----------
- public | users               | table    | yugabyte
- public | users_id_seq        | sequence | yugabyte
+ public | users               | table    | ZNbase
+ public | users_id_seq        | sequence | ZNbase
  ```
 
 ### Describe a table
 
 Describe a table using the `\d` command.
 ```sql
-yugabyte=# \d users
+ZNbase=# \d users
 ```
 Output:
 ```
@@ -138,23 +138,23 @@ Indexes:
 
 ## Users
 
-YugabyteDB has two admin users already created - `yugabyte` (the recommended user) and `postgres` (mainly for backward compatibility with PostgreSQL). You can check this as shown below.
+ZNbaseDB has two admin users already created - `ZNbase` (the recommended user) and `postgres` (mainly for backward compatibility with PostgreSQL). You can check this as shown below.
 
 ```sql
-yugabyte=# \conninfo
+ZNbase=# \conninfo
 ```
-This should print an output that looks as follows: `You are connected to database "yugabyte" as user "yugabyte" on host "127.0.0.1" at port "5433"`.
+This should print an output that looks as follows: `You are connected to database "ZNbase" as user "ZNbase" on host "127.0.0.1" at port "5433"`.
 
 To check all the users provisioned, run:
 ```sql
-yugabyte=# \du
+ZNbase=# \du
 ```
 ```
                                    List of roles
  Role name |                         Attributes                         | Member of
 -----------+------------------------------------------------------------+-----------
  postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
- yugabyte  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ ZNbase  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 ```
 
 ## Databases
@@ -169,7 +169,7 @@ CREATE DATABASE testdb;
 To list all databases, use the `\l` command.
 
 ```
-yugabyte=# \l
+ZNbase=# \l
                                    List of databases
       Name       |  Owner   | Encoding | Collate |    Ctype    |   Access privileges
 -----------------+----------+----------+---------+-------------+-----------------------
@@ -179,8 +179,8 @@ yugabyte=# \l
                  |          |          |         |             | postgres=CTc/postgres
  template1       | postgres | UTF8     | C       | en_US.UTF-8 | =c/postgres          +
                  |          |          |         |             | postgres=CTc/postgres
- testdb          | yugabyte | UTF8     | C       | en_US.UTF-8 |
- yugabyte        | postgres | UTF8     | C       | en_US.UTF-8 |
+ testdb          | ZNbase | UTF8     | C       | en_US.UTF-8 |
+ ZNbase        | postgres | UTF8     | C       | en_US.UTF-8 |
 (6 rows)
 ```
 
@@ -192,22 +192,22 @@ To connect to this database, use the `\c` command as shown below.
 
 You should see the following output.
 ```
-You are now connected to database "testdb" as user "yugabyte".
+You are now connected to database "testdb" as user "ZNbase".
 ```
 
 To drop the database we just created, simply connect to another database and use the `DROP` command.
 
 ```
 # First connect to another database.
-testdb=# \c yugabyte
-You are now connected to database "yugabyte" as user "yugabyte".
+testdb=# \c ZNbase
+You are now connected to database "ZNbase" as user "ZNbase".
 
 # Next use the DROP command.
-yugabyte=# drop database testdb;
+ZNbase=# drop database testdb;
 DROP DATABASE
 
 # Verify the database is no longer present.
-yugabyte=# \l
+ZNbase=# \l
                                    List of databases
       Name       |  Owner   | Encoding | Collate |    Ctype    |   Access privileges
 -----------------+----------+----------+---------+-------------+-----------------------
@@ -217,7 +217,7 @@ yugabyte=# \l
                  |          |          |         |             | postgres=CTc/postgres
  template1       | postgres | UTF8     | C       | en_US.UTF-8 | =c/postgres          +
                  |          |          |         |             | postgres=CTc/postgres
- yugabyte        | postgres | UTF8     | C       | en_US.UTF-8 |
+ ZNbase        | postgres | UTF8     | C       | en_US.UTF-8 |
 ```
 
 ## Tables
@@ -239,19 +239,19 @@ To list all tables, use the `\dt` command.
 ```
 Output:
 ```
-yugabyte=# \dt
+ZNbase=# \dt
                 List of relations
  Schema |        Name         | Type  |  Owner
 --------+---------------------+-------+----------
- public | users               | table | yugabyte
+ public | users               | table | ZNbase
 ```
 
 To list the table and the sequence we created, use the `\d` command.
 ```
  Schema |        Name         |   Type   |  Owner
 --------+---------------------+----------+----------
- public | users               | table    | yugabyte
- public | users_id_seq        | sequence | yugabyte
+ public | users               | table    | ZNbase
+ public | users_id_seq        | sequence | ZNbase
 ```
 
 To describe the table we just created, do the following.
@@ -260,7 +260,7 @@ To describe the table we just created, do the following.
 ```
 Output:
 ```
-yugabyte=# \d users
+ZNbase=# \d users
                                 Table "public.users"
   Column  |     Type      | Collation | Nullable |              Default
 ----------+---------------+-----------+----------+-----------------------------------
@@ -328,7 +328,7 @@ testdb=# \d
            List of relations
   Schema  |  Name   | Type  |  Owner
 ----------+---------+-------+----------
- myschema | company | table | yugabyte
+ myschema | company | table | ZNbase
 (1 row)
 ```
 

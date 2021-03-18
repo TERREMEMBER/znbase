@@ -3,7 +3,7 @@ import argparse
 import paramiko
 from collections import namedtuple
 
-YB_USERNAME = 'yugabyte'
+YB_USERNAME = 'ZNbase'
 
 
 CommandHandler = namedtuple('CommandHandler', ['handler', 'parser'])
@@ -61,7 +61,7 @@ def add_k8s_subparser(subparsers, subcommand_name):
     k8s_parser.add_argument('--namespace', type=str, help='k8s namespace', required=True)
     k8s_parser.add_argument('--node_name', type=str, help='Node name', required=True)
     k8s_parser.add_argument('--yb_home_dir', type=str, help='Home directory for YB',
-                            default='/home/yugabyte/')
+                            default='/home/ZNbase/')
     k8s_parser.add_argument(
         '--is_master',
         action='store_true',
@@ -84,7 +84,7 @@ def add_ssh_subparser(subparsers, subcommand_name):
     ssh_parser.add_argument('--port', type=int, help='Port number for ssh')
     ssh_parser.add_argument('--yb_home_dir', type=str,
                             help='Home directory for YB',
-                            default='/home/yugabyte/')
+                            default='/home/ZNbase/')
     ssh_parser.add_argument('--is_master', action='store_true',
                             help='Indicates that node is a master')
     ssh_parser.add_argument(

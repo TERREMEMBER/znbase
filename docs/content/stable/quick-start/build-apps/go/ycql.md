@@ -2,7 +2,7 @@
 title: Build a Go application that uses YCQL
 headerTitle: Build a Go application
 linkTitle: Go
-description: Build a sample Go application with the Yugabyte Go Driver for YCQL.
+description: Build a sample Go application with the ZNbase Go Driver for YCQL.
 menu:
   stable:
     parent: build-apps
@@ -39,15 +39,15 @@ showAsideToc: true
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe and are able to interact with it using the YCQL shell. If not, follow these steps in [Quick start](../../../../api/ycql/quick-start/).
+- installed ZNbaseDB, created a universe and are able to interact with it using the YCQL shell. If not, follow these steps in [Quick start](../../../../api/ycql/quick-start/).
 - installed Go version 1.13 or later.
 
-## Install the Yugabyte Go Driver for YCQL
+## Install the ZNbase Go Driver for YCQL
 
-To install the [Yugabyte Go Driver for YCQL](https://github.com/yugabyte/gocql) locally, run the following command:
+To install the [ZNbase Go Driver for YCQL](https://github.com/ZNbase/gocql) locally, run the following command:
 
 ```sh
-$ go get github.com/yugabyte/gocql
+$ go get github.com/ZNbase/gocql
 ```
 
 ## Write the YCQL sample application
@@ -62,7 +62,7 @@ import (
     "log"
     "time"
 
-    "github.com/yugabyte/gocql"
+    "github.com/ZNbase/gocql"
 )
 
 func main() {

@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1789,7 +1789,7 @@ void TabletServiceImpl::Read(const ReadRequestPB* req,
   // has the transaction metadata, including the isolation level, and those requests expect us to
   // retrieve the isolation level from that metadata. Failure to do so was the cause of a
   // serialization anomaly tested by TestOneOrTwoAdmins
-  // (https://github.com/YugaByte/yugabyte-db/issues/1572).
+  // (https://github.com/ZNbase/ZNbase-db/issues/1572).
 
   bool serializable_isolation = false;
   TabletPeerTablet peer_tablet;

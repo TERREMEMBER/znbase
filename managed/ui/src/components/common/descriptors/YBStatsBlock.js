@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { PureComponent } from 'react';
 import { DescriptionItem } from './';

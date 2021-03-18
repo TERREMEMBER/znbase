@@ -4,7 +4,7 @@
 You can do this as shown below.
 
 ```sh
-$ docker exec -it yb-tserver-n1 /home/yugabyte/bin/cqlsh yb-tserver-n1
+$ docker exec -it yb-tserver-n1 /home/ZNbase/bin/cqlsh yb-tserver-n1
 ```
 ```
 Connected to local cluster at 127.0.0.1:9042.

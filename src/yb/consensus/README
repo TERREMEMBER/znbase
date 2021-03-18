@@ -11,12 +11,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-This document introduces how YugaByte will handle log replication and consistency using the Raft
+This document introduces how ZNbase will handle log replication and consistency using the Raft
 consensus algorithm and a series of practical algorithms/techniques for recovery, reconfiguration,
-compactions etc.  This document introduces all the concepts directly related to YugaByte, for any
+compactions etc.  This document introduces all the concepts directly related to ZNbase, for any
 missing information please refer to the original papers [1,3,4].
 
-Quorums, in YugaByte, are a set of collaborating processes that serve the purpose of keeping a
+Quorums, in ZNbase, are a set of collaborating processes that serve the purpose of keeping a
 consistent, replicated log of operations on a given data set, e.g.  a tablet. This replicated
 consistent log, also plays the role of the Write Ahead Log (WAL) for the tablet. Throughout this
 document we use config participant and process interchangeably, these do not represent machines or
@@ -120,7 +120,7 @@ truncated to the last written offset (i.e., the actual size).
 Quorums and roles within configs
 ============================================================
 
-A config in YugaByte is a fault-tolerant, consistent unit that serves requests for a single tablet.
+A config in ZNbase is a fault-tolerant, consistent unit that serves requests for a single tablet.
 As long as there are 2f+1 participants available in a config, where f is the number of possibly
 faulty participants, the config will keep serving requests for its tablet and it is guaranteed that
 clients perceive a fully consistent, linearizable view of both data and operations on that data.
@@ -233,7 +233,7 @@ References
 Highly-Available Distributed Systems. B. Oki, B. Liskov
 http://www.pmg.csail.mit.edu/papers/vr.pdf
 
-[4] Viewstamped Replication Revisited. B. Liskov and J. Cowling 
+[4] Viewstamped Replication Revisited. B. Liskov and J. Cowling
 http://pmg.csail.mit.edu/papers/vr-revisited.pdf
 
 [5] Aether: A Scalable Approach to logging

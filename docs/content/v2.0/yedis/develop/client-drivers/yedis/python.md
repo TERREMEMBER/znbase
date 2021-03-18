@@ -13,7 +13,7 @@ $ sudo pip install yedis
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe, and are able to interact with it using the Redis shell. If not, please follow these steps in the [quick start guide](../../../quick-start/).
+- installed ZNbaseDB, created a universe, and are able to interact with it using the Redis shell. If not, please follow these steps in the [quick start guide](../../../quick-start/).
 
 ### Writing the Python code
 

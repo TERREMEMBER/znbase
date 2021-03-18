@@ -22,7 +22,7 @@ Returns integer reply, specifically 1 if the timeout was set and 0 if key does n
 ## Examples
 
 ```sh
-$ SET yugakey "Yugabyte"
+$ SET yugakey "ZNbase"
 ```
 
 ```

@@ -2,7 +2,7 @@
 title: yb-master configuration reference
 headerTitle: yb-master
 linkTitle: yb-master
-description: YugabyteDB Master Server (yb-master) binary and configuration flags to manage cluster metadata and coordinate cluster-wide operations.
+description: ZNbaseDB Master Server (yb-master) binary and configuration flags to manage cluster metadata and coordinate cluster-wide operations.
 menu:
   stable:
     identifier: yb-master
@@ -12,7 +12,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Use the `yb-master` binary and its flags to configure the [YB-Master](../../../architecture/concepts/yb-master) server. The `yb-master` executable file is located in the `bin` directory of YugabyteDB home.
+Use the `yb-master` binary and its flags to configure the [YB-Master](../../../architecture/concepts/yb-master) server. The `yb-master` executable file is located in the `bin` directory of ZNbaseDB home.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ $ ./bin/yb-master \
 
 ### Online help
 
-To display the online help, run `yb-master --help` from the YugabyteDB home directory.
+To display the online help, run `yb-master --help` from the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/yb-master --help
@@ -151,7 +151,7 @@ Default: `7000`
 
 Monitoring web server home.
 
-Default: The `www` directory in the YugabyteDB home directory.
+Default: The `www` directory in the ZNbaseDB home directory.
 
 ---
 
@@ -439,7 +439,7 @@ Default: `-1` (server internally sets default value). For servers with two or le
 
 {{< note title="Important" >}}
 
-This value must match on all `yb-master` and `yb-tserver` configurations of a YugabyteDB cluster.
+This value must match on all `yb-master` and `yb-tserver` configurations of a ZNbaseDB cluster.
 
 {{< /note >}}
 
@@ -477,7 +477,7 @@ yb-admin --master_addresses <master-addresses> --tablet_split_size_threshold_byt
 For details on automatic tablet splitting, see:
 
 - [Automatic tablet splitting](../../../architecture/docdb-sharding/tablet-splitting) — Architecture overview
-- [Automatic Re-sharding of Data with Tablet Splitting](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/docdb-automatic-tablet-splitting.md) — Architecture design document in the GitHub repository.
+- [Automatic Re-sharding of Data with Tablet Splitting](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/docdb-automatic-tablet-splitting.md) — Architecture design document in the GitHub repository.
 
 ---
 
@@ -541,7 +541,7 @@ Default: `false`
 
 ##### --use_node_to_node_encryption
 
-Enable server-server, or node-to-node, encryption between YugabyteDB YB-Master and YB-TServer servers in a cluster or universe. To work properly, all YB-Master servers must also have their [`--use_node_to_node_encryption`](../yb-master/#use-node-to-node-encryption) flag enabled. When enabled, then [`--allow_insecure_connections`](#allow-insecure-connections) flag must be disabled.
+Enable server-server, or node-to-node, encryption between ZNbaseDB YB-Master and YB-TServer servers in a cluster or universe. To work properly, all YB-Master servers must also have their [`--use_node_to_node_encryption`](../yb-master/#use-node-to-node-encryption) flag enabled. When enabled, then [`--allow_insecure_connections`](#allow-insecure-connections) flag must be disabled.
 
 Default: `false`
 

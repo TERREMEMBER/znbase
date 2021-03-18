@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 from ybops.cloud.common.method import ListInstancesMethod, CreateInstancesMethod, \
     ProvisionInstancesMethod, DestroyInstancesMethod, AbstractMethod, \
@@ -156,7 +156,7 @@ class AwsPauseInstancesMethod(AbstractInstancesMethod):
     """
     def __init__(self, base_command):
         super(AwsPauseInstancesMethod, self).__init__(base_command, "pause")
-        
+
     def add_extra_args(self):
         super(AwsPauseInstancesMethod, self).add_extra_args()
         self.parser.add_argument("--node_ip", default=None,
@@ -169,7 +169,7 @@ class AwsPauseInstancesMethod(AbstractInstancesMethod):
             get_all=False,
             private_ip=args.node_ip
         )
-       
+
         if not host_info:
             logging.error("Host {} does not exist.".format(args.search_pattern))
             return
@@ -184,7 +184,7 @@ class AwsResumeInstancesMethod(AbstractInstancesMethod):
     """
     def __init__(self, base_command):
         super(AwsResumeInstancesMethod, self).__init__(base_command, "resume")
-        
+
     def add_extra_args(self):
         super(AwsResumeInstancesMethod, self).add_extra_args()
         self.parser.add_argument("--node_ip", default=None,

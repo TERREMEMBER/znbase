@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -48,7 +48,7 @@ using std::vector;
 // LoggingTest is not actually an integration test, but we put it here, so it will be linked with
 // all libraries used for YB cluster processes, because static object initialization in thse
 // libraries could cause logging issues.
-// For example: https://github.com/yugabyte/yugabyte-db/issues/3176
+// For example: https://github.com/ZNbase/ZNbase-db/issues/3176
 
 namespace yb {
 

@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -36,7 +36,7 @@
 
 DEFINE_string(pg_proxy_bind_address, "", "Address for the PostgreSQL proxy to bind to");
 DEFINE_bool(pg_transactions_enabled, true,
-            "True to enable transactions in YugaByte PostgreSQL API. This should eventually "
+            "True to enable transactions in ZNbase PostgreSQL API. This should eventually "
             "be set to true by default.");
 DEFINE_bool(pg_verbose_error_log, false,
             "True to enable verbose logging of errors in PostgreSQL server");
@@ -328,7 +328,7 @@ Status PgWrapper::Start() {
           << EXPR_VALUE_FOR_LOG(log_to_file);
 
   // Configure UNIX domain socket for index backfill tserver-postgres communication and for
-  // Yugabyte Platform backups.
+  // ZNbase Platform backups.
   argv.push_back("-k");
   const std::string& socket_dir = PgDeriveSocketDir(conf_.listen_addresses);
   RETURN_NOT_OK(Env::Default()->CreateDirs(socket_dir));
@@ -413,7 +413,7 @@ Status PgWrapper::InitDbLocalOnlyIfNeeded() {
     LOG(INFO) << "Data directory " << conf_.data_dir << " already exists, skipping initdb";
     return Status::OK();
   }
-  // Do not communicate with the YugaByte cluster at all. This function is only concerned with
+  // Do not communicate with the ZNbase cluster at all. This function is only concerned with
   // setting up the local PostgreSQL data directory on this tablet server.
   return InitDb(/* yb_enabled */ false);
 }

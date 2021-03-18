@@ -18,11 +18,11 @@ The `yb-docker-ctl` utility provides a simple command line interface (CLI), or s
 ## Download
 
 ```sh
-$ mkdir ~/yugabyte && cd ~/yugabyte
+$ mkdir ~/ZNbase && cd ~/ZNbase
 ```
 
 ```sh
-$ wget https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/bin/yb-docker-ctl && chmod +x yb-docker-ctl
+$ wget https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/bin/yb-docker-ctl && chmod +x yb-docker-ctl
 ```
 
 ## Help command
@@ -38,20 +38,20 @@ usage: yb-docker-ctl [-h]
                      {create,add_node,status,destroy,stop_node,start_node,stop,start,remove_node}
                      ...
 
-Yugabyte Docker Container Control
+ZNbase Docker Container Control
 
 positional arguments:
   {create,add_node,status,destroy,stop_node,start_node,stop,start,remove_node}
                         Commands
-    create              Create Yugabyte Cluster
-    add_node            Add a new Yugabyte Cluster Node
-    status              Check Yugabyte Cluster status
-    destroy             Destroy Yugabyte Cluster
-    stop_node           Stop a Yugabyte Cluster Node
-    start_node          Start a Yugabyte Cluster Node
-    stop                Stop Yugabyte Cluster so that it can be started later
-    start               Start Yugabyte Cluster if one already exists
-    remove_node         Stop a Yugabyte Cluster Node
+    create              Create ZNbase Cluster
+    add_node            Add a new ZNbase Cluster Node
+    status              Check ZNbase Cluster status
+    destroy             Destroy ZNbase Cluster
+    stop_node           Stop a ZNbase Cluster Node
+    start_node          Start a ZNbase Cluster Node
+    stop                Stop ZNbase Cluster so that it can be started later
+    start               Start ZNbase Cluster if one already exists
+    remove_node         Stop a ZNbase Cluster Node
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -65,7 +65,7 @@ The number of nodes created when you use the `yb-dockter-ctl create` command is 
 
 ### Create a 1-node local cluster with RF of 1
 
-To create a 1-node local cluster for development and learning YugabyteDB, run the default `yb-docker-ctl` command. By default, this creates a 1-node cluster with a replication factor (RF) of 1. Note that the `yb-docker-ctl create` command pulls the latest `yugabytedb/yugabyte` image at the outset, in case the image has not yet downloaded or is not the latest version.
+To create a 1-node local cluster for development and learning ZNbaseDB, run the default `yb-docker-ctl` command. By default, this creates a 1-node cluster with a replication factor (RF) of 1. Note that the `yb-docker-ctl create` command pulls the latest `ZNbasedb/ZNbase` image at the outset, in case the image has not yet downloaded or is not the latest version.
 
 ```sh
 $ ./yb-docker-ctl create
@@ -82,17 +82,17 @@ $ ./yb-docker-ctl create --rf 3
 ```
 
 ```
-docker run --name yb-master-n1 --privileged -p 7000:7000 --net yb-net --detach yugabytedb/yugabyte:latest /home/yugabyte/yb-master --fs_data_dirs=/mnt/disk0,/mnt/disk1 --master_addresses=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-master-n1:7100
+docker run --name yb-master-n1 --privileged -p 7000:7000 --net yb-net --detach ZNbasedb/ZNbase:latest /home/ZNbase/yb-master --fs_data_dirs=/mnt/disk0,/mnt/disk1 --master_addresses=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-master-n1:7100
 Adding node yb-master-n1
-docker run --name yb-master-n2 --privileged --net yb-net --detach yugabytedb/yugabyte:latest /home/yugabyte/yb-master --fs_data_dirs=/mnt/disk0,/mnt/disk1 --master_addresses=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-master-n2:7100
+docker run --name yb-master-n2 --privileged --net yb-net --detach ZNbasedb/ZNbase:latest /home/ZNbase/yb-master --fs_data_dirs=/mnt/disk0,/mnt/disk1 --master_addresses=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-master-n2:7100
 Adding node yb-master-n2
-docker run --name yb-master-n3 --privileged --net yb-net --detach yugabytedb/yugabyte:latest /home/yugabyte/yb-master --fs_data_dirs=/mnt/disk0,/mnt/disk1 --master_addresses=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-master-n3:7100
+docker run --name yb-master-n3 --privileged --net yb-net --detach ZNbasedb/ZNbase:latest /home/ZNbase/yb-master --fs_data_dirs=/mnt/disk0,/mnt/disk1 --master_addresses=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-master-n3:7100
 Adding node yb-master-n3
-docker run --name yb-tserver-n1 --privileged -p 9000:9000 -p 9042:9042 -p 6379:6379 --net yb-net --detach yugabytedb/yugabyte:latest /home/yugabyte/yb-tserver --fs_data_dirs=/mnt/disk0,/mnt/disk1 --tserver_master_addrs=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-tserver-n1:9100
+docker run --name yb-tserver-n1 --privileged -p 9000:9000 -p 9042:9042 -p 6379:6379 --net yb-net --detach ZNbasedb/ZNbase:latest /home/ZNbase/yb-tserver --fs_data_dirs=/mnt/disk0,/mnt/disk1 --tserver_master_addrs=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-tserver-n1:9100
 Adding node yb-tserver-n1
-docker run --name yb-tserver-n2 --privileged --net yb-net --detach yugabytedb/yugabyte:latest /home/yugabyte/yb-tserver --fs_data_dirs=/mnt/disk0,/mnt/disk1 --tserver_master_addrs=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-tserver-n2:9100
+docker run --name yb-tserver-n2 --privileged --net yb-net --detach ZNbasedb/ZNbase:latest /home/ZNbase/yb-tserver --fs_data_dirs=/mnt/disk0,/mnt/disk1 --tserver_master_addrs=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-tserver-n2:9100
 Adding node yb-tserver-n2
-docker run --name yb-tserver-n3 --privileged --net yb-net --detach yugabytedb/yugabyte:latest /home/yugabyte/yb-tserver --fs_data_dirs=/mnt/disk0,/mnt/disk1 --tserver_master_addrs=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-tserver-n3:9100
+docker run --name yb-tserver-n3 --privileged --net yb-net --detach ZNbasedb/ZNbase:latest /home/ZNbase/yb-tserver --fs_data_dirs=/mnt/disk0,/mnt/disk1 --tserver_master_addrs=yb-master-n1:7100,yb-master-n2:7100,yb-master-n3:7100 --rpc_bind_addresses=yb-tserver-n3:9100
 Adding node yb-tserver-n3
 PID        Type       Node                 URL                       Status          Started At
 11818      tserver    yb-tserver-n3        http://172.19.0.7:9000    Running         2017-11-28T23:33:00.369124907Z
@@ -136,7 +136,7 @@ $ ./yb-docker-ctl add_node
 ```
 
 ```
-docker run --name yb-tserver-n4 --net yb-net --detach yugabytedb/yugabyte:latest /home/yugabyte/yb-tserver --fs_data_dirs=/mnt/disk0,/mnt/disk1 --tserver_master_addrs=04:7100,04:7100,04:7100 --rpc_bind_addresses=yb-tserver-n4:9100
+docker run --name yb-tserver-n4 --net yb-net --detach ZNbasedb/ZNbase:latest /home/ZNbase/yb-tserver --fs_data_dirs=/mnt/disk0,/mnt/disk1 --tserver_master_addrs=04:7100,04:7100,04:7100 --rpc_bind_addresses=yb-tserver-n4:9100
 Adding node yb-tserver-n4
 ```
 
@@ -181,8 +181,8 @@ $ ./yb-docker-ctl destroy
 
 ## Upgrade container image
 
-The following `docker pull` command below upgrades the Docker image of YugabyteDB to the latest version.
+The following `docker pull` command below upgrades the Docker image of ZNbaseDB to the latest version.
 
 ```sh
-$ docker pull yugabytedb/yugabyte
+$ docker pull ZNbasedb/ZNbase
 ```

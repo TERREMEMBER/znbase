@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -862,7 +862,7 @@ class DocDbAwareHashedComponentsFilterPolicy : public DocDbAwareFilterPolicyBase
 };
 
 // Together with the fix for BlockBasedTableBuild::Add
-// (https://github.com/yugabyte/yugabyte-db/issues/6435) we also disable DocKeyV2Filter
+// (https://github.com/ZNbase/ZNbase-db/issues/6435) we also disable DocKeyV2Filter
 // for range-partitioned tablets. For hash-partitioned tablets it will be supported during read
 // path and will work the same way as DocDbAwareV3FilterPolicy.
 class DocDbAwareV2FilterPolicy : public DocDbAwareFilterPolicyBase {

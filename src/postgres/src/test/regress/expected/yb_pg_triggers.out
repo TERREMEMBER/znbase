@@ -1877,7 +1877,7 @@ create trigger my_trigger after update on my_view referencing old table as old_t
 ERROR:  REFERENCING clause (transition tables) not supported yet
 LINE 1: create trigger my_trigger after update on my_view referencin...
                                                           ^
-HINT:  See https://github.com/YugaByte/yugabyte-db/issues/1668. Click '+' on the description to raise its priority
+HINT:  See https://github.com/ZNbase/ZNbase-db/issues/1668. Click '+' on the description to raise its priority
 drop function my_trigger_function();
 drop view my_view;
 drop table my_table;
@@ -1901,7 +1901,7 @@ create trigger failed after update on parted_trig
 ERROR:  REFERENCING clause (transition tables) not supported yet
 LINE 2:   referencing old table as old_table
           ^
-HINT:  See https://github.com/YugaByte/yugabyte-db/issues/1668. Click '+' on the description to raise its priority
+HINT:  See https://github.com/ZNbase/ZNbase-db/issues/1668. Click '+' on the description to raise its priority
 drop table parted_trig;
 --
 -- Verify trigger creation for partitioned tables, and drop behavior
@@ -1914,10 +1914,10 @@ create table trigpart3 (like trigpart);
 ERROR:  LIKE clause not supported yet
 LINE 1: create table trigpart3 (like trigpart);
                                 ^
-HINT:  See https://github.com/YugaByte/yugabyte-db/issues/1129. Click '+' on the description to raise its priority
+HINT:  See https://github.com/ZNbase/ZNbase-db/issues/1129. Click '+' on the description to raise its priority
 select tgrelid::regclass, tgname, tgfoid::regproc from pg_trigger
   where tgrelid::regclass::text like 'trigpart%' order by tgrelid::regclass::text;
-  tgrelid  | tgname |     tgfoid      
+  tgrelid  | tgname |     tgfoid
 -----------+--------+-----------------
  trigpart  | trg1   | trigger_nothing
  trigpart1 | trg1   | trigger_nothing
@@ -1936,7 +1936,7 @@ drop trigger trg1 on trigpart2;	-- fail
 drop table trigpart2;			-- ok, trigger should be gone in that partition
 select tgrelid::regclass, tgname, tgfoid::regproc from pg_trigger
   where tgrelid::regclass::text like 'trigpart%' order by tgrelid::regclass::text;
-  tgrelid  | tgname |     tgfoid      
+  tgrelid  | tgname |     tgfoid
 -----------+--------+-----------------
  trigpart  | trg1   | trigger_nothing
  trigpart1 | trg1   | trigger_nothing
@@ -1945,7 +1945,7 @@ select tgrelid::regclass, tgname, tgfoid::regproc from pg_trigger
 drop trigger trg1 on trigpart;		-- ok, all gone
 select tgrelid::regclass, tgname, tgfoid::regproc from pg_trigger
   where tgrelid::regclass::text like 'trigpart%' order by tgrelid::regclass::text;
- tgrelid | tgname | tgfoid 
+ tgrelid | tgname | tgfoid
 ---------+--------+--------
 (0 rows)
 
@@ -2026,7 +2026,7 @@ NOTICE:  trigger trig_ins_after_parent on parted_stmt_trig1 AFTER INSERT for ROW
 NOTICE:  trigger trig_ins_after_parent on parted_stmt_trig2 AFTER INSERT for ROW
 NOTICE:  trigger trig_ins_after_3 on parted2_stmt_trig AFTER INSERT for STATEMENT
 NOTICE:  trigger trig_ins_after on parted_stmt_trig AFTER INSERT for STATEMENT
-     tableoid      | a 
+     tableoid      | a
 -------------------+---
  parted_stmt_trig1 | 1
  parted_stmt_trig2 | 2
@@ -2161,7 +2161,7 @@ create constraint trigger parted_trig after insert on parted_constr_ancestor
 ERROR:  CREATE CONSTRAINT TRIGGER not supported yet
 LINE 1: create constraint trigger parted_trig after insert on parted...
         ^
-HINT:  See https://github.com/YugaByte/yugabyte-db/issues/1709. Click '+' on the description to raise its priority
+HINT:  See https://github.com/ZNbase/ZNbase-db/issues/1709. Click '+' on the description to raise its priority
 /*
 create constraint trigger parted_trig_two after insert on parted_constr
   deferrable initially deferred
@@ -2222,7 +2222,7 @@ create constraint trigger parted_trigger after update on parted_trigger
 ERROR:  CREATE CONSTRAINT TRIGGER not supported yet
 LINE 1: create constraint trigger parted_trigger after update on par...
         ^
-HINT:  See https://github.com/YugaByte/yugabyte-db/issues/1709. Click '+' on the description to raise its priority
+HINT:  See https://github.com/ZNbase/ZNbase-db/issues/1709. Click '+' on the description to raise its priority
 /*
 create constraint trigger parted_trigger after update on unparted_trigger
   from parted_referenced
@@ -2267,7 +2267,7 @@ alter table trg_clone add constraint uniq unique (a) deferrable;
 ERROR:  DEFERRABLE unique constraints are not supported yet
 LINE 1: alter table trg_clone add constraint uniq unique (a) deferra...
                                   ^
-HINT:  See https://github.com/YugaByte/yugabyte-db/issues/1129. Click '+' on the description to raise its priority
+HINT:  See https://github.com/ZNbase/ZNbase-db/issues/1129. Click '+' on the description to raise its priority
 /*
 create table trg_clone2 partition of trg_clone for values from (1000) to (2000);
 create table trg_clone3 partition of trg_clone for values from (2000) to (3000)
@@ -2336,7 +2336,7 @@ create trigger parent_insert_trig
 ERROR:  REFERENCING clause (transition tables) not supported yet
 LINE 2:   after insert on parent referencing new table as new_table
                                  ^
-HINT:  See https://github.com/YugaByte/yugabyte-db/issues/1668. Click '+' on the description to raise its priority
+HINT:  See https://github.com/ZNbase/ZNbase-db/issues/1668. Click '+' on the description to raise its priority
 /*
 create trigger parent_update_trig
   after update on parent referencing old table as old_table new table as new_table
@@ -2639,7 +2639,7 @@ create trigger table1_trig
 ERROR:  REFERENCING clause (transition tables) not supported yet
 LINE 2:   after insert on table1 referencing new table as new_table
                                  ^
-HINT:  See https://github.com/YugaByte/yugabyte-db/issues/1668. Click '+' on the description to raise its priority
+HINT:  See https://github.com/ZNbase/ZNbase-db/issues/1668. Click '+' on the description to raise its priority
 -- TODO When transition tables ('REFERENCING' clause) are supported in YB enable the tests below.
 /*
 create trigger table2_trig

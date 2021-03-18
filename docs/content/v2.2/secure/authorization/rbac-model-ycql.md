@@ -37,7 +37,7 @@ The role-based access control (RBAC) model in YCQL is a collection of permission
 
 ## Roles
 
-Roles in YCQL can represent individual users or a group of users. They encapsulate a set of permissions that can be assigned to other roles (or users). Roles are essential to implementing and administering access control on a YugabyteDB cluster. Below are some important points about roles:
+Roles in YCQL can represent individual users or a group of users. They encapsulate a set of permissions that can be assigned to other roles (or users). Roles are essential to implementing and administering access control on a ZNbaseDB cluster. Below are some important points about roles:
 
 * Roles which have login permission are users. Hence, all users are roles but all roles are not users.
 

@@ -2,7 +2,7 @@
 title: Authentication
 linkTitle: Authentication
 description: Authentication
-headcontent: Instructions for enabling authentication in YugabyteDB.
+headcontent: Instructions for enabling authentication in ZNbaseDB.
 image: /images/section_icons/secure/authentication.png
 block_indexing: true
 menu:
@@ -12,7 +12,7 @@ menu:
     weight: 710
 ---
 
-Authentication should be enabled to verify the identity of a client that connects to YugabyteDB. Note the following:
+Authentication should be enabled to verify the identity of a client that connects to ZNbaseDB. Note the following:
 
 - Authentication is implemented for YCQL (Cassandra-compatible) and YEDIS (Redis-compatible) APIs currently.
 

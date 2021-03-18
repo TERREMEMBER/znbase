@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import { Alert, Tabs, Tab } from 'react-bootstrap';
@@ -300,33 +300,33 @@ export default class AddCertificateForm extends Component {
                     name="rootCACert"
                     component={YBFormInput}
                     label="Root CA Certificate"
-                    placeholder="/opt/yugabyte/keys/cert1/ca.crt"
+                    placeholder="/opt/ZNbase/keys/cert1/ca.crt"
                     required
                   />
                   <Field
                     name="nodeCertPath"
                     component={YBFormInput}
                     label="Database Node Certificate Path"
-                    placeholder="/opt/yugabyte/keys/cert1/node.crt"
+                    placeholder="/opt/ZNbase/keys/cert1/node.crt"
                     required
                   />
                   <Field
                     name="nodeCertPrivate"
                     component={YBFormInput}
                     label="Database Node Certificate Private Key"
-                    placeholder="/opt/yugabyte/keys/cert1/node.key"
+                    placeholder="/opt/ZNbase/keys/cert1/node.key"
                     required
                   />
                   <Field
                     name="clientCert"
                     component={YBFormInput}
                     label="Client Certificate"
-                    placeholder="/opt/yugabyte/yugaware/data/cert1/client.crt"
+                    placeholder="/opt/ZNbase/yugaware/data/cert1/client.crt"
                   />
                   <Field name="clientCertPrivate"
                     component={YBFormInput}
                     label="Client Certificate Private Key"
-                    placeholder="/opt/yugabyte/yugaware/data/cert1/client.key"
+                    placeholder="/opt/ZNbase/yugaware/data/cert1/client.key"
                   />
                   {getPromiseState(addCertificate).isError() && isNonEmptyObject(addCertificate.error) && (
                     <Alert bsStyle="danger" variant="danger">

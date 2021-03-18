@@ -3,7 +3,7 @@ title: Key-value workload
 linkTitle: Key-value workload
 description: Key-value workload
 image: /images/section_icons/explore/high_performance.png
-headcontent: Test YugabyteDB performance with a key-value workload.
+headcontent: Test ZNbaseDB performance with a key-value workload.
 block_indexing: true
 menu:
   v2.0:

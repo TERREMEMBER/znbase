@@ -2,7 +2,7 @@
 title: Migrate from Helm 2 to Helm 3
 headerTitle: Migrate from Helm 2 to Helm 3
 linkTitle: Migrate to Helm 3
-description: Migrate your YugabyteDB universes and Yugabyte Platform from Helm 2 to Helm 3.
+description: Migrate your ZNbaseDB universes and ZNbase Platform from Helm 2 to Helm 3.
 block_indexing: true
 menu:
   v2.1:
@@ -16,12 +16,12 @@ showAsideToc: true
 
 {{< note title="Note" >}}
 
-Starting with YugabyteDB version 2.1.8, Helm 2 is not supported. Following the steps below to migrate your existing YugabyteDB universes and the Yugabyte Platform from Helm 2 to Helm 3.
+Starting with ZNbaseDB version 2.1.8, Helm 2 is not supported. Following the steps below to migrate your existing ZNbaseDB universes and the ZNbase Platform from Helm 2 to Helm 3.
 
 {{< /note >}}
 
 
-## Migrate existing Yugabyte Platform and YugabyteDB from Helm 2 to Helm 3
+## Migrate existing ZNbase Platform and ZNbaseDB from Helm 2 to Helm 3
 
 1. Check the chart name using the following command.
 
@@ -55,7 +55,7 @@ NAME   	NAMESPACE	REVISION	UPDATED                               	STATUS  	CHART
 yw-test	yw-test  	1       	2020-06-16 16:51:16.44463488 +0000 UTC	deployed	yugaware-2.1.8	2.1.8.2-b1 
 ```
 
-## Upgrade Yugabyte Platform and YugabyteDB using Helm 3
+## Upgrade ZNbase Platform and ZNbaseDB using Helm 3
 
 Because older charts (v.2.1.4 and earlier) used to have the `clusterIP` field in the `services.yaml` file, and the Helm 3 binary doesn’t support leaving the `clusterIP` field empty [[https://github.com/helm/helm/issues/6378](https://github.com/helm/helm/issues/6378)], you need to manually specify the `clusterIP`. You can get the `clusterIP` of the service using the following command:
 
@@ -67,7 +67,7 @@ yw-test-yugaware-ui   LoadBalancer   10.103.85.235   10.103.85.235   80:30265/TC
 
 Also, because the `Release.Service` for Helm 3 is`Helm`, and Helm 2 had it as `Tiller`, any deployments done with Helm 2 will have the `heritage` field set to `Tiller`.  To explicitly set the heritage value to `Tiller`, you can set the `helm2Legacy` variable to  `true`.
 
-For Yugabyte Platform, set the following fields, along with the other necessary changes, by running the following command.
+For ZNbase Platform, set the following fields, along with the other necessary changes, by running the following command.
 
 ```
 22:39 $ helm upgrade yw-test yugaware --set helm2Legacy=true,yugaware.service.clusterIP="10.103.85.235" -n yw-test
@@ -82,7 +82,7 @@ TEST SUITE: None
 
 Omit the `helm2Legacy` field if the chart was not migrated from Helm 2.
 
-For YugabyteDB, create an overrides file, including the following:
+For ZNbaseDB, create an overrides file, including the following:
 
 ```
 serviceEndpoints:
@@ -111,7 +111,7 @@ helm2Legacy: true
 Now, run the following command:
 
 ```sh
-$ helm upgrade yb-test yugabyte/ -f ~/Desktop/test.yaml -n yb-test
+$ helm upgrade yb-test ZNbase/ -f ~/Desktop/test.yaml -n yb-test
 ```
 
 You should see the following message.
@@ -125,9 +125,9 @@ STATUS: deployed
 REVISION: 3
 TEST SUITE: None
 NOTES:
-1. Get YugabyteDB Pods by running this command:
+1. Get ZNbaseDB Pods by running this command:
   kubectl --namespace yb-test get pods
-2. Get list of YugabyteDB services that are running:
+2. Get list of ZNbaseDB services that are running:
   kubectl --namespace yb-test get services
 3. Get information about the load balancer services:
   kubectl get svc --namespace yb-test
@@ -135,7 +135,7 @@ NOTES:
   kubectl exec --namespace yb-test -it yb-tserver-0 -- bash
 5. Run YSQL shell from inside of a tablet server:
   kubectl exec --namespace yb-test -it yb-tserver-0 -- ysqlsh -h yb-tserver-0.yb-tservers.yb-test
-6. Cleanup YugabyteDB Pods
+6. Cleanup ZNbaseDB Pods
   For helm 2:
   helm delete yb-test --purge
   For helm 3:
@@ -145,18 +145,18 @@ NOTES:
   kubectl delete pvc --namespace yb-test -l app=yb-tserver
 ```
 
-## Migrate a YugabyteDB universe deployed using Yugabyte Platform
+## Migrate a ZNbaseDB universe deployed using ZNbase Platform
 
-All YugabyteDB clusters deployed on Kubernetes with the Yugabyte Platform before version 2.1.8 were deployed using Helm 2. Starting with YubabyteDB version 2.1.8, the Yugabyte Platform only supports Helm 3, so you need to manually migrate the older YugabyteDB deployments using the `2to3` plugin. By default, any older YugabyteDB on Kubernetes will not be modifiable using the Yugabyte Platform unless it is ported to Helm 3. This can be done as follows:
+All ZNbaseDB clusters deployed on Kubernetes with the ZNbase Platform before version 2.1.8 were deployed using Helm 2. Starting with YubabyteDB version 2.1.8, the ZNbase Platform only supports Helm 3, so you need to manually migrate the older ZNbaseDB deployments using the `2to3` plugin. By default, any older ZNbaseDB on Kubernetes will not be modifiable using the ZNbase Platform unless it is ported to Helm 3. This can be done as follows:
 
 1. Get all older Helm 2 release names by running the following command.
 
 ```sh
 $ helm2 ls
 NAME              REVISION  UPDATED                 	       STATUS  	CHART                  APP VERSION	NAMESPACE      
-yb-admin-test-a	1       Tue May 12 23:08:30 2020    DEPLOYED	yugabyte-2.1.2       2.1.2.0-b10	yb-admin-test-a
-yb-admin-test-b	1       Tue May 12 23:08:30 2020    DEPLOYED	yugabyte-2.1.2       2.1.2.0-b10	yb-admin-test-b
-yb-admin-test-c	1       Tue May 12 23:08:30 2020    DEPLOYED	yugabyte-2.1.2       2.1.2.0-b10	yb-admin-test-c
+yb-admin-test-a	1       Tue May 12 23:08:30 2020    DEPLOYED	ZNbase-2.1.2       2.1.2.0-b10	yb-admin-test-a
+yb-admin-test-b	1       Tue May 12 23:08:30 2020    DEPLOYED	ZNbase-2.1.2       2.1.2.0-b10	yb-admin-test-b
+yb-admin-test-c	1       Tue May 12 23:08:30 2020    DEPLOYED	ZNbase-2.1.2       2.1.2.0-b10	yb-admin-test-c
 ```
 
 
@@ -195,9 +195,9 @@ $ helm 2to3 convert yb-admin-test-c
 ```sh
 $ helm ls -A
 NAME           	NAMESPACE     REVISION   UPDATED                 STATUS    CHART         	APP VERSION
-yb-admin-test-a	yb-admin-test-a	1       	2020-05-12	deployed	  yugabyte-2.1.2	2.1.2.0-b10
-yb-admin-test-b	yb-admin-test-b	1       	2020-05-12	deployed	  yugabyte-2.1.2	2.1.2.0-b10
-yb-admin-test-c	yb-admin-test-c	1       	2020-05-12	deployed	  yugabyte-2.1.2	2.1.2.0-b10
+yb-admin-test-a	yb-admin-test-a	1       	2020-05-12	deployed	  ZNbase-2.1.2	2.1.2.0-b10
+yb-admin-test-b	yb-admin-test-b	1       	2020-05-12	deployed	  ZNbase-2.1.2	2.1.2.0-b10
+yb-admin-test-c	yb-admin-test-c	1       	2020-05-12	deployed	  ZNbase-2.1.2	2.1.2.0-b10
 ```
 
 4. Make the following API call for each universe that has been migrated:
@@ -210,8 +210,8 @@ $ curl --location --request PUT 'http://localhost:9000/api/v1/customers/f33e3c9b
 --data-raw '{}'
 ```
 
-You've completed the migrations and now the YugabyteDB universe operations can be performed using Yugabyte Platform v.2.1.8 or later.
+You've completed the migrations and now the ZNbaseDB universe operations can be performed using ZNbase Platform v.2.1.8 or later.
 
-## Delete old YugabyteDB universes from Yugabyte Platform
+## Delete old ZNbaseDB universes from ZNbase Platform
 
-Yugabyte Platform will allow deletion of older YugabyteDB universes, but  it will not delete the Helm 2 release. Yugabyte Platform  can also delete the namespaces and associated resources.
+ZNbase Platform will allow deletion of older ZNbaseDB universes, but  it will not delete the Helm 2 release. ZNbase Platform  can also delete the namespaces and associated resources.

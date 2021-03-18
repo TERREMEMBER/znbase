@@ -1,4 +1,4 @@
-// Copyright YugaByte Inc.
+// Copyright ZNbase Inc.
 
 import { connect } from 'react-redux';
 import { DeleteUniverse } from '../';

@@ -36,7 +36,7 @@ The role-based access control (RBAC) model in YSQL is a collection of privileges
 
 ## Roles
 
-Roles in YSQL can represent individual users or a group of users. They encapsulate a set of privileges that can be assigned to other roles (or users). Roles are essential to implementing and administering access control on a YugabyteDB cluster. Below are some important points about roles:
+Roles in YSQL can represent individual users or a group of users. They encapsulate a set of privileges that can be assigned to other roles (or users). Roles are essential to implementing and administering access control on a ZNbaseDB cluster. Below are some important points about roles:
 
 * Roles which have `LOGIN` privilege are users. Hence, all users are roles, but all roles are not users.
 

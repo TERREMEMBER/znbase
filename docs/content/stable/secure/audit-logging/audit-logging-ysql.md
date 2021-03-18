@@ -31,9 +31,9 @@ showAsideToc: true
   </li>
 </ul>
 
-YugabyteDB YSQL uses PostgreSQL Audit Extension (`pgAudit`) to provide detailed session and/or object audit logging via YugabyteDB TServer logging.
+ZNbaseDB YSQL uses PostgreSQL Audit Extension (`pgAudit`) to provide detailed session and/or object audit logging via ZNbaseDB TServer logging.
 
-The goal of the YSQL audit logging is to provide YugabyteDB users with capability to produce audit logs often required to comply with government, financial, or ISO certifications. An audit is an official inspection of an individual’s or organization’s accounts, typically by an independent body.
+The goal of the YSQL audit logging is to provide ZNbaseDB users with capability to produce audit logs often required to comply with government, financial, or ISO certifications. An audit is an official inspection of an individual’s or organization’s accounts, typically by an independent body.
 
 
 ## Enabling Audit Logging
@@ -47,10 +47,10 @@ This can be done in one of the following ways.
 
 1. Database administrators can leverage `ysql_pg_conf` to set appropriate values for pgAudit configuration.
 2. Eg. `ysql_pg_conf="pgaudit.log='DDL',pgaudit.log_level=notice"`
-3. These configuration values are set when the YugabyteDB cluster is created and hence are picked up for all users and for every session.
+3. These configuration values are set when the ZNbaseDB cluster is created and hence are picked up for all users and for every session.
 
 
-##### Option B: Using YugabyteDB `SET` command
+##### Option B: Using ZNbaseDB `SET` command
 
 1. An alternative suggestion is to use the YB `SET` command, which essentially changes the run-time configuration parameters.
 2. Eg. `SET pgaudit.log='DDL'`
@@ -59,10 +59,10 @@ This can be done in one of the following ways.
 
 ### Step 2. Load the `pgAudit` extension
 
-Enable Audit logging in YugabyteDB clusters by creating the `pgaudit` extension. Executing the below statement in a YSQL shell will enable Audit logging.
+Enable Audit logging in ZNbaseDB clusters by creating the `pgaudit` extension. Executing the below statement in a YSQL shell will enable Audit logging.
 
 ```
-yugabyte=# CREATE EXTENSION IF NOT EXISTS pgaudit;
+ZNbase=# CREATE EXTENSION IF NOT EXISTS pgaudit;
 CREATE EXTENSION
 ```
 
@@ -171,12 +171,12 @@ There is no default.
 
 ## Example
 
-Use these steps to configure audit logging in a YugabyteDB cluster with bare minimum configurations.
+Use these steps to configure audit logging in a ZNbaseDB cluster with bare minimum configurations.
 
 
 ### 1. Enable audit logging
 
-Start the YugabyteDB Cluster with the following Audit logging Configuration.
+Start the ZNbaseDB Cluster with the following Audit logging Configuration.
 
     ```
     --ysql_pg_conf="pgaudit.log='DDL',pgaudit.log_level=notice,pgaudit.log_client=ON"
@@ -196,36 +196,36 @@ Start the YugabyteDB Cluster with the following Audit logging Configuration.
 
 ### 2. Load `pgAudit` extension
 
-Open the YSQL shell (ysqlsh), specifying the `yugabyte` user and prompting for the password.
+Open the YSQL shell (ysqlsh), specifying the `ZNbase` user and prompting for the password.
 
     ```
-    $ ./ysqlsh -U yugabyte -W
+    $ ./ysqlsh -U ZNbase -W
     ```
 
 
 
-    When prompted for the password, enter the yugabyte password. You should be able to login and see a response like below.
+    When prompted for the password, enter the ZNbase password. You should be able to login and see a response like below.
 
 
     ```
     ysqlsh (11.2-YB-2.5.0.0-b0)
     Type "help" for help.
 
-    yugabyte=#
+    ZNbase=#
     ```
 
 
-Enable `pgaudit` extension on the YugabyteDB cluster.
+Enable `pgaudit` extension on the ZNbaseDB cluster.
 
   
 
-    Connect to the database using the following: `yugabyte=> \c yugabyte yugabyte;`
+    Connect to the database using the following: `ZNbase=> \c ZNbase ZNbase;`
 
     Create the `pgAudit` extension.
     ```
-    You are now connected to database "yugabyte" as user "yugabyte".
+    You are now connected to database "ZNbase" as user "ZNbase".
 
-    yugabyte=# CREATE EXTENSION IF NOT EXISTS pgaudit;
+    ZNbase=# CREATE EXTENSION IF NOT EXISTS pgaudit;
     CREATE EXTENSION
 
     ```
@@ -238,7 +238,7 @@ Since `pgaudit.log='DDL'` is configured, `CREATE TABLE` YSQL statements will be 
 
 
 ```
-yugabyte=# create table employees ( empno int, ename text, address text, 
+ZNbase=# create table employees ( empno int, ename text, address text, 
   salary int, account_number text );
 NOTICE:  AUDIT: SESSION,2,1,DDL,CREATE TABLE,TABLE,public.employees,
 "create table employees ( empno int, ename text, address text, salary int, 

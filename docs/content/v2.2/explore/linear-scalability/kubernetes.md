@@ -2,7 +2,7 @@
 title: Explore linear scalability on Kubernetes
 headerTitle: Linear scalability
 linkTitle: Linear scalability
-description: Learn how to scale a local 3-node YugabyteDB cluster (on Kubernetes) while a workload is running.
+description: Learn how to scale a local 3-node ZNbaseDB cluster (on Kubernetes) while a workload is running.
 block_indexing: true
 menu:
   v2.2:
@@ -45,9 +45,9 @@ showAsideToc: true
 
 </ul>
 
-With YugabyteDB, you can add nodes to scale your cluster up very efficiently and reliably in order to achieve more read and write IOPS (input/output operations per second). In this tutorial, you will look at how YugabyteDB can scale while a workload is running. You will run a read-write workload using the prepackaged [YugabyteDB workload generator](https://github.com/yugabyte/yb-sample-apps) against a three-node local cluster with a replication factor of 3, and add nodes to it while the workload is running. Next, you can observe how the cluster scales out by verifying that the number of read and write IOPS are evenly distributed across all the nodes at all times.
+With ZNbaseDB, you can add nodes to scale your cluster up very efficiently and reliably in order to achieve more read and write IOPS (input/output operations per second). In this tutorial, you will look at how ZNbaseDB can scale while a workload is running. You will run a read-write workload using the prepackaged [ZNbaseDB workload generator](https://github.com/ZNbase/yb-sample-apps) against a three-node local cluster with a replication factor of 3, and add nodes to it while the workload is running. Next, you can observe how the cluster scales out by verifying that the number of read and write IOPS are evenly distributed across all the nodes at all times.
 
-If you haven't installed YugabyteDB yet, you can get up and running YugabyteDB within five minutes by following the steps in the [Quick start](../../../quick-start/install/).
+If you haven't installed ZNbaseDB yet, you can get up and running ZNbaseDB within five minutes by following the steps in the [Quick start](../../../quick-start/install/).
 
 ## 1. Create universe
 
@@ -58,10 +58,10 @@ $ helm uninstall yb-demo -n yb-demo
 $ kubectl delete pvc --namespace yb-demo --all
 ```
 
-Create a new YugabyteDB cluster.
+Create a new ZNbaseDB cluster.
 
 ```sh
-$ helm install yb-demo yugabytedb/yugabyte \
+$ helm install yb-demo ZNbasedb/ZNbase \
 --set resource.master.requests.cpu=0.5,resource.master.requests.memory=0.5Gi,\
 resource.tserver.requests.cpu=0.5,resource.tserver.requests.memory=0.5Gi --namespace yb-demo
 ```
@@ -92,7 +92,7 @@ Add a node to the universe.
 $ kubectl scale statefulset yb-tserver --replicas=4
 ```
 
-Now you should have four nodes. Refresh the <a href='http://localhost:7000/tablet-servers' target="_blank">tablet-servers</a> page to see the stats update. YugabyteDB automatically updates application clients to use the newly added node for serving queries. This scaling out of client queries is completely transparent to the application logic, allowing the application to scale linearly for both reads and writes.
+Now you should have four nodes. Refresh the <a href='http://localhost:7000/tablet-servers' target="_blank">tablet-servers</a> page to see the stats update. ZNbaseDB automatically updates application clients to use the newly added node for serving queries. This scaling out of client queries is completely transparent to the application logic, allowing the application to scale linearly for both reads and writes.
 
 You can also observe the newly added node using the following command.
 

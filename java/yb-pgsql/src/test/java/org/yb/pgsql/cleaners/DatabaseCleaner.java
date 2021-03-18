@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Removes all databases excluding `postgres`, `yugabyte`, `system_platform`, `template1`,
+ * Removes all databases excluding `postgres`, `ZNbase`, `system_platform`, `template1`,
  * and `template2`.
  * Any lower-priority cleaners should only clean objects in one of the remaining
  * three databases, or cluster-wide objects (e.g. roles).
@@ -44,7 +44,7 @@ public class DatabaseCleaner implements ClusterCleaner {
               " WHERE datname <> 'template0'" +
               " AND datname <> 'template1'" +
               " AND datname <> 'postgres'" +
-              " AND datname <> 'yugabyte'" +
+              " AND datname <> 'ZNbase'" +
               " AND datname <> 'system_platform'");
 
       List<String> databases = new ArrayList<>();

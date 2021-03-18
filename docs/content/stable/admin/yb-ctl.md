@@ -1,8 +1,8 @@
 ---
-title: yb-ctl - command line tool for administering local YugabyteDB clusters
+title: yb-ctl - command line tool for administering local ZNbaseDB clusters
 headerTitle: yb-ctl
 linkTitle: yb-ctl
-description: Use the yb-ctl command line tool to administer local YugabyteDB clusters used for development and learning.
+description: Use the yb-ctl command line tool to administer local ZNbaseDB clusters used for development and learning.
 menu:
   stable:
     identifier: yb-ctl
@@ -12,12 +12,12 @@ isTocNested: true
 showAsideToc: true
 ---
 
-The `yb-ctl` utility, located in the bin directory of YugabyteDB home, provides a simple command line interface for administering local clusters used for development and learning. It invokes the [`yb-tserver`](../../reference/configuration/yb-tserver/) and [`yb-master`](../../reference/configuration/yb-master/) servers to perform the necessary orchestration.
+The `yb-ctl` utility, located in the bin directory of ZNbaseDB home, provides a simple command line interface for administering local clusters used for development and learning. It invokes the [`yb-tserver`](../../reference/configuration/yb-tserver/) and [`yb-master`](../../reference/configuration/yb-master/) servers to perform the necessary orchestration.
 
 
 {{< note title="Note" >}}
 
-- yb-ctl is meant for managing local clusters only. This means that a single host machine like a local laptop is used to simulate YugabyteDB clusters even though the YugabyteDB cluster can have 3 nodes or more. For creating multi-host clusters, follow the instructions in the [Deploy](../../deploy/) section.
+- yb-ctl is meant for managing local clusters only. This means that a single host machine like a local laptop is used to simulate ZNbaseDB clusters even though the ZNbaseDB cluster can have 3 nodes or more. For creating multi-host clusters, follow the instructions in the [Deploy](../../deploy/) section.
 
 - yb-ctl can manage a cluster if and only if it was initially created via yb-ctl. This means that clusters created through any other means including those in the [Deploy](../../deploy/) section cannot be administered using yb-ctl.
 
@@ -25,7 +25,7 @@ The `yb-ctl` utility, located in the bin directory of YugabyteDB home, provides 
 
 ## Syntax
 
-Run `yb-ctl` commands from the YugabyteDB home directory.
+Run `yb-ctl` commands from the ZNbaseDB home directory.
 
 ```sh
 ./bin/yb-ctl [ command ] [ flag1, flag2, ... ]
@@ -33,7 +33,7 @@ Run `yb-ctl` commands from the YugabyteDB home directory.
 
 ### Online help
 
-To display the online help, run `yb-ctl --help` from the YugabyteDB home directory.
+To display the online help, run `yb-ctl --help` from the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/yb-ctl --help
@@ -43,7 +43,7 @@ $ ./bin/yb-ctl --help
 
 ##### create
 
-Creates a local YugabyteDB cluster. With no flags, creates a 1-node cluster.
+Creates a local ZNbaseDB cluster. With no flags, creates a 1-node cluster.
 
 For more details and examples, see [Create a local cluster](#create-a-local-cluster), [Create a cluster across multiple zones, regions, and clouds](#create-a-cluster-across-multiple-zones-regions-and-clouds), and [Create a cluster with custom flags](#create-a-cluster-with-custom-flags).
 
@@ -109,7 +109,7 @@ For details and examples, see [Restart node with placement information](#restart
 
 ##### setup_redis
 
-Enables YugabyteDB support for the Redis-compatible YEDIS API.
+Enables ZNbaseDB support for the Redis-compatible YEDIS API.
 
 For details and examples, see [Initialize the YEDIS API](#initialize-the-yedis-api).
 
@@ -121,15 +121,15 @@ Shows the help message and then exits.
 
 ##### --binary_dir
 
-Specifies the directory in which to find the YugabyteDB `yb-master` and `yb-tserver` binary files.
+Specifies the directory in which to find the ZNbaseDB `yb-master` and `yb-tserver` binary files.
 
-Default: `<yugabyte-installation-dir>/bin/`
+Default: `<ZNbase-installation-dir>/bin/`
 
 ##### --data_dir
 
-Specifies the data directory for YugabyteDB.
+Specifies the data directory for ZNbaseDB.
 
-Default: `$HOME/yugabyte-data/`
+Default: `$HOME/ZNbase-data/`
 
 ##### --master_flags
 
@@ -170,13 +170,13 @@ Default: `1`
 
 ##### --require_clock_sync
 
-Specifies whether YugabyteDB requires clock synchronization between the nodes in the cluster.
+Specifies whether ZNbaseDB requires clock synchronization between the nodes in the cluster.
 
 Default: `false`
 
 ##### --listen_ip
 
- Specifies the IP address, or port, for a 1-node cluster to listen on. To enable external access of the YugabyteDB APIs and administration ports, set the value to `0.0.0.0`. Note that this flag is not applicable to multi-node clusters.
+ Specifies the IP address, or port, for a 1-node cluster to listen on. To enable external access of the ZNbaseDB APIs and administration ports, set the value to `0.0.0.0`. Note that this flag is not applicable to multi-node clusters.
 
 Default: `127.0.0.1`
 
@@ -200,7 +200,7 @@ Flag to log internal debug messages to `stderr`.
 
 ## Create a local cluster
 
-To create a local YugabyteDB cluster for development and learning, use the `yb-ctl create` command.
+To create a local ZNbaseDB cluster for development and learning, use the `yb-ctl create` command.
 
 In order to ensure that all of the replicas for a given tablet can be placed on different nodes, the number of nodes created with the initial create command is always equal to the replication factor.  To expand or shrink the cluster, use the [`add_node`](#add-nodes) and [`remove_node`](#stop-remove-nodes) commands.
 
@@ -236,11 +236,11 @@ $ ./bin/yb-ctl --rf 5 create
 
 ## Default directories for local clusters
 
-YugabyteDB clusters created with the `yb-ctl` utility are created locally on the same host and simulate a distributed multi-host cluster.
+ZNbaseDB clusters created with the `yb-ctl` utility are created locally on the same host and simulate a distributed multi-host cluster.
 
 ### Data directory
 
-YugabyteDB cluster data is installed in `$HOME/yugabyte-data/`, containing the following:
+ZNbaseDB cluster data is installed in `$HOME/ZNbase-data/`, containing the following:
 
 ```sh
 cluster_config.json
@@ -251,19 +251,19 @@ node-#/disk-#/
 
 #### Node directories
 
-For each simulated YugabyteDB node, a `yugabyte-data` subdirectory, named `node-#` (where # is the number of the node), is created.
+For each simulated ZNbaseDB node, a `ZNbase-data` subdirectory, named `node-#` (where # is the number of the node), is created.
 
-Example: `/yugabyte-data/node-#/`
+Example: `/ZNbase-data/node-#/`
 
 Each `node-#` directory contains the following:
 
 ```sh
-yugabyte-data/node-#/disk-#/
+ZNbase-data/node-#/disk-#/
 ```
 
 #### Disk directories
 
-For each simulated disk, a `disk-#` subdirectory is created in each `/yugabyte-data/node-#` directory.
+For each simulated disk, a `disk-#` subdirectory is created in each `/ZNbase-data/node-#` directory.
 
 Each `disk-#` directory contains the following:
 
@@ -281,15 +281,15 @@ yb-data/
 YB-Master logs are added in the following location:
 
 ```sh
-yugabyte-data/node-#/disk-#/yb-data/master.out
-yugabyte-data/node-#/disk-#/yb-data/master/logs
+ZNbase-data/node-#/disk-#/yb-data/master.out
+ZNbase-data/node-#/disk-#/yb-data/master/logs
 ```
 
 YB-TServer logs are added in the following location:
 
 ```sh
-yugabyte-data/node-#/disk-#/yb-data/tserver.out
-yugabyte-data/node-#/disk-#/yb-data/tserver/logs
+ZNbase-data/node-#/disk-#/yb-data/tserver.out
+ZNbase-data/node-#/disk-#/yb-data/tserver/logs
 ```
 
 ## Enable external access
@@ -318,45 +318,45 @@ Following is the output shown for a 3-node RF3 cluster.
 ----------------------------------------------------------------------------------------------------
 | Node Count: 3 | Replication Factor: 3                                                            |
 ----------------------------------------------------------------------------------------------------
-| JDBC                : jdbc:postgresql://127.0.0.1:5433/yugabyte                                  |
+| JDBC                : jdbc:postgresql://127.0.0.1:5433/ZNbase                                  |
 | YSQL Shell          : bin/ysqlsh                                                                 |
 | YCQL Shell          : bin/ycqlsh                                                                  |
 | YEDIS Shell         : bin/redis-cli                                                              |
 | Web UI              : http://127.0.0.1:7000/                                                     |
-| Cluster Data        : /Users/testuser12/yugabyte-data                                            |
+| Cluster Data        : /Users/testuser12/ZNbase-data                                            |
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 | Node 1: yb-tserver (pid 27389), yb-master (pid 27380)                                            |
 ----------------------------------------------------------------------------------------------------
-| JDBC                : jdbc:postgresql://127.0.0.1:5433/yugabyte                                  |
+| JDBC                : jdbc:postgresql://127.0.0.1:5433/ZNbase                                  |
 | YSQL Shell          : bin/ysqlsh                                                                 |
 | YCQL Shell          : bin/ycqlsh                                                                  |
 | YEDIS Shell         : bin/redis-cli                                                              |
-| data-dir[0]         : /Users/testuser12/yugabyte-data/node-1/disk-1/yb-data                      |
-| yb-tserver Logs     : /Users/testuser12/yugabyte-data/node-1/disk-1/yb-data/tserver/logs         |
-| yb-master Logs      : /Users/testuser12/yugabyte-data/node-1/disk-1/yb-data/master/logs          |
+| data-dir[0]         : /Users/testuser12/ZNbase-data/node-1/disk-1/yb-data                      |
+| yb-tserver Logs     : /Users/testuser12/ZNbase-data/node-1/disk-1/yb-data/tserver/logs         |
+| yb-master Logs      : /Users/testuser12/ZNbase-data/node-1/disk-1/yb-data/master/logs          |
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 | Node 2: yb-tserver (pid 27392), yb-master (pid 27383)                                            |
 ----------------------------------------------------------------------------------------------------
-| JDBC                : jdbc:postgresql://127.0.0.2:5433/yugabyte                                  |
+| JDBC                : jdbc:postgresql://127.0.0.2:5433/ZNbase                                  |
 | YSQL Shell          : bin/ysqlsh -h 127.0.0.2                                                    |
 | YCQL Shell          : bin/ycqlsh 127.0.0.2                                                        |
 | YEDIS Shell         : bin/redis-cli -h 127.0.0.2                                                 |
-| data-dir[0]         : /Users/testuser12/yugabyte-data/node-2/disk-1/yb-data                      |
-| yb-tserver Logs     : /Users/testuser12/yugabyte-data/node-2/disk-1/yb-data/tserver/logs         |
-| yb-master Logs      : /Users/testuser12/yugabyte-data/node-2/disk-1/yb-data/master/logs          |
+| data-dir[0]         : /Users/testuser12/ZNbase-data/node-2/disk-1/yb-data                      |
+| yb-tserver Logs     : /Users/testuser12/ZNbase-data/node-2/disk-1/yb-data/tserver/logs         |
+| yb-master Logs      : /Users/testuser12/ZNbase-data/node-2/disk-1/yb-data/master/logs          |
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 | Node 3: yb-tserver (pid 27395), yb-master (pid 27386)                                            |
 ----------------------------------------------------------------------------------------------------
-| JDBC                : jdbc:postgresql://127.0.0.3:5433/yugabyte                                  |
+| JDBC                : jdbc:postgresql://127.0.0.3:5433/ZNbase                                  |
 | YSQL Shell          : bin/ysqlsh -h 127.0.0.3                                                    |
 | YCQL Shell          : bin/ycqlsh 127.0.0.3                                                        |
 | YEDIS Shell         : bin/redis-cli -h 127.0.0.3                                                 |
-| data-dir[0]         : /Users/testuser12/yugabyte-data/node-3/disk-1/yb-data                      |
-| yb-tserver Logs     : /Users/testuser12/yugabyte-data/node-3/disk-1/yb-data/tserver/logs         |
-| yb-master Logs      : /Users/testuser12/yugabyte-data/node-3/disk-1/yb-data/master/logs          |
+| data-dir[0]         : /Users/testuser12/ZNbase-data/node-3/disk-1/yb-data                      |
+| yb-tserver Logs     : /Users/testuser12/ZNbase-data/node-3/disk-1/yb-data/tserver/logs         |
+| yb-master Logs      : /Users/testuser12/ZNbase-data/node-3/disk-1/yb-data/master/logs          |
 ----------------------------------------------------------------------------------------------------
 ```
 
@@ -413,11 +413,11 @@ You can test the failure of a node in a 3-node RF3 cluster by killing 1 instance
 ./bin/yb-ctl start_node 3 --master
 ```
 
-The command `./bin/yb-ctl start_node 3` will start yb-tserver3. However, it will throw an error even though the command will succeed. This is because there are only 2 yb-masters present in the cluster at this point. This is not an error in the cluster configuration but rather a warning to highlight that the cluster is under-replicated and does not have enough yb-masters to ensure continued fault tolerance. Following [GitHub issue](https://github.com/yugabyte/yugabyte-db/issues/4156) tracks the work to convert this error into a user-friendly warning.
+The command `./bin/yb-ctl start_node 3` will start yb-tserver3. However, it will throw an error even though the command will succeed. This is because there are only 2 yb-masters present in the cluster at this point. This is not an error in the cluster configuration but rather a warning to highlight that the cluster is under-replicated and does not have enough yb-masters to ensure continued fault tolerance. Following [GitHub issue](https://github.com/ZNbase/ZNbase-db/issues/4156) tracks the work to convert this error into a user-friendly warning.
 
 ## Initialize the YEDIS API
 
-The `setup_redis` command to initialize YugabyteDB's Redis-compatible YEDIS API.
+The `setup_redis` command to initialize ZNbaseDB's Redis-compatible YEDIS API.
 
 ```sh
 $ ./bin/yb-ctl setup_redis

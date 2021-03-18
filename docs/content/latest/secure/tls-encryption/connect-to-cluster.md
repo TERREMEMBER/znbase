@@ -1,8 +1,8 @@
 ---
-title: Connect clients to YugabyteDB clusters
+title: Connect clients to ZNbaseDB clusters
 headerTitle: Connect to Clusters
 linkTitle: Connect to Clusters
-description: Connect clients to remote YugabyteDB clusters that have client-to-server encryption enabled.
+description: Connect clients to remote ZNbaseDB clusters that have client-to-server encryption enabled.
 image: /images/section_icons/secure/tls-encryption/connect-to-cluster.png
 aliases:
   - /secure/tls-encryption/connect-to-cluster
@@ -15,40 +15,40 @@ isTocNested: true
 showAsideToc: true
 ---
 
-You can connect CLIs, tools, and APIs to a remote YugabyteDB cluster when client-to-server encryption is enabled.
+You can connect CLIs, tools, and APIs to a remote ZNbaseDB cluster when client-to-server encryption is enabled.
 
 ## Prerequisites
 
-In order to connect to your YugabyteDB clusters using encryption in transit, you have to enable client-to-server encryption and might need to enable server-to-server encryption (see [Connecting to a YugabyteDB Cluster](#connecting-to-a-yugabytedb-cluster)).
+In order to connect to your ZNbaseDB clusters using encryption in transit, you have to enable client-to-server encryption and might need to enable server-to-server encryption (see [Connecting to a ZNbaseDB Cluster](#connecting-to-a-ZNbasedb-cluster)).
 
-Each client that connects to a YugabyteDB cluster needs the following file to be accessible on the client computer:
+Each client that connects to a ZNbaseDB cluster needs the following file to be accessible on the client computer:
 
 - `ca.crt` — root certificate file (for YSQL and YCQL). See [Generate the root certificate file](../server-certificates/#generate-the-root-certificate-file) for instructions on how to generate this file.
 
-  This file should be available in the `~/.yugabytedb`, the default location for TLS certificates when running the YSQL shell (`ysqlsh`) locally.
+  This file should be available in the `~/.ZNbasedb`, the default location for TLS certificates when running the YSQL shell (`ysqlsh`) locally.
 
-## Connecting to a YugabyteDB Cluster
+## Connecting to a ZNbaseDB Cluster
 
 For each client, the steps assume that you have performed the following:
 
-- [Enabled client-to-server encryption](../client-to-server) on the YB-TServer nodes of your YugabyteDB cluster.
-- [Enabled server-to-server encryption](../server-to-server) on the YugabyteDB cluster.
+- [Enabled client-to-server encryption](../client-to-server) on the YB-TServer nodes of your ZNbaseDB cluster.
+- [Enabled server-to-server encryption](../server-to-server) on the ZNbaseDB cluster.
 
 ## ysqlsh
 
-The `ysqlsh` CLI is available in the `bin` directory of your YugabyteDB home directory.
+The `ysqlsh` CLI is available in the `bin` directory of your ZNbaseDB home directory.
 
-To connect to a remote YugabyteDB cluster, you need to have a local copy of `ysqlsh` available. You can use the `ysqlsh` CLI available on a locally installed YugabyteDB.
+To connect to a remote ZNbaseDB cluster, you need to have a local copy of `ysqlsh` available. You can use the `ysqlsh` CLI available on a locally installed ZNbaseDB.
 
-To open the local `ysqlsh` CLI and access your YugabyteDB cluster, run `ysqlsh` with the following flags defined:
+To open the local `ysqlsh` CLI and access your ZNbaseDB cluster, run `ysqlsh` with the following flags defined:
 
 - host: `-h <node-ip-address>` (required for remote node; default is `127.0.0.1`)
 - port: `-p <port>` (optional; default is `5433`)
-- user: `-U <username>` (optional; default is `yugabyte`)
+- user: `-U <username>` (optional; default is `ZNbase`)
 - TLS/SSL: `"sslmode=require"` (required)
 
 ```sh
-$ ./bin/ysqlsh -h 127.0.0.1 -p 5433 -U yugabyte "sslmode=require"
+$ ./bin/ysqlsh -h 127.0.0.1 -p 5433 -U ZNbase "sslmode=require"
 ```
 
 ```
@@ -57,18 +57,18 @@ ysqlsh (11.2-YB-2.0.11.0-b0)
 SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 ## yb-admin
 
-To enable `yb-admin` to connect with a cluster having TLS enabled, pass in the extra argument of `certs_dir_name` with the directory location where the root certificate is present. The `yb-admin` tool is present on the cluster node in the `~/master/bin/` directory. The `~/yugabyte-tls-config` directory on the cluster node contains all the certificates.
+To enable `yb-admin` to connect with a cluster having TLS enabled, pass in the extra argument of `certs_dir_name` with the directory location where the root certificate is present. The `yb-admin` tool is present on the cluster node in the `~/master/bin/` directory. The `~/ZNbase-tls-config` directory on the cluster node contains all the certificates.
 
 For example, the following command lists the master information for the TLS-enabled cluster:
 
 ```sh
 export MASTERS=node1:7100,node2:7100,node3:7100
-./bin/yb-admin --master_addresses $MASTERS -certs_dir_name ~/yugabyte-tls-config list_all_masters
+./bin/yb-admin --master_addresses $MASTERS -certs_dir_name ~/ZNbase-tls-config list_all_masters
 ```
 
 You should see the following output format:
@@ -82,7 +82,7 @@ UUID_3 		node3:7100     	ALIVE 	FOLLOWER
 
 ## ycqlsh
 
-To enable `ycqlsh` to connect to a YugabyteDB cluster with encryption enabled, you need to set the following environment variables:
+To enable `ycqlsh` to connect to a ZNbaseDB cluster with encryption enabled, you need to set the following environment variables:
 
 Variable       | Description                  
 ---------------|------------------------------
@@ -115,7 +115,7 @@ system_schema  system_auth  system
 
 ### Remote Cluster
 
-To connect to a remote YugabyteDB cluster, you need to have a local copy of `ycqlsh` available. You can use the `ycqlsh` CLI available on a locally-installed YugabyteDB.
+To connect to a remote ZNbaseDB cluster, you need to have a local copy of `ycqlsh` available. You can use the `ycqlsh` CLI available on a locally-installed ZNbaseDB.
 
 To open the local `ycqlsh` CLI and access the remote cluster, run `ycqlsh` with flags set for the host and port of the remote cluster. You must also add the `--ssl` flag to enable the use of the client-to-server encryption using TLS (successor to SSL), as follows:
 
@@ -126,7 +126,7 @@ $ ./bin/ycqlsh <node-ip-address> <port> --ssl
 - *node-ip-address*: the IP address of the remote node.
 - *port*: the port of the remote node.
 
-For example, if the host is `127.0.0.2`, the port is `9042`, and the user is `yugabyte`, run the following command to connect:
+For example, if the host is `127.0.0.2`, the port is `9042`, and the user is `ZNbase`, run the following command to connect:
 
 ```sh
 $ ./bin/ycqlsh 127.0.0.2 9042 --ssl

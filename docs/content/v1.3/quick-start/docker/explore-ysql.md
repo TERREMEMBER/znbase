@@ -2,7 +2,7 @@
 First copy the schema and data files into one of the containers.
 
 ```sh
-$ docker cp ./schema.sql yb-tserver-n1:/home/yugabyte/.
+$ docker cp ./schema.sql yb-tserver-n1:/home/ZNbase/.
 ```
 
 Create a data directory to copy the data files.
@@ -20,16 +20,16 @@ Exit out of the container after the above command.
 Now copy the data files.
 
 ```sh
-$ docker cp ./data/orders.sql yb-tserver-n1:/home/yugabyte/data/.
-docker cp ./data/products.sql yb-tserver-n1:/home/yugabyte/data/.
-docker cp ./data/reviews.sql yb-tserver-n1:/home/yugabyte/data/.
-docker cp ./data/users.sql yb-tserver-n1:/home/yugabyte/data/.
+$ docker cp ./data/orders.sql yb-tserver-n1:/home/ZNbase/data/.
+docker cp ./data/products.sql yb-tserver-n1:/home/ZNbase/data/.
+docker cp ./data/reviews.sql yb-tserver-n1:/home/ZNbase/data/.
+docker cp ./data/users.sql yb-tserver-n1:/home/ZNbase/data/.
 ```
 
 Run ysqlsh to connect to the service.
 
 ```sh
-$ docker exec -it yb-tserver-n1 /home/yugabyte/bin/ysqlsh -h yb-tserver-n1  --echo-queries
+$ docker exec -it yb-tserver-n1 /home/ZNbase/bin/ysqlsh -h yb-tserver-n1  --echo-queries
 ```
 
 ```

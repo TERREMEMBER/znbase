@@ -1,12 +1,12 @@
 ---
-title: Install YugabyteDB on Docker
-headerTitle: 1. Install YugabyteDB
-linkTitle: 1. Install YugabyteDB
-description: Download and install YugabyteDB on Docker in less than five minutes.
+title: Install ZNbaseDB on Docker
+headerTitle: 1. Install ZNbaseDB
+linkTitle: 1. Install ZNbaseDB
+description: Download and install ZNbaseDB on Docker in less than five minutes.
 menu:
   stable:
     parent: quick-start
-    name: 1. Install YugabyteDB
+    name: 1. Install ZNbaseDB
     identifier: install-3-docker
     weight: 110
 type: page
@@ -48,7 +48,7 @@ showAsideToc: true
 
 {{< note title="Note" >}}
 
-The Docker option to run local clusters is recommended only for advanced Docker users. This is because running stateful apps like YugabyteDB in Docker is more complex and error-prone than stateless apps.
+The Docker option to run local clusters is recommended only for advanced Docker users. This is because running stateful apps like ZNbaseDB in Docker is more complex and error-prone than stateless apps.
 
 {{< /note >}}
 
@@ -68,10 +68,10 @@ You must have the Docker runtime installed on your localhost. Follow the links b
 
 ## Install
 
-Pull the YugabyteDB container.
+Pull the ZNbaseDB container.
 
 ```sh
-$ docker pull yugabytedb/yugabyte
+$ docker pull ZNbasedb/ZNbase
 ```
 
 {{<tip title="Next step" >}}

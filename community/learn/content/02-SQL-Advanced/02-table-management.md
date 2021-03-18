@@ -1,6 +1,6 @@
 ---
 title: "Table Management"
-metaTitle: "Table Management | YugabyteDB Tutorials"
+metaTitle: "Table Management | ZNbaseDB Tutorials"
 type: "COURSE"
 description: "Coming soon!"
 ---

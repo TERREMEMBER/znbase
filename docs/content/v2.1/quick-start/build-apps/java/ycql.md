@@ -38,11 +38,11 @@ showAsideToc: true
 
 ## Maven
 
-To build your Java application using the YugabyteDB Cassandra driver, add the following Maven dependency to your application:
+To build your Java application using the ZNbaseDB Cassandra driver, add the following Maven dependency to your application:
 
 ```mvn
 <dependency>
-  <groupId>com.yugabyte</groupId>
+  <groupId>com.ZNbase</groupId>
   <artifactId>cassandra-driver-core</artifactId>
   <version>3.2.0-yb-18</version>
 </dependency>
@@ -54,7 +54,7 @@ To build your Java application using the YugabyteDB Cassandra driver, add the fo
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe and are able to interact with it using the YCQL shell. If not, please follow these steps in the [quick start guide](../../../../api/ycql/quick-start/).
+- installed ZNbaseDB, created a universe and are able to interact with it using the YCQL shell. If not, please follow these steps in the [quick start guide](../../../../api/ycql/quick-start/).
 - installed JDK version 1.8+ and maven 3.3+
 
 ### Create the Maven build file
@@ -69,14 +69,14 @@ Create a maven build file `pom.xml` and add the following content into it.
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.yugabyte.sample.apps</groupId>
+  <groupId>com.ZNbase.sample.apps</groupId>
   <artifactId>hello-world</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
 
   <dependencies>
     <dependency>
-      <groupId>com.yugabyte</groupId>
+      <groupId>com.ZNbase</groupId>
       <artifactId>cassandra-driver-core</artifactId>
       <version>3.2.0-yb-18</version>
     </dependency>
@@ -114,13 +114,13 @@ Create a maven build file `pom.xml` and add the following content into it.
 Create the appropriate directory structure as expected by Maven.
 
 ```sh
-$ mkdir -p src/main/java/com/yugabyte/sample/apps
+$ mkdir -p src/main/java/com/ZNbase/sample/apps
 ```
 
-Copy the following contents into the file `src/main/java/com/yugabyte/sample/apps/YBCqlHelloWorld.java`.
+Copy the following contents into the file `src/main/java/com/ZNbase/sample/apps/YBCqlHelloWorld.java`.
 
 ```java
-package com.yugabyte.sample.apps;
+package com.ZNbase.sample.apps;
 
 import java.util.List;
 import com.datastax.driver.core.Cluster;
@@ -187,7 +187,7 @@ $ mvn package
 To run the program, run the following command.
 
 ```sh
-$ java -cp "target/hello-world-1.0.jar:target/lib/*" com.yugabyte.sample.apps.YBCqlHelloWorld
+$ java -cp "target/hello-world-1.0.jar:target/lib/*" com.ZNbase.sample.apps.YBCqlHelloWorld
 ```
 
 You should see the following as the output.

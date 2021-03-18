@@ -1,9 +1,9 @@
 ---
-title: Deploy YugabyteDB clusters on Kubernetes
+title: Deploy ZNbaseDB clusters on Kubernetes
 headerTitle: Deploy on Kubernetes
 linkTitle: Kubernetes
-description: Deploy YugabyteDB clusters natively on Kubernetes with various providers
-headcontent: This section describes how to deploy YugabyteDB natively on Kubernetes.
+description: Deploy ZNbaseDB clusters natively on Kubernetes with various providers
+headcontent: This section describes how to deploy ZNbaseDB natively on Kubernetes.
 image: /images/section_icons/deploy/kubernetes.png
 menu:
   stable:
@@ -57,7 +57,7 @@ menu:
        <div class="title">Connect clients to clusters</div>
      </div>
      <div class="body">
-       Connect remote clients to YugabyteDB in Kubernetes clusters.
+       Connect remote clients to ZNbaseDB in Kubernetes clusters.
      </div>
    </a>
   </div>

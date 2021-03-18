@@ -4,7 +4,7 @@ headerTitle: Key-value workload
 linkTitle: Key-value workload
 description: Benchmark YCQL performance with key-value workloads.
 image: /images/section_icons/explore/high_performance.png
-headcontent: Test YugabyteDB performance with a key-value workload.
+headcontent: Test ZNbaseDB performance with a key-value workload.
 aliases:
   - /latest/benchmark/performance/
   - /latest/benchmark/key-value-workload
@@ -35,13 +35,13 @@ isTocNested: true
 
 </ul>
 
-Use this benchmark to test the performance of YugabyteDB using a key-value workload.
+Use this benchmark to test the performance of ZNbaseDB using a key-value workload.
 
 ## Recommended configuration
 
 ### Cluster configuration
 
-For this benchmark, you will set up a three-node YugabyteDB cluster with a replication factor of `3`.
+For this benchmark, you will set up a three-node ZNbaseDB cluster with a replication factor of `3`.
 
 ### Machine configuration
 
@@ -63,12 +63,12 @@ For this benchmark, you will set up a three-node YugabyteDB cluster with a repli
 
 ### Benchmark tool
 
-We will use the [YugabyteDB Workload Generator](https://github.com/yugabyte/yb-sample-apps) to perform this benchmark. 
+We will use the [ZNbaseDB Workload Generator](https://github.com/ZNbase/yb-sample-apps) to perform this benchmark. 
 
 To get the tool (``yb-sample-apps.jar`), run the following command.
 
 ```sh
-$ wget https://github.com/yugabyte/yb-sample-apps/releases/download/1.3.1/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
+$ wget https://github.com/ZNbase/yb-sample-apps/releases/download/1.3.1/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
 ```
 
 To run the workload generator tool, you must have:

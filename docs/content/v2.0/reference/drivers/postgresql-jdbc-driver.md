@@ -13,7 +13,7 @@ isTocNested: 3
 showAsideToc: true
 ---
 
-Because YSQL is PostgreSQL compatible, you can use the [PostgreSQL JDBC Driver](https://jdbc.postgresql.org/) with your favorite PostgreSQL tools and clients to develop and manage YugabyteDB.
+Because YSQL is PostgreSQL compatible, you can use the [PostgreSQL JDBC Driver](https://jdbc.postgresql.org/) with your favorite PostgreSQL tools and clients to develop and manage ZNbaseDB.
 
 ## Download
 
@@ -21,9 +21,9 @@ To get the latest PostgreSQL JDBC Driver, go the the [PostgreSQL JDBC Driver dow
 
 ## Use with popular third party tools
 
-When using the PostgreSQL JDBC Driver with YugabyteDB, remember to use YugabyteDB's default port of `5433` (instead of PostgreSQL's default of `5432`) and use the default YugabyteDB user `yugabyte` instead of the PostgreSQL default user (`postgres`).
+When using the PostgreSQL JDBC Driver with ZNbaseDB, remember to use ZNbaseDB's default port of `5433` (instead of PostgreSQL's default of `5432`) and use the default ZNbaseDB user `ZNbase` instead of the PostgreSQL default user (`postgres`).
 
-You can get started by using our tutorials on popular [third party tools](../../../tools/) that use the PostgreSQL JDBC Driver to develop and manage YugabyteDB databases.
+You can get started by using our tutorials on popular [third party tools](../../../tools/) that use the PostgreSQL JDBC Driver to develop and manage ZNbaseDB databases.
 
 - [DBeaver](../../../tools/dbeaver/)
 - [pgAdmin](../../../tools/pgadmin/)

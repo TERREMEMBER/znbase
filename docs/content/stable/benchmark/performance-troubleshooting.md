@@ -1,8 +1,8 @@
 ---
-title: Troubleshooting performance issues in YugabyteDB
+title: Troubleshooting performance issues in ZNbaseDB
 headerTitle: Performance Troubleshooting
 linkTitle: Performance Troubleshooting
-description: Common steps to take when investigating performance issues in YugabyteDB
+description: Common steps to take when investigating performance issues in ZNbaseDB
 image: /images/section_icons/architecture/concepts.png
 headcontent: Performance Troubleshooting
 menu:
@@ -14,48 +14,48 @@ showAsideToc: true
 isTocNested: true
 ---
 
-Use this page for general guidance and steps you can take when troubleshooting the performance of your Yugabyte cluster.
+Use this page for general guidance and steps you can take when troubleshooting the performance of your ZNbase cluster.
 
 ## Location of various files on a YB cluster
 
-Note that these locations refer to the default for clusters intalled via Yugabyte Platform.
+Note that these locations refer to the default for clusters intalled via ZNbase Platform.
 
 ### YB Software/Binaries on the cluster
 
-The software packages are symlinked at /home/yugabyte/{master|tserver}. Be aware that the master & tserver may be at different versions of the software (e.g. during rolling software upgrades).
+The software packages are symlinked at /home/ZNbase/{master|tserver}. Be aware that the master & tserver may be at different versions of the software (e.g. during rolling software upgrades).
 
 You should see something like this:
 ```
-$ ls -lrt /home/yugabyte/master
+$ ls -lrt /home/ZNbase/master
 total 4
-lrwxrwxrwx. 1 yugabyte yugabyte   27 Jan 15 19:27 logs -> /mnt/d0/yb-data/master/logs
-lrwxrwxrwx. 1 yugabyte yugabyte   66 Jan 15 19:28 bin -> /home/yugabyte/yb-software/yugabyte-2.5.1.0-b187-centos-x86_64/bin
-lrwxrwxrwx. 1 yugabyte yugabyte   66 Jan 15 19:28 lib -> /home/yugabyte/yb-software/yugabyte-2.5.1.0-b187-centos-x86_64/lib
-lrwxrwxrwx. 1 yugabyte yugabyte   72 Jan 15 19:28 linuxbrew -> /home/yugabyte/yb-software/yugabyte-2.5.1.0-b187-centos-x86_64/linuxbrew
-lrwxrwxrwx. 1 yugabyte yugabyte   85 Jan 15 19:28 linuxbrew-xxxxxxxxxxxx -> /home/yugabyte/yb-software/yugabyte-2.5.1.0-b187-centos-x86_64/linuxbrew-xxxxxxxxxxxx
-lrwxrwxrwx. 1 yugabyte yugabyte   71 Jan 15 19:28 postgres -> /home/yugabyte/yb-software/yugabyte-2.5.1.0-b187-centos-x86_64/postgres
-lrwxrwxrwx. 1 yugabyte yugabyte   68 Jan 15 19:28 pylib -> /home/yugabyte/yb-software/yugabyte-2.5.1.0-b187-centos-x86_64/pylib
-lrwxrwxrwx. 1 yugabyte yugabyte   68 Jan 15 19:28 share -> /home/yugabyte/yb-software/yugabyte-2.5.1.0-b187-centos-x86_64/share
-lrwxrwxrwx. 1 yugabyte yugabyte   68 Jan 15 19:28 tools -> /home/yugabyte/yb-software/yugabyte-2.5.1.0-b187-centos-x86_64/tools
-lrwxrwxrwx. 1 yugabyte yugabyte   65 Jan 15 19:28 ui -> /home/yugabyte/yb-software/yugabyte-2.5.1.0-b187-centos-x86_64/ui
-lrwxrwxrwx. 1 yugabyte yugabyte   84 Jan 15 19:28 version_metadata.json -> /home/yugabyte/yb-software/yugabyte-2.5.1.0-b187-centos-x86_64/version_metadata.json
-lrwxrwxrwx. 1 yugabyte yugabyte   66 Jan 15 19:28 www -> /home/yugabyte/yb-software/yugabyte-2.5.1.0-b187-centos-x86_64/www
--rw-rw-r--. 1 yugabyte yugabyte    0 Jan 15 19:29 master.out
--rw-rw-r--. 1 yugabyte yugabyte 2200 Jan 15 20:18 master.err
-drwxr-xr-x. 2 yugabyte yugabyte   25 Jan 15 20:18 conf
+lrwxrwxrwx. 1 ZNbase ZNbase   27 Jan 15 19:27 logs -> /mnt/d0/yb-data/master/logs
+lrwxrwxrwx. 1 ZNbase ZNbase   66 Jan 15 19:28 bin -> /home/ZNbase/yb-software/ZNbase-2.5.1.0-b187-centos-x86_64/bin
+lrwxrwxrwx. 1 ZNbase ZNbase   66 Jan 15 19:28 lib -> /home/ZNbase/yb-software/ZNbase-2.5.1.0-b187-centos-x86_64/lib
+lrwxrwxrwx. 1 ZNbase ZNbase   72 Jan 15 19:28 linuxbrew -> /home/ZNbase/yb-software/ZNbase-2.5.1.0-b187-centos-x86_64/linuxbrew
+lrwxrwxrwx. 1 ZNbase ZNbase   85 Jan 15 19:28 linuxbrew-xxxxxxxxxxxx -> /home/ZNbase/yb-software/ZNbase-2.5.1.0-b187-centos-x86_64/linuxbrew-xxxxxxxxxxxx
+lrwxrwxrwx. 1 ZNbase ZNbase   71 Jan 15 19:28 postgres -> /home/ZNbase/yb-software/ZNbase-2.5.1.0-b187-centos-x86_64/postgres
+lrwxrwxrwx. 1 ZNbase ZNbase   68 Jan 15 19:28 pylib -> /home/ZNbase/yb-software/ZNbase-2.5.1.0-b187-centos-x86_64/pylib
+lrwxrwxrwx. 1 ZNbase ZNbase   68 Jan 15 19:28 share -> /home/ZNbase/yb-software/ZNbase-2.5.1.0-b187-centos-x86_64/share
+lrwxrwxrwx. 1 ZNbase ZNbase   68 Jan 15 19:28 tools -> /home/ZNbase/yb-software/ZNbase-2.5.1.0-b187-centos-x86_64/tools
+lrwxrwxrwx. 1 ZNbase ZNbase   65 Jan 15 19:28 ui -> /home/ZNbase/yb-software/ZNbase-2.5.1.0-b187-centos-x86_64/ui
+lrwxrwxrwx. 1 ZNbase ZNbase   84 Jan 15 19:28 version_metadata.json -> /home/ZNbase/yb-software/ZNbase-2.5.1.0-b187-centos-x86_64/version_metadata.json
+lrwxrwxrwx. 1 ZNbase ZNbase   66 Jan 15 19:28 www -> /home/ZNbase/yb-software/ZNbase-2.5.1.0-b187-centos-x86_64/www
+-rw-rw-r--. 1 ZNbase ZNbase    0 Jan 15 19:29 master.out
+-rw-rw-r--. 1 ZNbase ZNbase 2200 Jan 15 20:18 master.err
+drwxr-xr-x. 2 ZNbase ZNbase   25 Jan 15 20:18 conf
 ```
 
 ### Config Files
-You can find config files for the master and tserver at `/home/yugabyte/{master|tserver}/conf/server.conf`.
+You can find config files for the master and tserver at `/home/ZNbase/{master|tserver}/conf/server.conf`.
 
 ### Transaction Logs a.k.a WAL (write-ahead logs)
-Assuming Yugabyte was run with `--fs_data_dirs=/mnt/d0,/mnt/d1`, you can find WAL files at `/mnt/d*/yb-data/{master|tserver}/wals`.
+Assuming ZNbase was run with `--fs_data_dirs=/mnt/d0,/mnt/d1`, you can find WAL files at `/mnt/d*/yb-data/{master|tserver}/wals`.
 
 To pretty print the contents of the WAL files, use the `log-dump` utility:
 
 ```
 $ pwd
-/home/yugabyte
+/home/ZNbase
 
 $ ./tserver/bin/log-dump /mnt/d0/yb-data/tserver/wals/table-e85a116bc557403e82f57037e7b13879/tablet-05bef5ed6fb74cabb420b648b6f850e3/
 
@@ -69,17 +69,17 @@ To pretty print the contents of these SSTable files,
 
 ```
 $ pwd
-/home/yugabyte
+/home/ZNbase
 
 $ ./tserver/bin/ldb dump --compression_type=snappy --db=/mnt/d0/yb-data/tserver/wals/table-e85a116bc557403e82f57037e7b13879/tablet-05bef5ed6fb74cabb420b648b6f850e3/
 ```
 
 ### Debug Logs (.INFO, .WARNING, .FATAL, etc.)
-Debug logs are output to `/home/yugabyte/{master|tserver}/logs`.
+Debug logs are output to `/home/ZNbase/{master|tserver}/logs`.
 
 ### View Standard Output/Standard Error (stderr/stdout) of yb-tserver & yb-master process
 
-These go to e.g. `/home/yugabyte/tserver/tserver.{err|out}.
+These go to e.g. `/home/ZNbase/tserver/tserver.{err|out}.
 
 ## Setting gflags dynamically
 
@@ -107,7 +107,7 @@ W0325 06:47:13.033341 116514816 inbound_call.cc:208] Trace:
 
 ## Viewing real-time metrics
 
-You can view metrics of various Yugabyte processes at a particular node (e.g. 127.0.0.1) at these ports:
+You can view metrics of various ZNbase processes at a particular node (e.g. 127.0.0.1) at these ports:
 
 | Process | Address
 -------------|-----------|
@@ -143,7 +143,7 @@ $ ./yb-pbc-dump /mnt/d0/yb-data/tserver/tablet-meta/bfb3f18736514eeb841b0307a066
 
 Note: On mac, the environment variable DYLD_FALLBACK_LIBRARY_PATH needs to be set for pbc-dump to work. Add the following to ~/.bash_profile
 ```
-export DYLD_FALLBACK_LIBRARY_PATH=~/code/yugabyte/build/latest/rocksdb-build
+export DYLD_FALLBACK_LIBRARY_PATH=~/code/ZNbase/build/latest/rocksdb-build
 ```
 
 ## yb-ts-cli 

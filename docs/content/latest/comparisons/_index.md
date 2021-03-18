@@ -1,10 +1,10 @@
 ---
-title: Compare YugabyteDB with other distributed SQL and NoSQL databases
+title: Compare ZNbaseDB with other distributed SQL and NoSQL databases
 linkTitle: Comparisons
-headerTitle: Compare YugabyteDB to other databases
-description: Learn how YugabyteDB compares with other operational SQL and NoSQL databases.
+headerTitle: Compare ZNbaseDB to other databases
+description: Learn how ZNbaseDB compares with other operational SQL and NoSQL databases.
 image: /images/section_icons/index/comparisons.png
-headcontent: See how YugabyteDB compares with other operational databases in the distributed SQL and NoSQL categories. For a detailed comparison, click the database name.
+headcontent: See how ZNbaseDB compares with other operational databases in the distributed SQL and NoSQL categories. For a detailed comparison, click the database name.
 aliases:
   - /comparisons/
 section: FAQ
@@ -16,7 +16,7 @@ menu:
 
 ## Distributed SQL databases
 
-Feature | [CockroachDB](cockroachdb/) | [TiDB](tidb/) | [Vitess](vitess/) | [Amazon Aurora](amazon-aurora/)  | [Google Cloud Spanner](google-spanner/) | YugabyteDB
+Feature | [CockroachDB](cockroachdb/) | [TiDB](tidb/) | [Vitess](vitess/) | [Amazon Aurora](amazon-aurora/)  | [Google Cloud Spanner](google-spanner/) | ZNbaseDB
 --------|-----------------|------------|----------------|----------------|-------------|-----------
 Horizontal write scalability (with auto-sharding and rebalancing) | <i class="fas fa-check"></i> | <i class="fas fa-check"></i> | <i class="fas fa-check"></i> | <i class="fas fa-times">| <i class="fas fa-check"></i> | <i class="fas fa-check"></i>
 Automated failover &amp; repair  | <i class="fas fa-check"></i> | <i class="fas fa-check"></i> | <i class="fas fa-times"></i> | <i class="fas fa-check"> | <i class="fas fa-check"></i> | <i class="fas fa-check"></i>
@@ -32,7 +32,7 @@ Open Source | <i class="fas fa-times"></i> | Apache 2.0 | Apache 2.0  |  <i clas
 
 ## NoSQL databases
 
-Feature  | [MongoDB](mongodb/) | [FoundationDB](foundationdb/) | [Apache Cassandra](cassandra/) |[Amazon DynamoDB](amazon-dynamodb/) | [MS Azure CosmosDB](azure-cosmos/)| YugabyteDB
+Feature  | [MongoDB](mongodb/) | [FoundationDB](foundationdb/) | [Apache Cassandra](cassandra/) |[Amazon DynamoDB](amazon-dynamodb/) | [MS Azure CosmosDB](azure-cosmos/)| ZNbaseDB
 --------|-----------|-------|--------|-------------|--------------|-----------------
 Horizontal write scalability (with auto-sharding and rebalancing)| <i class="fas fa-check"></i> | <i class="fas fa-check"></i> |<i class="fas fa-check"></i>| <i class="fas fa-check"></i> | <i class="fas fa-check"></i> | <i class="fas fa-check"></i>
 Automated failover &amp; repair | <i class="fas fa-check"></i> | <i class="fas fa-check"></i> |<i class="fas fa-check"></i>|<i class="fas fa-check"></i> | <i class="fas fa-check"></i> | <i class="fas fa-check"></i>
@@ -41,7 +41,7 @@ Consensus-driven, strongly-consistent replication  | <i class="fas fa-times"></i
 Strongly-consistent secondary indexes  | <i class="fas fa-times"></i> |<i class="fas fa-check"></i> | <i class="fas fa-times"></i>| <i class="fas fa-times"></i> | <i class="fas fa-times"></i> | <i class="fas fa-check"></i>
 Multiple read consistency levels | <i class="fas fa-check"></i> | <i class="fas fa-check"></i> |<i class="fas fa-check"></i>| <i class="fas fa-check"></i> | <i class="fas fa-check"></i> | <i class="fas fa-check"></i>
 High data density| <i class="fas fa-times"></i> | <i class="fas fa-times"></i> |<i class="fas fa-times"></i>| <i class="fas fa-times"></i> | <i class="fas fa-times"></i> | <i class="fas fa-check"></i>
-API | MongoDB QL | Proprietary KV, MongoDB QL | Cassandra QL | Proprietary KV, Document | Cassandra QL, MongoDB QL | Yugabyte Cloud QL w/ native document modeling
+API | MongoDB QL | Proprietary KV, MongoDB QL | Cassandra QL | Proprietary KV, Document | Cassandra QL, MongoDB QL | ZNbase Cloud QL w/ native document modeling
 Open Source | <i class="fas fa-times"></i> | Apache 2.0 | Apache 2.0 | <i class="fas fa-times"></i> | <i class="fas fa-times"></i> | Apache 2.0
 
 {{< note title="Note" >}}

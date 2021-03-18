@@ -17,9 +17,9 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-# The following only applies to changes made to this file as part of YugaByte development.
+# The following only applies to changes made to this file as part of ZNbase development.
 #
-# Portions Copyright (c) YugaByte, Inc.
+# Portions Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -69,7 +69,7 @@
 #     origin/master.
 
 #
-# Portions Copyright (c) YugaByte, Inc.
+# Portions Copyright (c) ZNbase, Inc.
 
 set -euo pipefail
 
@@ -243,7 +243,7 @@ if is_jenkins; then
     ( set -x; rm -rf "$YB_BUILD_PARENT_DIR"/*/yb-test-logs )
 
     log "Deleting old packages from '$YB_BUILD_PARENT_DIR'"
-    ( set -x; rm -rf "$YB_BUILD_PARENT_DIR/yugabyte-"*"-$build_type-"*".tar.gz" )
+    ( set -x; rm -rf "$YB_BUILD_PARENT_DIR/ZNbase-"*"-$build_type-"*".tar.gz" )
   else
     log "No need to delete yb-test-logs or old packages, build root already deleted."
   fi
@@ -499,7 +499,7 @@ log "Disk usage after C++ build:"
 show_disk_usage
 
 # We can grep for this line in the log to determine the stage of the build job.
-log "ALL OF YUGABYTE C++ BUILD FINISHED"
+log "ALL OF ZNbase C++ BUILD FINISHED"
 
 # End of the C++ code build.
 # -------------------------------------------------------------------------------------------------

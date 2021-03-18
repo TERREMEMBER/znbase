@@ -54,7 +54,7 @@ Where
 - Drop a policy.
 
 ```plpgsql
-yugabyte=# DROP POLICY p1 ON table_foo;
+ZNbase=# DROP POLICY p1 ON table_foo;
 ```
 
 ## See also

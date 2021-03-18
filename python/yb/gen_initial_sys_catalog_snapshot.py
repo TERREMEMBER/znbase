@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -24,7 +24,7 @@ import logging
 import shutil
 import time
 
-from yugabyte_pycommon import init_logging, run_program, WorkDirContext, mkdir_p
+from ZNbase_pycommon import init_logging, run_program, WorkDirContext, mkdir_p
 from yb.common_util import YB_SRC_ROOT
 
 

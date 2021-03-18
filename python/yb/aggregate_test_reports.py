@@ -77,7 +77,7 @@ import json
 import logging
 import os
 import sys
-import yugabyte_pycommon
+import ZNbase_pycommon
 
 # for python2/3 compatibility
 try:
@@ -109,14 +109,14 @@ def parse_args():
         description=__doc__)
     parser.add_argument(
         '--yb-src-root',
-        help='YugaByte source directory. Needed for making paths relative.',
+        help='ZNbase source directory. Needed for making paths relative.',
         required=True)
     parser.add_argument(
         '--output-dir',
         help='Output directory to generate aggregated output files in.')
     parser.add_argument(
         '--build-type',
-        help='YugaByte build type. Added to test result files.')
+        help='ZNbase build type. Added to test result files.')
     parser.add_argument(
         '--compiler-type',
         help='C/C++ compiler type. Added to test result files.')
@@ -225,6 +225,6 @@ def aggregate_test_reports(args):
 
 
 if __name__ == '__main__':
-    yugabyte_pycommon.init_logging()
+    ZNbase_pycommon.init_logging()
     args = parse_args()
     aggregate_test_reports(args),

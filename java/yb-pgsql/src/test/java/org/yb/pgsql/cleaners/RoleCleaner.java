@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -42,7 +42,7 @@ public class RoleCleaner implements ClusterCleaner {
       ResultSet resultSet = statement.executeQuery(
           "SELECT rolname FROM pg_roles" +
               " WHERE rolname <> 'postgres'" +
-              " AND rolname <> 'yugabyte'" +
+              " AND rolname <> 'ZNbase'" +
               " AND rolname <> '" + BasePgSQLTest.TEST_PG_USER + "'" +
               " AND rolname NOT LIKE 'pg_%'");
 

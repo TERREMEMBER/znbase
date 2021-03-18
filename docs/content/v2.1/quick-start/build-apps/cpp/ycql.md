@@ -35,7 +35,7 @@ showAsideToc: true
 
 The tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe, and are able to interact with it using the YCQL shell (`ycqlsh`). If
+- installed ZNbaseDB, created a universe, and are able to interact with it using the YCQL shell (`ycqlsh`). If
   not, please follow the steps in the [Quick Start guide](../../../../api/ycql/quick-start/).
 - have a 32-bit (x86) or 64-bit (x64) architecture machine.
 - have gcc 4.1.2 or later, Clang 3.4 or later installed.
@@ -45,7 +45,7 @@ The tutorial assumes that you have:
 To get the C/C++ driver, run:
 
 ```sh
-$ git clone https://github.com/yugabyte/cassandra-cpp-driver.git
+$ git clone https://github.com/ZNbase/cassandra-cpp-driver.git
 ```
 
 ### Dependencies

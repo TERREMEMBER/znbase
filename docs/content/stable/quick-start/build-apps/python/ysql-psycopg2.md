@@ -41,15 +41,15 @@ showAsideToc: true
   </li>
 </ul>
 
-The following tutorial creates a simple Python application that connects to a YugabyteDB cluster using the `psycopg2` database adapter, performs a few basic database operations — creating a table, inserting data, and running a SQL query — and prints the results to the screen.
+The following tutorial creates a simple Python application that connects to a ZNbaseDB cluster using the `psycopg2` database adapter, performs a few basic database operations — creating a table, inserting data, and running a SQL query — and prints the results to the screen.
 
 ## Before you begin
 
 This tutorial assumes that you have satisfied the following prerequisites.
 
-### YugabyteDB
+### ZNbaseDB
 
-YugabyteDB is up and running. If you are new to YugabyteDB, you can have YugabyteDB up and running within five minutes by following the steps in [Quick start](../../../../quick-start/).
+ZNbaseDB is up and running. If you are new to ZNbaseDB, you can have ZNbaseDB up and running within five minutes by following the steps in [Quick start](../../../../quick-start/).
 
 ### Python
 
@@ -74,7 +74,7 @@ import psycopg2
 
 # Create the database connection.
 
-conn = psycopg2.connect("host=127.0.0.1 port=5433 dbname=yugabyte user=yugabyte password=yugabyte")
+conn = psycopg2.connect("host=127.0.0.1 port=5433 dbname=ZNbase user=ZNbase password=ZNbase")
 
 # Open a cursor to perform database operations.
 # The default mode for psycopg2 is "autocommit=false".

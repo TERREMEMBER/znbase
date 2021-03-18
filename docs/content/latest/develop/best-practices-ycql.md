@@ -27,7 +27,7 @@ showAsideToc: true
 
 ### Global secondary indexes
 
-Indexes use multi-shard transactional capability of YugabyteDB and are global and strongly consistent (ACID). To add secondary indexes, you need to create tables with [transactions enabled](../../api/ycql/ddl_create_table/#table-properties-1). They can also be used as materialized views by using the [`INCLUDE` clause](../../api/ycql/ddl_create_index#included-columns).
+Indexes use multi-shard transactional capability of ZNbaseDB and are global and strongly consistent (ACID). To add secondary indexes, you need to create tables with [transactions enabled](../../api/ycql/ddl_create_table/#table-properties-1). They can also be used as materialized views by using the [`INCLUDE` clause](../../api/ycql/ddl_create_index#included-columns).
 
 ### Unique indexes
 
@@ -43,11 +43,11 @@ This turns a (possible) random read from the main table to just a filter on the 
 
 ### Atomic read modify write operations with UPDATE IF EXISTS
 
-For operations like `UPDATE ... IF EXISTS` and `INSERT ... IF NOT EXISTS` that require an atomic read-modify-write, Apache Cassandra uses LWT which requires 4 round-trips between peers. These operations are supported in YugabyteDB a lot more efficiently, because of YugabyteDB's CP (in the CAP theorem) design based on strong consistency, and require only a single Raft-round trip between peers. Number and counter types work the same and don't need a separate "counters" table.
+For operations like `UPDATE ... IF EXISTS` and `INSERT ... IF NOT EXISTS` that require an atomic read-modify-write, Apache Cassandra uses LWT which requires 4 round-trips between peers. These operations are supported in ZNbaseDB a lot more efficiently, because of ZNbaseDB's CP (in the CAP theorem) design based on strong consistency, and require only a single Raft-round trip between peers. Number and counter types work the same and don't need a separate "counters" table.
 
 ### JSONB document data type
 
-YugabyteDB supports the [`jsonb`](../../api/ycql/type_jsonb/) data type that makes it easy to model JSON data, which does not have a set schema and might change often. You can use JSONB to group less interesting and less accessed columns of a table. YCQL also supports JSONB expression indexes that can be used to speed up data retrieval that would otherwise require scanning the JSON entries.
+ZNbaseDB supports the [`jsonb`](../../api/ycql/type_jsonb/) data type that makes it easy to model JSON data, which does not have a set schema and might change often. You can use JSONB to group less interesting and less accessed columns of a table. YCQL also supports JSONB expression indexes that can be used to speed up data retrieval that would otherwise require scanning the JSON entries.
 
 {{< note title="Use jsonb columns only when necessary" >}}
 
@@ -57,7 +57,7 @@ YugabyteDB supports the [`jsonb`](../../api/ycql/type_jsonb/) data type that mak
 
 ### Incrementing numeric types
 
-In YugabyteDB, YCQL extends Apache Cassandra to add increment and decrement operators for integer data types. [Integers](../../api/ycql/type_int) can be set, inserted, incremented, and decremented while `COUNTER` can only be incremented or decremented. YugabyteDB implements CAS(compare and swap) operations in one round trip, compared to four for Apache Cassandra.
+In ZNbaseDB, YCQL extends Apache Cassandra to add increment and decrement operators for integer data types. [Integers](../../api/ycql/type_int) can be set, inserted, incremented, and decremented while `COUNTER` can only be incremented or decremented. ZNbaseDB implements CAS(compare and swap) operations in one round trip, compared to four for Apache Cassandra.
 
 ### Expire older records automatically with TTL
 
@@ -71,9 +71,9 @@ TTL is not applicable to transactional tables and hence is not supported in that
 
 ## Performance
 
-### Use YugabyteDB drivers
+### Use ZNbaseDB drivers
 
-Use YugabyteDB-specific [client drivers](../../quick-start/build-apps/) because they are cluster and partition aware and support `jsonb` columns.
+Use ZNbaseDB-specific [client drivers](../../quick-start/build-apps/) because they are cluster and partition aware and support `jsonb` columns.
 
 ### Leverage connection pooling in the YCQL client
 

@@ -38,7 +38,7 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.yugabyte</groupId>
+      <groupId>com.ZNbase</groupId>
       <artifactId>cassandra-driver-core</artifactId>
     </dependency>
     <dependency>

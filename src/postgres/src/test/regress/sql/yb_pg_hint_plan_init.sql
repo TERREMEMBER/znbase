@@ -134,7 +134,7 @@ ALTER SYSTEM SET effective_cache_size TO 16384;
 ERROR:  ALTER SYSTEM not supported yet
 LINE 6: ALTER SYSTEM SET effective_cache_size TO 16384;
         ^
-HINT:  Please report the issue on https://github.com/YugaByte/yugabyte-db/issues
+HINT:  Please report the issue on https://github.com/ZNbase/ZNbase-db/issues
 SELECT pg_reload_conf();
 SET effective_cache_size TO 16384;
 

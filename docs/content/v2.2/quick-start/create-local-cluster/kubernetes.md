@@ -1,8 +1,8 @@
 ---
-title: Create a local YugabyteDB cluster on Kubernetes (Minikube)
+title: Create a local ZNbaseDB cluster on Kubernetes (Minikube)
 headerTitle: 2. Create a local cluster
 linkTitle: 2. Create a local cluster
-description: Create a local YugabyteDB cluster on Kubernetes (Minikube) in less than five minutes.
+description: Create a local ZNbaseDB cluster on Kubernetes (Minikube) in less than five minutes.
 block_indexing: true
 menu:
   v2.2:
@@ -51,11 +51,11 @@ showAsideToc: true
 
 ## 1. Create a local cluster
 
-Create a YugabyteDB cluster in Minikube using the commands below. Note that for Helm 3, you have to first create a namespace.
+Create a ZNbaseDB cluster in Minikube using the commands below. Note that for Helm 3, you have to first create a namespace.
 
 ```sh
 $ kubectl create namespace yb-demo
-$ helm install yb-demo yugabytedb/yugabyte \
+$ helm install yb-demo ZNbasedb/ZNbase \
 --set resource.master.requests.cpu=0.5,resource.master.requests.memory=0.5Gi,\
 resource.tserver.requests.cpu=0.5,resource.tserver.requests.memory=0.5Gi,\
 replicas.master=1,replicas.tserver=1 --namespace yb-demo
@@ -64,7 +64,7 @@ replicas.master=1,replicas.tserver=1 --namespace yb-demo
 Note that in Minikube, the LoadBalancers for `yb-master-ui` and `yb-tserver-service` will remain in pending state since load balancers are not available in a Minikube environment. If you would like to turn off these services then pass the `enableLoadBalancer=False` flag as shown below.
 
 ```sh
-$ helm install yb-demo yugabytedb/yugabyte \
+$ helm install yb-demo ZNbasedb/ZNbase \
 --set resource.master.requests.cpu=0.5,resource.master.requests.memory=0.5Gi,\
 resource.tserver.requests.cpu=0.5,resource.tserver.requests.memory=0.5Gi,\
 replicas.master=1,replicas.tserver=1,enableLoadBalancer=False --namespace yb-demo
@@ -72,7 +72,7 @@ replicas.master=1,replicas.tserver=1,enableLoadBalancer=False --namespace yb-dem
 
 ## 2. Check cluster status with kubectl
 
-Run the following command to see that you now have two services with one pod each — 1 yb-master pod (`yb-master-0`) and 1 yb-tserver pod (`yb-tserver-0`) running. For details on the roles of these pods in a YugabyteDB cluster (aka Universe), see [Universe](../../../architecture/concepts/universe/) in the Concepts section.
+Run the following command to see that you now have two services with one pod each — 1 yb-master pod (`yb-master-0`) and 1 yb-tserver pod (`yb-tserver-0`) running. For details on the roles of these pods in a ZNbaseDB cluster (aka Universe), see [Universe](../../../architecture/concepts/universe/) in the Concepts section.
 
 ```sh
 $ kubectl --namespace yb-demo get pods
@@ -118,7 +118,7 @@ Now, you can view the [yb-master-0 Admin UI](../../../reference/configuration/yb
 
 ### Overview and YB-Master status
 
-The `yb-master-0` home page shows that you have a cluster with **Replication Factor** of 1 and **Num Nodes (TServers)** as `1`. The **Num User Tables** is `0` because there are no user tables created yet. The YugabyteDB version is also displayed for your reference.
+The `yb-master-0` home page shows that you have a cluster with **Replication Factor** of 1 and **Num Nodes (TServers)** as `1`. The **Num User Tables** is `0` because there are no user tables created yet. The ZNbaseDB version is also displayed for your reference.
 
 ![master-home](/images/admin/master-home-kubernetes-rf1.png)
 

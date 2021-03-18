@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 export { default as DescriptionList } from './DescriptionList';
 export { default as DescriptionItem } from './DescriptionItem';

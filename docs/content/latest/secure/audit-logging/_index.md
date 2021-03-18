@@ -1,9 +1,9 @@
 ---
-title: Audit Logging in YugabyteDB
+title: Audit Logging in ZNbaseDB
 headerTitle: Audit Logging
 linkTitle: Audit Logging
-description: Audit Logging in YugabyteDB.
-headcontent: Audit Logging in YugabyteDB.
+description: Audit Logging in ZNbaseDB.
+headcontent: Audit Logging in ZNbaseDB.
 image: /images/section_icons/secure/authorization.png
 menu:
   latest:
@@ -21,7 +21,7 @@ menu:
         <div class="title">Configure Audit Logging</div>
       </div>
       <div class="body">
-          Configure audit logging in YugabyteDB.
+          Configure audit logging in ZNbaseDB.
       </div>
     </a>
   </div>

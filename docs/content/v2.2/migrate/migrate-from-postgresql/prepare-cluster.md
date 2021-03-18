@@ -41,11 +41,11 @@ Below are some recommendations when performing batch loads of data programmatica
 
 5. It may be necessary to increase the parallelism of the load in certain scenarios. For example, in the case of a loader using a single thread to load data, it may not be possible to utilize a large cluster optimally. In these cases, it may be necessary to increase the number of threads or run multiple loaders in parallel.
 
-6. Note that `INSERT .. ON CONFLICT` statements are not yet fully optimized as of YugabyteDB v2.2, so it is recommended to use simple INSERT statements if possible
+6. Note that `INSERT .. ON CONFLICT` statements are not yet fully optimized as of ZNbaseDB v2.2, so it is recommended to use simple INSERT statements if possible
 
 ## Indexes during data load
 
-As of YugabyteDB v2.2, it is recommended to create indexes before loading the data.
+As of ZNbaseDB v2.2, it is recommended to create indexes before loading the data.
 
 {{< note title="Note" >}}
 This recommendation is subject to change in the near future with the introduction of online index rebuilds, which enables creating indexes after loading all the data.

@@ -91,7 +91,7 @@ Specify `false` to only superusers or the owner of the database can clone it.
 
 ### COLOCATED
 
-Specify `true` if all tables for this database should be colocated on a single tablet. See [colocated tables architecture](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/ysql-colocated-tables.md) for details on when colocated tables are useful.
+Specify `true` if all tables for this database should be colocated on a single tablet. See [colocated tables architecture](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/ysql-colocated-tables.md) for details on when colocated tables are useful.
 Default value is `false` and every table in the database will have its own set of tablets.
 
 ## Examples
@@ -99,7 +99,7 @@ Default value is `false` and every table in the database will have its own set o
 ### Create a colocated database
 
 ```plpgsql
-yugabyte=# CREATE DATABASE company WITH COLOCATED = true;
+ZNbase=# CREATE DATABASE company WITH COLOCATED = true;
 ```
 
 In this example, all tables in the database `company` will be colocated on a single tablet.

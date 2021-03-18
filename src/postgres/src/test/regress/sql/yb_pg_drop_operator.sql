@@ -15,7 +15,7 @@ CREATE OPERATOR !== (
 
 DROP OPERATOR !==(bigint, bigint);
 
--- Yugabyte does not support `SELECT ctid`.
+-- ZNbase does not support `SELECT ctid`.
 SELECT  ctid, oprcom
 FROM    pg_catalog.pg_operator fk
 WHERE   oprcom != 0 AND

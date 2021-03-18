@@ -14,7 +14,7 @@ showAsideToc: true
 
 `yb-ts-cli` is a command line tool that can be used to perform an operation on a particular tablet server (`yb-tserver`). Some of the commands perform operations similar to [`yb-admin` commands](../yb-admin). The `yb-admin` commands focus on cluster administration, the `yb-ts-cli` commands apply to specific YB-TServer nodes.
 
-`yb-ts-cli` is a binary file installed with YugabyteDB and is located in the `bin` directory of the YugabyteDB home directory.
+`yb-ts-cli` is a binary file installed with ZNbaseDB and is located in the `bin` directory of the ZNbaseDB home directory.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ yb-ts-cli [ --server_address=<host>:<port> ] <command> <flags>
 
 ## Command line help
 
-To display the available online help, run `yb-ts-cli` without any commands or flags at the YugabyteDB home directory.
+To display the available online help, run `yb-ts-cli` without any commands or flags at the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/yb-ts-cli
@@ -196,7 +196,7 @@ $ ./bin/yb-ts-cli [ --server_address=<host>:<port> ] set_flag [ --force ] <flag>
 
 The `set_flag` command changes the in-memory value of the specified flag, atomically, for a running server and can alter its behavior.  **The change does NOT persist across restarts.**
 
-In practice, there are some flags that are runtime safe to change (runtime-settable) and some that are not. For example, the bind address of the server cannot be changed at runtime, since the server binds just once at startup. While most of the flags are probably runtime-settable, you need to review the flags and note in the configuration pages which flags are not runtime-settable. (See GitHub issue [#3534](https://github.com/yugabyte/yugabyte-db/issues/3534)).
+In practice, there are some flags that are runtime safe to change (runtime-settable) and some that are not. For example, the bind address of the server cannot be changed at runtime, since the server binds just once at startup. While most of the flags are probably runtime-settable, you need to review the flags and note in the configuration pages which flags are not runtime-settable. (See GitHub issue [#3534](https://github.com/ZNbase/ZNbase-db/issues/3534)).
 
 One typical operational flow is that you can use this to modify runtime flags in memory and then out of band also modify the configuration file that the server uses to start. This allows for flags to be changed on running servers, without executing a restart of the server.
 
@@ -261,7 +261,7 @@ bound_http_addresses {
 }
 version_info {
   git_hash: "83610e77c7659c7587bc0c8aea76db47ff8e2df1"
-  build_hostname: "yb-macmini-6.dev.yugabyte.com"
+  build_hostname: "yb-macmini-6.dev.ZNbase.com"
   build_timestamp: "06 Jan 2020 17:47:22 PST"
   build_username: "jenkins"
   build_clean_repo: true

@@ -51,7 +51,7 @@ See [`CREATE ROLE`](../dcl_create_role) for more details.
 - Create a sample group that can manage databases and roles.
 
 ```plpgsql
-yugabyte=# CREATE GROUP SysAdmin WITH CREATEDB CREATEROLE;
+ZNbase=# CREATE GROUP SysAdmin WITH CREATEDB CREATEROLE;
 ```
 
 ## See also

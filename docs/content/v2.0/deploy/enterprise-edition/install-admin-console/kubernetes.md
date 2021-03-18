@@ -27,12 +27,12 @@ Server: &version.Version{SemVer:"v2.10.0", GitCommit:"...", GitTreeState:"clean"
 For deploying a YugaWare Helm (v2.x) chart, you need to have a service account with `cluster-admin` role privileges — if the user in context already has that access, you can skip this step.
 
 ```sh
-$ kubectl apply -f https://raw.githubusercontent.com/yugabyte/charts/master/stable/yugabyte/yugabyte-rbac.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/ZNbase/charts/master/stable/ZNbase/ZNbase-rbac.yaml
 ```
 
 ```sh
-serviceaccount/yugabyte-helm created
-clusterrolebinding.rbac.authorization.k8s.io/yugabyte-helm created
+serviceaccount/ZNbase-helm created
+clusterrolebinding.rbac.authorization.k8s.io/ZNbase-helm created
 ```
 
 ### Initialize Helm
@@ -40,7 +40,7 @@ clusterrolebinding.rbac.authorization.k8s.io/yugabyte-helm created
 Initialize `helm` with the service account but use the `--upgrade` flag to ensure that you can upgrade any previous initializations you may have made.
 
 ```sh
-$ helm init --service-account yugabyte-helm --upgrade --wait
+$ helm init --service-account ZNbase-helm --upgrade --wait
 ```
 
 ```sh
@@ -55,7 +55,7 @@ Happy Helming!
 You can do this as shown below.
 
 ```sh
-$ wget https://downloads.yugabyte.com/kubernetes/yugaware-1.0.0.tgz
+$ wget https://downloads.ZNbase.com/kubernetes/yugaware-1.0.0.tgz
 ```
 
 ### Install YugaWare

@@ -1,8 +1,8 @@
 ---
-title: Install Yugabyte Platform
-headerTitle: Install Yugabyte Platform on Airgapped
-linkTitle: 2. Install Yugabyte Platform
-description: Install Yugabyte Platform (aka YugaWare).
+title: Install ZNbase Platform
+headerTitle: Install ZNbase Platform on Airgapped
+linkTitle: 2. Install ZNbase Platform
+description: Install ZNbase Platform (aka YugaWare).
 block_indexing: true
 menu:
   v2.1:
@@ -40,16 +40,16 @@ An “air-gapped” host has either no or a restricted path to inbound or outbou
 
 ### 1. Whitelist endpoints
 
-In order to install Replicated and the Yugabyte Platform on a host with no Internet connectivity at all, you have to first download the binaries on a machine that has Internet connectivity and then copy the files over to the appropriate host. In case of restricted connectivity, the following endpoints have to be whitelisted to ensure that they are accessible from the host marked for installation.
+In order to install Replicated and the ZNbase Platform on a host with no Internet connectivity at all, you have to first download the binaries on a machine that has Internet connectivity and then copy the files over to the appropriate host. In case of restricted connectivity, the following endpoints have to be whitelisted to ensure that they are accessible from the host marked for installation.
 
 ```sh
-https://downloads.yugabyte.com
+https://downloads.ZNbase.com
 https://download.docker.com
 ```
 
 ### 2. Install Docker Engine
 
-A supported version of Docker Engine (`docker-engine`) (currently 1.7.1 to 17.03.1-ce) needs to be installed on the host. If you do not have docker-engine installed, follow the instructions [here](https://help.replicated.com/docs/kb/supporting-your-customers/installing-docker-in-airgapped/) to first install Docker Engine on an air-gapped host. After Docker Engine is installed, perform the following steps to install Replicated and then Yugabyte Platform.
+A supported version of Docker Engine (`docker-engine`) (currently 1.7.1 to 17.03.1-ce) needs to be installed on the host. If you do not have docker-engine installed, follow the instructions [here](https://help.replicated.com/docs/kb/supporting-your-customers/installing-docker-in-airgapped/) to first install Docker Engine on an air-gapped host. After Docker Engine is installed, perform the following steps to install Replicated and then ZNbase Platform.
 
 ## Step 1 — Install Replicated
 
@@ -76,13 +76,13 @@ $ cd /opt/downloads
 Download the `replicated.tar.gz` file.
 
 ```sh
-$ wget https://downloads.yugabyte.com/replicated.tar.gz
+$ wget https://downloads.ZNbase.com/replicated.tar.gz
 ```
 
 Download the `yugaware` binary. Change this number as needed.
 
 ```sh
-$ wget https://downloads.yugabyte.com/yugaware-2.1.2.0-b10.airgap
+$ wget https://downloads.ZNbase.com/yugaware-2.1.2.0-b10.airgap
 ```
 
 Change to the directory.
@@ -113,9 +113,9 @@ You should see an output similar to the following.
 
 ![Replicated successfully installed](/images/replicated/replicated-success.png)
 
-Next, install Yugabyte Platform as described in step 2.
+Next, install ZNbase Platform as described in step 2.
 
-## Step 2 — Install Yugabyte Platform using Replicated
+## Step 2 — Install ZNbase Platform using Replicated
 
 ### Set up HTTPS for Replicated
 
@@ -133,11 +133,11 @@ The simplest option is use a self-signed cert for now and add the custom SSL cer
 
 ### Upload license file
 
-Now, upload the Yugabyte license file received from [Yugabyte](https://www.yugabyte.com/platform/#request-trial-form).
+Now, upload the ZNbase license file received from [ZNbase](https://www.ZNbase.com/platform/#request-trial-form).
 
 ![Replicated License Upload](/images/replicated/replicated-license-upload.png)
 
-Two options to install Yugabyte Platform are presented.
+Two options to install ZNbase Platform are presented.
 
 ![Replicated License Airgapped Install](/images/replicated/replicated-license-airgapped-install-option.png)
 
@@ -147,16 +147,16 @@ Two options to install Yugabyte Platform are presented.
 
 ### Secure Replicated
 
-The next step is to add a password to protect the Replicated Admin Console (note that this Admin Console is for Replicated and is different from Yugabyte Platform, the Admin Console for YugabyteDB).
+The next step is to add a password to protect the Replicated Admin Console (note that this Admin Console is for Replicated and is different from ZNbase Platform, the Admin Console for ZNbaseDB).
 
 ![Replicated Password](/images/replicated/replicated-password.png)
 
 ### Pre-flight checks
 
-Replicated will perform a set of pre-flight checks to ensure that the host is setup correctly for the Yugabyte Platform application.
+Replicated will perform a set of pre-flight checks to ensure that the host is setup correctly for the ZNbase Platform application.
 
 ![Replicated Checks](/images/replicated/replicated-checks.png)
 
-Clicking **Continue** above will bring you to the Yugabyte Platform configuration.
+Clicking **Continue** above will bring you to the ZNbase Platform configuration.
 
-In case the pre-flight check fails, review the [Troubleshoot Yugabyte Platform](../../../troubleshoot/enterprise-edition/) to identify the resolution.
+In case the pre-flight check fails, review the [Troubleshoot ZNbase Platform](../../../troubleshoot/enterprise-edition/) to identify the resolution.

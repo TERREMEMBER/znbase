@@ -1,8 +1,8 @@
 ---
-title: yb-admin - command line tool for advanced YugabyteDB administration
+title: yb-admin - command line tool for advanced ZNbaseDB administration
 headerTitle: yb-admin
 linkTitle: yb-admin
-description: Use the yb-admin command line tool for advanced administration of YugabyteDB clusters.
+description: Use the yb-admin command line tool for advanced administration of ZNbaseDB clusters.
 block_indexing: true
 menu:
   v2.1:
@@ -13,13 +13,13 @@ isTocNested: true
 showAsideToc: true
 ---
 
-The `yb-admin` utility, located in the `bin` directory of YugabyteDB home, provides a command line interface for administering clusters.
+The `yb-admin` utility, located in the `bin` directory of ZNbaseDB home, provides a command line interface for administering clusters.
 
 It invokes the [`yb-master`](../../reference/configuration/yb-master/) and [`yb-tserver`](../../reference/configuration/yb-tserver/) servers to perform the necessary administration.
 
 ## Syntax
 
-To use the `yb-admin` utility from the YugabyteDB home directory, run `./bin/yb-admin` using the following syntax.
+To use the `yb-admin` utility from the ZNbaseDB home directory, run `./bin/yb-admin` using the following syntax.
 
 ```sh
 yb-admin [ -master_addresses <master-addresses> ]  [ -timeout_ms <millisec> ] [ -certs_dir_name <dir_name> ] <command> [ command_flags ]
@@ -34,7 +34,7 @@ yb-admin [ -master_addresses <master-addresses> ]  [ -timeout_ms <millisec> ] [ 
 
 ### Online help
 
-To display the online help, run `yb-admin --help` from the YugabyteDB home directory.
+To display the online help, run `yb-admin --help` from the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/yb-admin --help
@@ -247,7 +247,7 @@ Forces the master leader to step down. The specified YB-Master node will take it
 
 {{< note title="Note" >}}
 
-- Use this command only if recommended by Yugabyte support.
+- Use this command only if recommended by ZNbase support.
 
 - There is a possibility of downtime.
 
@@ -301,7 +301,7 @@ $ ./bin/yb-admin -master_addresses ip1:7100,ip2:7100,ip3:7100 list_tables
 
 ```
 ...
-yugabyte.pg_range
+ZNbase.pg_range
 template1.pg_attrdef
 template0.pg_attrdef_adrelid_adnum_index
 template1.pg_conversion
@@ -313,7 +313,7 @@ system.local
 template1.pg_inherits_parent_index
 template1.pg_amproc
 system_platform.pg_rewrite
-yugabyte.pg_ts_config_cfgname_index
+ZNbase.pg_ts_config_cfgname_index
 template1.pg_trigger_tgconstraint_index
 template1.pg_class
 template1.pg_largeobject
@@ -449,9 +449,9 @@ Because `show_details` was included, `list_snapshots` prints the details in JSON
 
 ```json
 f566b03b-b85e-41a0-b903-875cd305c1c5 	COMPLETE
-{"type":"NAMESPACE","id":"8053dd55d478437cba57d9f67caac154","data":{"name":"yugabyte","database_type":"YQL_DATABASE_CQL","colocated":false,"state":"RUNNING"}}
+{"type":"NAMESPACE","id":"8053dd55d478437cba57d9f67caac154","data":{"name":"ZNbase","database_type":"YQL_DATABASE_CQL","colocated":false,"state":"RUNNING"}}
 {"type":"TABLE","id":"a7e940e724ef497ebe94bf69bfe507d9","data":{"name":"tracking1","version":1,"state":"RUNNING","state_msg":"Current schema version=1","next_column_id":13,"table_type":"YQL_TABLE_TYPE","namespace_id":"8053dd55d478437cba57d9f67caac154"}}
-{"type":"NAMESPACE","id":"8053dd55d478437cba57d9f67caac154","data":{"name":"yugabyte","database_type":"YQL_DATABASE_CQL","colocated":false,"state":"RUNNING"}}
+{"type":"NAMESPACE","id":"8053dd55d478437cba57d9f67caac154","data":{"name":"ZNbase","database_type":"YQL_DATABASE_CQL","colocated":false,"state":"RUNNING"}}
 {"type":"TABLE","id":"b48f4d7695f0421e93386f7a97da4bac","data":{"name":"tracking1_v_idx","version":0,"state":"RUNNING","next_column_id":12,"table_type":"YQL_TABLE_TYPE","namespace_id":"8053dd55d478437cba57d9f67caac154","indexed_table_id":"a7e940e724ef497ebe94bf69bfe507d9","is_local_index":false,"is_unique_index":false}}
 ```
 
@@ -1039,7 +1039,7 @@ Forces the YB-TServer leader of the specified tablet to step down.
 
 {{< note title="Note" >}}
 
-Use this command only if recommended by Yugabyte support.
+Use this command only if recommended by ZNbase support.
 
 There is a possibility of downtime.
 
@@ -1057,7 +1057,7 @@ yb-admin -master_addresses <master-addresses> leader_stepdown <tablet_id> <dest_
 
 {{< note title="Note" >}}
 
-If specified, `des_ts_uuid` becomes the new leader. If the argument is empty (`""`), then a new leader will be elected automatically. In a future release, this argument will be optional. See GitHub issue [#4722](https://github.com/yugabyte/yugabyte-db/issues/4722)
+If specified, `des_ts_uuid` becomes the new leader. If the argument is empty (`""`), then a new leader will be elected automatically. In a future release, this argument will be optional. See GitHub issue [#4722](https://github.com/ZNbase/ZNbase-db/issues/4722)
 
 {{< /note >}}
 

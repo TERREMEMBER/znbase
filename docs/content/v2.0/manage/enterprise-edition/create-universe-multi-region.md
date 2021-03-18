@@ -78,10 +78,10 @@ On each of the terminals, do the following.
 $ sudo yum install java-1.8.0-openjdk.x86_64 -y
 ```
 
-2. Switch to the `yugabyte` user.
+2. Switch to the `ZNbase` user.
 
 ```sh
-$ sudo su - yugabyte
+$ sudo su - ZNbase
 ```
 
 3. Export the `YCQL_ENDPOINTS` env variable
@@ -101,7 +101,7 @@ $ export YCQL_ENDPOINTS="10.138.0.3:9042,10.138.0.4:9042,10.138.0.5:9042"
 Run the following command on each of the nodes. Remember to substitute `<REGION>` with the region code for each node.
 
 ```sh
-$ java -jar /home/yugabyte/tserver/java/yb-sample-apps.jar \
+$ java -jar /home/ZNbase/tserver/java/yb-sample-apps.jar \
             --workload CassandraKeyValue \
             --nodes $YCQL_ENDPOINTS \
             --num_threads_write 1 \

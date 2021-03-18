@@ -2,7 +2,7 @@
 title: Explore change data capture (CDC) on macOS
 headerTitle: Change data capture (CDC)
 linkTitle: Change data capture (CDC)
-description: Use a local YugabyteDB cluster (on macOS) to stream data changes to stdout using the CDC API.
+description: Use a local ZNbaseDB cluster (on macOS) to stream data changes to stdout using the CDC API.
 beta: /latest/faq/general/#what-is-the-definition-of-the-beta-feature-tag
 block_indexing: true
 menu:
@@ -32,9 +32,9 @@ showAsideToc: true
 
 </ul>
 
-[Change data capture (CDC)](../../../architecture/cdc-architecture) can be used to asynchronously stream data changes from a YugabyteDB cluster to external systems like message queues and OLAP warehouses. The data changes in YugabyteDB are detected, captured, and then output to the specified target.  In the steps below, you will use a local YugabyteDB cluster to stream data changes to `stdout` using the CDC API.
+[Change data capture (CDC)](../../../architecture/cdc-architecture) can be used to asynchronously stream data changes from a ZNbaseDB cluster to external systems like message queues and OLAP warehouses. The data changes in ZNbaseDB are detected, captured, and then output to the specified target.  In the steps below, you will use a local ZNbaseDB cluster to stream data changes to `stdout` using the CDC API.
 
-If you haven't installed YugabyteDB yet, do so first by following the [Quick Start](../../../quick-start/install/) guide.
+If you haven't installed ZNbaseDB yet, do so first by following the [Quick Start](../../../quick-start/install/) guide.
 
 ## Prerequisites
 
@@ -44,13 +44,13 @@ A JRE (or JDK), for Java 8 or later, is installed.
 
 ## 1. Add a database table
 
-Start your local YugabyteDB cluster and run `ysqlsh` to connect to the service.
+Start your local ZNbaseDB cluster and run `ysqlsh` to connect to the service.
 
 ```sh
 $ ./bin/ysqlsh 
 ```
 
-Add a table, named `products`, to the default `yugabyte` database.
+Add a table, named `products`, to the default `ZNbase` database.
 
 ```postgresql
 CREATE TABLE products(
@@ -71,15 +71,15 @@ CREATE TABLE products(
 Download the stdout CDC Connector JAR file.
 
 ```sh
-$ wget https://downloads.yugabyte.com/yb-cdc-connector.jar
+$ wget https://downloads.ZNbase.com/yb-cdc-connector.jar
 ```
 
 ## 3. Stream the log output stream to stdout
 
-Run the command below to to start logging an output stream of data changes from the YugabyteDB `cdc` table to `stdout`.
+Run the command below to to start logging an output stream of data changes from the ZNbaseDB `cdc` table to `stdout`.
 
 ```sh
-java -jar yb-cdc-connector.jar --table_name yugabyte.products 
+java -jar yb-cdc-connector.jar --table_name ZNbase.products 
 ```
 
 The example above uses the following parameters:

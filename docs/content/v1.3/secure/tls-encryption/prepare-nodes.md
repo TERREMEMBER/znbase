@@ -14,7 +14,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This page describes how to prepare each node in a YugabyteDB cluster to enable TLS encryption.
+This page describes how to prepare each node in a ZNbaseDB cluster to enable TLS encryption.
 
 ## Basic setup
 
@@ -99,8 +99,8 @@ distinguished_name = my_distinguished_name
 x509_extensions = my_extensions
 
 [ my_distinguished_name ]
-organizationName = Yugabyte
-commonName = CA for YugabyteDB
+organizationName = ZNbase
+commonName = CA for ZNbaseDB
 
 [ my_extensions ]
 keyUsage = critical,digitalSignature,nonRepudiation,keyEncipherment,keyCertSign
@@ -162,11 +162,11 @@ Certificate:
         Version: 3 (0x2)
         Serial Number: 9342236890667368184 (0x81a64af46bc73ef8)
     Signature Algorithm: sha256WithRSAEncryption
-        Issuer: O=Yugabyte, CN=CA for YugabyteDB
+        Issuer: O=ZNbase, CN=CA for ZNbaseDB
         Validity
             Not Before: Dec 20 05:16:11 2018 GMT
             Not After : Jan 19 05:16:11 2019 GMT
-        Subject: O=Yugabyte, CN=CA for YugabyteDB
+        Subject: O=ZNbase, CN=CA for ZNbaseDB
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 Public-Key: (2048 bit)
@@ -227,7 +227,7 @@ prompt=no
 distinguished_name = my_distinguished_name
 
 [ my_distinguished_name ]
-organizationName = Yugabyte
+organizationName = ZNbase
 # Required value for commonName, do not change.
 commonName = <NODE_IP_ADDRESS>
 ```
@@ -237,7 +237,7 @@ commonName = <NODE_IP_ADDRESS>
 You can generate the private key for each of the nodes as follows.
 
 {{< note title="Note" >}}
-The file names must be of the format `node.<commonName>.key` for YugabyteDB to recognize the file.
+The file names must be of the format `node.<commonName>.key` for ZNbaseDB to recognize the file.
 {{< /note >}}
 
 ```sh
@@ -311,12 +311,12 @@ Upload the necessary information to the target node.
 $ for node in $IP_ADDRESSES;
 do
   # Create the directory that will contain the config files.
-  ssh <username>@$node mkdir ~/yugabyte-tls-config
+  ssh <username>@$node mkdir ~/ZNbase-tls-config
 
   # Copy all the config files into the above directory.
-  scp $node/ca.crt <user>@$node:~/yugabyte-tls-config/$NODE_IP
-  scp $node/node.$node.crt <user>@$node:~/yugabyte-tls-config/$NODE_IP
-  scp $node/node.$node.key <user>@$node:~/yugabyte-tls-config/$NODE_IP
+  scp $node/ca.crt <user>@$node:~/ZNbase-tls-config/$NODE_IP
+  scp $node/node.$node.crt <user>@$node:~/ZNbase-tls-config/$NODE_IP
+  scp $node/node.$node.key <user>@$node:~/ZNbase-tls-config/$NODE_IP
 done
 ```
 

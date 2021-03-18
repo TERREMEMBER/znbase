@@ -53,7 +53,7 @@ Where
 
 - An error is raised if the specified `keyspace_name` does not exist.
 - An error is raised if the user (used role) has no ALTER permission for this specified keyspace and no ALTER permission for ALL KEYSPACES.
-- YCQL keyspace properties are supported in the syntax but have no effect internally (where YugabyteDB defaults are used instead).
+- YCQL keyspace properties are supported in the syntax but have no effect internally (where ZNbaseDB defaults are used instead).
 
 ## Examples
 

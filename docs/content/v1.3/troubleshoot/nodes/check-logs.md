@@ -1,7 +1,7 @@
 ---
 title: Inspect logs
 linkTitle: Inspect logs
-description: Inspect YugabyteDB logs
+description: Inspect ZNbaseDB logs
 block_indexing: true
 menu:
   v1.3:
@@ -11,15 +11,15 @@ isTocNested: true
 showAsideToc: true
 ---
 
-## YugabyteDB base folder
+## ZNbaseDB base folder
 
-The logs for each node are found in the yugabyte base directory which may depend on the details of your deployment:
+The logs for each node are found in the ZNbase base directory which may depend on the details of your deployment:
 
-- When using the `yb-ctl` the default locations for each node is `/tmp/yugabyte-local-cluster/node-<node_nr>/`.
+- When using the `yb-ctl` the default locations for each node is `/tmp/ZNbase-local-cluster/node-<node_nr>/`.
 For instance, for 3 nodes (default) `yb-ctl` will generate three folders `node-1`, `node-2` and `node-3`.
-- For a multi-node cluster the location where Yugabyte disks are set up (e.g. `/home/centos/` or `/mnt/`) for each node.
+- For a multi-node cluster the location where ZNbase disks are set up (e.g. `/home/centos/` or `/mnt/`) for each node.
 
-We will refer to the Yugabyte base folder as `<yugabyte-base-folder>` below.
+We will refer to the ZNbase base folder as `<ZNbase-base-folder>` below.
 
 ## Master logs
 
@@ -27,7 +27,7 @@ Masters manage system meta-data such as keyspaces, tables and types: they handle
 Master logs can be found at:
 
 ```sh
-$ cd <yugabyte-base-folder>/disk1/yb-data/master/logs/
+$ cd <ZNbase-base-folder>/disk1/yb-data/master/logs/
 ```
 
 Logs are organized by error severity: `FATAL`, `ERROR`, `WARNING`, `INFO`. In case of issues, the `FATAL` and `ERROR` logs are most likely to be relevant.
@@ -38,7 +38,7 @@ TServers do the actual IO for end-user requests: they handle DML statements (e.g
 Tserver logs can be found at:
 
 ```sh
-$ cd <yugabyte-base-folder>/disk1/yb-data/tserver/logs/
+$ cd <ZNbase-base-folder>/disk1/yb-data/tserver/logs/
 ```
 
 Logs are organized by error severity: `FATAL`, `ERROR`, `WARNING`, `INFO`. In case of issues, the `FATAL` and `ERROR` logs are most likely to be relevant.

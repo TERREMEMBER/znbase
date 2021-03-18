@@ -1,8 +1,8 @@
 ---
-title: Deploy YugabyteDB in Google Cloud Platform with Google Kubernetes Engine (GKE)
+title: Deploy ZNbaseDB in Google Cloud Platform with Google Kubernetes Engine (GKE)
 headerTitle: Google Cloud Platform
 linkTitle: Google Cloud Platform
-description: Use Google Kubernetes Engine (GKE) to deploy a YugabyteDB cluster in Google Cloud Platform.
+description: Use Google Kubernetes Engine (GKE) to deploy a ZNbaseDB cluster in Google Cloud Platform.
 menu:
   stable:
     identifier: deploy-in-gcp-2-gke

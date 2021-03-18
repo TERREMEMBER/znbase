@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-The following SQL statements are supported by the Yugabyte Structured Query Language (YSQL).
+The following SQL statements are supported by the ZNbase Structured Query Language (YSQL).
 
 | Statement | Description |
 |-----------|-------------|

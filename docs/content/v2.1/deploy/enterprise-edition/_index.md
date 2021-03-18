@@ -1,8 +1,8 @@
 ---
-title: Deploy the Yugabyte Platform for mission-critical deployments
-headerTitle: Yugabyte Platform
-linkTitle: Yugabyte Platform
-description: Use Yugabyte Platform to deploy and manage mission-critical YugabyteDB clusters.
+title: Deploy the ZNbase Platform for mission-critical deployments
+headerTitle: ZNbase Platform
+linkTitle: ZNbase Platform
+description: Use ZNbase Platform to deploy and manage mission-critical ZNbaseDB clusters.
 headcontent:
 image: /images/section_icons/deploy/enterprise.png
 block_indexing: true
@@ -13,9 +13,9 @@ menu:
     weight: 638
 ---
 
-The Yugabyte Platform is best fit for mission-critical deployments, such as production or pre-production testing. The YugabyteDB Admin Console is used in a highly available mode and orchestrates and manages YugabyteDB universes, or clusters, on one or more regions (across public cloud and private on-premises data centers).
+The ZNbase Platform is best fit for mission-critical deployments, such as production or pre-production testing. The ZNbaseDB Admin Console is used in a highly available mode and orchestrates and manages ZNbaseDB universes, or clusters, on one or more regions (across public cloud and private on-premises data centers).
 
-Yugabyte Platform is a containerized application that is installed and managed using <a href="https://www.replicated.com/" target="_blank">Replicated</a> for mission-critical environments (for example, production, performance, or failure mode testing). Replicated is a purpose-built tool for on-premises deployments and life cycle management of containerized applications. For environments that are not mission-critical, such as those needed for local development or simple functional testing, you can also use <a href="../../quick-start/install">YugabyteDB</a>.
+ZNbase Platform is a containerized application that is installed and managed using <a href="https://www.replicated.com/" target="_blank">Replicated</a> for mission-critical environments (for example, production, performance, or failure mode testing). Replicated is a purpose-built tool for on-premises deployments and life cycle management of containerized applications. For environments that are not mission-critical, such as those needed for local development or simple functional testing, you can also use <a href="../../quick-start/install">ZNbaseDB</a>.
 
 <div class="row">
   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
@@ -25,7 +25,7 @@ Yugabyte Platform is a containerized application that is installed and managed u
         <div class="title">Prepare cloud environment</div>
       </div>
       <div class="body">
-        Prepare your cloud environment before installing the Yugabyte Platform.
+        Prepare your cloud environment before installing the ZNbase Platform.
       </div>
     </a>
   </div>
@@ -34,10 +34,10 @@ Yugabyte Platform is a containerized application that is installed and managed u
     <a class="section-link icon-offset" href="install-admin-console/">
       <div class="head">
         <img class="icon" src="/images/section_icons/quick_start/install.png" aria-hidden="true" />
-        <div class="title">Install Yugabyte Platform</div>
+        <div class="title">Install ZNbase Platform</div>
       </div>
       <div class="body">
-        Install the Yugabyte Platform (aka YugaWare) on any host of your choice.
+        Install the ZNbase Platform (aka YugaWare) on any host of your choice.
       </div>
     </a>
   </div>
@@ -46,10 +46,10 @@ Yugabyte Platform is a containerized application that is installed and managed u
     <a class="section-link icon-offset" href="configure-admin-console/">
       <div class="head">
         <img class="icon" src="/images/section_icons/deploy/enterprise/console.png" aria-hidden="true" />
-        <div class="title">Configure Yugabyte Platform</div>
+        <div class="title">Configure ZNbase Platform</div>
       </div>
       <div class="body">
-        Configure your Yugabyte Platform (aka YugaWare) host.
+        Configure your ZNbase Platform (aka YugaWare) host.
       </div>
     </a>
   </div>
@@ -61,7 +61,7 @@ Yugabyte Platform is a containerized application that is installed and managed u
         <div class="title">Configure cloud providers</div>
       </div>
       <div class="body">
-          Configure both public clouds and private on-premises data centers for running YugabyteDB.
+          Configure both public clouds and private on-premises data centers for running ZNbaseDB.
       </div>
     </a>
   </div>

@@ -3,7 +3,7 @@ title: Benchmark YSQL performance using TPC-C
 headerTitle: TPC-C
 linkTitle: TPC-C
 description: Benchmark YSQL performance using TPC-C
-headcontent: Benchmark YugabyteDB using TPC-C
+headcontent: Benchmark ZNbaseDB using TPC-C
 image: /images/section_icons/quick_start/explore_ysql.png
 block_indexing: true
 menu:
@@ -27,7 +27,7 @@ isTocNested: true
 </ul>
 
 ## Overview
-Follow the steps below to run the open-source [oltpbench](https://github.com/oltpbenchmark/oltpbench) TPC-C workload against YugabyteDB YSQL. [TPC-C](http://www.tpc.org/tpcc/) is a popular online transaction processing benchmark that provides metrics you can use to evaluate the performance of YugabyteDB for concurrent transactions of different types and complexity that are either either executed online or queued for deferred execution.
+Follow the steps below to run the open-source [oltpbench](https://github.com/oltpbenchmark/oltpbench) TPC-C workload against ZNbaseDB YSQL. [TPC-C](http://www.tpc.org/tpcc/) is a popular online transaction processing benchmark that provides metrics you can use to evaluate the performance of ZNbaseDB for concurrent transactions of different types and complexity that are either either executed online or queued for deferred execution.
 
 ## 1. Prerequisites
 
@@ -37,7 +37,7 @@ To download the TPC-C binaries, run the following commands.
 
 ```sh
 $ cd $HOME
-$ wget https://github.com/yugabyte/tpcc/releases/download/1.1/tpcc.tar.gz
+$ wget https://github.com/ZNbase/tpcc/releases/download/1.1/tpcc.tar.gz
 $ tar -zxvf tpcc.tar.gz
 $ cd tpcc
 ```
@@ -48,7 +48,7 @@ The binaries are compiled with JAVA 13 and it is recommended to run these binari
 
 ### Start the Database
 
-Start your YugabyteDB cluster by following the steps [here](../../deploy/manual-deployment/).
+Start your ZNbaseDB cluster by following the steps [here](../../deploy/manual-deployment/).
 
 {{< tip title="Tip" >}}
 You will need the IP addresses of the nodes in the cluster for the next step.
@@ -63,7 +63,7 @@ If not working with the defaults, we can change the username, password, port, et
 <dbtype>postgres</dbtype>
 <driver>org.postgresql.Driver</driver>
 <port>5433</5433>
-<username>yugabyte</username>
+<username>ZNbase</username>
 <password></password>
 <isolation>TRANSACTION_REPEATABLE_READ</isolation>
 

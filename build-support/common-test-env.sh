@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -738,7 +738,7 @@ stop_process_tree_supervisor() {
     # following tests are fixed:
     # - org.yb.pgsql.TestPgRegressFeature.testPgRegressFeature
     # - org.yb.pgsql.TestPgRegressTypesNumeric.testPgRegressTypes
-    # See https://github.com/YugaByte/yugabyte-db/issues/946 for details.
+    # See https://github.com/ZNbase/ZNbase-db/issues/946 for details.
     if false && grep -q YB_STRAY_PROCESS "$process_supervisor_log_path"; then
       log "Stray processes reported in $process_supervisor_log_path, considering the test failed."
       log "The JUnit-compatible XML file will be updated to reflect this error."
@@ -967,7 +967,7 @@ handle_cxx_test_failure() {
           fatal "Expected test_log_url_prefix to be set if BUILD_URL is defined"
         fi
         # Produce a URL like
-        # https://jenkins.dev.yugabyte.com/job/yugabyte-with-custom-test-script/47/artifact/build/debug/yb-test-logs/bin__raft_consensus-itest/RaftConsensusITest_TestChurnyElections.log
+        # https://jenkins.dev.ZNbase.com/job/ZNbase-with-custom-test-script/47/artifact/build/debug/yb-test-logs/bin__raft_consensus-itest/RaftConsensusITest_TestChurnyElections.log
         echo "Log URL: $test_log_url_prefix/$rel_test_log_path_prefix.log"
       fi
 
@@ -1732,13 +1732,13 @@ collect_java_tests() {
       # shellcheck disable=SC2030
       export YB_RUN_JAVA_TEST_METHODS_SEPARATELY=1
       set -x
-      # The string "YUGABYTE_JAVA_TEST: " is specified in the Java code as COLLECTED_TESTS_PREFIX.
+      # The string "ZNbase_JAVA_TEST: " is specified in the Java code as COLLECTED_TESTS_PREFIX.
       #
       time mvn "${mvn_opts[@]}" surefire:test \
         2>>"$stderr_log" | \
         tee -a "$stdout_log" | \
-        grep -E '^YUGABYTE_JAVA_TEST: ' | \
-        sed 's/^YUGABYTE_JAVA_TEST: //g' >>"$java_test_list_path"
+        grep -E '^ZNbase_JAVA_TEST: ' | \
+        sed 's/^ZNbase_JAVA_TEST: //g' >>"$java_test_list_path"
     )
     # shellcheck disable=SC2181
     if [[ $? -ne 0 ]]; then
@@ -1843,7 +1843,7 @@ should_run_java_test_methods_separately() {
 # Finds the directory (Maven module) the given Java test belongs to and runs it.
 #
 # Argument: the test to run in the following form:
-# com.yugabyte.jedis.TestReadFromFollowers#testSameZoneOps[0]
+# com.ZNbase.jedis.TestReadFromFollowers#testSameZoneOps[0]
 resolve_and_run_java_test() {
   expect_num_args 1 "$@"
   local java_test_name=$1
@@ -1985,7 +1985,7 @@ run_cmake_unit_tests() {
   local old_dir=$PWD
   cd "$YB_SRC_ROOT"
 
-  ( set -x; cmake -P cmake_modules/YugabyteCMakeUnitTest.cmake )
+  ( set -x; cmake -P cmake_modules/ZNbaseCMakeUnitTest.cmake )
 
   local cmake_files=( CMakeLists.txt )
   local IFS=$'\n'

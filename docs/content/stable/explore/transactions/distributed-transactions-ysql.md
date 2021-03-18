@@ -2,8 +2,8 @@
 title: Distributed Transactions
 headerTitle: Distributed Transactions
 linkTitle: Distributed Transactions
-description: Distributed Transactions in YugabyteDB.
-headcontent: Distributed Transactions in YugabyteDB.
+description: Distributed Transactions in ZNbaseDB.
+headcontent: Distributed Transactions in ZNbaseDB.
 menu:
   stable:
     name: Distributed Transactions
@@ -34,7 +34,7 @@ showAsideToc: true
 
 ## Overview of transaction control
 
-This section explains how a distributed transaction works in YugabyteDB. We will use the example table below to describe the control flow of a simple transaction.
+This section explains how a distributed transaction works in ZNbaseDB. We will use the example table below to describe the control flow of a simple transaction.
 
 ```sql
 CREATE TABLE accounts (
@@ -57,7 +57,7 @@ INSERT INTO accounts VALUES ('Smith', 'checking', 50);
 The table should look as follows:
 
 ```
-yugabyte=# select * from accounts;
+ZNbase=# select * from accounts;
  account_name | account_type | balance
 --------------+--------------+---------
  John         | checking     |     100
@@ -142,7 +142,7 @@ This is shown diagrammatically below.
 After the above transaction succeeds, the table should look as follows.
 
 ```
-yugabyte=# select * from accounts;
+ZNbase=# select * from accounts;
  account_name | account_type | balance
 --------------+--------------+---------
  John         | checking     |     300
@@ -166,7 +166,7 @@ Each update performed as a part of the transaction is replicated across multiple
 [Concurrency control](https://en.wikipedia.org/wiki/Concurrency_control) in databases ensures that multiple transactions can execute concurrently while preserving data integrity. Concurrency control is essential for correctness in environments where two or more transactions can access the same data at the same time. The two primary mechanisms to achieve concurrency control are *optimistic* and *pessimistic*. 
 
 {{< note title="Note" >}}
-YugabyteDB currently supports optimistic concurrency control, with pessimistic concurrency control being worked on actively.
+ZNbaseDB currently supports optimistic concurrency control, with pessimistic concurrency control being worked on actively.
 {{</note >}}
 
 
@@ -175,7 +175,7 @@ YugabyteDB currently supports optimistic concurrency control, with pessimistic c
 You can see the various options supported by transactions by running the `\h BEGIN` statement, as shown below.
 
 ```
-yugabyte=# \h BEGIN
+ZNbase=# \h BEGIN
 Command:     BEGIN
 Description: start a transaction block
 Syntax:
@@ -198,10 +198,10 @@ The `transaction_mode` can be set to one of the following options:
 As an example, trying to do a write operation such as creating a table or inserting a row in a `READ ONLY` transaction would result in an error as shown below.
 
 ```
-yugabyte=# BEGIN READ ONLY;
+ZNbase=# BEGIN READ ONLY;
 BEGIN
 
-yugabyte=# CREATE TABLE example(k INT PRIMARY KEY);
+ZNbase=# CREATE TABLE example(k INT PRIMARY KEY);
 ERROR: 25P02: current transaction is aborted, commands ignored until end of 
               transaction block
 ```

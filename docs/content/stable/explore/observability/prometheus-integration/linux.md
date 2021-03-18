@@ -2,7 +2,7 @@
 title: Prometheus Integration
 headerTitle: Prometheus Integration
 linkTitle: Prometheus Integration 
-description: Learn about exporting YugabyteDB metrics and monitoring the cluster with Prometheus.
+description: Learn about exporting ZNbaseDB metrics and monitoring the cluster with Prometheus.
 menu:
   stable:
     identifier: observability-2-linux
@@ -44,7 +44,7 @@ showAsideToc: true
 -->
 </ul>
 
-You can monitor your local YugabyteDB cluster with a local instance of [Prometheus](https://prometheus.io/), a popular standard for time-series monitoring of cloud native infrastructure. YugabyteDB services and APIs expose metrics in the Prometheus format at the `/prometheus-metrics` endpoint. For details on the metrics targets for YugabyteDB, see [Prometheus monitoring](../../../reference/configuration/default-ports/#prometheus-monitoring).
+You can monitor your local ZNbaseDB cluster with a local instance of [Prometheus](https://prometheus.io/), a popular standard for time-series monitoring of cloud native infrastructure. ZNbaseDB services and APIs expose metrics in the Prometheus format at the `/prometheus-metrics` endpoint. For details on the metrics targets for ZNbaseDB, see [Prometheus monitoring](../../../reference/configuration/default-ports/#prometheus-monitoring).
 
 This tutorial uses the [yb-ctl](../../../admin/yb-ctl) local cluster management utility.
 
@@ -63,18 +63,18 @@ If you have a previously running local universe, destroy it using the following.
 $ ./bin/yb-ctl destroy
 ```
 
-Start a new local YugabyteDB cluster - this will create a three-node universe with a replication factor of `3`.
+Start a new local ZNbaseDB cluster - this will create a three-node universe with a replication factor of `3`.
 
 ```sh
 $ ./bin/yb-ctl create --rf 3
 ```
 
-## 2. Run the YugabyteDB workload generator
+## 2. Run the ZNbaseDB workload generator
 
-Download the [YugabyteDB workload generator](https://github.com/yugabyte/yb-sample-apps) JAR file (`yb-sample-apps.jar`) by running the following command.
+Download the [ZNbaseDB workload generator](https://github.com/ZNbase/yb-sample-apps) JAR file (`yb-sample-apps.jar`) by running the following command.
 
 ```sh
-$ wget https://github.com/yugabyte/yb-sample-apps/releases/download/1.3.1/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
+$ wget https://github.com/ZNbase/yb-sample-apps/releases/download/1.3.1/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
 ```
 
 Run the `CassandraKeyValue` workload application in a separate shell.
@@ -89,7 +89,7 @@ $ java -jar ./yb-sample-apps.jar \
 
 ## 3. Prepare Prometheus configuration file
 
-Copy the following into a file called `yugabytedb.yml`.
+Copy the following into a file called `ZNbasedb.yml`.
 
 ```yaml
 global:
@@ -97,9 +97,9 @@ global:
   evaluation_interval: 5s # Evaluate rules every 5 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
 
-# YugabyteDB configuration to scrape Prometheus time-series metrics
+# ZNbaseDB configuration to scrape Prometheus time-series metrics
 scrape_configs:
-  - job_name: "yugabytedb"
+  - job_name: "ZNbasedb"
     metrics_path: /prometheus-metrics
     relabel_configs:
       - target_label: "node_prefix"
@@ -155,7 +155,7 @@ scrape_configs:
 Go to the directory where Prometheus is installed and start the Prometheus server as below.
 
 ```sh
-$ ./prometheus --config.file=yugabytedb.yml
+$ ./prometheus --config.file=ZNbasedb.yml
 ```
 
 Open the Prometheus UI at http://localhost:9090 and then navigate to the Targets page under Status.
@@ -164,7 +164,7 @@ Open the Prometheus UI at http://localhost:9090 and then navigate to the Targets
 
 ## 5. Analyze key metrics
 
-On the Prometheus Graph UI, you can now plot the read/write throughput and latency for the `CassandraKeyValue` sample app. As you can see from the [source code](https://github.com/yugabyte/yugabyte-db/blob/master/java/yb-loadtester/src/main/java/com/yugabyte/sample/apps/CassandraKeyValue.java) of the app, it uses only SELECT statements for reads and INSERT statements for writes (aside from the initial CREATE TABLE). This means you can measure throughput and latency by simply using the metrics corresponding to the SELECT and INSERT statements.
+On the Prometheus Graph UI, you can now plot the read/write throughput and latency for the `CassandraKeyValue` sample app. As you can see from the [source code](https://github.com/ZNbase/ZNbase-db/blob/master/java/yb-loadtester/src/main/java/com/ZNbase/sample/apps/CassandraKeyValue.java) of the app, it uses only SELECT statements for reads and INSERT statements for writes (aside from the initial CREATE TABLE). This means you can measure throughput and latency by simply using the metrics corresponding to the SELECT and INSERT statements.
 
 Paste the following expressions into the **Expression** box and click **Execute** followed by **Add Graph**.
 
@@ -215,4 +215,4 @@ $ ./bin/yb-ctl destroy
 ```
 
 ## What's next?
-You can [setup Grafana](https://prometheus.io/docs/visualization/grafana/) and import the [YugabyteDB dashboard](https://grafana.com/grafana/dashboards/12620 "YugabyteDB dashboard on grafana.com") for better visualization of the metrics being collected by Prometheus.
+You can [setup Grafana](https://prometheus.io/docs/visualization/grafana/) and import the [ZNbaseDB dashboard](https://grafana.com/grafana/dashboards/12620 "ZNbaseDB dashboard on grafana.com") for better visualization of the metrics being collected by Prometheus.

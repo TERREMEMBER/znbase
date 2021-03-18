@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
@@ -17,8 +17,8 @@ import { KUBERNETES_PROVIDERS, REGION_DICT } from '../../../../config';
 import AddRegionList from './AddRegionList';
 
 const convertStrToCode = (s) => s.trim().toLowerCase().replace(/\s/g, '-');
-const quayImageRegistry = 'quay.io/yugabyte/yugabyte';
-const redhatImageRegistry = 'registry.connect.redhat.com/yugabytedb/yugabyte';
+const quayImageRegistry = 'quay.io/ZNbase/ZNbase';
+const redhatImageRegistry = 'registry.connect.redhat.com/ZNbasedb/ZNbase';
 
 class CreateKubernetesConfiguration extends Component {
   createProviderConfig = (vals, setSubmitting) => {

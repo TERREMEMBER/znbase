@@ -3,7 +3,7 @@ title: ysql_dump - back up a YSQL database
 headerTitle: ysql_dump
 linkTitle: ysql_dump
 description: Back up a specified YSQL database into plain-text, SQL script file.
-headcontent: Extract a YugabyteDB database into a SQL script file.
+headcontent: Extract a ZNbaseDB database into a SQL script file.
 menu:
   stable:
     identifier: ysql-dump
@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-`ysql_dump` is a utility for backing up a YugabyteDB database into a plain-text, SQL script file. `ysql_dump` makes consistent backups, even if the database is being used concurrently. `ysql_dump` does not block other users accessing the database (readers or writers).
+`ysql_dump` is a utility for backing up a ZNbaseDB database into a plain-text, SQL script file. `ysql_dump` makes consistent backups, even if the database is being used concurrently. `ysql_dump` does not block other users accessing the database (readers or writers).
 
 `ysql_dump` only dumps a single database. To backup global objects that are common to all databases in a cluster, such as roles, use [`ysql_dumpall`](../ysql-dumpall).
 
@@ -151,7 +151,7 @@ Specify the compression level to use. Zero (`0`) means no compression. For plain
 
 #### --column-inserts, --attribute-inserts
 
-Dump data as `INSERT` statements with explicit column names (`INSERT INTO table (column, ...) VALUES ...`). This will make restoration very slow; it is mainly useful for making dumps that can be loaded into non-YugabyteDB databases. However, since this option generates a separate statement for each row, an error in reloading a row causes only that row to be lost rather than the entire table contents.
+Dump data as `INSERT` statements with explicit column names (`INSERT INTO table (column, ...) VALUES ...`). This will make restoration very slow; it is mainly useful for making dumps that can be loaded into non-ZNbaseDB databases. However, since this option generates a separate statement for each row, an error in reloading a row causes only that row to be lost rather than the entire table contents.
 
 #### --disable-dollar-quoting
 
@@ -181,7 +181,7 @@ Use conditional statements (that is, add an `IF EXISTS` clause) when cleaning da
 
 #### --inserts
 
-Dump data as `INSERT` statements (rather than `COPY` statements). This will make restoration very slow; it is mainly useful for making dumps that can be loaded into non-YugabyteDB databases. However, since this option generates a separate statement for each row, an error in reloading a row causes only that row to be lost rather than the entire table contents. Note that the restore might fail altogether if you have rearranged column order. The `--column-inserts` option is safe against column order changes, though even slower.
+Dump data as `INSERT` statements (rather than `COPY` statements). This will make restoration very slow; it is mainly useful for making dumps that can be loaded into non-ZNbaseDB databases. However, since this option generates a separate statement for each row, an error in reloading a row causes only that row to be lost rather than the entire table contents. Note that the restore might fail altogether if you have rearranged column order. The `--column-inserts` option is safe against column order changes, though even slower.
 
 #### --lock-wait-timeout=*timeout*
 
@@ -209,7 +209,7 @@ Do not dump the contents of unlogged tables. This option has no effect on whethe
 
 #### --quote-all-identifiers
 
-Force quoting of all identifiers. This option is recommended when dumping a database from a server whose YugabyteDB major version is different from `ysql_dump`, or when the output is intended to be loaded into a server of a different major version. By default, `ysql_dump` quotes only identifiers that are reserved words in its own major version. This sometimes results in compatibility issues when dealing with servers of other versions that may have slightly different sets of reserved words. Using `--quote-all-identifiers` prevents such issues, at the price of a harder-to-read dump script.
+Force quoting of all identifiers. This option is recommended when dumping a database from a server whose ZNbaseDB major version is different from `ysql_dump`, or when the output is intended to be loaded into a server of a different major version. By default, `ysql_dump` quotes only identifiers that are reserved words in its own major version. This sometimes results in compatibility issues when dealing with servers of other versions that may have slightly different sets of reserved words. Using `--quote-all-identifiers` prevents such issues, at the price of a harder-to-read dump script.
 
 #### --section=*sectionname*
 
@@ -249,7 +249,7 @@ The following command line options control the database connection parameters.
 
 Specifies the name of the database to connect to. This is equivalent to specifying `dbname` as the first non-option argument on the command line.
 
-If this parameter contains an equal sign (`=`) or starts with a valid URI prefix (`yugabytedb://`), it is treated as a `conninfo` string.
+If this parameter contains an equal sign (`=`) or starts with a valid URI prefix (`ZNbasedb://`), it is treated as a `conninfo` string.
 
 #### -h *host*, --host=*host*
 
@@ -279,7 +279,7 @@ Specifies a role name to be used to create the dump. This option causes `ysql_du
 
 ## Environment
 
-The following PostgreSQL environment variables, referenced in some `ysql_dump` options, are used by YugabyteDB for PostgreSQL compatibility:
+The following PostgreSQL environment variables, referenced in some `ysql_dump` options, are used by ZNbaseDB for PostgreSQL compatibility:
 
 - `PGHOST`
 - `PGPORT`
@@ -298,7 +298,7 @@ The database activity of `ysql_dump` is normally collected by the statistics col
 
 ## Notes
 
-If your YugabyteDB cluster has any local additions to the `template1` database, be careful to restore the output of `ysql_dump` into a truly empty database; otherwise you are likely to get errors due to duplicate definitions of the added objects. To make an empty database without any local additions, copy from `template0` not `template1`, for example:
+If your ZNbaseDB cluster has any local additions to the `template1` database, be careful to restore the output of `ysql_dump` into a truly empty database; otherwise you are likely to get errors due to duplicate definitions of the added objects. To make an empty database without any local additions, copy from `template0` not `template1`, for example:
 
 ```plpgsql
 CREATE DATABASE foo WITH TEMPLATE template0;
@@ -308,7 +308,7 @@ When a data-only dump is chosen and the option [`--disable-triggers`](#disable-t
 
 The dump file produced by `ysql_dump` does not contain the statistics used by the optimizer to make query planning decisions. Therefore, running `ANALYZE` after restoring from a dump file can ensure optimal performance.
 
-Because `ysql_dump` is used to transfer data to newer versions of YugabyteDB, the output of `ysql_dump` can be expected to load into YugabyteDB versions newer than the `ysql_dump` version. `ysql_dump` can also dump from YugabyteDB servers older than its own version. However, `ysql_dump` cannot dump from YugabyteDB servers newer than its own major version; it will refuse to even try, rather than risk making an invalid dump. Also, it is not guaranteed that the `ysql_dump` output can be loaded into a server of an older major version — not even if the dump was taken from a server of that version. Loading a dump file into an older server may require manual editing of the dump file to remove syntax not understood by the older server. Use of the [`--quote-all-identifiers`](#quote-all-identifiers) option is recommended in cross-version cases, as it can prevent problems arising from varying reserved-word lists in different YugabyteDB versions.
+Because `ysql_dump` is used to transfer data to newer versions of ZNbaseDB, the output of `ysql_dump` can be expected to load into ZNbaseDB versions newer than the `ysql_dump` version. `ysql_dump` can also dump from ZNbaseDB servers older than its own version. However, `ysql_dump` cannot dump from ZNbaseDB servers newer than its own major version; it will refuse to even try, rather than risk making an invalid dump. Also, it is not guaranteed that the `ysql_dump` output can be loaded into a server of an older major version — not even if the dump was taken from a server of that version. Loading a dump file into an older server may require manual editing of the dump file to remove syntax not understood by the older server. Use of the [`--quote-all-identifiers`](#quote-all-identifiers) option is recommended in cross-version cases, as it can prevent problems arising from varying reserved-word lists in different ZNbaseDB versions.
 
 ## Examples
 

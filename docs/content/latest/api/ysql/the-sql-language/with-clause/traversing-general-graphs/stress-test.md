@@ -269,7 +269,7 @@ from edges;
 call find_paths(start_node => 'n001', prune => false);
 ```
 
-Even if you did create a single-node YugabyteDB cluster so that it used your 1 TB SSD for its data files, you doubtless wouldn't have the capacity for the paths for even a 14-node maximally connected graph because the hypothetical dedicated highly compressive path representation scheme isn't in use. This can only mean that the _"find_paths()"_ execution would crash for some run with fewer nodes than 14.
+Even if you did create a single-node ZNbaseDB cluster so that it used your 1 TB SSD for its data files, you doubtless wouldn't have the capacity for the paths for even a 14-node maximally connected graph because the hypothetical dedicated highly compressive path representation scheme isn't in use. This can only mean that the _"find_paths()"_ execution would crash for some run with fewer nodes than 14.
 
 ## The stress test experiment
 
@@ -277,7 +277,7 @@ The thought experiment, above, was described to show that the _"find_paths()"_ s
 
 Before doing the stress-test experiment, make sure that you have created the _"edges"_ table (see [`cr-edges.sql`](../graph-representation/#cr-edges-sql)) and installed all the code shown in the section [Common code for traversing all kinds of graph](../common-code/). But this time, make sure that you start by choosing the option that re-creates the _"raw_paths"_ table without the tracing code before you do some timing tests.)
 
-**Note:** The stress-test is implemented by a few scripts where all but one call other script(s). In order to run the whole test, you should create a directory on your computer and, when told to, save each script there with the name that's given. The [downloadable code zip](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/recursive-cte-code-examples/recursive-cte-code-examples.zip) arranges all of the scripts it includes in a directory tree that implements a useful classification scheme. This means that, in the files from the zip, the arguments of the `\i`, `\ir`, and `\o` metacommands are spelled differently than they are here to include directory names.
+**Note:** The stress-test is implemented by a few scripts where all but one call other script(s). In order to run the whole test, you should create a directory on your computer and, when told to, save each script there with the name that's given. The [downloadable code zip](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/recursive-cte-code-examples/recursive-cte-code-examples.zip) arranges all of the scripts it includes in a directory tree that implements a useful classification scheme. This means that, in the files from the zip, the arguments of the `\i`, `\ir`, and `\o` metacommands are spelled differently than they are here to include directory names.
 
 ### Create some helpers
 
@@ -468,7 +468,7 @@ The experiment also shows that the _"prune-true"_ approach is viable and quick e
 
 This leads to two conclusions:
 
-- It simply isn't feasible to use the native recursive CTE features of YugabyteDB, those of PostgreSQL, or indeed those of _any_ SQL database, to discover _all_ the paths in any typically highly connected graph that's likely to be interesting in practice—especially, for example, the IMDb data.
+- It simply isn't feasible to use the native recursive CTE features of ZNbaseDB, those of PostgreSQL, or indeed those of _any_ SQL database, to discover _all_ the paths in any typically highly connected graph that's likely to be interesting in practice—especially, for example, the IMDb data.
 
 - It _is_ straightforward to use ordinary SQL and stored procedure features to discover the _shortest_ paths in even very large and highly connected graphs. As noted, you cannot use the recursive CTE for this purpose because it doesn't let you implement early pruning. Rather, you must use a table-based approach that implements the recursive CTE's algorithm explicitly by hand.
 

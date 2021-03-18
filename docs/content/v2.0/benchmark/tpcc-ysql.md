@@ -2,7 +2,7 @@
 title: TPC-C
 linkTitle: TPC-C
 description: TPC-C
-headcontent: Benchmark YugabyteDB using TPC-C
+headcontent: Benchmark ZNbaseDB using TPC-C
 block_indexing: true
 menu:
   v2.0:
@@ -24,7 +24,7 @@ isTocNested: true
 
 </ul>
 
-Follow the steps below to to run TPC-C benchmarks against YugabyteDB for YSQL. [TPC-C](http://www.tpc.org/tpcc/) is a popular online transaction processing benchmark that provides metrics you can use to evaluate the performance of YugabyteDB for concurrent transactions of different types and complexity that are either either executed online or queued for deferred execution.
+Follow the steps below to to run TPC-C benchmarks against ZNbaseDB for YSQL. [TPC-C](http://www.tpc.org/tpcc/) is a popular online transaction processing benchmark that provides metrics you can use to evaluate the performance of ZNbaseDB for concurrent transactions of different types and complexity that are either either executed online or queued for deferred execution.
 
 ## Step 1. Download the TPC-C binaries
 
@@ -32,7 +32,7 @@ To download the TPC-C binaries, run the following commands.
 
 ```sh
 $ cd $HOME
-$ wget https://github.com/yugabyte/tpcc/releases/download/1.0/tpcc.tar.gz
+$ wget https://github.com/ZNbase/tpcc/releases/download/1.0/tpcc.tar.gz
 $ tar -zxvf tpcc.tar.gz
 $ cd tpcc
 ```
@@ -49,8 +49,8 @@ Set the following connection configurations in the workload configuration file (
 <!-- Connection details -->
 <dbtype>postgres</dbtype>
 <driver>org.postgresql.Driver</driver>
-<DBUrl>jdbc:postgresql://<ip>:5433/yugabyte</DBUrl>
-<username>yugabyte</username>
+<DBUrl>jdbc:postgresql://<ip>:5433/ZNbase</DBUrl>
+<username>ZNbase</username>
 <password></password>
 <isolation>TRANSACTION_REPEATABLE_READ</isolation>
 ```

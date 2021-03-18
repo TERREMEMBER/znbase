@@ -1,12 +1,12 @@
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 
 docker-us-west-1:
   name: US West
   latitude: 36.778261
   longitude: -119.417932
-  ybImage: quay.io/yugabyte/base-image
+  ybImage: quay.io/ZNbase/base-image
 docker-us-east-1:
   name: US East
   latitude: 37.478397
   longitude: -76.453077
-  ybImage: quay.io/yugabyte/base-image
+  ybImage: quay.io/ZNbase/base-image

@@ -2,9 +2,9 @@
 title: Architecture
 headerTitle: Architecture
 linkTitle: Architecture
-description: Learn about the YugabyteDB architecture, including query, transactions, sharding, replication, and storage layers.
+description: Learn about the ZNbaseDB architecture, including query, transactions, sharding, replication, and storage layers.
 image: /images/section_icons/index/architecture.png
-headcontent: YugabyteDB architecture including the query, transactions, sharding, replication, and storage layers.
+headcontent: ZNbaseDB architecture including the query, transactions, sharding, replication, and storage layers.
 section: REFERENCE
 menu:
   latest:
@@ -21,7 +21,7 @@ menu:
         <div class="title">Design Goals</div>
       </div>git 
       <div class="body">
-          The design goals around which YugabyteDB is built.
+          The design goals around which ZNbaseDB is built.
       </div>
     </a>
   </div>
@@ -34,7 +34,7 @@ menu:
         <div class="title">Key concepts</div>
       </div>
       <div class="body">
-        Key concepts you need to know to understand the YugabyteDB architecture and the components and processes that make up a YugabyteDB cluster.
+        Key concepts you need to know to understand the ZNbaseDB architecture and the components and processes that make up a ZNbaseDB cluster.
       </div>
     </a>
   </div>
@@ -59,7 +59,7 @@ menu:
         <div class="title">Layered architecture</div>
       </div>
       <div class="body">
-          A high level overview of the YugabyteDB architecture.
+          A high level overview of the ZNbaseDB architecture.
       </div>
     </a>
   </div>
@@ -72,7 +72,7 @@ menu:
         <div class="title">Query layer</div>
       </div>
       <div class="body">
-          Learn about the Yugabyte Query Layer (YQL).
+          Learn about the ZNbase Query Layer (YQL).
       </div>
     </a>
   </div>

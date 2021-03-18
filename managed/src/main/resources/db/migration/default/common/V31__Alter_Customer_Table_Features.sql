@@ -1,2 +1,2 @@
--- Copyright (c) YugaByte, Inc.
+-- Copyright (c) ZNbase, Inc.
 alter table customer add column features json;

@@ -2,7 +2,7 @@
 title: Hash & range sharding
 headerTitle: Hash & range sharding
 linkTitle: Hash & range sharding
-description: Learn how YugabyteDB uses hash and range sharding for horizontal scaling.
+description: Learn how ZNbaseDB uses hash and range sharding for horizontal scaling.
 block_indexing: true
 menu:
   v2.2:
@@ -24,7 +24,7 @@ User tables are implicitly managed as multiple shards by DocDB. These shards are
 For every given key, there is exactly one tablet that owns it.
 {{< /note >}}
 
-YugabyteDB currently supports two ways of sharding data - hash (aka consistent hash) sharding and range sharding.
+ZNbaseDB currently supports two ways of sharding data - hash (aka consistent hash) sharding and range sharding.
 
 ## Hash sharding
 
@@ -32,7 +32,7 @@ With (consistent) hash sharding, data is evenly and randomly distributed across 
 
 ![tablet_hash_1](/images/architecture/tablet_hash_1.png)
 
-The hash space for hash-sharded YugabyteDB tables is the 2-byte range from 0x0000 to 0xFFFF. Such
+The hash space for hash-sharded ZNbaseDB tables is the 2-byte range from 0x0000 to 0xFFFF. Such
 a table may therefore have at most 64K tablets. We expect this to be sufficient in practice even for
 very large data sets or cluster sizes. As an example, for a table with 16 tablets the overall hash space [0x0000 to 0xFFFF) is divided into 16 sub-ranges, one for each tablet:  [0x0000, 0x1000), [0x1000, 0x2000), … , [0xF000, 0xFFFF]. Read and write operations are processed by converting the primary key into an internal key and its hash value, and determining what tablet the operation should be routed to. The figure below illustrates this.
 
@@ -76,7 +76,7 @@ CREATE TABLE items (
 ```
 
 ### Pros
-This sharding strategy is ideal for massively scalable workloads because it distributes data evenly across all the nodes in the cluster, while retaining ease of adding nodes into the cluster. [Algorithmic hash sharding](https://blog.yugabyte.com/four-data-sharding-strategies-we-analyzed-in-building-a-distributed-sql-database/) is very effective also at distributing data across nodes, but the distribution strategy depends on the number of nodes. With consistent hash sharding, there are many more shards than the number of nodes and there is an explicit mapping table maintained tracking the assignment of shards to nodes. When adding new nodes, a subset of shards from existing nodes can be efficiently moved into the new nodes without requiring a massive data reassignment.
+This sharding strategy is ideal for massively scalable workloads because it distributes data evenly across all the nodes in the cluster, while retaining ease of adding nodes into the cluster. [Algorithmic hash sharding](https://blog.ZNbase.com/four-data-sharding-strategies-we-analyzed-in-building-a-distributed-sql-database/) is very effective also at distributing data across nodes, but the distribution strategy depends on the number of nodes. With consistent hash sharding, there are many more shards than the number of nodes and there is an explicit mapping table maintained tracking the assignment of shards to nodes. When adding new nodes, a subset of shards from existing nodes can be efficiently moved into the new nodes without requiring a massive data reassignment.
 
 ### Cons
 Performing range queries could be inefficient. Examples of range queries are finding rows greater than a lower bound or less than an upper bound (as opposed to point lookups).
@@ -120,10 +120,10 @@ Secondly, globally ordering keys across all the shards often generates hot spots
 
 Following blogs highlight additional details related to sharding.
 
-- [How Data Sharding Works in a Distributed SQL Database](https://blog.yugabyte.com/how-data-sharding-works-in-a-distributed-sql-database/)
+- [How Data Sharding Works in a Distributed SQL Database](https://blog.ZNbase.com/how-data-sharding-works-in-a-distributed-sql-database/)
 
-- [Four Data Sharding Strategies We Analyzed in Building a Distributed SQL Database](https://blog.yugabyte.com/four-data-sharding-strategies-we-analyzed-in-building-a-distributed-sql-database/)
+- [Four Data Sharding Strategies We Analyzed in Building a Distributed SQL Database](https://blog.ZNbase.com/four-data-sharding-strategies-we-analyzed-in-building-a-distributed-sql-database/)
 
-- [Overcoming MongoDB Sharding and Replication Limitations with YugabyteDB](https://blog.yugabyte.com/overcoming-mongodb-sharding-and-replication-limitations-with-yugabyte-db/)
+- [Overcoming MongoDB Sharding and Replication Limitations with ZNbaseDB](https://blog.ZNbase.com/overcoming-mongodb-sharding-and-replication-limitations-with-ZNbase-db/)
 
 

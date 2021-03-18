@@ -2,9 +2,9 @@
 title: API reference (for YSQL and YCQL)
 headerTitle: APIs
 linkTitle: APIs
-description: YugabyteDB API reference for PostgreSQL-compatible YSQL and Cassandra-compatible YCQL
+description: ZNbaseDB API reference for PostgreSQL-compatible YSQL and Cassandra-compatible YCQL
 image: /images/section_icons/index/api.png
-headcontent: YugabyteDB API reference
+headcontent: ZNbaseDB API reference
 section: REFERENCE
 menu:
   stable:
@@ -21,7 +21,7 @@ menu:
         <div class="title">YSQL</div>
       </div>
       <div class="body">
-        API reference for Yugabyte Structured Query Language (YSQL).
+        API reference for ZNbase Structured Query Language (YSQL).
       </div>
     </a>
   </div>
@@ -33,7 +33,7 @@ menu:
         <div class="title">YCQL</div>
       </div>
       <div class="body">
-        API reference for Yugabyte Cloud Query Language (YCQL).
+        API reference for ZNbase Cloud Query Language (YCQL).
       </div>
     </a>
   </div>

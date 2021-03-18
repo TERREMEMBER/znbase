@@ -13,9 +13,9 @@ isTocNested: true
 showAsideToc: true
 ---
 
-## 1. Are YugabyteDB processes running?
+## 1. Are ZNbaseDB processes running?
 
-First, ensure that the expected YugabyteDB processes on the current node.
+First, ensure that the expected ZNbaseDB processes on the current node.
 At a minimum, the tserver process needs to be running to be able to connect to this node with a YCQL client or application.
 Additionally, depending on the setup, you might expect a master process to also be running on this node.
 Follow the instructions on the [Check Processes](../../nodes/check-processes/) page.
@@ -53,14 +53,14 @@ Otherwise, if no process is listening but the YB-TServer is running, check the v
 
 ## 3. Can ycqlsh connect locally?
 
-Once on the machine where YugabyteDB is running, use `ycqlsh` to connect to the local YugabyteDB instance.
-Depending on your installation, you may need to install `ycqlsh`, otherwise you can find it in the YugabyteDB `bin` directory.
+Once on the machine where ZNbaseDB is running, use `ycqlsh` to connect to the local ZNbaseDB instance.
+Depending on your installation, you may need to install `ycqlsh`, otherwise you can find it in the ZNbaseDB `bin` directory.
 Try running:
 
 ```sh
 $ ycqlsh <yb-local-address>
 ```
 
-where `<yb-local-address>` is the address where the YugabyteDB YCQL server is listening (for example, as returned by `lsof`). For instance, in the example above, it is `localhost` (or, additionally, `127.0.0.2` and `127.0.0.3` for the `yb-ctl` case).
+where `<yb-local-address>` is the address where the ZNbaseDB YCQL server is listening (for example, as returned by `lsof`). For instance, in the example above, it is `localhost` (or, additionally, `127.0.0.2` and `127.0.0.3` for the `yb-ctl` case).
 
-If `ycqlsh` can connect, the issue is likely a network issue with the original client not being able to access this node where YugabyteDB is running. See also [Are Master or TServer endpoints accessible?](../../nodes/check-processes#cannot-access-master-or-tserver-endpoints).
+If `ycqlsh` can connect, the issue is likely a network issue with the original client not being able to access this node where ZNbaseDB is running. See also [Are Master or TServer endpoints accessible?](../../nodes/check-processes#cannot-access-master-or-tserver-endpoints).

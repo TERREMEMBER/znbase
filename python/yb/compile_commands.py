@@ -1,4 +1,4 @@
-# Copyright (c) Yugabyte, Inc.
+# Copyright (c) ZNbase, Inc.
 
 import os
 import sys
@@ -7,7 +7,7 @@ import json
 import re
 import subprocess
 
-from yugabyte_pycommon import WorkDirContext
+from ZNbase_pycommon import WorkDirContext
 
 from yb.common_util import (
     YB_SRC_ROOT,
@@ -22,7 +22,7 @@ from yb.common_util import (
 # to work with original files (in src/postgres) so that clangd can use them.
 
 # The "combined compilation commands" file contains all compilation commands for C++ code and
-# PostgreSQL C code. This is the file that is symlinked in the YugabyteDB source root directory and
+# PostgreSQL C code. This is the file that is symlinked in the ZNbaseDB source root directory and
 # used with Clangd. These commands are post-processed.
 COMBINED_POSTPROCESSED_COMPILE_COMMANDS_FILE_NAME = 'combined_compile_commands.json'
 

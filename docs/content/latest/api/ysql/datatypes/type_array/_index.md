@@ -95,7 +95,7 @@ Notice that it appears, optionally, to let you specify how many values each dime
 
 The possibility that that different rows in the same table column can hold array values of different dimensionality is explained by picturing the implementation. Array values are held, in an opaque internal representation, as a linear "ribbon" of suitably delimited values of the array's data type. The array's actual dimensionality, and the upper and lower bound of the index along each dimension, is suitably represented in a header. This information is used, in a trivial arithmetic formula, to translate an address specification like `arr[13][7][5][17]` into the position of the value, as a single integer, along the ribbon of values. Understanding this explains why, except for the special case of a one-dimensional array, the dimensionality and the bounds of an array value are fixed at creation time. It also explains why a few of the array functions are supported only for one-dimensional arrays.
 
-Yugabyte recommends that, for uniformity, you choose to declare arrays only with this syntax:
+ZNbase recommends that, for uniformity, you choose to declare arrays only with this syntax:
 
 ```
 create table t2(
@@ -359,7 +359,7 @@ create table laps(
     references trips(trip_start_ts, userid)
     match full on delete cascade on update restrict);
 ```
-**Note:** In PostgreSQL, the maximum number of values that an array of any dimensionality can hold is `(2^27 - 1)` (about 137 million). If you exceed this limit, then you get a clear _"54000: array size exceeds the maximum allowed (134217727)"_ error. This maps to the PL/pgSQL exception _"program_limit_exceeded"_. In PostgreSQL, array values are stored out of line. However, in the YugabyteDB YSQL subsystem, they are stored in line, just like, for example, a `json` or `jsonb` value. As a consequence, the maximum number of values that a YSQL array can accommodate is smaller than the PostgreSQL limit. Moreover, the actual YSQL limit depends on circumstances—and when it's exceeded you get a "time out" error. Experiment shows that the limit is about 30 million values. You can test this for yourself using [`array_fill()`](./functions-operators/array-fill/)) function.
+**Note:** In PostgreSQL, the maximum number of values that an array of any dimensionality can hold is `(2^27 - 1)` (about 137 million). If you exceed this limit, then you get a clear _"54000: array size exceeds the maximum allowed (134217727)"_ error. This maps to the PL/pgSQL exception _"program_limit_exceeded"_. In PostgreSQL, array values are stored out of line. However, in the ZNbaseDB YSQL subsystem, they are stored in line, just like, for example, a `json` or `jsonb` value. As a consequence, the maximum number of values that a YSQL array can accommodate is smaller than the PostgreSQL limit. Moreover, the actual YSQL limit depends on circumstances—and when it's exceeded you get a "time out" error. Experiment shows that the limit is about 30 million values. You can test this for yourself using [`array_fill()`](./functions-operators/array-fill/)) function.
 
 With about 100,000 GPS data points, a 300 km trip is easily accommodated.
 

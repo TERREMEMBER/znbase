@@ -1,8 +1,8 @@
 ---
-title: ycqlsh - YCQL shell for YugabyteDB
+title: ycqlsh - YCQL shell for ZNbaseDB
 headerTitle: ycqlsh
 linkTitle: ycqlsh
-description: Use the YCQL shell (ycqlsh) to interact with YugabyteDB.
+description: Use the YCQL shell (ycqlsh) to interact with ZNbaseDB.
 block_indexing: true
 menu:
   v2.2:
@@ -15,7 +15,7 @@ showAsideToc: true
 
 ## Overview
 
-The YCQL shell (`ycqlsh`) provides a CLI for interacting with YugabyteDB using [YCQL](../../api/ycql/).
+The YCQL shell (`ycqlsh`) provides a CLI for interacting with ZNbaseDB using [YCQL](../../api/ycql/).
 
 {{< note title="Note" >}}
 
@@ -25,7 +25,7 @@ Previously named `cqlsh`, the YCQL shell is now named `ycqlsh`. Although the `cq
 
 ## Download
 
-The YCQL shell (`ycqlsh`) is installed as part of YugabyteDB and is located in the `bin` directory of YugabyteDB home. It is also available for download and install from YugabyteDB's [GitHub repository](https://github.com/yugabyte/cqlsh/releases).
+The YCQL shell (`ycqlsh`) is installed as part of ZNbaseDB and is located in the `bin` directory of ZNbaseDB home. It is also available for download and install from ZNbaseDB's [GitHub repository](https://github.com/ZNbase/cqlsh/releases).
 
 ## Example
 
@@ -57,9 +57,9 @@ Where
 | `--color`           | `-C`       |         | Force color output                                           |
 | `--no-color`        |            |         | Disable color output                                         |
 | `--browser`         |            |         | Specify the browser to use for displaying `ycqlsh` help. This can be one of the [supported browser names](https://docs.python.org/2/library/webbrowser.html) (e.g. firefox) or a browser path followed by `%s` (e.g. `/usr/bin/google-chrome-stable %s`). |
-| `--ssl`             |            |         | Use SSL when connecting to YugabyteDB                       |
-| `--user`            | `-u`       |         | Username to authenticate against YugabyteDB with            |
-| `--password`        | `-p`       |         | Password to authenticate against YugabyteDB with, should be used in conjunction with `--user` |
+| `--ssl`             |            |         | Use SSL when connecting to ZNbaseDB                       |
+| `--user`            | `-u`       |         | Username to authenticate against ZNbaseDB with            |
+| `--password`        | `-p`       |         | Password to authenticate against ZNbaseDB with, should be used in conjunction with `--user` |
 | `--keyspace`        | `-k`       |         | Keyspace to authenticate to, should be used in conjunction with `--user` |
 | `--file`            | `-f`       |         | Execute commands from the given file, then exit              |
 | `--debug`           |            |         | Print additional debugging information                       |
@@ -124,7 +124,7 @@ SOURCE '<file>'
 Example usage:
 
 ```sql
-ycqlsh> SOURCE '/home/yugabyte/commands.cql'
+ycqlsh> SOURCE '/home/ZNbase/commands.cql'
 
 ```
 
@@ -180,7 +180,7 @@ To inspect the current expand setting, use `EXPAND` with no arguments.
 
 ### LOGIN
 
-Authenticate as a specified YugabyteDB user for the current session.
+Authenticate as a specified ZNbaseDB user for the current session.
 
 ```sql
 LOGIN <username> [<password>]

@@ -1,8 +1,8 @@
 ---
-title: Enable encryption at rest in YugabyteDB clusters
+title: Enable encryption at rest in ZNbaseDB clusters
 headerTitle: Encryption at rest
 linkTitle: Encryption at rest
-description: Enable encryption at rest in a YugabyteDB cluster with a user-generated key.
+description: Enable encryption at rest in a ZNbaseDB cluster with a user-generated key.
 headcontent: Enable encryption at rest with a user-generated key
 image: /images/section_icons/secure/prepare-nodes.png
 block_indexing: true
@@ -15,7 +15,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This page describes how to enable and disable encryption at rest in a YugabyteDB cluster with a
+This page describes how to enable and disable encryption at rest in a ZNbaseDB cluster with a
 user-generated key.
 
 ## Enabling encryption

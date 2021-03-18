@@ -12,11 +12,11 @@ isTocNested: true
 showAsideToc: true
 ---
 
-In this tutorial, we are first going to setup [JanusGraph](https://janusgraph.org/) to work with YugabyteDB as the underlying database. Then, using the Gremlin console, we are going to load some data and run some graph commands.
+In this tutorial, we are first going to setup [JanusGraph](https://janusgraph.org/) to work with ZNbaseDB as the underlying database. Then, using the Gremlin console, we are going to load some data and run some graph commands.
 
 ## 1. Start local cluster
 
-Start a cluster on your [local machine](../../../quick-start/install/). Check that you are able to connect to YugabyteDB using `cqlsh` by doing the following.
+Start a cluster on your [local machine](../../../quick-start/install/). Check that you are able to connect to ZNbaseDB using `cqlsh` by doing the following.
 
 ```sh
 $ cqlsh
@@ -43,7 +43,7 @@ $ unzip janusgraph-0.2.0-hadoop2.zip
 $ cd janusgraph-0.2.0-hadoop2
 ```
 
-## 3. Run JanusGraph with YugabyteDB
+## 3. Run JanusGraph with ZNbaseDB
 
 - Start the Gremlin console by running `./bin/gremlin.sh`. You should see something like the following.
 
@@ -61,16 +61,16 @@ plugin activated: tinkerpop.tinkergraph
 gremlin>
 ```
 
-- Now use the CQL config to initialize JanusGraph to talk to Yugabyte.
+- Now use the CQL config to initialize JanusGraph to talk to ZNbase.
 
 ```sql
 gremlin> graph = JanusGraphFactory.open('conf/janusgraph-cql.properties')
 ==>standardjanusgraph[cql:[127.0.0.1]]
 ```
 
-- Open the YugabyteDB UI to verify that the `janusgraph` keyspace and the necessary tables were created by opening the following URL in a web browser: `http://localhost:7000/` (replace `localhost` with the ip address of any master node in a remote depoyment). You should see the following.
+- Open the ZNbaseDB UI to verify that the `janusgraph` keyspace and the necessary tables were created by opening the following URL in a web browser: `http://localhost:7000/` (replace `localhost` with the ip address of any master node in a remote depoyment). You should see the following.
 
-![List of keyspaces and tables when running JanusGraph on YugabyteDB](/images/develop/ecosystem-integrations/janusgraph/yb-janusgraph-tables.png)
+![List of keyspaces and tables when running JanusGraph on ZNbaseDB](/images/develop/ecosystem-integrations/janusgraph/yb-janusgraph-tables.png)
 
 ## 4. Load sample data
 

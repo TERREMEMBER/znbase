@@ -1,6 +1,6 @@
 ---
 title: Deploy
-headerTitle: Deploy YugabyteDB
+headerTitle: Deploy ZNbaseDB
 linkTitle: Deploy
 description: Deploy to any public cloud or private data center of your choice.
 headcontent: Deploy to any public cloud or private data center of your choice.
@@ -8,7 +8,7 @@ image: /images/section_icons/index/deploy.png
 aliases:
   - /deploy/
   - /latest/deploy/
-section: YUGABYTEDB CORE
+section: ZNbaseDB CORE
 menu:
   latest:
     identifier: deploy
@@ -23,7 +23,7 @@ menu:
         <div class="title">Checklist</div>
       </div>
       <div class="body">
-          Review system requirements, configuration details, and other important details when deploying YugabyteDB to production.
+          Review system requirements, configuration details, and other important details when deploying ZNbaseDB to production.
       </div>
     </a>
   </div>
@@ -35,7 +35,7 @@ menu:
         <div class="title">Manual deployment</div>
       </div>
       <div class="body">
-          Deploy YugabyteDB manually in a private data center using basic administration commands.
+          Deploy ZNbaseDB manually in a private data center using basic administration commands.
       </div>
     </a>
   </div>
@@ -48,7 +48,7 @@ menu:
         <div class="title">Public clouds</div>
       </div>
       <div class="body">
-        Automate and manually deploy YugabyteDB on public clouds.
+        Automate and manually deploy ZNbaseDB on public clouds.
       </div>
     </a>
   </div>
@@ -61,7 +61,7 @@ menu:
         <div class="title">Kubernetes</div>
       </div>
       <div class="body">
-        Orchestrated deployment of YugabyteDB using open source as well as managed Kubernetes services.
+        Orchestrated deployment of ZNbaseDB using open source as well as managed Kubernetes services.
       </div>
     </a>
   </div>
@@ -76,7 +76,7 @@ menu:
         <div class="title">Docker</div>
       </div>
       <div class="body">
-        Orchestrated deployment of YugabyteDB in Docker Swarm and Docker Compose.
+        Orchestrated deployment of ZNbaseDB in Docker Swarm and Docker Compose.
       </div>
     </a>
   </div>

@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -14,8 +14,8 @@ package org.yb.loadtest;
 
 import com.datastax.oss.driver.api.core.cql.Row;
 import com.datastax.oss.driver.api.core.CqlSession;
-import com.yugabyte.sample.apps.CassandraSparkKeyValueCopy;
-import com.yugabyte.sample.common.CmdLineOpts;
+import com.ZNbase.sample.apps.CassandraSparkKeyValueCopy;
+import com.ZNbase.sample.common.CmdLineOpts;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.yb.util.YBTestRunnerNonTsanOnly;
@@ -23,9 +23,9 @@ import org.yb.minicluster.BaseMiniClusterTest;
 import org.yb.minicluster.IOMetrics;
 import org.yb.minicluster.MiniYBClusterBuilder;
 import org.yb.minicluster.MiniYBDaemon;
-import com.yugabyte.oss.driver.api.core.DefaultPartitionMetadata;
-import com.yugabyte.oss.driver.api.core.TableSplitMetadata;
-import com.yugabyte.sample.apps.CassandraSparkWordCount;
+import com.ZNbase.oss.driver.api.core.DefaultPartitionMetadata;
+import com.ZNbase.oss.driver.api.core.TableSplitMetadata;
+import com.ZNbase.sample.apps.CassandraSparkWordCount;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

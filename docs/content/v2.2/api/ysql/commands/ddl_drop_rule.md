@@ -51,11 +51,11 @@ See the semantics of each option in the [PostgreSQL docs][postgresql-docs-drop-r
 Basic example.
 
 ```plpgsql
-yugabyte=# CREATE TABLE t1(a int4, b int4);
-yugabyte=# CREATE TABLE t2(a int4, b int4);
-yugabyte=# CREATE RULE t1_to_t2 AS ON INSERT TO t1 DO INSTEAD
+ZNbase=# CREATE TABLE t1(a int4, b int4);
+ZNbase=# CREATE TABLE t2(a int4, b int4);
+ZNbase=# CREATE RULE t1_to_t2 AS ON INSERT TO t1 DO INSTEAD
              INSERT INTO t2 VALUES (new.a, new.b);
-yugabyte=# DROP RULE t1_to_t2 ON t1;
+ZNbase=# DROP RULE t1_to_t2 ON t1;
 ```
 
 ## See also

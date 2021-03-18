@@ -1,7 +1,7 @@
 ## 1. Create a 1 node cluster with replication factor 1
 
 ```sh
-$ kubectl apply -f yugabyte-statefulset-rf-1.yaml
+$ kubectl apply -f ZNbase-statefulset-rf-1.yaml
 ```
   
 ```
@@ -16,7 +16,7 @@ By default, the above command will create a 1 node cluster with Replication Fact
 
 ## 2. Check cluster status
 
-Run the command below to see that we now have two services with 1 pods each - 1 `yb-master` pod (yb-master-1) and 1 `yb-tserver` pods (yb-tserver-1) running. Roles played by these pods in a YugabyteDB cluster (aka Universe) is explained in detail [here](../../architecture/concepts/universe/).
+Run the command below to see that we now have two services with 1 pods each - 1 `yb-master` pod (yb-master-1) and 1 `yb-tserver` pods (yb-tserver-1) running. Roles played by these pods in a ZNbaseDB cluster (aka Universe) is explained in detail [here](../../architecture/concepts/universe/).
 
 ```sh
 $ kubectl get pods
@@ -45,10 +45,10 @@ yb-tserver-0   1/1       Running   0          12s
 ## 3. Initialize the YSQL API
 
 ```sh
-$ kubectl exec -it yb-master-0 bash --  -c "YB_ENABLED_IN_POSTGRES=1 FLAGS_pggate_master_addresses=yb-master-0.yb-masters.default.svc.cluster.local:7100 /home/yugabyte/postgres/bin/initdb -D /tmp/yb_pg_initdb_tmp_data_dir -U postgres"
+$ kubectl exec -it yb-master-0 bash --  -c "YB_ENABLED_IN_POSTGRES=1 FLAGS_pggate_master_addresses=yb-master-0.yb-masters.default.svc.cluster.local:7100 /home/ZNbase/postgres/bin/initdb -D /tmp/yb_pg_initdb_tmp_data_dir -U postgres"
 ```
 
-Clients can now connect to this YugabyteDB universe using YSQL and YCQL APIs on the 5433 and 9042 ports respectively.
+Clients can now connect to this ZNbaseDB universe using YSQL and YCQL APIs on the 5433 and 9042 ports respectively.
 
 ## 4. Check cluster status via Kubernetes
 
@@ -82,7 +82,7 @@ Now, you can view the [yb-master-0 Admin UI](../../admin/yb-master/#admin-ui) is
 
 ### 5.1 Overview and master status
 
-The yb-master-0 home page shows that we have a cluster (aka a Universe) with `Replication Factor` of 1 and `Num Nodes (TServers)` as 1. The `Num User Tables` is 0 since there are no user tables created yet. YugabyteDB version is also shown for your reference.
+The yb-master-0 home page shows that we have a cluster (aka a Universe) with `Replication Factor` of 1 and `Num Nodes (TServers)` as 1. The `Num User Tables` is 0 since there are no user tables created yet. ZNbaseDB version is also shown for your reference.
 
 ![master-home](/images/admin/master-home-kubernetes-rf1.png)
 

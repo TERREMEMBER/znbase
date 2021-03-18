@@ -1,6 +1,6 @@
 # Online Index Backfill
 
-This design document explains how online backfill of indexes in YugabyteDB works. Upon adding new indexes to a table that already has data, this feature would enable building these indexes in an online manner, while continuing to serve other traffic. Note that this feature should work across both YSQL and YCQL APIs.
+This design document explains how online backfill of indexes in ZNbaseDB works. Upon adding new indexes to a table that already has data, this feature would enable building these indexes in an online manner, while continuing to serve other traffic. Note that this feature should work across both YSQL and YCQL APIs.
 
 ## Design Goals
 
@@ -10,7 +10,7 @@ This design document explains how online backfill of indexes in YugabyteDB works
 * **Efficient for large datasets:** Index build should occur in a distributed manner (utilizing multiple/all nodes in the cluster) to efficiently handle large datasets.
 * **Resilience:** The index build should be resilient to failures. The entire build process should not need to restart on a node failure in the cluster.
 
-> **Note:** Online index backfill relies on the online schema change framework. This design doc assumes the reader is familiar with how online schema changes are handled in YugabyteDB.
+> **Note:** Online index backfill relies on the online schema change framework. This design doc assumes the reader is familiar with how online schema changes are handled in ZNbaseDB.
 
 # Design
 
@@ -170,4 +170,4 @@ If a user creates multiple indices, the backfill for the different indices shoul
     ```
 
 
-[![Analytics](https://yugabyte.appspot.com/UA-104956980-4/architecture/design/online-index-backfill.md?pixel&useReferer)](https://github.com/yugabyte/ga-beacon)
+[![Analytics](https://ZNbase.appspot.com/UA-104956980-4/architecture/design/online-index-backfill.md?pixel&useReferer)](https://github.com/ZNbase/ga-beacon)

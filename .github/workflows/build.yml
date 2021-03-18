@@ -29,7 +29,7 @@ jobs:
         include:
           - name: "CentOS 7"
             os: ubuntu-latest
-            docker_image: yugabyteci/yb_build_infra_centos7:v2020-05-24T22_16_17
+            docker_image: ZNbaseci/yb_build_infra_centos7:v2020-05-24T22_16_17
 
     if: >
       (github.event_name == 'push' &&
@@ -46,7 +46,7 @@ jobs:
           echo "Build name: ${{ matrix.name }}"
           echo "Docker image: ${{ matrix.docker_image }}"
           if [[ $OSTYPE == linux* ]]; then
-            build_dir_in_container=/opt/yb-build/yugabyte-db
+            build_dir_in_container=/opt/yb-build/ZNbase-db
             docker run \
               -i \
               "-w=$build_dir_in_container" \
@@ -60,10 +60,10 @@ jobs:
                 ( set -x; ls -l /usr/local/bin )
                 set +e
                 ( set -x; which ninja )
-                ( set -x; which cmake ) 
+                ( set -x; which cmake )
                 set -e
-                chown -R yugabyteci .
-                sudo -u yugabyteci bash -c "
+                chown -R ZNbaseci .
+                sudo -u ZNbaseci bash -c "
                   set -euo pipefail
                   export PATH=/usr/local/bin:\$PATH
                   df -H /

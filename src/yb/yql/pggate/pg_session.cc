@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------------------
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -87,7 +87,7 @@ const int kDefaultPgYbSessionTimeoutMs = 60 * 1000;
 #endif
 
 DEFINE_int32(pg_yb_session_timeout_ms, kDefaultPgYbSessionTimeoutMs,
-             "Timeout for operations between PostgreSQL server and YugaByte DocDB services");
+             "Timeout for operations between PostgreSQL server and ZNbase DocDB services");
 
 namespace {
 //--------------------------------------------------------------------------------------------------
@@ -200,7 +200,7 @@ CHECKED_STATUS CombineErrorsToStatus(const client::CollectedErrors& errors, cons
 
   if (status.IsIOError() &&
       // TODO: move away from string comparison here and use a more specific status than IOError.
-      // See https://github.com/YugaByte/yugabyte-db/issues/702
+      // See https://github.com/ZNbase/ZNbase-db/issues/702
       status.message() == client::internal::Batcher::kErrorReachingOutToTServersMsg &&
       IsHomogeneousErrors(errors)) {
     const auto& result = errors.front()->status();

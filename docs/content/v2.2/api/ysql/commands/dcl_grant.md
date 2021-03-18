@@ -121,13 +121,13 @@ If `WITH ADMIN OPTION` is specified, the member can in turn grant membership in 
 - Grant SELECT privilege to all users on table 'stores'
 
 ```plpgsql
-yugabyte=# GRANT SELECT ON stores TO PUBLIC;
+ZNbase=# GRANT SELECT ON stores TO PUBLIC;
 ```
 
 - Add user John to SysAdmins group.
 
 ```plpgsql
-yugabyte=# GRANT SysAdmins TO John;
+ZNbase=# GRANT SysAdmins TO John;
 ```
 
 ## See also

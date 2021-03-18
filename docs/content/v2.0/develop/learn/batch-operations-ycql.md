@@ -117,7 +117,7 @@ Consider a table which has a hash column `h` and a clustering column `r`.
 
 ## Sample Java Application
 
-You can find a working example of using transactions with YugabyteDB in our [sample applications](../../../quick-start/run-sample-apps/). This application writes batched key-value pairs with a configurable number of keys per batch. There are multiple readers and writers running in parallel performing these batch writes.
+You can find a working example of using transactions with ZNbaseDB in our [sample applications](../../../quick-start/run-sample-apps/). This application writes batched key-value pairs with a configurable number of keys per batch. There are multiple readers and writers running in parallel performing these batch writes.
 
 Here is how you can try out this sample application.
 
@@ -139,4 +139,4 @@ Usage:
 ```
 
 
-Browse the [Java source code for the batch application](https://github.com/yugabyte/yugabyte-db/blob/master/java/yb-loadtester/src/main/java/com/yugabyte/sample/apps/CassandraBatchKeyValue.java) to see how everything fits together.
+Browse the [Java source code for the batch application](https://github.com/ZNbase/ZNbase-db/blob/master/java/yb-loadtester/src/main/java/com/ZNbase/sample/apps/CassandraBatchKeyValue.java) to see how everything fits together.

@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -96,7 +96,7 @@ public class TestUtils {
    * When collecting the list of tests to run using the -DcollectTests option to the build, prefix
    * each line describing a test with this.
    */
-  private static final String COLLECTED_TESTS_PREFIX = "YUGABYTE_JAVA_TEST: ";
+  private static final String COLLECTED_TESTS_PREFIX = "ZNbase_JAVA_TEST: ";
 
   /**
    * @return the path of the flags file to pass to daemon processes

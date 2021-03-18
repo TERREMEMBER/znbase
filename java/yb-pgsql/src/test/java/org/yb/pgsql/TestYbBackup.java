@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -219,7 +219,7 @@ public class TestYbBackup extends BasePgSQLTest {
           ", " + String.valueOf(2.14 + (float)i) + ")"); // b
       }
 
-      YBBackupUtil.runYbBackupCreate("--keyspace", "ysql.yugabyte");
+      YBBackupUtil.runYbBackupCreate("--keyspace", "ysql.ZNbase");
       stmt.execute("ALTER TABLE test_tbl DROP a");
       stmt.execute("INSERT INTO test_tbl (h, b) VALUES (9999, 8.9)");
 
@@ -302,7 +302,7 @@ public class TestYbBackup extends BasePgSQLTest {
           stmt, "INSERT INTO test_tbl(id, b) VALUES(3, 6)",
           "null value in column \"a\" violates not-null constraint");
 
-      YBBackupUtil.runYbBackupCreate("--keyspace", "ysql.yugabyte");
+      YBBackupUtil.runYbBackupCreate("--keyspace", "ysql.ZNbase");
       stmt.execute("INSERT INTO test_tbl (id, a, b) VALUES (9999, 9, 9)");
 
       YBBackupUtil.runYbBackupRestore("--keyspace", "ysql.yb2");
@@ -339,7 +339,7 @@ public class TestYbBackup extends BasePgSQLTest {
           ", " + String.valueOf(2.14 + (float)i) + ")"); // b
       }
 
-      YBBackupUtil.runYbBackupCreate("--keyspace", "ysql.yugabyte");
+      YBBackupUtil.runYbBackupCreate("--keyspace", "ysql.ZNbase");
 
       stmt.execute("INSERT INTO test_tbl (h, a, b) VALUES (9999, 8888, 8.9)");
 

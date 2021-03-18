@@ -2,7 +2,7 @@
 title: Snapshot and restore data for YCQL
 headerTitle: Snapshot and restore data
 linkTitle: Snapshot and restore data
-description: Snapshot and restore data in YugabyteDB for YCQL.
+description: Snapshot and restore data in ZNbaseDB for YCQL.
 image: /images/section_icons/manage/enterprise.png
 block_indexing: true
 menu:
@@ -23,20 +23,20 @@ showAsideToc: true
   </li>
 </ul>
 
-You can create a backup for YugabyteDB using snapshots. Here are some points to keep in mind.
+You can create a backup for ZNbaseDB using snapshots. Here are some points to keep in mind.
 
 - Distributed backups using snapshots
   - Massively parallel, efficient for very large data sets
-  - Snapshots are not transactional across the whole table, but only on each tablet [#2086](https://github.com/YugaByte/yugabyte-db/issues/2086).
-  - Multi-table transactional snapshot is in the road map [#2084](https://github.com/YugaByte/yugabyte-db/issues/2084). 
-  - Single table snapshots don't work in YSQL [#2083](https://github.com/YugaByte/yugabyte-db/issues/2083).
-  - Yugabyte Platform automates these steps for you.
+  - Snapshots are not transactional across the whole table, but only on each tablet [#2086](https://github.com/ZNbase/ZNbase-db/issues/2086).
+  - Multi-table transactional snapshot is in the road map [#2084](https://github.com/ZNbase/ZNbase-db/issues/2084). 
+  - Single table snapshots don't work in YSQL [#2083](https://github.com/ZNbase/ZNbase-db/issues/2083).
+  - ZNbase Platform automates these steps for you.
 - Implementation notes:
   - Once the snapshot command is issued, you will “buffer” newly incoming writes to that tablet without writing them immediately.
   - For the existing data: you flush it to disk and hardlink the files in a `.snapshots` directory on each tablet.
   - These steps are pretty fast - small flush to disk and hardlinks. Most likely the incoming operations that were buffered will not timeout. 
   - The buffered writes are now opened up for writes.
-  - The snapshot operation is done. Because YugabyteDB is an LSM database, these files will never get modified.
+  - The snapshot operation is done. Because ZNbaseDB is an LSM database, these files will never get modified.
   - If this takes longer, some ops can timeout but in practice, users should expect such slowness occasionally when using network storage (AWS EBS, Persistent Disk in GCP, SAN storage, etc.).
 
 In this tutorial, you will be using YCQL, but the same APIs are used in YSQL.
@@ -60,7 +60,7 @@ Waiting for cluster to be ready.
 | YCQL Shell          : bin/ycqlsh                                                                  |
 | YEDIS Shell         : bin/redis-cli                                                              |
 | Web UI              : http://127.0.0.1:7000/                                                     |
-| Cluster Data        : /home/guru/yugabyte-data                                                   |
+| Cluster Data        : /home/guru/ZNbase-data                                                   |
 ----------------------------------------------------------------------------------------------------
 
 For more info, please use: yb-ctl status
@@ -140,9 +140,9 @@ have to use a script that copies all data. The file path structure is:
 <yb_data_dir>/node-<node_number>/disk-<disk_number>/yb-data/tserver/data/rocksdb/table-<table_id>/[tablet-<tablet_id>.snapshots]/<snapshot_id>
 ```
 
-- `<yb_data_dir>` is the directory where YugabyteDB data is stored. (default=`~/yugabyte-data`)
+- `<yb_data_dir>` is the directory where ZNbaseDB data is stored. (default=`~/ZNbase-data`)
 - `<node_number>` is used when multiple nodes are running on the same server (for testing, QA, and development). The default value is `1`.
-- `<disk_number>` when running yugabyte on multiple disks with the `--fs_data_dirs` flag. The default value is `1`.
+- `<disk_number>` when running ZNbase on multiple disks with the `--fs_data_dirs` flag. The default value is `1`.
 - `<table_id>` is the UUID of the table. You can get it from the Admin UI.
 - `<tablet_id>` in each table there is a list of tablets. Each tablet has a `<tablet_id>.snapshots` directory that you need to copy.
 - `<snapshot_id>` there is a directory for each snapshot since you can have multiple completed snapshots on each server.
@@ -217,7 +217,7 @@ Waiting for cluster to be ready.
 | YCQL Shell          : bin/ycqlsh                                                                  |
 | YEDIS Shell         : bin/redis-cli                                                              |
 | Web UI              : http://127.0.0.1:7000/                                                     |
-| Cluster Data        : /home/guru/yugabyte-data                                                   |
+| Cluster Data        : /home/guru/ZNbase-data                                                   |
 ----------------------------------------------------------------------------------------------------
 
 For more info, please use: yb-ctl status
@@ -237,7 +237,7 @@ The `keyspace` and `table` can be different from the exported one.
 
 {{< /note >}}
 
-First, import the snapshot file into YugabyteDB.
+First, import the snapshot file into ZNbaseDB.
 
 ```sh
 $ ./bin/yb-admin import_snapshot test_tb.snapshot ydb test_tb
@@ -315,4 +315,4 @@ $ ./bin/yb-admin delete_snapshot 4963ed18fc1e4f1ba38c8fcf4058b295
 Deleted snapshot: 4963ed18fc1e4f1ba38c8fcf4058b295
 ```
 
-This was a guide on how to snapshot and restore data on YugabyteDB. In the Yugabyte Platform and Yugabyte Cloud, all of the manual steps above are automated.
+This was a guide on how to snapshot and restore data on ZNbaseDB. In the ZNbase Platform and ZNbase Cloud, all of the manual steps above are automated.

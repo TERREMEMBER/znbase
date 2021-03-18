@@ -5,16 +5,16 @@ Create a role with a password. You can do this with the [CREATE ROLE](../../../a
 As an example, let us create a role `engineering` for an engineering team in an organization.
 
 ```plpgsql
-yugabyte=# CREATE ROLE engineering;
+ZNbase=# CREATE ROLE engineering;
 ```
 
 Roles that have `LOGIN` privileges are users. As an example, you can create a user `john` as follows:
 
 ```plpgsql
-yugabyte=# CREATE ROLE john LOGIN PASSWORD 'PasswdForJohn';
+ZNbase=# CREATE ROLE john LOGIN PASSWORD 'PasswdForJohn';
 ```
 
-Read about [how to create users in YugabyteDB](../../enable-authentication/ysql/) in the Authentication section.
+Read about [how to create users in ZNbaseDB](../../enable-authentication/ysql/) in the Authentication section.
 
 ## 2. Grant roles
 
@@ -23,7 +23,7 @@ You can grant a role to another role (which can be a user), or revoke a role tha
 As an example, you can grant the `engineering` role you created above to the user `john` as follows:
 
 ```plpgsql
-yugabyte=# GRANT engineering TO john;
+ZNbase=# GRANT engineering TO john;
 ```
 
 Read more about [granting roles](../../../api/ysql/the-sql-language/statements/dcl_grant/).
@@ -37,13 +37,13 @@ As an example, let us say that in the above example, you want to create a `devel
 First, create the `developer` role.
 
 ```plpgsql
-yugabyte=# CREATE ROLE developer;
+ZNbase=# CREATE ROLE developer;
 ```
 
 Next, `GRANT` the `engineering` role to the `developer` role.
 
 ```plpgsql
-yugabyte=# GRANT engineering TO developer;
+ZNbase=# GRANT engineering TO developer;
 ```
 
 ## 4. List roles
@@ -51,7 +51,7 @@ yugabyte=# GRANT engineering TO developer;
 You can list all the roles by running the following statement:
 
 ```plpgsql
-yugabyte=# SELECT rolname, rolcanlogin, rolsuper, memberof FROM pg_roles;
+ZNbase=# SELECT rolname, rolcanlogin, rolsuper, memberof FROM pg_roles;
 ```
 
 You should see the following output:
@@ -62,14 +62,14 @@ You should see the following output:
  john        | t           | f        | {engineering}
  developer   | f           | f        | {engineering}
  engineering | f           | f        | {}
- yugabyte    | t           | t        | {}
+ ZNbase    | t           | t        | {}
 
 (4 rows)
 ```
 
 In the table above, note the following:
 
-* The `yugabyte` role is the built-in superuser.
+* The `ZNbase` role is the built-in superuser.
 * The role `john` can login, and hence is a user. Note that `john` is not a superuser.
 * The roles `engineering` and `developer` cannot login.
 * Both `john` and `developer` inherit the role `engineering`.
@@ -81,13 +81,13 @@ Roles can be revoked using the [REVOKE](../../../api/ysql/the-sql-language/state
 In the above example, you can revoke the `engineering` role from the user `john` as follows:
 
 ```plpgsql
-yugabyte=# REVOKE engineering FROM john;
+ZNbase=# REVOKE engineering FROM john;
 ```
 
 Listing all the roles now shows that `john` no longer inherits from the `engineering` role:
 
 ```plpgsql
-yugabyte=# SELECT rolname, rolcanlogin, rolsuperuser, memberof FROM pg_roles;
+ZNbase=# SELECT rolname, rolcanlogin, rolsuperuser, memberof FROM pg_roles;
 ```
 
 ```
@@ -96,7 +96,7 @@ yugabyte=# SELECT rolname, rolcanlogin, rolsuperuser, memberof FROM pg_roles;
 john         | t           | f        | {}
 developer    | f           | f        | {engineering}
 engineering  | f           | f        | {}
-yugabyte     | t           | t        | {}
+ZNbase     | t           | t        | {}
 
 (4 rows)
 ```
@@ -108,13 +108,13 @@ Roles can be dropped with the [DROP ROLE](../../../api/ysql/the-sql-language/sta
 In the above example, you can drop the `developer` role with the following statement:
 
 ```plpgsql
-yugabyte=# DROP ROLE developer;
+ZNbase=# DROP ROLE developer;
 ```
 
 The `developer` role would no longer be present upon listing all the roles:
 
 ```plpgsql
-yugabyte=# SELECT rolname, rolcanlogin, rolsuper, memberof FROM pg_roles;
+ZNbase=# SELECT rolname, rolcanlogin, rolsuper, memberof FROM pg_roles;
 ```
 
 ```
@@ -122,7 +122,7 @@ yugabyte=# SELECT rolname, rolcanlogin, rolsuper, memberof FROM pg_roles;
 -------------+-------------+----------+-----------
  john        | t           | f        | {}
  engineering | f           | f        | {}
- yugabyte    | t           | t        | {}
+ ZNbase    | t           | t        | {}
 
 (3 rows)
 ```

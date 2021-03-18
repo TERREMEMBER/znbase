@@ -1,8 +1,8 @@
 ---
-title: Create a multi-region universe using using Yugabyte Platform
+title: Create a multi-region universe using using ZNbase Platform
 headerTitle: Create a multi-region universe
 linkTitle: Create a multi-region universe
-description: Create a YugabyteDB universe that spans multiple geographic regions using Yugabyte Platform.
+description: Create a ZNbaseDB universe that spans multiple geographic regions using ZNbase Platform.
 block_indexing: true
 menu:
   v2.1:
@@ -35,9 +35,9 @@ Click **Create**.
 
 ## 2. Examine the universe
 
-Wait for the universe to get created. Note that Yugabyte Platform can manage multiple universes as shown below.
+Wait for the universe to get created. Note that ZNbase Platform can manage multiple universes as shown below.
 
-![Multiple universes in YugabyteDB Admin Console](/images/ee/multi-region-multiple-universes.png)
+![Multiple universes in ZNbaseDB Admin Console](/images/ee/multi-region-multiple-universes.png)
 
 Once the universe is created, you should see something like the screenshot below in the unverse overview.
 
@@ -79,19 +79,19 @@ On each of the terminals, do the following.
 $ sudo yum install java-1.8.0-openjdk.x86_64 -y
 ```
 
-2. Switch to the `yugabyte` user.
+2. Switch to the `ZNbase` user.
 
 ```sh
-$ sudo su - yugabyte
+$ sudo su - ZNbase
 ```
 
 3. Export the `YCQL_ENDPOINTS` env variable.
 
-Export an environment variable telling us the IP addresses for nodes in the cluster. Browse to the **Universe Overview** tab in YugabyteDB Admin Console and click on the `YCQL Endpoints` link. This should open a new tab with a list of IP addresses. 
+Export an environment variable telling us the IP addresses for nodes in the cluster. Browse to the **Universe Overview** tab in ZNbaseDB Admin Console and click on the `YCQL Endpoints` link. This should open a new tab with a list of IP addresses. 
 
 ![YCQL end points](/images/ee/multi-zone-universe-ycql-endpoints.png)
 
-Export this into a shell variable on the database node `yb-dev-helloworld1-n1` you connected to. Remember to replace the IP addresses below with those shown in the YugabyteDB Admin Console.
+Export this into a shell variable on the database node `yb-dev-helloworld1-n1` you connected to. Remember to replace the IP addresses below with those shown in the ZNbaseDB Admin Console.
 
 ```sh
 $ export YCQL_ENDPOINTS="10.138.0.3:9042,10.138.0.4:9042,10.138.0.5:9042"
@@ -102,7 +102,7 @@ $ export YCQL_ENDPOINTS="10.138.0.3:9042,10.138.0.4:9042,10.138.0.5:9042"
 Run the following command on each of the nodes. Remember to substitute `<REGION>` with the region code for each node.
 
 ```sh
-$ java -jar /home/yugabyte/tserver/java/yb-sample-apps.jar \
+$ java -jar /home/ZNbase/tserver/java/yb-sample-apps.jar \
             --workload CassandraKeyValue \
             --nodes $YCQL_ENDPOINTS \
             --num_threads_write 1 \
@@ -112,7 +112,7 @@ $ java -jar /home/yugabyte/tserver/java/yb-sample-apps.jar \
             --with_local_dc <REGION>
 ```
 
-You can find the region codes for each of the nodes by browsing to the **Nodes** tab for this universe in the YugabyteDB Admin Console. A screenshot is shown below. In this example, the value for `<REGION>` is:
+You can find the region codes for each of the nodes by browsing to the **Nodes** tab for this universe in the ZNbaseDB Admin Console. A screenshot is shown below. In this example, the value for `<REGION>` is:
 
 - `us-east4` for node `yb-dev-helloworld2-n1`
 - `asia-northeast1` for node `yb-dev-helloworld2-n2`
@@ -127,7 +127,7 @@ Recall that we expect the app to have the following characteristics based on its
 * Global consistency on writes, which would cause higher latencies in order to replicate data across multiple geographic regions.
 * Low latency reads from the nearest data center, which offers timeline consistency (similar to async replication).
 
-Let us verify this by browse to the **Metrics** tab of the universe in the YugabyteDB Admin Console to see the overall performance of the app. It should look similar to the screenshot below.
+Let us verify this by browse to the **Metrics** tab of the universe in the ZNbaseDB Admin Console to see the overall performance of the app. It should look similar to the screenshot below.
 
 ![YCQL Load Metrics](/images/ee/multi-region-read-write-metrics.png)
 

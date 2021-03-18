@@ -6,9 +6,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -60,7 +60,7 @@
 #define RFATAL(...) FatalWithContext(__FILE__, __LINE__, ##__VA_ARGS__)
 
 #ifdef NDEBUG
-// TODO: it should also fail in release under tests: https://yugabyte.atlassian.net/browse/ENG-1453.
+// TODO: it should also fail in release under tests: https://ZNbase.atlassian.net/browse/ENG-1453.
 // Idea is to fail in both release and debug builds under tests, but don't fail in production.
 // This is useful when some secondary functionality is broken and we don't want to fail the whole
 // server, we can just turn that functionality off. But under tests and in debug mode we need to

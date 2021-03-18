@@ -2,7 +2,7 @@
 title: Build a Node.js application that uses YCQL
 headerTitle: Build a Node.js application
 linkTitle: Node.js
-description: Build a sample Node.js application with the Yugabyte Node.js driver for YCQL.
+description: Build a sample Node.js application with the ZNbase Node.js driver for YCQL.
 menu:
   stable:
     parent: build-apps
@@ -35,9 +35,9 @@ showAsideToc: true
   </li>
 </ul>
 
-## Install the Yugabyte Node.js Driver for YCQL
+## Install the ZNbase Node.js Driver for YCQL
 
-To install the [YugabyteDB Node.js driver for YCQL](https://github.com/yugabyte/cassandra-nodejs-driver), run the following `npm install` command:
+To install the [ZNbaseDB Node.js driver for YCQL](https://github.com/ZNbase/cassandra-nodejs-driver), run the following `npm install` command:
 
 ```sh
 $ npm install yb-ycql-driver
@@ -49,7 +49,7 @@ $ npm install yb-ycql-driver
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe, and are able to interact with it using the YCQL shell. If not, follow these steps in [Quick start YCQL guide](../../../../api/ycql/quick-start/).
+- installed ZNbaseDB, created a universe, and are able to interact with it using the YCQL shell. If not, follow these steps in [Quick start YCQL guide](../../../../api/ycql/quick-start/).
 - installed a recent version of [Node.js](https://nodejs.org/en/download/).
 - installed the JavaScript [async](https://github.com/caolan/async) utility to work with asynchronous Javascript. To install `async`, run the following `npm install` command:
 

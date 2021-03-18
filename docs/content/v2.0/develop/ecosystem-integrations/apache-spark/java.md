@@ -4,7 +4,7 @@ Add the following snippet to your `pom.xml` for Scala 2.10:
 
 ```xml
 <dependency>
-  <groupId>com.yugabyte.spark</groupId>
+  <groupId>com.ZNbase.spark</groupId>
   <artifactId>spark-cassandra-connector_2.10</artifactId>
   <version>2.0.5-yb-2</version>
 </dependency>
@@ -14,7 +14,7 @@ For Scala 2.11:
 
 ```xml
 <dependency>
-  <groupId>com.yugabyte.spark</groupId>
+  <groupId>com.ZNbase.spark</groupId>
   <artifactId>spark-cassandra-connector_2.11</artifactId>
   <version>2.0.5-yb-2</version>
 </dependency>
@@ -36,12 +36,12 @@ It reads data from a table with sentences — by default, it generates an input 
 
 To look at the source code, you can check:
 
-- the source file in our GitHub source repo [here](https://github.com/yugabyte/yugabyte-db/blob/master/java/yb-loadtester/src/main/java/com/yugabyte/sample/apps/CassandraSparkWordCount.java)
+- the source file in our GitHub source repo [here](https://github.com/ZNbase/ZNbase-db/blob/master/java/yb-loadtester/src/main/java/com/ZNbase/sample/apps/CassandraSparkWordCount.java)
 - untar the jar `java/yb-sample-apps-sources.jar` in the download bundle
 
-Most of the logic is in the `run()` method of the `CassandraSparkWordCount` class (in the file `src/main/java/com/yugabyte/sample/apps/CassandraSparkWordCount.java`). Some of the key portions of the sample program are explained in the sections below.
+Most of the logic is in the `run()` method of the `CassandraSparkWordCount` class (in the file `src/main/java/com/ZNbase/sample/apps/CassandraSparkWordCount.java`). Some of the key portions of the sample program are explained in the sections below.
 
-## Main sections of an Apache Spark program on Yugabyte
+## Main sections of an Apache Spark program on ZNbase
 
 ### Initializing the Spark context
 

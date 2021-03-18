@@ -28,16 +28,16 @@ showAsideToc: true
 
 The tutorial assumes that you have:
 
-- installed YugabyteDB and created a universe. If not, follow the steps in [Quick start](../../../../quick-start/).
+- installed ZNbaseDB and created a universe. If not, follow the steps in [Quick start](../../../../quick-start/).
 - have a 32-bit (x86) or 64-bit (x64) architecture machine.
 - have gcc 4.1.2 or later, clang 3.4 or later installed.
 
 ## Install the C driver (libpq)
 
-The C driver is already available as part of the YugabyteDB installation. You can use it by setting the `LD_LIBRARY_PATH` as follows :
+The C driver is already available as part of the ZNbaseDB installation. You can use it by setting the `LD_LIBRARY_PATH` as follows :
   
 ```sh
-$ export LD_LIBRARY_PATH=<yugabyte-install-dir>/postgres/lib
+$ export LD_LIBRARY_PATH=<ZNbase-install-dir>/postgres/lib
 ```
 
 Alternatively, you can download the PostgreSQL binaries or build the driver from source as documented [here](https://www.postgresql.org/download/).
@@ -63,7 +63,7 @@ main(int argc, char **argv)
   int         i, j;
 
   /* connection string */
-  conninfo = "host=127.0.0.1 port=5433 dbname=yugabyte user=yugabyte password=yugabyte";
+  conninfo = "host=127.0.0.1 port=5433 dbname=ZNbase user=ZNbase password=ZNbase";
 
   /* Make a connection to the database */
   conn = PQconnectdb(conninfo);
@@ -141,7 +141,7 @@ You can compile the file using gcc or clang.
 For gcc, you can use:
 
 ```sh
-$ gcc ybsql_hello_world.c -lpq -I<yugabyte-install-dir>/postgres/include -o ybsql_hello_world
+$ gcc ybsql_hello_world.c -lpq -I<ZNbase-install-dir>/postgres/include -o ybsql_hello_world
 ```
 
 Run with:

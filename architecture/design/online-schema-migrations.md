@@ -1,4 +1,4 @@
-Tracking issue: [#4192](https://github.com/yugabyte/yugabyte-db/issues/4192)
+Tracking issue: [#4192](https://github.com/ZNbase/ZNbase-db/issues/4192)
 
 # Online Schema Migrations
 
@@ -33,14 +33,14 @@ The goals of this feature are as follows.
     * Standalone database migration software libraries (example: [Flyway](https://flywaydb.org/) and [Liquibase](https://www.liquibase.org/))
 
 
-> **Note:** There are a number of DDL operations currently supported by YugabyteDB, including many more that are planned in the roadmap. The aim is to increase the coverage for DDL operations that are safe to run in an online manner.
+> **Note:** There are a number of DDL operations currently supported by ZNbaseDB, including many more that are planned in the roadmap. The aim is to increase the coverage for DDL operations that are safe to run in an online manner.
 
 
 # Motivation
 
 Traditionally, schema migrations were handled by taking all services down during the upgrade. A migration script would run to apply the new schema. Depending on the exact schema change, there could be a step to transform all the data before the schema migration completes. THe services are brought back online after this.
 
-While the approach is very safe, it leads to a lot of downtime in practice, especially in a distributed SQL database like YugabyteDB for the following reasons:
+While the approach is very safe, it leads to a lot of downtime in practice, especially in a distributed SQL database like ZNbaseDB for the following reasons:
 
 * Simple DDL operations could take longer because the schema change needs to be applied across a cluster of nodes. This is especially so in clusters with a large number of nodes.
 * Some DDL operations (such as adding an index or constraint) would need to transform data. Since the data set sizes can be quite large, transforming the data could take a very long time.
@@ -78,10 +78,10 @@ This section first introduces a the generalized framework for performing online 
 
 ## Overview
 
-Each YugabyteDB node has an instance of the YSQL query layer which receives, parses and analyzes queries to produce an execution plan, and the DocDB storage layer which handles storing, replicating and retrieving data.
+Each ZNbaseDB node has an instance of the YSQL query layer which receives, parses and analyzes queries to produce an execution plan, and the DocDB storage layer which handles storing, replicating and retrieving data.
 Additionally, the cluster metadata (e.g. the schemas of the relations) is stored DocDB in such a way that at any point one node acts as the metadata-leader (or master leader).
 
-> **Note:** For a detailed description of Yugabyte YSQL architecture see the following posts focusing on the storage layer and the YSQL query layer.
+> **Note:** For a detailed description of ZNbase YSQL architecture see the following posts focusing on the storage layer and the YSQL query layer.
 
 **Definition** A database representation d is consistent with respect to a schema S if:
   1. all key-values pairs belong to either a table or index in S 
@@ -97,7 +97,7 @@ Based on the definition above there are two main anomalies:
 * orphan data anomaly database representation contains a key-value pair that it should not contain according to schema S (corresponding to items 1,2,3, above).
 * data integrity anomaly database representation is missing a key-value pair that it should contain or it contains a key-value pair that violates a constraint in schema S (corresponding to items 4,5,6 above).
 
-> **Note:** We use the same general approach and definitions as the F1 paper. Therefore, we give a simplified accounting of the common fundamentals (see the paper for more details on that), and instead focus on the Yugabyte/YSQL-specific aspects here.
+> **Note:** We use the same general approach and definitions as the F1 paper. Therefore, we give a simplified accounting of the common fundamentals (see the paper for more details on that), and instead focus on the ZNbase/YSQL-specific aspects here.
 
 Every DDL statement is executed internally as a schema migration, meaning a sequence of schema change operations S1 → S2 → S3 → … → Sn (described below).
 
@@ -372,4 +372,4 @@ Considering the requirement that the promotion to PUBLIC cannot happen until the
 * [Safe and unsafe operations for high volume PostgreSQL](https://leopard.in.ua/2016/09/20/safe-and-unsafe-operations-postgresql)
 
 
-[![Analytics](https://yugabyte.appspot.com/UA-104956980-4/architecture/design/online-schema-migrations.md?pixel&useReferer)](https://github.com/yugabyte/ga-beacon)
+[![Analytics](https://ZNbase.appspot.com/UA-104956980-4/architecture/design/online-schema-migrations.md?pixel&useReferer)](https://github.com/ZNbase/ga-beacon)

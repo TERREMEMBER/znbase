@@ -2,7 +2,7 @@
 title: Layered architecture for queries and storage
 headerTitle: Layered architecture
 linkTitle: Layered architecture
-description: Learn about the layered architecture of YugabyteDB in the query layer and the storage layer.
+description: Learn about the layered architecture of ZNbaseDB in the query layer and the storage layer.
 block_indexing: true
 menu:
   v2.1:
@@ -13,24 +13,24 @@ isTocNested: true
 showAsideToc: true
 ---
 
-YugabyteDB architecture follows a layered design. It is comprised of 2 logical layers as shown in the diagram below:
+ZNbaseDB architecture follows a layered design. It is comprised of 2 logical layers as shown in the diagram below:
 
-* **Yugabyte Query Layer**
+* **ZNbase Query Layer**
 * **DocDB** distributed document store
 
-![YugabyteDB Logical Architecture](/images/architecture/yb-arch-new.png)
+![ZNbaseDB Logical Architecture](/images/architecture/yb-arch-new.png)
 
-## Yugabyte Query Layer
+## ZNbase Query Layer
 
-The [Yugabyte Query Layer or YQL](../query-layer/) is the upper layer of YugabyteDB. Applications interact directly with YQL using client drivers. This layer deals with the API specific aspects such as query/command compilation and the run-time (data type representations, built-in operations and more). YQL is built with extensibility in mind, and allows for new APIs to be added.
+The [ZNbase Query Layer or YQL](../query-layer/) is the upper layer of ZNbaseDB. Applications interact directly with YQL using client drivers. This layer deals with the API specific aspects such as query/command compilation and the run-time (data type representations, built-in operations and more). YQL is built with extensibility in mind, and allows for new APIs to be added.
 
 Currently, YQL supports two flavors of distributed SQL APIs.
 
-### Yugabyte SQL (YSQL)
+### ZNbase SQL (YSQL)
 
 YSQL is a distributed SQL API that is built by re-using the PostgreSQL language layer code. It is a stateless SQL query engine that is wire-format compatible with PostgreSQL.
 
-### Yugabyte Cloud QL (YCQL)
+### ZNbase Cloud QL (YCQL)
 
 YCQL is a semi-relational language that has its roots in Cassandra Query Language. It is a SQL-like language built specifically to be aware of clustering of data across nodes.
 
@@ -82,7 +82,7 @@ You can now read about the following:
 
 {{< note title="" >}}
 
-* [The design goals of YugabyteDB](../design-goals/)
+* [The design goals of ZNbaseDB](../design-goals/)
 * [Architecture of DocDB](../docdb/)
 * [Transactions in DocDB](../transactions/)
 * [Design of the query layer](../query-layer/)

@@ -55,7 +55,7 @@ export const mockSlowYsqlQueries = [
     min_time: 0.12058,
     query: 'INSERT INTO test_table VALUES ($1, $2)',
     queryid: 3155616829219000,
-    rolname: 'yugabyte',
+    rolname: 'ZNbase',
     rows: 5,
     stddev_time: 0.00252,
     total_time: 3.05239
@@ -70,7 +70,7 @@ export const mockSlowYsqlQueries = [
     min_time: 0.020445,
     query: 'SET extra_float_digits = 3',
     queryid: 5125610066150999000,
-    rolname: 'yugabyte',
+    rolname: 'ZNbase',
     rows: 0,
     stddev_time: 0.001914,
     total_time: 5.4704

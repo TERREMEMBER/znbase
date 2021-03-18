@@ -72,9 +72,9 @@ Specify the path of the file to be copied. An input file name can be an absolute
 The examples below assume a table like this:
 
 ```plpgsql
-yugabyte=# CREATE TABLE users(id BIGSERIAL PRIMARY KEY, name TEXT);
-yugabyte=# INSERT INTO users(name) VALUES ('John Doe'), ('Jane Doe'), ('Dorian Gray');
-yugabyte=# SELECT * FROM users;
+ZNbase=# CREATE TABLE users(id BIGSERIAL PRIMARY KEY, name TEXT);
+ZNbase=# INSERT INTO users(name) VALUES ('John Doe'), ('Jane Doe'), ('Dorian Gray');
+ZNbase=# SELECT * FROM users;
  id |    name     
 ----+-------------
   3 | Dorian Gray
@@ -89,7 +89,7 @@ Copy the entire table to a CSV file using an absolute path, with column names in
 
 
 ```plpgsql
-yugabyte=# COPY users TO '/home/yuga/Desktop/users.txt.sql' DELIMITER ',' CSV HEADER;
+ZNbase=# COPY users TO '/home/yuga/Desktop/users.txt.sql' DELIMITER ',' CSV HEADER;
 ```
 
 ### Export a partial table using the WHERE clause with column selection
@@ -98,7 +98,7 @@ In the following example, a `WHERE` clause is used to filter the rows and only t
 
 
 ```plpgsql
-yugabyte=# COPY (SELECT name FROM users where name='Dorian Gray') TO '/home/yuga/Desktop/users.txt.sql' DELIMITER
+ZNbase=# COPY (SELECT name FROM users where name='Dorian Gray') TO '/home/yuga/Desktop/users.txt.sql' DELIMITER
  ',' CSV HEADER;
 ```
 
@@ -108,7 +108,7 @@ In the following example, the data exported in the previous examples are importe
 
 
 ```plpgsql
-yugabyte=# COPY users FROM '/home/yuga/Desktop/users.txt.sql' DELIMITER ',' CSV HEADER;
+ZNbase=# COPY users FROM '/home/yuga/Desktop/users.txt.sql' DELIMITER ',' CSV HEADER;
 ```
 
 - If the table does not exist, errors are raised.

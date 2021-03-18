@@ -1,4 +1,4 @@
-/* Copyright (c) Yugabyte, Inc. */
+/* Copyright (c) ZNbase, Inc. */
 
 @import "./_colors.scss";
 @import "./mixins.scss";
@@ -63,7 +63,7 @@ dd {
     letter-spacing: -.02em;
     margin-top: -52px;
     padding-top: 100px !important;
-  
+
     @media only screen and (max-width: 767px) {
       font-size: 20px;
     }
@@ -248,7 +248,7 @@ dd {
         color: #fff;
         border-bottom: 1px dotted $YB_DARK_BLUE;
       }
-      width: 24px; 
+      width: 24px;
       height: 24px;
       text-align: center;
       line-height: 20px;
@@ -284,7 +284,7 @@ dd {
         font-size: 1.75em;
       }
     }
-  }  
+  }
 
   svg {
     max-width: 100%;
@@ -462,7 +462,7 @@ h1, h2, h3, h4, h5, h6 {
       > i {
         font-size: 12px;
       }
-    } 
+    }
   }
 
   > ul > li > ul {
@@ -530,7 +530,7 @@ h1, h2, h3, h4, h5, h6 {
 .drawer .toc {
   > .menu-with-sections {
     margin-left: 0;
-    
+
     > li {
       margin-bottom: 0px;
       position: relative;
@@ -575,7 +575,7 @@ h1, h2, h3, h4, h5, h6 {
       > ul {
         margin-top: 15px;
         margin-left: 0px;
-        
+
         > li {
           margin-bottom: 6px;
           position: relative;
@@ -594,7 +594,7 @@ h1, h2, h3, h4, h5, h6 {
             > i {
               font-size: 12px;
             }
-          } 
+          }
         }
       }
 
@@ -684,7 +684,7 @@ h1, h2, h3, h4, h5, h6 {
   .admonition a {
     font-weight: 700;
   }
-  
+
   table {
     box-shadow: none;
     overflow: initial;
@@ -758,7 +758,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     display: block;
     font-size: 20px;
-  
+
     &::before {
       content: none;
     }
@@ -810,7 +810,7 @@ h1, h2, h3, h4, h5, h6 {
   @media only screen and (max-width: 767px) {
     overflow: hidden;
   }
-  
+
   .row {
     display: flex !important;
     justify-content: space-between;
@@ -842,7 +842,7 @@ h1, h2, h3, h4, h5, h6 {
           @media only screen and (max-width: 767px) {
             .page {
               .stretch {
-                padding-right: 40px; 
+                padding-right: 40px;
               }
             }
           }
@@ -860,11 +860,11 @@ h1, h2, h3, h4, h5, h6 {
             }
           }
         }
-        
+
         @media only screen and (max-width: 767px) {
           .page {
             .stretch {
-              padding-left: 40px; 
+              padding-left: 40px;
             }
           }
         }
@@ -1069,7 +1069,7 @@ h1, h2, h3, h4, h5, h6 {
 
   .help-footer-btn {
     position: fixed;
-    bottom: 0; 
+    bottom: 0;
     right: 60px;
     height: 36px;
     width: 180px;
@@ -1086,11 +1086,11 @@ h1, h2, h3, h4, h5, h6 {
     -ms-transition: bottom 300ms ease;
     -o-transition: bottom 300ms ease;
     transition: bottom 300ms ease;
-  
+
     &:hover {
       background-color: #d24818;
     }
-  
+
     i {
       color: white;
       margin-right: 5px;
@@ -1100,7 +1100,7 @@ h1, h2, h3, h4, h5, h6 {
   .help-footer-btn.shown {
     bottom: 150px;
   }
-  
+
   .help-footer-menu {
     position: fixed;
     background-color: #fcfcfc;

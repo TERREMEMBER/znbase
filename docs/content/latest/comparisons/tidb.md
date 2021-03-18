@@ -1,8 +1,8 @@
 ---
-title: Compare TiDB with YugabyteDB
+title: Compare TiDB with ZNbaseDB
 headerTitle: TiDB
 linkTitle: TiDB
-description: Compare TiDB with YugabyteDB.
+description: Compare TiDB with ZNbaseDB.
 aliases:
   - /comparisons/tidb/
 menu:
@@ -15,7 +15,7 @@ PingCap’s TiDB, a MySQL-compatible distributed database built on TiKV, takes d
 
 ## Relevant blog posts
 
-The following posts cover some more details around how YugabyteDB differs from TiDB.
+The following posts cover some more details around how ZNbaseDB differs from TiDB.
 
-- [What is Distributed SQL?](https://blog.yugabyte.com/what-is-distributed-sql/)
-- [Implementing Distributed Transactions the Google Way: Percolator vs. Spanner](https://blog.yugabyte.com/implementing-distributed-transactions-the-google-way-percolator-vs-spanner/)
+- [What is Distributed SQL?](https://blog.ZNbase.com/what-is-distributed-sql/)
+- [Implementing Distributed Transactions the Google Way: Percolator vs. Spanner](https://blog.ZNbase.com/implementing-distributed-transactions-the-google-way-percolator-vs-spanner/)

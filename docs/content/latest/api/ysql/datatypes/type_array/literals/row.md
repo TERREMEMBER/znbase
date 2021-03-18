@@ -154,7 +154,7 @@ In addition to the first two rules, you notice the following.
 - The backslash has also been escaped with another single backslash and this has been then surrounded with double quotes. This is because it _does_ have syntactic significance, as the escape character, within the parentheses of a _"row"_ type literal.
 - `NULL` is represented in a _"row"_ type literal by the _absence_ of any characters between two successive delimiters: between the left parenthesis and the first comma, between two successive commas, or between the last comma and the right parenthesis.
 
-There's another rule that the present example does not show. Though not every comma-separated value was surrounded by double quotes, it's _never harmful_ to do this. You can confirm this with your own test, Yugabyte recommends that, for consistency, you always surround every `text` value within the parentheses of a _"row"_ type literal with double quotes.
+There's another rule that the present example does not show. Though not every comma-separated value was surrounded by double quotes, it's _never harmful_ to do this. You can confirm this with your own test, ZNbase recommends that, for consistency, you always surround every `text` value within the parentheses of a _"row"_ type literal with double quotes.
 
 To use the text of the literal that was produced to create a value, you must enquote it and typecast it. Do this, as you did for the `int` example above, with the `\set` metacommand. But you must use dollar quotes because the literal itself has an interior single quote.
 ```plpgsql
@@ -191,7 +191,7 @@ You understand this by realizing that the entire run of characters between a pai
 
 This rule is different from the rule for an array literal. It's also different from the rules for JSON documents. In these cases, the value is entirely _within_ the double quotes, and whitespace around punctuation characters outside of the double-quoted values is insignificant.
 
-**Note:** There is absolutely no need to take advantage of this understanding. Yugabyte recommends that you always use the "almost-canonical" form of the literal—in other words, you surround every single `text` value with double quotes, even when these are not needed, and you allow no whitespace between these double-quoted values and the delimiter at the start an end of each such value.
+**Note:** There is absolutely no need to take advantage of this understanding. ZNbase recommends that you always use the "almost-canonical" form of the literal—in other words, you surround every single `text` value with double quotes, even when these are not needed, and you allow no whitespace between these double-quoted values and the delimiter at the start an end of each such value.
 
 ### "Row" type with timestamp fields
 

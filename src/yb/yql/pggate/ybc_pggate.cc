@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -96,7 +96,7 @@ void YBCDestroyPgGate() {
     LOG(DFATAL) << __PRETTY_FUNCTION__ << " should only be called once";
   } else {
     pggate::PgApiImpl* local_pgapi = pgapi;
-    pgapi = nullptr; // YBCPgIsYugaByteEnabled() must return false from now on.
+    pgapi = nullptr; // YBCPgIsZNbaseEnabled() must return false from now on.
     delete local_pgapi;
     ClearGlobalPgMemctxMap();
     VLOG(1) << __PRETTY_FUNCTION__ << " finished";
@@ -929,7 +929,7 @@ int32_t YBCGetTestIndexStateFlagsUpdateDelayMs() {
   return FLAGS_TEST_ysql_index_state_flags_update_delay_ms;
 }
 
-bool YBCPgIsYugaByteEnabled() {
+bool YBCPgIsZNbaseEnabled() {
   return pgapi;
 }
 

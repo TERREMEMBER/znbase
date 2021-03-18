@@ -3,7 +3,7 @@ title: Bulk import
 linkTitle: Bulk import
 description: Bulk import
 image: /images/section_icons/manage/enterprise.png
-headcontent: Bulk import data into YugabyteDB.
+headcontent: Bulk import data into ZNbaseDB.
 block_indexing: true
 menu:
   v2.0:
@@ -13,7 +13,7 @@ menu:
 ---
 
 
-Depending on the data volume imported, various bulk import tools can be used to load data into YugabyteDB.
+Depending on the data volume imported, various bulk import tools can be used to load data into ZNbaseDB.
 
 <ul class="nav nav-tabs nav-tabs-yb">
   <li>

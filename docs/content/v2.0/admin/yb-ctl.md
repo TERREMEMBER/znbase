@@ -12,11 +12,11 @@ isTocNested: true
 showAsideToc: true
 ---
 
-The `yb-ctl` utility, located in the bin directory of YugabyteDB home, provides a simple command line interface for administering local clusters used for development and learning. It invokes the [`yb-master`](../../reference/configuration/yb-master/) and [`yb-tserver`](../../reference/configuration/yb-tserver/) binaries to perform the necessary administration.
+The `yb-ctl` utility, located in the bin directory of ZNbaseDB home, provides a simple command line interface for administering local clusters used for development and learning. It invokes the [`yb-master`](../../reference/configuration/yb-master/) and [`yb-tserver`](../../reference/configuration/yb-tserver/) binaries to perform the necessary administration.
 
 ## Syntax
 
-Run `yb-ctl` commands from the YugabyteDB home directory.
+Run `yb-ctl` commands from the ZNbaseDB home directory.
 
 ```sh
 ./bin/yb-ctl [ command ] [ argument, argument2, ... ]
@@ -24,7 +24,7 @@ Run `yb-ctl` commands from the YugabyteDB home directory.
 
 ### Online help
 
-To display the online help, run `yb-ctl --help` from the YugabyteDB home directory.
+To display the online help, run `yb-ctl --help` from the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/yb-ctl --help
@@ -34,7 +34,7 @@ $ ./bin/yb-ctl --help
 
 ##### create
 
-Creates a local YugabyteDB cluster. With no optional arguments, creates a 1-node cluster.
+Creates a local ZNbaseDB cluster. With no optional arguments, creates a 1-node cluster.
 
 For more details and examples, see [Create a local cluster](#create-a-local-cluster), [Create a cluster across multiple zones, regions, and clouds](#Create-a-cluster-across-multiple-zones-regions-and-clouds), and [Create a cluster with custom flags](#create-a-cluster-with-custom-flags).
 
@@ -100,7 +100,7 @@ For details and examples, see [Restart node with placement information](#restart
 
 ##### setup_redis
 
-Enables YugabyteDB support for the Redis-compatible YEDIS API.
+Enables ZNbaseDB support for the Redis-compatible YEDIS API.
 
 For details and examples, see [Initialize the YEDIS API](#initialize-the-yedis-api).
 
@@ -112,15 +112,15 @@ Shows the help message and then exits.
 
 ##### --binary_dir
 
-Specifies the directory in which to find the YugabyteDB `yb-master` and `yb-tserver` binary files.
+Specifies the directory in which to find the ZNbaseDB `yb-master` and `yb-tserver` binary files.
 
-Default: `<yugabyte-installation-dir>/bin/`
+Default: `<ZNbase-installation-dir>/bin/`
 
 ##### --data_dir
 
-Specifies the data directory for YugabyteDB.
+Specifies the data directory for ZNbaseDB.
 
-Default: `$HOME/yugabyte-data/`
+Default: `$HOME/ZNbase-data/`
 
 ##### --master_flags
 
@@ -161,7 +161,7 @@ Default: `1`
 
 ##### --require_clock_sync
 
-Specifies whether YugabyteDB requires clock synchronization between the nodes in the cluster.
+Specifies whether ZNbaseDB requires clock synchronization between the nodes in the cluster.
 
 Default: `false`
 
@@ -186,7 +186,7 @@ Flag to log internal debug messages to `stderr`.
 
 ## Create a local cluster
 
-To quickly create a local YugabyteDB cluster for development and learning, use the `yb-ctl create` command.
+To quickly create a local ZNbaseDB cluster for development and learning, use the `yb-ctl create` command.
 
 In order to ensure that all of the replicas for a given tablet can be placed on different nodes, the number of nodes created with the initial create command is always equal to the replication factor.  To expand or shrink the cluster, use the [`add_node`](#add-nodes) and [`remove_node`](#stop-remove-nodes) commands.
 
@@ -222,11 +222,11 @@ $ ./bin/yb-ctl --rf 5 create
 
 ## Default directories for local clusters
 
-YugabyteDB clusters created with the `yb-ctl` utility are created locally on the same host and simulate a distributed multi-host cluster.
+ZNbaseDB clusters created with the `yb-ctl` utility are created locally on the same host and simulate a distributed multi-host cluster.
 
 ### Data directory
 
-YugabyteDB cluster data is installed in `$HOME/yugabyte-data/`, containing the following:
+ZNbaseDB cluster data is installed in `$HOME/ZNbase-data/`, containing the following:
 
 ```sh
 cluster_config.json
@@ -237,19 +237,19 @@ node-#/disk-#/
 
 #### Node directories
 
-For each simulated YugabyteDB node, a `yugabyte-data` subdirectory, named `node-#` (where # is the number of the node), is created.
+For each simulated ZNbaseDB node, a `ZNbase-data` subdirectory, named `node-#` (where # is the number of the node), is created.
 
-Example: `/yugabyte-data/node-#/`
+Example: `/ZNbase-data/node-#/`
 
 Each `node-#` directory contains the following:
 
 ```sh
-yugabyte-data/node-#/disk-#/
+ZNbase-data/node-#/disk-#/
 ```
 
 #### Disk directories
 
-For each simulated disk, a `disk-#` subdirectory is created in each `/yugabyte-data/node-#` directory.
+For each simulated disk, a `disk-#` subdirectory is created in each `/ZNbase-data/node-#` directory.
 
 Each `disk-#` directory contains the following:
 
@@ -267,15 +267,15 @@ yb-data/
 YB-Master logs are added in the following location:
 
 ```sh
-yugabyte-data/node-#/disk-#/yb-data/master.out
-yugabyte-data/node-#/disk-#/yb-data/master/logs
+ZNbase-data/node-#/disk-#/yb-data/master.out
+ZNbase-data/node-#/disk-#/yb-data/master/logs
 ```
 
 YB-TServer logs are added in the following location:
 
 ```sh
-yugabyte-data/node-#/disk-#/yb-data/tserver.out
-yugabyte-data/node-#/disk-#/yb-data/tserver/logs
+ZNbase-data/node-#/disk-#/yb-data/tserver.out
+ZNbase-data/node-#/disk-#/yb-data/tserver/logs
 ```
 
 ## Start and stop an existing cluster
@@ -304,7 +304,7 @@ $ ./bin/yb-ctl status
 
 ## Initialize the YEDIS API
 
-The `setup_redis` command to initialize YugabyteDB's Redis-compatible YEDIS API.
+The `setup_redis` command to initialize ZNbaseDB's Redis-compatible YEDIS API.
 
 ```sh
 $ ./bin/yb-ctl setup_redis

@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
@@ -163,8 +163,8 @@ class UniverseConnectModal extends Component {
                 <tr>
                   <td>JDBC</td>
                   <td>:</td>
-                  <td title={`jdbc:postgresql://${connectIp}:${ysqlRpcPort}/yugabyte`}>
-                    jdbc:postgresql://{connectIp}:{ysqlRpcPort}/yugabyte
+                  <td title={`jdbc:postgresql://${connectIp}:${ysqlRpcPort}/ZNbase`}>
+                    jdbc:postgresql://{connectIp}:{ysqlRpcPort}/ZNbase
                   </td>
                 </tr>
                 {(userIntent.enableYSQL ||

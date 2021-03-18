@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component, Fragment } from 'react';
 import { YBTextInput } from '../../common/forms/fields';
@@ -61,7 +61,7 @@ export default class GFlagArrayComponent extends Component {
       <div className="form-field-grid gflag-array">
         {currentLabel && (
           <label>
-            {currentLabel} 
+            {currentLabel}
             {!isReadOnly && (
               <i className={`gflag-array__action-btn fa ${contentEditable ? 'fa-list' : 'fa-edit'}`}
                 onClick={this.handleEditorToggle}
@@ -116,7 +116,7 @@ export default class GFlagArrayComponent extends Component {
             )}
             <Row>
               <Col md={12}>
-                {isReadOnly ? <span /> : <YBAddRowButton btnText="Add Row" onClick={self.addRow} />}                          
+                {isReadOnly ? <span /> : <YBAddRowButton btnText="Add Row" onClick={self.addRow} />}
               </Col>
             </Row>
           </Fragment>

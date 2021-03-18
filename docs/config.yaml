@@ -1,7 +1,7 @@
 ---
-baseurl: https://docs.yugabyte.com
+baseurl: https://docs.ZNbase.com
 languageCode: en-us
-title: YugabyteDB Docs
+title: ZNbaseDB Docs
 metadataformat: yaml
 canonifyurls: false
 googleAnalytics: UA-104956980-3
@@ -11,9 +11,9 @@ enableGitInfo: true
 resourceDir: docs/resources
 
 params:
-  author: Team Yugabyte
-  description: 'YugabyteDB, the transactional, high-performance database for building internet-scale, globally-distributed apps.'
-  copyright: 'Yugabyte, Inc.'
+  author: Team ZNbase
+  description: 'ZNbaseDB, the transactional, high-performance database for building internet-scale, globally-distributed apps.'
+  copyright: 'ZNbase, Inc.'
   block_indexing: false
   version: Beta
   logo: /images/og-image.jpg
@@ -29,7 +29,7 @@ params:
     text: Source Sans Pro
     code: Inconsolata
   algolia:
-    index: yugabyte
+    index: ZNbase
     appID: BH4D9OD16A
     apiKey: 12bc78d612b87db0163597f245889f18
   bigpicture:

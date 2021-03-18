@@ -2,8 +2,8 @@
 title: JSON Support
 headerTitle: JSON Support
 linkTitle: JSON Support
-description: JSON Support in YugabyteDB.
-headcontent: JSON Support in YugabyteDB.
+description: JSON Support in ZNbaseDB.
+headcontent: JSON Support in ZNbaseDB.
 image: <div class="icon"><i class="fas fa-file-invoice"></i></div>
 menu:
   stable:
@@ -40,7 +40,7 @@ The JSON data type supported in YCQL is `jsonb`. The JSON functionality in YCQL 
 
 ## 1. Prerequisites
 
-You need a YugabyteDB cluster to run through the steps below. If do not have a YugabyteDB cluster, you can create one on your local machine as shown below.
+You need a ZNbaseDB cluster to run through the steps below. If do not have a ZNbaseDB cluster, you can create one on your local machine as shown below.
 
 ```sh
 $ ./bin/yb-ctl create

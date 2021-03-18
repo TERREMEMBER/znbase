@@ -1,9 +1,9 @@
 ---
-title: Yugabyte Platform
-linkTitle: Yugabyte Platform
-description: Yugabyte Platform
+title: ZNbase Platform
+linkTitle: ZNbase Platform
+description: ZNbase Platform
 image: /images/section_icons/manage/enterprise.png
-headcontent: Manage YugabyteDB without any downtime using the Yugabyte Platform's built-in orchestration and monitoring.
+headcontent: Manage ZNbaseDB without any downtime using the ZNbase Platform's built-in orchestration and monitoring.
 block_indexing: true
 menu:
   v1.3:
@@ -12,7 +12,7 @@ menu:
     weight: 707
 ---
 
-YugabyteDB creates a `universe` with a bunch of instances (VMs, pods, machines etc provided by IaaS) logically grouped together to form one logical distributed database. Each such universe can be made up of one or more clusters. These are comprised of one `Primary` cluster and zero or more `Read Replica` clusters. All instances belonging to a cluster run on the same type of cloud provider instance type.
+ZNbaseDB creates a `universe` with a bunch of instances (VMs, pods, machines etc provided by IaaS) logically grouped together to form one logical distributed database. Each such universe can be made up of one or more clusters. These are comprised of one `Primary` cluster and zero or more `Read Replica` clusters. All instances belonging to a cluster run on the same type of cloud provider instance type.
 
 <div class="row">
   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
@@ -22,7 +22,7 @@ YugabyteDB creates a `universe` with a bunch of instances (VMs, pods, machines e
         <div class="title">Create universe - Multi-zone</div>
       </div>
       <div class="body">
-        Create YugabyteDB universes in one region across multiple zones using Yugabyte Admin Console's intent-driven orchestration.
+        Create ZNbaseDB universes in one region across multiple zones using ZNbase Admin Console's intent-driven orchestration.
       </div>
     </a>
   </div>
@@ -34,7 +34,7 @@ YugabyteDB creates a `universe` with a bunch of instances (VMs, pods, machines e
         <div class="title">Create universe - Multi-region</div>
       </div>
       <div class="body">
-        Create YugabyteDB universes in multiple regions using Yugabyte Admin Console's intent-driven orchestration.
+        Create ZNbaseDB universes in multiple regions using ZNbase Admin Console's intent-driven orchestration.
       </div>
     </a>
   </div>
@@ -94,7 +94,7 @@ YugabyteDB creates a `universe` with a bunch of instances (VMs, pods, machines e
         <div class="title">Read replicas</div>
       </div>
       <div class="body">
-        Create YugabyteDB universes with primary and read replica clusters in a hybrid cloud deployment.
+        Create ZNbaseDB universes with primary and read replica clusters in a hybrid cloud deployment.
       </div>
     </a>
   </div>
@@ -106,7 +106,7 @@ YugabyteDB creates a `universe` with a bunch of instances (VMs, pods, machines e
         <div class="title">Backup restore</div>
       </div>
       <div class="body">
-        Backup and restore tables using the Yugabyte Admin Console.
+        Backup and restore tables using the ZNbase Admin Console.
       </div>
     </a>
   </div>

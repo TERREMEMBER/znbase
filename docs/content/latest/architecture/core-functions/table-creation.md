@@ -2,7 +2,7 @@
 title: Table creation
 headerTitle: Table creation
 linkTitle: Table creation
-description: Learn how YugabyteDB creates tables and manages schema changes.
+description: Learn how ZNbaseDB creates tables and manages schema changes.
 aliases:
   - /architecture/core-functions/table-creation/
 menu:
@@ -14,7 +14,7 @@ isTocNested: false
 showAsideToc: true
 ---
 
-In YugabyteDB, user-issued table creation is handled by the YB-Master leader, and is an asynchronous API. The
+In ZNbaseDB, user-issued table creation is handled by the YB-Master leader, and is an asynchronous API. The
 YB-Master leader returns a success for the API once it has replicated both the table schema as well
 as all the other information needed to perform the table creation to the other YB-Masters in the
 RAFT group to make it resilient to failures.
@@ -53,7 +53,7 @@ to user issued APIs.
 
 ## An example
 
-Let us take our standard example of creating a table in a YugabyteDB universe with 4 nodes. Also, as
+Let us take our standard example of creating a table in a ZNbaseDB universe with 4 nodes. Also, as
 before, let us say the table has 16 tablets and a replication factor of 3. The table creation
 process is illustrated below. First, the YB-Master leader validates the schema, creates the 16
 tablets (48 tablet-peers because of the replication factor of 3) and replicates this data needed for

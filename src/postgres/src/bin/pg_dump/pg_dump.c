@@ -1058,11 +1058,11 @@ help(const char *progname)
 	printf(_("  -w, --no-password        never prompt for password\n"));
 	printf(_("  -W, --password           force password prompt (should happen automatically)\n"));
 	printf(_("  --role=ROLENAME          do SET ROLE before dump\n"));
-	printf(_("  -m, --masters=IPS        YugaByte Master hosts IP addresses\n"));
+	printf(_("  -m, --masters=IPS        ZNbase Master hosts IP addresses\n"));
 
 	printf(_("\nIf no database name is supplied, then the PGDATABASE environment\n"
 			 "variable value is used.\n\n"));
-	printf(_("Report bugs on https://github.com/YugaByte/yugabyte-db/issues/new\n"));
+	printf(_("Report bugs on https://github.com/ZNbase/ZNbase-db/issues/new\n"));
 }
 
 static void
@@ -15874,7 +15874,7 @@ dumpTableSchema(Archive *fout, TableInfo *tbinfo)
 		}
 
 		/*
-		 * Construct the reloptions array for Yugabyte reloptions. If YB is
+		 * Construct the reloptions array for ZNbase reloptions. If YB is
 		 * disabled, then the array will be empty ('{}').
 		 */
 		appendPQExpBuffer(yb_reloptions, "{");
@@ -15882,7 +15882,7 @@ dumpTableSchema(Archive *fout, TableInfo *tbinfo)
 		if (dopt->include_yb_metadata &&
 			(tbinfo->relkind == RELKIND_RELATION || tbinfo->relkind == RELKIND_INDEX))
 		{
-			/* Get the table properties from YugaByte. */
+			/* Get the table properties from ZNbase. */
 			HandleYBStatus(YBCPgGetTableDesc(dopt->db_oid, tbinfo->dobj.catId.oid, &ybc_tabledesc));
 			HandleYBStatus(YBCPgGetTableProperties(ybc_tabledesc, &yb_table_properties));
 
@@ -16526,7 +16526,7 @@ dumpIndex(Archive *fout, IndxInfo *indxinfo)
 
 		if (dopt->include_yb_metadata)
 		{
-			/* Get the table properties from YugaByte. */
+			/* Get the table properties from ZNbase. */
 			HandleYBStatus(YBCPgGetTableDesc(dopt->db_oid, indxinfo->dobj.catId.oid, &ybc_tabledesc));
 			HandleYBStatus(YBCPgGetTableProperties(ybc_tabledesc, &yb_table_properties));
 

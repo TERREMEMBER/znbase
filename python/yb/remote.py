@@ -1,5 +1,5 @@
 """
-Copyright (c) YugaByte, Inc.
+Copyright (c) ZNbase, Inc.
 
 This module provides utility and helper functions to work with a remote server through SSH.
 """
@@ -153,8 +153,8 @@ def load_profile(args, profile_name="default_profile"):
         #   "local": "~/code",
         #   "remote": "/home/centos/code"
         # }]
-        # and then run remote_build.py in ~/code/yugabyte-db and the build will run in
-        # /home/centos/code/yugabyte-db on the remote host.
+        # and then run remote_build.py in ~/code/ZNbase-db and the build will run in
+        # /home/centos/code/ZNbase-db on the remote host.
         cur_dir = os.getcwd()
         cur_dir_variants = [os.path.abspath(cur_dir), os.path.realpath(cur_dir)]
         for substitution in profile.get('code_directory_substitutions', []):
@@ -195,7 +195,7 @@ def sync_changes(host, branch, remote_path, wait_for_ssh):
 
     :param host: remote host
     :param branch: branch used as a base for local changes
-    :param remote_path: path to yugabyte directory on a remote server
+    :param remote_path: path to ZNbase directory on a remote server
     :param wait_for_ssh: whether script should wait for host to become accessible via SSH
     :return: escaped remote path made absolute
     """
@@ -226,7 +226,7 @@ def sync_changes(host, branch, remote_path, wait_for_ssh):
                 repo_dir={0};
                 echo "Attempting to clone the code on $(hostname) at $repo_dir"
                 if [[ ! -e $repo_dir ]]; then
-                    ( set -x; git clone git@github.com:yugabyte/yugabyte-db.git "$repo_dir" )
+                    ( set -x; git clone git@github.com:ZNbase/ZNbase-db.git "$repo_dir" )
                 fi
             """.format(shlex.quote(remote_path)).strip())
 

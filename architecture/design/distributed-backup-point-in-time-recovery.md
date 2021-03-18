@@ -3,7 +3,7 @@
 ## Goals
 Point in time recovery (also referred to as *PITR* in this document) and incremental backups go hand in hand. These two features help in recovering from a number of error or failure scenarios by allowing the database to be rolled back to a specific point in time (in the past). The rollback is done from the last full backup, with the updates since that full backup being replayed till the desired point in time.
 
-Point in time restores and incremental backups depend on full backups (also referred to as *base backups*). A full backup, as the name suggests, is a complete transactional backup of data up to a certain point in time. The entire data set in the database is backed up for the set of namespaces/tables chosen by the user. Read more about the [design for a full, distributed backup](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/distributed-backup-and-restore.md). Full backups are deemed expensive for the following reasons:
+Point in time restores and incremental backups depend on full backups (also referred to as *base backups*). A full backup, as the name suggests, is a complete transactional backup of data up to a certain point in time. The entire data set in the database is backed up for the set of namespaces/tables chosen by the user. Read more about the [design for a full, distributed backup](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/distributed-backup-and-restore.md). Full backups are deemed expensive for the following reasons:
 * The performance of the database could be adversely affected. There may be a high latency of foreground operations, decreased throughput when the backup is happening.
 * The data set size may be large, requiring more time, bandwidth and disk space to perform the backup.
 
@@ -20,7 +20,7 @@ While it is important to ensure a low RPO, it often becomes essential to trade i
 * Larger backups are also more expensive to store
 
 #### 3. RTO needs to be reasonable
-Note that while recovery time objective or RTO needs to be reasonable, it is typically not an important metric in the case of a backup restore. This is especially true in the case of YugabyteDB, where regular outages have a very low RTO since the database is inherently highly available.
+Note that while recovery time objective or RTO needs to be reasonable, it is typically not an important metric in the case of a backup restore. This is especially true in the case of ZNbaseDB, where regular outages have a very low RTO since the database is inherently highly available.
 
 #### 4. Enabled at a namespace level
 This feature is currently designed to operate at the level of a YSQL database (namespace) or a YCQL keyspace.
@@ -42,7 +42,7 @@ Data loss can happen due to one of the following reasons:
 2. Erroneous deletion of DB data files: for example due to an operator error
 3. Introduction of bugs in the database software: for example, due to a software upgrade
 
-In a distributed SQL database such as YugabyteDB, scenarios #1 and #2 can be mitigated due to the presence of live replicas since it is highly unlikely the same issue occurs on all nodes. However, for scenario #3, point in time recovery is an important solution.
+In a distributed SQL database such as ZNbaseDB, scenarios #1 and #2 can be mitigated due to the presence of live replicas since it is highly unlikely the same issue occurs on all nodes. However, for scenario #3, point in time recovery is an important solution.
 
 #### C. Recover from disaster scenarios
 This is the scenario when the data in the entire source cluster is lost irrecoverably, and a restore needs to be performed from a remote location. While the likelihood of this scenario is low, it is still important to understand the probability of correlated failures. For example, a disaster due to a natural disaster has a very low probability of occurrence in a multi-region deployment, and it’s probability of occurrence increases with the proximity of the replicas.
@@ -150,7 +150,7 @@ Perform incremental backups as needed, eithr on demand or to occur at a schedule
 
 Handling incremental backups for point in time recovery will be done by impementing two separate features - flashback DB and incremental backups. As a distributed SQL database, the way the approach to accomplishing these features for table data differs from that for the table schema. In this section, we will discuss  the design for table data (or DML) and table schema (DDL) across flashback DB and incremental backups. 
 
-> **Note:** that these depend on [performing a full snapshot / backup of the distributed database](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/distributed-backup-and-restore.md).
+> **Note:** that these depend on [performing a full snapshot / backup of the distributed database](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/distributed-backup-and-restore.md).
 
 
 
@@ -192,4 +192,4 @@ In this case, the operation performing the roll back would need to drop the newl
 In this case, the all of the tablets that make up the table would need to revert to the appropriate earlier version of the schema.
 
 
-[![Analytics](https://yugabyte.appspot.com/UA-104956980-4/architecture/design/point-in-time-recovery.md?pixel&useReferer)](https://github.com/yugabyte/ga-beacon)
+[![Analytics](https://ZNbase.appspot.com/UA-104956980-4/architecture/design/point-in-time-recovery.md?pixel&useReferer)](https://github.com/ZNbase/ga-beacon)

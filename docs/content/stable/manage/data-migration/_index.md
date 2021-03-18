@@ -2,9 +2,9 @@
 title: Migrate data
 headerTitle: Migrate data
 linkTitle: Migrate data
-description: Import and export data in YugabyteDB.
+description: Import and export data in ZNbaseDB.
 image: /images/section_icons/manage/enterprise.png
-headcontent: Bulk import/export data to/from YugabyteDB.
+headcontent: Bulk import/export data to/from ZNbaseDB.
 menu:
   stable:
     identifier: manage-bulk-import-export
@@ -20,7 +20,7 @@ menu:
         <div class="title">Bulk import</div>
       </div>
       <div class="body">
-        This section describes how to bulk import data into YugabyteDB.
+        This section describes how to bulk import data into ZNbaseDB.
       </div>
     </a>
   </div>
@@ -31,7 +31,7 @@ menu:
         <div class="title">Bulk export</div>
       </div>
       <div class="body">
-        This section describes how to bulk export data out of YugabyteDB.
+        This section describes how to bulk export data out of ZNbaseDB.
       </div>
     </a>
   </div>

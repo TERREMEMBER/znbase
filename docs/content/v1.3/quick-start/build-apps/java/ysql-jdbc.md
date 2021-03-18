@@ -53,7 +53,7 @@ To build your Java application using the PostgreSQL JDBC driver, add the followi
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB and created a universe with YSQL enabled. If not, please follow these steps in the [Quick Start guide](../../../../quick-start/explore-ysql/).
+- installed ZNbaseDB and created a universe with YSQL enabled. If not, please follow these steps in the [Quick Start guide](../../../../quick-start/explore-ysql/).
 - installed JDK version 1.8+ and maven 3.3+
 
 ### Create the Maven build file
@@ -68,7 +68,7 @@ Create a maven build file `pom.xml` and add the following content into it.
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.yugabyte.sample.apps</groupId>
+  <groupId>com.ZNbase.sample.apps</groupId>
   <artifactId>hello-world</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
@@ -122,13 +122,13 @@ Create a maven build file `pom.xml` and add the following content into it.
 Create the appropriate directory structure as expected by maven.
 
 ```sh
-$ mkdir -p src/main/java/com/yugabyte/sample/apps
+$ mkdir -p src/main/java/com/ZNbase/sample/apps
 ```
 
-Copy the following contents into the file `src/main/java/com/yugabyte/sample/apps/YBSqlHelloWorld.java`.
+Copy the following contents into the file `src/main/java/com/ZNbase/sample/apps/YBSqlHelloWorld.java`.
 
 ```java
-package com.yugabyte.sample.apps;
+package com.ZNbase.sample.apps;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -190,7 +190,7 @@ $ mvn package
 To run the program, do the following.
 
 ```sh
-$ java -cp "target/hello-world-1.0.jar:target/lib/*" com.yugabyte.sample.apps.YBSqlHelloWorld
+$ java -cp "target/hello-world-1.0.jar:target/lib/*" com.ZNbase.sample.apps.YBSqlHelloWorld
 ```
 
 You should see the following as the output.

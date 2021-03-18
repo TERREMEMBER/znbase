@@ -1151,7 +1151,7 @@ pg_get_indexdef_string(Oid indexrelid)
 								  false, false,
 								  true, true,
 								  0, false,
-								  IsYugaByteEnabled() /* useNonconcurrently */);
+								  IsZNbaseEnabled() /* useNonconcurrently */);
 }
 
 /* Internal version that just reports the key-column definitions */

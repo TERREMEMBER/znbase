@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -141,7 +141,7 @@ public class TestAuthentication extends BaseAuthenticationCommonCQLTest {
         ProtocolOptions.Compression.NONE,true, "and/or password are incorrect");
   }
 
-  // This tests fix for https://github.com/yugabyte/yugabyte-db/issues/4459.
+  // This tests fix for https://github.com/ZNbase/ZNbase-db/issues/4459.
   // Before this fix, the tserver process would crash when trying to check the credentials because
   // it couldn't handle roles that were created without a password.
   @Test(timeout = 100000)

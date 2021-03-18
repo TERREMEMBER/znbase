@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
@@ -137,8 +137,8 @@ export default class UniverseAppsModal extends Component {
       });
 
       const commandSyntax = isItKubernetesUniverse
-        ? 'kubectl run --image=yugabytedb/yb-sample-apps yb-sample-apps --'
-        : 'docker run -d yugabytedb/yb-sample-apps';
+        ? 'kubectl run --image=ZNbasedb/yb-sample-apps yb-sample-apps --'
+        : 'docker run -d ZNbasedb/yb-sample-apps';
       return (
         <Tab eventKey={idx} title={appType.title} key={appType.code}>
           {betaFeature}

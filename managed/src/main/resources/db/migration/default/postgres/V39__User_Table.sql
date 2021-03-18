@@ -1,4 +1,4 @@
--- Copyright (c) YugaByte, Inc.
+-- Copyright (c) ZNbase, Inc.
 
 create table users (
   uuid                          uuid not null,

@@ -1,8 +1,8 @@
 ---
-title: Create and edit instance tags using Yugabyte Platform
+title: Create and edit instance tags using ZNbase Platform
 headerTitle: Create and edit instance tags
 linkTitle: Create and edit instance tags
-description: Use Yugabyte Platform to create and edit instance tags.
+description: Use ZNbase Platform to create and edit instance tags.
 block_indexing: true
 menu:
   v2.1:
@@ -15,7 +15,7 @@ showAsideToc: true
 
 The instances created on a cloud provider can be assigned special metadata to help manage, bill or audit the resources. On Amazon Web Services (AQS), they are referred to as
 [instance tags](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html). You can create and edit these on the **Universe** dashboard of the
-YugabyteDB Admin Console.
+ZNbaseDB Admin Console.
 
 {{< note title="Note" >}}
 
@@ -25,7 +25,7 @@ The option to set instance tags is currently available only for AWS.
 
 ## 1. Create instance tags
 
-During the universe creation step, with an AWS cloud provider, use the YugabyteDB Admin Console to provide the option to input the instance tags as a map of keys and values as shown below.
+During the universe creation step, with an AWS cloud provider, use the ZNbaseDB Admin Console to provide the option to input the instance tags as a map of keys and values as shown below.
 
 ![Create instance tags](/images/ee/inst-tags-1.png)
 

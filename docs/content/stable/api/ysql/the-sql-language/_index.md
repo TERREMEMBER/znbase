@@ -1,8 +1,8 @@
 ---
-title: The YugabyteDB SQL language [YSQL]
-headerTitle: The YugabyteDB SQL language
+title: The ZNbaseDB SQL language [YSQL]
+headerTitle: The ZNbaseDB SQL language
 linkTitle: The SQL language
-description: The YugabyteDB SQL language—DDL; DML; DCL; TCL; session and system control; performance control
+description: The ZNbaseDB SQL language—DDL; DML; DCL; TCL; session and system control; performance control
 image: /images/section_icons/api/ysql.png
 menu:
   stable:

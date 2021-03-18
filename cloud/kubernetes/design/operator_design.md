@@ -1,17 +1,17 @@
-# YugabyteDB Operator Design
+# ZNbaseDB Operator Design
 
-A cluster of YugabyteDB should be created using the `ybclusters.yugabyte.com` custom resource definition. Below are sample custom resource specs for creating 3-master, 3 t-servers cluster using the CRD. The [minimal spec](#Minimal-Spec-Sample) and the [full spec](#Full-Spec-Sample) are essentially same, with [minimal spec](#Minimal-Spec-Sample) stripping away all the default vaules. The samples are followed by an explanation of different configuration options available on the YugabyteDB CRD.
+A cluster of ZNbaseDB should be created using the `ybclusters.ZNbase.com` custom resource definition. Below are sample custom resource specs for creating 3-master, 3 t-servers cluster using the CRD. The [minimal spec](#Minimal-Spec-Sample) and the [full spec](#Full-Spec-Sample) are essentially same, with [minimal spec](#Minimal-Spec-Sample) stripping away all the default vaules. The samples are followed by an explanation of different configuration options available on the ZNbaseDB CRD.
 
 
 ## Minimal Spec Sample
 
-Below is an example of a spec with minimum attributes required to define a custom resorce of type `ybclusters.yugabyte.com`. The spec below uses all possible defaults & specifies only the mandatory attributes.
+Below is an example of a spec with minimum attributes required to define a custom resorce of type `ybclusters.ZNbase.com`. The spec below uses all possible defaults & specifies only the mandatory attributes.
 
 ```yaml
-apiVersion: yugabyte.com/v1alpha1
+apiVersion: ZNbase.com/v1alpha1
 kind: YBCluster
 metadata:
-  name: yugabytedb
+  name: ZNbasedb
 spec:
   replicationFactor: 3
   master:
@@ -29,17 +29,17 @@ The spec can be used as a starting point &  can be updated with any other attrib
 
 ## Full Spec Sample
 
-Below is an example of the full spec for custom resource `ybclusters.yugabyte.com`. It shows all possible attributes that can be specified with it, along with the default value, if any.
+Below is an example of the full spec for custom resource `ybclusters.ZNbase.com`. It shows all possible attributes that can be specified with it, along with the default value, if any.
 
 ```yaml
-apiVersion: yugabyte.com/v1alpha1
+apiVersion: ZNbase.com/v1alpha1
 kind: YBCluster
 metadata:
-  name: yugabytedb
-  namespace: yugabytedb
+  name: ZNbasedb
+  namespace: ZNbasedb
 spec:
   image:
-    repository: yugabytedb/yugabyte     # Optional. Default value "yugabytedb/yugabyte".
+    repository: ZNbasedb/ZNbase     # Optional. Default value "ZNbasedb/ZNbase".
     tag: 1.3.2.0-b19                    # Optional. Default value "1.3.2.0-b19".
     pullPolicy: IfNotPresent            # Optional. Default value "IfNotPresent".
   tls:
@@ -53,7 +53,7 @@ spec:
     # Mentioning network ports is optional. If some or all ports are not specified, then they will be defaulted to below-mentioned values.
     masterUIPort: 7000                  # Optional. Default value "7000".
     masterRPCPort: 7100                 # Optional. Default value "7100".
-    enableLoadBalancer: false           # Optional. Default value "false". Change it to true to be able to access YugabyteDB Master UI over the internet.
+    enableLoadBalancer: false           # Optional. Default value "false". Change it to true to be able to access ZNbaseDB Master UI over the internet.
     podManagementPolicy: Parallel       # Optional. Default value "Parallel", out of valid values "Parallel" and "OrderedReady". If "OrderedReady" value is specified, cluster will take more time coming up.
     storage:
       count: 1                          # Optional. Default value "1".
@@ -78,7 +78,7 @@ spec:
     ycqlPort: 9042                      # Optional. Default value "9042".
     yedisPort: 6379                     # Optional. Default value "6379".
     ysqlPort: 5433                      # Optional. Default value "5433".
-    enableLoadBalancer: false           # Optional. Default value "false". Change it to true to be able to access YugabyteDB TServer UI over the internet. Value will be ignored if "tserverUIPort" is omitted.
+    enableLoadBalancer: false           # Optional. Default value "false". Change it to true to be able to access ZNbaseDB TServer UI over the internet. Value will be ignored if "tserverUIPort" is omitted.
     # Volume claim template for TServer
     podManagementPolicy: Parallel       # Optional. Default value "Parallel", out of valid values "Parallel" and "OrderedReady". If "OrderedReady" value is specified, cluster will take more time coming up.
     storage:
@@ -100,16 +100,16 @@ spec:
 ## Cluster Settings
 
 ### Image
-Mention YugabyteDB docker image attributes such as `repository`, `tag` and `pullPolicy` under `image`.
+Mention ZNbaseDB docker image attributes such as `repository`, `tag` and `pullPolicy` under `image`.
 
 ### TLS
-Enable TLS encryption for YugabyteDB, if desired. Default is disabled. You can use the TLS encryption with 3 GFlags, explained later. If you have set `enabled` to true, then you need to generate root certificate and key. Specify the two under `rootCA.cert` & `rootCA.key`. Refer [YugabytedB docs](https://docs.yugabyte.com/latest/secure/tls-encryption/prepare-nodes/#create-the-openssl-ca-configuration) (till [generate root configuration](https://docs.yugabyte.com/latest/secure/tls-encryption/prepare-nodes/#generate-root-configuration) section) for an idea on how to generate the certificate & key files.
+Enable TLS encryption for ZNbaseDB, if desired. Default is disabled. You can use the TLS encryption with 3 GFlags, explained later. If you have set `enabled` to true, then you need to generate root certificate and key. Specify the two under `rootCA.cert` & `rootCA.key`. Refer [ZNbasedB docs](https://docs.ZNbase.com/latest/secure/tls-encryption/prepare-nodes/#create-the-openssl-ca-configuration) (till [generate root configuration](https://docs.ZNbase.com/latest/secure/tls-encryption/prepare-nodes/#generate-root-configuration) section) for an idea on how to generate the certificate & key files.
 
 ### Replication Factor
 Specify the required data replication factor. This is a **required** field.
 
 ### Master/TServer
-Master & TServer are two essential components of a YugabyteDB cluster. Master is responsible for recording and maintaining system metadata & for admin activities. TServers are mainly responsible for data I/O.
+Master & TServer are two essential components of a ZNbaseDB cluster. Master is responsible for recording and maintaining system metadata & for admin activities. TServers are mainly responsible for data I/O.
 Specify Master/TServer specific attributes under `master`/`tserver`. The valid attributes are as described below. These two are **required** fields.
 
 #### Replicas
@@ -136,7 +136,7 @@ Table depicting acceptable port names, applicable component (Master/TServer) and
 | ysqlPort       | TServer   | 5433          |
 
 #### podManagementPolicy
-Specify pod management policy for statefulsets created as part of YugabyteDB cluster. Valid values are `Parallel` & `OrderedReady`, `Parallel` being the default value.
+Specify pod management policy for statefulsets created as part of ZNbaseDB cluster. Valid values are `Parallel` & `OrderedReady`, `Parallel` being the default value.
 
 #### storage
 Specify storage configurations viz. Storage `count`, `size` & `storageClass` of volumes. Typically 1 volume per Master instance is sufficient, hence Master has a default storage count of `1`. If storage class isn't specified, it will be defaulted to `standard`. Make sure kubernetes admin has defined `standard` storage class, before leaving this field out.
@@ -145,7 +145,7 @@ Specify storage configurations viz. Storage `count`, `size` & `storageClass` of 
 Specify resource `requests` & `limits` under `resources` attribute. The resources to be specified are `cpu` & `memory`. The `resource` property in itself is optional & it won't be applied to created `StatefulSets`, if omitted. You may also choose to specify either `resource.requests` or `resource.limits` or both.
 
 #### gflags
-Specify list of GFlags for additional control on YugabyteDB cluster. Refer [Master Config Flags](https://docs.yugabyte.com/latest/admin/yb-master/#config-flags) & [TServer Config Flags](https://docs.yugabyte.com/latest/admin/yb-tserver/#config-flags) for list of supported flags.
+Specify list of GFlags for additional control on ZNbaseDB cluster. Refer [Master Config Flags](https://docs.ZNbase.com/latest/admin/yb-master/#config-flags) & [TServer Config Flags](https://docs.ZNbase.com/latest/admin/yb-tserver/#config-flags) for list of supported flags.
 
 If you have enabled TLS encryption, then you can set:
 - `use_node_to_node_encryption` flag to enable node to node encryption

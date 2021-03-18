@@ -1,8 +1,8 @@
 ---
-title: Grant YSQL privileges in YugabyteDB
+title: Grant YSQL privileges in ZNbaseDB
 headerTitle: Grant privileges
 linkTitle: Grant privileges
-description: Grant YSQL privileges in YugabyteDB
+description: Grant YSQL privileges in ZNbaseDB
 block_indexing: true
 menu:
   v2.2:
@@ -41,7 +41,7 @@ Here is what you want to achieve from a role-based access control (RBAC) perspec
 
 ## 1. Create role hierarchy
 
-Connect to the cluster using a superuser role. Read more about [enabling authentication and connecting using a superuser role](../../authentication/ysql-authentication/) in YugabyteDB clusters for YSQL. For this tutorial, you are using the default `yugabyte` user and connect to the cluster using `ysqlsh` as follows:
+Connect to the cluster using a superuser role. Read more about [enabling authentication and connecting using a superuser role](../../authentication/ysql-authentication/) in ZNbaseDB clusters for YSQL. For this tutorial, you are using the default `ZNbase` user and connect to the cluster using `ysqlsh` as follows:
 
 ```sh
 $ ysqlsh
@@ -50,13 +50,13 @@ $ ysqlsh
 Create a database `dev_database`.
 
 ```plpgsql
-yugabyte=# CREATE database dev_database;
+ZNbase=# CREATE database dev_database;
 ```
 
 Switch to the `dev_database`.
 
 ```
-yugabyte=# \c dev_database
+ZNbase=# \c dev_database
 ```
 
 Create the `integration_tests` table:
@@ -90,7 +90,7 @@ dev_database=# GRANT engineering TO developer;
 List all the roles amd their memberships.
 
 ```
-yugabyte=# \du
+ZNbase=# \du
 ```
 
 You should see the following output:
@@ -104,7 +104,7 @@ You should see the following output:
  engineering | Cannot login                                               | {}
  postgres    | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
  qa          | Cannot login                                               | {engineering}
- yugabyte    | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ ZNbase    | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 ```
 
 ## 2. List privileges for roles
@@ -112,7 +112,7 @@ You should see the following output:
 You can list all privileges granted to the various roles with the following command:
 
 ```
-yugabyte=# \du
+ZNbase=# \du
 ```
 
 You should see something like the following output.
@@ -126,10 +126,10 @@ You should see something like the following output.
  engineering | Cannot login                                               | {}
  postgres    | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
  qa          | Cannot login                                               | {engineering}
- yugabyte    | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ ZNbase    | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 ```
 
-The above shows the various role attributes the `yugabyte` role has. Since `yugabyte` is a superuser, it has all privileges on all databases, including `ALTER`, `Create role` and `DROP` on the roles you created (`engineering`, `developer`, `qa` and `db_admin`).
+The above shows the various role attributes the `ZNbase` role has. Since `ZNbase` is a superuser, it has all privileges on all databases, including `ALTER`, `Create role` and `DROP` on the roles you created (`engineering`, `developer`, `qa` and `db_admin`).
 
 ## 3. Grant privileges to roles
 
@@ -160,11 +160,11 @@ The output should look similar to below, where you see that the `engineering` ro
 ```
  Schema |       Name        | Type  |     Access privileges     | Column privileges | Policies
 --------+-------------------+-------+---------------------------+-------------------+----------
- public | integration_tests | table | yugabyte=arwdDxt/yugabyte+|                   |
-        |                   |       | engineering=r/yugabyte   +|                   |
+ public | integration_tests | table | ZNbase=arwdDxt/ZNbase+|                   |
+        |                   |       | engineering=r/ZNbase   +|                   |
 ```
 
-The access privileges "arwdDxt" include all privileges for the user `yugabyte` (superuser), while the role `engineering` has only "r" (read) privileges. For details on the `GRANT` statement and access privileges, see [GRANT](../../../api/ysql/commands/dcl_grant).
+The access privileges "arwdDxt" include all privileges for the user `ZNbase` (superuser), while the role `engineering` has only "r" (read) privileges. For details on the `GRANT` statement and access privileges, see [GRANT](../../../api/ysql/commands/dcl_grant).
 
 Granting the role `engineering` to any other role will cause all those roles to inherit the specified privileges. Thus, `developer`, `qa` and `db_admin` will all inherit the `SELECT` and `USAGE` privileges, giving them read-access.
 
@@ -189,10 +189,10 @@ Now `developer` and `qa` roles have the access privileges `awdD` (append/insert,
                                        Access privileges
  Schema |       Name        | Type  |     Access privileges     | Column privileges | Policies
 --------+-------------------+-------+---------------------------+-------------------+----------
- public | integration_tests | table | yugabyte=arwdDxt/yugabyte+|                   |
-        |                   |       | engineering=r/yugabyte   +|                   |
-        |                   |       | developer=awdD/yugabyte  +|                   |
-        |                   |       | qa=awdD/yugabyte          |                   |
+ public | integration_tests | table | ZNbase=arwdDxt/ZNbase+|                   |
+        |                   |       | engineering=r/ZNbase   +|                   |
+        |                   |       | developer=awdD/ZNbase  +|                   |
+        |                   |       | qa=awdD/ZNbase          |                   |
 ```
 
 ### Grant alter table access
@@ -200,16 +200,16 @@ Now `developer` and `qa` roles have the access privileges `awdD` (append/insert,
 QA (`qa`) should be able to alter the table `integration_tests` in the database `dev_database`. This can be done as follows.
 
 ```plpgsql
-yugabyte=# ALTER TABLE integration_tests OWNER TO qa;
+ZNbase=# ALTER TABLE integration_tests OWNER TO qa;
 ```
 
 Once again, run the following command to verify the privileges.
 
 ```plpgsql
-yugabyte=# SELECT * FROM system_auth.role_privileges;
+ZNbase=# SELECT * FROM system_auth.role_privileges;
 ```
 
-We should see that owner has changed from `yugabyte` to `qa` and `qa` has all access privileges (`arwdDxt`) on the table `integration_tests`.
+We should see that owner has changed from `ZNbase` to `qa` and `qa` has all access privileges (`arwdDxt`) on the table `integration_tests`.
 
 ```
                                    Access privileges
@@ -253,7 +253,7 @@ We should see the following, which grants the `Superuser` privileges on the  to 
  engineering | Cannot login                                               | {}
  postgres    | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
  qa          | Cannot login                                               | {engineering}
- yugabyte    | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ ZNbase    | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 ```
 
 ## 4. Revoke privileges from roles
@@ -261,13 +261,13 @@ We should see the following, which grants the `Superuser` privileges on the  to 
 Let us say you want to revoke the `Superuser` privilege from the DB admins so that they can no longer change privileges for other roles. This can be done as follows.
 
 ```plpgsql
-yugabyte=# ALTER USER db_admin WITH NOSUPERUSER;
+ZNbase=# ALTER USER db_admin WITH NOSUPERUSER;
 ```
 
 Run the following command to verify the privileges.
 
 ```plpgsql
-yugabyte=# \du
+ZNbase=# \du
 ```
 
 We should see the following output.
@@ -284,7 +284,7 @@ We should see the following output.
  qa          | Cannot login                                               | {engineering}
  steve       |                                                            | {}
  test        |                                                            | {}
- yugabyte    | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ ZNbase    | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
 ```
 
 The `Superuser` privilege is no longer granted to the `db_admin` role.

@@ -39,12 +39,12 @@ showAsideToc: true
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB and created a universe with YSQL enabled. If not, please follow these steps in the [Quick Start guide](../../../../quick-start/explore-ysql/).
+- installed ZNbaseDB and created a universe with YSQL enabled. If not, please follow these steps in the [Quick Start guide](../../../../quick-start/explore-ysql/).
 
 ## Clone the orm-examples repository
 
 ```sh
-$ git clone https://github.com/yugabyte/orm-examples.git
+$ git clone https://github.com/ZNbase/orm-examples.git
 ```
 
 ```sh
@@ -57,7 +57,7 @@ This repository has a Ruby on Rails example that implements a simple REST API se
 - The products table contains a list of products the e-commerce site sells.
 - The orders placed by the users are populated in the orders table. An order can consist of multiple line items, each of these are inserted in the orderline table.
 
-The source for the above application can be found in the [repo](https://github.com/yugabyte/orm-examples/tree/master/ruby/ror). There are a number of options that can be customized in the properties file located at `config/database.yml`.
+The source for the above application can be found in the [repo](https://github.com/ZNbase/orm-examples/tree/master/ruby/ror). There are a number of options that can be customized in the properties file located at `config/database.yml`.
 
 ## Build and run the application
 
@@ -123,11 +123,11 @@ $ ./bin/ysqlsh
 ysqlsh (11.2)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 ```postgresql
-yugabyte=# SELECT count(*) FROM users;
+ZNbase=# SELECT count(*) FROM users;
 ```
 
 ```
@@ -138,7 +138,7 @@ yugabyte=# SELECT count(*) FROM users;
 ```
 
 ```postgresql
-yugabyte=# SELECT count(*) FROM products;
+ZNbase=# SELECT count(*) FROM products;
 ```
 
 ```
@@ -149,7 +149,7 @@ yugabyte=# SELECT count(*) FROM products;
 ```
 
 ```postgresql
-yugabyte=# SELECT count(*) FROM orders;
+ZNbase=# SELECT count(*) FROM orders;
 ```
 
 ```
@@ -249,4 +249,4 @@ $ curl http://localhost:8080/orders
 
 ## Explore the source
 
-As highlighted earlier, the source for the above application can be found in the [orm-examples repository](https://github.com/yugabyte/orm-examples/tree/master/ruby/ror).
+As highlighted earlier, the source for the above application can be found in the [orm-examples repository](https://github.com/ZNbase/orm-examples/tree/master/ruby/ror).

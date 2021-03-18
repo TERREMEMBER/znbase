@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -32,7 +32,7 @@ namespace pgwrapper {
 namespace {
 
 constexpr auto kColoDbName = "colodb";
-constexpr auto kDatabaseName = "yugabyte";
+constexpr auto kDatabaseName = "ZNbase";
 constexpr auto kIndexName = "iii";
 constexpr auto kTableName = "ttt";
 
@@ -545,8 +545,8 @@ TEST_F_EX(PgIndexBackfillTest,
 
 // Override the index backfill test to have different HBA config:
 // 1. if any user tries to access the authdb database, enforce md5 auth
-// 2. if the postgres user tries to access the yugabyte database, allow it
-// 3. if the yugabyte user tries to access the yugabyte database, allow it
+// 2. if the postgres user tries to access the ZNbase database, allow it
+// 3. if the ZNbase user tries to access the ZNbase database, allow it
 // 4. otherwise, disallow it
 class PgIndexBackfillAuth : public PgIndexBackfillTest {
  public:
@@ -556,7 +556,7 @@ class PgIndexBackfillAuth : public PgIndexBackfillTest {
         "--ysql_hba_conf="
         "host $0 all all md5,"
         "host $1 postgres all trust,"
-        "host $1 yugabyte all trust",
+        "host $1 ZNbase all trust",
         kAuthDbName,
         kDatabaseName));
   }
@@ -564,7 +564,7 @@ class PgIndexBackfillAuth : public PgIndexBackfillTest {
   const std::string kAuthDbName = "authdb";
 };
 
-// Test backfill on clusters where the yugabyte role has authentication enabled.
+// Test backfill on clusters where the ZNbase role has authentication enabled.
 TEST_F_EX(PgIndexBackfillTest,
           YB_DISABLE_TEST_IN_TSAN(Auth),
           PgIndexBackfillAuth) {
@@ -578,8 +578,8 @@ TEST_F_EX(PgIndexBackfillTest,
 
     PGConn auth_conn = ASSERT_RESULT(ConnectUsingString(Format(
         "user=$0 password=$1 host=$2 port=$3 dbname=$4",
-        "yugabyte",
-        "yugabyte",
+        "ZNbase",
+        "ZNbase",
         host,
         port,
         this->kAuthDbName)));

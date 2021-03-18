@@ -15,9 +15,9 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-# The following only applies to changes made to this file as part of YugaByte development.
+# The following only applies to changes made to this file as part of ZNbase development.
 #
-# Portions Copyright (c) YugaByte, Inc.
+# Portions Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -33,7 +33,7 @@
 # Require cmake that includes FindICU module (https://cmake.org/cmake/help/v3.7/release/3.7.html)
 cmake_minimum_required(VERSION 3.7.0)
 
-project(YugabyteDB)
+project(ZNbaseDB)
 
 message("-- CMAKE_SYSTEM_INFO_FILE: ${CMAKE_SYSTEM_INFO_FILE}")
 message("-- CMAKE_SYSTEM_NAME:      ${CMAKE_SYSTEM_NAME}")
@@ -42,8 +42,8 @@ message("-- CMAKE_SYSTEM:           ${CMAKE_SYSTEM}")
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake_modules")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake_standard_modules")
-include(YugabyteFunctions)
-include(YugabyteTesting)
+include(ZNbaseFunctions)
+include(ZNbaseTesting)
 
 ADD_CXX_FLAGS("-Werror")
 ADD_CXX_FLAGS("-fno-strict-aliasing -msse4.2 -Wall -Wno-sign-compare -Wno-deprecated")
@@ -383,7 +383,7 @@ if(USING_LINUXBREW)
   set(CMAKE_PREFIX_PATH "${LINUXBREW_DIR}" ${CMAKE_PREFIX_PATH})
 endif()
 
-# For both RocksDB and YugaByte code, we need to set the OS flag on Mac. Some code in RocksDB also
+# For both RocksDB and ZNbase code, we need to set the OS flag on Mac. Some code in RocksDB also
 # distinguishes further into BSD vs everything else, but we probably do not care further.
 if(APPLE)
   ADD_CXX_FLAGS("-DOS_MACOSX")
@@ -668,7 +668,7 @@ endif()
 
 # -------------------------------------------------------------------------------------------------
 
-include(YugabyteFindThirdParty)
+include(ZNbaseFindThirdParty)
 
 ############################################################
 # Linker setup

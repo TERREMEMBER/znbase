@@ -12,11 +12,11 @@ isTocNested: true
 showAsideToc: false
 ---
 
-Starting with v2.2.0, Yugabyte follows a new release versioning convention for stable and development releases. The following sections cover the new release versioning convention and includes descriptions of stable and latest releases.
+Starting with v2.2.0, ZNbase follows a new release versioning convention for stable and development releases. The following sections cover the new release versioning convention and includes descriptions of stable and latest releases.
 
 ## Release versioning convention
 
-Yugabyte follows the [semantic versioning (semver)](https://semver.org) convention for numbering release versions, modified slightly to use even and odd minor releases denote stable and development releases, respectively. Release versions follow the semantic versioning format of `MAJOR.MINOR.PATCH`, where non-negative integers are used for:
+ZNbase follows the [semantic versioning (semver)](https://semver.org) convention for numbering release versions, modified slightly to use even and odd minor releases denote stable and development releases, respectively. Release versions follow the semantic versioning format of `MAJOR.MINOR.PATCH`, where non-negative integers are used for:
 
 - `MAJOR` — Includes substantial changes.
 - `MINOR` — Incremented when new features and changes are introduced.
@@ -34,7 +34,7 @@ Patch releases in a stable release series (`MAJOR.EVEN.PATCH`) include bug fixes
 
 {{< note title="Important" >}}
 
-- Yugabyte supports *production deployments* on stable releases and upgrades to newer stable releases. For a list of supported stable releases, see [Current supported releases](../releases-overview/#current-supported-releases).
+- ZNbase supports *production deployments* on stable releases and upgrades to newer stable releases. For a list of supported stable releases, see [Current supported releases](../releases-overview/#current-supported-releases).
 - For recommendations on which version to use for development and testing, see [Recommended release series for projects](../releases-overview/#recommended-releases-series-for-projects).
 
 {{< /note >}}

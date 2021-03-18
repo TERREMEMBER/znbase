@@ -1,18 +1,18 @@
 #!/bin/bash
 #
-# Copyright 2020 YugaByte, Inc. and Contributors
+# Copyright 2020 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 check_type="provision"
 airgap=false
 install_node_exporter=false
 mount_points=""
-yb_home_dir="/home/yugabyte"
+yb_home_dir="/home/ZNbase"
 # This should be a comma separated key-value list. Associative arrays were add in bash 4.0 so
 # they might not exist in the provided instance depending on how old it is.
 result_kvs=""
@@ -27,7 +27,7 @@ preflight_provision_check() {
     # Send 3 packets with 3 second timeout and return success if any succeed. Do not send
     # multiple packets at once since ping will return an error if any packet fails.
     for i in 1 2 3; do
-      ping -c 1 -W 3 www.yugabyte.com && break
+      ping -c 1 -W 3 www.ZNbase.com && break
     done
     update_result_json_with_rc "Internet Connection" "$?"
   fi
@@ -59,29 +59,29 @@ preflight_provision_check() {
     check_filepath "Mount Point" "$path" false
   done
 
-  # Check yugabyte user belongs to yugabyte group if it exists.
-  if id -u "yugabyte"; then
-    yb_group=$(id -gn "yugabyte")
+  # Check ZNbase user belongs to ZNbase group if it exists.
+  if id -u "ZNbase"; then
+    yb_group=$(id -gn "ZNbase")
     user_status=false
-    if [[ $yb_group == "yugabyte" ]]; then
+    if [[ $yb_group == "ZNbase" ]]; then
       user_status=true
     fi
-    update_result_json "Yugabyte User in Yugabyte Group" "$user_status"
+    update_result_json "ZNbase User in ZNbase Group" "$user_status"
   fi
 }
 
 preflight_configure_check() {
-  # Check yugabyte user exists.
-  id -u yugabyte
-  update_result_json_with_rc "Yugabyte User" "$?"
+  # Check ZNbase user exists.
+  id -u ZNbase
+  update_result_json_with_rc "ZNbase User" "$?"
 
-  # Check yugabyte user belongs to group yugabyte.
-  yb_group=$(id -gn "yugabyte")
+  # Check ZNbase user belongs to group ZNbase.
+  yb_group=$(id -gn "ZNbase")
   user_status=false
-  if [[ $yb_group == "yugabyte" ]]; then
+  if [[ $yb_group == "ZNbase" ]]; then
     user_status=true
   fi
-  update_result_json "Yugabyte Group" "$user_status"
+  update_result_json "ZNbase Group" "$user_status"
 
   # Check home directory exists.
   check_filepath "Home Directory" "$yb_home_dir" false
@@ -146,7 +146,7 @@ Options:
   --mount_points MOUNT_POINTS
     Commas separated list of mount paths to check permissions of.
   --yb_home_dir HOME_DIR
-    Home directory of yugabyte user.
+    Home directory of ZNbase user.
   -h, --help
     Show usage.
 EOT

@@ -12,5 +12,5 @@ isTocNested: true
 showAsideToc: true
 ---
 
-To grow a YugabyteDB cluster, add new yb-tserver nodes, just like you would when creating the cluster.
+To grow a ZNbaseDB cluster, add new yb-tserver nodes, just like you would when creating the cluster.
 For more information, see [starting `tserver` servers](../../deploy/manual-deployment/start-tservers/).

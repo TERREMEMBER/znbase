@@ -183,6 +183,6 @@ EXPLAIN SELECT * FROM tab_range_nonkey5 WHERE a = 1;
 \di
 
 -- drop database
-\c yugabyte
+\c ZNbase
 DROP DATABASE colocation_test;
 \c colocation_test

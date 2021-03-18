@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 
 import json
@@ -27,7 +27,7 @@ class AnsibleProcess(object):
     DEFAULT_SSH_CONNECTION_TYPE = "ssh"
 
     def __init__(self):
-        self.yb_user_name = "yugabyte"
+        self.yb_user_name = "ZNbase"
 
         self.playbook_args = {
             "user_name": self.yb_user_name,

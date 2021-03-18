@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -474,7 +474,7 @@ void Webserver::RegisterPathHandler(const string& path,
 const char* const PAGE_HEADER = "<!DOCTYPE html>"
 "<html>"
 "  <head>"
-"    <title>YugabyteDB</title>"
+"    <title>ZNbaseDB</title>"
 "    <link rel='shortcut icon' href='/favicon.ico'>"
 "    <link href='/bootstrap/css/bootstrap.min.css' rel='stylesheet' media='screen' />"
 "    <link href='/bootstrap/css/bootstrap-theme.min.css' rel='stylesheet' media='screen' />"
@@ -488,7 +488,7 @@ const char* const PAGE_HEADER = "<!DOCTYPE html>"
 static const char* const NAVIGATION_BAR_PREFIX =
 "  <nav class=\"navbar navbar-fixed-top navbar-inverse sidebar-wrapper\" role=\"navigation\">"
 "    <ul class=\"nav sidebar-nav\">"
-"      <li><a href='/'><img src='/logo.png' alt='YugabyteDB' class='nav-logo' /></a></li>"
+"      <li><a href='/'><img src='/logo.png' alt='ZNbaseDB' class='nav-logo' /></a></li>"
 "\n";
 
 static const char* const NAVIGATION_BAR_SUFFIX =

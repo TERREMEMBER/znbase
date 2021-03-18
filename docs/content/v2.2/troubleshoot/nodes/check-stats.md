@@ -2,7 +2,7 @@
 title: System statistics
 linkTitle: System statistics
 headerTitle: Check system statistics
-description: How to check system statistics on your YugabyteDB cluster
+description: How to check system statistics on your ZNbaseDB cluster
 block_indexing: true
 menu:
   v2.2:
@@ -38,7 +38,7 @@ Generally, common tools like `top` or `iostat` may be useful.
 
 ### Auditd
 
-If `top` reports high CPU usage for the `auditd` process, it may have some rules auditing some system calls frequently used YugabyteDB which can significantly affect performance. You can try temporarily disabling `audit` by running (on each YugabyteDB node).
+If `top` reports high CPU usage for the `auditd` process, it may have some rules auditing some system calls frequently used ZNbaseDB which can significantly affect performance. You can try temporarily disabling `audit` by running (on each ZNbaseDB node).
 
 ```sh
 $ auditctl -e 0
@@ -52,9 +52,9 @@ To re-enable it afterwards, run:
 $ auditctl -e 1
 ```
 
-## YugabyteDB processes state
+## ZNbaseDB processes state
 
-YugabyteDB provides web endpoints where the current state of each process is aggregated. This includes logs, flags as well as memory, disk, and network usage metrics. Additionally, it provides dedicated metrics endpoints for YCQL and, respectively, Redis requests.
+ZNbaseDB provides web endpoints where the current state of each process is aggregated. This includes logs, flags as well as memory, disk, and network usage metrics. Additionally, it provides dedicated metrics endpoints for YCQL and, respectively, Redis requests.
 
 | Description | URL |
 |-------------|-----|
@@ -65,6 +65,6 @@ YugabyteDB provides web endpoints where the current state of each process is agg
 
 {{< note title="Note" >}}
 
-When running `yb-ctl` locally with default values, three local IP addresses will be created: `127.0.0.1`, `127.0.0.2`, and `127.0.0.3`, one for each YugabyteDB node.
+When running `yb-ctl` locally with default values, three local IP addresses will be created: `127.0.0.1`, `127.0.0.2`, and `127.0.0.3`, one for each ZNbaseDB node.
 
 {{< /note >}}

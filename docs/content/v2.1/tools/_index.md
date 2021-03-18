@@ -2,8 +2,8 @@
 title: Third party tools
 headerTitle: Third party tools
 linkTitle: Third party tools
-description: Interactive third party clients that you can use with YugabyteDB.
-headcontent: Interactive third party clients that you can use with YugabyteDB.to run SQL queries and get results from.
+description: Interactive third party clients that you can use with ZNbaseDB.
+headcontent: Interactive third party clients that you can use with ZNbaseDB.to run SQL queries and get results from.
 image: /images/section_icons/troubleshoot/troubleshoot.png
 type: page
 section: REFERENCE
@@ -47,7 +47,7 @@ menu:
         <div class="title">pgAdmin</div>
       </div>
       <div class="body">
-        Use this popular PostgreSQL client with YugabyteDB.
+        Use this popular PostgreSQL client with ZNbaseDB.
       </div>
     </a>
   </div>
@@ -59,7 +59,7 @@ menu:
         <div class="title">SQL Workbench/J</div>
       </div>
       <div class="body">
-        A unified developer console for querying YugabyteDB and displaying results.
+        A unified developer console for querying ZNbaseDB and displaying results.
       </div>
     </a>
   </div>
@@ -71,7 +71,7 @@ menu:
         <div class="title">TablePlus</div>
       </div>
       <div class="body">
-        A unified developer console for querying all YugabyteDB APIs.
+        A unified developer console for querying all ZNbaseDB APIs.
       </div>
     </a>
   </div>

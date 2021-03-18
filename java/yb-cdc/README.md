@@ -1,14 +1,14 @@
-Using YugabyteDB’s Change Data Capture (CDC) API, follow these steps to use YugabyteDB as a data source to a console sink: 
+Using ZNbaseDB’s Change Data Capture (CDC) API, follow these steps to use ZNbaseDB as a data source to a console sink: 
 
-### Setup YugabyteDB
+### Setup ZNbaseDB
 
-1. Download latest version of YugabyteDB.
+1. Download latest version of ZNbaseDB.
 
-https://download.yugabyte.com/
+https://download.ZNbase.com/
 
 2. Create a local cluster.
 
-https://docs.yugabyte.com/latest/quick-start/create-local-cluster/
+https://docs.ZNbase.com/latest/quick-start/create-local-cluster/
 
 3. Create a table on the cluster.
 
@@ -17,7 +17,7 @@ https://docs.yugabyte.com/latest/quick-start/create-local-cluster/
 1. Download the cdc connector for stdout.
 
 ```sh
-wget http://download.yugabyte.com/yb-cdc-connector.jar
+wget http://download.ZNbase.com/yb-cdc-connector.jar
 ```
 
 2. Start the console connector app.

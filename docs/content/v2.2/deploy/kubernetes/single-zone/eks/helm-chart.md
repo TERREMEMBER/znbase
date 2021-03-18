@@ -29,7 +29,7 @@ Amazon EKS runs multi-zone Kubernetes clusters by default and has no support for
 
 {{<tip title="Next step" >}}
 
-Refer to the [Multi-zone Amazon EKS](../../../multi-zone/eks/helm-chart/) instructions for getting started with YugabyteDB on Amazon EKS.
+Refer to the [Multi-zone Amazon EKS](../../../multi-zone/eks/helm-chart/) instructions for getting started with ZNbaseDB on Amazon EKS.
 
 {{< /tip >}}
 

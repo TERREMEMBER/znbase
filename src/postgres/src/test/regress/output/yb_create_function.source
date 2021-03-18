@@ -1,5 +1,5 @@
 --
--- Yugabyte created functions
+-- ZNbase created functions
 --
 CREATE FUNCTION bigname_in(cstring)
    RETURNS bigname

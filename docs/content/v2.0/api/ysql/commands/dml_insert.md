@@ -97,19 +97,19 @@ DO NOTHING | DO UPDATE SET *update_item* [ , ... ] [ WHERE *condition* ]
 First, the bare insert. Create a sample table.
 
 ```postgresql
-yugabyte=# CREATE TABLE sample(k1 int, k2 int, v1 int, v2 text, PRIMARY KEY (k1, k2));
+ZNbase=# CREATE TABLE sample(k1 int, k2 int, v1 int, v2 text, PRIMARY KEY (k1, k2));
 ```
 
 Insert some rows.
 
 ```postgresql
-yugabyte=# INSERT INTO sample VALUES (1, 2.0, 3, 'a'), (2, 3.0, 4, 'b'), (3, 4.0, 5, 'c');
+ZNbase=# INSERT INTO sample VALUES (1, 2.0, 3, 'a'), (2, 3.0, 4, 'b'), (3, 4.0, 5, 'c');
 ```
 
 Check the inserted rows.
 
 ```postgresql
-yugabyte=# SELECT * FROM sample ORDER BY k1;
+ZNbase=# SELECT * FROM sample ORDER BY k1;
 ```
 
 ```
@@ -123,18 +123,18 @@ yugabyte=# SELECT * FROM sample ORDER BY k1;
 Next, a basic "upsert" example. Re-create and re-populate the sample table.
 
 ```postgresql
-yugabyte=# DROP TABLE IF EXISTS sample CASCADE;
+ZNbase=# DROP TABLE IF EXISTS sample CASCADE;
 ```
 
 ```postgresql
-yugabyte=# CREATE TABLE sample(
+ZNbase=# CREATE TABLE sample(
   id int  CONSTRAINT sample_id_pk PRIMARY KEY,
   c1 text CONSTRAINT sample_c1_NN NOT NULL,
   c2 text CONSTRAINT sample_c2_NN NOT NULL);
 ```
 
 ```postgresql
-yugabyte=# INSERT INTO sample(id, c1, c2)
+ZNbase=# INSERT INTO sample(id, c1, c2)
   VALUES (1, 'cat'    , 'sparrow'),
          (2, 'dog'    , 'blackbird'),
          (3, 'monkey' , 'thrush');
@@ -143,7 +143,7 @@ yugabyte=# INSERT INTO sample(id, c1, c2)
 Check the inserted rows.
 
 ```postgresql
-yugabyte=# SELECT id, c1, c2 FROM sample ORDER BY id;
+ZNbase=# SELECT id, c1, c2 FROM sample ORDER BY id;
 ```
 
 ```
@@ -157,7 +157,7 @@ yugabyte=# SELECT id, c1, c2 FROM sample ORDER BY id;
 Demonstrate "on conflict do nothing". In this case, we don't need to specify the conflict target.
 
 ```postgresql
-yugabyte=# INSERT INTO sample(id, c1, c2)
+ZNbase=# INSERT INTO sample(id, c1, c2)
   VALUES (3, 'horse' , 'pigeon'),
          (4, 'cow'   , 'robin')
   ON CONFLICT
@@ -168,7 +168,7 @@ Check the result.
 The non-conflicting row with id = 4 is inserted, but the conflicting row with id = 3 is NOT updated.
 
 ```postgresql
-yugabyte=# SELECT id, c1, c2 FROM sample ORDER BY id;
+ZNbase=# SELECT id, c1, c2 FROM sample ORDER BY id;
 ```
 
 ```
@@ -184,7 +184,7 @@ Demonstrate the real "upsert". In this case, we DO need to specify the conflict 
 EXCLUDED keyword to specify the conflicting rows in the to-be-upserted relation.
 
 ```postgresql
-yugabyte=# INSERT INTO sample(id, c1, c2)
+ZNbase=# INSERT INTO sample(id, c1, c2)
   VALUES (3, 'horse' , 'pigeon'),
          (5, 'tiger' , 'starling')
   ON CONFLICT (id)
@@ -196,7 +196,7 @@ Check the result.
 The non-conflicting row with id = 5 is inserted, and the conflicting row with id = 3 is updated.
 
 ```postgresql
-yugabyte=# SELECT id, c1, c2 FROM sample ORDER BY id;
+ZNbase=# SELECT id, c1, c2 FROM sample ORDER BY id;
 ```
 
 ```
@@ -231,7 +231,7 @@ The non-conflicting row with id = 6 is inserted;  the conflicting row with id = 
 but the conflicting row with id = 5 (and c1 = 'tiger') is NOT updated;
 
 ```postgresql
-yugabyte=# SELECT id, c1, c2 FROM sample ORDER BY id;
+ZNbase=# SELECT id, c1, c2 FROM sample ORDER BY id;
 ```
 
 ```
@@ -255,7 +255,7 @@ Finally, a slightly more elaborate "upsert" example. Re-create and re-populate t
 Notice that id is a self-populating surrogate primary key and that c1 is a business unique key.
 
 ```postgresql
-yugabyte=# DROP TABLE IF EXISTS sample CASCADE;
+ZNbase=# DROP TABLE IF EXISTS sample CASCADE;
 ```
 
 ```postgresql
@@ -276,7 +276,7 @@ INSERT INTO sample(c1, c2)
 Check the inserted rows.
 
 ```postgresql
-yugabyte=# SELECT id, c1, c2 FROM sample ORDER BY c1;
+ZNbase=# SELECT id, c1, c2 FROM sample ORDER BY c1;
 ```
 
 ```
@@ -296,7 +296,7 @@ indirectly by mentioniing the name of the unique constrained
 that covers them.
 
 ```postgresql
-yugabyte=# WITH to_be_upserted AS (
+ZNbase=# WITH to_be_upserted AS (
   SELECT c1, c2 FROM (VALUES
     ('cat'   , 'chaffinch'),
     ('deer'  , 'robin'),
@@ -313,7 +313,7 @@ yugabyte=# WITH to_be_upserted AS (
 Check the inserted rows.
 
 ```postgresql
-yugabyte=# SELECT id, c1, c2 FROM sample ORDER BY c1;
+ZNbase=# SELECT id, c1, c2 FROM sample ORDER BY c1;
 ```
 
 ```

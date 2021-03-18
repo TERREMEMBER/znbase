@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1404,7 +1404,7 @@ void MasterPathHandlers::RootHandler(const Webserver::WebRequest& req,
   VersionInfo::GetVersionInfoPB(&version_info);
 
   // Display the overview information.
-  (*output) << "<h1>YugabyteDB</h1>\n";
+  (*output) << "<h1>ZNbaseDB</h1>\n";
 
   (*output) << "<div class='row dashboard-content'>\n";
 
@@ -1479,7 +1479,7 @@ void MasterPathHandlers::RootHandler(const Webserver::WebRequest& req,
   // Build version and type.
   (*output) << Substitute("  <tr><td>$0<span class='yb-overview'>$1</span></td><td>$2</td></tr>\n",
                           "<i class='fa fa-code-fork yb-dashboard-icon' aria-hidden='true'></i>",
-                          "YugabyteDB Version ", version_info.version_number());
+                          "ZNbaseDB Version ", version_info.version_number());
   (*output) << Substitute("  <tr><td>$0<span class='yb-overview'>$1</span></td><td>$2</td></tr>\n",
                           "<i class='fa fa-terminal yb-dashboard-icon' aria-hidden='true'></i>",
                           "Build Type ", version_info.build_type());

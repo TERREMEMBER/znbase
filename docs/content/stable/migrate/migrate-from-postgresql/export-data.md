@@ -2,7 +2,7 @@
 title: Export PostgreSQL data
 headerTitle: Export PostgreSQL data
 linkTitle: Export PostgreSQL data
-description: Steps for exporting PostgreSQL data for importing into YugabyteDB.
+description: Steps for exporting PostgreSQL data for importing into ZNbaseDB.
 menu:
   stable:
     identifier: migrate-postgresql-export
@@ -12,11 +12,11 @@ isTocNested: false
 showAsideToc: true
 ---
 
-The recommended way to export data from PostgreSQL for purposes of importing it to YugabyteDB is using the CSV format.
+The recommended way to export data from PostgreSQL for purposes of importing it to ZNbaseDB is using the CSV format.
 
 ## Exporting an entire database
 
-The recommended way to dump an entire database from PostgreSQL is to use the YugabyteDB [`ysql_dump`](/latest/admin/ysql-dump) backup utility, which is in turn derived from PostgreSQL pg_dump.
+The recommended way to dump an entire database from PostgreSQL is to use the ZNbaseDB [`ysql_dump`](/latest/admin/ysql-dump) backup utility, which is in turn derived from PostgreSQL pg_dump.
 
 ```
 $ ysql_dump -d mydatabase > mydatabase-dump.sql

@@ -23,7 +23,7 @@ menu:
         <div class="title">Comparisons</div>
       </div>
       <div class="body">
-        Compare YugabyteDB with popular distributed SQL and NoSQL databases.
+        Compare ZNbaseDB with popular distributed SQL and NoSQL databases.
       </div>
     </a>
   </div>
@@ -35,7 +35,7 @@ menu:
         <div class="title">General FAQ</div>
       </div>
       <div class="body">
-        Questions about YugabyteDB, APIs, functionality, editions, releases, and more.
+        Questions about ZNbaseDB, APIs, functionality, editions, releases, and more.
       </div>
     </a>
   </div>
@@ -47,7 +47,7 @@ menu:
         <div class="title">Operations FAQ</div>
       </div>
       <div class="body">
-        Questions related to managing YugabyteDB clusters.
+        Questions related to managing ZNbaseDB clusters.
       </div>
     </a>
   </div>
@@ -59,20 +59,20 @@ menu:
         <div class="title">API compatibility FAQ</div>
       </div>
       <div class="body">
-        Understanding YugabyteDB API compatibility with popular database languages.
+        Understanding ZNbaseDB API compatibility with popular database languages.
       </div>
     </a>
   </div>
 </div>
 
 <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-  <a class="section-link icon-offset" href="yugabyte-platform/">
+  <a class="section-link icon-offset" href="ZNbase-platform/">
     <div class="head">
       <img class="icon" src="/images/section_icons/manage/enterprise.png" aria-hidden="true" />
-      <div class="title">Yugabyte Platform FAQ</div>
+      <div class="title">ZNbase Platform FAQ</div>
     </div>
     <div class="body">
-      Questions about using the commercial Yugabyte Platform.
+      Questions about using the commercial ZNbase Platform.
     </div>
   </a>
 </div>

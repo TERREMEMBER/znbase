@@ -1,8 +1,8 @@
 ---
-title: Node status and actions in Yugabyte Platform
+title: Node status and actions in ZNbase Platform
 headerTitle: Node status and actions
 linkTitle: Node status and actions
-description: Use Yugabyte Platform to view Node status and perform actions.
+description: Use ZNbase Platform to view Node status and perform actions.
 block_indexing: true
 menu:
   v2.1:
@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Each node in a universe has a **Status** column indicating its current logical state based on the Yugabyte Platform layer. This section first describes what each of them means and gives information on when and how these can be modified by the user. The **Nodes** tab on the universe page shows them. When you create a universe, the **Nodes** tab on the universe page provides the physical (such as ip, cloud) and the logical state information (master, status, etc.) about that node. Note that the `STATUS` for each node is **Live**. This is the steady state value for a normally functioning node.
+Each node in a universe has a **Status** column indicating its current logical state based on the ZNbase Platform layer. This section first describes what each of them means and gives information on when and how these can be modified by the user. The **Nodes** tab on the universe page shows them. When you create a universe, the **Nodes** tab on the universe page provides the physical (such as ip, cloud) and the logical state information (master, status, etc.) about that node. Note that the `STATUS` for each node is **Live**. This is the steady state value for a normally functioning node.
 
 ![Node Actions](/images/ee/node-actions-live.png)
 
@@ -29,10 +29,10 @@ Stopped | Server processes (`yb-tserver` and `yb-master`, if applicable) on that
 Removed | The node does not have any more data and the server processes have been stopped. It is not participating in the universe.
 Decommissioned | The underlying instance has been released to the IaaS. This can happen only after a node is removed or processes stopped.
 Provisioned | During universe creation, this indicates the instance is being setup with the required OS packages (for example, `ntp` and `chronyd`).
-Software Installed | During universe creation, this indicates YugabyteDB software is being deployed on this node.
+Software Installed | During universe creation, this indicates ZNbaseDB software is being deployed on this node.
 Upgrade Software | The software version is being updated on this node and the master/tserver processes will be restarted.
 Upgrade Flags | A server (`master` or `tserver`) process configuration file is being updated and the corresponding server will be restarted.
-Unreachable | Yugabyte Platform is not able to get information from the `node_exporter` process on that node.
+Unreachable | ZNbase Platform is not able to get information from the `node_exporter` process on that node.
 Destroyed | Very transient, while the universe (or cluster) is being deleted.
 
 ## Node actions
@@ -83,7 +83,7 @@ Since you know that the instance is dead, you can go ahead and release the ip as
 
 ### Add node
 
-The node can brought back to life on a new backing instance using the **Add Node** option from the dropdown for the `Decomissioned` node. For IaaS, like AWS and GCP, the Yugabyte Platform application will spawn with the existing instance type in the correct/existing region and zone of that node. After the end of this operation, the node will have `yb-master` and `yb-tserver` processes running along with some data that is load balanced onto this node and status will be marked `Live`. Note that the node name is reused and is part of the healthy cluster now.
+The node can brought back to life on a new backing instance using the **Add Node** option from the dropdown for the `Decomissioned` node. For IaaS, like AWS and GCP, the ZNbase Platform application will spawn with the existing instance type in the correct/existing region and zone of that node. After the end of this operation, the node will have `yb-master` and `yb-tserver` processes running along with some data that is load balanced onto this node and status will be marked `Live`. Note that the node name is reused and is part of the healthy cluster now.
 
 ![Add Node Actions](/images/ee/node-actions-add-node.png)
 
@@ -101,7 +101,7 @@ Do not `REMOVE` more than (RF - 1)/2 nodes at any given time. For example, on a 
 
 ## Quick operations, on an existing instance
 
-The second scenario is for more of a 'quick' planned change that can be performed on a node. For example, the DevOps wants to mount a new disk on the node or just install and run a new security daemon. In that case, the instance is still in use and stopping any running YugabyteDB process might be needed. Then the user can select the **Stop Processes** option, perform the system task, and then select **Start Processes** for that node.
+The second scenario is for more of a 'quick' planned change that can be performed on a node. For example, the DevOps wants to mount a new disk on the node or just install and run a new security daemon. In that case, the instance is still in use and stopping any running ZNbaseDB process might be needed. Then the user can select the **Stop Processes** option, perform the system task, and then select **Start Processes** for that node.
 
 The following two steps helps stop the server processes on the node and restart it back up. There is no data moved out of the node proactively, but the data shard/tablet leaders could change based on RAFT requirements.
 

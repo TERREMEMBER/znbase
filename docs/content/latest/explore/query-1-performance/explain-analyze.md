@@ -43,25 +43,25 @@ The *option* and its values are described in the following table. The most impor
 
 ### Examples
 
-Typically, you start by creating a table in YugabyteDB and inserting rows into it. 
+Typically, you start by creating a table in ZNbaseDB and inserting rows into it. 
 
 To create a table called `employees`, execute the following:
 
 ```sql
-yugabyte=# CREATE TABLE employees(k1 int, k2 int, v1 int, v2 text, PRIMARY KEY (k1, k2));
+ZNbase=# CREATE TABLE employees(k1 int, k2 int, v1 int, v2 text, PRIMARY KEY (k1, k2));
 ```
 
 To insert table rows, execute the following:
 
 ```sql
-yugabyte=# INSERT INTO employees (k1, k2, v1, v2) 
+ZNbase=# INSERT INTO employees (k1, k2, v1, v2) 
   VALUES (1, 2.0, 3, 'a'), (2, 3.0, 4, 'b'), (3, 4.0, 5, 'c');
 ```
 
 To check the query plan for simple select, execute the following:
 
 ```sql
-yugabyte=# EXPLAIN SELECT * FROM employees WHERE k1 = 1;
+ZNbase=# EXPLAIN SELECT * FROM employees WHERE k1 = 1;
 ```
 
 The following output displays the query execution cost estimate:
@@ -76,7 +76,7 @@ Foreign Scan on employees  (cost=0.00..112.50 rows=1000 width=44)
 To check the execution plan for select with a complex condition that requires filtering, execute the following:
 
 ```sql
-yugabyte=# EXPLAIN SELECT * FROM employees 
+ZNbase=# EXPLAIN SELECT * FROM employees 
   WHERE k1 = 2 and floor(k2 + 1.5) = v1;
 ```
 
@@ -94,7 +94,7 @@ By enabling the `ANALYZE` option and wrapping it to preserve data integrity, you
 
 ```sql
 BEGIN;
-yugabyte=# EXPLAIN ANALYZE SELECT * FROM employees 
+ZNbase=# EXPLAIN ANALYZE SELECT * FROM employees 
   WHERE k1 = 2 and floor(k2 + 1.5) = v1;
 ROLLBACK;
 ```
@@ -102,7 +102,7 @@ ROLLBACK;
 In addition to the cost estimates from the query planner, `EXPLAIN ANALYZE` displays the server output produced during the statement execution, as shown in the following example:
 
 ```sql
-yugabyte=# EXPLAIN ANALYZE SELECT * FROM employees a 
+ZNbase=# EXPLAIN ANALYZE SELECT * FROM employees a 
   LEFT JOIN LATERAL (SELECT * FROM employees b WHERE a.a = b.a) c ON TRUE;
                                  QUERY PLAN
 -------------------------------------------------------------------------
@@ -126,7 +126,7 @@ The server output from the preceding example includes the number of rescans (loo
 `EXPLAIN`, on the other hand,  does not provide this additional information, as shown in the following examples:
 
 ```sql
-yugabyte=# EXPLAIN SELECT * FROM employees a 
+ZNbase=# EXPLAIN SELECT * FROM employees a 
   LEFT JOIN LATERAL (SELECT * FROM employees b WHERE a.a = b.a) c ON TRUE;
                               QUERY PLAN
 ----------------------------------------------------------------------

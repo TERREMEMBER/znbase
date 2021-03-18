@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------------------------------------
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -18,7 +18,7 @@
 //
 // parser_inactive_nodes.h
 //   Definitions for parse tree nodes that are not used. A lof of PostgreQL features are not
-//   supported by Yugabyte, so there are unused node types.
+//   supported by ZNbase, so there are unused node types.
 //
 // Many of the node types used in parsetrees include a "location" field. This is a byte (not
 // character) offset in the original source text, to be used for positioning an error cursor when

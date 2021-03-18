@@ -50,11 +50,11 @@ See the semantics of each option in the [PostgreSQL docs][postgresql-docs-drop-c
 Basic example.
 
 ```plpgsql
-yugabyte=# CREATE FUNCTION sql_to_date(integer) RETURNS date AS $$
+ZNbase=# CREATE FUNCTION sql_to_date(integer) RETURNS date AS $$
              SELECT $1::text::date
              $$ LANGUAGE SQL IMMUTABLE STRICT;
-yugabyte=# CREATE CAST (integer AS date) WITH FUNCTION sql_to_date(integer) AS ASSIGNMENT;
-yugabyte=# DROP CAST (integer AS date);
+ZNbase=# CREATE CAST (integer AS date) WITH FUNCTION sql_to_date(integer) AS ASSIGNMENT;
+ZNbase=# DROP CAST (integer AS date);
 ```
 
 ## See also

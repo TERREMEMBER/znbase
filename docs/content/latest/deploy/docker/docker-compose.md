@@ -2,7 +2,7 @@
 title: Deploy local clusters using Docker Compose
 headerTitle: Docker
 linkTitle: Docker
-description: Use Docker Compose to create and manage local YugabyteDB clusters.
+description: Use Docker Compose to create and manage local ZNbaseDB clusters.
 aliases:
   - /admin/docker-compose/
   - /latest/admin/docker-compose/
@@ -32,7 +32,7 @@ showAsideToc: true
   </li>
 </ul>
 
-Use [docker-compose](https://docs.docker.com/compose/overview/) utility to create and manage YugabyteDB local clusters. Note that this approach is not recommended for multi-node clusters used for performance testing and production environments.
+Use [docker-compose](https://docs.docker.com/compose/overview/) utility to create and manage ZNbaseDB local clusters. Note that this approach is not recommended for multi-node clusters used for performance testing and production environments.
 
 ## 1. Create a single node cluster
 
@@ -41,7 +41,7 @@ Use [docker-compose](https://docs.docker.com/compose/overview/) utility to creat
 Pull the container from Docker Hub registry.
 
 ```sh
-$ docker pull yugabytedb/yugabyte
+$ docker pull ZNbasedb/ZNbase
 ```
 
 ### Create a `docker-compose.yaml` file
@@ -57,11 +57,11 @@ volumes:
 
 services:
   yb-master:
-      image: yugabytedb/yugabyte:latest
+      image: ZNbasedb/ZNbase:latest
       container_name: yb-master-n1
       volumes:
       - yb-master-data-1:/mnt/master
-      command: [ "/home/yugabyte/bin/yb-master",
+      command: [ "/home/ZNbase/bin/yb-master",
                 "--fs_data_dirs=/mnt/master",
                 "--master_addresses=yb-master-n1:7100",
                 "--rpc_bind_addresses=yb-master-n1:7100",
@@ -72,11 +72,11 @@ services:
         SERVICE_7000_NAME: yb-master
 
   yb-tserver:
-      image: yugabytedb/yugabyte:latest
+      image: ZNbasedb/ZNbase:latest
       container_name: yb-tserver-n1
       volumes:
       - yb-tserver-data-1:/mnt/tserver
-      command: [ "/home/yugabyte/bin/yb-tserver",
+      command: [ "/home/ZNbase/bin/yb-tserver",
                 "--fs_data_dirs=/mnt/tserver",
                 "--start_pgsql_proxy",
                 "--rpc_bind_addresses=yb-tserver-n1:9100",
@@ -111,7 +111,7 @@ Clients can now connect to the YSQL API at localhost:5433 and the YCQL API at lo
 ### Connect to YSQL
 
 ```sh
-$ docker exec -it yb-tserver-n1 /home/yugabyte/bin/ysqlsh -h yb-tserver-n1
+$ docker exec -it yb-tserver-n1 /home/ZNbase/bin/ysqlsh -h yb-tserver-n1
 ```
 
 ```
@@ -120,13 +120,13 @@ Type "help" for help.
 ```
 
 ```sh
-yugabyte=# CREATE TABLE foo(bar INT PRIMARY KEY);
+ZNbase=# CREATE TABLE foo(bar INT PRIMARY KEY);
 ```
 
 ### Connect to YCQL
 
 ```sh
-$ docker exec -it yb-tserver-n1 /home/yugabyte/bin/ycqlsh yb-tserver-n1
+$ docker exec -it yb-tserver-n1 /home/ZNbase/bin/ycqlsh yb-tserver-n1
 ```
 
 ```
@@ -159,13 +159,13 @@ networks:
 
 services:
   yb-master:
-      image: yugabytedb/yugabyte:latest
+      image: ZNbasedb/ZNbase:latest
       container_name: yb-master-n1
       networks:
       - dbinternal
       volumes:
       - yb-master-data-1:/mnt/master
-      command: [ "/home/yugabyte/bin/yb-master",
+      command: [ "/home/ZNbase/bin/yb-master",
                 "--fs_data_dirs=/mnt/master",
                 "--master_addresses=yb-master-n1:7100",
                 "--rpc_bind_addresses=yb-master-n1:7100",
@@ -176,14 +176,14 @@ services:
         SERVICE_7000_NAME: yb-master
 
   yb-tserver:
-      image: yugabytedb/yugabyte:latest
+      image: ZNbasedb/ZNbase:latest
       container_name: yb-tserver-n1
       networks:
       - dbinternal
       - dbnet
       volumes:
       - yb-tserver-data-1:/mnt/tserver
-      command: [ "/home/yugabyte/bin/yb-tserver",
+      command: [ "/home/ZNbase/bin/yb-tserver",
                 "--fs_data_dirs=/mnt/tserver",
                 "--start_pgsql_proxy",
                 "--rpc_bind_addresses=yb-tserver-n1:9100",
@@ -202,7 +202,7 @@ services:
       - yb-master
 
   yb-client:
-      image: yugabytedb/yb-sample-apps:latest
+      image: ZNbasedb/yb-sample-apps:latest
       container_name: yb-client-n1
       networks:
       - dbnet

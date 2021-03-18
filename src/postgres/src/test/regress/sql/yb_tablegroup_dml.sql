@@ -137,6 +137,6 @@ DROP TABLEGROUP tg_test1; -- fail
 DROP TABLEGROUP tg_test2;
 
 -- drop database
-\c yugabyte
+\c ZNbase
 DROP DATABASE test_tablegroups;
 \c test_tablegroups

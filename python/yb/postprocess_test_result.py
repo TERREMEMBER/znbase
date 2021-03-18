@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-Post-processes results of running a single YugabyteDB unit test (e.g. a C++ or Java test) and
+Post-processes results of running a single ZNbaseDB unit test (e.g. a C++ or Java test) and
 creates a structured output file with a summary of those results. This includes test running time
 and possible causes of test failure.
 """
@@ -9,7 +9,7 @@ and possible causes of test failure.
 import sys
 import os
 import logging
-import yugabyte_pycommon
+import ZNbase_pycommon
 import argparse
 import xml.etree.ElementTree as ET
 import json
@@ -42,12 +42,12 @@ import glob
 
 # Example test failure (Java):
 # <?xml version="1.0" encoding="UTF-8"?>
-# <testsuite name="com.yugabyte.jedis.TestReadFromFollowers"
+# <testsuite name="com.ZNbase.jedis.TestReadFromFollowers"
 #            time="11.383" tests="1" errors="1" skipped="0" failures="0">
 #   <properties>
 #     <!-- ... -->
 #   </properties>
-#   <testcase name="testSameZoneOps[1]" classname="com.yugabyte.jedis.TestReadFromFollowers"
+#   <testcase name="testSameZoneOps[1]" classname="com.ZNbase.jedis.TestReadFromFollowers"
 #             time="11.209">
 #     <error message="Could not get a resource from the pool"
 #            type="redis.clients.jedis.exceptions.JedisConnectionException">
@@ -92,11 +92,11 @@ class Postprocessor:
             description=__doc__)
         parser.add_argument(
             '--yb-src-root',
-            help='Root directory of YugaByte source code',
+            help='Root directory of ZNbase source code',
             required=True)
         parser.add_argument(
             '--build-root',
-            help='Root directory of YugaByte build',
+            help='Root directory of ZNbase build',
             required=True)
         parser.add_argument(
             '--test-log-path',
@@ -252,5 +252,5 @@ def main():
 
 
 if __name__ == '__main__':
-    yugabyte_pycommon.init_logging()
+    ZNbase_pycommon.init_logging()
     main()

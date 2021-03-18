@@ -2,7 +2,7 @@
 title: CLIs and command line tools
 headerTitle: CLIs
 linkTitle: CLIs
-description: Use these CLIs and command line tools to interact with YugabyteDB.
+description: Use these CLIs and command line tools to interact with ZNbaseDB.
 image: /images/section_icons/index/admin.png
 headcontent: Command line interfaces (CLIs) and tools reference.
 type: page
@@ -52,7 +52,7 @@ Information about configuring the [YB-Master](../reference/configuration/yb-mast
         <div class="title">ysqlsh</div>
       </div>
       <div class="body">
-        CLI shell for interacting with YugabyteDB using YSQL.
+        CLI shell for interacting with ZNbaseDB using YSQL.
       </div>
     </a>
   </div>
@@ -64,7 +64,7 @@ Information about configuring the [YB-Master](../reference/configuration/yb-mast
         <div class="title">ycqlsh</div>
       </div>
       <div class="body">
-        CLI shell for interacting with YugabyteDB using YCQL.
+        CLI shell for interacting with ZNbaseDB using YCQL.
       </div>
     </a>
   </div>
@@ -76,7 +76,7 @@ Information about configuring the [YB-Master](../reference/configuration/yb-mast
         <div class="title">yb-admin</div>
       </div>
       <div class="body">
-        CLI for administering YugabyteDB clusters.
+        CLI for administering ZNbaseDB clusters.
       </div>
     </a>
   </div>
@@ -100,7 +100,7 @@ Information about configuring the [YB-Master](../reference/configuration/yb-mast
         <div class="title">ysql_dump</div>
       </div>
       <div class="body">
-        Extract a YugabyteDB database into a SQL script file.
+        Extract a ZNbaseDB database into a SQL script file.
       </div>
     </a>
   </div>
@@ -112,7 +112,7 @@ Information about configuring the [YB-Master](../reference/configuration/yb-mast
         <div class="title">ysql_dumpall</div>
       </div>
       <div class="body">
-        Extract all YugabyteDB databases into a SQL script file.
+        Extract all ZNbaseDB databases into a SQL script file.
       </div>
     </a>
   </div>

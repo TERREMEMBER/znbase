@@ -1,14 +1,14 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import { connect } from 'react-redux';
 import { ImportRelease } from '../../../components/releases';
-import { importYugaByteRelease, importYugaByteReleaseResponse } from '../../../actions/customers';
+import { importZNbaseRelease, importZNbaseReleaseResponse } from '../../../actions/customers';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    importYugaByteRelease: (payload) => {
-      dispatch(importYugaByteRelease(payload)).then((response) => {
-        dispatch(importYugaByteReleaseResponse(response.payload));
+    importZNbaseRelease: (payload) => {
+      dispatch(importZNbaseRelease(payload)).then((response) => {
+        dispatch(importZNbaseReleaseResponse(response.payload));
       });
     }
   };

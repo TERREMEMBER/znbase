@@ -1,9 +1,9 @@
 ---
-title: Yugabyte Platform
-linkTitle: Yugabyte Platform
-description: Yugabyte Platform
+title: ZNbase Platform
+linkTitle: ZNbase Platform
+description: ZNbase Platform
 image: /images/section_icons/manage/enterprise.png
-headcontent: Tools and issues specific to the Yugabyte Platform.
+headcontent: Tools and issues specific to the ZNbase Platform.
 block_indexing: true
 menu:
   v2.1:
@@ -19,7 +19,7 @@ menu:
         <div class="title">Troubleshoot universes</div>
       </div>
       <div class="body">
-        Troubleshoot a YugabyteDB universe using the YugabyteDB Admin Console.
+        Troubleshoot a ZNbaseDB universe using the ZNbaseDB Admin Console.
       </div>
     </a>
   </div>

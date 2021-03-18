@@ -1,4 +1,4 @@
--- Copyright (c) YugaByte, Inc.
+-- Copyright (c) ZNbase, Inc.
 
 create table customer_config (
     config_uuid               uuid not null,

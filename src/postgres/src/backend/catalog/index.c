@@ -876,7 +876,7 @@ index_create(Relation heapRelation,
 	 * and slow because secondary indexes are not available yet. So we will skip this
 	 * duplicate name check as it will error later anyway when the indexes are created.
 	 */
-	if (!IsYugaByteEnabled() || !IsBootstrapProcessingMode())
+	if (!IsZNbaseEnabled() || !IsBootstrapProcessingMode())
 	{
 		/*
 		 * Check for duplicate name (both as to the index, and as to the
@@ -973,8 +973,8 @@ index_create(Relation heapRelation,
 	Assert(indexRelationId == RelationGetRelid(indexRelation));
 
 	/*
-	 * Create index in YugaByte only if it is a secondary index. Primary key is
-	 * an implicit part of the base table in YugaByte and doesn't need to be created.
+	 * Create index in ZNbase only if it is a secondary index. Primary key is
+	 * an implicit part of the base table in ZNbase and doesn't need to be created.
 	 */
 	if (IsYBRelation(indexRelation) && !isprimary)
 	{
@@ -1229,7 +1229,7 @@ index_create(Relation heapRelation,
 	 * relcache entry has already been rebuilt thanks to sinval update during
 	 * CommandCounterIncrement.
 	 */
-	if (IsBootstrapProcessingMode() || IsYugaByteEnabled())
+	if (IsBootstrapProcessingMode() || IsZNbaseEnabled())
 		RelationInitIndexAccessInfo(indexRelation);
 	else
 		Assert(indexRelation->rd_indexcxt != NULL);
@@ -1729,7 +1729,7 @@ index_drop(Oid indexId, bool concurrent)
 
 	/*
 	 * Schedule physical removal of the files (if any)
-	 * If the relation is a Yugabyte relation, there aren't any physical files to
+	 * If the relation is a ZNbase relation, there aren't any physical files to
 	 * remove.
 	 */
 	if (!IsYBRelation(userIndexRelation) &&
@@ -2813,7 +2813,7 @@ IndexBuildHeapRangeScanInternal(Relation heapRelation,
 		CHECK_FOR_INTERRUPTS();
 
 		/*
-		 * Skip handling of HOT-chained tuples which does not apply to YugaByte-based
+		 * Skip handling of HOT-chained tuples which does not apply to ZNbase-based
 		 * tables.
 		 */
 		if (!IsYBRelation(heapRelation))
@@ -3089,7 +3089,7 @@ IndexBuildHeapRangeScanInternal(Relation heapRelation,
 		}
 		else
 		{
-			/* In YugaByte mode DocDB will only send live tuples. */
+			/* In ZNbase mode DocDB will only send live tuples. */
 			tupleIsAlive = true;
 		}
 
@@ -3124,10 +3124,10 @@ IndexBuildHeapRangeScanInternal(Relation heapRelation,
 		 * You'd think we should go ahead and build the index tuple here, but
 		 * some index AMs want to do further processing on the data first.  So
 		 * pass the values[] and isnull[] arrays, instead.
-		 * This is not needed and should be skipped for YugaByte enabled tables.
+		 * This is not needed and should be skipped for ZNbase enabled tables.
 		 */
 
-		if (!IsYugaByteEnabled() && HeapTupleIsHeapOnly(heapTuple))
+		if (!IsZNbaseEnabled() && HeapTupleIsHeapOnly(heapTuple))
 		{
 			/*
 			 * For a heap-only tuple, pretend its TID is that of the root. See
@@ -3572,7 +3572,7 @@ validate_index_heapscan(Relation heapRelation,
 	while ((heapTuple = heap_getnext(scan, ForwardScanDirection)) != NULL)
 	{
 		/*
-		 * For YugaByte tables, there is no need to find the root tuple. Just
+		 * For ZNbase tables, there is no need to find the root tuple. Just
 		 * insert the fetched tuple.
 		 */
 		if (IsYBRelation(heapRelation))

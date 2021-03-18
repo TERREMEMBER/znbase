@@ -22,13 +22,13 @@ select count(gen_random_uuid());
 
 -- Testing fuzzystrmatch.
 create extension fuzzystrmatch;
-select levenshtein('YugaByte', 'yugabyte');
+select levenshtein('ZNbase', 'ZNbase');
  levenshtein
 -------------
            2
 (1 row)
 
-select metaphone('yugabyte', 8);
+select metaphone('ZNbase', 8);
  metaphone
 -----------
  YKBT
@@ -44,9 +44,9 @@ LINE 1: select digest('xyz', 'sha1');
 HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
 drop extension fuzzystrmatch;
 -- Expect failure since function should be removed.
-select levenshtein('YugaByte', 'yugabyte');
+select levenshtein('ZNbase', 'ZNbase');
 ERROR:  function levenshtein(unknown, unknown) does not exist
-LINE 1: select levenshtein('YugaByte', 'yugabyte');
+LINE 1: select levenshtein('ZNbase', 'ZNbase');
                ^
 HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
 -- Testing pg_stat_statements;
@@ -86,7 +86,7 @@ select userid,dbid,queryid,query,calls,rows,shared_blks_hit,shared_blks_read,sha
 drop table test;
 -- Testing uuid-ossp
 create extension "uuid-ossp";
-select uuid_generate_v5('00000000-0000-0000-0000-000000000000', 'yugabyte');
+select uuid_generate_v5('00000000-0000-0000-0000-000000000000', 'ZNbase');
            uuid_generate_v5
 --------------------------------------
  dc72413f-8ae5-51c0-8aa2-c7d117077c5e

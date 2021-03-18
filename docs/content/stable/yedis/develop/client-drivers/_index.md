@@ -1,9 +1,9 @@
 ---
-title: Build a YugabyteDB application using YEDIS
+title: Build a ZNbaseDB application using YEDIS
 headerTitle: Build an application using YEDIS
 linkTitle: Build an application
 description: Client drivers
-headcontent: Use your favorite programming language to build a YugabyteDB application that interacts using YEDIS.
+headcontent: Use your favorite programming language to build a ZNbaseDB application that interacts using YEDIS.
 image: /images/section_icons/develop/api-icon.png
 menu:
   stable:
@@ -12,7 +12,7 @@ menu:
     weight: 2900
 ---
 
-An application interacts with YugabyteDB using of a client library, also known as a client driver. Client drivers handle all interaction with the database in a language appropriate to the application. The applications use client drivers in various languages for the Redis-compatible YEDIS API.
+An application interacts with ZNbaseDB using of a client library, also known as a client driver. Client drivers handle all interaction with the database in a language appropriate to the application. The applications use client drivers in various languages for the Redis-compatible YEDIS API.
 
 For each of these languages, you are going to understand using the client driver as well as implement a simple HelloWorld application. The example application will insert an employee profile entry with the employee id 1, name "John" and age 35. The application will then query the the profile data for employee id 1 and print it out to the console.
 
@@ -27,7 +27,7 @@ For each of these languages, you are going to understand using the client driver
         <div class="title">C++</div>
       </div>
       <div class="body">
-        Build a YugabyteDB application using C++.
+        Build a ZNbaseDB application using C++.
       </div>
     </a>
   </div>
@@ -41,7 +41,7 @@ For each of these languages, you are going to understand using the client driver
         <div class="title">C#</div>
       </div>
       <div class="body">
-        Build a YugabyteDB application using C#.
+        Build a ZNbaseDB application using C#.
       </div>
     </a>
   </div>
@@ -55,7 +55,7 @@ For each of these languages, you are going to understand using the client driver
         <div class="title">Go</div>
       </div>
       <div class="body">
-        Build a YugabyteDB application using Go.
+        Build a ZNbaseDB application using Go.
       </div>
     </a>
   </div>
@@ -69,7 +69,7 @@ For each of these languages, you are going to understand using the client driver
         <div class="title">Java</div>
       </div>
       <div class="body">
-        Build a YugabyteDB application using Java.
+        Build a ZNbaseDB application using Java.
       </div>
     </a>
   </div>
@@ -83,7 +83,7 @@ For each of these languages, you are going to understand using the client driver
         <div class="title">NodeJS</div>
       </div>
       <div class="body">
-        Develop a YugabyteDB application using NodeJS.
+        Develop a ZNbaseDB application using NodeJS.
       </div>
     </a>
   </div>
@@ -97,7 +97,7 @@ For each of these languages, you are going to understand using the client driver
         <div class="title">Python</div>
       </div>
       <div class="body">
-        Develop a YugabyteDB application using Python.
+        Develop a ZNbaseDB application using Python.
       </div>
     </a>
   </div>

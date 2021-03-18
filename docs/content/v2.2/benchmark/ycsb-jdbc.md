@@ -62,19 +62,19 @@ Download the YCSB binaries. You can do this by running the following commands.
 
 ```sh
 $ cd $HOME
-$ wget https://github.com/yugabyte/YCSB/releases/download/1.0/ycsb.tar.gz
+$ wget https://github.com/ZNbase/YCSB/releases/download/1.0/ycsb.tar.gz
 $ tar -zxvf ycsb.tar.gz
 $ cd YCSB
 ```
 
-Make sure you have the YSQL shell `ysqlsh` exported to the `PATH` variable. You can download [`ysqlsh`](https://download.yugabyte.com/) if you do not have it.
+Make sure you have the YSQL shell `ysqlsh` exported to the `PATH` variable. You can download [`ysqlsh`](https://download.ZNbase.com/) if you do not have it.
 ```sh
 $ export PATH=$PATH:/path/to/ysqlsh
 ```
 
-### 2. Start YugabyteDB
+### 2. Start ZNbaseDB
 
-Start your YugabyteDB cluster by following the steps [here](../../deploy/manual-deployment/).
+Start your ZNbaseDB cluster by following the steps [here](../../deploy/manual-deployment/).
 
 {{< tip title="Tip" >}}
 You will need the IP addresses of the nodes in the cluster for the next step.
@@ -87,7 +87,7 @@ Update the file `db.properties` in the YCSB directory with the following content
 ```sh
 db.driver=org.postgresql.Driver
 db.url=jdbc:postgresql://<ip1>:5433/ycsb;jdbc:postgresql://<ip2>:5433/ycsb;jdbc:postgresql://<ip3>:5433/ycsb;
-db.user=yugabyte
+db.user=ZNbase
 db.passwd=
 ```
 
@@ -127,12 +127,12 @@ $ ./bin/ysqlsh -h <ip>
 
 Create the `ycsb` database.
 ```postgres
-yugabyte=# CREATE DATABASE ycsb;
+ZNbase=# CREATE DATABASE ycsb;
 ```
 
 Connect to the created database.
 ```postgres
-yugabyte=# \c ycsb
+ZNbase=# \c ycsb
 ```
 
 Create the table.

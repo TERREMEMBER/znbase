@@ -1,5 +1,5 @@
 ---
-title: Create a local YugabyteDB cluster on macOS
+title: Create a local ZNbaseDB cluster on macOS
 headerTitle: 2. Create a local cluster
 linkTitle: 2. Create a local cluster
 description: Create a local cluster on macOS in less than five minutes.
@@ -49,9 +49,9 @@ showAsideToc: true
 
 {{< note title="Note" >}}
 
-This macOS Quick Start is based on the new [`yugabyted`](../../../reference/configuration/yugabyted/) server. You can refer to the older [`yb-ctl`](../../../admin/yb-ctl/) based instructions in the [v2.1 docs](/v2.1/quick-start/install/linux/).
+This macOS Quick Start is based on the new [`ZNbased`](../../../reference/configuration/ZNbased/) server. You can refer to the older [`yb-ctl`](../../../admin/yb-ctl/) based instructions in the [v2.1 docs](/v2.1/quick-start/install/linux/).
 
-Note that yugabyted currently supports creating a single-node cluster only. Ability to create multi-node clusters is under [active development](https://github.com/yugabyte/yugabyte-db/issues/2057). 
+Note that ZNbased currently supports creating a single-node cluster only. Ability to create multi-node clusters is under [active development](https://github.com/ZNbase/ZNbase-db/issues/2057). 
 
 {{< /note >}}
 
@@ -60,7 +60,7 @@ Note that yugabyted currently supports creating a single-node cluster only. Abil
 To create a single-node local cluster with a replication factor (RF) of 1, run the following command.
 
 ```sh
-$ ./bin/yugabyted start
+$ ./bin/ZNbased start
 ```
 
 After the cluster is created, clients can connect to the YSQL and YCQL APIs at `localhost:5433` and `localhost:9042` respectively. You can also check `./var/data` to see the data directory and `./var/logs` to see the logs directory.
@@ -68,15 +68,15 @@ After the cluster is created, clients can connect to the YSQL and YCQL APIs at `
 ## 2. Check cluster status
 
 ```sh
-$ ./bin/yugabyted status
+$ ./bin/ZNbased status
 ```
 ```
 +--------------------------------------------------------------------------------------------------+
-|                                            yugabyted                                             |
+|                                            ZNbased                                             |
 +--------------------------------------------------------------------------------------------------+
 | Status              : Running                                                                    |
 | Web console         : http://127.0.0.1:7000                                                      |
-| JDBC                : jdbc:postgresql://127.0.0.1:5433/yugabyte?user=yugabyte&password=yugabyte  |
+| JDBC                : jdbc:postgresql://127.0.0.1:5433/ZNbase?user=ZNbase&password=ZNbase  |
 | YSQL                : bin/ysqlsh                                                                 |
 | YCQL                : bin/ycqlsh                                                                 |
 | Data Dir            : var/data                                                                   |
@@ -91,7 +91,7 @@ The [YB-Master Admin UI](../../../reference/configuration/yb-master/#admin-ui) i
 
 ### Overview and YB-Master status
 
-The yb-master Admin UI home page shows that you have a cluster with `Replication Factor` of 1 and `Num Nodes (TServers)` as 1. The `Num User Tables` is 0 since there are no user tables created yet. The YugabyteDB version number is also shown for your reference.
+The yb-master Admin UI home page shows that you have a cluster with `Replication Factor` of 1 and `Num Nodes (TServers)` as 1. The `Num User Tables` is 0 since there are no user tables created yet. The ZNbaseDB version number is also shown for your reference.
 
 ![master-home](/images/admin/master-home-binary-rf1.png)
 

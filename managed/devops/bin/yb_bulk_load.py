@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 """
 Usage:  yb_bulk_load.py --key_path=SSH_KEY_PATH [--instance_count=INSTANCES] --universe=UNIVERSE
@@ -41,8 +41,8 @@ import sys
 import time
 import datetime
 
-# Try to read home dir from environment variable, else assume it's /home/yugabyte.
-YB_HOME_DIR = os.environ.get("YB_HOME_DIR", "/home/yugabyte")
+# Try to read home dir from environment variable, else assume it's /home/ZNbase.
+YB_HOME_DIR = os.environ.get("YB_HOME_DIR", "/home/ZNbase")
 YB_BIN_DIR = '%s/bin' % (YB_DIR)
 HADOOP_SSH_DIR = '/home/hadoop/.ssh'
 MAPPER = '%s/yb-generate_partitions_main' % (YB_BIN_DIR)

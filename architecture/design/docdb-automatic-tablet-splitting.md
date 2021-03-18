@@ -1,4 +1,4 @@
-Tracking GitHub Issue: https://github.com/yugabyte/yugabyte-db/issues/1004
+Tracking GitHub Issue: https://github.com/ZNbase/ZNbase-db/issues/1004
 
 # Automatic Re-sharding of Data with Tablet Splitting
 
@@ -155,4 +155,4 @@ of the nodes.
 Bulk load tool relies on partitioning to be fixed during the load process, so we decided to pre-split and disable
 dynamic splitting during bulk load.
 
-[![Analytics](https://yugabyte.appspot.com/UA-104956980-4/architecture/design/docdb-automatic-tablet-splitting.md?pixel&useReferer)](https://github.com/yugabyte/ga-beacon)
+[![Analytics](https://ZNbase.appspot.com/UA-104956980-4/architecture/design/docdb-automatic-tablet-splitting.md?pixel&useReferer)](https://github.com/ZNbase/ga-beacon)

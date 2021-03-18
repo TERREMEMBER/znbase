@@ -3,7 +3,7 @@
  * ybccmds.c
  *        YB commands for creating and altering table structures and settings
  *
- * Copyright (c) YugaByte, Inc.
+ * Copyright (c) ZNbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License.  You may obtain a copy of the License at
@@ -278,7 +278,7 @@ YBTransformPartitionSplitPoints(YBCPgStatement yb_stmt,
 		YBTransformPartitionSplitValue(pstate, castNode(List, lfirst(lc)), attrs, attr_count,
 										datums, &datum_count);
 
-		/* Convert the values to yugabyte format and bind to statement. */
+		/* Convert the values to ZNbase format and bind to statement. */
 		YBCPgExpr exprs[INDEX_MAX_KEYS];
 		int idx;
 		for (idx = 0; idx < datum_count; idx++) {
@@ -286,7 +286,7 @@ YBTransformPartitionSplitPoints(YBCPgStatement yb_stmt,
 			{
 				case PARTITION_RANGE_DATUM_VALUE:
 				{
-					/* Given value is not null. Convert it to YugaByte format. */
+					/* Given value is not null. Convert it to ZNbase format. */
 					Const *value = castNode(Const, datums[idx]->value);
 					exprs[idx] = YBCNewConstant(yb_stmt, value->consttype, value->constvalue,
 												false /* is_null */);
@@ -295,7 +295,7 @@ YBTransformPartitionSplitPoints(YBCPgStatement yb_stmt,
 
 				case PARTITION_RANGE_DATUM_MAXVALUE:
 				{
-					/* Create MINVALUE in YugaByte format */
+					/* Create MINVALUE in ZNbase format */
 					Form_pg_attribute attr = attrs[idx];
 					exprs[idx] = YBCNewConstantVirtual(yb_stmt, attr->atttypid,
 													   YB_YQL_DATUM_LIMIT_MAX);
@@ -304,7 +304,7 @@ YBTransformPartitionSplitPoints(YBCPgStatement yb_stmt,
 
 				case PARTITION_RANGE_DATUM_MINVALUE:
 				{
-					/* Create MINVALUE in YugaByte format */
+					/* Create MINVALUE in ZNbase format */
 					Form_pg_attribute attr = attrs[idx];
 					exprs[idx] = YBCNewConstantVirtual(yb_stmt, attr->atttypid,
 													   YB_YQL_DATUM_LIMIT_MIN);
@@ -951,7 +951,7 @@ YBCPrepareAlterTableCmd(AlterTableCmd* cmd, Relation rel, YBCPgStatement handle,
 		case AT_NoForceRowSecurity:
 		case AT_AttachPartition:
 		case AT_DetachPartition:
-			/* For these cases a YugaByte alter isn't required, so we do nothing. */
+			/* For these cases a ZNbase alter isn't required, so we do nothing. */
 			break;
 
 		default:

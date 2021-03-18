@@ -2,8 +2,8 @@
 title: Horizontal Scalability
 headerTitle: Horizontal Scalability
 linkTitle: Horizontal Scalability
-description: Horizontal Scalability in YugabyteDB.
-headcontent: Horizontal Scalability in YugabyteDB.
+description: Horizontal Scalability in ZNbaseDB.
+headcontent: Horizontal Scalability in ZNbaseDB.
 aliases:
   - /explore/linear-scalability/
   - /latest/explore/linear-scalability/
@@ -26,23 +26,23 @@ menu:
     weight: 220
 ---
 
-A YugabyteDB cluster can be scaled horizontally (to increase the aggregate vCPUs, memory and disk in the database cluster) by dynamically adding nodes to a running cluster, or by increasing the number of pods in the `yb-tserver` StatefulSet in the case of Kubernetes deployments.
+A ZNbaseDB cluster can be scaled horizontally (to increase the aggregate vCPUs, memory and disk in the database cluster) by dynamically adding nodes to a running cluster, or by increasing the number of pods in the `yb-tserver` StatefulSet in the case of Kubernetes deployments.
 
 
-A YugabyteDB cluster is scaled out so that it can handle:
+A ZNbaseDB cluster is scaled out so that it can handle:
 * More transactions per second
 * Higher number of concurrent client connections
 * Larger datasets
 
 {{< note title="Note" >}}
 
-A YugabyteDB cluster can be dynamically *scaled out* by adding nodes (or increasing the number of pods in the case of Kubernetes). It can also be *scaled in* dynamically by draining all the data from existing cluster nodes (or pods), and subsequently removing them from the cluster.
+A ZNbaseDB cluster can be dynamically *scaled out* by adding nodes (or increasing the number of pods in the case of Kubernetes). It can also be *scaled in* dynamically by draining all the data from existing cluster nodes (or pods), and subsequently removing them from the cluster.
 
 {{</note >}}
 
 ### How scalability works
 
-Every table in YugabyteDB is transparently sharded using the primary key of the table, each of these shards are called *tablets*. Each tablet consists of a set of rows in a table. In YugabyteDB, tables are automatically into tablets. This is done at time of creating the table if possible. Tablets can also be split dynamically.
+Every table in ZNbaseDB is transparently sharded using the primary key of the table, each of these shards are called *tablets*. Each tablet consists of a set of rows in a table. In ZNbaseDB, tables are automatically into tablets. This is done at time of creating the table if possible. Tablets can also be split dynamically.
 
 The table below summarizes the support for scalability and sharding across YSQL and YCQL APIs.
 

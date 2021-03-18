@@ -2,7 +2,7 @@
 title: Aggregations in YCQL
 headerTitle: Aggregations
 linkTitle: 5. Aggregations
-description: Learn how YugabyteDB YCQL supports standard aggregation functions.
+description: Learn how ZNbaseDB YCQL supports standard aggregation functions.
 block_indexing: true
 menu:
   v2.2:
@@ -31,7 +31,7 @@ showAsideToc: true
 
 </ul>
 
-YugabyteDB supports a number of standard aggregation functions. Let us go through some of these using an example. Consider a products table as shown below.
+ZNbaseDB supports a number of standard aggregation functions. Let us go through some of these using an example. Consider a products table as shown below.
 
 | ProductID | ProductName          | SupplierID | CategoryID | Unit | Price | Quantity
 | ---       | ---                  | ---        | ---        | ---  | --- | ---

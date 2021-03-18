@@ -32,4 +32,4 @@ isTocNested: true
 
 </ul>
 
-For details on Jepsen testing of YCQL, see [YugaByte DB 1.2 Passes Jepsen Testing](https://blog.yugabyte.com/yugabyte-db-1-2-passes-jepsen-testing/).
+For details on Jepsen testing of YCQL, see [ZNbase DB 1.2 Passes Jepsen Testing](https://blog.ZNbase.com/ZNbase-db-1-2-passes-jepsen-testing/).

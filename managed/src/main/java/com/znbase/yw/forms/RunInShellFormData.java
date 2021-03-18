@@ -1,0 +1,24 @@
+// Copyright (c) ZNbase, Inc.
+
+package com.ZNbase.yw.forms;
+
+import play.data.validation.Constraints;
+
+
+public class RunInShellFormData {
+  public enum ShellType {
+    YSQLSH,
+    YCQLSH
+  }
+
+  public String command;
+
+  public String command_file;
+
+  @Constraints.Required()
+  public String db_name;
+
+  public ShellType shell_type = ShellType.YSQLSH;
+
+  public String shell_location = null;
+}

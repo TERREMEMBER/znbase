@@ -129,9 +129,9 @@ IndexNext(IndexScanState *node)
 	}
 
 	/*
-	 * Setup LIMIT and future execution parameter before calling YugaByte scanning rountines.
+	 * Setup LIMIT and future execution parameter before calling ZNbase scanning rountines.
 	 */
-	if (IsYugaByteEnabled()) {
+	if (IsZNbaseEnabled()) {
 		scandesc->yb_exec_params = &estate->yb_exec_params;
 		// Add row marks.
 		scandesc->yb_exec_params->rowmark = -1;

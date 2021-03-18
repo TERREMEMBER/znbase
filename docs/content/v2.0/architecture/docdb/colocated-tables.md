@@ -14,10 +14,10 @@ showAsideToc: true
 
 In workloads that do very little IOPS and have a small data set, the bottleneck shifts from
 CPU/disk/network to the number of tablets one can host per node.
-Since each table by default requires at least one tablet per node, a YugabyteDB cluster with 5000
+Since each table by default requires at least one tablet per node, a ZNbaseDB cluster with 5000
 relations (tables, indexes) will result in 5000 tablets per node.
-There are practical limitations to the number of tablets that YugabyteDB can handle per node since each tablet
-adds some CPU, disk, and network overhead. If most or all of the tables in YugabyteDB cluster are small tables,
+There are practical limitations to the number of tablets that ZNbaseDB can handle per node since each tablet
+adds some CPU, disk, and network overhead. If most or all of the tables in ZNbaseDB cluster are small tables,
 then having separate tablets for each table unnecessarily adds pressure on CPU, network and disk.
 
 To help accomodate such relational tables and workloads, we've added support for colocating SQL tables.
@@ -95,4 +95,4 @@ more about using this feature.
 
 ## What's next?
 
-For more information, see the architecture for [colocated tables](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/ysql-colocated-tables.md).
+For more information, see the architecture for [colocated tables](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/ysql-colocated-tables.md).

@@ -2,7 +2,7 @@
 title: Restore data for YCQL
 headerTitle: Restore data
 linkTitle: Restore data
-description: Restore data in YugabyteDB for YCQL
+description: Restore data in ZNbaseDB for YCQL
 aliases:
   - /manage/backup-restore/backing-up-data
 menu:

@@ -1,6 +1,6 @@
-# YugabyteDB on Kubernetes StatefulSets
+# ZNbaseDB on Kubernetes StatefulSets
 
-This page has details on deploying YugabyteDB on [Kubernetes](https://kubernetes.io) using the `StatefulSets` feature. [StatefulSets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) can be used to manage a deployment and scale of a set of Pods. It provides guarantees about the ordering and uniqueness of these Pods.
+This page has details on deploying ZNbaseDB on [Kubernetes](https://kubernetes.io) using the `StatefulSets` feature. [StatefulSets](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/) can be used to manage a deployment and scale of a set of Pods. It provides guarantees about the ordering and uniqueness of these Pods.
 
 ## Requirements
 
@@ -18,7 +18,7 @@ Server Version: version.Info{Major:"1", Minor:"8", GitVersion:"v1.8.0", ...}
 
 To create a 3-node local cluster with replication factor 3, run the following command.
 ```
-$ kubectl apply -f yugabyte-statefulset.yaml
+$ kubectl apply -f ZNbase-statefulset.yaml
 service "yb-masters" created
 statefulset "master" created
 service "yb-tservers" created
@@ -40,9 +40,9 @@ yb-tserver-2   1/1       Running   1          12s
 
 ### Using the YCQL API
 
-You can connect to the Cassandra API of the YugabyteDB cluster running on kubernetes using `cqlsh` as follows.
+You can connect to the Cassandra API of the ZNbaseDB cluster running on kubernetes using `cqlsh` as follows.
 ```
-$ kubectl exec -it yb-tserver-0 /home/yugabyte/bin/cqlsh
+$ kubectl exec -it yb-tserver-0 /home/ZNbase/bin/cqlsh
 Connected to local cluster at 127.0.0.1:9042.
 [cqlsh 5.0.1 | Cassandra 3.9-SNAPSHOT | CQL spec 3.4.2 | Native protocol v4]
 Use HELP for help.
@@ -57,20 +57,20 @@ system_schema  system_auth  system
 The Cassandra query layer is automatically initialized. The YEDIS API has to be initialized by creating a YEDIS table.
 You can do this as follows
 ```
-kubectl exec -it yb-master-0 /home/yugabyte/bin/yb-admin -- --master-addresses yb-master-0.yb-masters.default.svc.cluster.local:7100,yb-master-1.yb-masters.default.svc.cluster.local:7100,yb-master-2.yb-masters.default.svc.cluster.local:7100 setup_redis_table
+kubectl exec -it yb-master-0 /home/ZNbase/bin/yb-admin -- --master-addresses yb-master-0.yb-masters.default.svc.cluster.local:7100,yb-master-1.yb-masters.default.svc.cluster.local:7100,yb-master-2.yb-masters.default.svc.cluster.local:7100 setup_redis_table
 ...
 I0127 19:38:10.358551   115 client.cc:1292] Created table system_redis.redis of type REDIS_TABLE_TYPE
 I0127 19:38:10.358872   115 yb-admin_client.cc:400] Table 'system_redis.redis' created.
 ```
-You can connect to the YEDIS API of the YugabyteDB cluster running on kubernetes using `redis-cli` as follows.
+You can connect to the YEDIS API of the ZNbaseDB cluster running on kubernetes using `redis-cli` as follows.
 ```
-$ kubectl exec -it yb-tserver-0 /home/yugabyte/bin/redis-cli
+$ kubectl exec -it yb-tserver-0 /home/ZNbase/bin/redis-cli
 127.0.0.1:6379> 
 127.0.0.1:6379> PING
 "PONG"
 ```
 
 ## Next Steps
-- [Try some YCQL commands](https://docs.yugabyte.com/latest/api/ycql/quick-start/) 
-- [Try some YEDIS commands](https://docs.yugabyte.com/latest/yedis/quick-start/) 
-- [Explore some of the core features](https://docs.yugabyte.com/explore/) - linear scalability, auto-rebalancing, tunable reads, etc.
+- [Try some YCQL commands](https://docs.ZNbase.com/latest/api/ycql/quick-start/) 
+- [Try some YEDIS commands](https://docs.ZNbase.com/latest/yedis/quick-start/) 
+- [Explore some of the core features](https://docs.ZNbase.com/explore/) - linear scalability, auto-rebalancing, tunable reads, etc.

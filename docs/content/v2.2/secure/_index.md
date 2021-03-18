@@ -2,10 +2,10 @@
 title: Secure
 headerTitle: Secure
 linkTitle: Secure
-description: Secure your deployment of YugabyteDB.
-headcontent: Secure your deployment of YugabyteDB.
+description: Secure your deployment of ZNbaseDB.
+headcontent: Secure your deployment of ZNbaseDB.
 image: /images/section_icons/index/secure.png
-section: YUGABYTEDB CORE
+section: ZNbaseDB CORE
 block_indexing: true
 menu:
   v2.2:
@@ -23,7 +23,7 @@ menu:
       </div>
       <div class="body">
           Consider these security measures when deploying your
-          YugabyteDB cluster.
+          ZNbaseDB cluster.
       </div>
     </a>
   </div>
@@ -35,7 +35,7 @@ menu:
         <div class="title">Authentication</div>
       </div>
       <div class="body">
-          Verify the identity of users and clients connecting to YugabyteDB.
+          Verify the identity of users and clients connecting to ZNbaseDB.
       </div>
     </a>
   </div>
@@ -47,7 +47,7 @@ menu:
         <div class="title">Authorization</div>
       </div>
       <div class="body">
-          Grant privileges and permissions using role-based access control (RBAC) in YugabyteDB.
+          Grant privileges and permissions using role-based access control (RBAC) in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -72,7 +72,7 @@ menu:
         <div class="title">Encryption at rest</div>
       </div>
       <div class="body">
-          Enable encryption at rest in YugabyteDB (using TLS) to secure and protect data on disk.
+          Enable encryption at rest in ZNbaseDB (using TLS) to secure and protect data on disk.
       </div>
     </a>
   </div>

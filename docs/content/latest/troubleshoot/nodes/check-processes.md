@@ -1,8 +1,8 @@
 ---
 title: Check servers
 linkTitle: Check servers
-headerTitle: Check YugabyteDB servers
-description: How to check if your YugabyteDB servers are running
+headerTitle: Check ZNbaseDB servers
+description: How to check if your ZNbaseDB servers are running
 aliases:
   - /troubleshoot/nodes/check-processes/
 menu:
@@ -13,11 +13,11 @@ isTocNested: true
 showAsideToc: true
 ---
 
-## 1. Are the YugabyteDB servers running?
+## 1. Are the ZNbaseDB servers running?
 
-Connect to the local node where YugabyteDB is running. 
+Connect to the local node where ZNbaseDB is running. 
 
-On the local setup, this is your local machine (or a Docker instance running on your local machine). On a multi-node cluster, you may need to `ssh` into the machines where the YugabyteDB nodes are running.
+On the local setup, this is your local machine (or a Docker instance running on your local machine). On a multi-node cluster, you may need to `ssh` into the machines where the ZNbaseDB nodes are running.
 
 ```sh
 $ ps aux | grep yb-tserver

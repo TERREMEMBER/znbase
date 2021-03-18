@@ -1,9 +1,9 @@
 ---
-title: Deploy YugabyteDB on a multi-zone Kubernetes cluster
+title: Deploy ZNbaseDB on a multi-zone Kubernetes cluster
 linkTitle: Multi-zone
 headerTitle: Multi-zone Kubernetes
-description: Deploy YugabyteDB on multi-zone Kubernetes
-headcontent: Deploy YugabyteDB on a multi-zone Kubernetes cluster
+description: Deploy ZNbaseDB on multi-zone Kubernetes
+headcontent: Deploy ZNbaseDB on a multi-zone Kubernetes cluster
 image: /images/section_icons/deploy/kubernetes.png
 aliases:
   - /latest/deploy/kubernetes/multi-zone
@@ -18,7 +18,7 @@ As highlighted in <a href="https://kubernetes.io/docs/setup/best-practices/multi
 
 <p>
 
-<a href="https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html">Amazon Elastic Kubernetes Service</a> and <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/types-of-clusters">Google Kubernetes Engine</a> supports multi-zone Kubernetes clusters automatically. The following instructions highlight how to deploy a 3-zone YugabyteDB cluster on a 3-zone Kubernetes cluster. Both these deployments use the standard single-zone YugabyteDB Helm Chart to deploy one third of the nodes in the database cluster in each of the 3 zones.
+<a href="https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html">Amazon Elastic Kubernetes Service</a> and <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/types-of-clusters">Google Kubernetes Engine</a> supports multi-zone Kubernetes clusters automatically. The following instructions highlight how to deploy a 3-zone ZNbaseDB cluster on a 3-zone Kubernetes cluster. Both these deployments use the standard single-zone ZNbaseDB Helm Chart to deploy one third of the nodes in the database cluster in each of the 3 zones.
 
 <p>
 

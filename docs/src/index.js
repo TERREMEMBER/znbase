@@ -1,4 +1,4 @@
-// Copyright (c) Yugabyte Inc.
+// Copyright (c) ZNbase Inc.
 
 import Clipboard from 'clipboard';
 import 'particles.js';
@@ -209,7 +209,7 @@ function setupForm(selector, callback) {
     const form = $(event.target);
     if (form.valid()) {
       const formJson = form.serializeJSON();
-      formJson.email = formJson.email ? formJson.email : 'no-email@yugabyte.com';
+      formJson.email = formJson.email ? formJson.email : 'no-email@ZNbase.com';
       $.ajax({
         type: 'POST',
         crossDomain: true,

@@ -37,7 +37,7 @@ Generally, common tools like `top` or `iostat` may be useful.
 
 ### Auditd
 
-If `top` reports high CPU usage for the `auditd` process, it may have some rules auditing some system calls frequently used Yugabyte which can significantly affect performance. You can try temporarily disabling `audit` by running (on each Yugabyte node).
+If `top` reports high CPU usage for the `auditd` process, it may have some rules auditing some system calls frequently used ZNbase which can significantly affect performance. You can try temporarily disabling `audit` by running (on each ZNbase node).
 
 ```sh
 $ auditctl -e 0
@@ -51,9 +51,9 @@ To re-enable it afterwards, run:
 $ auditctl -e 1
 ```
 
-## Yugabyte processes state
+## ZNbase processes state
 
-YugabyteDB provides web endpoints where the current state of each process is aggregated. This includes logs, gflags as well as memory, disk, and network usage metrics. Additionally, it provides dedicated metrics endpoints for CQL and, respectively, Redis requests.
+ZNbaseDB provides web endpoints where the current state of each process is aggregated. This includes logs, gflags as well as memory, disk, and network usage metrics. Additionally, it provides dedicated metrics endpoints for CQL and, respectively, Redis requests.
 
 | Description | URL |
 |-------------|-----|
@@ -62,4 +62,4 @@ YugabyteDB provides web endpoints where the current state of each process is agg
 | Redis Metrics | `<node-ip>:11000/metrics` |
 | CQL Metrics | `<node-ip>:12000/metrics` |
 
-_Note that, when running `yb-ctl` locally with default settings, it will create three local ips `127.0.0.1`, `127.0.0.2`, and `127.0.0.3`, one for each YugabyteDB node._
+_Note that, when running `yb-ctl` locally with default settings, it will create three local ips `127.0.0.1`, `127.0.0.2`, and `127.0.0.3`, one for each ZNbaseDB node._

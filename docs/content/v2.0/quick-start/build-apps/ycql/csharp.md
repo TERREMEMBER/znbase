@@ -2,17 +2,17 @@
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe and are able to interact with it using the CQL shell. If not, please follow these steps in the [quick start guide](../../../quick-start/test-cassandra/).
+- installed ZNbaseDB, created a universe and are able to interact with it using the CQL shell. If not, please follow these steps in the [quick start guide](../../../quick-start/test-cassandra/).
 - installed Visual Studio
 
 ## Writing a HelloWorld C# app
 
 In your Visual Studio create a new Project and choose Console Application as template. Follow the instructions to save the project.
 
-### Install YugaByteCassandraCSharpDriver C# driver
+### Install ZNbaseCassandraCSharpDriver C# driver
 
-YugabyteDB has forked the Cassandra driver to add more features like JSONB and change the routing policy.
-[Install the C# driver](https://www.nuget.org/packages/YugaByteCassandraCSharpDriver/) in your Visual Studio project by 
+ZNbaseDB has forked the Cassandra driver to add more features like JSONB and change the routing policy.
+[Install the C# driver](https://www.nuget.org/packages/ZNbaseCassandraCSharpDriver/) in your Visual Studio project by 
 following instructions on the page.
 
 ### Copy the contents below to your `Program.cs` file.
@@ -22,7 +22,7 @@ using System;
 using System.Linq;
 using Cassandra;
 
-namespace Yugabyte_CSharp_Demo
+namespace ZNbase_CSharp_Demo
 {
     class Program
     {
@@ -64,7 +64,7 @@ namespace Yugabyte_CSharp_Demo
             }
             catch (Cassandra.NoHostAvailableException)
             {
-                Console.WriteLine("Make sure YugabyteDB is running locally!.");
+                Console.WriteLine("Make sure ZNbaseDB is running locally!.");
             }
             catch (Cassandra.InvalidQueryException ie)
             {

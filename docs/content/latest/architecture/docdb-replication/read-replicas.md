@@ -2,7 +2,7 @@
 title: Read replicas
 headerTitle: Read replicas
 linkTitle: Read replicas
-description: Learn about read replicas in YugabyteDB.
+description: Learn about read replicas in ZNbaseDB.
 menu:
   latest:
     identifier: architecture-docdb-replication-read-replicas

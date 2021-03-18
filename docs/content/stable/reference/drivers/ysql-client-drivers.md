@@ -12,15 +12,15 @@ isTocNested: true
 showAsideToc: true
 ---
 
-The [Yugabyte Structured Query Language (YSQL) API](../../../api/ysql) builds upon and extends a fork of the query layer from PostgreSQL 11.2, with the intent of supporting most PostgreSQL functionality and adding new functionality to supported distributed SQL databases.
+The [ZNbase Structured Query Language (YSQL) API](../../../api/ysql) builds upon and extends a fork of the query layer from PostgreSQL 11.2, with the intent of supporting most PostgreSQL functionality and adding new functionality to supported distributed SQL databases.
 
-For details on PostgreSQL feature support in YSQL, see [What Features Does YSQL Support?](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/YSQL-Features-Supported.md)
+For details on PostgreSQL feature support in YSQL, see [What Features Does YSQL Support?](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/YSQL-Features-Supported.md)
 
-Yugabyte and third party client drivers listed below are supported for developing applications that connect to and interact with the YSQL API. Most of the drivers use [libpq](#libpq) and support the [SCRAM-SHA-256 authentication method](../../../secure/authentication/password-authentication/#scram-sha-256).
+ZNbase and third party client drivers listed below are supported for developing applications that connect to and interact with the YSQL API. Most of the drivers use [libpq](#libpq) and support the [SCRAM-SHA-256 authentication method](../../../secure/authentication/password-authentication/#scram-sha-256).
 
-For help using these drivers with YSQL, ask your questions in the [Slack community](https://yugabyte-db.slack.com).
+For help using these drivers with YSQL, ask your questions in the [Slack community](https://ZNbase-db.slack.com).
 
-If you encounter an issue or have an enhancement request, [file a GitHub issue](https://github.com/yugabyte/yugabyte-db/issues/new/choose).
+If you encounter an issue or have an enhancement request, [file a GitHub issue](https://github.com/ZNbase/ZNbase-db/issues/new/choose).
 
 ## C
 
@@ -28,16 +28,16 @@ If you encounter an issue or have an enhancement request, [file a GitHub issue](
 
 [`libpq`](https://www.postgresql.org/docs/11/libpq.html) is the C client library for connecting to and interacting with PostgreSQL databases. `libpq` is also the underlying engine used in other PostgreSQL application interfaces. The `libpq` client library also supports the [SCRAM-SHA-256 authentication method](../../../secure/authentication/password-authentication/#scram-sha-256).
 
-For details and documentation, see [`libpq - C Library` ](https://www.postgresql.org/docs/11/libpq.html) for PostgreSQL 11, which YugabyteDB is based on.
+For details and documentation, see [`libpq - C Library` ](https://www.postgresql.org/docs/11/libpq.html) for PostgreSQL 11, which ZNbaseDB is based on.
 
 For a tutorial on building a sample C application with `libpq`, see [Build a C application](../../../quick-start/build-apps/c/ysql/).
 
 #### To install the libpq client library
 
-The `libpq` C driver is included in the YugabyteDB installation. You can use it by setting the `LD_LIBRARY_PATH` as follows :
+The `libpq` C driver is included in the ZNbaseDB installation. You can use it by setting the `LD_LIBRARY_PATH` as follows :
 
 ```sh
-$ export LD_LIBRARY_PATH=<yugabyte-install-dir>/postgres/lib
+$ export LD_LIBRARY_PATH=<ZNbase-install-dir>/postgres/lib
 ```
 
 ## C++
@@ -52,7 +52,7 @@ For a tutorial on building a sample C++ application with `libpqxx`, see [Build a
 
 #### Install the libpqxx driver
 
-To build and install the libpqxx driver for use with YugabyteDB, follow these steps:
+To build and install the libpqxx driver for use with ZNbaseDB, follow these steps:
 
 1. Clone the libpqxx repository.
 
@@ -63,7 +63,7 @@ $ git clone https://github.com/jtv/libpqxx.git
 2. For dependencies on the PostgreSQL binaries, add the PostgreSQL `bin` directory to the command path by running the following command.
 
 ```sh
-$ export PATH=$PATH:<yugabyte-install-dir>/postgres/bin
+$ export PATH=$PATH:<ZNbase-install-dir>/postgres/bin
 ```
 
 3. Build and install the driver.
@@ -111,7 +111,7 @@ To install the package locally, run the following [`go get`](https://golang.org/
 $ go get github.com/lib/pq
 ```
 
-The `pq` driver is ready for building Go applications that connect to and interact with YugabyteDB.
+The `pq` driver is ready for building Go applications that connect to and interact with ZNbaseDB.
 
 ## Java
 
@@ -127,12 +127,12 @@ To download binary JAR files, go to [PostgreSQL JDBC Driver – Downloads](https
 
 To get the latest versions for projects using [Apache Maven](https://maven.apache.org), see [Maven Central Repository Search](https://search.maven.org/artifact/org.postgresql/postgresql/42.2.14.jre7/jar).
 
-### YugabyteDB JDBC Driver [BETA]
+### ZNbaseDB JDBC Driver [BETA]
 
-The [YugabyteDB JDBC Driver](https://jdbc.postgresql.org/) is based on the [PostgreSQL JDBC Driver (PgJDBC)](#postgresql-jdbc-driver) and incorporates all of the functionality and behavior of that driver. The YugabyteDB JDBC driver extends PgJDBC to add support for features important for distributed SQL databases created in YugabyteDB universes: cluster awareness, connection pooling, and load balancing.
-Like PgJDBC, the YugabyteDB JDBC driver is not based on [`libpq`](#libpq), but supports the [SCRAM-SHA-256 authentication method](../../../secure/authentication/password-authentication/#scram-sha-256).
+The [ZNbaseDB JDBC Driver](https://jdbc.postgresql.org/) is based on the [PostgreSQL JDBC Driver (PgJDBC)](#postgresql-jdbc-driver) and incorporates all of the functionality and behavior of that driver. The ZNbaseDB JDBC driver extends PgJDBC to add support for features important for distributed SQL databases created in ZNbaseDB universes: cluster awareness, connection pooling, and load balancing.
+Like PgJDBC, the ZNbaseDB JDBC driver is not based on [`libpq`](#libpq), but supports the [SCRAM-SHA-256 authentication method](../../../secure/authentication/password-authentication/#scram-sha-256).
 
-For details, see [YugabyteDB JDBC Driver](../yugabytedb-jdbc-driver) in this section.
+For details, see [ZNbaseDB JDBC Driver](../ZNbasedb-jdbc-driver) in this section.
 
 ## Node.JS
 
@@ -213,5 +213,5 @@ For a tutorial on building a sample Ruby application with `pg`, see [Build a Rub
 To install `pg` driver, run the following [`gem install`](https://guides.rubygems.org/command-reference/#gem-install) command:
 
 ```sh
-$ gem install pg -- --with-pg-config=<yugabyte-install-dir>/postgres/bin/pg_config
+$ gem install pg -- --with-pg-config=<ZNbase-install-dir>/postgres/bin/pg_config
 ```

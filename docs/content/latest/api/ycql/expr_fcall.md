@@ -66,7 +66,7 @@ function_call ::= function_name '(' [ arguments ... ] ')'
 
 <li>The argument data types must be convertible to the expected type for that argument that was specified by the function definition.</li>
 <li>Function execution will return a value of the specified type by the function definition.</li>
-<li>YugabyteDB allows function calls to be used any where that expression is allowed.</li>
+<li>ZNbaseDB allows function calls to be used any where that expression is allowed.</li>
 
 ## Cast function
 
@@ -133,7 +133,7 @@ and so on, till the last segment/range of `512` in the partition space:
 .. where partition_hash(h1, h2) >= 65024;
 ```
 
-Here is a full implementation of a parallel table scan using `partition_hash` in [Python 3](https://github.com/yugabyte/yb-tools/blob/main/ycql_table_row_count.py) and [Go](https://github.com/yugabyte/yb-tools/tree/main/ycrc).
+Here is a full implementation of a parallel table scan using `partition_hash` in [Python 3](https://github.com/ZNbase/yb-tools/blob/main/ycql_table_row_count.py) and [Go](https://github.com/ZNbase/yb-tools/tree/main/ycrc).
 
 ## WriteTime function
 

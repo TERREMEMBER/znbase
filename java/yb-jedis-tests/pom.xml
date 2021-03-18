@@ -30,7 +30,7 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.yugabyte</groupId>
+      <groupId>com.ZNbase</groupId>
       <artifactId>jedis</artifactId>
     </dependency>
     <dependency>

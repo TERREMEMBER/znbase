@@ -2,7 +2,7 @@
 title: Universe creation
 headerTitle: Universe creation
 linkTitle: Universe creation
-description: Learn how YugabyteDB creates a universe with YB-TServer and YB-Master nodes.
+description: Learn how ZNbaseDB creates a universe with YB-TServer and YB-Master nodes.
 aliases:
   - /architecture/core-functions/universe-creation/
 menu:
@@ -16,7 +16,7 @@ showAsideToc: true
 
 ## Step 1. Start YB-Masters
 
-When creating a YugabyteDB universe, the first step is to bring up sufficient YB-Masters (as many as
+When creating a ZNbaseDB universe, the first step is to bring up sufficient YB-Masters (as many as
 the replication factor) with each being told about the others. These YB-Masters initialize themselves with a unique
 UUID, learn about each other and perform a leader election. At the end of this step, one of the masters establishes itself as the leader.
 
@@ -29,7 +29,7 @@ their load, but no tablets would exist in the system yet.
 
 ## An example
 
-Let us illustrate this with our usual example of creating a 4-node YugabyteDB universe with a
+Let us illustrate this with our usual example of creating a 4-node ZNbaseDB universe with a
 replication factor of 3. First the three masters are started in create mode. This is done explicitly
 to prevent accidental errors in creating a universe while it is already running.
 

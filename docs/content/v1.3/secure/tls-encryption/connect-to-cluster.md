@@ -2,7 +2,7 @@
 title: 4. Connect to cluster
 linkTitle: 4. Connect to cluster
 description: 4. Connect to cluster
-headcontent: Connect to YugabyteDB cluster using cqlsh.
+headcontent: Connect to ZNbaseDB cluster using cqlsh.
 image: /images/section_icons/secure/tls-encryption/connect-to-cluster.png
 block_indexing: true
 menu:
@@ -14,7 +14,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-You would need to generate client config files to enable the client to connect to YugabyteDB. The steps are identical to [preparing the per-node configuration](../prepare-nodes/#generate-per-node-config) shown in a previous section.
+You would need to generate client config files to enable the client to connect to ZNbaseDB. The steps are identical to [preparing the per-node configuration](../prepare-nodes/#generate-per-node-config) shown in a previous section.
 
 You would need the following files on the client node:
 
@@ -58,13 +58,13 @@ system_schema  system_auth  system
 
 ## yb-admin
 
-To enable `yb-admin` to connect with a cluster having TLS enabled, one can pass in the extra argument of `certs_dir_name` with the directory location where the root certificate is present. The `yb-admin` tool is present on the cluster node in the `~/master/bin/` directory. The `~/yugabyte-tls-config` directory on the cluster node contains all the certificates.
+To enable `yb-admin` to connect with a cluster having TLS enabled, one can pass in the extra argument of `certs_dir_name` with the directory location where the root certificate is present. The `yb-admin` tool is present on the cluster node in the `~/master/bin/` directory. The `~/ZNbase-tls-config` directory on the cluster node contains all the certificates.
 
 For example, the command below will list the master information for the TLS enabled cluster:
 
 ```sh
 export MASTERS=node1:7100,node2:7100,node3:7100
-./yb-admin --master_addresses $MASTERS -certs_dir_name ~/yugabyte-tls-config list_all_masters
+./yb-admin --master_addresses $MASTERS -certs_dir_name ~/ZNbase-tls-config list_all_masters
 ```
 
 You should see the following output format:

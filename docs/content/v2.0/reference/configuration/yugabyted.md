@@ -1,30 +1,30 @@
 ---
-title: yugabyted
-linkTitle: yugabyted
-description: yugabyted
+title: ZNbased
+linkTitle: ZNbased
+description: ZNbased
 beta: /latest/faq/general/#what-is-the-definition-of-the-beta-feature-tag
 block_indexing: true
 menu:
   v2.0:
-    identifier: yugabyted
+    identifier: ZNbased
     parent: configuration
     weight: 2451
 isTocNested: true
 showAsideToc: true
 ---
 
-Use the `yugabyted` daemon, with its commands and options, to start a local cluster and explore a retail demo database. You can also use the YugabyteDB Admin Console. The `yugabyted` executable file is located in the YugabyteDB home's `bin` directory. 
+Use the `ZNbased` daemon, with its commands and options, to start a local cluster and explore a retail demo database. You can also use the ZNbaseDB Admin Console. The `ZNbased` executable file is located in the ZNbaseDB home's `bin` directory. 
 
 {{< note title="Note" >}}
 
-`yugabyted` is under active development with new features and functionality being added incrementally. If you find missing features, use [`yb-ctl`](../../../admin/yb-ctl) utility to develop and test local clusters. For production deployments, configure your clusters using [`yb-tserver`](../yb-tserver) and [`yb-master`](../yb-master).
+`ZNbased` is under active development with new features and functionality being added incrementally. If you find missing features, use [`yb-ctl`](../../../admin/yb-ctl) utility to develop and test local clusters. For production deployments, configure your clusters using [`yb-tserver`](../yb-tserver) and [`yb-master`](../yb-master).
 
 {{< /note >}}
 
 ## Syntax
 
 ```sh
-yugabyted [-h] [ <command> ] [ <options> ]
+ZNbased [-h] [ <command> ] [ <options> ]
 ```
 
 - *command*: command to run
@@ -32,20 +32,20 @@ yugabyted [-h] [ <command> ] [ <options> ]
 
 ### Command-line help
 
-You can access the overview command line help for `yugabyted` by running one of the following examples from the YugabyteDB home.
+You can access the overview command line help for `ZNbased` by running one of the following examples from the ZNbaseDB home.
 
 ```sh
-$ ./bin/yugabyted -h
+$ ./bin/ZNbased -h
 ```
 
 ```sh
-$ ./bin/yugabyted -help
+$ ./bin/ZNbased -help
 ```
 
-For help with specific `yugabyted` commands, run 'yugabyted [ command ] -h'. For example, you can print the command line help for the `yugabyted start` command by running the following:
+For help with specific `ZNbased` commands, run 'ZNbased [ command ] -h'. For example, you can print the command line help for the `ZNbased start` command by running the following:
 
 ```sh
-$ ./bin/yugabyted start -h
+$ ./bin/ZNbased start -h
 ```
 
 ## Commands
@@ -62,12 +62,12 @@ The following commands are available:
 
 ### start
 
-Use the `yugabyted start` command to start a one-node YugabyteDB cluster in your local environment. This one-node cluster includes [`yb-tserver`](../yb-tserver) and [`yb-master`](../yb-master) services.
+Use the `ZNbased start` command to start a one-node ZNbaseDB cluster in your local environment. This one-node cluster includes [`yb-tserver`](../yb-tserver) and [`yb-master`](../yb-master) services.
 
 ### Syntax
 
 ```sh
- yugabyted start
+ ZNbased start
    [ -h | --help ] 
    [ --config <config-file> ]
    [ --data_dir <data-dir> ]
@@ -97,11 +97,11 @@ The path to the configuration file.
 
 ##### --data_dir *data-directory*
 
-The directory where YugabyteDB stores data.
+The directory where ZNbaseDB stores data.
 
 ##### --log_dir *log-directory*
 
-The directory to store YugabyteDB logs.
+The directory to store ZNbaseDB logs.
 
 ##### --ycql_port *ycql-port*
 
@@ -133,15 +133,15 @@ The port on which main webserver will run.
 
 ##### --bind_ip *bind-ip*
 
-The IP address to which `yugabyted` processes will bind.
+The IP address to which `ZNbased` processes will bind.
 
 ##### --daemon *bool*
 
-Enable or disable running `yugabyted` in the background as a daemon. Does not persist on restart. Default is `true`.
+Enable or disable running `ZNbased` in the background as a daemon. Does not persist on restart. Default is `true`.
 
 ##### --callhome *bool*
 
-Enable or disable the "call home" feature that sends analytics data to Yugabyte. Default is `true`.
+Enable or disable the "call home" feature that sends analytics data to ZNbase. Default is `true`.
 
 ##### --ui *bool*
 
@@ -150,12 +150,12 @@ Enable or disable the webserver UI. Default is `true`.
 -----
 ## stop
 
-Use the `yugabted stop` command to stop a YugabyteDB cluster.
+Use the `yugabted stop` command to stop a ZNbaseDB cluster.
 
 ### Syntax
 
 ```sh
-yugabyted stop [ -h ] [ --config <config-file> ] [ --data_dir <data-directory> ]
+ZNbased stop [ -h ] [ --config <config-file> ] [ --data_dir <data-directory> ]
 ```
 
 ## Options
@@ -166,22 +166,22 @@ Print the command line help and exit.
   
 ##### --config *config-file*
 
-The path to the YugabyteDB configuration file.
+The path to the ZNbaseDB configuration file.
   
 ##### --data_dir *data-directory*
 
-The directory where YugabyteDB will store data.
+The directory where ZNbaseDB will store data.
 
 -----
 
 ## status
 
-Use the `yugabyted status` command to check the status.
+Use the `ZNbased status` command to check the status.
 
 ## Syntax
 
 ```
-yugabyted status [ -h | --help ] [ --config <config-file> ] [ --data_dir <data-directory> ]
+ZNbased status [ -h | --help ] [ --config <config-file> ] [ --data_dir <data-directory> ]
 ```
 
 ## Options
@@ -192,22 +192,22 @@ Print the command line help and exit.
 
 ##### --config *config-file*
 
-The path to the YugabyteDB configuration file.
+The path to the ZNbaseDB configuration file.
 
 ##### --data_dir *data-directory*
 
-The directory where YugabyteDB stores data.
+The directory where ZNbaseDB stores data.
 
 -----
 
 ## version
 
-Use the `yugabyted version` command to check the version number.
+Use the `ZNbased version` command to check the version number.
 
 ### Syntax
 
 ```
-yugabyted version [ -h | --help ] [ --config <config-file> ] [ --data_dir <data-directory> ]
+ZNbased version [ -h | --help ] [ --config <config-file> ] [ --data_dir <data-directory> ]
 ```
 
 ### Options
@@ -218,17 +218,17 @@ Print the help message and exit.
 
 ##### --config *config-file*
 
-The path to the YugabyteDB configuration file.
+The path to the ZNbaseDB configuration file.
 
 ##### --data_dir *data-directory*
 
-The directory where YugabyteDB stores data.
+The directory where ZNbaseDB stores data.
 
 -----
 
 ## demo
 
-Use the `yugabyted demo` command to start YugabyteDB with a retail demo database. Get started with YSQL by using the [Explore YSQL](../../../quick-start/explore-ysql) tutorial in the [Quick start](../../../quick-start/) guide.
+Use the `ZNbased demo` command to start ZNbaseDB with a retail demo database. Get started with YSQL by using the [Explore YSQL](../../../quick-start/explore-ysql) tutorial in the [Quick start](../../../quick-start/) guide.
 
 {{< note title="Note" >}}
 
@@ -239,7 +239,7 @@ When you quit the demo instance, the retail demo database is deleted and any cha
 ### Syntax
 
 ```
-yugabyted demo [ -h | -help ] [ --config <config-file> ] [ --data_dir <data-directory> ]
+ZNbased demo [ -h | -help ] [ --config <config-file> ] [ --data_dir <data-directory> ]
 ```
 
 ### Options
@@ -250,8 +250,8 @@ Print the help message and exit.
 
 ##### --config *config-file*
 
-The path to the YugabyteDB configuration file.
+The path to the ZNbaseDB configuration file.
 
 ##### --data_dir *data_directory*
 
-The directory where YugabyteDB stores data.
+The directory where ZNbaseDB stores data.

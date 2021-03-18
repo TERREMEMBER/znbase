@@ -1,16 +1,16 @@
 #!/bin/sh
-# Download yugabyte client binaries locally
+# Download ZNbase client binaries locally
 
 set -e
 
 VERSION=2.2
-PKG_PREFIX=yugabyte-client
+PKG_PREFIX=ZNbase-client
 
 uname=$(uname | tr '[:upper:]' '[:lower:]')
 pkg="${PKG_PREFIX}-${VERSION}-$uname.tar.gz"
 
 printf "Downloading %s ... \r" "$pkg"
-wget -q "https://downloads.yugabyte.com/${pkg}" -O "$pkg"
+wget -q "https://downloads.ZNbase.com/${pkg}" -O "$pkg"
 
 printf "Extracting %s ... \r" $pkg
 tar -zxf "$pkg"

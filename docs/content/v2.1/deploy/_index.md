@@ -1,9 +1,9 @@
 ---
 title: Deploy
-headerTitle: Deploy YugabyteDB
+headerTitle: Deploy ZNbaseDB
 linkTitle: Deploy
-description: Deploy to any public cloud or private data center of your choice using either YugabyteDB or the Yugabyte Platform.
-headcontent: Deploy to any public cloud or private data center of your choice using either YugabyteDB or the Yugabyte Platform.
+description: Deploy to any public cloud or private data center of your choice using either ZNbaseDB or the ZNbase Platform.
+headcontent: Deploy to any public cloud or private data center of your choice using either ZNbaseDB or the ZNbase Platform.
 image: /images/section_icons/index/deploy.png
 section: USER GUIDES
 block_indexing: true
@@ -21,7 +21,7 @@ menu:
         <div class="title">Checklist</div>
       </div>
       <div class="body">
-          Review system requirements, configuration details, and other important details when deploying YugabyteDB to production.
+          Review system requirements, configuration details, and other important details when deploying ZNbaseDB to production.
       </div>
     </a>
   </div>
@@ -33,7 +33,7 @@ menu:
         <div class="title">Manual deployment</div>
       </div>
       <div class="body">
-          Deploy YugabyteDB manually in a private data center using basic administration commands.
+          Deploy ZNbaseDB manually in a private data center using basic administration commands.
       </div>
     </a>
   </div>
@@ -45,7 +45,7 @@ menu:
         <div class="title">Kubernetes</div>
       </div>
       <div class="body">
-        Orchestrated deployment of YugabyteDB using open source as well as managed Kubernetes services.
+        Orchestrated deployment of ZNbaseDB using open source as well as managed Kubernetes services.
       </div>
     </a>
   </div>
@@ -60,7 +60,7 @@ menu:
         <div class="title">Docker</div>
       </div>
       <div class="body">
-        Orchestrated deployment of YugabyteDB in Docker Swarm and Docker Compose.
+        Orchestrated deployment of ZNbaseDB in Docker Swarm and Docker Compose.
       </div>
     </a>
   </div>
@@ -98,7 +98,7 @@ menu:
         <div class="title">Public clouds</div>
       </div>
       <div class="body">
-        Automate and manually deploy YugabyteDB on public clouds.
+        Automate and manually deploy ZNbaseDB on public clouds.
       </div>
     </a>
   </div>
@@ -110,7 +110,7 @@ menu:
         <div class="title">Pivotal Cloud Foundry</div>
       </div>
       <div class="body">
-        Deploy and manage YugabyteDB using Pivotal Cloud Foundry (PCF) and Pivotal Container Service (PKS).
+        Deploy and manage ZNbaseDB using Pivotal Cloud Foundry (PCF) and Pivotal Container Service (PKS).
       </div>
     </a>
   </div>
@@ -120,23 +120,23 @@ menu:
       <div class="head">
         <img class="icon" src="/images/section_icons/deploy/enterprise.png" aria-hidden="true" />
         <div class="articles">4 articles</div>
-        <div class="title">Yugabyte Platform</div>
+        <div class="title">ZNbase Platform</div>
       </div>
       <div class="body">
-        Build your own YugabyteDB-as-a-Service on any cloud or Kubernetes infrastructure.
+        Build your own ZNbaseDB-as-a-Service on any cloud or Kubernetes infrastructure.
       </div>
     </a>
   </div>
 
   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-    <a class="section-link icon-offset" href="yugabyte-cloud/">
+    <a class="section-link icon-offset" href="ZNbase-cloud/">
       <div class="head">
         <img class="icon" src="/images/section_icons/deploy/public-clouds.png" aria-hidden="true" />
         <div class="articles">6 articles</div>
-        <div class="title">Yugabyte Cloud</div>
+        <div class="title">ZNbase Cloud</div>
       </div>
       <div class="body">
-        Fully-managed YugabyteDB-as-a-Service running on public clouds.
+        Fully-managed ZNbaseDB-as-a-Service running on public clouds.
       </div>
     </a>
   </div>

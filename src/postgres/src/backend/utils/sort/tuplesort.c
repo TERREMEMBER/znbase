@@ -4059,10 +4059,10 @@ comparetup_index_btree(const SortTuple *a, const SortTuple *b,
 	}
 
 	/*
-	 * Skip this for YugaByte-based table. In YugaByte, tuples do not have block number
+	 * Skip this for ZNbase-based table. In ZNbase, tuples do not have block number
 	 * and offset.
 	 */
-	if (!IsYugaByteEnabled())
+	if (!IsZNbaseEnabled())
 	{
 		/*
 		 * If key values are equal, we sort on ItemPointer.  This does not affect

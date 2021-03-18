@@ -14,7 +14,7 @@ showAsideToc: true
 
 This section states a sufficient subset of the rules that allow you to write a syntactically correct array literal that expresses any set of values, for arrays of any scalar data type, that you could want to create. The full set of rules allows more flexibility than do just those that are stated here. But because these are sufficient, the full, and rather complex, set is not documented here. The explanations in this section will certainly allow you to interpret the `::text` typecast of any array value that you might see, for example in `ysqlsh`.
 
-Then Yugabyte's recommendation in this space is stated. And then the rules are illustrate with examples.
+Then ZNbase's recommendation in this space is stated. And then the rules are illustrate with examples.
 
 ## Statement of the rules
 
@@ -40,11 +40,11 @@ Here is the sufficient set of rules.
 
 Bear in mind that you will rarely manually type literals in the way that this section does to demonstrate the rules. You'll do this only when teaching yourself, when prototyping new code, or when debugging. Rather, you'll typically create the literals programmatically—often in a client-side program that parses out the data values from, for example, an XML text file or, these days, probably a JSON text file. In these scenarios, the target array is likely to have the data type _"some_user_defined_row_type[]"_. And when you create literals programmatically, you want to use the simplest rules that work and you have no need at all to omit arguably unnecessary double quote characters.
 
-**Yugabyte recommends that the array literals that you generate programmatically are always spelled using the canonical representations**
+**ZNbase recommends that the array literals that you generate programmatically are always spelled using the canonical representations**
 
 You can relax this recommendation, to make tracing or debugging your code easier (as mentioned above), by using a newline between each successive encoded value in the array—at least when the values themselves use a lot of characters, as they might for _"row"_ type values.
 
-**Note:** You can hope that the client side programming language that you use, together with the driver that you use to issue SQL to YugabyteDB and to retrieve results, will allow the direct use of data types that your language defines that map directly to the YSQL array and _"row"_ type, just as they have scalar data types that map to `int`, `text`, `timestamp`, and `boolean`. For example Python has _"list"_ that maps to array and _"tuple"_ that maps to _"row"_ type. And the _"psycopg2"_ driver that you use for YugabyteDB can map values of these data types to, for example, a `PREPARE` statement like the one shown below.
+**Note:** You can hope that the client side programming language that you use, together with the driver that you use to issue SQL to ZNbaseDB and to retrieve results, will allow the direct use of data types that your language defines that map directly to the YSQL array and _"row"_ type, just as they have scalar data types that map to `int`, `text`, `timestamp`, and `boolean`. For example Python has _"list"_ that maps to array and _"tuple"_ that maps to _"row"_ type. And the _"psycopg2"_ driver that you use for ZNbaseDB can map values of these data types to, for example, a `PREPARE` statement like the one shown below.
 
 **Note**: YSQL has support for converting a JSON array (and this includes a JSON array of JSON objects) directly into the corresponding YSQL array values.
 
@@ -195,7 +195,7 @@ In addition to the first two rules, notice the following.
 - The double quote has been escaped with a single backslash and this has been then surrounded with double quotes. This is because it _does_ have syntactic significance, as the (one and only) quoting mechanism, within the curly braces of an array literal.
 - The backslash has also been escaped with another single backslash and this has been then surrounded with double quotes. This is because it _does_ have syntactic significance, as the escape character, within the curly braces of an array literal.
 
-There's another rule that the present example does not show. Though not every comma-separated value was surrounded by double quotes, it's _never harmful_ to do this. You can confirm this with your own test, Yugabyte recommends that, for consistency, you always surround every `text` value within the curly braces for a `text[]` array literal with double quotes.
+There's another rule that the present example does not show. Though not every comma-separated value was surrounded by double quotes, it's _never harmful_ to do this. You can confirm this with your own test, ZNbase recommends that, for consistency, you always surround every `text` value within the curly braces for a `text[]` array literal with double quotes.
 
 To use the text of the literal that was produced above to recreate the value, you must enquote it and typecast it. Do this, as you did for the `int[]` example above, with the `\set` metacommand. But you must use dollar quotes because the literal itself has an interior single quote.
 

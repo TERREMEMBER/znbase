@@ -1,8 +1,8 @@
 ---
-title: Configure Kubernetes for YugabyteDB
+title: Configure Kubernetes for ZNbaseDB
 headerTitle: Configure cloud providers
 linkTitle: 4. Configure cloud providers
-description: Configure Kubernetes for YugabyteDB deployments using the YugabyteDB Admin Console
+description: Configure Kubernetes for ZNbaseDB deployments using the ZNbaseDB Admin Console
 block_indexing: true
 menu:
   v2.1:
@@ -52,7 +52,7 @@ showAsideToc: true
 
 </ul>
 
-This page details how to configure Kubernetes for YugabyteDB universes using the Yugabyte Platform. If no cloud providers are configured in the YugabyteDB Admin Console yet, the main Dashboard page highlights the need to configure at least one cloud provider.
+This page details how to configure Kubernetes for ZNbaseDB universes using the ZNbase Platform. If no cloud providers are configured in the ZNbaseDB Admin Console yet, the main Dashboard page highlights the need to configure at least one cloud provider.
 
 ![Configure Cloud Provider](/images/ee/configure-cloud-provider.png)
 
@@ -60,7 +60,7 @@ This page details how to configure Kubernetes for YugabyteDB universes using the
 
 ### Kubernetes
 
-If you plan to run YugabyteDB nodes on Kubernetes, all you need to provide in the YugabyteDB Admin Console is your cloud provider credentials. The Yugabyte Platform will use those credentials to automatically provision and de-provision instances that run Yugabyte. An 'instance' for YugabyteDB includes a compute instance as well as local or remote disk storage attached to the compute instance.
+If you plan to run ZNbaseDB nodes on Kubernetes, all you need to provide in the ZNbaseDB Admin Console is your cloud provider credentials. The ZNbase Platform will use those credentials to automatically provision and de-provision instances that run ZNbase. An 'instance' for ZNbaseDB includes a compute instance as well as local or remote disk storage attached to the compute instance.
 
 ## Configure Kubernetes credentials
 
@@ -88,9 +88,9 @@ the cluster, refer to [Create cluster](../../../kubernetes/single-zone/oss/helm-
   - Specify at **provider level** in the provider form as shown above. If specified, this config file will be used for all AZ's in all regions.
   - Specify at **zone level** inside of the region form as described below, this is especially needed for **multi-az** or **multi-region** deployments.
 
-- **Image Registry** specifies where to pull YugabyteDB image from leave this to default, unless you are hosting the registry on your end.
+- **Image Registry** specifies where to pull ZNbaseDB image from leave this to default, unless you are hosting the registry on your end.
 
-- **Pull Secret**, the Enterprise YugabyteDB image is in a private repo and you need to upload the pull secret to download the image, your sales representative should have provided this secret.
+- **Pull Secret**, the Enterprise ZNbaseDB image is in a private repo and you need to upload the pull secret to download the image, your sales representative should have provided this secret.
 
 A filled in form looks something like this:
 
@@ -110,7 +110,7 @@ Click **Add Region** to open the modal.
 
 <img title="K8s Configuration -- zone config" alt="K8s Configuration -- zone config" class="expandable-image" src="/images/ee/k8s-setup/k8s-az-kubeconfig.png" />
 
-- `Overrides` is *optional*, if not specified Yugabyte Platform would use defaults specified inside the helm chart,
+- `Overrides` is *optional*, if not specified ZNbase Platform would use defaults specified inside the helm chart,
 
 - Overrides to add Service level annotations
 
@@ -167,4 +167,4 @@ Click **Save** to save the configuration. If successful, it will redirect you to
 
 ## Next step
 
-You are now ready to create YugabyteDB universes as outlined in the next section.
+You are now ready to create ZNbaseDB universes as outlined in the next section.

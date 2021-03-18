@@ -2,8 +2,8 @@
 title: Develop applications
 headerTitle: Develop
 linkTitle: Develop
-description: Build YugabyteDB application that use ecosystem integrations and GraphQL.
-headcontent: Get started building applications based on YugabyteDB.
+description: Build ZNbaseDB application that use ecosystem integrations and GraphQL.
+headcontent: Get started building applications based on ZNbaseDB.
 image: /images/section_icons/index/develop.png
 section: USER GUIDES
 block_indexing: true
@@ -23,7 +23,7 @@ menu:
         <div class="title">Learn app development</div>
       </div>
       <div class="body">
-        Learn how to build cloud services and applications on YugabyteDB.
+        Learn how to build cloud services and applications on ZNbaseDB.
       </div>
     </a>
   </div>
@@ -36,7 +36,7 @@ menu:
         <div class="title">Ecosystem integrations</div>
       </div>
       <div class="body">
-        Integrate YugabyteDB with Apache Kafka, Apache Spark, JanusGraph, KairosDB, Presto, and Metabase.
+        Integrate ZNbaseDB with Apache Kafka, Apache Spark, JanusGraph, KairosDB, Presto, and Metabase.
       </div>
     </a>
   </div>
@@ -49,7 +49,7 @@ menu:
         <div class="title">Real world examples</div>
       </div>
       <div class="body">
-        Try out e-commerce, retail analytics, and IoT fleet management in these real world, end-to-end YugabyteDB applications.
+        Try out e-commerce, retail analytics, and IoT fleet management in these real world, end-to-end ZNbaseDB applications.
       </div>
     </a>
   </div>
@@ -62,7 +62,7 @@ menu:
         <div class="title">Build GraphQL applications</div>
       </div>
       <div class="body">
-        Use Hasura GraphQL Engine and Prisma to use GraphQL with YugabyteDB.
+        Use Hasura GraphQL Engine and Prisma to use GraphQL with ZNbaseDB.
       </div>
     </a>
   </div>
@@ -75,7 +75,7 @@ menu:
         <div class="title">Explore sample apps</div>
       </div>
       <div class="body">
-        A walk-through of real world, end-to-end applications build on top of YugabyteDB.
+        A walk-through of real world, end-to-end applications build on top of ZNbaseDB.
       </div>
     </a>
   </div>
@@ -99,7 +99,7 @@ menu:
     </div>
     <div class="text">
       Port Existing Apps
-      <div class="caption">How you can port your existing applications to run on top of Yugabyte-DB.</div>
+      <div class="caption">How you can port your existing applications to run on top of ZNbase-DB.</div>
     </div>
   </a>-->
 </div>

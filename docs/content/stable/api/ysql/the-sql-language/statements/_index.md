@@ -2,7 +2,7 @@
 title: SQL statements [YSQL]
 headerTitle: Categorized list of SQL statements
 linkTitle: SQL statements
-description: List of PostgreSQL-compatible SQL statements supported by Yugabyte SQL (YSQL)
+description: List of PostgreSQL-compatible SQL statements supported by ZNbase SQL (YSQL)
 image: /images/section_icons/api/ysql.png
 menu:
   stable:

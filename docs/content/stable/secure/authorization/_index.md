@@ -1,9 +1,9 @@
 ---
-title: Role-Based Access Control in YugabyteDB
+title: Role-Based Access Control in ZNbaseDB
 headerTitle: Role-Based Access Control
 linkTitle: Role-Based Access Control
-description: Enable authorization using role-based access control in YugabyteDB.
-headcontent: Enable authorization using role-based access control in YugabyteDB.
+description: Enable authorization using role-based access control in ZNbaseDB.
+headcontent: Enable authorization using role-based access control in ZNbaseDB.
 image: /images/section_icons/secure/authorization.png
 menu:
   stable:
@@ -53,7 +53,7 @@ menu:
         <div class="title">Row-Level Security (RLS)</div>
       </div>
       <div class="body">
-          Using row-level security policies in YugabyteDB.
+          Using row-level security policies in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -64,7 +64,7 @@ menu:
         <div class="title">Column-Level Security</div>
       </div>
       <div class="body">
-          Restricting column-level permissions in YugabyteDB.
+          Restricting column-level permissions in ZNbaseDB.
       </div>
     </a>
   </div>

@@ -1,8 +1,8 @@
 ---
-title: Build a YugabyteDB YEDIS application using Go
+title: Build a ZNbaseDB YEDIS application using Go
 headerTitle: Build an application using Go
 linkTitle: Go
-description: Use Go to build a YugabyteDB application that interacts with YEDIS
+description: Use Go to build a ZNbaseDB application that interacts with YEDIS
 menu:
   stable:
     identifier: client-drivers-yedis-go
@@ -15,7 +15,7 @@ showAsideToc: true
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe, and are able to interact with it using the Redis shell. If not, please follow these steps in [Quick start](../../../../quick-start/).
+- installed ZNbaseDB, created a universe, and are able to interact with it using the Redis shell. If not, please follow these steps in [Quick start](../../../../quick-start/).
 - installed Go version 1.8 or later
 
 ## Install the Go Redis driver

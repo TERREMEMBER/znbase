@@ -1,12 +1,12 @@
 ---
-title: 1. Install YugabyteDB
-linkTitle: 1. Install YugabyteDB
-description: Install YugabyteDB
+title: 1. Install ZNbaseDB
+linkTitle: 1. Install ZNbaseDB
+description: Install ZNbaseDB
 block_indexing: true
 menu:
   v2.0:
     parent: quick-start
-    name: 1. Install YugabyteDB
+    name: 1. Install ZNbaseDB
     identifier: install-2-linux
     weight: 110
 type: page
@@ -54,7 +54,7 @@ showAsideToc: true
 
   - <i class="icon-ubuntu"></i> Ubuntu 16.04+
 
-2. Verify that you have Python 2 installed. Support for Python 3 is in the works, status can be tracked on [GitHub](https://github.com/yugabyte/yugabyte-db/issues/3025).
+2. Verify that you have Python 2 installed. Support for Python 3 is in the works, status can be tracked on [GitHub](https://github.com/ZNbase/ZNbase-db/issues/3025).
 
     ```sh
     $ python --version
@@ -78,23 +78,23 @@ showAsideToc: true
     - CentOS: `yum install curl`
     - Ubuntu: `apt install curl`
 
-## Download YugabyteDB
+## Download ZNbaseDB
 
-1. Download the YugabyteDB package using the following `wget` command.
-
-    ```sh
-    $ wget https://downloads.yugabyte.com/yugabyte-2.0.11.0-linux.tar.gz
-    ```
-
-2. Extract the YugabyteDB package and then change directories to the YugabyteDB home.
+1. Download the ZNbaseDB package using the following `wget` command.
 
     ```sh
-    $ tar xvfz yugabyte-2.0.11.0-linux.tar.gz && cd yugabyte-2.0.11.0/
+    $ wget https://downloads.ZNbase.com/ZNbase-2.0.11.0-linux.tar.gz
     ```
 
-## Configure YugabyteDB
+2. Extract the ZNbaseDB package and then change directories to the ZNbaseDB home.
 
-To configure YugabyteDB, run the following shell script.
+    ```sh
+    $ tar xvfz ZNbase-2.0.11.0-linux.tar.gz && cd ZNbase-2.0.11.0/
+    ```
+
+## Configure ZNbaseDB
+
+To configure ZNbaseDB, run the following shell script.
 
 ```sh
 $ ./bin/post_install.sh

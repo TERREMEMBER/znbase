@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1141,7 +1141,7 @@ void IntentAwareIterator::SkipFutureRecords(const Direction direction) {
       // corresponding transaction's commit time (stored in the key) became lower than the history
       // cutoff. See the following commit for the details of this intent hybrid time GC.
       //
-      // https://github.com/yugabyte/yugabyte-db/commit/26260e0143e521e219d93f4aba6310fcc030a628
+      // https://github.com/ZNbase/ZNbase-db/commit/26260e0143e521e219d93f4aba6310fcc030a628
       //
       // encoded_read_time_regular_limit_ is simply the encoded value of max(read_ht, local_limit).
       // The above condition

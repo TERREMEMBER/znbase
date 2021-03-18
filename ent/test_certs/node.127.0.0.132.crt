@@ -3,7 +3,7 @@ Certificate:
         Version: 3 (0x2)
         Serial Number: 629 (0x275)
     Signature Algorithm: sha256WithRSAEncryption
-        Issuer: CN=YugaByte CA
+        Issuer: CN=ZNbase CA
         Validity
             Not Before: Jan 27 08:52:44 2019 GMT
             Not After : Jan 31 08:52:44 2024 GMT
@@ -23,12 +23,12 @@ Certificate:
                     9a:74:6a:61:89:63:7f:ba:2f
                 Exponent: 65537 (0x10001)
         X509v3 extensions:
-            X509v3 Basic Constraints: 
+            X509v3 Basic Constraints:
                 CA:FALSE
-            X509v3 Extended Key Usage: 
+            X509v3 Extended Key Usage:
                 TLS Web Client Authentication, TLS Web Server Authentication
-            X509v3 Subject Alternative Name: 
-                IP Address:127.0.0.132, DNS:127.*.*.133.ip.yugabyte
+            X509v3 Subject Alternative Name:
+                IP Address:127.0.0.132, DNS:127.*.*.133.ip.ZNbase
     Signature Algorithm: sha256WithRSAEncryption
          5f:dd:7e:54:e5:0c:db:90:07:a6:63:c1:60:f5:b9:73:35:db:
          48:21:14:48:0d:45:f8:a6:fc:64:37:ff:6d:40:14:9f:54:75:

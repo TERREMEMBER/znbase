@@ -2,7 +2,7 @@
 title: High availability
 headerTitle: High availability
 linkTitle: High availability
-description: Learn how YugabyteDB maintains continuous availability using multiple replicas.
+description: Learn how ZNbaseDB maintains continuous availability using multiple replicas.
 aliases:
   - latest/architecture/core-functions/high-availability/
 menu:
@@ -14,7 +14,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-As discussed before, YugabyteDB is a CP database (consistent and partition tolerant), but achieves very high availability (HA). It achieves this HA by having an active replica that is ready to take over as a new leader in a matter of seconds after the failure of the current leader and serve requests.
+As discussed before, ZNbaseDB is a CP database (consistent and partition tolerant), but achieves very high availability (HA). It achieves this HA by having an active replica that is ready to take over as a new leader in a matter of seconds after the failure of the current leader and serve requests.
 
 If a node fails, it causes the outage of the servers running on it. These would be a YB-TServer and the YB-Master (if one was running on that node). Let us look at what happens in each of these cases.
 

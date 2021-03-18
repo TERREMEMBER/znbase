@@ -37,8 +37,8 @@ echo "Collecting YB logs in $OUTPUT_DIR_PATH..."
 for container in `docker ps --filter "name=$UNIVERSE_NAME" --format "{{ .Names }}"`
 do
   echo "  - Fetching logs from container $container"
-  docker cp $container:/var/log/yugabyte/master $OUTPUT_DIR_PATH/${container}-master
-  docker cp $container:/var/log/yugabyte/tserver $OUTPUT_DIR_PATH/${container}-tserver
+  docker cp $container:/var/log/ZNbase/master $OUTPUT_DIR_PATH/${container}-master
+  docker cp $container:/var/log/ZNbase/tserver $OUTPUT_DIR_PATH/${container}-tserver
 done
 
 # Collect the yugaware logs.

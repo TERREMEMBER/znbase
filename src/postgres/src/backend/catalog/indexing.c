@@ -108,10 +108,10 @@ CatalogIndexInsert(CatalogIndexState indstate, HeapTuple heapTuple)
 	for (i = 0; i < numIndexes; i++)
 	{
 		/*
-		 * No need to update YugaByte primary key which is intrinic part of
+		 * No need to update ZNbase primary key which is intrinic part of
 		 * the base table.
 		 */
-		if (IsYugaByteEnabled() && relationDescs[i]->rd_index->indisprimary)
+		if (IsZNbaseEnabled() && relationDescs[i]->rd_index->indisprimary)
 			continue;
 
 		IndexInfo  *indexInfo;
@@ -198,10 +198,10 @@ CatalogIndexDelete(CatalogIndexState indstate, HeapTuple heapTuple)
 	for (i = 0; i < numIndexes; i++)
 	{
 		/*
-		 * No need to update YugaByte primary key which is intrinic part of
+		 * No need to update ZNbase primary key which is intrinic part of
 		 * the base table.
 		 */
-		if (IsYugaByteEnabled() && relationDescs[i]->rd_index->indisprimary)
+		if (IsZNbaseEnabled() && relationDescs[i]->rd_index->indisprimary)
 			continue;
 
 		IndexInfo  *indexInfo;
@@ -263,7 +263,7 @@ CatalogTupleInsert(Relation heapRel, HeapTuple tup)
 	CatalogIndexState indstate;
 	Oid			oid;
 
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 	{
 		oid = YBCExecuteInsert(heapRel, RelationGetDescr(heapRel), tup);
 		/* Update the local cache automatically */
@@ -296,7 +296,7 @@ CatalogTupleInsertWithInfo(Relation heapRel, HeapTuple tup,
 {
 	Oid			oid;
 
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 	{
 		oid = YBCExecuteInsert(heapRel, RelationGetDescr(heapRel), tup);
 		/* Update the local cache automatically */
@@ -330,7 +330,7 @@ CatalogTupleUpdate(Relation heapRel, ItemPointer otid, HeapTuple tup)
 
 	indstate = CatalogOpenIndexes(heapRel);
 
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 	{
 		HeapTuple	oldtup = NULL;
 		bool		has_indices = YBRelHasSecondaryIndices(heapRel);
@@ -376,7 +376,7 @@ void
 CatalogTupleUpdateWithInfo(Relation heapRel, ItemPointer otid, HeapTuple tup,
 						   CatalogIndexState indstate)
 {
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 	{
 		HeapTuple	oldtup = NULL;
 		bool		has_indices = YBRelHasSecondaryIndices(heapRel);
@@ -426,7 +426,7 @@ CatalogTupleUpdateWithInfo(Relation heapRel, ItemPointer otid, HeapTuple tup,
 void
 CatalogTupleDelete(Relation heapRel, HeapTuple tup)
 {
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 	{
 		YBCDeleteSysCatalogTuple(heapRel, tup);
 

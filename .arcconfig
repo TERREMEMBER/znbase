@@ -1,11 +1,11 @@
 {
-  "phabricator.uri" : "https://phabricator.dev.yugabyte.com/",
+  "phabricator.uri" : "https://phabricator.dev.ZNbase.com/",
   "repository.callsign": "YBDB",
   "git:arc.feature.start.default" : "origin/master",
   "arc.land.onto.default": "master",
   "arc.land.remote.default": "origin",
   "arc.feature.start.default" : "master",
   "load": [
-    "./arcanist_util/yugabyte-clang-format"
+    "./arcanist_util/ZNbase-clang-format"
   ]
 }

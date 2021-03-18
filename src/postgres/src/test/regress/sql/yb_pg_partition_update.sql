@@ -51,7 +51,7 @@ UPDATE part_c_100_200 set c = c - 20, d = c WHERE c = 105 and b = 15;
 -- constraint enforced by root partition)
 UPDATE part_b_10_b_20 set a = 'a' WHERE c = 97;
 -- fail, partition key update that requires row movement.
--- When this behavior is supported by Yugabyte, enable all
+-- When this behavior is supported by ZNbase, enable all
 -- the following tests.
 UPDATE range_parted set d = d - 10 WHERE d > 16;
 /*

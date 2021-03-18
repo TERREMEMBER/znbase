@@ -1,4 +1,4 @@
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 
 global:
  # Down sample granularity for federated metrics.
@@ -17,7 +17,7 @@ scrape_configs:
 
    params:
      'match[]':
-       - '{job="yugabyte"}'
+       - '{job="ZNbase"}'
        - '{job="node"}'
 
    static_configs:

@@ -23,9 +23,9 @@ showAsideToc: true
     </a>
   </li>
   <li >
-    <a href="/latest/deploy/kubernetes/oss/yugabyte-operator" class="nav-link">
+    <a href="/latest/deploy/kubernetes/oss/ZNbase-operator" class="nav-link">
       <i class="fas fa-cubes" aria-hidden="true"></i>
-      YugabyteDB operator
+      ZNbaseDB operator
     </a>
   </li>
   <li >
@@ -42,25 +42,25 @@ showAsideToc: true
   </li>
 </ul>
 
-This is an alternative to deploying YugabyteDB manually using [Yugabyte Operator](yugabyte-operator.md). The Yugabyte operator is available on Red Hat's [OperatorHub.io](https://operatorhub.io/operator/yugabyte-operator) and hence YugabyteDB can be also be deployed using [Operator Lifecycle Manager](https://github.com/operator-framework/operator-lifecycle-manager). As the name suggests, OLM is a tool to help deploy and manage Operators on your cluster.
+This is an alternative to deploying ZNbaseDB manually using [ZNbase Operator](ZNbase-operator.md). The ZNbase operator is available on Red Hat's [OperatorHub.io](https://operatorhub.io/operator/ZNbase-operator) and hence ZNbaseDB can be also be deployed using [Operator Lifecycle Manager](https://github.com/operator-framework/operator-lifecycle-manager). As the name suggests, OLM is a tool to help deploy and manage Operators on your cluster.
 
-Read on to find out how you can deploy YugabyteDB with OLM.
+Read on to find out how you can deploy ZNbaseDB with OLM.
 
 
 ## Prerequisites
 A Kubernetes cluster and `kubectl` configured to talk to the cluster.
 
-## Deploy YugabyteDB using Operator Lifecycle Manager
-YugabyteDB can be deployed to any Kubernetes cluster using OLM in three easy steps.
+## Deploy ZNbaseDB using Operator Lifecycle Manager
+ZNbaseDB can be deployed to any Kubernetes cluster using OLM in three easy steps.
 
 1. Deploy Operator Lifecycle Manager, so that it can manage Operator deployments for you.
 ```sh
 $ curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/0.13.0/install.sh | bash -s 0.13.0
 ```
 
-2. Install YugabyteDB operator
+2. Install ZNbaseDB operator
 ```sh
-$ kubectl create -f https://operatorhub.io/install/yugabyte-operator.yaml
+$ kubectl create -f https://operatorhub.io/install/ZNbase-operator.yaml
 ```
 
 Watch your operator come up until it reaches `Succeeded` phase.
@@ -68,12 +68,12 @@ Watch your operator come up until it reaches `Succeeded` phase.
 $ kubectl get csv -n operators
 
 NAME                       DISPLAY             VERSION   REPLACES   PHASE
-yugabyte-operator.v0.0.1   Yugabyte Operator   0.0.1                Succeeded
+ZNbase-operator.v0.0.1   ZNbase Operator   0.0.1                Succeeded
 ```
 
-3. Create YugabyteDB Custom Resource to create YugabyteDB cluster using operator deployed above
+3. Create ZNbaseDB Custom Resource to create ZNbaseDB cluster using operator deployed above
 ```sh
-$ kubectl create namespace yb-operator && kubectl create -f https://raw.githubusercontent.com/yugabyte/yugabyte-operator/master/deploy/crds/yugabyte_v1alpha1_ybcluster_cr.yaml
+$ kubectl create namespace yb-operator && kubectl create -f https://raw.githubusercontent.com/ZNbase/ZNbase-operator/master/deploy/crds/ZNbase_v1alpha1_ybcluster_cr.yaml
 ```
 
 Watch your YugabteDB cluster pods come up
@@ -92,14 +92,14 @@ yb-tserver-2   1/1     Running   0          3m31s
 
 ## Configuration options
 
-Refer [Yugabyte Operator](../yugabyte-operator/#configuration-options) for configuration options.
+Refer [ZNbase Operator](../ZNbase-operator/#configuration-options) for configuration options.
 
-## Use YugabyteDB
+## Use ZNbaseDB
 
-When all of the pods in YugabyteDB cluster are running, you can use the YSQL shell to access the YSQL API, which is PostgreSQL-compliant.
+When all of the pods in ZNbaseDB cluster are running, you can use the YSQL shell to access the YSQL API, which is PostgreSQL-compliant.
 
 ```console
-kubectl exec -it -n yb-operator yb-tserver-0 -- /home/yugabyte/bin/ysqlsh -h yb-tserver-0  --echo-queries
+kubectl exec -it -n yb-operator yb-tserver-0 -- /home/ZNbase/bin/ysqlsh -h yb-tserver-0  --echo-queries
 ```
 
 For details on the YSQL API, see:
@@ -109,12 +109,12 @@ For details on the YSQL API, see:
 
 ## Cleanup
 
-Run the commands below to remove the YugabyteDB cluster and operator resources.
+Run the commands below to remove the ZNbaseDB cluster and operator resources.
 
 **NOTE:** This will destroy your database and delete all of its data.
 
 ```console
-kubectl delete -f https://raw.githubusercontent.com/yugabyte/yugabyte-operator/master/deploy/crds/yugabyte_v1alpha1_ybcluster_cr.yaml
+kubectl delete -f https://raw.githubusercontent.com/ZNbase/ZNbase-operator/master/deploy/crds/ZNbase_v1alpha1_ybcluster_cr.yaml
 kubectl delete namespace yb-operator
-kubectl delete -f https://operatorhub.io/install/yugabyte-operator.yaml
+kubectl delete -f https://operatorhub.io/install/ZNbase-operator.yaml
 ```

@@ -3,7 +3,7 @@
  * ybcModifyTable.h
  *	  prototypes for ybcModifyTable.c
  *
- * Copyright (c) YugaByte, Inc.
+ * Copyright (c) ZNbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License.  You may obtain a copy of the License at
@@ -27,18 +27,18 @@
 #include "executor/tuptable.h"
 
 //------------------------------------------------------------------------------
-// YugaByte modify table API.
+// ZNbase modify table API.
 
 /*
- * Insert data into YugaByte table.
- * This function is equivalent to "heap_insert", but it sends data to DocDB (YugaByte storage).
+ * Insert data into ZNbase table.
+ * This function is equivalent to "heap_insert", but it sends data to DocDB (ZNbase storage).
  */
 extern Oid YBCHeapInsert(TupleTableSlot *slot,
 												 HeapTuple tuple,
 												 EState *estate);
 
 /*
- * Insert a tuple into a YugaByte table. Will execute within a distributed
+ * Insert a tuple into a ZNbase table. Will execute within a distributed
  * transaction if the table is transactional (YSQL default).
  */
 extern Oid YBCExecuteInsert(Relation rel,
@@ -54,7 +54,7 @@ extern Oid YBCExecuteNonTxnInsert(Relation rel,
 								  HeapTuple tuple);
 
 /*
- * Insert a tuple into the an index's backing YugaByte index table.
+ * Insert a tuple into the an index's backing ZNbase index table.
  */
 extern void YBCExecuteInsertIndex(Relation rel,
 								  Datum *values,
@@ -64,7 +64,7 @@ extern void YBCExecuteInsertIndex(Relation rel,
 								  uint64_t *write_time);
 
 /*
- * Delete a tuple (identified by ybctid) from a YugaByte table.
+ * Delete a tuple (identified by ybctid) from a ZNbase table.
  * If this is a single row op we will return false in the case that there was
  * no row to delete. This can occur because we do not first perform a scan if
  * it is a single row op.
@@ -75,7 +75,7 @@ extern bool YBCExecuteDelete(Relation rel,
 							 ModifyTableState *mtstate);
 /*
  * Delete a tuple (identified by index columns and base table ybctid) from an
- * index's backing YugaByte index table.
+ * index's backing ZNbase index table.
  */
 extern void YBCExecuteDeleteIndex(Relation index,
                                   Datum *values,
@@ -83,7 +83,7 @@ extern void YBCExecuteDeleteIndex(Relation index,
                                   Datum ybctid);
 
 /*
- * Update a row (identified by ybctid) in a YugaByte table.
+ * Update a row (identified by ybctid) in a ZNbase table.
  * If this is a single row op we will return false in the case that there was
  * no row to update. This can occur because we do not first perform a scan if
  * it is a single row op.
@@ -96,7 +96,7 @@ extern bool YBCExecuteUpdate(Relation rel,
 							 Bitmapset *updatedCols);
 
 /*
- * Replace a row in a YugaByte table by first deleting an existing row
+ * Replace a row in a ZNbase table by first deleting an existing row
  * (identified by ybctid) and then inserting a tuple to replace it.
  * This allows us to update a row primary key.
  *

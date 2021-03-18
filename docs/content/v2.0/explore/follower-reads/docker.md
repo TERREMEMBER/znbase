@@ -24,10 +24,10 @@ $ ./yb-docker-ctl add_node
 
 ## 2. Write some data
 
-Pull the [yb-sample-apps](https://github.com/yugabyte/yb-sample-apps) Docker container. This container has built-in Java client programs for various workloads, including SQL inserts and updates.
+Pull the [yb-sample-apps](https://github.com/ZNbase/yb-sample-apps) Docker container. This container has built-in Java client programs for various workloads, including SQL inserts and updates.
 
 ```sh
-$ docker pull yugabytedb/yb-sample-apps
+$ docker pull ZNbasedb/yb-sample-apps
 ```
 
 By default, the key-value workload application runs with strong read consistency where all data is read from the tablet leader. We are going to populate exactly one key with a 10KB value into the system. Since the replication factor is `5`, this key will get replicated to five of the seven nodes in the universe.
@@ -35,7 +35,7 @@ By default, the key-value workload application runs with strong read consistency
 Run the `CassandraKeyValue` workload application to constantly update this key-value, as well as perform reads with strong consistency against the local universe.
 
 ```sh
-$ docker run --name yb-sample-apps --hostname yb-sample-apps --net yb-net yugabytedb/yb-sample-apps --workload CassandraKeyValue \
+$ docker run --name yb-sample-apps --hostname yb-sample-apps --net yb-net ZNbasedb/yb-sample-apps --workload CassandraKeyValue \
   --nodes yb-tserver-n1:9042 \
   --nouuid \
   --num_unique_keys 1 \
@@ -47,7 +47,7 @@ $ docker run --name yb-sample-apps --hostname yb-sample-apps --net yb-net yugaby
 In the above command, we have set the value of `num_unique_keys` to `1`, which means we are overwriting a single key `key:0`. We can verify this using cqlsh:
 
 ```sh
-$ docker exec -it yb-tserver-n1 /home/yugabyte/bin/cqlsh
+$ docker exec -it yb-tserver-n1 /home/ZNbase/bin/cqlsh
 ```
 
 ```

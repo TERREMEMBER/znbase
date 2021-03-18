@@ -1,4 +1,4 @@
-// Copyright (c) Yugabyte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -197,7 +197,7 @@ TEST_P(EncryptedSSTableTest, CounterOverflow10MKeys) {
 
 TEST_P(EncryptedSSTableTest, CounterOverflow100000Keys) {
   // This test fails if meta block checksums are not being verified.
-  // https://github.com/yugabyte/yugabyte-db/issues/3974
+  // https://github.com/ZNbase/ZNbase-db/issues/3974
   CounterOverflow(100 * 1000, 0xffffff00);
 }
 

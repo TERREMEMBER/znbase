@@ -2,7 +2,7 @@
 title: Build from source code on Ubuntu
 headerTitle: Build the source code
 linkTitle: Build the source
-description: Build YugabyteDB from source code on Ubuntu.
+description: Build ZNbaseDB from source code on Ubuntu.
 image: /images/section_icons/index/quick_start.png
 headcontent: Build the source code.
 type: page
@@ -42,7 +42,7 @@ showAsideToc: true
 
 {{< note title="Note" >}}
 
-CentOS 7 is the recommended Linux development and production platform for YugabyteDB.
+CentOS 7 is the recommended Linux development and production platform for ZNbaseDB.
 
 {{< /note >}}
 
@@ -58,10 +58,10 @@ sudo apt-get install uuid-dev libbz2-dev libreadline-dev maven ninja-build \
                      libncurses5-dev 
 ```
 
-Assuming this repository is checked out in `~/code/yugabyte-db`, do the following:
+Assuming this repository is checked out in `~/code/ZNbase-db`, do the following:
 
 ```sh
-cd ~/code/yugabyte-db
+cd ~/code/ZNbase-db
 ./yb_build.sh release
 ```
 
@@ -97,7 +97,7 @@ You can find the binaries you just built in `build/latest` directory.
 
 ## Build Java code
 
-YugabyteDB core is written in C++, but the repository contains Java code needed to run sample applications. To build the Java part, you need:
+ZNbaseDB core is written in C++, but the repository contains Java code needed to run sample applications. To build the Java part, you need:
 
 * JDK 8
 * [Apache Maven](https://maven.apache.org/).
@@ -108,7 +108,7 @@ Also make sure Maven's bin directory is added to your `PATH` (for example, by ad
 export PATH=$HOME/tools/apache-maven-3.6.3/bin:$PATH
 ```
 
-For building YugabyteDB Java code, you'll need to install Java and Apache Maven.
+For building ZNbaseDB Java code, you'll need to install Java and Apache Maven.
 
 ## Build release package
 

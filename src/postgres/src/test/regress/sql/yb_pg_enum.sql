@@ -33,7 +33,7 @@ COPY enumtest FROM stdin;
 blue
 purple
 \.
--- ORDER BY is needed for Yugabyte
+-- ORDER BY is needed for ZNbase
 SELECT * FROM enumtest ORDER BY col;
 
 --

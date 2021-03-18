@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -24,7 +24,7 @@ Options:
   -i, --ssh_key_file <keyfile>
     path to the ssh key for the tserver.
   -u, --ssh_user_name <username>
-    the username to use for ssh (default: yugabyte).
+    the username to use for ssh (default: ZNbase).
   -p, --ssh_port <port>
     the port to use for ssh (default: 54422).
   -d, --staging_dir <stagin_dir>
@@ -37,7 +37,7 @@ EOT
 tserver_ip=""
 ssh_key_file=""
 staging_dir=""
-ssh_user_name="yugabyte"
+ssh_user_name="ZNbase"
 ssh_port=54422
 while [[ $# -gt 0 ]]; do
   case "$1" in

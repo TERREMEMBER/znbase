@@ -52,12 +52,12 @@ See the semantics of each option in the [PostgreSQL docs][postgresql-docs-drop-o
 Basic example.
 
 ```plpgsql
-yugabyte=# CREATE OPERATOR CLASS my_op_class
+ZNbase=# CREATE OPERATOR CLASS my_op_class
            FOR TYPE int4
            USING btree AS
            OPERATOR 1 <,
            OPERATOR 2 <=;
-yugabyte=# DROP OPERATOR CLASS my_op_class USING btree;
+ZNbase=# DROP OPERATOR CLASS my_op_class USING btree;
 ```
 
 ## See also

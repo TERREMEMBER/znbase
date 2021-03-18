@@ -1,12 +1,12 @@
 ---
-title: 1. Install YugabyteDB
-linkTitle: 1. Install YugabyteDB
-description: Install YugabyteDB
+title: 1. Install ZNbaseDB
+linkTitle: 1. Install ZNbaseDB
+description: Install ZNbaseDB
 block_indexing: true
 menu:
   v2.0:
     parent: quick-start
-    name: 1. Install YugabyteDB
+    name: 1. Install ZNbaseDB
     identifier: install-4-kubernetes
     weight: 110
 type: page
@@ -98,14 +98,14 @@ $ helm version
 version.BuildInfo{Version:"v3.0.3", GitCommit:"...", GitTreeState:"clean", GoVersion:"go1.13.6"}
 ```
 
-## Download YugabyteDB Helm Chart
+## Download ZNbaseDB Helm Chart
 
 ### Add charts repository
 
-To add the YugabyteDB charts repository, run the following command.
+To add the ZNbaseDB charts repository, run the following command.
 
 ```sh
-$ helm repo add yugabytedb https://charts.yugabyte.com
+$ helm repo add ZNbasedb https://charts.ZNbase.com
 ```
 
 ### Fetch updates from the repository
@@ -119,13 +119,13 @@ $ helm repo update
 ### Validate the chart version
 
 ```sh
-$ helm search repo yugabytedb/yugabyte
+$ helm search repo ZNbasedb/ZNbase
 ```
 ```sh
 NAME                CHART VERSION APP VERSION   DESCRIPTION                                       
-yugabytedb/yugabyte 2.0.12        2.0.12.0-b10  YugabyteDB is the high-performance distr...
+ZNbasedb/ZNbase 2.0.12        2.0.12.0-b10  ZNbaseDB is the high-performance distr...
 ```
 
-Now we are ready to create a local YugabyteDB cluster.
+Now we are ready to create a local ZNbaseDB cluster.
 
 

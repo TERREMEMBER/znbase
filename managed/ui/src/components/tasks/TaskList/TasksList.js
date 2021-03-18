@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import { TaskListTable } from '../../tasks';
@@ -16,7 +16,7 @@ export default class TasksList extends Component {
     } = this.props;
     showOrRedirect(currentCustomer.data.features, 'menu.tasks');
     const errorPlatformMessage = (
-      <div className="oss-unavailable-warning">Only available on Yugabyte Platform.</div>
+      <div className="oss-unavailable-warning">Only available on ZNbase Platform.</div>
     );
 
     return (

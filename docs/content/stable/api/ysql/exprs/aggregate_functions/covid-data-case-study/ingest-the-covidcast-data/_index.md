@@ -1,5 +1,5 @@
 ---
-title: Ingest the COVIDcast data into YugabyteDB
+title: Ingest the COVIDcast data into ZNbaseDB
 linkTitle: Ingest the COVIDcast data
 headerTitle: Ingesting, checking, and combining the COVIDcast data
 description: Ingest the COVIDcast data, check it for format compliance, and to combine it all into the single "covidcast_fb_survey_results" table

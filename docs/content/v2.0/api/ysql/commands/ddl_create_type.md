@@ -107,44 +107,44 @@ The order of options in creating range types and base types does not matter.  Ev
 Composite type
 
 ```postgresql
-yugabyte=# CREATE TYPE feature_struct AS (id INTEGER, name TEXT);
-yugabyte=# CREATE TABLE feature_tab_struct (feature_col feature_struct);
+ZNbase=# CREATE TYPE feature_struct AS (id INTEGER, name TEXT);
+ZNbase=# CREATE TABLE feature_tab_struct (feature_col feature_struct);
 ```
 
 Enumerated type
 
 ```postgresql
-yugabyte=# CREATE TYPE feature_enum AS ENUM ('one', 'two', 'three');
-yugabyte=# CREATE TABLE feature_tab_enum (feature_col feature_enum);
+ZNbase=# CREATE TYPE feature_enum AS ENUM ('one', 'two', 'three');
+ZNbase=# CREATE TABLE feature_tab_enum (feature_col feature_enum);
 ```
 
 Range type
 
 ```postgresql
-yugabyte=# CREATE TYPE feature_range AS RANGE (subtype=INTEGER);
-yugabyte=# CREATE TABLE feature_tab_range (feature_col feature_range);
+ZNbase=# CREATE TYPE feature_range AS RANGE (subtype=INTEGER);
+ZNbase=# CREATE TABLE feature_tab_range (feature_col feature_range);
 ```
 
 Base type
 
 ```postgresql
-yugabyte=# CREATE TYPE int4_type;
-yugabyte=# CREATE FUNCTION int4_type_in(cstring) RETURNS int4_type
+ZNbase=# CREATE TYPE int4_type;
+ZNbase=# CREATE FUNCTION int4_type_in(cstring) RETURNS int4_type
                LANGUAGE internal IMMUTABLE STRICT PARALLEL SAFE AS 'int4in';
-yugabyte=# CREATE FUNCTION int4_type_out(int4_type) RETURNS cstring
+ZNbase=# CREATE FUNCTION int4_type_out(int4_type) RETURNS cstring
                LANGUAGE internal IMMUTABLE STRICT PARALLEL SAFE AS 'int4out';
-yugabyte=# CREATE TYPE int4_type (
+ZNbase=# CREATE TYPE int4_type (
                INPUT = int4_type_in,
                OUTPUT = int4_type_out,
                LIKE = int4
            );
-yugabyte=# CREATE TABLE int4_table (t int4_type);
+ZNbase=# CREATE TABLE int4_table (t int4_type);
 ```
 
 Shell type
 
 ```postgresql
-yugabyte=# CREATE TYPE shell_type;
+ZNbase=# CREATE TYPE shell_type;
 ```
 
 ## See also

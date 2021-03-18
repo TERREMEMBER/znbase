@@ -1,4 +1,4 @@
--- Copyright (c) YugaByte, Inc.
+-- Copyright (c) ZNbase, Inc.
 
 alter table kms_history add column active boolean default false;
 

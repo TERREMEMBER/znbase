@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 export { default as DataCenterConfiguration } from './ConfigProvider/DataCenterConfiguration';
 export { default as DockerProviderConfiguration } from './PublicCloud/Docker/DockerProviderConfiguration';

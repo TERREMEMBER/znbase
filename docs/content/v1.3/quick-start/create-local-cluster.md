@@ -10,10 +10,10 @@ menu:
 type: page
 ---
 
-After [installing YugabyteDB](../install/), follow the instructions below to create a local cluster.
+After [installing ZNbaseDB](../install/), follow the instructions below to create a local cluster.
 
 {{< note title="Note" >}}
-The local cluster setup on a single host is intended for development and learning. For production deployment or performance benchmarking, deploying a true multi-node on multi-host setup, see [Deploy YugabyteDB](../../deploy).
+The local cluster setup on a single host is intended for development and learning. For production deployment or performance benchmarking, deploying a true multi-node on multi-host setup, see [Deploy ZNbaseDB](../../deploy).
 {{< /note >}}
 
 <ul class="nav nav-tabs nav-tabs-yb">

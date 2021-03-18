@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
-# Copyright 2020 YugaByte, Inc. and Contributors
+# Copyright 2020 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 set -euo pipefail
 
@@ -21,8 +21,8 @@ NOBODY_UID=65534
 RESTART_PROCESSES=true
 
 set +e
-# Check whether the script is being run from a VM running replicated-based Yugabyte Platform.
-docker ps -a 2> /dev/null | grep yugabyte-yugaware > /dev/null 2>&1
+# Check whether the script is being run from a VM running replicated-based ZNbase Platform.
+docker ps -a 2> /dev/null | grep ZNbase-yugaware > /dev/null 2>&1
 DOCKER_CHECK="$?"
 
 if [[ $DOCKER_CHECK -eq 0 ]]; then
@@ -32,7 +32,7 @@ else
 fi
 
 
-# Check whether the script is being run from within a Yugabyte Platform docker container.
+# Check whether the script is being run from within a ZNbase Platform docker container.
 grep -E 'kubepods|docker' /proc/1/cgroup > /dev/null 2>&1
 CONTAINER_CHECK="$?"
 
@@ -43,7 +43,7 @@ else
 fi
 set -e
 
-# Assume the script is being run from a systemctl-based Yugabyte Platform installation otherwise.
+# Assume the script is being run from a systemctl-based ZNbase Platform installation otherwise.
 if [[ "$DOCKER_BASED" = false ]] && [[ "$INSIDE_CONTAINER" = false ]]; then
   SERVICE_BASED=true
 else
@@ -83,7 +83,7 @@ set_prometheus_data_dir() {
   fi
 }
 
-# Modify service status if the script is being run against a service-based Yugabyte Platform
+# Modify service status if the script is being run against a service-based ZNbase Platform
 modify_service() {
   if [[ "$SERVICE_BASED" = true ]] && [[ "$RESTART_PROCESSES" = true ]]; then
     set +e
@@ -95,7 +95,7 @@ modify_service() {
   fi
 }
 
-# Creates a Yugabyte Platform DB backup.
+# Creates a ZNbase Platform DB backup.
 create_postgres_backup() {
   backup_path="$1"
   db_username="$2"
@@ -108,12 +108,12 @@ create_postgres_backup() {
     backup_cmd="pg_dump -h ${db_host} -p ${db_port} -U ${db_username} -Fc --clean ${PLATFORM_DB_NAME}"
   fi
   # Run pg_dump.
-  echo "Creating Yugabyte Platform DB backup ${backup_path}..."
+  echo "Creating ZNbase Platform DB backup ${backup_path}..."
   docker_aware_cmd "postgres" "${backup_cmd}" > "${backup_path}"
   echo "Done"
 }
 
-# Restores a Yugabyte Platform DB backup.
+# Restores a ZNbase Platform DB backup.
 restore_postgres_backup() {
   backup_path="$1"
   db_username="$2"
@@ -127,15 +127,15 @@ restore_postgres_backup() {
     restore_cmd="pg_restore -h ${db_host} -p ${db_port} -U ${db_username} -c -d ${PLATFORM_DB_NAME}"
   fi
   # Run pg_restore.
-  echo "Restoring Yugabyte Platform DB backup ${backup_path}..."
+  echo "Restoring ZNbase Platform DB backup ${backup_path}..."
   docker_aware_cmd "postgres" "${restore_cmd}" < "${backup_path}"
   echo "Done"
 }
 
-# Deletes a Yugabyte Platform DB backup.
+# Deletes a ZNbase Platform DB backup.
 delete_postgres_backup() {
   backup_path="$1"
-  echo "Deleting Yugabyte Platform DB backup ${backup_path}..."
+  echo "Deleting ZNbase Platform DB backup ${backup_path}..."
   if [[ -f "${backup_path}" ]]; then
     cleanup "${backup_path}"
     echo "Done"
@@ -169,7 +169,7 @@ create_backup() {
     if [[ "${verbose}" == true ]]; then
       verbose_flag="-v"
     fi
-    backup_script="/opt/yugabyte/devops/bin/yb_platform_backup.sh"
+    backup_script="/opt/ZNbase/devops/bin/yb_platform_backup.sh"
     # Currently, this script does not support backup/restore of Prometheus data for K8s deployments.
     # On K8s deployments (unlike Replicated deployments) the prometheus data volume for snapshots is
     # not shared between the yugaware and prometheus containers.
@@ -178,11 +178,11 @@ create_backup() {
       exclude_flags="${exclude_flags} --exclude_releases"
     fi
     kubectl -n "${k8s_namespace}" exec -it "${k8s_pod}" -c yugaware -- /bin/bash -c \
-      "${backup_script} create ${verbose_flag} ${exclude_flags} --output /opt/yugabyte/yugaware"
+      "${backup_script} create ${verbose_flag} ${exclude_flags} --output /opt/ZNbase/yugaware"
     # Determine backup archive filename.
     # Note: There is a slight race condition here. It will always use the most recent backup file.
     backup_file=$(kubectl -n "${k8s_namespace}" -c yugaware exec -it "${k8s_pod}" -c yugaware -- \
-      /bin/bash -c "cd /opt/yugabyte/yugaware && ls -1 backup*.tgz | tail -n 1")
+      /bin/bash -c "cd /opt/ZNbase/yugaware && ls -1 backup*.tgz | tail -n 1")
     backup_file=${backup_file%$'\r'}
     # Ensure backup succeeded.
     if [[ -z "${backup_file}" ]]; then
@@ -195,7 +195,7 @@ create_backup() {
       "${k8s_pod}:${backup_file}" "${output_path}/${backup_file}"
     # Delete backup archive from container.
     kubectl -n "${k8s_namespace}" exec -it "${k8s_pod}" -c yugaware -- \
-      /bin/bash -c "rm /opt/yugabyte/yugaware/backup*.tgz"
+      /bin/bash -c "rm /opt/ZNbase/yugaware/backup*.tgz"
     echo "Done"
     return
   fi
@@ -255,24 +255,24 @@ restore_backup() {
     # Copy backup archive to container.
     echo "Copying backup to container"
     kubectl -n "${k8s_namespace}" -c yugaware cp \
-      "${input_path}" "${k8s_pod}:/opt/yugabyte/yugaware/"
+      "${input_path}" "${k8s_pod}:/opt/ZNbase/yugaware/"
     echo "Done"
     # Determine backup archive filename.
     # Note: There is a slight race condition here. It will always use the most recent backup file.
     backup_file=$(kubectl -n "${k8s_namespace}" -c yugaware exec -it "${k8s_pod}" -c yugaware -- \
-      /bin/bash -c "cd /opt/yugabyte/yugaware && ls -1 backup*.tgz | tail -n 1")
+      /bin/bash -c "cd /opt/ZNbase/yugaware && ls -1 backup*.tgz | tail -n 1")
     backup_file=${backup_file%$'\r'}
     # Run restore script in container.
     verbose_flag=""
     if [[ "${verbose}" == true ]]; then
       verbose_flag="-v"
     fi
-    backup_script="/opt/yugabyte/devops/bin/yb_platform_backup.sh"
+    backup_script="/opt/ZNbase/devops/bin/yb_platform_backup.sh"
     kubectl -n "${k8s_namespace}" exec -it "${k8s_pod}" -c yugaware -- /bin/bash -c \
-      "${backup_script} restore ${verbose_flag} --input /opt/yugabyte/yugaware/${backup_file}"
+      "${backup_script} restore ${verbose_flag} --input /opt/ZNbase/yugaware/${backup_file}"
     # Delete backup archive from container.
     kubectl -n "${k8s_namespace}" exec -it "${k8s_pod}" -c yugaware -- \
-      /bin/bash -c "rm /opt/yugabyte/yugaware/backup*.tgz"
+      /bin/bash -c "rm /opt/ZNbase/yugaware/backup*.tgz"
     return
   fi
 
@@ -326,8 +326,8 @@ print_backup_usage() {
   echo "options:"
   echo "  -o, --output                   the directory that the platform backup is written to (default: ${HOME})"
   echo "  -m, --exclude_prometheus       exclude prometheus metric data from backup (default: false)"
-  echo "  -r, --exclude_releases         exclude Yugabyte releases from backup (default: false)"
-  echo "  -d, --data_dir=DIRECTORY       data directory (default: /opt/yugabyte)"
+  echo "  -r, --exclude_releases         exclude ZNbase releases from backup (default: false)"
+  echo "  -d, --data_dir=DIRECTORY       data directory (default: /opt/ZNbase)"
   echo "  -v, --verbose                  verbose output of script (default: false)"
   echo "  -s  --skip_restart             don't restart processes during execution (default: false)"
   echo "  -u, --db_username=USERNAME     postgres username (default: postgres)"
@@ -344,8 +344,8 @@ print_restore_usage() {
   echo "Restore: ${SCRIPT_NAME} restore --input <input_path> [options]"
   echo "<input_path> the path to the platform backup tar.gz"
   echo "options:"
-  echo "  -o, --destination=DIRECTORY    where to un-tar the backup (default: /opt/yugabyte)"
-  echo "  -d, --data_dir=DIRECTORY       data directory (default: /opt/yugabyte)"
+  echo "  -o, --destination=DIRECTORY    where to un-tar the backup (default: /opt/ZNbase)"
+  echo "  -d, --data_dir=DIRECTORY       data directory (default: /opt/ZNbase)"
   echo "  -v, --verbose                  verbose output of script (default: false)"
   echo "  -s  --skip_restart             don't restart processes during execution (default: false)"
   echo "  -u, --db_username=USERNAME     postgres username (default: postgres)"
@@ -359,12 +359,12 @@ print_restore_usage() {
 }
 
 print_help() {
-  echo "Create or restore a Yugabyte Platform backup"
+  echo "Create or restore a ZNbase Platform backup"
   echo
   echo "Usage: ${SCRIPT_NAME} <command>"
   echo "command:"
-  echo "  create                         create a Yugabyte Platform backup"
-  echo "  restore                        restore a Yugabyte Platform backup"
+  echo "  create                         create a ZNbase Platform backup"
+  echo "  restore                        restore a ZNbase Platform backup"
   echo "  -?, --help                     show this help, then exit"
   echo
   print_backup_usage
@@ -390,7 +390,7 @@ db_port=5432
 prometheus_host=localhost
 k8s_namespace=""
 k8s_pod=""
-data_dir=/opt/yugabyte
+data_dir=/opt/ZNbase
 verbose=false
 
 case $command in
@@ -481,7 +481,7 @@ case $command in
     ;;
   restore)
     # Default restore options.
-    destination=/opt/yugabyte
+    destination=/opt/ZNbase
     input_path=""
 
     if [[ $# -eq 0 ]]; then

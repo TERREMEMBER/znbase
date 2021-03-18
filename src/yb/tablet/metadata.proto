@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -70,7 +70,7 @@ enum TabletDataState {
   // This tablet split has been completed. In this state tablet could only be used as a remote
   // bootstrap source for some time (follower_unavailable_considered_failed_sec) and then will be
   // shutdown.
-  // TODO(tsplit): After https://github.com/yugabyte/yugabyte-db/issues/1461:
+  // TODO(tsplit): After https://github.com/ZNbase/ZNbase-db/issues/1461:
   // - implement deleting tablet in state TABLET_DATA_SPLIT_COMPLETED after
   //   follower_unavailable_considered_failed_sec.
   // - add integration test for remote bootstrap from source split tablet before/after

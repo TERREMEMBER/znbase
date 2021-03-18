@@ -3,7 +3,7 @@ title: Benchmark YSQL performance using TPC-C
 headerTitle: TPC-C
 linkTitle: TPC-C
 description: Benchmark YSQL performance using TPC-C
-headcontent: Benchmark YugabyteDB using TPC-C
+headcontent: Benchmark ZNbaseDB using TPC-C
 image: /images/section_icons/quick_start/explore_ysql.png
 aliases:
   - /benchmark/tpcc
@@ -18,7 +18,7 @@ isTocNested: true
 ---
 
 ## Overview
-Follow the steps below to run the [TPC-C workload](https://github.com/yugabyte/tpcc) against YugabyteDB YSQL. [TPC-C](http://www.tpc.org/tpcc/) is a popular online transaction processing benchmark that provides metrics you can use to evaluate the performance of YugabyteDB for concurrent transactions of different types and complexity that are either either executed online or queued for deferred execution.
+Follow the steps below to run the [TPC-C workload](https://github.com/ZNbase/tpcc) against ZNbaseDB YSQL. [TPC-C](http://www.tpc.org/tpcc/) is a popular online transaction processing benchmark that provides metrics you can use to evaluate the performance of ZNbaseDB for concurrent transactions of different types and complexity that are either either executed online or queued for deferred execution.
 
 ### Results at a glance
 | Warehouses| TPMC | Efficiency (approx) | Cluster Details
@@ -38,14 +38,14 @@ To download the TPC-C binaries, run the following commands.
 
 ```sh
 $ cd $HOME
-$ wget https://github.com/yugabyte/tpcc/releases/download/1.6/tpcc.tar.gz
+$ wget https://github.com/ZNbase/tpcc/releases/download/1.6/tpcc.tar.gz
 $ tar -zxvf tpcc.tar.gz
 $ cd tpcc
 ```
 
 ### Start the Database
 
-Start your YugabyteDB cluster by following the steps [here](../../deploy/manual-deployment/).
+Start your ZNbaseDB cluster by following the steps [here](../../deploy/manual-deployment/).
 
 {{< tip title="Tip" >}}
 You will need the IP addresses of the nodes in the cluster for the next step.
@@ -59,7 +59,7 @@ Other options like username, password, port, etc. can be changed using the confi
 
 ```sh
 <port>5433</port>
-<username>yugabyte</username>
+<username>ZNbase</username>
 <password></password>
 ```
 

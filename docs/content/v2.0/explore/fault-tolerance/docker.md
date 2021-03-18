@@ -44,9 +44,9 @@ showAsideToc: true
 
 </ul>
 
-YugabyteDB can automatically handle failures and therefore provides [high availability](../../../architecture/core-functions/high-availability/). You will create YSQL tables with a replication factor of `3` that allows a [fault tolerance](../../../architecture/concepts/docdb/replication/) of 1. This means the cluster will remain available for both reads and writes even if one node fails. However, if another node fails bringing the number of failures to two, then writes will become unavailable on the cluster in order to preserve data consistency.
+ZNbaseDB can automatically handle failures and therefore provides [high availability](../../../architecture/core-functions/high-availability/). You will create YSQL tables with a replication factor of `3` that allows a [fault tolerance](../../../architecture/concepts/docdb/replication/) of 1. This means the cluster will remain available for both reads and writes even if one node fails. However, if another node fails bringing the number of failures to two, then writes will become unavailable on the cluster in order to preserve data consistency.
 
-If you haven't installed YugabyteDB yet, you can create a local YugabyteDB cluster within five minutes by following the [Quick Start](../../../quick-start/install/) guide.
+If you haven't installed ZNbaseDB yet, you can create a local ZNbaseDB cluster within five minutes by following the [Quick Start](../../../quick-start/install/) guide.
 
 ## 1. Create universe
 
@@ -65,7 +65,7 @@ $ ./yb-docker-ctl create --rf 5
 Connect to `cqlsh` on node `1`.
 
 ```sh
-$ docker exec -it yb-tserver-n1 /home/yugabyte/bin/cqlsh
+$ docker exec -it yb-tserver-n1 /home/ZNbase/bin/cqlsh
 ```
 
 ```sh
@@ -94,14 +94,14 @@ Now insert some data by typing the following into `cqlsh` shell.
 
 ```sql
 cqlsh> INSERT INTO users.profile (id, email, password, profile) VALUES
-  (1000, 'james.bond@yugabyte.com', 'licensed2Kill',
+  (1000, 'james.bond@ZNbase.com', 'licensed2Kill',
    {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
   );
 ```
 
 ```sql
 cqlsh> INSERT INTO users.profile (id, email, password, profile) VALUES
-  (2000, 'sherlock.holmes@yugabyte.com', 'itsElementary',
+  (2000, 'sherlock.holmes@ZNbase.com', 'itsElementary',
    {'firstname': 'Sherlock', 'lastname': 'Holmes'}
   );
 
@@ -116,8 +116,8 @@ cqlsh> SELECT email, profile FROM users.profile;
 ```
  email                        | profile
 ------------------------------+---------------------------------------------------------------
-      james.bond@yugabyte.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
- sherlock.holmes@yugabyte.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
+      james.bond@ZNbase.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
+ sherlock.holmes@ZNbase.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
 
 (2 rows)
 ```
@@ -127,7 +127,7 @@ cqlsh> SELECT email, profile FROM users.profile;
 Let us now query the data from node `5`.
 
 ```sh
-$ docker exec -it yb-tserver-n5 /home/yugabyte/bin/cqlsh
+$ docker exec -it yb-tserver-n5 /home/ZNbase/bin/cqlsh
 ```
 
 ```sql
@@ -137,8 +137,8 @@ cqlsh> SELECT email, profile FROM users.profile;
 ```
  email                        | profile
 ------------------------------+---------------------------------------------------------------
-      james.bond@yugabyte.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
- sherlock.holmes@yugabyte.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
+      james.bond@ZNbase.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
+ sherlock.holmes@ZNbase.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
 
 (2 rows)
 ```
@@ -166,14 +166,14 @@ $ ./yb-docker-ctl status
 Now connect to node 4.
 
 ```sh
-$ docker exec -it yb-tserver-n4 /home/yugabyte/bin/cqlsh
+$ docker exec -it yb-tserver-n4 /home/ZNbase/bin/cqlsh
 ```
 
 Let us insert some data.
 
 ```sql
 cqlsh> INSERT INTO users.profile (id, email, password, profile) VALUES 
-  (3000, 'austin.powers@yugabyte.com', 'imGroovy',
+  (3000, 'austin.powers@ZNbase.com', 'imGroovy',
    {'firstname': 'Austin', 'lastname': 'Powers'});
 ```
 
@@ -186,9 +186,9 @@ cqlsh> SELECT email, profile FROM users.profile;
 ```
  email                        | profile
 ------------------------------+---------------------------------------------------------------
-      james.bond@yugabyte.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
- sherlock.holmes@yugabyte.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
-   austin.powers@yugabyte.com |                 {'firstname': 'Austin', 'lastname': 'Powers'}
+      james.bond@ZNbase.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
+ sherlock.holmes@ZNbase.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
+   austin.powers@ZNbase.com |                 {'firstname': 'Austin', 'lastname': 'Powers'}
 
 (3 rows)
 ```
@@ -210,14 +210,14 @@ $ ./yb-docker-ctl status
 Now let us connect to node `2`.
 
 ```sh
-$ docker exec -it yb-tserver-n2 /home/yugabyte/bin/cqlsh
+$ docker exec -it yb-tserver-n2 /home/ZNbase/bin/cqlsh
 ```
 
 Insert some data.
 
 ```sql
 cqlsh> INSERT INTO users.profile (id, email, password, profile) VALUES
-  (4000, 'superman@yugabyte.com', 'iCanFly',
+  (4000, 'superman@ZNbase.com', 'iCanFly',
    {'firstname': 'Clark', 'lastname': 'Kent'});
 ```
 
@@ -230,10 +230,10 @@ cqlsh> SELECT email, profile FROM users.profile;
 ```
  email                        | profile
 ------------------------------+---------------------------------------------------------------
-        superman@yugabyte.com |                    {'firstname': 'Clark', 'lastname': 'Kent'}
-      james.bond@yugabyte.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
- sherlock.holmes@yugabyte.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
-   austin.powers@yugabyte.com |                 {'firstname': 'Austin', 'lastname': 'Powers'}
+        superman@ZNbase.com |                    {'firstname': 'Clark', 'lastname': 'Kent'}
+      james.bond@ZNbase.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
+ sherlock.holmes@ZNbase.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
+   austin.powers@ZNbase.com |                 {'firstname': 'Austin', 'lastname': 'Powers'}
 
 (4 rows)
 ```

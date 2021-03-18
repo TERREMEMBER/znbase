@@ -31,20 +31,20 @@ showAsideToc: true
 
 </ul>
 
-By default, YugabyteDB provides synchronous replication and strong consistency across geo-distributed data centers. But sometimes asynchronous replication will meet your need for disaster recovery, auditing and compliance, and other applications. For more information, see [Two data center (2DC) deployments](../../../architecture/2dc-deployments/) in the Architecture section.
+By default, ZNbaseDB provides synchronous replication and strong consistency across geo-distributed data centers. But sometimes asynchronous replication will meet your need for disaster recovery, auditing and compliance, and other applications. For more information, see [Two data center (2DC) deployments](../../../architecture/2dc-deployments/) in the Architecture section.
 
-This tutorial simulates a geo-distributed two data center (2DC) deployment using two local YugabyteDB clusters, one representing "Data Center - East" and the other representing "Data Center - West." You can explore unidirectional (master-follower) asynchronous replication and bidirectional (multi-master) asynchronous replication using the [yb-ctl](../../../admin/yb-ctl) and [yb-admin](../../../admin/yb-admin) utilities.
+This tutorial simulates a geo-distributed two data center (2DC) deployment using two local ZNbaseDB clusters, one representing "Data Center - East" and the other representing "Data Center - West." You can explore unidirectional (master-follower) asynchronous replication and bidirectional (multi-master) asynchronous replication using the [yb-ctl](../../../admin/yb-ctl) and [yb-admin](../../../admin/yb-admin) utilities.
 
 ## Prerequisites
 
-- For the tutorial, use the default database `yugabyte` and the default user `yugabyte`.
+- For the tutorial, use the default database `ZNbase` and the default user `ZNbase`.
 
 ## 1. Create two "data centers"
 
-Create and start your first local cluster that will simulate "Data Center - East" by running the following `yb-ctl create` command from your YugabyteDB home directory.
+Create and start your first local cluster that will simulate "Data Center - East" by running the following `yb-ctl create` command from your ZNbaseDB home directory.
 
 ```sh
-$ ./bin/yb-ctl create --data_dir /Users/yugabyte_user/yugabyte/yb-datacenter-east --ip_start 1
+$ ./bin/yb-ctl create --data_dir /Users/ZNbase_user/ZNbase/yb-datacenter-east --ip_start 1
 ```
 
 This will start up a one-node local cluster using the IP address of `127.0.0.1:7100` and create `yb-datacenter-east` as the data directory. Upon starting, you should see a screen like the following.
@@ -60,14 +60,14 @@ Waiting for cluster to be ready.
 | YCQL Shell          : bin/ycqlsh                                                                 |
 | YEDIS Shell         : bin/redis-cli                                                              |
 | Web UI              : http://127.0.0.1:7000/                                                     |
-| Cluster Data        : /Users/yugabyte_user/yugabyte/yb-datacenter-east                           |
+| Cluster Data        : /Users/ZNbase_user/ZNbase/yb-datacenter-east                           |
 ----------------------------------------------------------------------------------------------------
 ```
 
-Create and start your second local cluster that will simulate "Data Center = West" by running the following `yb-ctl create` command from your YugabyteDB home directory.
+Create and start your second local cluster that will simulate "Data Center = West" by running the following `yb-ctl create` command from your ZNbaseDB home directory.
 
 ```sh
-$ ./bin/yb-ctl create --data_dir /Users/yugabyte_user/yugabyte/yb-datacenter-west --ip_start 2
+$ ./bin/yb-ctl create --data_dir /Users/ZNbase_user/ZNbase/yb-datacenter-west --ip_start 2
 ```
 
 This will start up a one-node cluster using IP address of `127.0.0.2` and create `yb-datacenter-west` as the data directory. Upon starting, you should see a screen like the following.
@@ -83,13 +83,13 @@ Waiting for cluster to be ready.
 | YCQL Shell          : bin/ycqlsh 127.0.0.2                                                        |
 | YEDIS Shell         : bin/redis-cli -h 127.0.0.2                                                 |
 | Web UI              : http://127.0.0.2:7000/                                                     |
-| Cluster Data        : /Users/yugabyte_user/yugabyte/yb-datacenter-west                           |
+| Cluster Data        : /Users/ZNbase_user/ZNbase/yb-datacenter-west                           |
 ----------------------------------------------------------------------------------------------------
 ```
 
 ## 2. Create database tables
 
-In the default `yugabyte` database, create the database table `users` on the "Data Center - East" cluster.
+In the default `ZNbase` database, create the database table `users` on the "Data Center - East" cluster.
 
 Open `ycqlsh` specifying the host IP address of `127.0.0.1`.
 
@@ -167,7 +167,7 @@ $ ./bin/ycqlsh 127.0.0.1
 ```
 
 ```plpgsql
-yugabyte=# INSERT INTO users(email, username) VALUES ('hector@example.com', 'hector'), ('steve@example.com', 'steve');
+ZNbase=# INSERT INTO users(email, username) VALUES ('hector@example.com', 'hector'), ('steve@example.com', 'steve');
 ```
 
 On the consumer "Data Center - West" cluster, open `ycqlsh` and run the following to quickly see that data has been replicated between clusters.
@@ -177,7 +177,7 @@ $ ./bin/ycqlsh 127.0.0.2
 ```
 
 ```plpgsql
-yugabyte=# SELECT * FROM users;
+ZNbase=# SELECT * FROM users;
 ```
 
 You should see the following in the results.
@@ -223,7 +223,7 @@ $ ./bin/ycqlsh 127.0.0.2
 ```
 
 ```plpgsql
-yugabyte=# INSERT INTO users(email, username) VALUES ('neha@example.com', 'neha'), ('mikhail@example.com', 'mikhail');
+ZNbase=# INSERT INTO users(email, username) VALUES ('neha@example.com', 'neha'), ('mikhail@example.com', 'mikhail');
 ```
 
 On the new "consumer" cluster, open `ycqlsh` and run the following to quickly see that data has been replicated between clusters.
@@ -233,7 +233,7 @@ $ ./bin/ycqlsh 127.0.0.1
 ```
 
 ```plpgsql
-yugabyte=# SELECT * FROM users;
+ZNbase=# SELECT * FROM users;
 ```
 
 You should see the following in the results.
@@ -257,7 +257,7 @@ To stop the simulated "data centers", use the `yb-ctl stop` commands using the `
 **Example - stopping "Data Center - East"** 
 
 ```sh
-$ ./bin/yb-ctl stop --data_dir /Users/yugabyte_user/yugabyte/yb-datacenter-east
+$ ./bin/yb-ctl stop --data_dir /Users/ZNbase_user/ZNbase/yb-datacenter-east
 ```
 
 To destroy the simulated "data centers" and remove its associate data directory, use the `yb-ctl destroy` command with the `--data_dir` option to specify the cluster.
@@ -265,7 +265,7 @@ To destroy the simulated "data centers" and remove its associate data directory,
 **Example — destroying and removing the "Data Center - West"**
 
 ```sh
-$ ./bin/yb-ctl destroy --data_dir /Users/yugabyte_user/yugabyte/yb-datacenter-west
+$ ./bin/yb-ctl destroy --data_dir /Users/ZNbase_user/ZNbase/yb-datacenter-west
 ```
 
 ## What's next?

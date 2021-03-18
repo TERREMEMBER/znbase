@@ -14,17 +14,17 @@ isTocNested: true
 showAsideToc: true
 ---
 
-YugabyteDB provides synchronous replication of data in clusters dispersed across multiple (three or more) data centers by leveraging the Raft consensus algorithm to achieve enhanced high availability and performance. However, many use cases and smaller enterprise applications do not require synchronous replication or justify the additional complexity and operation costs associated with managing three or more data centers. For these needs, YugabyteDB also supports two data center (2DC) deployments, which use asynchronous replication built on top of [change data capture (CDC)](../../architecture/cdc-architecture) in DocDB.
+ZNbaseDB provides synchronous replication of data in clusters dispersed across multiple (three or more) data centers by leveraging the Raft consensus algorithm to achieve enhanced high availability and performance. However, many use cases and smaller enterprise applications do not require synchronous replication or justify the additional complexity and operation costs associated with managing three or more data centers. For these needs, ZNbaseDB also supports two data center (2DC) deployments, which use asynchronous replication built on top of [change data capture (CDC)](../../architecture/cdc-architecture) in DocDB.
 
 For details about configuring a 2DC deployment, see [Replicate between two data centers](../../deploy/multi-dc/2dc-deployment).
 
 {{< note title="Note" >}}
 
-In the following sections, the terms "cluster" and "universe" will be used interchangeably, assuming that each YugabyteDB universe is deployed in a single data center.
+In the following sections, the terms "cluster" and "universe" will be used interchangeably, assuming that each ZNbaseDB universe is deployed in a single data center.
 
 {{< /note >}}
 
-Two data center (2DC) deployments with YugabyteDB include support for the following features:
+Two data center (2DC) deployments with ZNbaseDB include support for the following features:
 
 - Replication across YSQL and YCQL APIs because replication is performed at the DocDB level.
 - Replication of single-key updates and multi-key, distributed transactions
@@ -36,11 +36,11 @@ Two data center (2DC) deployments with YugabyteDB include support for the follow
 - Updates are timeline consistent — the target data center receives row updates in the same order that they occur on the source.
 - Transactions are applied atomically on the consumer — either all changes within a transaction are visible or none.
 - The target data center knows the data consistency timestamp.
-  - Since data in YugabyteDB is distributed across multiple nodes and replicated from multiple nodes, the target data center is able to determine that all tablets have received data at least until timestamp `x`, that is, it has received all the writes that happened at source data centers until timestamp `x`.
+  - Since data in ZNbaseDB is distributed across multiple nodes and replicated from multiple nodes, the target data center is able to determine that all tablets have received data at least until timestamp `x`, that is, it has received all the writes that happened at source data centers until timestamp `x`.
 
 ## Supported replication scenarios
 
-YugabyteDB supports asynchronous data replication between two data centers using either unidirectional (master-follower) or bidirectional (master-master or active-active) replication.
+ZNbaseDB supports asynchronous data replication between two data centers using either unidirectional (master-follower) or bidirectional (master-master or active-active) replication.
 
 ### Unidirectional: master-follower replication with asynchronous replication
 
@@ -66,7 +66,7 @@ The multi-master architecture is shown here:
 
 ## Life cycle of a replication
 
-A unidirectional replication for two data center deployments with YugabyteDB follows these four life cycle phases:
+A unidirectional replication for two data center deployments with ZNbaseDB follows these four life cycle phases:
 
 1. Initialize the producer and the consumer.
 2. Set up a distributed CDC.
@@ -95,7 +95,7 @@ These actions are shown here:
 
 ![2DC initialize consumer and producer](/images/architecture/cdc-2dc/2DC-step1-initialize.png)
 
-The **sink replication consumer** and the **source replication producer** are distributed, scale-out services that run on each node of the sink and source YugabyteDB clusters, respectively. In the case of the *source replication producer*, each node is responsible for all of the source tablet leaders that it hosts (note that the tablets are restricted to only those that participate in replication). In the case of the *sink replication consumer*, the metadata about which sink node owns which source tablet is explicitly tracked in the system catalog.
+The **sink replication consumer** and the **source replication producer** are distributed, scale-out services that run on each node of the sink and source ZNbaseDB clusters, respectively. In the case of the *source replication producer*, each node is responsible for all of the source tablet leaders that it hosts (note that the tablets are restricted to only those that participate in replication). In the case of the *sink replication consumer*, the metadata about which sink node owns which source tablet is explicitly tracked in the system catalog.
 
 Note that the sink clusters can fall behind the source clusters due to various failure scenarios (for example, node outages or extended network partitions). Upon healing of the failure conditions, continuing replication may not always be safe. In such cases, the user needs to bootstrap the sink cluster to a point from which replication can safely resume. Some of the cases that arise are shown diagrammatically below:
 

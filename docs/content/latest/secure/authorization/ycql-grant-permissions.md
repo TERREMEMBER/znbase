@@ -1,8 +1,8 @@
 ---
-title: Grant YCQL privileges in YugabyteDB
+title: Grant YCQL privileges in ZNbaseDB
 headerTitle: Grant privileges
 linkTitle: Grant privileges
-description: Grant YCQL privileges in YugabyteDB
+description: Grant YCQL privileges in ZNbaseDB
 menu:
   latest:
     name: Grant Privileges
@@ -39,7 +39,7 @@ Here is what you want to achieve from a role-based access control (RBAC) perspec
 
 ## 1. Create role hierarchy
 
-Connect to the cluster using a superuser role. Read more about [enabling authentication and connecting using a superuser role](../../enable-authentication/ycql/) in YugabyteDB clusters for YCQL. For this article, we are using the default `cassandra` user and connect to the cluster using `ycqlsh` as follows:
+Connect to the cluster using a superuser role. Read more about [enabling authentication and connecting using a superuser role](../../enable-authentication/ycql/) in ZNbaseDB clusters for YCQL. For this article, we are using the default `cassandra` user and connect to the cluster using `ycqlsh` as follows:
 
 ```sh
 $ ycqlsh -u cassandra -p cassandra

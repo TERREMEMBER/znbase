@@ -2,7 +2,7 @@
 title: System configuration
 headerTitle: System configuration
 linkTitle: 1. System configuration
-description: Configure NTP and ulimits on your YugabyteDB cluster
+description: Configure NTP and ulimits on your ZNbaseDB cluster
 aliases:
   - /deploy/manual-deployment/system-config
 menu:
@@ -43,7 +43,7 @@ Run the following command to check the `ulimit` settings.
 $ ulimit -a
 ```
 
-The following settings are recommended when running YugabyteDB.
+The following settings are recommended when running ZNbaseDB.
 
 ```
 core file size          (blocks, -c) unlimited

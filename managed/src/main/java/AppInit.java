@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import java.lang.ReflectiveOperationException;
 import java.util.HashMap;
@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.yugabyte.yw.commissioner.TaskGarbageCollector;
-import com.yugabyte.yw.common.*;
-import com.yugabyte.yw.common.ha.PlatformReplicationManager;
-import com.yugabyte.yw.models.*;
+import com.ZNbase.yw.commissioner.TaskGarbageCollector;
+import com.ZNbase.yw.common.*;
+import com.ZNbase.yw.common.ha.PlatformReplicationManager;
+import com.ZNbase.yw.models.*;
 import io.ebean.Ebean;
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.yugabyte.yw.cloud.AWSInitializer;
+import com.ZNbase.yw.cloud.AWSInitializer;
 
 import play.Application;
 import play.Configuration;
@@ -23,8 +23,8 @@ import play.Logger;
 
 import io.prometheus.client.hotspot.DefaultExports;
 
-import static com.yugabyte.yw.common.ConfigHelper.ConfigType.SoftwareVersion;
-import static com.yugabyte.yw.common.ConfigHelper.ConfigType.YugawareMetadata;
+import static com.ZNbase.yw.common.ConfigHelper.ConfigType.SoftwareVersion;
+import static com.ZNbase.yw.common.ConfigHelper.ConfigType.YugawareMetadata;
 
 
 /**

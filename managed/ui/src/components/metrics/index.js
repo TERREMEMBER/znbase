@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 export { default as GraphPanel } from './GraphPanel/GraphPanel';
 export { default as GraphPanelHeader } from './GraphPanelHeader/GraphPanelHeader';

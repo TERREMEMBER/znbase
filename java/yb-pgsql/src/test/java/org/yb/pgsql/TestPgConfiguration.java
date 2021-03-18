@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -127,7 +127,7 @@ public class TestPgConfiguration extends BasePgSQLTest {
 
     // Can connect as superuser.
     try (Connection ignored = getConnectionBuilder().withTServer(tserver)
-        .withUser("yugabyte").connect()) {
+        .withUser("ZNbase").connect()) {
       // No-op.
     }
   }
@@ -150,7 +150,7 @@ public class TestPgConfiguration extends BasePgSQLTest {
 
     // Can connect as other users without password.
     try (Connection ignored = getConnectionBuilder().withTServer(tserver)
-        .withUser("yugabyte").connect()) {
+        .withUser("ZNbase").connect()) {
       // No-op.
     }
 
@@ -184,7 +184,7 @@ public class TestPgConfiguration extends BasePgSQLTest {
 
     // Can connect as superuser without password.
     try (Connection ignored = getConnectionBuilder().withTServer(tserver)
-        .withUser("yugabyte").connect()) {
+        .withUser("ZNbase").connect()) {
       // No-op.
     }
   }
@@ -227,13 +227,13 @@ public class TestPgConfiguration extends BasePgSQLTest {
       );
     }
 
-    // Can connect as default yugabyte user with the default password.
+    // Can connect as default ZNbase user with the default password.
     try (Connection ignored = tsConnBldr.withUser(DEFAULT_PG_USER)
             .withPassword(DEFAULT_PG_PASS).connect()) {
       // No-op.
     }
 
-    // Cannot connect as yugabyte user with incorrect password.
+    // Cannot connect as ZNbase user with incorrect password.
     try (Connection ignored = tsConnBldr.withUser(DEFAULT_PG_USER)
             .withPassword("wrong_pass").connect()) {
       fail("Expected login attempt to fail");
@@ -244,7 +244,7 @@ public class TestPgConfiguration extends BasePgSQLTest {
       );
     }
 
-    // Cannot connect as yugabyte user without password.
+    // Cannot connect as ZNbase user without password.
     try (Connection ignored = tsConnBldr.withUser(DEFAULT_PG_USER).connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {

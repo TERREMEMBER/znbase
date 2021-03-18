@@ -1,8 +1,8 @@
 ---
-title: YugabyteDB configuration reference
+title: ZNbaseDB configuration reference
 headerTitle: Configuration
 linkTitle: Configuration
-description: Configuration reference for core database services, including yb-tserver, yb-master, and yugabyted.
+description: Configuration reference for core database services, including yb-tserver, yb-master, and ZNbased.
 headcontent: Configuration of the core database services.
 image: /images/section_icons/sample-data/s_s1-sampledata-3x.png
 section: REFERENCE
@@ -39,13 +39,13 @@ menu:
   </div>
 
   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-    <a class="section-link icon-offset" href="yugabyted/">
+    <a class="section-link icon-offset" href="ZNbased/">
       <div class="head">
         <img class="icon" src="/images/section_icons/reference/configuration/yb-master.png" aria-hidden="true" />
-        <div class="title">yugabyted</div>
+        <div class="title">ZNbased</div>
       </div>
       <div class="body">
-        Use the new yugabyted to develop and test local clusters.
+        Use the new ZNbased to develop and test local clusters.
       </div>
     </a>
   </div>

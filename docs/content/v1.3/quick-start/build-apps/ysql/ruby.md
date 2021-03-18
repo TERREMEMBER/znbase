@@ -4,7 +4,7 @@
 Install the Ruby PostgreSQL driver (pg) using the following command. You can get further details for the driver [here](https://bitbucket.org/ged/ruby-pg/wiki/Home).
 
 ```sh
-$ gem install pg -- --with-pg-config=<yugabyte-install-dir>/postgres/bin/pg_config
+$ gem install pg -- --with-pg-config=<ZNbase-install-dir>/postgres/bin/pg_config
 ```
 
 ## Working example
@@ -13,7 +13,7 @@ $ gem install pg -- --with-pg-config=<yugabyte-install-dir>/postgres/bin/pg_conf
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB and created a universe with YSQL enabled. If not, please follow these steps in the [Quick Start guide](../../../quick-start/explore-ysql/).
+- installed ZNbaseDB and created a universe with YSQL enabled. If not, please follow these steps in the [Quick Start guide](../../../quick-start/explore-ysql/).
 
 ### Writing the Ruby code
 

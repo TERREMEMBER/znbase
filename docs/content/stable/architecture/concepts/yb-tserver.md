@@ -12,11 +12,11 @@ isTocNested: true
 showAsideToc: true
 ---
 
-The YB-TServer (short for YugabyteDB Tablet Server) service is responsible for the actual IO for end user requests in a YugabyteDB cluster. Recall from the previous section that data for a table is split, or sharded, into tablets. Each tablet is composed of one or more tablet-peers, depending on the replication factor. And each YB-TServer hosts one or more tablet-peers.
+The YB-TServer (short for ZNbaseDB Tablet Server) service is responsible for the actual IO for end user requests in a ZNbaseDB cluster. Recall from the previous section that data for a table is split, or sharded, into tablets. Each tablet is composed of one or more tablet-peers, depending on the replication factor. And each YB-TServer hosts one or more tablet-peers.
 
 Note: We will refer to the “tablet-peers hosted by a YB-TServer” simply as the “tablets hosted by a YB-TServer”.
 
-Below is a pictorial illustration of this in the case of a 4-node YugabyteDB universe, with one table that has 16 tablets and a replication factor of 3.
+Below is a pictorial illustration of this in the case of a 4-node ZNbaseDB universe, with one table that has 16 tablets and a replication factor of 3.
 
 ![tserver_overview](/images/architecture/tserver_overview.png)
 
@@ -30,7 +30,7 @@ The block cache is shared across the different tablets in a given YB-TServer. Th
 
 ## Space amplification
 
-YugabyteDB's compactions are size tiered. Size tier compactions have the advantage of lower disk write (IO) amplification when compared to level compactions. There may be a concern that size-tiered compactions have higher space amplification (that it needs 50% space head room). This is not true in YugabyteDB because each table is broken into several tablets and concurrent compactions across tablets are throttled to a certain maximum. Therefore the typical space amplification in YugabyteDB tends to be in the 10-20% range.
+ZNbaseDB's compactions are size tiered. Size tier compactions have the advantage of lower disk write (IO) amplification when compared to level compactions. There may be a concern that size-tiered compactions have higher space amplification (that it needs 50% space head room). This is not true in ZNbaseDB because each table is broken into several tablets and concurrent compactions across tablets are throttled to a certain maximum. Therefore the typical space amplification in ZNbaseDB tends to be in the 10-20% range.
 
 ## Throttled compactions
 
@@ -42,11 +42,11 @@ The default policy makes sure that doing a compaction is worthwhile. The algorit
 
 Compactions are prioritized into large and small compactions with some prioritization to keep the system functional even in extreme IO patterns.
 
-In addition to throttling controls for compactions, YugabyteDB does a variety of internal optimizations to minimize impact of compactions on foreground latencies. One such is a prioritized queue to give priority to small compactions over large compactions to make sure the number of SSTable files for any tablet stays as low as possible.
+In addition to throttling controls for compactions, ZNbaseDB does a variety of internal optimizations to minimize impact of compactions on foreground latencies. One such is a prioritized queue to give priority to small compactions over large compactions to make sure the number of SSTable files for any tablet stays as low as possible.
 
 ### Manual compactions
 
-YugabyteDB allows compactions to be externally triggered on a table using the [`compact_table`](../../../admin/yb-admin/#compact-table) command in the [`yb-admin` utility](../../../admin/yb-admin). This can be useful for cases when new data is not coming into the system for a table anymore, users want to reclaim disk space due to overwrites/deletes that have already happened or due to TTL expiry.
+ZNbaseDB allows compactions to be externally triggered on a table using the [`compact_table`](../../../admin/yb-admin/#compact-table) command in the [`yb-admin` utility](../../../admin/yb-admin). This can be useful for cases when new data is not coming into the system for a table anymore, users want to reclaim disk space due to overwrites/deletes that have already happened or due to TTL expiry.
 
 ### Server-global memstore limit
 

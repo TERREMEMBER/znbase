@@ -72,11 +72,11 @@ race:yb::consensus::LocalTestPeerProxy::~LocalTestPeerProxy
 race:yb::Webserver::GetBoundAddresses
 race:yb::RpcServer::GetBoundAddresses
 
-# https://yugabyte.atlassian.net/browse/ENG-354
+# https://ZNbase.atlassian.net/browse/ENG-354
 race:gutil::SubmitSpinLockProfileData
 
 # Setting width on a stream is not thread-safe, but some of our tests do it:
-# https://jenkins.dev.yugabyte.com/job/yugabyte-centos-phabricator-clang-tsan/42/artifact/build/tsan-clang-dynamic/yb-test-logs/bin__alter_table-randomized-test/AlterTableRandomized_TestRandomSequence.log
+# https://jenkins.dev.ZNbase.com/job/ZNbase-centos-phabricator-clang-tsan/42/artifact/build/tsan-clang-dynamic/yb-test-logs/bin__alter_table-randomized-test/AlterTableRandomized_TestRandomSequence.log
 race:std::ios_base::width
 
 # -------------------------------------------------------------------------------------------------

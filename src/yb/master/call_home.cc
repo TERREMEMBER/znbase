@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -36,14 +36,14 @@ static const char* kMediumLevel = "medium";
 static const char* kHighLevel = "high";
 
 DEFINE_bool(callhome_enabled, true,
-            "Enables callhome feature that sends analytics data to yugabyte");
+            "Enables callhome feature that sends analytics data to ZNbase");
 TAG_FLAG(callhome_enabled, runtime);
 
 DEFINE_int32(callhome_interval_secs, 3600, "How often to run callhome");
 TAG_FLAG(callhome_interval_secs, runtime);
 // TODO: We need to change this to https, it involves updating our libcurl
 // implementation to support SSL.
-DEFINE_string(callhome_url, "http://diagnostics.yugabyte.com",
+DEFINE_string(callhome_url, "http://diagnostics.ZNbase.com",
               "URL of callhome server");
 TAG_FLAG(callhome_url, runtime);
 DEFINE_string(callhome_collection_level, kMediumLevel, "Level of details sent by callhome");

@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -28,7 +28,7 @@ YB_STRONGLY_TYPED_BOOL(CreateIfMissing);
 YB_STRONGLY_TYPED_BOOL(UseHardLinks);
 
 // TODO(unify_env): Temporary workaround until Env/Files from rocksdb and yb are unified
-// (https://github.com/yugabyte/yugabyte-db/issues/1661).
+// (https://github.com/ZNbase/ZNbase-db/issues/1661).
 
 // Following two functions returns OK if the file at `path` exists.
 // NotFound if the named file does not exist, the calling process does not have permission to

@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import { Link, withRouter, browserHistory } from 'react-router';
@@ -565,7 +565,7 @@ class UniverseDetail extends Component {
                           modal={modal}
                           closeModal={closeModal}
                           button={
-                            <YBMenuItem 
+                            <YBMenuItem
                               disabled={ updateInProgress } onClick={showRunSampleAppsModal}>
                               <YBLabelWithIcon icon="fa fa-terminal">Run Sample Apps</YBLabelWithIcon>
                             </YBMenuItem>

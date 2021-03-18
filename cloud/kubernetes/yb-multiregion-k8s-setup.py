@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
 # This script sets up a global DNS across 3 GKE clusters. This global DNS
-# is leveraged by YugabyteDB to run a single multi-region globally-consistent
-# database cluster. Detailed multi-cluster / multi-region YugabyteDB on Kubernetes docs
-# are available at https://docs.yugabyte.com/latest/deploy/kubernetes/multi-cluster/gke/
+# is leveraged by ZNbaseDB to run a single multi-region globally-consistent
+# database cluster. Detailed multi-cluster / multi-region ZNbaseDB on Kubernetes docs
+# are available at https://docs.ZNbase.com/latest/deploy/kubernetes/multi-cluster/gke/
 
 from __future__ import print_function
 
@@ -17,9 +17,9 @@ from time import sleep
 
 # Replace the following with your own k8s cluster contexts
 contexts = {
-    'us-west1-b': 'gke_yugabyte_us-west1-b_yugabytedb1',
-    'us-central1-b': 'gke_yugabyte_us-central1-b_yugabytedb2',
-    'us-east1-b': 'gke_yugabyte_us-east1-b_yugabytedb3',
+    'us-west1-b': 'gke_ZNbase_us-west1-b_ZNbasedb1',
+    'us-central1-b': 'gke_ZNbase_us-central1-b_ZNbasedb2',
+    'us-east1-b': 'gke_ZNbase_us-east1-b_ZNbasedb3',
 }
 
 # Replace the following with your own `zone`: `region` names

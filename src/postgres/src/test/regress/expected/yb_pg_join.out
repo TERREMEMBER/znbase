@@ -2172,4 +2172,4 @@ select count(*) from tenk1 x where
 (1 row)
 
 rollback;
--- yb_pg_join ends here. See: https://github.com/yugabyte/yugabyte-db/pull/5190#issuecomment-672361626
+-- yb_pg_join ends here. See: https://github.com/ZNbase/ZNbase-db/pull/5190#issuecomment-672361626

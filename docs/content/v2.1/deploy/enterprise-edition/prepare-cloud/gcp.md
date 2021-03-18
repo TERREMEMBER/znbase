@@ -3,13 +3,13 @@
 
 A project forms the basis for creating, enabling and using all GCP services, managing APIs, enabling billing, adding and removing collaborators, and managing permissions. You would need browse to the [GCP cloud resource manager](https://console.cloud.google.com/cloud-resource-manager) and click on create project to get started. You can follow these instructions to [create a new GCP project](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
 
-Give the project a suitable name (eg: `yugabyte-gcp`) and note the project ID (eg: `yugabyte-gcp`). You should see a dialog that looks like the screenshot below.
+Give the project a suitable name (eg: `ZNbase-gcp`) and note the project ID (eg: `ZNbase-gcp`). You should see a dialog that looks like the screenshot below.
 
 ![Creating a GCP project](/images/ee/gcp-setup/project-create.png)
 
 ## 2. Set up a new service account
 
-YugabyteDB Admin Console requires a service account with the appropriate permissions to provision and manage compute instances. Go to the `IAM & admin` -> `Service accounts` and click on `Create Service Account`. You can follow these instructions to [create a service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts).
+ZNbaseDB Admin Console requires a service account with the appropriate permissions to provision and manage compute instances. Go to the `IAM & admin` -> `Service accounts` and click on `Create Service Account`. You can follow these instructions to [create a service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts).
 
 Fill the form with the following values:
 
@@ -21,7 +21,7 @@ Here is a screenshot with the above values in the form, click create once the va
 
 ![Service Account -- filled create form](/images/ee/gcp-setup/service-account-filled-create.png)
 
-**NOTE**: Your browser would have downloaded the respective JSON format key. It is important to store it safely. This JSON key is needed to configure the YugabyteDB Admin Console.
+**NOTE**: Your browser would have downloaded the respective JSON format key. It is important to store it safely. This JSON key is needed to configure the ZNbaseDB Admin Console.
 
 ## 3. Give permissions to the service account
 
@@ -35,11 +35,11 @@ Here is a screenshot with the above values in the form, click create once the va
 
 ## 4. Creating a firewall rule
 
-In order to access the Yugabyte Platform from outside the GCP environment, you would need to enable firewall rules. You will at minimum need to:
+In order to access the ZNbase Platform from outside the GCP environment, you would need to enable firewall rules. You will at minimum need to:
 
-- Access the Yugabyte Platform instance over SSH (port tcp:22)
-- Check, manage, and upgrade Yugabyte Platform (port tcp:8800)
-- View the YugabyteDB Admin Console (port tcp:80)
+- Access the ZNbase Platform instance over SSH (port tcp:22)
+- Check, manage, and upgrade ZNbase Platform (port tcp:8800)
+- View the ZNbaseDB Admin Console (port tcp:80)
 
 Let us create a firewall entry enabling all of that!
 
@@ -54,7 +54,7 @@ Go to `VPC network` -> `Firewall rules` tab:
 Click on the `CREATE FIREWALL RULE` button and fill in the following.
 
 - Enter `yugaware-firewall-rule` as the name (you can change the name if you want).
-- Add a description (for example, `Firewall setup for YugabyteDB Admin Console`).
+- Add a description (for example, `Firewall setup for ZNbaseDB Admin Console`).
 - Add a tag `yugaware-server` to the `Target tags` field. This will be used later when creating instances.
 - Add the appropriate ip addresses to the `Source IP ranges` field. To allow access from any machine, add `0.0.0.0/0` but note that this is not very secure.
 - Add the ports `tcp:22,8800,80` to the `Protocol and ports` field.
@@ -101,9 +101,9 @@ Note on networking customization:
 
 ![VM instances -- networking tweaks](/images/ee/gcp-setup/vm-networking.png)
 
-Finally, click `Create` to launch the Yugabyte Platform server.
+Finally, click `Create` to launch the ZNbase Platform server.
 
-## 6. Connect to the Yugabyte Platform machine
+## 6. Connect to the ZNbase Platform machine
 
 From the GCP web management console, find the public IP address of the instance you just launched.
 

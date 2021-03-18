@@ -56,7 +56,7 @@ export class UniverseTaskList extends Component {
     }
     if (isNonEmptyArray(universeTaskHistoryArray)) {
       const errorPlatformMessage = (
-        <div className="oss-unavailable-warning">Only available on Yugabyte Platform.</div>
+        <div className="oss-unavailable-warning">Only available on ZNbase Platform.</div>
       );
       universeTaskHistory = (
         <TaskListTable

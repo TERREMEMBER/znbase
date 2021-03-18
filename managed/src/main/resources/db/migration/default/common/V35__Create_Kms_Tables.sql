@@ -1,4 +1,4 @@
--- Copyright (c) YugaByte, Inc.
+-- Copyright (c) ZNbase, Inc.
 
 create table kms_config (
     config_uuid               uuid not null,

@@ -15,13 +15,13 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Follow the steps below to connect a YugabyteDB cluster to use the Change Data Capture (CDC) API to send data changes to Apache Kafka. To learn about the change data capture (CDC) architecture, see [Change data capture (CDC)](../../../architecture/cdc-architecture).
+Follow the steps below to connect a ZNbaseDB cluster to use the Change Data Capture (CDC) API to send data changes to Apache Kafka. To learn about the change data capture (CDC) architecture, see [Change data capture (CDC)](../../../architecture/cdc-architecture).
 
 ## Prerequisites
 
-### YugabyteDB
+### ZNbaseDB
 
-Create a YugabyteDB cluster using the steps outlined in [Manual Deployment](../../manual-deployment/).
+Create a ZNbaseDB cluster using the steps outlined in [Manual Deployment](../../manual-deployment/).
 
 ### Java
 
@@ -41,7 +41,7 @@ To get a local Confluent Platform (with Apache Kafka) up and running quickly, fo
 
 ## 1. Create the source table
 
-With your local YugabyteDB cluster running, create a table, called `users`, in the default database (`yugabyte`).
+With your local ZNbaseDB cluster running, create a table, called `users`, in the default database (`ZNbase`).
 
 ```plpgsql
 CREATE TABLE users (name text, pass text, id int, primary key (id));
@@ -49,7 +49,7 @@ CREATE TABLE users (name text, pass text, id int, primary key (id));
 
 ## 2. Create Avro schemas
 
-The Kafka Connect YugabyteDB Source Connector supports the use of [Apache Avro schemas](http://avro.apache.org/docs/current/#schemas) to serialize and deserialize tables. You can use the [Schema Registry](https://docs.confluent.io/current/schema-registry/index.html) in the Confluent Platform to create and manage Avro schema files. For a step-by-step tutorial, see [Schema Registry Tutorial](https://docs.confluent.io/current/schema-registry/schema_registry_tutorial.html).
+The Kafka Connect ZNbaseDB Source Connector supports the use of [Apache Avro schemas](http://avro.apache.org/docs/current/#schemas) to serialize and deserialize tables. You can use the [Schema Registry](https://docs.confluent.io/current/schema-registry/index.html) in the Confluent Platform to create and manage Avro schema files. For a step-by-step tutorial, see [Schema Registry Tutorial](https://docs.confluent.io/current/schema-registry/schema_registry_tutorial.html).
 
 Create two Avro schemas, one for the `users` table and one for the primary key of the table. After this step, you should have two files: `table_schema_path.avsc` and `primary_key_schema_path.avsc`.
 
@@ -97,22 +97,22 @@ You can use the following two Avro schema examples that will work with the `user
     bin/kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic users_topic --key-deserializer=io.confluent.kafka.serializers.KafkaAvroDeserializer     --value-deserializer=io.confluent.kafka.serializers.KafkaAvroDeserializer
     ```
 
-## 4. Download the Kafka Connect YugabyteDB Source Connector
+## 4. Download the Kafka Connect ZNbaseDB Source Connector
 
-Download the Kafka Connect YugabyteDB Source Connector JAR file (`yb-cdc-connector.jar`).
+Download the Kafka Connect ZNbaseDB Source Connector JAR file (`yb-cdc-connector.jar`).
 
 ```sh
-$ wget -O yb-cdc-connector.jar https://github.com/yugabyte/yb-kafka-connector/blob/master/yb-cdc/yb-cdc-connector.jar?raw=true
+$ wget -O yb-cdc-connector.jar https://github.com/ZNbase/yb-kafka-connector/blob/master/yb-cdc/yb-cdc-connector.jar?raw=true
 
 ```
 
 ## 5. Log to Kafka
 
-Run the following command to start logging an output stream of data changes from the YugabyteDB `cdc` table to Apache Kafka.
+Run the following command to start logging an output stream of data changes from the ZNbaseDB `cdc` table to Apache Kafka.
 
 ```sh
 java -jar yb-cdc-connector.jar \
---table_name yugabyte.cdc \
+--table_name ZNbase.cdc \
 --topic_name cdc-test \
 --table_schema_path table_schema_path.avsc \
 --primary_key_schema_path primary_key_schema_path.avsc

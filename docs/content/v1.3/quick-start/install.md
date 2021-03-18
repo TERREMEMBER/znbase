@@ -1,7 +1,7 @@
 ---
-title: 1. Install YugabyteDB
-linkTitle: 1. Install YugabyteDB
-description: Install YugabyteDB
+title: 1. Install ZNbaseDB
+linkTitle: 1. Install ZNbaseDB
+description: Install ZNbaseDB
 block_indexing: true
 menu:
   v1.3:

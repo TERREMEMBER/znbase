@@ -15,10 +15,10 @@ showAsideToc: true
 ---
 
 
-The YSQ API of YugabyteDB reuses a fork of the query layer of PostgreSQL as its starting point, and runs on top of YugabyteDB’s distributed storage layer called DocDB. This architectural decision means that YSQL supports most PostgreSQL features (data types, queries, expressions, operators and functions, stored procedures, triggers, extensions, etc).
+The YSQ API of ZNbaseDB reuses a fork of the query layer of PostgreSQL as its starting point, and runs on top of ZNbaseDB’s distributed storage layer called DocDB. This architectural decision means that YSQL supports most PostgreSQL features (data types, queries, expressions, operators and functions, stored procedures, triggers, extensions, etc).
 
 {{< tip title="Tip" >}}
-A large portion of the documentation and examples written for PostgreSQL would work against YugabyteDB.
+A large portion of the documentation and examples written for PostgreSQL would work against ZNbaseDB.
 
 **Why is this true?** The reuse of the *upper half* of PostgreSQL means that applications in effect interact with the PostgreSQL query layer. Thus, not only are most of the features supported, they also working exactly the same way as they would in PostgreSQL.  
 {{< /tip >}}
@@ -55,7 +55,7 @@ The following topics are covered in separate sections:
 
 ## What's extra in YSQL?
 
-Since YugabyteDB is a distributed SQL database, there are some features that make more sense for YSQL and hence are not present in PostgreSQL. These are outlined below.
+Since ZNbaseDB is a distributed SQL database, there are some features that make more sense for YSQL and hence are not present in PostgreSQL. These are outlined below.
 
 |     Feature in YSQL          |        Description of feature                             |
 |------------------------------|-----------------------------------------------------------|

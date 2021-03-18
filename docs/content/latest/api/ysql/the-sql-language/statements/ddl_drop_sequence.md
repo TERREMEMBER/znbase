@@ -65,7 +65,7 @@ Do not remove this sequence if any object depends on it. This is the default beh
 Dropping a sequence that has an object depending on it, fails.
 
 ```plpgsql
-yugabyte=# CREATE TABLE t(k SERIAL, v INT);
+ZNbase=# CREATE TABLE t(k SERIAL, v INT);
 ```
 
 ```
@@ -85,7 +85,7 @@ CREATE TABLE
 ```
 
 ```plpgsql
-yugabyte=#  DROP SEQUENCE t_k_seq;
+ZNbase=#  DROP SEQUENCE t_k_seq;
 ```
 
 ```
@@ -97,7 +97,7 @@ HINT:  Use DROP ... CASCADE to drop the dependent objects too.
 Dropping the sequence with the `CASCADE` option solves the problem and also deletes the default value in table `t`.
 
 ```plpgsql
-yugabyte=# DROP SEQUENCE t_k_seq CASCADE;
+ZNbase=# DROP SEQUENCE t_k_seq CASCADE;
 ```
 
 ```

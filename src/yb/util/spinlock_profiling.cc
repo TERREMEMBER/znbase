@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -220,7 +220,7 @@ bool ContentionStacks::CollectSample(uint64_t* iterator, StackTrace* s, int64_t*
 }
 
 // Disable TSAN on this function.
-// https://yugabyte.atlassian.net/browse/ENG-354
+// https://ZNbase.atlassian.net/browse/ENG-354
 ATTRIBUTE_NO_SANITIZE_THREAD
 void SubmitSpinLockProfileData(const void *contendedlock, int64 wait_cycles) {
   bool profiling_enabled = base::subtle::Acquire_Load(&g_profiling_enabled);

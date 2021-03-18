@@ -1,8 +1,8 @@
 ---
-title: ysqlsh - YSQL shell for YugabyteDB
+title: ysqlsh - YSQL shell for ZNbaseDB
 headerTitle: ysqlsh
 linkTitle: ysqlsh
-description: Use the YSQL shell (ysqlsh) to interact with YugabyteDB.
+description: Use the YSQL shell (ysqlsh) to interact with ZNbaseDB.
 menu:
   stable:
     identifier: ysqlsh
@@ -14,13 +14,13 @@ showAsideToc: true
 
 ## Overview
 
-The YugabyteDB SQL shell (`ysqlsh`) provides a CLI for interacting with YugabyteDB using [YSQL](../../api/ysql/). It enables you to:
+The ZNbaseDB SQL shell (`ysqlsh`) provides a CLI for interacting with ZNbaseDB using [YSQL](../../api/ysql/). It enables you to:
 
 - interactively enter SQL queries and see the query results
 - input from a file or the command line
 - use meta-commands for scripting and administration
 
-`ysqlsh` is installed with YugabyteDB and is located in the `bin` directory of the YugabyteDB home directory.
+`ysqlsh` is installed with ZNbaseDB and is located in the `bin` directory of the ZNbaseDB home directory.
 
 ### Example
 
@@ -31,7 +31,7 @@ $ ./bin/ysqlsh
 ysqlsh (11.2-YB-2.0.0.0-b0)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 ## Online help
@@ -50,13 +50,13 @@ When you open `ysqlsh`, the following default flags (aka flags) are set so that 
 
 - host: `-h 127.0.0.1`
 - port: `-p 5433`
-- user: `-U yugabyte`
+- user: `-U ZNbase`
 
 {{< note title="Note" >}}
 
-Starting with v2.0.1, the default password for the default user `yugabyte` is `yugabyte`. If YSQL authentication is enabled, then the `yugabyte` user will be prompted for this password.
+Starting with v2.0.1, the default password for the default user `ZNbase` is `ZNbase`. If YSQL authentication is enabled, then the `ZNbase` user will be prompted for this password.
 
-For v2.0.0 users, the default user `yugabyte` has no password. If you do not want any password to be prompted, then you should not enable YSQL authentication. If you want to enable YSQL authentication, then you must first set a password for the `yugabyte` user (in a cluster with YSQL authentication turned off).
+For v2.0.0 users, the default user `ZNbase` has no password. If you do not want any password to be prompted, then you should not enable YSQL authentication. If you want to enable YSQL authentication, then you must first set a password for the `ZNbase` user (in a cluster with YSQL authentication turned off).
 
 {{< /note >}}
 
@@ -107,7 +107,7 @@ EOF
 
 Specifies the name of the database to connect to. This is equivalent to specifying *dbname* as the first non-option argument on the command line.
 
-If this parameter contains an `=` sign or starts with a valid URI prefix (`yugabytedb://`), it is treated as a *conninfo* string.
+If this parameter contains an `=` sign or starts with a valid URI prefix (`ZNbasedb://`), it is treated as a *conninfo* string.
 
 ##### -e, --echo-queries
 
@@ -141,7 +141,7 @@ Turn on HTML tabular output. This is equivalent to [`\pset format html`](#pset-o
 
 List all available databases, then exit. Other non-connection options are ignored. This is similar to the meta-command [`\list`](#l-list-pattern).
 
-When this option is used, `ysqlsh` will connect to the database `yugabyte`, unless a different database is named on the command line (option `-d` or non-option argument, possibly using a service entry, but not using an environment variable).
+When this option is used, `ysqlsh` will connect to the database `ZNbase`, unless a different database is named on the command line (option `-d` or non-option argument, possibly using a service entry, but not using an environment variable).
 
 ##### -L *filename*, --log-file=*filename*
 
@@ -253,7 +253,7 @@ Show help about `ysqlsh` and exit. The optional *topic* parameter (defaulting to
 
 ### Connecting to a database
 
-`ysqlsh` is a regular YugabyteDB client application. In order to connect to a database you need to know the name of your target database, the host name and port number of the server, and what user name you want to connect as. `ysqlsh` can be told about those parameters using command-line options, namely `-d`, `-h`, `-p`, and `-U` respectively. If an argument is found that does not belong to any option it will be interpreted as the database name (or the user name, if the database name is already given). Not all of these options are required; there are useful defaults. If you omit the host name, `ysqlsh` will connect to the compiled-in default of `127.0.0.1` or  a Unix-domain socket to a server on the local host, or using TCP/IP to localhost on machines that don't have Unix-domain sockets. The default port number is compiled-in as `5433`. Since the database server uses the same default, you will not have to specify the port in most cases. The default username is compiled-in as `yugabyte`, as is the default database name.
+`ysqlsh` is a regular ZNbaseDB client application. In order to connect to a database you need to know the name of your target database, the host name and port number of the server, and what user name you want to connect as. `ysqlsh` can be told about those parameters using command-line options, namely `-d`, `-h`, `-p`, and `-U` respectively. If an argument is found that does not belong to any option it will be interpreted as the database name (or the user name, if the database name is already given). Not all of these options are required; there are useful defaults. If you omit the host name, `ysqlsh` will connect to the compiled-in default of `127.0.0.1` or  a Unix-domain socket to a server on the local host, or using TCP/IP to localhost on machines that don't have Unix-domain sockets. The default port number is compiled-in as `5433`. Since the database server uses the same default, you will not have to specify the port in most cases. The default username is compiled-in as `ZNbase`, as is the default database name.
 
 {{< note title="Note" >}}
 
@@ -296,7 +296,7 @@ If untrusted users have access to a database that has not adopted a secure schem
 
 {{< note title="Note" >}}
 
-When using [`\i`](#i-include-filename) to restore a YugabyteDB database, SQL script files generated by `ysql_dump` and `ysql_dumpall` issues the `SELECT pg_catalog.set_config('search_path', '', false)` statement before executing any other SQL statements.
+When using [`\i`](#i-include-filename) to restore a ZNbaseDB database, SQL script files generated by `ysql_dump` and `ysql_dumpall` issues the `SELECT pg_catalog.set_config('search_path', '', false)` statement before executing any other SQL statements.
 
 {{< /note >}}
 
@@ -330,7 +330,7 @@ If the current table output format is unaligned, it is switched to aligned. If i
 
 ##### \c, \connect [ -reuse-previous=on|off ] [ *dbname* [ *username* ] [ *host* ] [ *port* ] | *conninfo* ]
 
-Establishes a new connection to a YugabyteDB server. The connection parameters to use can be specified either using a positional syntax, or using *conninfo* connection strings.
+Establishes a new connection to a ZNbaseDB server. The connection parameters to use can be specified either using a positional syntax, or using *conninfo* connection strings.
 
 Where the command omits *dname*, *user*, *host*, or *port*, the new connection can reuse values from the previous connection. By default, values from the previous connection are reused except when processing a *conninfo* string. Passing a first argument of `-reuse-previous=on` or `-reuse-previous=off` overrides that default. When the command neither specifies nor reuses a particular parameter, the `libpq` default is used. Specifying any of *dbname*, *username*, *host*, or *port* as `-` is equivalent to omitting that parameter.
 
@@ -386,7 +386,7 @@ These operations are not as efficient as the SQL `COPY` statement with a file or
 
 ##### \copyright
 
-Shows the copyright and distribution terms of PostgreSQL, which YugabyteDB is derived from.
+Shows the copyright and distribution terms of PostgreSQL, which ZNbaseDB is derived from.
 
 ##### \crosstabview [ *colV* [ *colH* [ *colD* [ *sortcolH* ] ] ] ]
 
@@ -776,7 +776,7 @@ Use [`\lo_list`](#lo-list) to find out the large object's OID.
 
 ##### \lo_import *filename* [ *comment* ]
 
-Stores the file into a YugabyteDB large object. Optionally, it associates the given comment with the object. Example:
+Stores the file into a ZNbaseDB large object. Optionally, it associates the given comment with the object. Example:
 
 ```
 foo=> \lo_import '/home/peter/pictures/photo.xcf' 'a picture of me'
@@ -789,7 +789,7 @@ Note that this command is subtly different from the server-side `lo_import` beca
 
 ##### \lo_list
 
-Shows a list of all YugabyteDB large objects currently stored in the database, along with any comments provided for them.
+Shows a list of all ZNbaseDB large objects currently stored in the database, along with any comments provided for them.
 
 ##### \lo_unlink *loid*
 
@@ -1111,7 +1111,7 @@ In autocommit-off mode, you must explicitly abandon any failed transaction by en
 
 {{< note title="Note" >}}
 
-The autocommit-on mode is YugabyteDB's traditional behavior, but autocommit-`off` is closer to the SQL specification. If you prefer autocommit-off, you might wish to set it in the system-wide `psqlrc` file or your `~/.psqlrc` file.
+The autocommit-on mode is ZNbaseDB's traditional behavior, but autocommit-`off` is closer to the SQL specification. If you prefer autocommit-off, you might wish to set it in the system-wide `psqlrc` file or your `~/.psqlrc` file.
 
 {{< /note >}}
 
@@ -1129,7 +1129,7 @@ If set to `all`, all nonempty input lines are printed to standard output as they
 
 ##### ECHO_HIDDEN
 
-When this variable is set to `on` and a backslash command queries the database, the query is first shown. This feature helps you to study YugabyteDB internals and provide similar functionality in your own programs. (To select this behavior on program start-up, use the switch `-E`.) If you set this variable to the value noexec, the queries are just shown but are not actually sent to the server and executed. The default value is `off`.
+When this variable is set to `on` and a backslash command queries the database, the query is first shown. This feature helps you to study ZNbaseDB internals and provide similar functionality in your own programs. (To select this behavior on program start-up, use the switch `-E`.) If you set this variable to the value noexec, the queries are just shown but are not actually sent to the server and executed. The default value is `off`.
 
 ##### ENCODING
 
@@ -1278,7 +1278,7 @@ testdb=> INSERT INTO my_table VALUES (:'content');
 
 Since colons can legally appear in SQL statements, an apparent attempt at interpolation (that is, `:name`, `:'name'`, or `:"name"`) is not replaced unless the named variable is currently set. In any case, you can escape a colon with a backslash to protect it from substitution.
 
-The colon syntax for variables is standard SQL for embedded query languages, such as ECPG. The colon syntaxes for array slices and type casts are YugabyteDB extensions, which can sometimes conflict with the standard usage. The colon-quote syntax for escaping a variable's value as an SQL literal or identifier is a `ysqlsh` extension.
+The colon syntax for variables is standard SQL for embedded query languages, such as ECPG. The colon syntaxes for array slices and type casts are ZNbaseDB extensions, which can sometimes conflict with the standard usage. The colon-quote syntax for escaping a variable's value as an SQL literal or identifier is a `ysqlsh` extension.
 
 ## Prompting
 
@@ -1433,7 +1433,7 @@ The system-wide startup file is named `psqlrc` and is sought in the installation
 
 The user's personal startup file is named `.psqlrc` and is sought in the invoking user's home directory. The location of the user's startup file can be set explicitly through the [`PSQLRC`](#psqlrc) environment variable.
 
-Both the system-wide startup file and the user's personal startup file can be made `ysqlsh`-version-specific by appending a dash and the YugabyteDB major or minor release number to the file name, for example `~/.psqlrc-10.2` or `~/.psqlrc-10.2.5`. The most specific version-matching file will be read in preference to a non-version-specific file.
+Both the system-wide startup file and the user's personal startup file can be made `ysqlsh`-version-specific by appending a dash and the ZNbaseDB major or minor release number to the file name, for example `~/.psqlrc-10.2` or `~/.psqlrc-10.2.5`. The most specific version-matching file will be read in preference to a non-version-specific file.
 
 ##### .psql_history
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 from __future__ import print_function
 
@@ -76,19 +76,19 @@ CLOUD_CMD_MAX_RETRIES = 10
 CREATE_SNAPSHOT_TIMEOUT_SEC = 60 * 60  # hour
 RESTORE_SNAPSHOT_TIMEOUT_SEC = 24 * 60 * 60  # day
 SHA_TOOL_PATH = '/usr/bin/sha256sum'
-# Try to read home dir from environment variable, else assume it's /home/yugabyte.
-YB_HOME_DIR = os.environ.get("YB_HOME_DIR", "/home/yugabyte")
+# Try to read home dir from environment variable, else assume it's /home/ZNbase.
+YB_HOME_DIR = os.environ.get("YB_HOME_DIR", "/home/ZNbase")
 TSERVER_CONF_PATH = os.path.join(YB_HOME_DIR, 'tserver/conf/server.conf')
 K8S_DATA_DIRS = ["/mnt/disk0", "/mnt/disk1"]
 DEFAULT_REMOTE_YB_ADMIN_PATH = os.path.join(YB_HOME_DIR, 'master/bin/yb-admin')
 DEFAULT_REMOTE_YSQL_DUMP_PATH = os.path.join(YB_HOME_DIR, 'master/postgres/bin/ysql_dump')
 DEFAULT_REMOTE_YSQL_SHELL_PATH = os.path.join(YB_HOME_DIR, 'master/bin/ysqlsh')
 
-DEFAULT_YB_USER = 'yugabyte'
+DEFAULT_YB_USER = 'ZNbase'
 
 
 class BackupException(Exception):
-    """A YugaByte backup exception."""
+    """A ZNbase backup exception."""
     pass
 
 
@@ -1118,7 +1118,7 @@ class YBBackup:
                 ], env=k8s_details.env_config)
             elif not self.args.no_ssh:
                 if self.needs_change_user():
-                    # TODO: Currently ssh_wrapper_with_sudo.sh will only change users to yugabyte,
+                    # TODO: Currently ssh_wrapper_with_sudo.sh will only change users to ZNbase,
                     # not args.remote_user.
                     ssh_wrapper_path = os.path.join(this_script_dir, 'ssh_wrapper_with_sudo.sh')
                     output += self.run_program(

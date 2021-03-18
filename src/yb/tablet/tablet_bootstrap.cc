@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -265,7 +265,7 @@ bool ReplayState::IsValidSequence(const OpId& a, const OpId& b) {
   }
 
   // TODO: check that the term does not decrease.
-  // https://github.com/yugabyte/yugabyte-db/issues/5115
+  // https://github.com/ZNbase/ZNbase-db/issues/5115
 
   return true;
 }
@@ -968,7 +968,7 @@ class TabletBootstrap {
         split_request);
     return data_.tablet_init_data.tablet_splitter->ApplyTabletSplit(&state, log_.get());
 
-    // TODO(tsplit): In scope of https://github.com/yugabyte/yugabyte-db/issues/1461 add integration
+    // TODO(tsplit): In scope of https://github.com/ZNbase/ZNbase-db/issues/1461 add integration
     // tests for:
     // - tablet bootstrap of original tablet which hasn't been yet split and replaying split
     // operation.
@@ -1084,7 +1084,7 @@ class TabletBootstrap {
   //   This "restart safe time" is similar to the regular Linux monotonic clock time, but is
   //   maintained across tablet server restarts. See RestartSafeCoarseMonoClock for details.
   //
-  //   See https://github.com/yugabyte/yugabyte-db/commit/5cf01889a1b4589a82085e578b5f4746c6614a5d
+  //   See https://github.com/ZNbase/ZNbase-db/commit/5cf01889a1b4589a82085e578b5f4746c6614a5d
   //   and the Git history of retryable_requests.cc for more context on this requirement.
   //
   // As long as the two conditions above are satisfied, it is advantageous to us to pick the latest
@@ -1094,7 +1094,7 @@ class TabletBootstrap {
   // of diagnostic log messages.
   //
   // This functionality was originally introduced in
-  // https://github.com/yugabyte/yugabyte-db/commit/41ef3f75e3c68686595c7613f53b649823b84fed
+  // https://github.com/ZNbase/ZNbase-db/commit/41ef3f75e3c68686595c7613f53b649823b84fed
   SegmentSequence::iterator SkipFlushedEntries(SegmentSequence* segments_ptr) {
     static const char* kBootstrapOptimizerLogPrefix =
         "Bootstrap optimizer (skip_flushed_entries): ";

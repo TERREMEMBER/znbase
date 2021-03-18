@@ -2,9 +2,9 @@
 title: Key concepts
 headerTitle: Key concepts
 linkTitle: Key concepts
-description: Learn about the YugabyteDB query, transaction, sharding, replication, and persistence layers.
+description: Learn about the ZNbaseDB query, transaction, sharding, replication, and persistence layers.
 image: /images/section_icons/architecture/concepts.png
-headcontent: Learn about the YugabyteDB query, transaction, sharding, replication, and persistence layers.
+headcontent: Learn about the ZNbaseDB query, transaction, sharding, replication, and persistence layers.
 aliases:
   - /architecture/concepts/
 menu:
@@ -23,7 +23,7 @@ menu:
         <div class="title">Universe</div>
       </div>
       <div class="body">
-        Key components of a YugabyteDB node, universe, and cluster.
+        Key components of a ZNbaseDB node, universe, and cluster.
       </div>
     </a>
   </div>

@@ -1,13 +1,13 @@
 ---
-title: Install YugabyteDB on Linux
-headerTitle: 1. Install YugabyteDB
-linkTitle: 1. Install YugabyteDB
-description: Download and install YugabyteDB on Linux (CentOS or Ubuntu) in less than five minutes.
+title: Install ZNbaseDB on Linux
+headerTitle: 1. Install ZNbaseDB
+linkTitle: 1. Install ZNbaseDB
+description: Download and install ZNbaseDB on Linux (CentOS or Ubuntu) in less than five minutes.
 block_indexing: true
 menu:
   v2.1:
     parent: quick-start
-    name: 1. Install YugabyteDB
+    name: 1. Install ZNbaseDB
     identifier: install-2-linux
     weight: 110
 type: page
@@ -81,23 +81,23 @@ showAsideToc: true
 
 4. Each tablet maps to its own file, so if you experiment with a few hundred tables and a few tablets per table, you can soon end up creating a large number of files in the current shell. Make sure to [configure ulimit values](../../../deploy/manual-deployment/system-config#ulimits).
 
-## Download YugabyteDB
+## Download ZNbaseDB
 
-1. Download the YugabyteDB package using the following `wget` command.
-
-    ```sh
-    $ wget https://downloads.yugabyte.com/yugabyte-2.1.8.2-linux.tar.gz
-    ```
-
-2. Extract the package and then change directories to the YugabyteDB home.
+1. Download the ZNbaseDB package using the following `wget` command.
 
     ```sh
-    $ tar xvfz yugabyte-2.1.8.2-linux.tar.gz && cd yugabyte-2.1.8.2/
+    $ wget https://downloads.ZNbase.com/ZNbase-2.1.8.2-linux.tar.gz
     ```
 
-## Configure YugabyteDB
+2. Extract the package and then change directories to the ZNbaseDB home.
 
-To configure YugabyteDB, run the following shell script.
+    ```sh
+    $ tar xvfz ZNbase-2.1.8.2-linux.tar.gz && cd ZNbase-2.1.8.2/
+    ```
+
+## Configure ZNbaseDB
+
+To configure ZNbaseDB, run the following shell script.
 
 ```sh
 $ ./bin/post_install.sh

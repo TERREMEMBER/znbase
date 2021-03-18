@@ -3,7 +3,7 @@
  * ybcam.h
  *	  prototypes for ybc/ybcam.c
  *
- * Copyright (c) YugaByte, Inc.
+ * Copyright (c) ZNbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License.  You may obtain a copy of the License at
@@ -42,11 +42,11 @@
  * - "struct YbScanPlanData" contains variables that are used during preparing statement.
  * - "struct YbScanDescData" contains variables that are used thru out the life of the statement.
  *
- * YugaByte ScanPlan has two different lists.
+ * ZNbase ScanPlan has two different lists.
  *   Binding list:
  *   - This list is used to receive the user-given data for key columns (WHERE clause).
  *   - "sk_attno" is the INDEX's attnum for the key columns that are used to query data.
- *     In YugaByte, primary index attnum is the same as column attnum in the UserTable.
+ *     In ZNbase, primary index attnum is the same as column attnum in the UserTable.
  *   - "bind_desc" is the description of the index columns (count, types, ...).
  *   - The bind lists don't need to be included in the description as they are only needed
  *     during setup.
@@ -93,7 +93,7 @@ typedef struct YbScanDescData *YbScanDesc;
 
 /*
  * Access to YB-stored system catalogs (mirroring API from genam.c)
- * We ignore the index id and always do a regular YugaByte scan (Postgres
+ * We ignore the index id and always do a regular ZNbase scan (Postgres
  * would do either heap scan or index scan depending on the params).
  */
 extern SysScanDesc ybc_systable_beginscan(Relation relation,
@@ -107,7 +107,7 @@ extern void ybc_systable_endscan(SysScanDesc scan_desc);
 
 /*
  * Access to YB-stored system catalogs (mirroring API from heapam.c)
- * We will do a YugaByte scan instead of a heap scan.
+ * We will do a ZNbase scan instead of a heap scan.
  */
 extern HeapScanDesc ybc_heap_beginscan(Relation relation,
                                        Snapshot snapshot,

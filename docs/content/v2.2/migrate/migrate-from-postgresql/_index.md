@@ -1,7 +1,7 @@
 ---
 title: Migrating From PostgreSQL
 linkTitle: Migrating From PostgreSQL
-description: Migrating from PostgreSQL to YugabyteDB
+description: Migrating from PostgreSQL to ZNbaseDB
 image: /images/section_icons/develop/learn.png
 block_indexing: true
 menu:
@@ -11,7 +11,7 @@ menu:
     weight: 730
 ---
 
-The steps below outline how to migrate from PostgreSQL to YugabyteDB manually. The sections below assume familiarity with the high level migration process to YugabyteDB. 
+The steps below outline how to migrate from PostgreSQL to ZNbaseDB manually. The sections below assume familiarity with the high level migration process to ZNbaseDB. 
 
 {{< note title="Note" >}}
 
@@ -31,7 +31,7 @@ There are a number of tools that can be used to automate the entire migration fr
         <div class="title">Schema Migration</div>
       </div>
       <div class="body">
-        Migrate your DDL schema from PostgreSQL to YugabyteDB.
+        Migrate your DDL schema from PostgreSQL to ZNbaseDB.
       </div>
     </a>
   </div>
@@ -45,7 +45,7 @@ There are a number of tools that can be used to automate the entire migration fr
         <div class="title">Application Migration</div>
       </div>
       <div class="body">
-        Migrate an application written for PostgreSQL to YugabyteDB.
+        Migrate an application written for PostgreSQL to ZNbaseDB.
       </div>
     </a>
   </div>
@@ -73,7 +73,7 @@ There are a number of tools that can be used to automate the entire migration fr
         <div class="title">Prepare Cluster</div>
       </div>
       <div class="body">
-        Prepare your YugabyteDB cluster for data import.
+        Prepare your ZNbaseDB cluster for data import.
       </div>
     </a>
   </div>
@@ -87,7 +87,7 @@ There are a number of tools that can be used to automate the entire migration fr
         <div class="title">Import Data</div>
       </div>
       <div class="body">
-        Import data into the YugabyteDB cluster.
+        Import data into the ZNbaseDB cluster.
       </div>
     </a>
   </div>
@@ -101,7 +101,7 @@ There are a number of tools that can be used to automate the entire migration fr
         <div class="title">Verify Migration</div>
       </div>
       <div class="body">
-        Verify the result of the migration to YugabyteDB.
+        Verify the result of the migration to ZNbaseDB.
       </div>
     </a>
   </div>

@@ -14,14 +14,14 @@ isTocNested: true
 showAsideToc: true
 ---
 
-YugabyteDB's YSQL API reuses a fork of the query layer of PostgreSQL as its starting point and runs on top of YugabyteDB’s distributed storage layer called DocDB. This architecture allows YSQL to support most PostgreSQL features such as data types, queries, expressions, operators and functions, stored procedures, triggers, extensions, and so on, all of which are expected to work identically on both database systems.
+ZNbaseDB's YSQL API reuses a fork of the query layer of PostgreSQL as its starting point and runs on top of ZNbaseDB’s distributed storage layer called DocDB. This architecture allows YSQL to support most PostgreSQL features such as data types, queries, expressions, operators and functions, stored procedures, triggers, extensions, and so on, all of which are expected to work identically on both database systems.
 
 {{< tip title="Tip" >}}
 A large portion of the documentation and examples written for PostgreSQL would work against YSQL.
 
 {{< /tip >}}
 
-The following diagram demonstrates how YugabyteDB reuses the PostgreSQL query layer of, specifically its components that receive the query (_postman_), the query _parser_, _rewriter_, _analyzer_, as well as components responsible for _planning_ and _executing_ the query. Some of these components have been modified to perform efficiently in a distributed SQL database.
+The following diagram demonstrates how ZNbaseDB reuses the PostgreSQL query layer of, specifically its components that receive the query (_postman_), the query _parser_, _rewriter_, _analyzer_, as well as components responsible for _planning_ and _executing_ the query. Some of these components have been modified to perform efficiently in a distributed SQL database.
 
 ![Reusing the PostgreSQL query layer in YSQL](/images/section_icons/architecture/Reusing-PostgreSQL-query-layer.png)
 
@@ -56,7 +56,7 @@ See also:
 
 ## What's Extra in YSQL?
 
-Since YugabyteDB is a distributed SQL database, YSQL has a number of features that are not present in PostgreSQL, as summarized in the following table.
+Since ZNbaseDB is a distributed SQL database, YSQL has a number of features that are not present in PostgreSQL, as summarized in the following table.
 
 | YSQL Feature | Description |
 | :----------- | :---------- |

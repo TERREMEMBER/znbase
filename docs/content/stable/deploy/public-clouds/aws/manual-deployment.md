@@ -2,7 +2,7 @@
 title: Manually deploy on Amazon Web Services
 headerTitle: Amazon Web Services
 linkTitle: Amazon Web Services
-description: Manually deploy a YugabyteDB cluster on Amazon Web Services.
+description: Manually deploy a ZNbaseDB cluster on Amazon Web Services.
 menu:
   stable:
     identifier: deploy-in-aws-3-manual-deployment
@@ -33,7 +33,7 @@ showAsideToc: true
   </li>
 </ul>
 
-This page documents the manual deployment of YugabyteDB on six AWS EC2 instances with `c5d.4xlarge` as the instance type and CentOS 7 as the instance operating system. The deployment is configured for multiple availability zones (multi-AZ), with three AZs, and has a replication factor (RF) of `3`. The configuration can be easily changed to handle single-AZ as well as multi-region deployments.
+This page documents the manual deployment of ZNbaseDB on six AWS EC2 instances with `c5d.4xlarge` as the instance type and CentOS 7 as the instance operating system. The deployment is configured for multiple availability zones (multi-AZ), with three AZs, and has a replication factor (RF) of `3`. The configuration can be easily changed to handle single-AZ as well as multi-region deployments.
 
 ## 1. Prerequisites
 
@@ -51,7 +51,7 @@ We now have 2 VMs each in Availability Zones `us-west-2a`, `us-west-2b`, `us-wes
 
 ### Set environment variables
 
-Now that the six nodes have been prepared, the yb-master process will be run on three of these nodes (because RF=3) and yb-tserver will be run on all six nodes. To learn more about YugabyteDB’s server architecture, see [here](../../../../architecture/concepts/universe/).
+Now that the six nodes have been prepared, the yb-master process will be run on three of these nodes (because RF=3) and yb-tserver will be run on all six nodes. To learn more about ZNbaseDB’s server architecture, see [here](../../../../architecture/concepts/universe/).
 
 These install steps are written in a way that assumes that you will run the install steps from another node from which you can access the above six VMs over `ssh`.
 
@@ -64,7 +64,7 @@ export AZ1_NODES="<ip1> <ip2> ..."
 export AZ2_NODES="<ip2> <ip2> ..."
 export AZ3_NODES="<ip1> <ip2> ..."
 
-# Version of YugabyteDB you plan to install.
+# Version of ZNbaseDB you plan to install.
 export YB_VERSION=2.3.3.0
 
 # Comma separated list of directories available for YB on each node
@@ -79,11 +79,11 @@ export DATA_DIRS=/mnt/d0
 export PEM=~/.ssh/yb-dev-aws-2.pem
 
 # We’ll assume this user has sudo access to mount drives that will
-# be used as data directories for YugabyteDB, install xfs (or ext4
+# be used as data directories for ZNbaseDB, install xfs (or ext4
 # or some reasonable file system), update system ulimits etc.
 #
 # If those steps are done differently and your image already has
-# suitable limits and data directories for YugabyteDB to use then
+# suitable limits and data directories for ZNbaseDB to use then
 # you may not need to worry about those steps.
 export ADMIN_USER=centos
 
@@ -108,16 +108,16 @@ export ALL_NODES="$AZ1_NODES $AZ2_NODES $AZ3_NODES"
 export TSERVERS=$ALL_NODES
 
 # The binary that you will use
-export TAR_FILE=yugabyte-${YB_VERSION}-linux.tar.gz
+export TAR_FILE=ZNbase-${YB_VERSION}-linux.tar.gz
 ```
 
 ### Prepare data drives
 
-If your AMI already has the needed hooks for mounting the devices as directories in some well defined location OR if are just trying to use a vanilla directory as the data drive for a quick experiment and do not need mounting the additional devices on your AWS volume, you can just use an arbitrary directory (like `/home/$USER/` as your data directory), and YugabyteDB will create a `yb-data` subdirectory there (`/home/$USER/yb-data`) and use that. The steps below are are simply a guide to help use the additional volumes (install a filesystem on those volumes and mount them in some well defined location so that they can be used as data directories by YugabyteDB).
+If your AMI already has the needed hooks for mounting the devices as directories in some well defined location OR if are just trying to use a vanilla directory as the data drive for a quick experiment and do not need mounting the additional devices on your AWS volume, you can just use an arbitrary directory (like `/home/$USER/` as your data directory), and ZNbaseDB will create a `yb-data` subdirectory there (`/home/$USER/yb-data`) and use that. The steps below are are simply a guide to help use the additional volumes (install a filesystem on those volumes and mount them in some well defined location so that they can be used as data directories by ZNbaseDB).
 
 #### Locate drives
 
-On each of those nodes, first locate the SSD devices to be used as the data directories for YugabyteDB to store data on (such as RAFT/txn logs, SSTable files, logs, etc.).
+On each of those nodes, first locate the SSD devices to be used as the data directories for ZNbaseDB to store data on (such as RAFT/txn logs, SSTable files, logs, etc.).
 
 ```sh
 $ lsblk
@@ -238,7 +238,7 @@ done
 
 #### Set ulimits
 
-To ensure proper ulimit settings needed for YugabyteDB, add these lines to `/etc/security/limits.conf` (or appropriate location based on your OS).
+To ensure proper ulimit settings needed for ZNbaseDB, add these lines to `/etc/security/limits.conf` (or appropriate location based on your OS).
 
 ```
 *       -       core    unlimited
@@ -294,7 +294,7 @@ max user processes              (-u) 12000
 core file size          (blocks, -c) unlimited
 ```
 
-## 2. Install YugabyteDB
+## 2. Install ZNbaseDB
 
 Note: The installation need NOT be undertaken by the root or the `ADMIN_USER` (`centos`). In the examples below, however, these commands are run as the `ADMIN_USER`.
 
@@ -308,20 +308,20 @@ for ip in $ALL_NODES; do \
 done
 ```
 
-Download the YugabyteDB package, untar and run the post-install script to patch relative paths on all nodes.
+Download the ZNbaseDB package, untar and run the post-install script to patch relative paths on all nodes.
 
 ```sh
 for ip in $ALL_NODES; do \
    echo =======$ip=======; \
    ssh -i $PEM $ADMIN_USER@$ip \
       "cd ~/yb-software; \
-       curl -k -o yugabyte-${YB_VERSION}-linux.tar.gz \
-         https://downloads.yugabyte.com/yugabyte-${YB_VERSION}-linux.tar.gz"; \
+       curl -k -o ZNbase-${YB_VERSION}-linux.tar.gz \
+         https://downloads.ZNbase.com/ZNbase-${YB_VERSION}-linux.tar.gz"; \
    ssh -i $PEM $ADMIN_USER@$ip \
       "cd ~/yb-software; \
-       tar xvfz yugabyte-${YB_VERSION}-linux.tar.gz"; \
+       tar xvfz ZNbase-${YB_VERSION}-linux.tar.gz"; \
    ssh -i $PEM $ADMIN_USER@$ip \
-       "cd ~/yb-software/yugabyte-${YB_VERSION}; \
+       "cd ~/yb-software/ZNbase-${YB_VERSION}; \
         ./bin/post_install.sh"; \
 done
 ```
@@ -334,7 +334,7 @@ Execute the following on master nodes only.
 for ip in $MASTER_NODES; do \
     echo =======$ip=======; \
     ssh -i $PEM $ADMIN_USER@$ip \
-      "ln -s ~/yb-software/yugabyte-${YB_VERSION} ~/master"; \
+      "ln -s ~/yb-software/ZNbase-${YB_VERSION} ~/master"; \
 done
 ```
 
@@ -344,7 +344,7 @@ Execute the following on all nodes.
 for ip in $ALL_NODES; do \
     echo =======$ip=======; \
     ssh -i $PEM $ADMIN_USER@$ip \
-      "ln -s ~/yb-software/yugabyte-${YB_VERSION} ~/tserver"; \
+      "ln -s ~/yb-software/ZNbase-${YB_VERSION} ~/tserver"; \
 done
 ```
 
@@ -786,7 +786,7 @@ http://<any-tserver-ip>:9000/utilz
 
 ### Prerequisite
 
-Create the YugabyteDB `system_redis.redis` (which is the default Redis database `0`) table using `yb-admin` or using `redis-cli`.
+Create the ZNbaseDB `system_redis.redis` (which is the default Redis database `0`) table using `yb-admin` or using `redis-cli`.
 
 - Using `yb-admin`
 

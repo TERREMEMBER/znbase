@@ -174,7 +174,7 @@ The definitive description of the use of aggregate functions invoked using the `
 
 The [`frame_clause`](../../../syntax_resources/grammar_diagrams/#frame-clause) specifies the set of rows constituting the so-called [_window frame_](./#frame-clause-semantics-for-window-functions). In general, this will be a subset of the rows in the current [_window_](./#the-window-definition-rule). Look at the two tables at the end of the section [Signature and purpose of each window function](../function-syntax-semantics/).
 
-- The functions in the first group, [Window functions that return an "int" or "double precision" value as a "classifier" of the rank of the row within its window](../function-syntax-semantics/#window-functions-that-return-an-int-or-double-precision-value-as-a-classifier-of-the-rank-of-the-row-within-its-window), are not sensitive to what the [`frame_clause`](../../../syntax_resources/grammar_diagrams/#frame-clause) specifies and always use all of the rows in the current [_window_](./#the-window-definition-rule). Yugabyte recommends that you therefore omit the [`frame_clause`](../../../syntax_resources/grammar_diagrams/#frame-clause) in the `OVER` clause that you use to invoke these functions.
+- The functions in the first group, [Window functions that return an "int" or "double precision" value as a "classifier" of the rank of the row within its window](../function-syntax-semantics/#window-functions-that-return-an-int-or-double-precision-value-as-a-classifier-of-the-rank-of-the-row-within-its-window), are not sensitive to what the [`frame_clause`](../../../syntax_resources/grammar_diagrams/#frame-clause) specifies and always use all of the rows in the current [_window_](./#the-window-definition-rule). ZNbase recommends that you therefore omit the [`frame_clause`](../../../syntax_resources/grammar_diagrams/#frame-clause) in the `OVER` clause that you use to invoke these functions.
 
 - The functions in the second group, [Window functions that return columns of another row within the window](../function-syntax-semantics/#window-functions-that-return-column-s-of-another-row-within-the-window), make obvious sense when the scope within which the specified row is found is the entire [_window_](./#the-window-definition-rule). If you have one of the very rare use cases where the output that you want is produced by a different [`frame_clause`](../../../syntax_resources/grammar_diagrams/#frame-clause), then specify what you want explicitly. Otherwise, because it isn't the default, you must specify that the [_window frame_](./#frame-clause-semantics-for-window-functions) includes the entire current [_window_](./#the-window-definition-rule) like this:
   
@@ -305,7 +305,7 @@ and this:
 window_fn_1(...) over (w) as a1
 ```
 
-The parentheses around the window's identifier convey no meaning, Yugabyte recommends that you don't use this form because doing so will make anybody who reads your code wonder if it _does_ convey a meaning.
+The parentheses around the window's identifier convey no meaning, ZNbase recommends that you don't use this form because doing so will make anybody who reads your code wonder if it _does_ convey a meaning.
 
 ### Third example
 

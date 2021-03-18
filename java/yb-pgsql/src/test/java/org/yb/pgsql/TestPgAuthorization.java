@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1121,8 +1121,8 @@ public class TestPgAuthorization extends BasePgSQLTest {
     try (Statement statement = connection.createStatement()) {
       statement.execute("CREATE ROLE test_role LOGIN");
 
-      // Set configuration variable for "test_role" in "yugabyte".
-      statement.execute("ALTER ROLE test_role IN DATABASE yugabyte SET search_path TO 'some path'");
+      // Set configuration variable for "test_role" in "ZNbase".
+      statement.execute("ALTER ROLE test_role IN DATABASE ZNbase SET search_path TO 'some path'");
 
       try (Connection connection1 = getConnectionBuilder().withUser("test_role").connect();
            Statement statement1 = connection1.createStatement()) {

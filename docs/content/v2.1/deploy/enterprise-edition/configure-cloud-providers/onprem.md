@@ -1,8 +1,8 @@
 ---
-title: Configure on-premises data centers for YugabyteDB deployments
+title: Configure on-premises data centers for ZNbaseDB deployments
 headerTitle: Configure cloud providers
 linkTitle: 4. Configure cloud providers
-description: Configure on-premises data centers for YugabyteDB deployments using the YugabyteDB Admin Console
+description: Configure on-premises data centers for ZNbaseDB deployments using the ZNbaseDB Admin Console
 block_indexing: true
 menu:
   v2.1:

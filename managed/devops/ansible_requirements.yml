@@ -1,24 +1,24 @@
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 # TODO: auto-generate this file to reduce repetition.
 
 - name: ansible-sshd
   scm: git
-  src: https://github.com/YugaByte/ansible-sshd.git
+  src: https://github.com/ZNbase/ansible-sshd.git
   version: master-yb
 
 - name: ansible-prometheus
   scm: git
-  src: https://github.com/YugaByte/ansible-prometheus.git
+  src: https://github.com/ZNbase/ansible-prometheus.git
   version: master-yb
 
 - name: ansible-chrony
   scm: git
-  src: https://github.com/yugabyte/ansible-chrony.git
+  src: https://github.com/ZNbase/ansible-chrony.git
   version: master

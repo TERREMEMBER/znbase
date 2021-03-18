@@ -1,6 +1,6 @@
 PyYAML
 six
-yugabyte_pycommon
+ZNbase_pycommon
 compiledb
 psutil
 distro

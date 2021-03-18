@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 import boto3
 import json
@@ -24,7 +24,7 @@ IGW_CIDR = "0.0.0.0/0"
 SUBNET_PREFIX_FORMAT = RESOURCE_PREFIX_FORMAT
 IGW_PREFIX_FORMAT = RESOURCE_PREFIX_FORMAT + "-igw"
 ROUTE_TABLE_PREFIX_FORMAT = RESOURCE_PREFIX_FORMAT + "-rt"
-SG_YUGABYTE_PREFIX_FORMAT = RESOURCE_PREFIX_FORMAT + "-sg"
+SG_ZNbase_PREFIX_FORMAT = RESOURCE_PREFIX_FORMAT + "-sg"
 PEER_CONN_FORMAT = "yb-peer-conn-{}-to-{}"
 
 
@@ -40,7 +40,7 @@ class AwsBootstrapRegion():
         self.vpc = None
         self.igw = None
         self.peer_vpc = None
-        self.sg_yugabyte = None
+        self.sg_ZNbase = None
         self.subnets = []
         self.route_table = None
 
@@ -48,7 +48,7 @@ class AwsBootstrapRegion():
         self.setup_vpc()
         self.setup_igw()
         self.setup_subnets()
-        self.setup_yugabyte_sg()
+        self.setup_ZNbase_sg()
         self.setup_rt()
 
     def setup_vpc(self):
@@ -77,15 +77,15 @@ class AwsBootstrapRegion():
 
         self.subnets = subnets
 
-    def setup_yugabyte_sg(self):
+    def setup_ZNbase_sg(self):
         sg_group_name = get_yb_sg_name(self.region)
         rules = list(self.metadata["sg_rules"])
         for r in rules:
             r.update({"cidr_ip": IGW_CIDR})
         sg = create_security_group(client=self.client, group_name=sg_group_name,
-                                   description="YugaByte SG", vpc=self.vpc,
+                                   description="ZNbase SG", vpc=self.vpc,
                                    rules=rules)
-        self.sg_yugabyte = sg
+        self.sg_ZNbase = sg
 
     def setup_rt(self):
         route_table_tag = ROUTE_TABLE_PREFIX_FORMAT.format(self.region)
@@ -151,7 +151,7 @@ class YbVpcComponents:
     def __init__(self):
         self.region = None
         self.vpc = None
-        self.sg_yugabyte = None
+        self.sg_ZNbase = None
         self.customer_sgs = None
         self.route_table = None
         self.subnets = None
@@ -162,7 +162,7 @@ class YbVpcComponents:
         c.region = region
         client = get_client(region)
         c.vpc = client.Vpc(vpc_id)
-        c.sg_yugabyte = client.SecurityGroup(sg_id)
+        c.sg_ZNbase = client.SecurityGroup(sg_id)
         c.route_table = client.RouteTable(rt_id)
         c.subnets = {az: client.Subnet(subnet_id)
                      for az, subnet_id in az_to_subnet_ids.items()}
@@ -182,8 +182,8 @@ class YbVpcComponents:
         if sg_ids:
             c.customer_sgs = [client.SecurityGroup(sg_id) for sg_id in sg_ids.split(",")]
         else:
-            c.sg_yugabyte = get_security_group(
-                client, SG_YUGABYTE_PREFIX_FORMAT.format(region), c.vpc)
+            c.sg_ZNbase = get_security_group(
+                client, SG_ZNbase_PREFIX_FORMAT.format(region), c.vpc)
         if not vpc_id:
             c.route_table = get_route_table(client, ROUTE_TABLE_PREFIX_FORMAT.format(region))
         az_to_subnet_ids = {}
@@ -196,7 +196,7 @@ class YbVpcComponents:
         return c
 
     def as_json(self):
-        sgs = self.customer_sgs if self.customer_sgs else [self.sg_yugabyte]
+        sgs = self.customer_sgs if self.customer_sgs else [self.sg_ZNbase]
         return vpc_components_as_json(self.vpc, sgs, self.subnets)
 
 
@@ -226,7 +226,7 @@ class AwsBootstrapClient():
         client = AwsBootstrapRegion(region, self.metadata, self.region_cidrs)
         client.bootstrap()
         return YbVpcComponents.from_pieces(
-            region, client.vpc.id, client.sg_yugabyte.id, client.route_table.id,
+            region, client.vpc.id, client.sg_ZNbase.id, client.route_table.id,
             {az: s.id for az, s in client.subnets.items()})
 
     def cross_link_regions(self, components):
@@ -277,7 +277,7 @@ class AwsBootstrapClient():
         for cidr in self.metadata.get("custom_network_whitelisted_ip_cidrs", []):
             add_cidr_to_rules(rules, cidr)
         for region, component in components.items():
-            sg = component.sg_yugabyte
+            sg = component.sg_ZNbase
             ip_perms = sg.ip_permissions
             for rule in rules:
                 found = False
@@ -612,7 +612,7 @@ def set_yb_sg_and_fetch_vpc(metadata, region, dest_vpc_id):
     Args:
         metadata (obj): Cloud metadata object with cidr prefix and other metadata.
         region (str): Region name to create the vpc in.
-        dest_vpc_id (str): Id of the VPC that yugabyte machines will reside in.
+        dest_vpc_id (str): Id of the VPC that ZNbase machines will reside in.
     Returns:
         vpc_info (json): return vpc, subnet and security group as json.
     """
@@ -626,7 +626,7 @@ def set_yb_sg_and_fetch_vpc(metadata, region, dest_vpc_id):
         r.update({"cidr_ip": IGW_CIDR})
     add_cidr_to_rules(rules, dest_vpc.cidr_block)
     sgs = [create_security_group(client=client, group_name=sg_group_name, vpc=dest_vpc,
-                                 description="YugaByte SG", rules=rules)]
+                                 description="ZNbase SG", rules=rules)]
     return vpc_components_as_json(dest_vpc, sgs, subnets)
 
 
@@ -718,7 +718,7 @@ def delete_vpc(region, host_vpc_id=None, host_vpc_region=None):
     if region_vpc is None:
         raise YBOpsRuntimeError("VPC not setup.")
     zones = get_zones(region)
-    # Remove the yugabyte SG first.
+    # Remove the ZNbase SG first.
     sg_group_name = get_yb_sg_name(region)
     cleanup_security_group(client=client, group_name=sg_group_name, vpc=region_vpc)
     # Cleanup the subnets.
@@ -1008,7 +1008,7 @@ def get_vpc_for_subnet(client, subnet):
 
 
 def get_yb_sg_name(region):
-    return SG_YUGABYTE_PREFIX_FORMAT.format(region)
+    return SG_ZNbase_PREFIX_FORMAT.format(region)
 
 
 def list_dns_record_set(hosted_zone_id):

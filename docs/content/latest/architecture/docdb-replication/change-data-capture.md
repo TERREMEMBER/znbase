@@ -2,7 +2,7 @@
 title: Change data capture (CDC)
 headerTitle: Change data capture (CDC)
 linkTitle: Change data capture (CDC)
-description: Learn how YugabyteDB supports asynchronous replication of data changes (inserts, updates, and deletes) to external databases or applications.
+description: Learn how ZNbaseDB supports asynchronous replication of data changes (inserts, updates, and deletes) to external databases or applications.
 beta: /latest/faq/general/#what-is-the-definition-of-the-beta-feature-tag
 aliases:
   - /latest/architecture/cdc-architecture/
@@ -17,7 +17,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Change data capture (CDC) in YugabyteDB provides technology to ensure that any changes in data (inserts, updates, and deletions) are identified, captured, and automatically applied to another data repository instance or made available for consumption by applications and other tools.
+Change data capture (CDC) in ZNbaseDB provides technology to ensure that any changes in data (inserts, updates, and deletions) are identified, captured, and automatically applied to another data repository instance or made available for consumption by applications and other tools.
 
 ## Use cases
 
@@ -25,7 +25,7 @@ Change data capture is useful in a number of scenarios, such as the ones describ
 
 ### Microservice-oriented architectures
 
-Some microservices require a stream of changes to the data and using CDC in YugabyteDB can provide consumable data changes to CDC subscribers.
+Some microservices require a stream of changes to the data and using CDC in ZNbaseDB can provide consumable data changes to CDC subscribers.
 
 ### Asynchronous replication to remote systems
 
@@ -38,7 +38,7 @@ Maintaining multiple data centers enables enterprises to provide:
 - High availability (HA) — Redundant systems help ensure that your operations virtually never fail.
 - Geo-redundancy — Geographically dispersed servers provide resiliency against catastrophic events and natural disasters.
 
-Two data center (2DC), or dual data center, deployments are a common use of CDC that allows efficient management of two YugabyteDB universes that are geographically separated. For more information, see [Two data center (2DC) deployments](../async-replication) and [Replicate between two data centers](../../../deploy/multi-dc/2dc-deployment)
+Two data center (2DC), or dual data center, deployments are a common use of CDC that allows efficient management of two ZNbaseDB universes that are geographically separated. For more information, see [Two data center (2DC) deployments](../async-replication) and [Replicate between two data centers](../../../deploy/multi-dc/2dc-deployment)
 
 ### Compliance and auditing
 
@@ -91,7 +91,7 @@ Every YB-TServer has a `CDC service` that is stateless. The main APIs provided b
 
 ### Pushing changes to external systems
 
-Each YugabyteDB's TServer has CDC subscribers (`cdc_subscribers`) that are responsible for getting changes for all tablets for which the TServer is a leader. When a new stream and subscriber are created, the TServer `cdc_subscribers` detects this and starts invoking the `cdc_service.GetChanges` API periodically to get the latest set of changes.
+Each ZNbaseDB's TServer has CDC subscribers (`cdc_subscribers`) that are responsible for getting changes for all tablets for which the TServer is a leader. When a new stream and subscriber are created, the TServer `cdc_subscribers` detects this and starts invoking the `cdc_service.GetChanges` API periodically to get the latest set of changes.
 
 While invoking `GetChanges`, the CDC subscriber needs to pass in a `from_checkpoint` which is the last `OP ID` that it successfully consumed. When the CDC service receives a request of `GetChanges` for a tablet, it reads the changes from the WAL (log cache) starting from `from_checkpoint`, deserializes them and returns those to CDC subscriber. It also records the `from_checkpoint` in `cdc_subscribers` table in the data column. This will be used for bootstrapping fallen subscribers who don’t know the last checkpoint or in case of tablet leader changes.
 

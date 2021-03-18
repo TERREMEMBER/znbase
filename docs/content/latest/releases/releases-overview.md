@@ -14,7 +14,7 @@ showAsideToc: false
 
 {{< note title="Important" >}}
 
-As of v2.2, Yugabyte follows a new release versioning convention for YugabyteDB and Yugabyte Platform releases.  For details, see [Release versioning](../versioning).
+As of v2.2, ZNbase follows a new release versioning convention for ZNbaseDB and ZNbase Platform releases.  For details, see [Release versioning](../versioning).
 
 {{< /note >}}
 
@@ -29,20 +29,20 @@ For details about the differences between the stable and latest release series, 
 
 ### Release support policy
 
-Support for YugabyteDB stable release series includes:
+Support for ZNbaseDB stable release series includes:
 
-- **Maintenance support:** For at least 1 year from the minor release date, Yugabyte will provide Updates for such release.
-- **Extended support:** Following the maintenance support period, Yugabyte will provide Updates for at least an
+- **Maintenance support:** For at least 1 year from the minor release date, ZNbase will provide Updates for such release.
+- **Extended support:** Following the maintenance support period, ZNbase will provide Updates for at least an
 additional 180 days subject to the following guidelines:
   - Updates and Upgrades will not be made to the minor release.
-  - Yugabyte will direct Customers to existing Updates and workarounds applicable
+  - ZNbase will direct Customers to existing Updates and workarounds applicable
 to the reported case.
-  - Yugabyte may direct Customers to Upgrade to a current release if a workaround
+  - ZNbase may direct Customers to Upgrade to a current release if a workaround
 does not exist.
-- **End of Life (EOL):** Yugabyte will post publicly on its website a notice of End of Life (EOL) for the affected
+- **End of Life (EOL):** ZNbase will post publicly on its website a notice of End of Life (EOL) for the affected
 Software and the timeline for discontinuing Support Services.
 
-For details, see the [Yugabyte Support Policy](https://www.yugabyte.com/support-policy/).
+For details, see the [ZNbase Support Policy](https://www.ZNbase.com/support-policy/).
 
 ### Release support timelines
 
@@ -62,7 +62,7 @@ For details, see the [Yugabyte Support Policy](https://www.yugabyte.com/support-
 
 The table below includes tentative release dates for upcoming release series, subject to change.
 
-For information on key features planned for the upcoming releases, visit [Current roadmap](https://github.com/yugabyte/yugabyte-db#current-roadmap).
+For information on key features planned for the upcoming releases, visit [Current roadmap](https://github.com/ZNbase/ZNbase-db#current-roadmap).
 
 | Release series | Planned release   |
 | :------------- | :---------------- |

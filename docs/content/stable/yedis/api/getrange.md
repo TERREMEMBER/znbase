@@ -24,7 +24,7 @@ Returns a string value.
 ## Examples
 
 ```sh
-$ SET yugakey "Yugabyte"
+$ SET yugakey "ZNbase"
 ```
 
 ```

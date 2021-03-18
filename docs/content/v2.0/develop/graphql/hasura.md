@@ -12,27 +12,27 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Integrate the [Hasura GraphQL engine](https://hasura.io) with YugabyteDB to use GraphQL on your YugabyteDB databases and applications.
+Integrate the [Hasura GraphQL engine](https://hasura.io) with ZNbaseDB to use GraphQL on your ZNbaseDB databases and applications.
 
-Follow the steps below to learn how easily you can begin using the Hasura GraphQL engine with YugabyteDB. For details on using the Hasura GraphQL engine, see the [Hasura GraphQL engine documentation](https://docs.hasura.io).
+Follow the steps below to learn how easily you can begin using the Hasura GraphQL engine with ZNbaseDB. For details on using the Hasura GraphQL engine, see the [Hasura GraphQL engine documentation](https://docs.hasura.io).
 
 ## Before you begin
 
-### Install and start YugabyteDB
+### Install and start ZNbaseDB
 
-Before starting and running YugabyteDB with Hasura, you need to add the YugabyteDB environment variable `YB_SUPPRESS_UNSUPPORTED_ERROR=1`. Setting the value to 1 suppresses unsupported error exceptions and raise only warnings. To set the environment variable , run the following command.
+Before starting and running ZNbaseDB with Hasura, you need to add the ZNbaseDB environment variable `YB_SUPPRESS_UNSUPPORTED_ERROR=1`. Setting the value to 1 suppresses unsupported error exceptions and raise only warnings. To set the environment variable , run the following command.
 
 ```sh
 $ export YB_SUPPRESS_UNSUPPORTED_ERROR=1
 ```
 
-If you're new to YugabyteDB, you can be up and running with YugabyteDB in under five minutes by following the steps in [Quick start](/latest/quick-start/).
+If you're new to ZNbaseDB, you can be up and running with ZNbaseDB in under five minutes by following the steps in [Quick start](/latest/quick-start/).
 
 ### Install and start Hasura
 
 To install the Hasura GraphQL engine, follow the steps in the Hasura [Quick start with Docker](https://docs.hasura.io/1.0/graphql/manual/getting-started/docker-simple.html).
 
-To use Hasura with YugabyteDB, the configuration should be similar to PostgreSQL, except that the port should be `5433`.
+To use Hasura with ZNbaseDB, the configuration should be similar to PostgreSQL, except that the port should be `5433`.
 
 For a local Mac setup, the configuration should be:
 
@@ -115,7 +115,7 @@ Click **Add**, and then click **Save**.
 
 ### 5. Load sample data
 
-1. On the command line, change your directory to the root `yugabyte` directory, and then open `ysqlsh` (the YSQL CLI) to connect to the YugabyteDB cluster:
+1. On the command line, change your directory to the root `ZNbase` directory, and then open `ysqlsh` (the YSQL CLI) to connect to the ZNbaseDB cluster:
 
 ```sh
 ./bin/ysqlsh
@@ -186,13 +186,13 @@ Fetch a list of authors and a nested list of each author’s articles where the 
 
 Now that you're done with this exploration, you can clean up the pieces for your next adventure.
 
-1. Stop the YugabyteDB cluster by running the `yb-ctl stop` command.
+1. Stop the ZNbaseDB cluster by running the `yb-ctl stop` command.
 
     ```sh
     ./bin/yb-ctl stop
     ```
 
-    Note: To completely remove all YugabyteDB data/cluster-state you can instead run:
+    Note: To completely remove all ZNbaseDB data/cluster-state you can instead run:
 
     ```sh
     ./bin/yb-ctl destroy

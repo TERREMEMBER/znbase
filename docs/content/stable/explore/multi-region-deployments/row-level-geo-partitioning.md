@@ -107,14 +107,14 @@ Note that these statements above will create the partitions, but will not pin th
 
 
 ```
-yugabyte=# \d
+ZNbase=# \d
                 List of relations
  Schema |         Name         | Type  |  Owner
 --------+----------------------+-------+----------
- public | transactions         | table | yugabyte
- public | transactions_default | table | yugabyte
- public | transactions_eu      | table | yugabyte
- public | transactions_india   | table | yugabyte
+ public | transactions         | table | ZNbase
+ public | transactions_default | table | ZNbase
+ public | transactions_eu      | table | ZNbase
+ public | transactions_india   | table | ZNbase
 (4 rows)
 ```
 
@@ -130,7 +130,7 @@ First, we pin the data of the EU partition `transactions_eu` to live across thre
 
 ```
 $ yb-admin --master_addresses <yb-master-addresses>           \
-    modify_table_placement_info ysql.yugabyte transactions_eu \
+    modify_table_placement_info ysql.ZNbase transactions_eu \
     aws.eu-central-1.eu-central-1a,aws.eu-central-1.eu-central-1b,\
     ... 3
 ```
@@ -141,7 +141,7 @@ Second, we pin the data of the India partition `transactions_india` to live acro
 
 ```
 $ yb-admin --master_addresses <yb-master-addresses>              \
-    modify_table_placement_info ysql.yugabyte transactions_india \
+    modify_table_placement_info ysql.ZNbase transactions_india \
     aws.ap-south-1.ap-south-1a,aws.ap-south-1.ap-south-1b,... 3
 ```
 
@@ -151,7 +151,7 @@ Finally, pin the data of the default partition `transactions_default` to live ac
 
 ```
 $ yb-admin --master_addresses <yb-master-addresses>                \
-    modify_table_placement_info ysql.yugabyte transactions_default \
+    modify_table_placement_info ysql.ZNbase transactions_default \
     aws.us-west-2.us-west-2a,aws.us-west-2.us-west-2b,... 3
 ```
 
@@ -175,7 +175,7 @@ All of the rows above should be inserted into the `transactions_eu `partition, a
 
 
 ```
-yugabyte=# \x auto
+ZNbase=# \x auto
 Expanded display is used automatically.
 ```
 
@@ -184,7 +184,7 @@ The row must be present in the `transactions` table, as seen below.
 
 
 ```
-yugabyte=# select * from transactions;
+ZNbase=# select * from transactions;
 -[ RECORD 1 ]-+---------------------------
 user_id       | 100
 account_id    | 10001
@@ -200,7 +200,7 @@ Additionally, the row must be present only in the `transactions_eu` partition, w
 
 
 ```
-yugabyte=# select * from transactions_eu;
+ZNbase=# select * from transactions_eu;
 -[ RECORD 1 ]-+---------------------------
 user_id       | 100
 account_id    | 10001
@@ -210,12 +210,12 @@ amount        | 120.5
 txn_type      | debit
 created_at    | 2020-11-07 21:28:11.056236
 
-yugabyte=# select count(*) from transactions_india;
+ZNbase=# select count(*) from transactions_india;
  count
 -------
      0
 
-yugabyte=# select count(*) from transactions_default;
+ZNbase=# select count(*) from transactions_default;
  count
 -------
      0
@@ -237,7 +237,7 @@ These can be verified as shown below.
 
 
 ```
-yugabyte=# select * from transactions_india;
+ZNbase=# select * from transactions_india;
 -[ RECORD 1 ]-+---------------------------
 user_id       | 200
 account_id    | 20001
@@ -247,7 +247,7 @@ amount        | 1000
 txn_type      | credit
 created_at    | 2020-11-07 21:45:26.011636
 
-yugabyte=# select * from transactions_default;
+ZNbase=# select * from transactions_default;
 -[ RECORD 1 ]-+---------------------------
 user_id       | 300
 account_id    | 30001
@@ -277,7 +277,7 @@ Now, each of the transactions would be pinned to the appropriate geographic loca
 
 
 ```
-yugabyte=# select * from transactions_india where user_id=100;
+ZNbase=# select * from transactions_india where user_id=100;
 -[ RECORD 1 ]-+---------------------------
 user_id       | 100
 account_id    | 10001
@@ -287,7 +287,7 @@ amount        | 2000
 txn_type      | credit
 created_at    | 2020-11-07 21:56:26.760253
 
-yugabyte=# select * from transactions_default where user_id=100;
+ZNbase=# select * from transactions_default where user_id=100;
 -[ RECORD 1 ]-+---------------------------
 user_id       | 100
 account_id    | 10001
@@ -303,7 +303,7 @@ All the transactions made by the user can efficiently be retrieved using the fol
 
 
 ```
-yugabyte=# select * from transactions where user_id=100 order by created_at desc;
+ZNbase=# select * from transactions where user_id=100 order by created_at desc;
 -[ RECORD 1 ]-+---------------------------
 user_id       | 100
 account_id    | 10001
@@ -346,7 +346,7 @@ CREATE TABLE transactions_brazil
     FOR VALUES IN ('Brazil');
 
 $ yb-admin --master_addresses <yb-master-addresses>               \
-    modify_table_placement_info ysql.yugabyte transactions_brazil \
+    modify_table_placement_info ysql.ZNbase transactions_brazil \
     aws.sa-east-1.sa-east-1a,aws.sa-east-1.sa-east-1b,... 3
 ```
 
@@ -358,7 +358,7 @@ And with that, the new region is ready to store transactions of the residents of
 INSERT INTO transactions 
     VALUES (400, 40001, 'Brazil', 'savings', 1000, 'credit');
 
-yugabyte=# select * from transactions_brazil;
+ZNbase=# select * from transactions_brazil;
 -[ RECORD 1 ]-+-------------------------
 user_id       | 400
 account_id    | 40001

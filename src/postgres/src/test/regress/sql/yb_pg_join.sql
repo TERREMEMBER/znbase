@@ -362,4 +362,4 @@ select count(*) from tenk1 x where
   x.unique1 in (select aa.f1 from int4_tbl aa,float8_tbl bb where aa.f1=bb.f1);
 rollback;
 
--- yb_pg_join ends here. See: https://github.com/yugabyte/yugabyte-db/pull/5190#issuecomment-672361626
+-- yb_pg_join ends here. See: https://github.com/ZNbase/ZNbase-db/pull/5190#issuecomment-672361626

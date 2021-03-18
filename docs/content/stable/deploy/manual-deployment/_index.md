@@ -1,9 +1,9 @@
 ---
-title: Manual deployment of YugabyteDB clusters
+title: Manual deployment of ZNbaseDB clusters
 headerTitle: Manual deployment
 linkTitle: Manual deployment
-description: Deploy a YugabyteDB cluster in a single region or data center with a multi-zone/multi-rack configuration.
-headcontent: Instructions for manually deploying YugabyteDB.
+description: Deploy a ZNbaseDB cluster in a single region or data center with a multi-zone/multi-rack configuration.
+headcontent: Instructions for manually deploying ZNbaseDB.
 image: /images/section_icons/deploy/manual-deployment.png
 menu:
   stable:
@@ -12,11 +12,11 @@ menu:
     weight: 610
 ---
 
-This section covers the generic manual deployment of a YugabyteDB cluster in a single region or data center with a multi-zone/multi-rack configuration. Note that single zone configuration is a special case of multi-zone where all placement related flags are set to the same value across every node. 
+This section covers the generic manual deployment of a ZNbaseDB cluster in a single region or data center with a multi-zone/multi-rack configuration. Note that single zone configuration is a special case of multi-zone where all placement related flags are set to the same value across every node. 
 
 <p>
 
-For AWS deployments specifically, a <a href="../public-clouds/aws#manual-deployment">step-by-step guide</a> to deploying a YugabyteDB cluster is also available. These steps can be easily adopted for on-premises deployments or deployments in other clouds.
+For AWS deployments specifically, a <a href="../public-clouds/aws#manual-deployment">step-by-step guide</a> to deploying a ZNbaseDB cluster is also available. These steps can be easily adopted for on-premises deployments or deployments in other clouds.
 
 <div class="row">
   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
@@ -26,7 +26,7 @@ For AWS deployments specifically, a <a href="../public-clouds/aws#manual-deploym
         <div class="title">1. System configuration</div>
       </div>
       <div class="body">
-          Configuration various system parameters such as ulimits correctly in order to run YugabyteDB.
+          Configuration various system parameters such as ulimits correctly in order to run ZNbaseDB.
       </div>
     </a>
   </div>
@@ -37,7 +37,7 @@ For AWS deployments specifically, a <a href="../public-clouds/aws#manual-deploym
         <div class="title">2. Install software</div>
       </div>
       <div class="body">
-          Install the YugabyteDB software on each of the nodes.
+          Install the ZNbaseDB software on each of the nodes.
       </div>
     </a>
   </div>

@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -698,7 +698,7 @@ public class TestBindVariable extends BaseCQLTest {
         session.prepare("INSERT INTO test_bind (id, data, v) VALUES (?, ?, ?);");
 
       // TOFIX: EXPECTING EXCEPTION HERE
-      //        https://github.com/yugabyte/yugabyte-db/issues/2446
+      //        https://github.com/ZNbase/ZNbase-db/issues/2446
       session.execute(newStmt.bind().setInt("id", 3)
                                     .setString("data", "{}")
                                     .setInt("v", 0x41414141)); // 0x41 == 'A'
@@ -716,7 +716,7 @@ public class TestBindVariable extends BaseCQLTest {
     {
       // Try to use old prepared statement with 'int' type for column 'v'.
       // TOFIX: EXPECTING EXCEPTION HERE
-      //        https://github.com/yugabyte/yugabyte-db/issues/2446
+      //        https://github.com/ZNbase/ZNbase-db/issues/2446
       session.execute(stmt.bind().setInt("id", 4)
                                  .setString("data", "{ \"b\" : 2 }")
                                  .setInt("v", 0x42424242)); // 0x42 == 'B'

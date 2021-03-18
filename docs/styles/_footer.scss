@@ -1,4 +1,4 @@
-// Copyright (c) Yugabyte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 @import "./colors.scss";
 
@@ -55,27 +55,27 @@
   form {
     display: flex;
     flex-direction: row;
-    
+
     @media screen and (max-width: 767px) {
       justify-content: center;
       margin-top: 15px;
     }
-    
+
     .btn {
       margin-left: 10px;
     }
-    
+
     .form-control {
       min-width: 230px;
     }
-    
+
     label {
       position: absolute;
       top: 45px;
       font-size: 12px;
     }
   }
-  
+
   .form {
     position: relative;
     .submit-thank-you {
@@ -103,7 +103,7 @@
   color: $YB_LIGHT_GRAY;
   background: $YB_DARK_BLUE !important;
   text-align: center;
-    
+
   &.footer-content {
     padding: 0;
     height: 60px;

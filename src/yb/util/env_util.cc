@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -53,8 +53,8 @@ namespace yb {
 namespace env_util {
 
 // We use this suffix in the "external build directory" mode, i.e. the source could be in
-// ~/code/yugabyte the build directories for different configurations will all be in
-// ~/code/yugabyte__build. This will prevent IDEs from trying to parse build artifacts.
+// ~/code/ZNbase the build directories for different configurations will all be in
+// ~/code/ZNbase__build. This will prevent IDEs from trying to parse build artifacts.
 const string kExternalBuildDirSuffix = "__build";
 
 std::string GetRootDir(const string& search_for_dir) {
@@ -64,7 +64,7 @@ std::string GetRootDir(const string& search_for_dir) {
   }
 
   // If YB_HOME is not set, we use the path where the binary is located
-  // (e.g., /opt/yugabyte/tserver/bin/yb-tserver) to determine the doc root.
+  // (e.g., /opt/ZNbase/tserver/bin/yb-tserver) to determine the doc root.
   // To find "www"'s location, we search whether "www" exists at each directory, starting with
   // the directory where the current binary (yb-tserver, or yb-master) is located.
   // During each iteration, we keep going up one directory and do the search again.

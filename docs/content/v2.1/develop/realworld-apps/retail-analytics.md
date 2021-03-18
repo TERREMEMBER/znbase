@@ -2,7 +2,7 @@
 title: Retail analytics example application
 headerTitle: Retail analytics sample application
 linkTitle: Retail Analytics
-description: Run this retail analytics sample application on YugabyteDB and explore YSQL.
+description: Run this retail analytics sample application on ZNbaseDB and explore YSQL.
 block_indexing: true
 menu:
   v2.1:
@@ -15,20 +15,20 @@ showAsideToc: true
 
 ## 1. Start local cluster
 
-Follow [Quick Start](../../../quick-start/) instructions to run a local YugabyteDB cluster. Test the YSQL API as [documented](../../../quick-start/explore-ysql/) so that you can confirm that you have the YSQL service running on `localhost:5433`. 
+Follow [Quick Start](../../../quick-start/) instructions to run a local ZNbaseDB cluster. Test the YSQL API as [documented](../../../quick-start/explore-ysql/) so that you can confirm that you have the YSQL service running on `localhost:5433`. 
 
 ## 2. Load data
 
 ### Download the sample schema
 
 ```sh
-$ wget https://raw.githubusercontent.com/yugabyte/yb-sql-workshop/master/query-using-bi-tools/schema.sql
+$ wget https://raw.githubusercontent.com/ZNbase/yb-sql-workshop/master/query-using-bi-tools/schema.sql
 ```
 
 ### Download the sample data
 
 ```sh
-$ wget https://github.com/yugabyte/yb-sql-workshop/raw/master/query-using-bi-tools/sample-data.tgz
+$ wget https://github.com/ZNbase/yb-sql-workshop/raw/master/query-using-bi-tools/sample-data.tgz
 ```
 
 ```sh
@@ -43,7 +43,7 @@ $ ls data/
 orders.sql  products.sql  reviews.sql users.sql
 ```
 
-### Connect to YugabyteDB using ysqlsh
+### Connect to ZNbaseDB using ysqlsh
 
 ```sh
 $ ./bin/ysqlsh
@@ -53,7 +53,7 @@ $ ./bin/ysqlsh
 ysqlsh (11.2)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 ### Create a database
@@ -61,15 +61,15 @@ yugabyte=#
 You can do this as shown below.
 
 ```postgresql
-yugabyte=# CREATE DATABASE yb_demo;
+ZNbase=# CREATE DATABASE yb_demo;
 ```
 
 ```postgresql
-yugabyte=# GRANT ALL ON DATABASE yb_demo to yugabyte;
+ZNbase=# GRANT ALL ON DATABASE yb_demo to ZNbase;
 ```
 
 ```postgresql
-yugabyte=# \c yb_demo;
+ZNbase=# \c yb_demo;
 ```
 
 ### Load data
@@ -77,25 +77,25 @@ yugabyte=# \c yb_demo;
 First create the four tables necessary to store the data.
 
 ```postgresql
-yugabyte=# \i 'schema.sql';
+ZNbase=# \i 'schema.sql';
 ```
 
 Now load the data into the tables.
 
 ```postgresql
-yugabyte=# \i 'data/products.sql'
+ZNbase=# \i 'data/products.sql'
 ```
 
 ```postgresql
-yugabyte=# \i 'data/users.sql'
+ZNbase=# \i 'data/users.sql'
 ```
 
 ```postgresql
-yugabyte=# \i 'data/orders.sql'
+ZNbase=# \i 'data/orders.sql'
 ```
 
 ```postgresql
-yugabyte=# \i 'data/reviews.sql'
+ZNbase=# \i 'data/reviews.sql'
 ```
 
 ## 3. Run queries

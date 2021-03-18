@@ -3,7 +3,7 @@
  * ybc_catalog_version.h
  *	  utility functions related to the ysql catalog version table.
  *
- * Portions Copyright (c) YugaByte, Inc.
+ * Portions Copyright (c) ZNbase, Inc.
  *
  * src/include/catalog/ybc_catalog_version.h
  *
@@ -19,7 +19,7 @@
 /*
  * Enum representing how the catalog version is stored on this cluster.
  * Needed for backwards-compatibility with old clusters.
- * Should only be set once per process (first time the catalog version is 
+ * Should only be set once per process (first time the catalog version is
  * requested) and never modified afterwards.
  * TODO: Once cluster/initdb upgrade is supported (#2272) we should use it
  * to upgrade old cluster and remove the now-obsolete protobuf-based paths.

@@ -48,15 +48,15 @@ This SQLAlchemy ORM example, running on Python, implements a simple REST API ser
 - `orders`: the orders placed by the users
 - `orderline`: each line item of an order
 
-The source for this application can be found in the [`python/sqlalchemy` directory](https://github.com/yugabyte/orm-examples/tree/master/python/sqlalchemy) of Yugabyte's [Using ORMs with YugabyteDB](https://github.com/yugabyte/orm-examples) GitHub repository.
+The source for this application can be found in the [`python/sqlalchemy` directory](https://github.com/ZNbase/orm-examples/tree/master/python/sqlalchemy) of ZNbase's [Using ORMs with ZNbaseDB](https://github.com/ZNbase/orm-examples) GitHub repository.
 
 ## Before you begin
 
 To configure and run this application, make sure that you've completed these prerequisites.
 
-### YugabyteDB
+### ZNbaseDB
 
-YugabyteDB is up and running. If you are new to YugabyteDB, you can have YugabyteDB up and running within five minutes by following the steps in [Quick start](../../../../quick-start/).
+ZNbaseDB is up and running. If you are new to ZNbaseDB, you can have ZNbaseDB up and running within five minutes by following the steps in [Quick start](../../../../quick-start/).
 
 ### Python
 
@@ -78,21 +78,21 @@ $ pip3 install psycopg2-binary sqlalchemy jsonpickle
 
 ## Clone the "orm-examples" repository
 
-Clone the Yugabyte [`orm-examples` repository](https://github.com/yugabyte/orm-examples) by running the following command.
+Clone the ZNbase [`orm-examples` repository](https://github.com/ZNbase/orm-examples) by running the following command.
 
 ```sh
-$ git clone https://github.com/yugabyte/orm-examples.git
+$ git clone https://github.com/ZNbase/orm-examples.git
 ```
 
-Update the database settings in the `src/config.py` file to match the following. If YSQL authentication is enabled, add the password (default for the `yugabyte` user is `yugabyte`).
+Update the database settings in the `src/config.py` file to match the following. If YSQL authentication is enabled, add the password (default for the `ZNbase` user is `ZNbase`).
 
 ```
 import logging
 
 
 listen_port = 8080
-db_user = 'yugabyte'
-db_password = 'yugabyte'
+db_user = 'ZNbase'
+db_password = 'ZNbase'
 database = 'ysql_sqlalchemy'
 schema = 'ysql_sqlalchemy'
 db_host = 'localhost'
@@ -168,11 +168,11 @@ $ ./bin/ysqlsh
 ysqlsh (11.2)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM users;
+ZNbase=# SELECT count(*) FROM users;
 ```
 
 ```
@@ -183,7 +183,7 @@ yugabyte=# SELECT count(*) FROM users;
 ```
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM products;
+ZNbase=# SELECT count(*) FROM products;
 ```
 
 ```
@@ -194,7 +194,7 @@ yugabyte=# SELECT count(*) FROM products;
 ```
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM orders;
+ZNbase=# SELECT count(*) FROM orders;
 ```
 
 ```
@@ -294,4 +294,4 @@ $ curl http://localhost:8080/orders
 
 ## Explore the source
 
-The source for the application above can be found in the Yugabyte [orm-examples](https://github.com/yugabyte/orm-examples/tree/master/python/sqlalchemy) repository.
+The source for the application above can be found in the ZNbase [orm-examples](https://github.com/ZNbase/orm-examples/tree/master/python/sqlalchemy) repository.

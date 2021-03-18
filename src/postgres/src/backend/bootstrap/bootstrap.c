@@ -517,10 +517,10 @@ BootstrapModeMain(void)
 
 
 	/*
-	 * In YugaByte we only need to create the template1 database
+	 * In ZNbase we only need to create the template1 database
 	 * (corresponding to creating the "base/1" subdir as its oid is hardcoded).
 	 */
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 	{
 		YBCCreateDatabase(TemplateDbOid,
 		                  "template1",
@@ -536,8 +536,8 @@ BootstrapModeMain(void)
 	boot_yyparse();
 	CommitTransactionCommand();
 
-	/* We do not use a relation map file in YugaByte mode yet */
-	if (!IsYugaByteEnabled())
+	/* We do not use a relation map file in ZNbase mode yet */
+	if (!IsZNbaseEnabled())
 	{
 		/*
 		 * We should now know about all mapped relations, so it's okay to write
@@ -823,7 +823,7 @@ InsertOneTuple(Oid objectid)
 	if (objectid != (Oid) 0)
 		HeapTupleSetOid(tuple, objectid);
 
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 		YBCExecuteInsert(boot_reldesc, tupDesc, tuple);
 	else
 		simple_heap_insert(boot_reldesc, tuple);

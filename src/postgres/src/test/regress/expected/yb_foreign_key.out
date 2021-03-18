@@ -2,7 +2,7 @@
 -- FOREIGN KEY (YB-added tests)
 --
 -- TODO: Run this test with REPEATABLE READ isolation level:
---       https://github.com/yugabyte/yugabyte-db/issues/2604
+--       https://github.com/ZNbase/ZNbase-db/issues/2604
 --
 -- MATCH FULL
 --

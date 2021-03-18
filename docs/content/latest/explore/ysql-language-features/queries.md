@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This section describes how to query YugabyteDB using the YSQL `SELECT` statement and its clauses.
+This section describes how to query ZNbaseDB using the YSQL `SELECT` statement and its clauses.
 
 ## Querying Data
 
@@ -102,7 +102,7 @@ SELECT 2 * 5;
 You can always view your table definitions by executing the following command:
 
 ```shell
-yugabyte=# \d employees
+ZNbase=# \d employees
 ```
 
 ### Column Aliases
@@ -609,8 +609,8 @@ perm_employee_no  | perm_name           | perm_department
 You can always view your table definitions by executing the following commands:
 
 ```shell
-yugabyte=# \d fulltime_employees
-yugabyte=# \d permanent_employees
+ZNbase=# \d fulltime_employees
+ZNbase=# \d permanent_employees
 ```
 
 ### Inner Join
@@ -976,4 +976,4 @@ employee_no | name            | manager_id  | department
 1225        | Walter Marx     | 1222        | Sales
 ```
 
-Another way to execute complex hierarchical queries is to use a `tablefunc` extension. This extension provides several table functions, such as, for example, `normal_rand()` that creates values picked using a pseudorandom generator from an ideal normal distribution. For more information and examples, see [tablefunc](https://docs.yugabyte.com/latest/api/ysql/extensions/#tablefunc).
+Another way to execute complex hierarchical queries is to use a `tablefunc` extension. This extension provides several table functions, such as, for example, `normal_rand()` that creates values picked using a pseudorandom generator from an ideal normal distribution. For more information and examples, see [tablefunc](https://docs.ZNbase.com/latest/api/ysql/extensions/#tablefunc).

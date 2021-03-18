@@ -80,7 +80,7 @@ usage(unsigned short int pager)
 	if (!env)
 		env = user;
 	fprintf(output, _("  -c, --command=COMMAND    run only single command (SQL or internal) and exit\n"));
-	fprintf(output, _("  -d, --dbname=DBNAME      database name to connect to (default: \"yugabyte\")\n"));
+	fprintf(output, _("  -d, --dbname=DBNAME      database name to connect to (default: \"ZNbase\")\n"));
 	fprintf(output, _("  -f, --file=FILENAME      execute commands from file, then exit\n"));
 	fprintf(output, _("  -l, --list               list available databases, then exit\n"));
 	fprintf(output, _("  -v, --set=, --variable=NAME=VALUE\n"
@@ -126,26 +126,26 @@ usage(unsigned short int pager)
 	fprintf(output, _("\nConnection options:\n"));
 	/* Display default host */
 	env = getenv("PGHOST");
-	/* YugaByte use localhost instead of local socket */
+	/* ZNbase use localhost instead of local socket */
 	fprintf(output, _("  -h, --host=HOSTNAME      database server host or socket directory (default: \"%s\")\n"),
 			env ? env : "localhost");
-	/* YugaByte end */
+	/* ZNbase end */
 	/* Display default port */
 	env = getenv("PGPORT");
-	/* Use YugaByte default port */
+	/* Use ZNbase default port */
 	fprintf(output, _("  -p, --port=PORT          database server port (default: \"%s\")\n"),
 			env ? env : DEF_YBPORT_STR);
 	/* Display default user */
 	env = getenv("PGUSER");
 	if (!env)
 		env = user;
-	fprintf(output, _("  -U, --username=USERNAME  database user name (default: \"yugabyte\")\n"));
+	fprintf(output, _("  -U, --username=USERNAME  database user name (default: \"ZNbase\")\n"));
 	fprintf(output, _("  -w, --no-password        never prompt for password\n"));
 	fprintf(output, _("  -W, --password           force password prompt (should happen automatically)\n"));
 
 	fprintf(output, _("\nFor more information, type \"\\?\" (for internal commands) or \"\\help\" (for SQL\n"
-					  "commands) from within ysqlsh, or consult the ysqlsh section in YugabyteDB docs.\n\n"));
-	fprintf(output, _("Report bugs on GitHub at https://github.com/YugaByte/yugabyte-db/issues.\n"));
+					  "commands) from within ysqlsh, or consult the ysqlsh section in ZNbaseDB docs.\n\n"));
+	fprintf(output, _("Report bugs on GitHub at https://github.com/ZNbase/ZNbase-db/issues.\n"));
 
 	ClosePager(output);
 }

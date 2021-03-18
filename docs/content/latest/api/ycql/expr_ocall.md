@@ -2,7 +2,7 @@
 title: Operators [YCQL]
 headerTitle: YCQL operators
 linkTitle: Operators
-description: Combine multiple expressions using YCQL operators supported in YugabyteDB.
+description: Combine multiple expressions using YCQL operators supported in ZNbaseDB.
 menu:
   latest:
     parent: api-cassandra
@@ -14,7 +14,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-An expression with operators is a compound expression that combines multiple expressions using built-in operators. The following sections discuss the YCQL operators in YugabyteDB.
+An expression with operators is a compound expression that combines multiple expressions using built-in operators. The following sections discuss the YCQL operators in ZNbaseDB.
 
 ## Null operators
 

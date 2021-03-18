@@ -12,7 +12,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-[DBeaver](https://dbeaver.io/) is a free (and [open source](https://github.com/dbeaver/dbeaver)) multi-platform, cross-platform database tool for developers, SQL programmers, database administrators, and analysts. DBeaver is written in Java, based on the [Eclipse](https://www.eclipse.org/) platform, and supports supports any database that ha a JDBC driver, including PostgreSQL, MariaDB, and MySQL. And, using the PostgreSQL JDBC driver, you can use DBeaver with YugabyteDB.
+[DBeaver](https://dbeaver.io/) is a free (and [open source](https://github.com/dbeaver/dbeaver)) multi-platform, cross-platform database tool for developers, SQL programmers, database administrators, and analysts. DBeaver is written in Java, based on the [Eclipse](https://www.eclipse.org/) platform, and supports supports any database that ha a JDBC driver, including PostgreSQL, MariaDB, and MySQL. And, using the PostgreSQL JDBC driver, you can use DBeaver with ZNbaseDB.
 
 The [DBeaver Community Edition](https://dbeaver.io/) includes these features:
 
@@ -30,9 +30,9 @@ The [DBeaver Enterprise Edition](https://dbeaver.com/) adds support for non-JDBC
 
 Before getting started with DBeaver, make sure you meet the following prerequisites.
 
-### YugabyteDB
+### ZNbaseDB
 
-Your YugabyteDB cluster should be up and running. If you're new to YugabyteDB, create a local cluster in less than five minutes following the steps in [Quick Start](../../../quick-start/install).
+Your ZNbaseDB cluster should be up and running. If you're new to ZNbaseDB, create a local cluster in less than five minutes following the steps in [Quick Start](../../../quick-start/install).
 
 ### Java Runtime Environment (JRE)
 
@@ -42,9 +42,9 @@ JDK and JRE installers for Linux, macOS, and Windows can be downloaded from [Ope
 
 ### PostgreSQL JDBC driver
 
-The [PostgreSQL JDBC driver](https://jdbc.postgresql.org/) can be used with DBeaver to work with YugabyteDB databases. 
+The [PostgreSQL JDBC driver](https://jdbc.postgresql.org/) can be used with DBeaver to work with ZNbaseDB databases. 
 
-To connect DBeaver to a YugabyteDB cluster, you need the PostgreSQL JDBC driver installed. To download the current version that supports Java 8 or later, go to the [PostgreSQL JDBC Driver download](https://jdbc.postgresql.org/download.html) page.
+To connect DBeaver to a ZNbaseDB cluster, you need the PostgreSQL JDBC driver installed. To download the current version that supports Java 8 or later, go to the [PostgreSQL JDBC Driver download](https://jdbc.postgresql.org/download.html) page.
 
 ## Install DBeaver
 
@@ -66,7 +66,7 @@ To connect DBeaver to a YugabyteDB cluster, you need the PostgreSQL JDBC driver 
 
 4. Make the following changes in the **Settings**:
 
-    - **DriverName**: `YugabyteDB` — Default name is "PostgreSQL", but using "YugabyteDB" might help you not confuse this driver's settings with PostgreSQL connections using the PostgreSQL port of `5432`.
+    - **DriverName**: `ZNbaseDB` — Default name is "PostgreSQL", but using "ZNbaseDB" might help you not confuse this driver's settings with PostgreSQL connections using the PostgreSQL port of `5432`.
     - **Driver Type**: `PostgreSQL` (selected)
     - **Class Name**: `org.postgresql.Driver`
     - **URL Template**: `jdbc.postgresql://{host}[:{port}/[{database}]` (read-only)
@@ -76,30 +76,30 @@ To connect DBeaver to a YugabyteDB cluster, you need the PostgreSQL JDBC driver 
 
 6. Click **OK**. The **Create new driver** window closes. 
 
-7. Verify that the new "YugabyteDB" driver appears in the **Driver Manager** listing and then click **Close**.
+7. Verify that the new "ZNbaseDB" driver appears in the **Driver Manager** listing and then click **Close**.
 
 ## Create a database connection
 
 1. On the DBeaver menu, select **Database > New Connection**. The **Connect to database** window appears.
 
-2. In the **Select your database** listing, select **YugabyteDB** and then click **Next**.
+2. In the **Select your database** listing, select **ZNbaseDB** and then click **Next**.
 
 3. In the **Connection Settings**, add the following settings:
 
     - **Host**: `localhost`
     - **Port**: `5433`
     - **Database**: Clear the default value (`postgres`)
-    - **User**: `yugabyte` (default is `postgres`)
-    - **Password**: Leave blank if YSQL authentication is not enabled. If enabled, add the password for `yugabyte` (default is `yugabyte`).
+    - **User**: `ZNbase` (default is `postgres`)
+    - **Password**: Leave blank if YSQL authentication is not enabled. If enabled, add the password for `ZNbase` (default is `ZNbase`).
     - **Show all databases**: Select this option.
 
 4. Click **Test Connection** to verify that the connection is successful.
 
 5. Click **Finish**.
 
-6. In the DBeaver application, you should now see "Yugabyte - localhost" in the **Database Navigator** panel.
+6. In the DBeaver application, you should now see "ZNbase - localhost" in the **Database Navigator** panel.
 
-You can now expand the listing and see a listing of all databases available to the `yugabyte` user.
+You can now expand the listing and see a listing of all databases available to the `ZNbase` user.
 
  ![Listing of databases](/images/develop/tools/dbeaver/dbeaver-list-of-databases.png)
 
@@ -107,4 +107,4 @@ You can now expand the listing and see a listing of all databases available to t
 
 DBeaver has lots of features for developers and administrators to explore. For help using DBeaver, see the [DBeaver.io](https://dbeaver.io/) website and the [DBeaver documentation](https://github.com/dbeaver/dbeaver/wiki).
 
-If you're looking for sample databases to explore YugabyteDB using DBeaver, see [Sample data](../../sample-data/).
+If you're looking for sample databases to explore ZNbaseDB using DBeaver, see [Sample data](../../sample-data/).

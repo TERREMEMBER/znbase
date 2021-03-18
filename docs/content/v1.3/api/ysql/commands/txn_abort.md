@@ -57,7 +57,7 @@ Add optional keyword — has no effect.
 Add optional keyword — has no effect.
 
 - The `SERIALIZABLE` isolation level not yet supported. (This is currently in progress).
-- Currently YugabyteDB will always use the snapshot isolation level internally. For more information, see [Isolation levels](../../../architecture/transactions/isolation-levels/).
+- Currently ZNbaseDB will always use the snapshot isolation level internally. For more information, see [Isolation levels](../../../architecture/transactions/isolation-levels/).
 
 ## Examples
 

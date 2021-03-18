@@ -43,15 +43,15 @@ The following tutorial implements an an ORM example using [GORM](https://gorm.io
 - `orders` table — the orders placed by the users
 - `orderline` table — each line item of an order
 
-The source for the above application can be found in the [repository](https://github.com/yugabyte/orm-examples/tree/master/golang/gorm). There are a number of options that can be customized in the properties file located at `src/config/config.json`.
+The source for the above application can be found in the [repository](https://github.com/ZNbase/orm-examples/tree/master/golang/gorm). There are a number of options that can be customized in the properties file located at `src/config/config.json`.
 
 ## Before you begin
 
 This tutorial assumes that you have satisfied the following prerequisites.
 
-### YugabyteDB
+### ZNbaseDB
 
-YugabyteDB is up and running. If you are new to YugabyteDB, you can have YugabyteDB up and running within five minutes by following the steps in [Quick start](../../../../quick-start/).
+ZNbaseDB is up and running. If you are new to ZNbaseDB, you can have ZNbaseDB up and running within five minutes by following the steps in [Quick start](../../../../quick-start/).
 
 ### Go
 
@@ -72,10 +72,10 @@ go get github.com/lib/pq/hstore
 
 ## Clone the "orm-examples" repository
 
-Clone the Yugabyte [`orm-examples` repository](https://github.com/yugabyte/orm-examples) by running the following command.
+Clone the ZNbase [`orm-examples` repository](https://github.com/ZNbase/orm-examples) by running the following command.
 
 ```sh
-$ git clone https://github.com/yugabyte/orm-examples.git
+$ git clone https://github.com/ZNbase/orm-examples.git
 ```
 
 Run the following `export` command to specify the `GOPATH` environment variable.
@@ -92,7 +92,7 @@ Change to the `gorm` directory.
 $ cd ./golang/gorm
 ```
 
-Create the `ysql_gorm` database in YugabyteDB by running the following `ysqlsh` command from the YugabyteDB home directory.
+Create the `ysql_gorm` database in ZNbaseDB by running the following `ysqlsh` command from the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/ysqlsh -c "CREATE DATABASE ysql_gorm"
@@ -160,11 +160,11 @@ $ ./bin/ysqlsh
 ysqlsh (11.2)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM users;
+ZNbase=# SELECT count(*) FROM users;
 ```
 
 ```
@@ -175,7 +175,7 @@ yugabyte=# SELECT count(*) FROM users;
 ```
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM products;
+ZNbase=# SELECT count(*) FROM products;
 ```
 
 ```
@@ -186,7 +186,7 @@ yugabyte=# SELECT count(*) FROM products;
 ```
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM orders;
+ZNbase=# SELECT count(*) FROM orders;
 ```
 
 ```
@@ -286,4 +286,4 @@ $ curl http://localhost:8080/orders
 
 ## Explore the source
 
-As mentioned earlier, the source for this application can be found in the Yugabyte [orm-examples](https://github.com/yugabyte/orm-examples/tree/master/golang/gorm) repository.
+As mentioned earlier, the source for this application can be found in the ZNbase [orm-examples](https://github.com/ZNbase/orm-examples/tree/master/golang/gorm) repository.

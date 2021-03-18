@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -460,7 +460,7 @@ Important notable changes:
 - you no longer need new diffs for custom flags, just use --tserver_flags/--master_flags
 - yb-ctl is the same script the community will use for local testing
 
-We will aim to maintain https://docs.yugabyte.com/admin/yb-ctl/ as public facing documentation!
+We will aim to maintain https://docs.ZNbase.com/admin/yb-ctl/ as public facing documentation!
 ****************************************************************************************************
 EOF
 echo -e "\033[0m"
@@ -539,18 +539,18 @@ if [ -z "$cmd" ]; then
   exit 1
 fi
 
-cluster_base_dir=/tmp/yugabyte-local-cluster
+cluster_base_dir=/tmp/ZNbase-local-cluster
 
-yugabyte_root=$( cd "$( dirname "$0" )"/.. && pwd )
+ZNbase_root=$( cd "$( dirname "$0" )"/.. && pwd )
 
-if [ ! -d "$yugabyte_root/src" ] || \
-   [ ! -d "$yugabyte_root/build" ]; then
-  echo "Could not recognize '$yugabyte_root' as a valid YugaByte source root:" \
+if [ ! -d "$ZNbase_root/src" ] || \
+   [ ! -d "$ZNbase_root/build" ]; then
+  echo "Could not recognize '$ZNbase_root' as a valid ZNbase source root:" \
     "subdirectories 'src' and 'build' do not exist." >&2
   exit 1
 fi
 
-build_root="$yugabyte_root/build/latest"
+build_root="$ZNbase_root/build/latest"
 
 if [ -f "$build_root" ]; then
   echo "Could not find build directory: '$build_root'" >&2
@@ -591,9 +591,9 @@ ensure_binary_exists "$master_binary"
 tserver_binary="$build_root/bin/yb-tserver"
 ensure_binary_exists "$tserver_binary"
 
-yql_root="$yugabyte_root/yql"
+yql_root="$ZNbase_root/yql"
 
-export YB_HOME="$yugabyte_root"
+export YB_HOME="$ZNbase_root"
 
 count_running_daemons
 if [[ "$cmd" =~ ^[a-z]+-(master|tserver)$ ]]; then

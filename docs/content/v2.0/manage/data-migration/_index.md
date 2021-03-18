@@ -3,7 +3,7 @@ title: Data migration
 linkTitle: Data migration
 description: Data migration
 image: /images/section_icons/manage/enterprise.png
-headcontent: Bulk import/export data to/from YugabyteDB.
+headcontent: Bulk import/export data to/from ZNbaseDB.
 block_indexing: true
 menu:
   v2.0:
@@ -12,7 +12,7 @@ menu:
     weight: 703
 ---
 
-This section goes into details of importing data into YugabyteDB as well as exporting data out of YugabyteDB.
+This section goes into details of importing data into ZNbaseDB as well as exporting data out of ZNbaseDB.
 
 <div class="row">
   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
@@ -22,7 +22,7 @@ This section goes into details of importing data into YugabyteDB as well as expo
         <div class="title">Bulk import</div>
       </div>
       <div class="body">
-        This section describes how to bulk import data into YugabyteDB.
+        This section describes how to bulk import data into ZNbaseDB.
       </div>
     </a>
   </div>
@@ -33,7 +33,7 @@ This section goes into details of importing data into YugabyteDB as well as expo
         <div class="title">Bulk export</div>
       </div>
       <div class="body">
-        This section describes how to bulk export data out of YugabyteDB.
+        This section describes how to bulk export data out of ZNbaseDB.
       </div>
     </a>
   </div>

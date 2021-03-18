@@ -2,7 +2,7 @@
 title: E-commerce sample application
 headerTitle: E-Commerce app
 linkTitle: E-Commerce app
-description: Run an e-commerce sample application built on YugabyteDB.
+description: Run an e-commerce sample application built on ZNbaseDB.
 menu:
   stable:
     identifier: ecommerce-app
@@ -14,9 +14,9 @@ showAsideToc: true
 
 ## Overview
 
-Yugastore is a sample, full-stack online bookstore, or more generally, an e-commerce app built on top of YugabyteDB. It is a cloud native, distributed app built on a microservices architecture. YugabyteDB simplifies the development of such apps by providing a SQL-like API (based on Cassandra Query Language) and a Redis-API on top of a common database. The app can be deployed and run on VMs or using StatefulSets in Kubernetes.
+Yugastore is a sample, full-stack online bookstore, or more generally, an e-commerce app built on top of ZNbaseDB. It is a cloud native, distributed app built on a microservices architecture. ZNbaseDB simplifies the development of such apps by providing a SQL-like API (based on Cassandra Query Language) and a Redis-API on top of a common database. The app can be deployed and run on VMs or using StatefulSets in Kubernetes.
 
-You can browse the [Yugastore source-code on GitHub](https://github.com/yugabyte/yugastore). It is fully open-source.
+You can browse the [Yugastore source-code on GitHub](https://github.com/ZNbase/yugastore). It is fully open-source.
 
 ![Yugastore app screenshot](/images/develop/realworld-apps/ecommerce-app/yugastore-app-screenshots.png)
 
@@ -47,23 +47,23 @@ This app is built using the following stack:
 
 - Frontend: [React](https://reactjs.org/)
 - Backend: [Express](https://expressjs.com/) and [NodeJS](https://nodejs.org/en/)
-- Database: [YugabyteDB](https://www.yugabyte.com/)
+- Database: [ZNbaseDB](https://www.ZNbase.com/)
 
-![YERN stack](/images/develop/realworld-apps/ecommerce-app/yugabyte-express-react-nodejs.png)
+![YERN stack](/images/develop/realworld-apps/ecommerce-app/ZNbase-express-react-nodejs.png)
 
 All the source for the various components can be found in the following locations:
 
 - React UI
-  - You can see all the React routes in [index.js](https://github.com/yugabyte/yugastore/blob/master/ui/src/index.js).
-  - You can find the components in the [ui/src/components](https://github.com/yugabyte/yugastore/tree/master/ui/src/components) subdirectory.
+  - You can see all the React routes in [index.js](https://github.com/ZNbase/yugastore/blob/master/ui/src/index.js).
+  - You can find the components in the [ui/src/components](https://github.com/ZNbase/yugastore/tree/master/ui/src/components) subdirectory.
 
 - Express / NodeJS web framework
-  - You can find all the REST API routes for products in [routes/product.js](https://github.com/yugabyte/yugastore/blob/master/routes/products.js).
-  - You can find the web framework setup in [app.js](https://github.com/yugabyte/yugastore/blob/master/app.js).
+  - You can find all the REST API routes for products in [routes/product.js](https://github.com/ZNbase/yugastore/blob/master/routes/products.js).
+  - You can find the web framework setup in [app.js](https://github.com/ZNbase/yugastore/blob/master/app.js).
 
 - Models
-  - The sample data is present in [models/products.json](https://github.com/yugabyte/yugastore/blob/master/models/sample_data.json)
-  - The data loader is in the file [models/yugabyte/db_init.js](https://github.com/yugabyte/yugastore/blob/master/models/yugabyte/db_init.js).
+  - The sample data is present in [models/products.json](https://github.com/ZNbase/yugastore/blob/master/models/sample_data.json)
+  - The data loader is in the file [models/ZNbase/db_init.js](https://github.com/ZNbase/yugastore/blob/master/models/ZNbase/db_init.js).
 
 The sections below describe the architecture / data model for the various features in the app.
 
@@ -94,7 +94,7 @@ The dynamic attributes for rendering sorted views (such as *highly rated* or *mo
 127.0.0.1:6379> ZADD allproducts:num_stars <num-stars> <product-id>
 ```
 
-The sample list of products are in the [`models/sample_data.json`](https://github.com/yugabyte/yugastore/blob/master/models/sample_data.json) file in the codebase. The file has entries such as the following:
+The sample list of products are in the [`models/sample_data.json`](https://github.com/ZNbase/yugastore/blob/master/models/sample_data.json) file in the codebase. The file has entries such as the following:
 
 ```json
 {
@@ -118,7 +118,7 @@ The sample list of products are in the [`models/sample_data.json`](https://githu
     ...
 ```
 
-The [`db_init.js`](https://github.com/yugabyte/yugastore/blob/master/models/yugabyte/db_init.js) node script loads the static attributes of the sample data using the following Cassandra batch insert API into YugabyteDB.
+The [`db_init.js`](https://github.com/ZNbase/yugastore/blob/master/models/ZNbase/db_init.js) node script loads the static attributes of the sample data using the following Cassandra batch insert API into ZNbaseDB.
 
 ```js
 insert_batch.push({
@@ -127,7 +127,7 @@ insert_batch.push({
 });
 ```
 
-The dynamic attributes are loaded using the Redis-compatible YEDIS API into YugabyteDB.
+The dynamic attributes are loaded using the Redis-compatible YEDIS API into ZNbaseDB.
 
 ```
 ybRedisClient.zadd("allproducts:num_reviews", e.num_reviews, e.id);
@@ -260,4 +260,4 @@ ybRedis.incrby("pageviews:product:5:count", 1);
 
 ## Summary
 
-This application is a blueprint for building eCommerce and other similar web applications. The instructions to build and run the application, as well as the source code, can be found in the [Yugastore GitHub repository](https://github.com/yugabyte/yugastore).
+This application is a blueprint for building eCommerce and other similar web applications. The instructions to build and run the application, as well as the source code, can be found in the [Yugastore GitHub repository](https://github.com/ZNbase/yugastore).

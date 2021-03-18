@@ -83,7 +83,7 @@ $body$;
 
 It will be useful to insert the paths that the code examples for the various kinds of graph generate into a table so that subsequent ad _hoc_ queries can be run on these results. For example, it is interesting to generate the set of shortest paths to the distinct reachable nodes (see _["restrict_to_shortest_paths()"](#cr-restrict-to-shortest-paths-sql)_). Because all these tables have the same shape and constraints, it is best to use dynamic SQL issued from a procedure to create them.
 
-Notice that, in order to ensure that every computed path is unique, a unique index is created on the _"path"_ column. However, [GitHub Issue #6606](https://github.com/yugabyte/yugabyte-db/issues/6606) currently prevents the direct creation of an index on an array. The workaround is to create the index on the `text` typecast of the array. However,  the naïve attempt:
+Notice that, in order to ensure that every computed path is unique, a unique index is created on the _"path"_ column. However, [GitHub Issue #6606](https://github.com/ZNbase/ZNbase-db/issues/6606) currently prevents the direct creation of an index on an array. The workaround is to create the index on the `text` typecast of the array. However,  the naïve attempt:
 
 ```
 create index i1 on t1((arr::text));
@@ -213,7 +213,7 @@ create unique index shortest_paths_start_terminal_unq on shortest_paths(start(pa
 
 The solution to the [Bacon Numbers](../../bacon-numbers/) problem needs only the _shortest path_ to all those actors who have a transitive "both acted in the same movie" relationship to Kevin Bacon. But, in general, there will be _many_ paths that reflect this transitive relationship. Indeed, there might even be two or more paths that each has the same shortest length.
 
-The _"restrict_to_shortest_paths()"_ procedure finds just one shortest path to each reachable node from the set of all paths to reachable nodes. When there do exist two or more shortest paths to the same node, it selects the first one in the path sorting order. The advantage of this scheme over picking one of the contenders randomly is that the result is deterministic. This allows for a meaningful comparison between the result from running two overall analyses in two different databases. This is crucial when the aim is to confirm that PostgreSQL and YugabyteDB produce the same result from the same starting data, where, without a reliable ordering scheme, differences in physical data storage might produce different actual orders of results.
+The _"restrict_to_shortest_paths()"_ procedure finds just one shortest path to each reachable node from the set of all paths to reachable nodes. When there do exist two or more shortest paths to the same node, it selects the first one in the path sorting order. The advantage of this scheme over picking one of the contenders randomly is that the result is deterministic. This allows for a meaningful comparison between the result from running two overall analyses in two different databases. This is crucial when the aim is to confirm that PostgreSQL and ZNbaseDB produce the same result from the same starting data, where, without a reliable ordering scheme, differences in physical data storage might produce different actual orders of results.
 
 Notice how ordinary (non-recursive) CTEs are used, just as functions and procedures are used in procedural programming, to encapsulate and name distinct steps in the code. Try to implement the logic without using this technique. The exercise will very vividly highlight the expressive value that the `WITH` clause provides.
 
@@ -417,7 +417,7 @@ $body$;
 
 The table function _"list_paths()"_ achieves what you could achieve with an ordinary top-level SQL statement if you edited it before each execution to  use the name of the target table of interest. This is a canonical use case for dynamic SQL.
 
-[GitHub issue #3286](https://github.com/yugabyte/yugabyte-db/issues/3286) prevents you using dynamic SQL for a `SELECT` statement that returns more than one row. The function [`array_agg()`](../../../../datatypes/type_array/functions-operators/array-agg-unnest/#array-agg) enables a simple workaround.
+[GitHub issue #3286](https://github.com/ZNbase/ZNbase-db/issues/3286) prevents you using dynamic SQL for a `SELECT` statement that returns more than one row. The function [`array_agg()`](../../../../datatypes/type_array/functions-operators/array-agg-unnest/#array-agg) enables a simple workaround.
 
 Notice the use of "translate" and "replace" on the text literal representation of a `text[]` value to produce a nice human-readable path display. This crude approach is sufficient only when the individual `text` array elements have no interior commas, curly braces, or double-quotes—as is the case with the names of actors. A robust approach needs to start with the proper `text[]` value and step along using, say, a `FOREACH` loop to assign each element in turn to a `text` variable. This technique is used in the [`cr-decorated-paths-report.sql`](../../bacon-numbers/#cr-decorated-paths-report-sql) script.
 

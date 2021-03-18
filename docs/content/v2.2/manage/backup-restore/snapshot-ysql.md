@@ -2,7 +2,7 @@
 title: Snapshot and restore data for YSQL
 headerTitle: Snapshot and restore data
 linkTitle: Snapshot and restore data
-description: Snapshot and restore data in YugabyteDB for YSQL.
+description: Snapshot and restore data in ZNbaseDB for YSQL.
 image: /images/section_icons/manage/enterprise.png
 block_indexing: true
 menu:
@@ -32,7 +32,7 @@ showAsideToc: true
 
 </ul>
 
-YugabyteDB supports distributed backup and restore of YSQL databases. Backing up and restoring of individual tables within a database is not yet supported.
+ZNbaseDB supports distributed backup and restore of YSQL databases. Backing up and restoring of individual tables within a database is not yet supported.
 
 ## Create a snapshot for a YSQL database
 
@@ -124,7 +124,7 @@ cp test.snapshot ysql.schema.sql snapshot/
 This needs to be done for all tablets of all tables in the database.
 
 ```sh
-cp -r ~/yugabyte-data/node-1/disk-1/yb-data/tserver/data/rocksdb/table-00004000000030008000000000004003/tablet-b0de9bc6a4cb46d4aaacf4a03bcaf6be.snapshots snapshot/
+cp -r ~/ZNbase-data/node-1/disk-1/yb-data/tserver/data/rocksdb/table-00004000000030008000000000004003/tablet-b0de9bc6a4cb46d4aaacf4a03bcaf6be.snapshots snapshot/
 ```
 
 Your snapshot of the YSQL database is complete.
@@ -178,11 +178,11 @@ yb-data/tserver/data/rocksdb/table-<tableid>/tablet-<tabletid>.snapshots
 In our example, it’ll be:
 
 ```sh
-cp -r snapshot/tablet-b0de9bc6a4cb46d4aaacf4a03bcaf6be.snapshots/0d4b4935-2c95-4523-95ab-9ead1e95e794 ~/yugabyte-data-restore/node-1/disk-1/yb-data/tserver/data/rocksdb/table-00004000000030008000000000004001/tablet-50046f422aa6450ca82538e919581048.snapshots/6beb9c0e-52ea-4f61-89bd-c160ec02c729
+cp -r snapshot/tablet-b0de9bc6a4cb46d4aaacf4a03bcaf6be.snapshots/0d4b4935-2c95-4523-95ab-9ead1e95e794 ~/ZNbase-data-restore/node-1/disk-1/yb-data/tserver/data/rocksdb/table-00004000000030008000000000004001/tablet-50046f422aa6450ca82538e919581048.snapshots/6beb9c0e-52ea-4f61-89bd-c160ec02c729
 ```
 
 ```sh
-cp -r snapshot/tablet-27ce76cade8e4894a4f7ffa154b33c3b.snapshots/0d4b4935-2c95-4523-95ab-9ead1e95e794 ~/yugabyte-data-restore/node-1/disk-1/yb-data/tserver/data/rocksdb/table-00004000000030008000000000004001/tablet-111ab9d046d449d995ee9759bf32e028.snapshots/6beb9c0e-52ea-4f61-89bd-c160ec02c729
+cp -r snapshot/tablet-27ce76cade8e4894a4f7ffa154b33c3b.snapshots/0d4b4935-2c95-4523-95ab-9ead1e95e794 ~/ZNbase-data-restore/node-1/disk-1/yb-data/tserver/data/rocksdb/table-00004000000030008000000000004001/tablet-111ab9d046d449d995ee9759bf32e028.snapshots/6beb9c0e-52ea-4f61-89bd-c160ec02c729
 ```
 
 4. Restore the snapshot.
@@ -236,8 +236,8 @@ test=# \d
             List of relations
  Schema |   Name   |   Type   |  Owner   
 --------+----------+----------+----------
- public | t        | table    | yugabyte
- public | t_a_seq  | sequence | yugabyte
+ public | t        | table    | ZNbase
+ public | t_a_seq  | sequence | ZNbase
 (2 rows)
 ```
 
@@ -289,8 +289,8 @@ Deleted snapshot: 6beb9c0e-52ea-4f61-89bd-c160ec02c729
 
 {{< note title="Note" >}}
 
-To automate and simplify these manual backup creating and restoring steps, you can use the Python script `yb_backup.py`, located in the YugabyteDB GitHub repository:
-[yugabyte/yugabyte-db/managed/devops/bin](https://github.com/yugabyte/yugabyte-db/tree/master/managed/devops/bin).
+To automate and simplify these manual backup creating and restoring steps, you can use the Python script `yb_backup.py`, located in the ZNbaseDB GitHub repository:
+[ZNbase/ZNbase-db/managed/devops/bin](https://github.com/ZNbase/ZNbase-db/tree/master/managed/devops/bin).
 
 The `yb_backup.py` script performs all the steps described above and uses external storage to store and load the created snapshot. Currently, it supports the following external storage options: Azure-Storage, Google-Cloud-Storage, s3-Storage, and NFS. To access the cluster hosts, the script requires SSH access. (Exception: single-node cluster using the `--no_ssh` script argument.) The `--verbose` flag can help in setting up the script for your environment.
 

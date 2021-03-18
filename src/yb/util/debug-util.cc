@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -666,7 +666,7 @@ std::string GetStackTrace(StackTraceLineFormat stack_trace_line_format,
     // Avoid multi-threaded access to libbacktrace which causes high memory consumption.
     std::lock_guard<std::mutex> l(*global_backtrace_state->mutex());
 
-    // TODO: https://yugabyte.atlassian.net/browse/ENG-4729
+    // TODO: https://ZNbase.atlassian.net/browse/ENG-4729
 
     const int backtrace_full_rv = backtrace_full(
         backtrace_state, /* skip = */ num_top_frames_to_skip + 1, BacktraceFullCallback,

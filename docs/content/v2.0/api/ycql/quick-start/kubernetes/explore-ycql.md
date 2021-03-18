@@ -2,7 +2,7 @@
 * Run cqlsh to connect to the service.
 
 ```sh
-$ kubectl exec -it yb-tserver-0 /home/yugabyte/bin/cqlsh yb-tserver-0
+$ kubectl exec -it yb-tserver-0 /home/ZNbase/bin/cqlsh yb-tserver-0
 ```
 ```
 Connected to local cluster at 127.0.0.1:9042.

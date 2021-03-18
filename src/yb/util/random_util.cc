@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -76,7 +76,7 @@ std::vector<uint8_t> RandomBytes(size_t len, std::mt19937_64* rng) {
 }
 
 std::string RandomHumanReadableString(int len, Random* rnd) {
-  // TODO: https://yugabyte.atlassian.net/browse/ENG-1508: Avoid code duplication in yb::Random and
+  // TODO: https://ZNbase.atlassian.net/browse/ENG-1508: Avoid code duplication in yb::Random and
   // rocksdb::Random. Currently this does not allow to reuse the same function in both code bases.
   std::string ret;
   ret.resize(len);

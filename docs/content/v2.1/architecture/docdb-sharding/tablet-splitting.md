@@ -2,7 +2,7 @@
 title: Tablet splitting
 headerTitle: Tablet splitting
 linkTitle: Tablet splitting
-description: Learn how YugabyteDB splits tablets.
+description: Learn how ZNbaseDB splits tablets.
 block_indexing: true
 menu:
   v2.1:
@@ -133,19 +133,19 @@ $ bin/yb-ctl --rf=3 create --num_shards_per_tserver=1
 Let us create a sample table and insert some data.
 
 ```postgres
-yugabyte=# CREATE TABLE t (k VARCHAR, v TEXT, PRIMARY KEY (k)) SPLIT INTO 1 TABLETS;
+ZNbase=# CREATE TABLE t (k VARCHAR, v TEXT, PRIMARY KEY (k)) SPLIT INTO 1 TABLETS;
 ```
 
 Next, we insert some sample data (100K rows) into this table.
 
 ```postgres
-yugabyte=# INSERT INTO t (k, v) 
+ZNbase=# INSERT INTO t (k, v) 
              SELECT i::text, left(md5(random()::text), 4)
              FROM generate_series(1, 100000) s(i);
 ```
 
 ```
-yugabyte=# select count(*) from t;
+ZNbase=# select count(*) from t;
  count
 --------
  100000
@@ -158,7 +158,7 @@ yugabyte=# select count(*) from t;
 In order to verify that the table `t` has only one tablet, we just list all the tablets for table `t`. The set of tablets in any table can be queried using the `yb-admin` tool as shown below.
 
 ```bash
-$ bin/yb-admin --master_addresses 127.0.0.1:7100 list_tablets ysql.yugabyte t
+$ bin/yb-admin --master_addresses 127.0.0.1:7100 list_tablets ysql.ZNbase t
 ```
 
 This would produce the following output. Note the tablet UUID for use later on to split this tablet.
@@ -188,7 +188,7 @@ $ bin/yb-admin \
 After the split, we should see two tablets for the table `t`.
 
 ```bash
-$ bin/yb-admin --master_addresses 127.0.0.1:7100 list_tablets ysql.yugabyte t
+$ bin/yb-admin --master_addresses 127.0.0.1:7100 list_tablets ysql.ZNbase t
 ```
 
 ```
@@ -207,5 +207,5 @@ There are a few important things to note here.
 
 ## Dynamic splitting
 
-Dynamic splitting is currently a [work-in-progress](https://github.com/yugabyte/yugabyte-db/issues/1004) feature and is not yet available. Design for this feature can be reviewed on [GitHub](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/docdb-automatic-tablet-splitting.md).
+Dynamic splitting is currently a [work-in-progress](https://github.com/ZNbase/ZNbase-db/issues/1004) feature and is not yet available. Design for this feature can be reviewed on [GitHub](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/docdb-automatic-tablet-splitting.md).
 

@@ -2,7 +2,7 @@
 title: xCluster replication
 headerTitle: xCluster replication
 linkTitle: xCluster replication
-description: Asynchronous replication between multiple YugabyteDB clusters.
+description: Asynchronous replication between multiple ZNbaseDB clusters.
 aliases:
   - /latest/architecture/docdb/2dc-deployments/
   - /latest/architecture/2dc-deployments/
@@ -15,11 +15,11 @@ isTocNested: true
 showAsideToc: true
 ---
 
-xCluster replication enables asynchronous replication between independent YugabyteDB clusters.
+xCluster replication enables asynchronous replication between independent ZNbaseDB clusters.
 
 ## Overview
 
-YugabyteDB provides synchronous replication of data in clusters dispersed across multiple (three or more) data centers by leveraging the Raft consensus algorithm to achieve enhanced high availability and performance. However, many use cases do not require synchronous replication or justify the additional complexity and operation costs associated with managing three or more data centers. For these needs, YugabyteDB supports two data center (2DC) deployments that use asynchronous replication built on top of [change data capture (CDC)](../change-data-capture) in DocDB.
+ZNbaseDB provides synchronous replication of data in clusters dispersed across multiple (three or more) data centers by leveraging the Raft consensus algorithm to achieve enhanced high availability and performance. However, many use cases do not require synchronous replication or justify the additional complexity and operation costs associated with managing three or more data centers. For these needs, ZNbaseDB supports two data center (2DC) deployments that use asynchronous replication built on top of [change data capture (CDC)](../change-data-capture) in DocDB.
 
 For details about configuring a 2DC deployment, see [Replicate between two data centers](../../../deploy/multi-dc/2dc-deployment).
 
@@ -37,7 +37,7 @@ The replication could be unidirectional from a source cluster (aka the master cl
 
 The source-sink deployment architecture is shown in the diagram below:
 
-<img src="https://github.com/yugabyte/yugabyte-db/raw/master/architecture/design/images/2DC-source-sink-deployment.png" style="max-width:750px;"/>
+<img src="https://github.com/ZNbase/ZNbase-db/raw/master/architecture/design/images/2DC-source-sink-deployment.png" style="max-width:750px;"/>
 
 ### Active-Active
 
@@ -51,7 +51,7 @@ The multi-master deployment is built internally using two master-slave unidirect
 
 The architecture diagram is shown below:
 
-<img src="https://github.com/yugabyte/yugabyte-db/raw/master/architecture/design/images/2DC-multi-master-deployment.png" style="max-width:750px;"/>
+<img src="https://github.com/ZNbase/ZNbase-db/raw/master/architecture/design/images/2DC-multi-master-deployment.png" style="max-width:750px;"/>
 
 ## Features and limitations
 

@@ -15,7 +15,7 @@ showAsideToc: true
 
 ## Overview
 
-Tablet splitting is the *resharding* of data in the cluster by presplitting tables before data is added or by changing the number of tablets at runtime. In the sections below, three mechanisms for tablet splitting in YugabyteDB clusters are explained.
+Tablet splitting is the *resharding* of data in the cluster by presplitting tables before data is added or by changing the number of tablets at runtime. In the sections below, three mechanisms for tablet splitting in ZNbaseDB clusters are explained.
 
 Here are some of the scenarios where tablet splitting is useful.
 
@@ -55,7 +55,7 @@ The following sections give details on how to split tablets using these three ap
 
 ## Presplitting tablets
 
-At creation time, you can presplit a table into the desired number of tablets. YugabyteDB supports presplitting tablets for both *range-sharded* and *hash-sharded* YSQL tables and hash-sharded YCQL tables. The number of tablets can be specified in one of two ways:
+At creation time, you can presplit a table into the desired number of tablets. ZNbaseDB supports presplitting tablets for both *range-sharded* and *hash-sharded* YSQL tables and hash-sharded YCQL tables. The number of tablets can be specified in one of two ways:
 
 * **Desired number of tablets:** In this case, the table is created with the desired number of tablets.
 * **Desired number of tablets per node:** In this case, the total number of tablets the table is split into is computed as follows:
@@ -169,7 +169,7 @@ Imagine there is a table with pre-existing data spread across a certain number o
 In order to verify that the table `t` has only one tablet, list all the tablets for table `t` using the following [`yb-admin list_tablets`](../../../admin/yb-admin/#list-tablets) command.
 
 ```bash
-bin/yb-admin --master_addresses 127.0.0.1:7100 list_tablets ysql.yugabyte t
+bin/yb-admin --master_addresses 127.0.0.1:7100 list_tablets ysql.ZNbase t
 ```
 
 This produces the following output. Note the tablet UUID for later use, to split this tablet.
@@ -192,7 +192,7 @@ bin/yb-admin \
 After the split, you see two tablets for the table `t`.
 
 ```sh
-bin/yb-admin --master_addresses 127.0.0.1:7100 list_tablets ysql.yugabyte t
+bin/yb-admin --master_addresses 127.0.0.1:7100 list_tablets ysql.ZNbase t
 ```
 
 ```plpgsql
@@ -212,7 +212,7 @@ a89ecb84ad1b488b893b6e7762a6ca2a  key_start: "\177\377" key_end: ""     127.0.0.
 
 Automatic tablet splitting enables resharding of data in a cluster automatically while online, and transparently to users, when a specified size threshold has been reached.
 
-For details on the architecture design, see [Automatic Re-sharding of Data with Tablet Splitting](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/docdb-automatic-tablet-splitting.md).
+For details on the architecture design, see [Automatic Re-sharding of Data with Tablet Splitting](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/docdb-automatic-tablet-splitting.md).
 
 ### Enable automatic tablet splitting
 
@@ -222,7 +222,7 @@ The lower the value for the threshold size, the more tablets will exist with the
 
 ### Example using a YCSB workload with automatic tablet splitting
 
-In the following example, a three-node cluster is created and uses a YCSB workload to demonstrate the use of automatic tablet splitting in a YSQL database. For details on using YCSB with YugabyteDB, see the [YCSB](../../../benchmark/ycsb-jdbc/) section in the Benchmark guide.
+In the following example, a three-node cluster is created and uses a YCSB workload to demonstrate the use of automatic tablet splitting in a YSQL database. For details on using YCSB with ZNbaseDB, see the [YCSB](../../../benchmark/ycsb-jdbc/) section in the Benchmark guide.
 
 1. Create a three-node cluster.
 
@@ -247,7 +247,7 @@ In the following example, a three-node cluster is created and uses a YCSB worklo
     ```sh
     db.driver=org.postgresql.Driver
     db.url=jdbc:postgresql://127.0.0.1:5433/ycsb;jdbc:postgresql://127.0.0.2:5433/ycsb;jdbc:postgresql://127.0.0.3:5433/ycsb
-    db.user=yugabyte
+    db.user=ZNbase
     db.passwd=
     core_workload_insertion_retry_limit=10
     ```
@@ -258,7 +258,7 @@ In the following example, a three-node cluster is created and uses a YCSB worklo
     ~/code/YCSB/bin/ycsb load jdbc -s -P ~/code/YCSB/db-local.properties -P ~/code/YCSB/workloads/workloada -p recordcount=500000 -p operationcount=1000000 -p threadcount=4
     ```
 
-1. Monitor the tablets splitting by going to the YugabyteDB Web UI at `http://localhost:7000/tablet-servers` and `http://127.0.0.1:9000/tablets`.
+1. Monitor the tablets splitting by going to the ZNbaseDB Web UI at `http://localhost:7000/tablet-servers` and `http://127.0.0.1:9000/tablets`.
 
 1. Run the workload.
 
@@ -283,6 +283,6 @@ The following known limitations are planned to be resolved in upcoming releases:
 * During tablet splitting, client applications may get an error from the driver and need to retry the request.
 * Colocated tables cannot be split.
 
-To follow the tablet splitting work-in-progress, see [GitHub #1004](https://github.com/yugabyte/yugabyte-db/issues/1004).
+To follow the tablet splitting work-in-progress, see [GitHub #1004](https://github.com/ZNbase/ZNbase-db/issues/1004).
 
 {{< /note >}}

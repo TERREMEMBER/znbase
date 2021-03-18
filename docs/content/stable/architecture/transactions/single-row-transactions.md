@@ -2,7 +2,7 @@
 title: Single-row transactions
 headerTitle: Single-row ACID transactions
 linkTitle: Single-row transactions
-description: Learn how YugabyteDB offers ACID semantics for mutations involving a single row or rows that are located within a single shard.
+description: Learn how ZNbaseDB offers ACID semantics for mutations involving a single row or rows that are located within a single shard.
 menu:
   stable:
     identifier: architecture-single-row-transactions
@@ -12,11 +12,11 @@ isTocNested: false
 showAsideToc: true
 ---
 
-YugabyteDB offers ACID semantics for mutations involving a single row or rows that fall
+ZNbaseDB offers ACID semantics for mutations involving a single row or rows that fall
 within the same shard (partition, tablet). These mutations incur only one network roundtrip between the distributed consensus peers.
 
 Even read-modify-write operations within a single row or single shard, such as the following incur
-only one round trip in YugabyteDB.
+only one round trip in ZNbaseDB.
 
 ```sql
    UPDATE table SET x = x + 1 WHERE ...
@@ -46,7 +46,7 @@ time period in order to avoid the following inconsistency:
 
 ![A diagram showing a potential inconsistency in case of a network partition if leader leases are not present](/images/architecture/txn/leader_leases_network_partition.svg)
 
-The leader lease mechanism in YugabyteDB prevents this inconsistency. It works as follows:
+The leader lease mechanism in ZNbaseDB prevents this inconsistency. It works as follows:
 
 * With every leader-to-follower message (AppendEntries in Raft's terminology), whether replicating
   new entries or even an empty heartbeat message, the leader sends a "leader lease" request as a
@@ -156,7 +156,7 @@ committed.
 
 ## Propagating safe time from leader to followers for follower-side reads
 
-YugabyteDB supports reads from followers to satisfy use cases that require an extremely low read
+ZNbaseDB supports reads from followers to satisfy use cases that require an extremely low read
 latency that can only be achieved by serving read requests in the data center closest to the client. This feature comes at the expense of potentially slightly stale results, and this is a trade-off that application developers have to make. Similarly to strongly-consistent leader-side reads, follower-side read operations also have to pick a safe read timestamp.
 
 As before, "safe time to read at" means that no future writes are supposed to change the view of the data as of the read timestamp.  However, only the leader is able to compute the safe read time using the

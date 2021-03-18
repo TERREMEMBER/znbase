@@ -153,7 +153,7 @@ SELECT * FROM money_data;
 SELECT '1234567890'::money;
 SELECT '12345678901234567'::money;
 -- TODO: Enable after issue #808 is done (ENG-4604)
---       (fails solely on yugabyte-centos-phabricator-gcc-release)
+--       (fails solely on ZNbase-centos-phabricator-gcc-release)
 -- SELECT '123456789012345678'::money;
 -- ERROR:  value "123456789012345678" is out of range for type money
 -- LINE 1: SELECT '123456789012345678'::money;

@@ -3,9 +3,9 @@
 //  LICENSE file in the root directory of this source tree. An additional grant
 //  of patent rights can be found in the PATENTS file in the same directory.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1894,7 +1894,7 @@ const ImmutableCFOptions& BlockBasedTable::ioptions() {
 yb::Result<std::string> BlockBasedTable::GetMiddleKey() {
   auto index_reader = VERIFY_RESULT(GetIndexReader(ReadOptions::kDefault));
 
-  // TODO: remove this trick after https://github.com/yugabyte/yugabyte-db/issues/4720 is resolved.
+  // TODO: remove this trick after https://github.com/ZNbase/ZNbase-db/issues/4720 is resolved.
   auto se = yb::ScopeExit([this, &index_reader] {
     index_reader.Release(rep_->table_options.block_cache.get());
   });

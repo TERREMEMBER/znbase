@@ -2,7 +2,7 @@
 title: Build a C# application that uses YSQL
 headerTitle: Build a C# application
 linkTitle: C#
-description: Use C# to build a YugabyteDB application that uses YSQL
+description: Use C# to build a ZNbaseDB application that uses YSQL
 block_indexing: true
 menu:
   v2.1:
@@ -35,7 +35,7 @@ showAsideToc: true
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe, and are able to interact with it using the YSQL shell (`ysqlsh`). If not, follow the steps in [Quick start](../../../../quick-start).
+- installed ZNbaseDB, created a universe, and are able to interact with it using the YSQL shell (`ysqlsh`). If not, follow the steps in [Quick start](../../../../quick-start).
 - installed Visual Studio
 
 ## Writing a HelloWorld C# application
@@ -60,13 +60,13 @@ To install the driver in your Visual Studio project:
 using System;
 using Npgsql;
 
-namespace Yugabyte_CSharp_Demo
+namespace ZNbase_CSharp_Demo
 {
     class Program
     {
         static void Main(string[] args)
         {
-            NpgsqlConnection conn = new NpgsqlConnection("host=localhost;port=5433;database=yb_demo;user id=yugabyte;password=");
+            NpgsqlConnection conn = new NpgsqlConnection("host=localhost;port=5433;database=yb_demo;user id=ZNbase;password=");
 
             try
             {

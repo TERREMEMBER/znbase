@@ -1,4 +1,4 @@
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 
 import glob
 import logging
@@ -173,7 +173,7 @@ class MacLibraryPackager:
             # Load command 78
             #          cmd LC_RPATH
             #      cmdsize 72
-            #         path /Users/hector/code/yugabyte/thirdparty/installed/common/lib (offset 12)
+            #         path /Users/hector/code/ZNbase/thirdparty/installed/common/lib (offset 12)
             if line.strip() == 'cmd LC_RPATH':
                 path_line = lines[idx + 2]
                 if path_line.split()[0] != 'path':
@@ -204,7 +204,7 @@ class MacLibraryPackager:
             #    @rpath/libmaster.dylib (compatibility version 0.0.0, current version 0.0.0)
             #    @rpath/libtserver.dylib (compatibility version 0.0.0, current version 0.0.0)
             #    @rpath/libtablet.dylib (compatibility version 0.0.0, current version 0.0.0)
-            #    /Users/hector/code/yugabyte/thirdparty/installed/uninstrumented/lib/\
+            #    /Users/hector/code/ZNbase/thirdparty/installed/uninstrumented/lib/\
             # libsnappy.1.dylib (compatibility version 3.0.0, current version 3.4.0)
             #    /usr/lib/libbz2.1.0.dylib (compatibility version 1.0.0, current version 1.0.5)
             #    /usr/lib/libz.1.dylib (compatibility version 1.0.0, current version 1.2.8)

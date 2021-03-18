@@ -2,9 +2,9 @@
 #
 # Makefile_ybpostgres.shlib
 #
-#    Yugabyte-specific common rules for building shared libraries
+#    ZNbase-specific common rules for building shared libraries
 #    This file is copied from the Makefile.shlib file in the same
-#    directory, with minor modifications for Yugabyte-specific
+#    directory, with minor modifications for ZNbase-specific
 #    build tasks.
 #
 #    Currently it is used to build the postgres shared library used

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -31,7 +31,7 @@ import shlex
 
 from subprocess import check_call
 
-from yugabyte_pycommon import (
+from ZNbase_pycommon import (
     init_logging,
     run_program,
     WorkDirContext,

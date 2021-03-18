@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -969,7 +969,7 @@ public class TestPgPushdown extends BasePgSQLTest {
 
   /**
    * Making sure we don't care about column declaration order nor PK order, thus not running into
-   * something like https://github.com/yugabyte/yugabyte-db/issues/3302. For this we're using
+   * something like https://github.com/ZNbase/ZNbase-db/issues/3302. For this we're using
    * mismatching key orders everywhere:
    * <ol>
    * <li>(h1, h2, h3) - in table schema

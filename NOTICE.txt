@@ -1,5 +1,5 @@
-YugaByte Database
-Copyright 2016-present YugaByte, Inc.
+ZNbase Database
+Copyright 2016-present ZNbase, Inc.
 
 This product includes software developed at
 The Apache Software Foundation (http://www.apache.org/).

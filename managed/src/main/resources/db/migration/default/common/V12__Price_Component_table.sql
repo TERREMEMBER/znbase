@@ -1,4 +1,4 @@
--- Copyright (c) YugaByte, Inc.
+-- Copyright (c) ZNbase, Inc.
 
 create table price_component (
   provider_code                 varchar(255) not null,

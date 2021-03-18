@@ -55,7 +55,7 @@ range between 1 preceding and 1 following exclude current row
 ```
 It says "consider only the row immediately before and the row immediately after the current row". You'll see that including this, or any other variant, in the [**window_definition**](../../../syntax_resources/grammar_diagrams/#window-definition) brings the identical result to what including only the window `ORDER BY` clause brings for each of the window functions that aren't sensitive to the [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause).
 
-Yugabyte recommends that you never include a [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause) in the [**window_definition**](../../../syntax_resources/grammar_diagrams/#window-definition) that you use when you invoke a window function that isn't sensitive to the [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause).
+ZNbase recommends that you never include a [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause) in the [**window_definition**](../../../syntax_resources/grammar_diagrams/#window-definition) that you use when you invoke a window function that isn't sensitive to the [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause).
 
 #### Frame_clause-sensitive window functions
 
@@ -75,7 +75,7 @@ See the section [Window function invocation—SQL syntax and semantics](../sql-s
 range between unbounded preceding and unbounded following
 ```
 
-Yugabyte recommends, therefore, that you include this [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause) in the [**window_definition**](../../../syntax_resources/grammar_diagrams/#window-definition) that you use when you invoke a window function that is sensitive to the [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause), unless you have one of the very rare use cases where the output that you want is produced by a different [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause).
+ZNbase recommends, therefore, that you include this [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause) in the [**window_definition**](../../../syntax_resources/grammar_diagrams/#window-definition) that you use when you invoke a window function that is sensitive to the [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause), unless you have one of the very rare use cases where the output that you want is produced by a different [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause).
 
 **Note:** The [**frame_clause**](../../../syntax_resources/grammar_diagrams/#frame-clause)'s many variants are useful when an aggregate function is invoked using the `OVER` clause. The section [Using the aggregate function `avg()` to compute a moving average](./#using-the-aggregate-function-avg-to-compute-a-moving-average) shows an example.
 

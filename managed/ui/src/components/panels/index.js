@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 export { default as HighlightedStatsPanel } from './HighlightedStatsPanel/HighlightedStatsPanel';
 export { default as UniverseDisplayPanel } from './UniverseDisplayPanel/UniverseDisplayPanel';

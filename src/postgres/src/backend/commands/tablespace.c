@@ -34,7 +34,7 @@
  * default tablespace.  Without this, CREATE DATABASE would have to go in
  * and munge the system catalogs of the new database.
  *
- * If Yugabyte is enabled, tablespaces are not used to specify their
+ * If ZNbase is enabled, tablespaces are not used to specify their
  * location on disk, rather the tablespace options specify the replication
  * factor and the location of the data as cloud, region, zone blocks.
  *
@@ -336,9 +336,9 @@ CreateTableSpace(CreateTableSpaceStmt *stmt)
 
 	/*
 	 *  Skip checks based on the tablespace directory location if this is
-	 *  a Yugabyte enabled cluster.
+	 *  a ZNbase enabled cluster.
 	 */
-	if (!IsYugaByteEnabled())
+	if (!IsZNbaseEnabled())
 	{
 	  /* Unix-ify the offered path, and strip any trailing slashes */
 	  location = pstrdup(stmt->location);
@@ -421,7 +421,7 @@ CreateTableSpace(CreateTableSpaceStmt *stmt)
 	newOptions = transformRelOptions((Datum) 0,
 									 stmt->options,
 									 NULL, NULL, false, false);
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 		(void) yb_tablespace_reloptions(newOptions, true);
 	else
 		(void) tablespace_reloptions(newOptions, true);
@@ -444,7 +444,7 @@ CreateTableSpace(CreateTableSpaceStmt *stmt)
 	InvokeObjectPostCreateHook(TableSpaceRelationId, tablespaceoid, 0);
 
 	/* Skip tablespace directory creation for YB clusters */
-	if (!IsYugaByteEnabled())
+	if (!IsZNbaseEnabled())
 	{
 		create_tablespace_directories(location, tablespaceoid);
 
@@ -592,7 +592,7 @@ DropTableSpace(DropTableSpaceStmt *stmt)
 	 * For YB clusters there are no directories associated with a tablespace.
 	 * Hence no need to clean up any physical infrastructure.
 	 */
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 	{
 		/*
 		 * Try to remove the physical infrastructure.
@@ -774,10 +774,10 @@ create_tablespace_directories(const char *location, const Oid tablespaceoid)
 static bool
 destroy_tablespace_directories(Oid tablespaceoid, bool redo)
 {
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 	{
 		/*
-		 * For Yugabyte clusters, tablespaces are not directories.
+		 * For ZNbase clusters, tablespaces are not directories.
 		 * They are logical groupings of tables to specify options
 		 * like geo-placement. Thus destroying directories is not
 		 * applicable for YB clusters.
@@ -1151,7 +1151,7 @@ AlterTableSpaceOptions(AlterTableSpaceOptionsStmt *stmt)
 									 stmt->options, NULL, NULL, false,
 									 stmt->isReset);
 
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 		(void) yb_tablespace_reloptions(newOptions, true);
 	else
 		(void) tablespace_reloptions(newOptions, true);

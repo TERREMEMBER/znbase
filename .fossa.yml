@@ -1,4 +1,4 @@
-# Copyright (c) Yugabyte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # To analyze (without uploading to Fossa) -- for local debugging:
 # fossa analyze --debug --output
@@ -10,10 +10,10 @@ version: 2
 cli:
   server: https://app.fossa.com
   fetcher: custom
-  project: git@github.com:yugabyte/yugabyte-db.git
+  project: git@github.com:ZNbase/ZNbase-db.git
 analyze:
   modules:
-    - name: Yugabyte RPC Client
+    - name: ZNbase RPC Client
       type: mvn
       target: pom.xml
       path: java
@@ -22,7 +22,7 @@ analyze:
           set -euo pipefail -x
           cd java
           mvn --batch-mode dependency:tree
-    - name: Yugabyte Platform
+    - name: ZNbase Platform
       type: mvn
       target: pom.xml
       path: managed
@@ -46,6 +46,6 @@ analyze:
     - name: PostgreSQL
       type: raw
       target: src/postgres
-    - name: YugabyteDB
+    - name: ZNbaseDB
       type: raw
       target: src/yb

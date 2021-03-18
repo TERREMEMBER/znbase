@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 from jinja2 import Environment, FileSystemLoader
 from ybops.common.exceptions import YBOpsRuntimeError, get_exception_message
@@ -150,8 +150,8 @@ class OnPremDestroyInstancesMethod(DestroyInstancesMethod):
             self.cloud.run_control_script(
                 "thirdparty", "stop-services", args, self.extra_vars, host_info)
 
-        # Force db-related commands to use the "yugabyte" user.
-        args.ssh_user = "yugabyte"
+        # Force db-related commands to use the "ZNbase" user.
+        args.ssh_user = "ZNbase"
         self.update_ansible_vars_with_args(args)
         servers = ["master", "tserver"]
         commands = ["stop", "clean", "clean-logs"]
@@ -175,7 +175,7 @@ class OnPremPrecheckInstanceMethod(AbstractInstancesMethod):
     def preprocess_args(self, args):
         super(OnPremPrecheckInstanceMethod, self).preprocess_args(args)
         if args.precheck_type == "configure":
-            self.current_ssh_user = "yugabyte"
+            self.current_ssh_user = "ZNbase"
 
     def wait_for_host(self, args, default_port=True):
         logging.info("Waiting for instance {}".format(args.search_pattern))

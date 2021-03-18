@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import java.sql.Connection
 import org.flywaydb.core.api.migration.jdbc.JdbcMigration

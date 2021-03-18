@@ -12,7 +12,7 @@ menu:
     weight: 21
 ---
 
-For a tutorial that explores how YugabyteDB handles component failure and provides high availability (HA), see [Fault tolerance](../../../explore/fault-tolerance).
+For a tutorial that explores how ZNbaseDB handles component failure and provides high availability (HA), see [Fault tolerance](../../../explore/fault-tolerance).
 
 <div class="row">
 

@@ -2,7 +2,7 @@
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB and created a universe with YSQL enabled. If not, please follow these steps in the [Quick Start guide](../../../quick-start/explore-ysql/).
+- installed ZNbaseDB and created a universe with YSQL enabled. If not, please follow these steps in the [Quick Start guide](../../../quick-start/explore-ysql/).
 - installed Go version 1.8+
 
 ## Install Go PostgreSQL driver
@@ -31,9 +31,9 @@ import (
 const (
   host     = "127.0.0.1"
   port     = 5433
-  user     = "yugabyte"
-  password = "yugabyte"
-  dbname   = "yugabyte"
+  user     = "ZNbase"
+  password = "ZNbase"
+  dbname   = "ZNbase"
 )
 
 func main() {

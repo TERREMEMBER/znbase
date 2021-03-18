@@ -1,4 +1,4 @@
-// Copyright YugaByte Inc.
+// Copyright ZNbase Inc.
 
 import { UniverseOverviewNew } from '../../universes';
 import { connect } from 'react-redux';

@@ -1,5 +1,5 @@
 //
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1718,7 +1718,7 @@ TEST_F_EX(QLTransactionTest, GCLogsAfterTransactionalWritesStop, QLTransactionTe
 
   // We are expecting the log size to stay bounded, which means the maximum log size we've ever
   // seen for any tablet should stabilize. That would indicate that the bug with unbounded log
-  // growth (https://github.com/YugaByte/yugabyte-db/issues/2221) is not happening.
+  // growth (https://github.com/ZNbase/ZNbase-db/issues/2221) is not happening.
   LOG(INFO) << "Perform non transactional writes";
 
   use_transaction.store(false, std::memory_order_release);

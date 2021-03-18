@@ -1,10 +1,10 @@
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 #
 # This is a template for auto-generated file for prometheus configuration
 
@@ -47,11 +47,11 @@ scrape_configs:
         target_label: "saved_name"
         replacement: "$1"
 
-  - job_name: "yugabyte"
+  - job_name: "ZNbase"
     metrics_path: "/prometheus-metrics"
     file_sd_configs:
       - files:
-        - '{{ prometheus_file_sd_config_path }}/yugabyte.*.json'
+        - '{{ prometheus_file_sd_config_path }}/ZNbase.*.json'
     metric_relabel_configs:
       # Save the name of the metric so we can group_by since we cannot by __name__ directly...
       - source_labels: ["__name__"]

@@ -67,21 +67,21 @@ reduce the number of records that can be accessed. Default is permissive.
 - Create a permissive policy.
 
 ```plpgsql
-yugabyte=# CREATE POLICY p1 ON document
+ZNbase=# CREATE POLICY p1 ON document
   USING (dlevel <= (SELECT level FROM user_account WHERE ybuser = current_user));
 ```
 
 - Create a restricive policy.
 
 ```plpgsql
-yugabyte=# CREATE POLICY p_restrictive ON document AS RESTRICTIVE TO user_bob
+ZNbase=# CREATE POLICY p_restrictive ON document AS RESTRICTIVE TO user_bob
     USING (cid <> 44);
 ```
 
 - Create a policy with a `CHECK` condition for inserts.
 
 ```plpgsql
-yugabyte=# CREATE POLICY p2 ON document FOR INSERT WITH CHECK (dauthor = current_user);
+ZNbase=# CREATE POLICY p2 ON document FOR INSERT WITH CHECK (dauthor = current_user);
 ```
 
 ## See also

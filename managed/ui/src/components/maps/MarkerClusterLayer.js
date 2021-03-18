@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import Leaflet from 'leaflet';
 import { Media } from 'react-bootstrap';

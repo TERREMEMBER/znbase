@@ -14,7 +14,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-The [YB-Master](../../reference/configuration/yb-master/) and [YB-TServer](../../reference/configuration/yb-tserver/) nodes report cluster diagnostics to the YugabyteDB diagnostics service every time a new cluster gets created and every hour thereafter. User data stored in YugabyteDB as well as any personally identifiable information regarding the user is never collected or reported.
+The [YB-Master](../../reference/configuration/yb-master/) and [YB-TServer](../../reference/configuration/yb-tserver/) nodes report cluster diagnostics to the ZNbaseDB diagnostics service every time a new cluster gets created and every hour thereafter. User data stored in ZNbaseDB as well as any personally identifiable information regarding the user is never collected or reported.
 
 ## Data collected
 
@@ -95,13 +95,13 @@ Same as `medium` level. In other words, no extra information is collected for th
         {
             "remote_ip": "10.150.0.20:41134",
             "state": "OPEN",
-            "remote_user_credentials": "{real_user=yugabyte, eff_user=}",
+            "remote_user_credentials": "{real_user=ZNbase, eff_user=}",
             "processed_call_count": 2456
         },
         {
             "remote_ip": "10.150.0.20:54141",
             "state": "OPEN",
-            "remote_user_credentials": "{real_user=yugabyte, eff_user=}",
+            "remote_user_credentials": "{real_user=ZNbase, eff_user=}",
             "processed_call_count": 2471
         }
     ]
@@ -110,11 +110,11 @@ Same as `medium` level. In other words, no extra information is collected for th
 
 ## Configuration flags
 
-You can add the following configuration flags while starting the [YB-Master](../../reference/configuration/yb-master/) and [YB-TServer](../../reference/configuration/yb-tserver/) nodes to configure the diagnostics reporting behavior of YugabyteDB.
+You can add the following configuration flags while starting the [YB-Master](../../reference/configuration/yb-master/) and [YB-TServer](../../reference/configuration/yb-tserver/) nodes to configure the diagnostics reporting behavior of ZNbaseDB.
 
 Flag | Default | Description
 ----------------------|---------|------------------------
 `--callhome_collection_level` |  `medium` | Collection level with possible values of `low`, `medium`, or `high`
 `--callhome_interval_secs` | 3600 | Collection interval in seconds
-`--callhome_url ` | `http://diagnostics.yugabyte.com` | Endpoint where diagnostics information is reported
+`--callhome_url ` | `http://diagnostics.ZNbase.com` | Endpoint where diagnostics information is reported
 `--callhome_enabled` | `true` | Controls whether diagnostics information is collected and reported. Set to `false` to disable collection.

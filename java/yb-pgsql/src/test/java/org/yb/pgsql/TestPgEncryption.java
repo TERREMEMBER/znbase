@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -54,16 +54,16 @@ public class TestPgEncryption extends BasePgSQLTest {
   public void testSslNoAuth() throws Exception {
     // Client connection with SSL enabled -- should allow connection with or without pass.
     ConnectionBuilder tsConnBldr = getConnectionBuilder().withSslMode("require");
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").withPassword("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").withPassword("ZNbase").connect()) {
       // No-op.
     }
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").connect()) {
       // No-op.
     }
 
     // Client connection with SSL disabled -- should *not* allow connection with or without pass.
     tsConnBldr = getConnectionBuilder().withSslMode("disable");
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").withPassword("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").withPassword("ZNbase").connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {
       assertThat(
@@ -72,7 +72,7 @@ public class TestPgEncryption extends BasePgSQLTest {
       );
     }
 
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {
       assertThat(
@@ -89,10 +89,10 @@ public class TestPgEncryption extends BasePgSQLTest {
     // Client connection with SSL enabled -- should only allow connection with pass (+SSL).
     ConnectionBuilder tsConnBldr = getConnectionBuilder().withSslMode("require")
                                                          .withTServer(tserver);
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").withPassword("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").withPassword("ZNbase").connect()) {
       // No-op.
     }
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {
       assertThat(
@@ -103,7 +103,7 @@ public class TestPgEncryption extends BasePgSQLTest {
 
     // Client connection with SSL disabled -- should *not* allow connection with or without pass.
     tsConnBldr = getConnectionBuilder().withSslMode("disable").withTServer(tserver);
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").withPassword("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").withPassword("ZNbase").connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {
       assertThat(
@@ -112,7 +112,7 @@ public class TestPgEncryption extends BasePgSQLTest {
       );
     }
 
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {
       assertThat(
@@ -145,10 +145,10 @@ public class TestPgEncryption extends BasePgSQLTest {
                                                          .withSslKey(sslkeyFile)
                                                          .withSslRootCert(sslrootcertFile)
                                                          .withTServer(tserver);
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").withPassword("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").withPassword("ZNbase").connect()) {
      // No-op.
     }
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {
       assertThat(
@@ -165,10 +165,10 @@ public class TestPgEncryption extends BasePgSQLTest {
                                        .withSslKey(sslkeyFile)
                                        .withSslRootCert(sslrootcertFile)
                                        .withTServer(tserver);
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").withPassword("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").withPassword("ZNbase").connect()) {
       // No-op.
     }
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {
       assertThat(
@@ -179,7 +179,7 @@ public class TestPgEncryption extends BasePgSQLTest {
 
     // Client connection with SSL enabled but no cert -- should *not* allow connection.
     tsConnBldr = getConnectionBuilder().withSslMode("require").withTServer(tserver);
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").withPassword("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").withPassword("ZNbase").connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {
       assertThat(
@@ -187,7 +187,7 @@ public class TestPgEncryption extends BasePgSQLTest {
         CoreMatchers.containsString("connection requires a valid client certificate")
       );
     }
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {
       assertThat(
@@ -198,7 +198,7 @@ public class TestPgEncryption extends BasePgSQLTest {
 
     // Client connection with SSL disabled -- should *not* allow connection (with or without pass).
     tsConnBldr = getConnectionBuilder().withSslMode("disable").withTServer(tserver);
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").withPassword("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").withPassword("ZNbase").connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {
       assertThat(
@@ -206,7 +206,7 @@ public class TestPgEncryption extends BasePgSQLTest {
         CoreMatchers.containsString("no pg_hba.conf entry for")
       );
     }
-    try (Connection ignored = tsConnBldr.withUser("yugabyte").connect()) {
+    try (Connection ignored = tsConnBldr.withUser("ZNbase").connect()) {
       fail("Expected login attempt to fail");
     } catch (SQLException sqle) {
       assertThat(

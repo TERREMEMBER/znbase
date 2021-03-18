@@ -1,8 +1,8 @@
 ---
-title: Explore YCQL, the Yugabyte Cloud QL API
-headerTitle: 3. Explore Yugabyte Cloud QL
+title: Explore YCQL, the ZNbase Cloud QL API
+headerTitle: 3. Explore ZNbase Cloud QL
 linkTitle: 3. Explore distributed SQL APIs
-description: Explore Yugabyte Cloud QL (YCQL), a semi-relational distributed SQL API
+description: Explore ZNbase Cloud QL (YCQL), a semi-relational distributed SQL API
 image: /images/section_icons/quick_start/explore_ycql.png
 menu:
   stable:
@@ -33,7 +33,7 @@ showAsideToc: true
   
 </ul>
 
-After [creating a local cluster](../../create-local-cluster/), follow the instructions below to explore YugabyteDB's semi-relational [Yugabyte Cloud QL](../../../api/ycql) API.
+After [creating a local cluster](../../create-local-cluster/), follow the instructions below to explore ZNbaseDB's semi-relational [ZNbase Cloud QL](../../../api/ycql) API.
 
 [**ycqlsh**](../../../admin/ycqlsh/) is the command line shell for interacting with the YCQL API. You will use ycqlsh for this tutorial.
 

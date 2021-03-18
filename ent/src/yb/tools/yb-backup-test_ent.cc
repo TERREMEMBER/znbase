@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
@@ -159,12 +159,12 @@ void YBBackupTest::DoTestYSQLKeyspaceBackup(helpers::TableOp tableOp) {
 
   const string backup_dir = GetTempDir("backup");
 
-  // There is no YCQL keyspace 'yugabyte'.
+  // There is no YCQL keyspace 'ZNbase'.
   ASSERT_NOK(RunBackupCommand(
-      {"--backup_location", backup_dir, "--keyspace", "yugabyte", "create"}));
+      {"--backup_location", backup_dir, "--keyspace", "ZNbase", "create"}));
 
   ASSERT_OK(RunBackupCommand(
-      {"--backup_location", backup_dir, "--keyspace", "ysql.yugabyte", "create"}));
+      {"--backup_location", backup_dir, "--keyspace", "ysql.ZNbase", "create"}));
 
   ASSERT_NO_FATALS(InsertOneRow("INSERT INTO mytbl (k, v) VALUES (200, 'bar')"));
   ASSERT_NO_FATALS(RunPsqlCommand(
@@ -183,7 +183,7 @@ void YBBackupTest::DoTestYSQLKeyspaceBackup(helpers::TableOp tableOp) {
     ASSERT_NO_FATALS(RunPsqlCommand("DROP TABLE mytbl", "DROP TABLE"));
   }
 
-  // Restore into the original "ysql.yugabyte" YSQL DB.
+  // Restore into the original "ysql.ZNbase" YSQL DB.
   ASSERT_OK(RunBackupCommand({"--backup_location", backup_dir, "restore"}));
 
   // Check the table data.
@@ -278,13 +278,13 @@ TEST_F(YBBackupTest, YB_DISABLE_TEST_IN_SANITIZERS_OR_MAC(TestYSQLRestoreBackupT
   const string backup_dir = GetTempDir("backup");
 
   ASSERT_OK(RunBackupCommand(
-      {"--backup_location", backup_dir, "--keyspace", "ysql.yugabyte", "create"}));
+      {"--backup_location", backup_dir, "--keyspace", "ysql.ZNbase", "create"}));
 
   ASSERT_NO_FATALS(InsertOneRow("INSERT INTO vendors (v_code, v_name) VALUES (200, 'bar')"));
 
-  // Restore into new "ysql.yugabyte2" YSQL DB.
+  // Restore into new "ysql.ZNbase2" YSQL DB.
   ASSERT_OK(RunBackupCommand(
-      {"--backup_location", backup_dir, "--keyspace", "ysql.yugabyte2", "restore"}));
+      {"--backup_location", backup_dir, "--keyspace", "ysql.ZNbase2", "restore"}));
 
   ASSERT_NO_FATALS(RunPsqlCommand(
       "SELECT v_code, v_name FROM vendors ORDER BY v_code",
@@ -297,7 +297,7 @@ TEST_F(YBBackupTest, YB_DISABLE_TEST_IN_SANITIZERS_OR_MAC(TestYSQLRestoreBackupT
       )#"
   ));
 
-  SetDbName("yugabyte2"); // Connecting to the second DB from the moment.
+  SetDbName("ZNbase2"); // Connecting to the second DB from the moment.
 
   // Check the tables.
   ASSERT_NO_FATALS(RunPsqlCommand(
@@ -306,12 +306,12 @@ TEST_F(YBBackupTest, YB_DISABLE_TEST_IN_SANITIZERS_OR_MAC(TestYSQLRestoreBackupT
                   List of relations
         Schema |   Name    | Type  |  Owner
        --------+-----------+-------+----------
-        public | hashtbl   | table | yugabyte
-        public | items     | table | yugabyte
-        public | orders    | table | yugabyte
-        public | rangetbl  | table | yugabyte
-        public | serialtbl | table | yugabyte
-        public | vendors   | table | yugabyte
+        public | hashtbl   | table | ZNbase
+        public | items     | table | ZNbase
+        public | orders    | table | ZNbase
+        public | rangetbl  | table | ZNbase
+        public | serialtbl | table | ZNbase
+        public | vendors   | table | ZNbase
        (6 rows)
       )#"
   ));
@@ -495,7 +495,7 @@ TEST_F(YBBackupTest, YB_DISABLE_TEST_IN_SANITIZERS_OR_MAC(TestYBBackupWrongUsage
   LOG(INFO) << "Test finished: " << CURRENT_TEST_CASE_AND_TEST_NAME_STR();
 }
 
-TEST_F(YBBackupTest, YB_DISABLE_TEST_IN_SANITIZERS_OR_MAC(TestYSQLBackupWithDropYugabyteDB)) {
+TEST_F(YBBackupTest, YB_DISABLE_TEST_IN_SANITIZERS_OR_MAC(TestYSQLBackupWithDropZNbaseDB)) {
   ASSERT_NO_FATALS(CreateTable("CREATE TABLE mytbl (k INT PRIMARY KEY, v TEXT)"));
   ASSERT_NO_FATALS(InsertOneRow("INSERT INTO mytbl (k, v) VALUES (100, 'foo')"));
   ASSERT_NO_FATALS(RunPsqlCommand(
@@ -510,7 +510,7 @@ TEST_F(YBBackupTest, YB_DISABLE_TEST_IN_SANITIZERS_OR_MAC(TestYSQLBackupWithDrop
 
   const string backup_dir = GetTempDir("backup");
   ASSERT_OK(RunBackupCommand(
-      {"--backup_location", backup_dir, "--keyspace", "ysql.yugabyte", "create"}));
+      {"--backup_location", backup_dir, "--keyspace", "ysql.ZNbase", "create"}));
 
   ASSERT_NO_FATALS(InsertOneRow("INSERT INTO mytbl (k, v) VALUES (200, 'bar')"));
   ASSERT_NO_FATALS(RunPsqlCommand(
@@ -526,12 +526,12 @@ TEST_F(YBBackupTest, YB_DISABLE_TEST_IN_SANITIZERS_OR_MAC(TestYSQLBackupWithDrop
 
   ASSERT_NO_FATALS(RunPsqlCommand("CREATE DATABASE db", "CREATE DATABASE"));
   SetDbName("db"); // Connecting to the second DB from the moment.
-  // Validate that the DB restoration works even if the default 'yugabyte' db was recreated.
-  ASSERT_NO_FATALS(RunPsqlCommand("DROP DATABASE yugabyte", "DROP DATABASE"));
-  ASSERT_NO_FATALS(RunPsqlCommand("CREATE DATABASE yugabyte", "CREATE DATABASE"));
-  SetDbName("yugabyte"); // Connecting to the recreated 'yugabyte' DB from the moment.
+  // Validate that the DB restoration works even if the default 'ZNbase' db was recreated.
+  ASSERT_NO_FATALS(RunPsqlCommand("DROP DATABASE ZNbase", "DROP DATABASE"));
+  ASSERT_NO_FATALS(RunPsqlCommand("CREATE DATABASE ZNbase", "CREATE DATABASE"));
+  SetDbName("ZNbase"); // Connecting to the recreated 'ZNbase' DB from the moment.
 
-  // Restore into the recreated "ysql.yugabyte" YSQL DB.
+  // Restore into the recreated "ysql.ZNbase" YSQL DB.
   ASSERT_OK(RunBackupCommand({"--backup_location", backup_dir, "restore"}));
 
   // Check the table data.

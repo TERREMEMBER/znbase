@@ -2,7 +2,7 @@
 title: Back up and restore data
 headerTitle: Back up and restore
 linkTitle: Back up and restore
-description: Back up and restore YugabyteDB.
+description: Back up and restore ZNbaseDB.
 image: /images/section_icons/manage/enterprise.png
 headcontent: Create backups and restore your data.
 block_indexing: true
@@ -13,9 +13,9 @@ menu:
     weight: 702
 ---
 
-YugabyteDB is a distributed database that internally replicates data. It is possible to place the regions in separate fault domains, therefore backups for the purpose of data redundancy are not necessary. However, it is an operational best practice to have a backup strategy. For example, an error in the application layer could cause it to write bad data into the database. In such a scenario, it is essential to be able to restore the database from a backup to a state before the application error was introduced.
+ZNbaseDB is a distributed database that internally replicates data. It is possible to place the regions in separate fault domains, therefore backups for the purpose of data redundancy are not necessary. However, it is an operational best practice to have a backup strategy. For example, an error in the application layer could cause it to write bad data into the database. In such a scenario, it is essential to be able to restore the database from a backup to a state before the application error was introduced.
 
-This section goes into details of backing up data and restoring it from YugabyteDB.
+This section goes into details of backing up data and restoring it from ZNbaseDB.
 
 <div class="row">
   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
@@ -25,7 +25,7 @@ This section goes into details of backing up data and restoring it from Yugabyte
         <div class="title">Back up data</div>
       </div>
       <div class="body">
-        This section describes how to create a backup of the data in YugabyteDB.
+        This section describes how to create a backup of the data in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -36,7 +36,7 @@ This section goes into details of backing up data and restoring it from Yugabyte
         <div class="title">Restore data</div>
       </div>
       <div class="body">
-        This section describes how to restore data into YugabyteDB from a backup.
+        This section describes how to restore data into ZNbaseDB from a backup.
       </div>
     </a>
   </div>

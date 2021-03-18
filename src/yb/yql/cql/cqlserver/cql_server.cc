@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -151,7 +151,7 @@ void CQLServer::CQLNodeListRefresh(const boost::system::error_code &ec) {
       // Queue event for all clients to add a node.
       //
       // TODO: the event should be sent only if there is appropriate subscription.
-      //       https://github.com/yugabyte/yugabyte-db/issues/3090
+      //       https://github.com/ZNbase/ZNbase-db/issues/3090
       cqlserver_event_list->AddEvent(
           BuildTopologyChangeEvent(TopologyChangeEventResponse::kNewNode,
                                    Endpoint(*addr, cql_port)));
@@ -163,7 +163,7 @@ void CQLServer::CQLNodeListRefresh(const boost::system::error_code &ec) {
   // with the event doesn't have much significance.
   //
   // TODO: the event should be sent only if there is appropriate subscription.
-  //       https://github.com/yugabyte/yugabyte-db/issues/3090
+  //       https://github.com/ZNbase/ZNbase-db/issues/3090
   cqlserver_event_list->AddEvent(
       BuildTopologyChangeEvent(TopologyChangeEventResponse::kMovedNode, first_rpc_address()));
 

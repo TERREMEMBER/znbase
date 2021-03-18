@@ -1,8 +1,8 @@
 ---
-title: Build a YugabyteDB application using Java and YEDIS
+title: Build a ZNbaseDB application using Java and YEDIS
 headerTitle: Build an application using Java
 linkTitle: Java
-description: Use Java to build a YugabyteDB application that interacts with YEDIS
+description: Use Java to build a ZNbaseDB application that interacts with YEDIS
 menu:
   stable:
     identifier: client-drivers-yedis-java
@@ -13,11 +13,11 @@ showAsideToc: true
 
 ## Maven
 
-To build your Java application using the YugabyteDB version of the Jedis driver, add the following Maven dependency to your application:
+To build your Java application using the ZNbaseDB version of the Jedis driver, add the following Maven dependency to your application:
 
 ```xml
 <dependency>
-  <groupId>com.yugabyte</groupId>
+  <groupId>com.ZNbase</groupId>
   <artifactId>jedis</artifactId>
   <version>2.9.0-yb-16</version>
 </dependency>
@@ -29,7 +29,7 @@ To build your Java application using the YugabyteDB version of the Jedis driver,
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe, and are able to interact with it using the Redis shell. If not, please follow these steps in [Quick start](../../../../quick-start/).
+- installed ZNbaseDB, created a universe, and are able to interact with it using the Redis shell. If not, please follow these steps in [Quick start](../../../../quick-start/).
 - JDK version 1.8 or later
 - Maven 3.3 or later
 
@@ -39,21 +39,21 @@ Create a Maven build file `pom.xml` and add the following content into it.
 
 ```xml
 <?xml version="1.0"?>
-<!-- Copyright (c) Yugabyte, Inc. -->
+<!-- Copyright (c) ZNbase, Inc. -->
 <project
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.yugabyte.sample.apps</groupId>
+  <groupId>com.ZNbase.sample.apps</groupId>
   <artifactId>hello-world</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
 
   <dependencies>
     <dependency>
-      <groupId>com.yugabyte</groupId>
+      <groupId>com.ZNbase</groupId>
       <artifactId>jedis</artifactId>
       <version>2.9.0-yb-16</version>
     </dependency>
@@ -91,13 +91,13 @@ Create a Maven build file `pom.xml` and add the following content into it.
 Create the appropriate directory structure as expected by Maven.
 
 ```sh
-$ mkdir -p src/main/java/com/yugabyte/sample/apps
+$ mkdir -p src/main/java/com/ZNbase/sample/apps
 ```
 
-Copy the following contents into the file `src/main/java/com/yugabyte/sample/apps/YBRedisHelloWorld.java`.
+Copy the following contents into the file `src/main/java/com/ZNbase/sample/apps/YBRedisHelloWorld.java`.
 
 ```java
-package com.yugabyte.sample.apps;
+package com.ZNbase.sample.apps;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -145,7 +145,7 @@ $ mvn package
 To start the application, run the following command.
 
 ```sh
-% java -cp "target/hello-world-1.0.jar:target/lib/*" com.yugabyte.sample.apps.YBRedisHelloWorld
+% java -cp "target/hello-world-1.0.jar:target/lib/*" com.ZNbase.sample.apps.YBRedisHelloWorld
 ```
 
 You should see the following as the output.

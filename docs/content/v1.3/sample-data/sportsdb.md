@@ -12,7 +12,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-If you like sports statistics, you can install the PostgreSQL-compatible version of SportsDB on the YugabyteDB distributed SQL database and explore statistics for your favorite sport.
+If you like sports statistics, you can install the PostgreSQL-compatible version of SportsDB on the ZNbaseDB distributed SQL database and explore statistics for your favorite sport.
 
 ## About the SportsDB sample database
 
@@ -28,21 +28,21 @@ Follow the steps here to download and install the SportsDB sample database.
 
 ### Before you begin
 
-To use the SportsDB sample database, you must have installed and configured YugabyteDB. To get up and running quickly, see [Quick Start](/latest/quick-start/).
+To use the SportsDB sample database, you must have installed and configured ZNbaseDB. To get up and running quickly, see [Quick Start](/latest/quick-start/).
 
 ### 1. Download the SportsDB scripts
 
-The SQL scripts that you need to create the SportsDB sample database (YugabyteDB-compatible) are available in the [`sample` directory of the YugabyteDB GitHub repository](https://github.com/yugabyte/yugabyte-db/tree/master/sample). Download the following five files.
+The SQL scripts that you need to create the SportsDB sample database (ZNbaseDB-compatible) are available in the [`sample` directory of the ZNbaseDB GitHub repository](https://github.com/ZNbase/ZNbase-db/tree/master/sample). Download the following five files.
 
-- [`sportsdb_tables.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/sportsdb_tables.sql) — Creates the tables and sequences
-- [`sportsdb_inserts.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/sportsdb_inserts.sql) — Loads the sample data into the `sportsdb` database
-- [`sportsdb_constraints.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/sportsdb_constraints.sql) — Creates the unique constraints
-- [`sportsdb_fks.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/sportsdb_fks.sql) — Creates the foreign key constraints
-- [`sportsdb_indexes.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/sportsdb_indexes.sql) — Creates the indexes
+- [`sportsdb_tables.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/sportsdb_tables.sql) — Creates the tables and sequences
+- [`sportsdb_inserts.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/sportsdb_inserts.sql) — Loads the sample data into the `sportsdb` database
+- [`sportsdb_constraints.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/sportsdb_constraints.sql) — Creates the unique constraints
+- [`sportsdb_fks.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/sportsdb_fks.sql) — Creates the foreign key constraints
+- [`sportsdb_indexes.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/sportsdb_indexes.sql) — Creates the indexes
 
 ### 2. Open the YSQL shell
 
-To open the Yugabyte SQL (YSQL) shell, run the `ysqlsh` command.
+To open the ZNbase SQL (YSQL) shell, run the `ysqlsh` command.
 
 ```sh
 ysqlsh (11.2)
@@ -79,7 +79,7 @@ sportsdb=#
 To build the tables and database objects, run the following command.
 
 ```
-sportsdb=# \i /Users/yugabyte/sportsdb_tables.sql
+sportsdb=# \i /Users/ZNbase/sportsdb_tables.sql
 ```
 
 You can verify that all 203 tables and sequences have been created by running the `\d` command.
@@ -93,7 +93,7 @@ sportsdb=# \d
 To load the `sportsdb` database with sample data (~80k rows), run the following command to execute commands in the file.
 
 ```
-sportsdb=# \i /Users/yugabyte/sportsdb_data.sql
+sportsdb=# \i /Users/ZNbase/sportsdb_data.sql
 ```
 
 To verify that you have some data to work with, you can run the following simple SELECT statement to pull data from the  basketball_defensive_stats` table.
@@ -107,13 +107,13 @@ sportsdb=# SELECT * FROM basketball_defensive_stats WHERE steals_total = '5';
 To create the unique constraints and foreign keys, run the following commands.
 
 ```
-sportsdb=# \i /Users/yugabyte/sportsdb_constraints.sql
+sportsdb=# \i /Users/ZNbase/sportsdb_constraints.sql
 ```
 
 and
 
 ```
-sportsdb=# \i /Users/yugabyte/sportsdb_fks.sql
+sportsdb=# \i /Users/ZNbase/sportsdb_fks.sql
 ```
 
 ### 7. Create the indexes
@@ -121,9 +121,9 @@ sportsdb=# \i /Users/yugabyte/sportsdb_fks.sql
 To create the indexes, run the following command.
 
 ```
-sportsdb=# \i /Users/yugabyte/sportsdb_indexes.sql
+sportsdb=# \i /Users/ZNbase/sportsdb_indexes.sql
 ```
 
 ## Explore the SportsDB database
 
-That’s it! Using the command line or your favorite PostgreSQL development or administration tool, you are now ready to start exploring the SportsDB database and YugabyteDB features.
+That’s it! Using the command line or your favorite PostgreSQL development or administration tool, you are now ready to start exploring the SportsDB database and ZNbaseDB features.

@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -87,7 +87,7 @@ TEST_F(WebserverTest, TestIndexPage) {
   ASSERT_OK(curl_.FetchURL(strings::Substitute("http://$0/", ToString(addr_)),
                            &buf_));
   // Should have expected title.
-  ASSERT_STR_CONTAINS(buf_.ToString(), "Yugabyte");
+  ASSERT_STR_CONTAINS(buf_.ToString(), "ZNbase");
 
   // Should have link to the root path handlers (Home).
   ASSERT_STR_CONTAINS(buf_.ToString(), "Home");

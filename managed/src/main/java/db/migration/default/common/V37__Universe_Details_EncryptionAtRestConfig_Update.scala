@@ -1,13 +1,13 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 package db.migration.default.common
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ObjectNode
-import com.yugabyte.yw.common.kms.util.AwsEARServiceUtil
-import com.yugabyte.yw.common.kms.util.EncryptionAtRestUtil
-import com.yugabyte.yw.common.kms.util.KeyProvider
-import com.yugabyte.yw.models.Universe
+import com.ZNbase.yw.common.kms.util.AwsEARServiceUtil
+import com.ZNbase.yw.common.kms.util.EncryptionAtRestUtil
+import com.ZNbase.yw.common.kms.util.KeyProvider
+import com.ZNbase.yw.models.Universe
 import java.sql.Connection
 import java.util.UUID
 import play.api.libs.json._

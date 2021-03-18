@@ -12,7 +12,7 @@ isTocNested: 3
 showAsideToc: true
 ---
 
-Use the `yb-master` binary and its options to configure the [YB-Master](../../../architecture/concepts/yb-master) server. The `yb-master` executable file is located in the `bin` directory of YugabyteDB home.
+Use the `yb-master` binary and its options to configure the [YB-Master](../../../architecture/concepts/yb-master) server. The `yb-master` executable file is located in the `bin` directory of ZNbaseDB home.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ $ ./bin/yb-master \
 
 ### Online help
 
-To display the online help, run `yb-master --help` from the YugabyteDB home directory.
+To display the online help, run `yb-master --help` from the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/yb-master --help
@@ -134,7 +134,7 @@ Default: `7000`
 
 Monitoring web server home.
 
-Default: The `www` directory in the YugabyteDB home directory.
+Default: The `www` directory in the ZNbaseDB home directory.
 
 ---
 
@@ -396,7 +396,7 @@ Default: `false`
 
 ##### --use_node_to_node_encryption
 
-Enable server-server, or node-to-node, encryption between YugabyteDB YB-Master and YB-TServer servers in a cluster or universe. To work properly, all YB-Master servers must also have their [`--use_node_to_node_encryption`](../yb-master/#use-node-to-node-encryption) setting enabled. When enabled, then [`--allow_insecure_connections`](#allow-insecure-connections) must be disabled.
+Enable server-server, or node-to-node, encryption between ZNbaseDB YB-Master and YB-TServer servers in a cluster or universe. To work properly, all YB-Master servers must also have their [`--use_node_to_node_encryption`](../yb-master/#use-node-to-node-encryption) setting enabled. When enabled, then [`--allow_insecure_connections`](#allow-insecure-connections) must be disabled.
 
 Default: `false`
 

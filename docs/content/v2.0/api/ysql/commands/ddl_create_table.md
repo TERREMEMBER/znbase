@@ -95,7 +95,7 @@ This feature is currently in [Beta](../../../../faq/general/#what-is-the-definit
 {{< /note >}}
 
 For colocated databases, specify `false` to opt this table out of colocation. This means that the table won't be stored on the same tablet as the rest of the tables for this database, but instead, will have its own set of tablets.
-Use this option for large tables that need to be scaled out. See [colocated tables architecture](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/ysql-colocated-tables.md) for more details on when colocation is useful.
+Use this option for large tables that need to be scaled out. See [colocated tables architecture](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/ysql-colocated-tables.md) for more details on when colocation is useful.
 
 Note that `colocated = true` has no effect if the database that this table is part of is not colocated since colocation today is supported only at the database level.
 
@@ -108,7 +108,7 @@ Storage parameters [as defined by PostgreSQL](https://www.postgresql.org/docs/11
 ### Table with primary key
 
 ```postgresql
-yugabyte=# CREATE TABLE sample(k1 int,
+ZNbase=# CREATE TABLE sample(k1 int,
                                k2 int,
                                v1 int,
                                v2 text,
@@ -118,7 +118,7 @@ yugabyte=# CREATE TABLE sample(k1 int,
 In this example, the first column `k1` will be `HASH`, while second column `k2` will be `ASC`.
 
 ```
-yugabyte=# \d sample
+ZNbase=# \d sample
                Table "public.sample"
  Column |  Type   | Collation | Nullable | Default
 --------+---------+-----------+----------+---------
@@ -133,7 +133,7 @@ Indexes:
 ### Table with range primary key
 
 ```postgresql
-yugabyte=# CREATE TABLE range(k1 int,
+ZNbase=# CREATE TABLE range(k1 int,
                               k2 int,
                               v1 int,
                               v2 text,
@@ -143,7 +143,7 @@ yugabyte=# CREATE TABLE range(k1 int,
 ### Table with check constraint
 
 ```postgresql
-yugabyte=# CREATE TABLE student_grade(student_id int,
+ZNbase=# CREATE TABLE student_grade(student_id int,
                                       class_id int,
                                       term_id int,
                                       grade int CHECK (grade >= 0 AND grade <= 10),
@@ -153,7 +153,7 @@ yugabyte=# CREATE TABLE student_grade(student_id int,
 ### Table with default value
 
 ```postgresql
-yugabyte=# CREATE TABLE cars(id int PRIMARY KEY,
+ZNbase=# CREATE TABLE cars(id int PRIMARY KEY,
                              brand text CHECK (brand in ('X', 'Y', 'Z')),
                              model text NOT NULL,
                              color text NOT NULL DEFAULT 'WHITE' CHECK (color in ('RED', 'WHITE', 'BLUE')));
@@ -164,9 +164,9 @@ yugabyte=# CREATE TABLE cars(id int PRIMARY KEY,
 Define two tables with a foreign keys constraint.
 
 ```postgresql
-yugabyte=# CREATE TABLE products(id int PRIMARY KEY,
+ZNbase=# CREATE TABLE products(id int PRIMARY KEY,
                                  descr text);
-yugabyte=# CREATE TABLE orders(id int PRIMARY KEY,
+ZNbase=# CREATE TABLE orders(id int PRIMARY KEY,
                                pid int REFERENCES products(id) ON DELETE CASCADE,
                                amount int);
 ```
@@ -174,11 +174,11 @@ yugabyte=# CREATE TABLE orders(id int PRIMARY KEY,
 Insert some rows.
 
 ```postgresql
-yugabyte=# SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-yugabyte=# INSERT INTO products VALUES (1, 'Phone X'), (2, 'Tablet Z');
-yugabyte=# INSERT INTO orders VALUES (1, 1, 3), (2, 1, 3), (3, 2, 2);
+ZNbase=# SET SESSION CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+ZNbase=# INSERT INTO products VALUES (1, 'Phone X'), (2, 'Tablet Z');
+ZNbase=# INSERT INTO orders VALUES (1, 1, 3), (2, 1, 3), (3, 2, 2);
 
-yugabyte=# SELECT o.id AS order_id, p.id as product_id, p.descr, o.amount FROM products p, orders o WHERE o.pid = p.id;
+ZNbase=# SELECT o.id AS order_id, p.id as product_id, p.descr, o.amount FROM products p, orders o WHERE o.pid = p.id;
 ```
 
 ```
@@ -193,7 +193,7 @@ order_id | product_id |  descr   | amount
 Inserting a row referencing a non-existent product is not allowed.
 
 ```postgresql
-yugabyte=# INSERT INTO orders VALUES (1, 3, 3);
+ZNbase=# INSERT INTO orders VALUES (1, 3, 3);
 ```
 
 ```
@@ -204,8 +204,8 @@ DETAIL:  Key (pid)=(3) is not present in table "products".
 Deleting a product will cascade to all orders (as defined in the `CREATE TABLE` statement above).
 
 ```postgresql
-yugabyte=# DELETE from products where id = 1;
-yugabyte=# SELECT o.id AS order_id, p.id as product_id, p.descr, o.amount FROM products p, orders o WHERE o.pid = p.id;
+ZNbase=# DELETE from products where id = 1;
+ZNbase=# SELECT o.id AS order_id, p.id as product_id, p.descr, o.amount FROM products p, orders o WHERE o.pid = p.id;
 ```
 
 ```
@@ -218,7 +218,7 @@ yugabyte=# SELECT o.id AS order_id, p.id as product_id, p.descr, o.amount FROM p
 ### Table with unique constraint
 
 ```postgresql
-yugabyte=# CREATE TABLE translations(message_id int UNIQUE,
+ZNbase=# CREATE TABLE translations(message_id int UNIQUE,
                                      message_txt text);
 ```
 
@@ -228,15 +228,15 @@ You can use the `CREATE TABLE` statement with the `SPLIT INTO` clause to specify
 This is useful for two data center (2DC) deployments that require identical number of tablets on both clusters.
 
 ```postgresql
-yugabyte=# CREATE TABLE tracking (id int PRIMARY KEY) SPLIT (INTO 10 TABLETS);
+ZNbase=# CREATE TABLE tracking (id int PRIMARY KEY) SPLIT (INTO 10 TABLETS);
 ```
 
 ### Opt table out of colocation
 
 ```postgresql
-yugabyte=# CREATE DATABASE company WITH colocated = true;
+ZNbase=# CREATE DATABASE company WITH colocated = true;
 
-yugabyte=# CREATE TABLE employee(id INT PRIMARY KEY, name TEXT) WITH (colocated = false);
+ZNbase=# CREATE TABLE employee(id INT PRIMARY KEY, name TEXT) WITH (colocated = false);
 ```
 
 In this example, database `company` is colocated and all tables other than the `employee` table are stored on a single tablet.

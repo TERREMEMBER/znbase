@@ -1,4 +1,4 @@
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -21,7 +21,7 @@ set(TSERVER_SRCS_EXTENSIONS
   ${YB_ENT_CURRENT_SOURCE_DIR}/backup_service.cc
   ${YB_ENT_CURRENT_SOURCE_DIR}/tablet_server_ent.cc
   ${YB_ENT_CURRENT_SOURCE_DIR}/cdc_consumer.cc
-  ${YB_ENT_CURRENT_SOURCE_DIR}/twodc_output_client.cc 
+  ${YB_ENT_CURRENT_SOURCE_DIR}/twodc_output_client.cc
   ${YB_ENT_CURRENT_SOURCE_DIR}/cdc_poller.cc
   ${YB_ENT_CURRENT_SOURCE_DIR}/twodc_write_implementations.cc
   PARENT_SCOPE)

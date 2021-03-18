@@ -79,7 +79,7 @@ typedef bool (*aminsert_function) (Relation indexRelation,
 								   IndexUniqueCheck checkUnique,
 								   struct IndexInfo *indexInfo);
 
-/* alternate insert callback for YugaByte-based index that passs ybctid instead of ctid */
+/* alternate insert callback for ZNbase-based index that passs ybctid instead of ctid */
 typedef bool (*yb_aminsert_function) (Relation indexRelation,
 									  Datum *values,
 									  bool *isnull,
@@ -88,7 +88,7 @@ typedef bool (*yb_aminsert_function) (Relation indexRelation,
 									  IndexUniqueCheck checkUnique,
 									  struct IndexInfo *indexInfo);
 
-/* delete this tuple for YugaByte-based index */
+/* delete this tuple for ZNbase-based index */
 typedef void (*yb_amdelete_function) (Relation indexRelation,
 									  Datum *values,
 									  bool *isnull,
@@ -96,7 +96,7 @@ typedef void (*yb_amdelete_function) (Relation indexRelation,
 									  Relation heapRelation,
 									  struct IndexInfo *indexInfo);
 
-/* backfill this Yugabyte-based index */
+/* backfill this ZNbase-based index */
 typedef IndexBuildResult *(*yb_ambackfill_function) (Relation heapRelation,
 													 Relation indexRelation,
 													 struct IndexInfo *indexInfo,
@@ -254,7 +254,7 @@ typedef struct IndexAmRoutine
 	aminitparallelscan_function aminitparallelscan; /* can be NULL */
 	amparallelrescan_function amparallelrescan; /* can be NULL */
 
-	/* interface functions to support Yugabyte indexes */
+	/* interface functions to support ZNbase indexes */
 	yb_aminsert_function yb_aminsert;
 	yb_amdelete_function yb_amdelete;
 	yb_ambackfill_function yb_ambackfill;

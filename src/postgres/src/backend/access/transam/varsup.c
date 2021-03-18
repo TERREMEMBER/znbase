@@ -33,7 +33,7 @@
 #define VAR_OID_PREFETCH		8192
 
 /*
- * Number of OIDs to prefetch (preallocate) in YugabyteDB setup.
+ * Number of OIDs to prefetch (preallocate) in ZNbaseDB setup.
  * Given there are multiple Postgres nodes, each node should prefetch
  * in smaller chunks.
  */
@@ -522,7 +522,7 @@ GetNewObjectId(void)
 	/* If we run out of logged for use oids then we must log more */
 	if (ShmemVariableCache->oidCount == 0)
 	{
-		if (IsYugaByteEnabled())
+		if (IsZNbaseEnabled())
 		{
 			Oid begin_oid = InvalidOid;
 			Oid end_oid   = InvalidOid;

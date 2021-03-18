@@ -26,107 +26,107 @@ jobs:
           fi
           echo "Release train determined: $train"
           echo "::set-output name=yb_train::${train}"
-          
-      - name: "Trigger Repository Dispatch - yugabyte/terraform-gcp-yugabyte"
+
+      - name: "Trigger Repository Dispatch - ZNbase/terraform-gcp-ZNbase"
         run: |
           curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
           -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Content-Type: application/json" https://api.github.com/repos/yugabyte/terraform-gcp-yugabyte/dispatches \
+          -H "Content-Type: application/json" https://api.github.com/repos/ZNbase/terraform-gcp-ZNbase/dispatches \
           --data '{"event_type": "build-on-release", "client_payload":
                    {"prerelease": "${{ github.event.release.prerelease }}",
                     "release": "${{github.event.release.tag_name}}",
                     "yb_release_train": ${{steps.yb_train.outputs.yb_train}} } }'
-      
-      - name: "Trigger Repository Dispatch - yugabyte/terraform-aws-yugabyte"
+
+      - name: "Trigger Repository Dispatch - ZNbase/terraform-aws-ZNbase"
         run: |
           curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
           -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Content-Type: application/json" https://api.github.com/repos/yugabyte/terraform-aws-yugabyte/dispatches \
+          -H "Content-Type: application/json" https://api.github.com/repos/ZNbase/terraform-aws-ZNbase/dispatches \
           --data '{"event_type": "build-on-release", "client_payload":
                    {"prerelease": "${{ github.event.release.prerelease }}",
                     "release": "${{github.event.release.tag_name}}",
                     "yb_release_train": ${{steps.yb_train.outputs.yb_train}} } }'
-      
-      - name: "Trigger Repository Dispatch - yugabyte/terraform-azure-yugabyte"
+
+      - name: "Trigger Repository Dispatch - ZNbase/terraform-azure-ZNbase"
         run: |
           curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
           -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Content-Type: application/json" https://api.github.com/repos/yugabyte/terraform-azure-yugabyte/dispatches \
+          -H "Content-Type: application/json" https://api.github.com/repos/ZNbase/terraform-azure-ZNbase/dispatches \
           --data '{"event_type": "build-on-release", "client_payload":
                    {"prerelease": "${{ github.event.release.prerelease }}",
                     "release": "${{github.event.release.tag_name}}",
                     "yb_release_train": ${{steps.yb_train.outputs.yb_train}} } }'
-            
-      - name: "Trigger Repository Dispatch - yugabyte/azure-resource-manager"
+
+      - name: "Trigger Repository Dispatch - ZNbase/azure-resource-manager"
         run: |
           curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
           -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Content-Type: application/json" https://api.github.com/repos/yugabyte/azure-resource-manager/dispatches \
+          -H "Content-Type: application/json" https://api.github.com/repos/ZNbase/azure-resource-manager/dispatches \
           --data '{"event_type": "build-on-release", "client_payload":
                    {"prerelease": "${{ github.event.release.prerelease }}",
                     "release": "${{github.event.release.tag_name}}",
                     "yb_release_train": ${{steps.yb_train.outputs.yb_train}} } }'
-      
-      - name: "Trigger Repository Dispatch - yugabyte/gcp-deployment-manager"
+
+      - name: "Trigger Repository Dispatch - ZNbase/gcp-deployment-manager"
         run: |
           curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
           -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Content-Type: application/json" https://api.github.com/repos/yugabyte/gcp-deployment-manager/dispatches \
+          -H "Content-Type: application/json" https://api.github.com/repos/ZNbase/gcp-deployment-manager/dispatches \
           --data '{"event_type": "build-on-release", "client_payload":
                    {"prerelease": "${{ github.event.release.prerelease }}",
                     "release": "${{github.event.release.tag_name}}",
                     "yb_release_train": ${{steps.yb_train.outputs.yb_train}} } }'
-      
-      - name: "Trigger Repository Dispatch - yugabyte/aws-cloudformation"
+
+      - name: "Trigger Repository Dispatch - ZNbase/aws-cloudformation"
         run: |
           curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
           -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Content-Type: application/json" https://api.github.com/repos/yugabyte/aws-cloudformation/dispatches \
+          -H "Content-Type: application/json" https://api.github.com/repos/ZNbase/aws-cloudformation/dispatches \
           --data '{"event_type": "build-on-release", "client_payload":
                    {"prerelease": "${{ github.event.release.prerelease }}",
                     "release": "${{github.event.release.tag_name}}",
                     "yb_release_train": ${{steps.yb_train.outputs.yb_train}} } }'
-      
-      - name: "Trigger Repository Dispatch - yugabyte/homebrew-yugabytedb"
+
+      - name: "Trigger Repository Dispatch - ZNbase/homebrew-ZNbasedb"
         run: |
           curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
           -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Content-Type: application/json" https://api.github.com/repos/yugabyte/homebrew-yugabytedb/dispatches \
-          --data '{"event_type": "update-on-release", "client_payload":
-                   {"prerelease": "${{ github.event.release.prerelease }}",
-                    "release": "${{github.event.release.tag_name}}",
-                    "yb_release_train": ${{steps.yb_train.outputs.yb_train}} } }'
-      
-      - name: "Trigger Repository Dispatch - yugabyte/utilities"
-        run: |
-          curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
-          -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Content-Type: application/json" https://api.github.com/repos/yugabyte/utilities/dispatches \
-          --data '{"event_type": "build-on-release", "client_payload":
-                   {"prerelease": "${{ github.event.release.prerelease }}",
-                    "release": "${{github.event.release.tag_name}}",
-                    "yb_release_train": ${{steps.yb_train.outputs.yb_train}} } }'
-      
-      - name: "Trigger Repository Dispatch - yugabyte/charts"
-        run: |
-          curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
-          -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Content-Type: application/json" https://api.github.com/repos/yugabyte/charts/dispatches \
+          -H "Content-Type: application/json" https://api.github.com/repos/ZNbase/homebrew-ZNbasedb/dispatches \
           --data '{"event_type": "update-on-release", "client_payload":
                    {"prerelease": "${{ github.event.release.prerelease }}",
                     "release": "${{github.event.release.tag_name}}",
                     "yb_release_train": ${{steps.yb_train.outputs.yb_train}} } }'
 
-      - name: "Trigger Repository Dispatch - yugabyte/yugabyte-db-action"
+      - name: "Trigger Repository Dispatch - ZNbase/utilities"
         run: |
           curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
           -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Content-Type: application/json" https://api.github.com/repos/yugabyte/yugabyte-db-action/dispatches \
+          -H "Content-Type: application/json" https://api.github.com/repos/ZNbase/utilities/dispatches \
+          --data '{"event_type": "build-on-release", "client_payload":
+                   {"prerelease": "${{ github.event.release.prerelease }}",
+                    "release": "${{github.event.release.tag_name}}",
+                    "yb_release_train": ${{steps.yb_train.outputs.yb_train}} } }'
+
+      - name: "Trigger Repository Dispatch - ZNbase/charts"
+        run: |
+          curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
+          -H "Accept: application/vnd.github.everest-preview+json" \
+          -H "Content-Type: application/json" https://api.github.com/repos/ZNbase/charts/dispatches \
+          --data '{"event_type": "update-on-release", "client_payload":
+                   {"prerelease": "${{ github.event.release.prerelease }}",
+                    "release": "${{github.event.release.tag_name}}",
+                    "yb_release_train": ${{steps.yb_train.outputs.yb_train}} } }'
+
+      - name: "Trigger Repository Dispatch - ZNbase/ZNbase-db-action"
+        run: |
+          curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
+          -H "Accept: application/vnd.github.everest-preview+json" \
+          -H "Content-Type: application/json" https://api.github.com/repos/ZNbase/ZNbase-db-action/dispatches \
           --data '{"event_type": "on-release"}'
 
-      - name: "Trigger Repository Dispatch - yugabyte/yugabyte-operator"
+      - name: "Trigger Repository Dispatch - ZNbase/ZNbase-operator"
         run: |
           curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" \
           -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Content-Type: application/json" https://api.github.com/repos/yugabyte/yugabyte-operator/dispatches \
+          -H "Content-Type: application/json" https://api.github.com/repos/ZNbase/ZNbase-operator/dispatches \
           --data '{"event_type": "update-on-release",  "client_payload": {"prerelease": "${{ github.event.release.prerelease }}", "release": "${{github.event.release.tag_name}}"  }}'

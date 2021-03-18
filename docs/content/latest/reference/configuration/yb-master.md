@@ -2,7 +2,7 @@
 title: yb-master configuration reference
 headerTitle: yb-master
 linkTitle: yb-master
-description: YugabyteDB Master Server (yb-master) binary and configuration flags to manage cluster metadata and coordinate cluster-wide operations.
+description: ZNbaseDB Master Server (yb-master) binary and configuration flags to manage cluster metadata and coordinate cluster-wide operations.
 menu:
   latest:
     identifier: yb-master
@@ -14,7 +14,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Use the `yb-master` binary and its flags to configure the [YB-Master](../../../architecture/concepts/yb-master) server. The `yb-master` executable file is located in the `bin` directory of YugabyteDB home.
+Use the `yb-master` binary and its flags to configure the [YB-Master](../../../architecture/concepts/yb-master) server. The `yb-master` executable file is located in the `bin` directory of ZNbaseDB home.
 
 ## Syntax
 
@@ -34,7 +34,7 @@ $ ./bin/yb-master \
 
 ### Online help
 
-To display the online help, run `yb-master --help` from the YugabyteDB home directory.
+To display the online help, run `yb-master --help` from the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/yb-master --help
@@ -153,7 +153,7 @@ Default: `7000`
 
 Monitoring web server home.
 
-Default: The `www` directory in the YugabyteDB home directory.
+Default: The `www` directory in the ZNbaseDB home directory.
 
 ---
 
@@ -437,11 +437,11 @@ Default: `3`
 
 The number of shards per YB-TServer for each YCQL table when a user table is created.
 
-Default: `-1` (server internally sets default value). For servers with up to two CPU cores, the default value is `4`. For three or more CPU cores, the default value is `8`. Local cluster installations, created with `yb-ctl` and `yb-docker-ctl`, use a value of `2` for this flag. Clusters created with `yugabyted` use a default value of `1`.
+Default: `-1` (server internally sets default value). For servers with up to two CPU cores, the default value is `4`. For three or more CPU cores, the default value is `8`. Local cluster installations, created with `yb-ctl` and `yb-docker-ctl`, use a value of `2` for this flag. Clusters created with `ZNbased` use a default value of `1`.
 
 {{< note title="Important" >}}
 
-This value must match on all `yb-master` and `yb-tserver` configurations of a YugabyteDB cluster.
+This value must match on all `yb-master` and `yb-tserver` configurations of a ZNbaseDB cluster.
 
 {{< /note >}}
 
@@ -455,7 +455,7 @@ On a per-table basis, the [`CREATE TABLE ... WITH TABLETS = <num>`](../../../api
 
 The number of shards per YB-TServer for each YSQL table when a user table is created.
 
-Default: `-1` (server internally sets default value). For servers with up to two CPU cores, the default value is `2`. For servers with three or four CPU cores, the default value is `4`. Beyond four cores, the default value is `8`. Local cluster installations, created with `yb-ctl` and `yb-docker-ctl`, use a value of `2` for this flag. Clusters created with `yugabyted` use a default value of `1`.
+Default: `-1` (server internally sets default value). For servers with up to two CPU cores, the default value is `2`. For servers with three or four CPU cores, the default value is `4`. Beyond four cores, the default value is `8`. Local cluster installations, created with `yb-ctl` and `yb-docker-ctl`, use a value of `2` for this flag. Clusters created with `ZNbased` use a default value of `1`.
 
 {{< note title="Note" >}}
 
@@ -479,7 +479,7 @@ yb-admin --master_addresses <master-addresses> --tablet_split_size_threshold_byt
 For details on automatic tablet splitting, see:
 
 - [Automatic tablet splitting](../../../architecture/docdb-sharding/tablet-splitting) — Architecture overview
-- [Automatic Re-sharding of Data with Tablet Splitting](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/docdb-automatic-tablet-splitting.md) — Architecture design document in the GitHub repository.
+- [Automatic Re-sharding of Data with Tablet Splitting](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/docdb-automatic-tablet-splitting.md) — Architecture design document in the GitHub repository.
 
 ---
 
@@ -543,7 +543,7 @@ Default: `false`
 
 ##### --use_node_to_node_encryption
 
-Enable server-server, or node-to-node, encryption between YugabyteDB YB-Master and YB-TServer servers in a cluster or universe. To work properly, all YB-Master servers must also have their [`--use_node_to_node_encryption`](../yb-master/#use-node-to-node-encryption) flag enabled. When enabled, then [`--allow_insecure_connections`](#allow-insecure-connections) flag must be disabled.
+Enable server-server, or node-to-node, encryption between ZNbaseDB YB-Master and YB-TServer servers in a cluster or universe. To work properly, all YB-Master servers must also have their [`--use_node_to_node_encryption`](../yb-master/#use-node-to-node-encryption) flag enabled. When enabled, then [`--allow_insecure_connections`](#allow-insecure-connections) flag must be disabled.
 
 Default: `false`
 

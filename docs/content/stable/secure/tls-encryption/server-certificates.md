@@ -2,8 +2,8 @@
 title: Create server certificates
 headerTitle: Create server certificates
 linkTitle: Create server certificates
-description: Generate server certificates and prepare YugabyteDB nodes for server-to-server encryption.
-headcontent: Generate server certificates and prepare YugabyteDB nodes for server-to-server encryption.
+description: Generate server certificates and prepare ZNbaseDB nodes for server-to-server encryption.
+headcontent: Generate server certificates and prepare ZNbaseDB nodes for server-to-server encryption.
 image: /images/section_icons/secure/prepare-nodes.png
 menu:
   stable:
@@ -14,7 +14,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Before you can enable server-to-server and client-to-server encryptions using Transport Security Layer (TLS), you need to prepare each node in a YugabyteDB cluster.
+Before you can enable server-to-server and client-to-server encryptions using Transport Security Layer (TLS), you need to prepare each node in a ZNbaseDB cluster.
 
 ## Create the server certificates
 
@@ -34,7 +34,7 @@ Now create one directory for each node and put all the required data in that dir
 $ mkdir 127.0.0.1/ 127.0.0.2/ 127.0.0.3/
 ```
 
-You should now have three directories, named `127.0.0.1`, `127.0.0.2`, and `127.0.0.3`, representing the three nodes of your YugabyteDB cluster.
+You should now have three directories, named `127.0.0.1`, `127.0.0.2`, and `127.0.0.3`, representing the three nodes of your ZNbaseDB cluster.
 
 ### Create the root configuration file
 
@@ -85,8 +85,8 @@ distinguished_name = my_distinguished_name
 x509_extensions = my_extensions
 
 [ my_distinguished_name ]
-organizationName = Yugabyte
-commonName = CA for YugabyteDB
+organizationName = ZNbase
+commonName = CA for ZNbaseDB
 
 [ my_extensions ]
 keyUsage = critical,digitalSignature,nonRepudiation,keyEncipherment,keyCertSign
@@ -160,11 +160,11 @@ Certificate:
         Serial Number:
             61:ca:24:00:c8:40:f3:4d:66:59:80:35:86:ca:b9:6f:98:b1:1c:5e
         Signature Algorithm: sha256WithRSAEncryption
-        Issuer: O = Yugabyte, CN = CA for YugabyteDB
+        Issuer: O = ZNbase, CN = CA for ZNbaseDB
         Validity
             Not Before: Feb 14 04:40:56 2020 GMT
             Not After : Mar 15 04:40:56 2020 GMT
-        Subject: O = Yugabyte, CN = CA for YugabyteDB
+        Subject: O = ZNbase, CN = CA for ZNbaseDB
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 RSA Public-Key: (2048 bit)
@@ -254,7 +254,7 @@ prompt=no
 distinguished_name = my_distinguished_name
 
 [ my_distinguished_name ]
-organizationName = Yugabyte
+organizationName = ZNbase
 # Required value for commonName, do not change.
 commonName = <node-ip-address>
 ```
@@ -269,7 +269,7 @@ For each of the three nodes, generate the node private key by running the follow
 
 {{< note title="Note" >}}
 
-For YugabyteDB to recognize the file, it must be of the format `node.<commonName>.key`. In this example,
+For ZNbaseDB to recognize the file, it must be of the format `node.<commonName>.key`. In this example,
 you are using the `<node-ip-address>` for the `<commonName>`, so the file names should be `node.127.0.0.1.key`,
 `node.127.0.0.2.key`, and `node.127.0.0.3.key`.
 
@@ -312,7 +312,7 @@ Using configuration from secure-data/ca.conf
 Check that the request matches the signature
 Signature ok
 The Subject's Distinguished Name is as follows
-organizationName      :ASN.1 12:'Yugabyte'
+organizationName      :ASN.1 12:'ZNbase'
 commonName            :ASN.1 12:'127.0.0.1'
 Certificate is to be certified until Feb 11 04:53:11 2030 GMT (3650 days)
 

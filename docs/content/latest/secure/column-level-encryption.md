@@ -3,7 +3,7 @@
 title: Column-Level Encryption
 headerTitle: Column-Level Encryption
 linkTitle: Column-Level Encryption
-description: Using column-level encryption in a YugabyteDB cluster.
+description: Using column-level encryption in a ZNbaseDB cluster.
 headcontent: Enable encryption at rest with a user-generated key
 image: /images/section_icons/secure/prepare-nodes.png
 menu:
@@ -28,41 +28,41 @@ showAsideToc: true
 
 </ul>
 
-YugabyteDB provides column level encryption to restrict access to sensitive data like Address, Credit card details. YugabyteDB uses PostgresQL `pgcrypto` extension to enable column level encryption, `PGP_SYM_ENCRYPT ` and ` PGP_SYM_DECRYPT `functions of pgcrypto extension is used to encrypt and decrypt column data.
+ZNbaseDB provides column level encryption to restrict access to sensitive data like Address, Credit card details. ZNbaseDB uses PostgresQL `pgcrypto` extension to enable column level encryption, `PGP_SYM_ENCRYPT ` and ` PGP_SYM_DECRYPT `functions of pgcrypto extension is used to encrypt and decrypt column data.
 
 
 ## Symmetric Encryption
 
-Steps for enabling Symmetric column encryption in YugabyteDB
+Steps for enabling Symmetric column encryption in ZNbaseDB
 
 
 ### Step 1. Enable `pgcrypto` extension
 
-Open the YSQL shell (ysqlsh), specifying the `yugabyte` user and prompting for the password.
+Open the YSQL shell (ysqlsh), specifying the `ZNbase` user and prompting for the password.
 
 ```
-$ ./ysqlsh -U yugabyte -W
+$ ./ysqlsh -U ZNbase -W
 ```
 
 
 
-When prompted for the password, enter the yugabyte password. You should be able to login and see a response like below.
+When prompted for the password, enter the ZNbase password. You should be able to login and see a response like below.
 
 
 ```
 ysqlsh (11.2-YB-2.5.0.0-b0)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
-Enable `pgcrypto` extension on the YugabyteDB cluster `yugabyte=> \c yugabyte yugabyte;`
+Enable `pgcrypto` extension on the ZNbaseDB cluster `ZNbase=> \c ZNbase ZNbase;`
 
 
 ```
-You are now connected to database "yugabyte" as user "yugabyte".
+You are now connected to database "ZNbase" as user "ZNbase".
 
-yugabyte=# CREATE EXTENSION IF NOT EXISTS pgcrypto;
+ZNbase=# CREATE EXTENSION IF NOT EXISTS pgcrypto;
 CREATE EXTENSION
 
 ```
@@ -72,7 +72,7 @@ CREATE EXTENSION
 Create `employees` table and insert data into the table using `PGP_SYM_ENCRYPT` function for columns that need to be encrypted.
 
 ```
-yugabyte=# create table employees ( empno int, ename text, address text, salary int, account_number text );
+ZNbase=# create table employees ( empno int, ename text, address text, salary int, account_number text );
 CREATE TABLE
 ```
 
@@ -82,11 +82,11 @@ In this example, account numbers of `employees` table will be encrypted using` P
 
 
 ```
-yugabyte=# insert into employees values (1, 'joe', '56 grove st',  20000, PGP_SYM_ENCRYPT('AC-22001', 'AES_KEY'));
+ZNbase=# insert into employees values (1, 'joe', '56 grove st',  20000, PGP_SYM_ENCRYPT('AC-22001', 'AES_KEY'));
 INSERT 0 1
-yugabyte=# insert into employees values (2, 'mike', '129 81 st',  80000, PGP_SYM_ENCRYPT('AC-48901', 'AES_KEY'));
+ZNbase=# insert into employees values (2, 'mike', '129 81 st',  80000, PGP_SYM_ENCRYPT('AC-48901', 'AES_KEY'));
 INSERT 0 1
-yugabyte=# insert into employees values (3, 'julia', '1 finite loop',  40000, PGP_SYM_ENCRYPT('AC-77051', 'AES_KEY'));
+ZNbase=# insert into employees values (3, 'julia', '1 finite loop',  40000, PGP_SYM_ENCRYPT('AC-77051', 'AES_KEY'));
 INSERT 0 1
 ```
 
@@ -97,7 +97,7 @@ Review the encrypted `account_number` data, as shown below
 
 
 ```
-yugabyte=# select ename, account_number from employees limit 1;
+ZNbase=# select ename, account_number from employees limit 1;
  ename |               account_number
 -------+-------------------------------------------------
  joe   | \xc30d04070302ee4c6d5f6656ace96ed23901f56c717d4e
@@ -117,7 +117,7 @@ To allow the decryption, the field name is also casted to the binary data type w
 
 
 ```
-yugabyte=# select PGP_SYM_DECRYPT(account_number::bytea, 'AES_KEY') as AccountNumber
+ZNbase=# select PGP_SYM_DECRYPT(account_number::bytea, 'AES_KEY') as AccountNumber
            from employees;
  accountnumber
 ---------------
@@ -130,10 +130,10 @@ yugabyte=# select PGP_SYM_DECRYPT(account_number::bytea, 'AES_KEY') as AccountNu
 
 ## Asymmetric Encryption
 
-Asymmetric Encryption, also known as Public-Key cryptography can be used with YugabyteDB for enabling column level encryption. YugabyteDB can be configured with generated public/private keys or corporate gpg keys for encrypting column data.
+Asymmetric Encryption, also known as Public-Key cryptography can be used with ZNbaseDB for enabling column level encryption. ZNbaseDB can be configured with generated public/private keys or corporate gpg keys for encrypting column data.
 
 
-The example below walks through configuring YugabyteDB cluster with a new set of keys (public and private)
+The example below walks through configuring ZNbaseDB cluster with a new set of keys (public and private)
 
 
 ### Step 1. Generate RSA key pair
@@ -157,7 +157,7 @@ The example below walks through configuring YugabyteDB cluster with a new set of
 
     pub   rsa2048 2020-11-09 [SC] [expires: 2022-11-09]
           043E14210E7628F93383D78EA2969FF91871CE06
-    uid                      ybadmin <ybadmin@yugabyte.com>
+    uid                      ybadmin <ybadmin@ZNbase.com>
     sub   rsa2048 2020-11-09 [E] [expires: 2022-11-09]
     ```
 
@@ -182,28 +182,28 @@ The example below walks through configuring YugabyteDB cluster with a new set of
 
 ### Step 2. Enable `pgcrypto` extension
 
-* Open the YSQL shell (ysqlsh), specifying the `yugabyte` user and prompting for the password.
+* Open the YSQL shell (ysqlsh), specifying the `ZNbase` user and prompting for the password.
 
     ```
-    $ ./ysqlsh -U yugabyte -W
+    $ ./ysqlsh -U ZNbase -W
     ```
 
-    When prompted for the password, enter the yugabyte password. You should be able to login and see a response like below.
+    When prompted for the password, enter the ZNbase password. You should be able to login and see a response like below.
 
     ```
     ysqlsh (11.2-YB-2.5.0.0-b0)
     Type "help" for help.
 
-    yugabyte=#
+    ZNbase=#
     ```
 
 
-* Enable `pgcrypto` extension on the YugabyteDB cluster
+* Enable `pgcrypto` extension on the ZNbaseDB cluster
 
     ```
-    You are now connected to database "yugabyte" as user "yugabyte".
+    You are now connected to database "ZNbase" as user "ZNbase".
 
-    yugabyte=# CREATE EXTENSION IF NOT EXISTS pgcrypto;
+    ZNbase=# CREATE EXTENSION IF NOT EXISTS pgcrypto;
     CREATE EXTENSION
     ```
 
@@ -214,18 +214,18 @@ Create `employees` table and insert data into the table using generated Public k
 
 
 ```
-yugabyte=# create table employees ( empno int, ename text, address text, salary int, account_number text );
+ZNbase=# create table employees ( empno int, ename text, address text, salary int, account_number text );
 CREATE TABLE
 ```
 
 In this example, account numbers of `employees` table will be encrypted using `pgp_pub_encrypt` function and the generated Public key,
 
 ```
-yugabyte=# insert into employees values (1, 'joe', '56 grove st',  20000, PGP_PUB_ENCRYPT('AC-22001', dearmor('-----BEGIN PGP PUBLIC KEY BLOCK----- XXXX  -----END PGP PUBLIC KEY BLOCK-----')));
+ZNbase=# insert into employees values (1, 'joe', '56 grove st',  20000, PGP_PUB_ENCRYPT('AC-22001', dearmor('-----BEGIN PGP PUBLIC KEY BLOCK----- XXXX  -----END PGP PUBLIC KEY BLOCK-----')));
 INSERT 0 1
-yugabyte=# insert into employees values (2, 'mike', '129 81 st',  80000, PGP_PUB_ENCRYPT('AC-48901', dearmor('-----BEGIN PGP PUBLIC KEY BLOCK----- XXXX  -----END PGP PUBLIC KEY BLOCK-----')));
+ZNbase=# insert into employees values (2, 'mike', '129 81 st',  80000, PGP_PUB_ENCRYPT('AC-48901', dearmor('-----BEGIN PGP PUBLIC KEY BLOCK----- XXXX  -----END PGP PUBLIC KEY BLOCK-----')));
 INSERT 0 1
-yugabyte=# insert into employees values (3, 'julia', '1 finite loop',  40000, PGP_PUB_ENCRYPT('AC-77051', dearmor('-----BEGIN PGP PUBLIC KEY BLOCK----- XXXX  -----END PGP PUBLIC KEY BLOCK-----')));
+ZNbase=# insert into employees values (3, 'julia', '1 finite loop',  40000, PGP_PUB_ENCRYPT('AC-77051', dearmor('-----BEGIN PGP PUBLIC KEY BLOCK----- XXXX  -----END PGP PUBLIC KEY BLOCK-----')));
 INSERT 0 1
 ```
 
@@ -235,7 +235,7 @@ Verify that the data for the column `account_number` is encrypted as shown below
 
 
 ```
-yugabyte=# select ename, account_number from employees limit 1;
+ZNbase=# select ename, account_number from employees limit 1;
  ename |                   account_number
 -------+------------------------------------------------------------
  julia | \xc1c04c039bd2f02876cc14ae0107ff44e68e5a4bb35784b426f4aeb46
@@ -253,7 +253,7 @@ Use `pgp_pub_decrypt` and private key for decrypting column data. In order to re
 To allow the decryption, the field name is also casted to the binary data type with the syntax: ` account_number:bytea`.
 
 ```
-yugabyte=# select PGP_PUB_DECRYPT(account_number::bytea,dearmor('-----BEGIN PGP PRIVATE KEY BLOCK----- XXXX  -----END PGP PRIVATE KEY BLOCK-----'),'PRIVATE-KEY-PASSWORD') as AccountNumber from employees;
+ZNbase=# select PGP_PUB_DECRYPT(account_number::bytea,dearmor('-----BEGIN PGP PRIVATE KEY BLOCK----- XXXX  -----END PGP PRIVATE KEY BLOCK-----'),'PRIVATE-KEY-PASSWORD') as AccountNumber from employees;
  accountnumber
 ---------------
  AC-22001

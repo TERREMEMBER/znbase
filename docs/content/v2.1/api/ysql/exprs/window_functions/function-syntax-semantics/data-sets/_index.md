@@ -30,7 +30,7 @@ create extension pgcrypto;
 create extension tablefunc;
 ```
 
-If you plan to run the code samples in this main "_Window functions"_ section on your laptop using a YugabyteDB cluster that you've created for your own personal use, then you probably have already adopted the habit of running any and all _ad hoc_ tests as a `superuser`. If so, then simply install the [pgcrypto](../../../../extensions/#pgcrypto) and [tablefunc](../../../../extensions/#tablefunc) extensions just as you'd do anything else and then create the tables _"t1"_, _"t2"_, _"t3"_, and _"t4"_.
+If you plan to run the code samples in this main "_Window functions"_ section on your laptop using a ZNbaseDB cluster that you've created for your own personal use, then you probably have already adopted the habit of running any and all _ad hoc_ tests as a `superuser`. If so, then simply install the [pgcrypto](../../../../extensions/#pgcrypto) and [tablefunc](../../../../extensions/#tablefunc) extensions just as you'd do anything else and then create the tables _"t1"_, _"t2"_, _"t3"_, and _"t4"_.
 
 {{< note title="Note 1: about the installation of extensions" >}}
 
@@ -40,7 +40,7 @@ If you've established the practice of creating different databases within your c
 
 {{< note title="Note 2: about the use of the gen_random_uuid() function" >}}
 
-Yugabyte recommends that, when you want a self-populating surrogate primary key column, you should use the approach shown here for the test tables, like this:
+ZNbase recommends that, when you want a self-populating surrogate primary key column, you should use the approach shown here for the test tables, like this:
 
 ```
 create table my_table(
@@ -53,7 +53,7 @@ This is preferred to using, for example `serial` or `bigserial`, like this:
 create table t4(
   k serial primary key, ...
 ```
-(This approach that is common, and that works well, in PostgreSQL—a monolithic SQL database.) This is because `serial` and `bigserial` use a `SEQUENCE`  to generate unique values, and this involves expensive coordination between the nodes in a YugabyteDB cluster. In contrast, any invocation of `gen_random_uuid()` on any node, will reliably produce a new globally unique value entirely algorithmically. This brings a noticeable performance benefit.
+(This approach that is common, and that works well, in PostgreSQL—a monolithic SQL database.) This is because `serial` and `bigserial` use a `SEQUENCE`  to generate unique values, and this involves expensive coordination between the nodes in a ZNbaseDB cluster. In contrast, any invocation of `gen_random_uuid()` on any node, will reliably produce a new globally unique value entirely algorithmically. This brings a noticeable performance benefit.
 
 The tables _"t1"_, _"t2"_, and _"t3"_ have only a handful of rows and so this performance benefit is well below the noise level. But [table _"t4"_](./table-t4/) is populated using a purpose-written procedure parameterized with the number of rows to create. You get the most convincing demonstration effect with a large number, like _100,000_, rows.
 
@@ -67,7 +67,7 @@ Deliberately subverting this tendency (that when rows are inserted naïvely, as 
 
 {{< note title="Save a script to (re)create all four test tables." >}}
 
-It's a good idea to save a script that you can use quickly and effortlessly to create the test tables should you lose, or change, them. This can happen easily with a YugabyteDB cluster on your laptop that you use for all sorts of _ad hoc_ tests. For example, it takes only moments to destroy and re-create the cluster (or even to upgrade to a new version of YugabyteDB)—and this is common practice for certain kinds of test.
+It's a good idea to save a script that you can use quickly and effortlessly to create the test tables should you lose, or change, them. This can happen easily with a ZNbaseDB cluster on your laptop that you use for all sorts of _ad hoc_ tests. For example, it takes only moments to destroy and re-create the cluster (or even to upgrade to a new version of ZNbaseDB)—and this is common practice for certain kinds of test.
 
  Of course, you must first visit each of these pages:
 

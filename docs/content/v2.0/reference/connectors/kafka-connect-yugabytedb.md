@@ -1,31 +1,31 @@
 ---
-title: Kafka Connect YugabyteDB
-linkTitle: Kafka Connect YugabyteDB
-description: Kafka Connect YugabyteDB
+title: Kafka Connect ZNbaseDB
+linkTitle: Kafka Connect ZNbaseDB
+description: Kafka Connect ZNbaseDB
 section: REFERENCE
 block_indexing: true
 menu:
   v2.0:
-    identifier: kafka-connect-yugabytedb
+    identifier: kafka-connect-ZNbasedb
     parent: connectors
     weight: 2930
 isTocNested: 3
 showAsideToc: true
 ---
 
-There are two approaches of integrating [YugabyteDB](https://github.com/yugabyte/yugabyte-db) with Apache Kafka. Kafka provides [Kafka Connect](https://docs.confluent.io/3.0.0/connect/intro.html), a connector SDK for building such integrations.
+There are two approaches of integrating [ZNbaseDB](https://github.com/ZNbase/ZNbase-db) with Apache Kafka. Kafka provides [Kafka Connect](https://docs.confluent.io/3.0.0/connect/intro.html), a connector SDK for building such integrations.
 
-<img src="https://raw.githubusercontent.com/yugabyte/yb-kafka-connector/master/logos/dsql-kafka.png" align="center" alt="Kafka Connect YugabyteDB Connector Architecture"/>
+<img src="https://raw.githubusercontent.com/ZNbase/yb-kafka-connector/master/logos/dsql-kafka.png" align="center" alt="Kafka Connect ZNbaseDB Connector Architecture"/>
 
-## Kafka Connect YugabyteDB Source Connector
+## Kafka Connect ZNbaseDB Source Connector
 
-The Kafka Connect YugabyteDB source connector streams table updates in YugabyteDB to Kafka topics. It is based on YugabyteDB's Change Data Capture (CDC) feature. CDC allows the connector to simply subscribe to these table changes and then publish the changes to selected Kafka topics.
+The Kafka Connect ZNbaseDB source connector streams table updates in ZNbaseDB to Kafka topics. It is based on ZNbaseDB's Change Data Capture (CDC) feature. CDC allows the connector to simply subscribe to these table changes and then publish the changes to selected Kafka topics.
 
 You can see the source connector in action in the [CDC to Kafka](../../../deploy/cdc/cdc-to-kafka/) page.
 
-## Kafka Connect YugabyteDB Sink Connector
+## Kafka Connect ZNbaseDB Sink Connector
 
-The Kafka Connect YugabyteDB Sink Connector delivers data from Kafka topics into YugabyteDB tables. The connector subscribes to specific topics in Kafka and then writes to specific tables in YugabyteDB as soon as new messages are received in the selected topics.
+The Kafka Connect ZNbaseDB Sink Connector delivers data from Kafka topics into ZNbaseDB tables. The connector subscribes to specific topics in Kafka and then writes to specific tables in ZNbaseDB as soon as new messages are received in the selected topics.
 
 ### Prerequisites
 
@@ -78,14 +78,14 @@ Any latest version can be used — this is an example.
      ```
      Feel free to `Ctrl-C` this process or switch to a different shell as more values can be added later as well to the same topic.
 
-2. Install YugabyteDB and create the database table.
+2. Install ZNbaseDB and create the database table.
 
-    [Install YugabyteDB and start a local cluster](/quick-start/install/).
-    Create a database and table by running the following command. You can find `cqlsh` in the `bin`  subdirectory located inside the YugabyteDB installation folder.
+    [Install ZNbaseDB and start a local cluster](/quick-start/install/).
+    Create a database and table by running the following command. You can find `cqlsh` in the `bin`  subdirectory located inside the ZNbaseDB installation folder.
 
     ```postgresql
-    yugabyte=# CREATE DATABASE IF NOT EXISTS demo;
-    yugabyte=# \c demo
+    ZNbase=# CREATE DATABASE IF NOT EXISTS demo;
+    ZNbase=# \c demo
     demo=# CREATE TABLE demo.test_table (key text, value bigint, ts timestamp, PRIMARY KEY (key));
     ```
 
@@ -99,22 +99,22 @@ Any latest version can be used — this is an example.
     $ cp  ~/yb-kafka/yb-kafka-connector/target/yb-kafka-connnector-1.0.0.jar ~/yb-kafkakafka_2.11-2.0.0/libs/
     $ cd ~/yb-kafka/kafka_2.11-2.0.0/libs/
     $ wget http://central.maven.org/maven2/io/netty/netty-all/4.1.25.Finalnetty-all-4.1.25.Final.jar
-    $ wget http://central.maven.org/maven2/com/yugabyte/cassandra-driver-core/3.2.0-yb-18cassandra-driver-core-3.2.0-yb-18.jar
+    $ wget http://central.maven.org/maven2/com/ZNbase/cassandra-driver-core/3.2.0-yb-18cassandra-driver-core-3.2.0-yb-18.jar
     $ wget http://central.maven.org/maven2/com/codahale/metrics/metrics-core/3.0.1metrics-core-3.0.1.jar
     ```
 
-    Finally, run the Kafka Connect YugabyteDB Sink Connector in standalone mode:
+    Finally, run the Kafka Connect ZNbaseDB Sink Connector in standalone mode:
 
     ```sh
-    $ ~/yb-kafka/kafka_2.11-2.0.0/bin/connect-standalone.sh ~/yb-kafka/yb-kafka-connector/resourcesexamples/kafka.connect.properties ~/yb-kafka/yb-kafka-connector/resources/examplesyugabyte.sink.properties 
+    $ ~/yb-kafka/kafka_2.11-2.0.0/bin/connect-standalone.sh ~/yb-kafka/yb-kafka-connector/resourcesexamples/kafka.connect.properties ~/yb-kafka/yb-kafka-connector/resources/examplesZNbase.sink.properties 
     ```
 
     *Notes*:
 
     - Setting the `bootstrap.servers` to a remote host/ports in the`kafka.connect.properties`file can help connect to any accessible existing Kafka cluster.
-    - The `database` and `tablename` values in the `yugabyte.sink.properties` file should match the values in the ysqlsh commands in step 5.
+    - The `database` and `tablename` values in the `ZNbase.sink.properties` file should match the values in the ysqlsh commands in step 5.
     - The `topics` value should match the topic name from producer in step 6.
-    - Setting the `yugabyte.cql.contact.points` to a non-local list of host and ports will help connect to any remote-accessible existing YugabyteDB cluster.
+    - Setting the `ZNbase.cql.contact.points` to a non-local list of host and ports will help connect to any remote-accessible existing ZNbaseDB cluster.
    - Check the console output (optional).
 
      You should see something like this (relevant lines from `YBSinkTask.java`) on the console:
@@ -130,7 +130,7 @@ Any latest version can be used — this is an example.
     ...
     ```
 
-4. Confirm that the rows are in the target table in the YugabyteDB cluster, using `ysqlsh`.
+4. Confirm that the rows are in the target table in the ZNbaseDB cluster, using `ysqlsh`.
 
    ```postgresql
    demo=# select * from demo.test_table;

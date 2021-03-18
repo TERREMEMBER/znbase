@@ -35,7 +35,7 @@ showAsideToc: true
 
 The tutorial assumes that you have:
 
-- installed YugabyteDB, and created a universe with YSQL enabled. If not, please follow the steps in [Quick start](../../../explore-ysql).
+- installed ZNbaseDB, and created a universe with YSQL enabled. If not, please follow the steps in [Quick start](../../../explore-ysql).
 - have a 32-bit (x86) or 64-bit (x64) architecture machine.
 - have `gcc` 4.1.2 or later, clang 3.4 or later installed.
 
@@ -54,7 +54,7 @@ $ git clone https://github.com/jtv/libpqxx.git
 Note that this package depends on PostgreSQL binaries. Make sure that the PostgreSQL `bin` directory is on the command path.
 
 ```sh
-export PATH=$PATH:<yugabyte-install-dir>/postgres/bin
+export PATH=$PATH:<ZNbase-install-dir>/postgres/bin
 ```
 
 ### Build and install
@@ -78,7 +78,7 @@ Create a file `ybsql_hello_world.cpp` and copy the contents below:
 
 int main(int, char *argv[])
 {
-  pqxx::connection c("host=127.0.0.1 port=5433 dbname=yugabyte user=yugabyte password=yugabyte");
+  pqxx::connection c("host=127.0.0.1 port=5433 dbname=ZNbase user=ZNbase password=ZNbase");
   pqxx::work txn(c);
   pqxx::result r;
 
@@ -138,7 +138,7 @@ int main(int, char *argv[])
 You can compile the file using `gcc` or `clang`. Note that C++ 11 is the minimum supported C++ version. Make sure your compiler supports this, and if necessary, that you have support for C++11 configured. For `gcc`, run the following command:
 
 ```sh
-$ g++ -std=c++11 ybsql_hello_world.cpp -lpqxx -lpq -I<yugabyte-install-dir>/postgres/include -o ybsql_hello_world
+$ g++ -std=c++11 ybsql_hello_world.cpp -lpqxx -lpq -I<ZNbase-install-dir>/postgres/include -o ybsql_hello_world
 ```
 
 Use the application by running the following command:

@@ -23,9 +23,9 @@ showAsideToc: true
     </a>
   </li>
   <li >
-    <a href="/latest/deploy/kubernetes/oss/yugabyte-operator" class="nav-link">
+    <a href="/latest/deploy/kubernetes/oss/ZNbase-operator" class="nav-link">
       <i class="fas fa-cubes" aria-hidden="true"></i>
-      YugabyteDB operator
+      ZNbaseDB operator
     </a>
   </li>
   <li >
@@ -50,12 +50,12 @@ showAsideToc: true
 
 You must have a Kubernetes cluster that has Helm configured. If you have not installed the Helm client (`helm`), see [Installing Helm](https://helm.sh/docs/intro/install/).
 
-The Helm chart for YugabyteDB (`yugabyte-helm`) has been tested with the following software versions:
+The Helm chart for ZNbaseDB (`ZNbase-helm`) has been tested with the following software versions:
 
 - Kubernetes 1.10+
 - Helm 2.8+ or 3.0+
-- YugabyteDB docker image (yugabytedb/yugabyte) 1.1.0+
-- Kubernetes nodes where a total of 12 CPU cores and 45 GB RAM can be allocated to YugabyteDB. This can be three nodes with 4 CPU core and 15 GB RAM allocated to YugabyteDB.
+- ZNbaseDB docker image (ZNbasedb/ZNbase) 1.1.0+
+- Kubernetes nodes where a total of 12 CPU cores and 45 GB RAM can be allocated to ZNbaseDB. This can be three nodes with 4 CPU core and 15 GB RAM allocated to ZNbaseDB.
 - For optimal performance, ensure you've set the appropriate [system limits using `ulimit`](../../manual-deployment/system-config/#setting-ulimits/) on each node in your Kubernetes cluster.
 
 Confirm that `helm` is configured correctly.
@@ -83,15 +83,15 @@ For Helm 3, jump directly to [Add charts repository](#add-charts-repository) sec
 
 ### Create service account (Helm 2 only)
 
-Before you can create the cluster, you need to have a service account that has been granted the `cluster-admin` role. Use the following command to create a `yugabyte-helm` service account granted with the ClusterRole of `cluster-admin`.
+Before you can create the cluster, you need to have a service account that has been granted the `cluster-admin` role. Use the following command to create a `ZNbase-helm` service account granted with the ClusterRole of `cluster-admin`.
 
 ```sh
-$ kubectl create -f https://raw.githubusercontent.com/yugabyte/charts/master/stable/yugabyte/yugabyte-rbac.yaml
+$ kubectl create -f https://raw.githubusercontent.com/ZNbase/charts/master/stable/ZNbase/ZNbase-rbac.yaml
 ```
 
 ```sh
-serviceaccount/yugabyte-helm created
-clusterrolebinding.rbac.authorization.k8s.io/yugabyte-helm created
+serviceaccount/ZNbase-helm created
+clusterrolebinding.rbac.authorization.k8s.io/ZNbase-helm created
 ```
 
 ### Initialize Helm (Helm 2 only)
@@ -99,7 +99,7 @@ clusterrolebinding.rbac.authorization.k8s.io/yugabyte-helm created
 Initialize `helm` with the service account, but use the `--upgrade` option to ensure that you can upgrade any previous initializations you may have made.
 
 ```sh
-$ helm init --service-account yugabyte-helm --upgrade --wait
+$ helm init --service-account ZNbase-helm --upgrade --wait
 ```
 
 ```
@@ -111,10 +111,10 @@ Happy Helming!
 
 ### Add charts repository
 
-To add the YugabyteDB charts repository, run the following command.
+To add the ZNbaseDB charts repository, run the following command.
 
 ```sh
-$ helm repo add yugabytedb https://charts.yugabyte.com
+$ helm repo add ZNbasedb https://charts.ZNbase.com
 ```
 
 ### Fetch updates from the repository
@@ -130,32 +130,32 @@ $ helm repo update
 **For Helm 2:**
 
 ```sh
-$ helm search yugabytedb/yugabyte
+$ helm search ZNbasedb/ZNbase
 ```
 
 **For Helm 3:**
 
 ```sh
-$ helm search repo yugabytedb/yugabyte
+$ helm search repo ZNbasedb/ZNbase
 ```
 
 **Output:**
 
 ```sh
 NAME                CHART VERSION APP VERSION   DESCRIPTION                                       
-yugabytedb/yugabyte 2.0.12        2.0.12.0-b10  YugabyteDB is the high-performance distr...
+ZNbasedb/ZNbase 2.0.12        2.0.12.0-b10  ZNbaseDB is the high-performance distr...
 ```
 
-### Install YugabyteDB
+### Install ZNbaseDB
 
-Install YugabyteDB in the Kubernetes cluster using the commands below. 
+Install ZNbaseDB in the Kubernetes cluster using the commands below. 
 
 #### On multi-node Kubernetes
 
 **For Helm 2:**
 
 ```sh
-$ helm install yugabytedb/yugabyte --namespace yb-demo --name yb-demo --wait
+$ helm install ZNbasedb/ZNbase --namespace yb-demo --name yb-demo --wait
 ```
 
 **For Helm 3:**
@@ -164,7 +164,7 @@ For Helm 3, you have to first create a namespace.
 
 ```sh
 $ kubectl create namespace yb-demo
-$ helm install yb-demo yugabytedb/yugabyte --namespace yb-demo --wait
+$ helm install yb-demo ZNbasedb/ZNbase --namespace yb-demo --wait
 ```
 
 #### On Minikube
@@ -174,7 +174,7 @@ If you are running in a resource-constrained environment or a local environment,
 **For Helm 2:**
 
 ```sh
-$ helm install yugabytedb/yugabyte \
+$ helm install ZNbasedb/ZNbase \
 --set resource.master.requests.cpu=0.5,resource.master.requests.memory=0.5Gi,\
 resource.tserver.requests.cpu=0.5,resource.tserver.requests.memory=0.5Gi --namespace yb-demo --name yb-demo
 ```
@@ -184,14 +184,14 @@ resource.tserver.requests.cpu=0.5,resource.tserver.requests.memory=0.5Gi --names
 For Helm 3, you have to first create a namespace.
 ```sh
 $ kubectl create namespace yb-demo
-$ helm install yb-demo yugabytedb/yugabyte \
+$ helm install yb-demo ZNbasedb/ZNbase \
 --set resource.master.requests.cpu=0.5,resource.master.requests.memory=0.5Gi,\
 resource.tserver.requests.cpu=0.5,resource.tserver.requests.memory=0.5Gi --namespace yb-demo
 ```
 
 Note that in minikube, the LoadBalancers for `yb-master-ui` and `yb-tserver-service` will remain in pending state since load balancers are not available in a minikube environment. If you would like to turn off these services simply pass the `enableLoadBalancer=False` flag as shown below.
 ```sh
-$ helm install yb-demo yugabytedb/yugabyte \
+$ helm install yb-demo ZNbasedb/ZNbase \
 --set resource.master.requests.cpu=0.5,resource.master.requests.memory=0.5Gi,\
 resource.tserver.requests.cpu=0.5,resource.tserver.requests.memory=0.5Gi,\
 enableLoadBalancer=False --namespace yb-demo
@@ -223,10 +223,10 @@ STATUS: deployed
 REVISION: 1
 TEST SUITE: None
 NOTES:
-1. Get YugabyteDB Pods by running this command:
+1. Get ZNbaseDB Pods by running this command:
   kubectl --namespace yb-demo get pods
 
-2. Get list of YugabyteDB services that are running:
+2. Get list of ZNbaseDB services that are running:
   kubectl --namespace yb-demo get services
 
 3. Get information about the load balancer services:
@@ -236,9 +236,9 @@ NOTES:
   kubectl exec --namespace yb-demo -it yb-tserver-0 bash
 
 5. Run YSQL shell from inside of a tablet server:
-  kubectl exec --namespace yb-demo -it yb-tserver-0 -- /home/yugabyte/bin/ysqlsh -h yb-tserver-0.yb-tservers.yb-demo
+  kubectl exec --namespace yb-demo -it yb-tserver-0 -- /home/ZNbase/bin/ysqlsh -h yb-tserver-0.yb-tservers.yb-demo
 
-6. Cleanup YugabyteDB Pods
+6. Cleanup ZNbaseDB Pods
   helm delete yb-demo --purge
   NOTE: You need to manually delete the persistent volume
   kubectl delete pvc --namespace yb-demo -l app=yb-master
@@ -293,21 +293,21 @@ $ helm history yb-demo -n yb-demo
 
 ```sh
 REVISION  UPDATED                   STATUS    CHART           APP VERSION   DESCRIPTION     
-1         Thu Feb 13 13:29:13 2020  deployed  yugabyte-2.0.12 2.0.12.0-b10  Install complete
+1         Thu Feb 13 13:29:13 2020  deployed  ZNbase-2.0.12 2.0.12.0-b10  Install complete
 ```
 
-## Connect using YugabyteDB Shells
+## Connect using ZNbaseDB Shells
 
 To connect and use the YSQL Shell `ysqlsh`, run the following command.
 
 ```sh
-$ kubectl exec -n yb-demo -it yb-tserver-0 -- /home/yugabyte/bin/ysqlsh -h yb-tserver-0.yb-tservers.yb-demo
+$ kubectl exec -n yb-demo -it yb-tserver-0 -- /home/ZNbase/bin/ysqlsh -h yb-tserver-0.yb-tservers.yb-demo
 ```
 
 To connect and use the YCQL Shell `cqlsh`, run the following command.
 
 ```sh
-$ kubectl exec -n yb-demo -it yb-tserver-0 /home/yugabyte/bin/cqlsh yb-tserver-0.yb-tservers.yb-demo
+$ kubectl exec -n yb-demo -it yb-tserver-0 /home/ZNbase/bin/cqlsh yb-tserver-0.yb-tservers.yb-demo
 ```
 
 ## Connect using external clients
@@ -326,11 +326,11 @@ yb-tserver-service   LoadBalancer   10.98.36.163    35.225.153.214     6379:3092
 
 ## Configure cluster
 
-Instead of using the default values in the Helm chart, you can also modify the configuration of the YugabyteDB cluster according to your requirements. The following section shows the commands and tags that can be modified to achieve the desired configuration.
+Instead of using the default values in the Helm chart, you can also modify the configuration of the ZNbaseDB cluster according to your requirements. The following section shows the commands and tags that can be modified to achieve the desired configuration.
 
 ### CPU, memory, and replica count
 
-The default values for the Helm chart are in the `helm/yugabyte/values.yaml` file. The most important ones are listed below. As noted in the Prerequisites section above, the defaults are set for a 3-node Kubernetes cluster, each node with 4 CPU cores and 15 GB RAM.
+The default values for the Helm chart are in the `helm/ZNbase/values.yaml` file. The most important ones are listed below. As noted in the Prerequisites section above, the defaults are set for a 3-node Kubernetes cluster, each node with 4 CPU cores and 15 GB RAM.
 
 ```
 persistentVolume:
@@ -360,29 +360,29 @@ partition:
 If you want to change the defaults, you can use the command below. You can even do `helm install` instead of `helm upgrade` when you are installing on a Kubernetes cluster with configuration different than the defaults.
 
 ```sh
-$ helm upgrade --set resource.tserver.requests.cpu=8,resource.tserver.requests.memory=15Gi yb-demo ./yugabyte
+$ helm upgrade --set resource.tserver.requests.cpu=8,resource.tserver.requests.memory=15Gi yb-demo ./ZNbase
 ```
 
 Replica count can be changed using the command below. Note only the tservers need to be scaled in a Replication Factor 3 cluster which keeps the masters count at 3.
 
 ```sh
-$ helm upgrade --set replicas.tserver=5 yb-demo ./yugabyte
+$ helm upgrade --set replicas.tserver=5 yb-demo ./ZNbase
 ```
 
 ### Independent LoadBalancers
 
-By default, the YugabyteDB Helm chart will expose the client API endpoints as well as master UI endpoint using 2 LoadBalancers. If you want to expose the client APIs using independent LoadBalancers, you can do the following.
+By default, the ZNbaseDB Helm chart will expose the client API endpoints as well as master UI endpoint using 2 LoadBalancers. If you want to expose the client APIs using independent LoadBalancers, you can do the following.
 
 **For Helm 2**:
 
 ```sh
-helm install yugabytedb/yugabyte -f https://raw.githubusercontent.com/yugabyte/charts/master/stable/yugabyte/expose-all.yaml --namespace yb-demo --name yb-demo --wait
+helm install ZNbasedb/ZNbase -f https://raw.githubusercontent.com/ZNbase/charts/master/stable/ZNbase/expose-all.yaml --namespace yb-demo --name yb-demo --wait
 ```
 
 **For Helm 3:**
 
 ```sh
-helm install yb-demo yugabytedb/yugabyte -f https://raw.githubusercontent.com/yugabyte/charts/master/stable/yugabyte/expose-all.yaml --namespace yb-demo --wait
+helm install yb-demo ZNbasedb/ZNbase -f https://raw.githubusercontent.com/ZNbase/charts/master/stable/ZNbase/expose-all.yaml --namespace yb-demo --wait
 ```
 
 You can also bring up an internal LoadBalancer (for either YB-Master or YB-TServer services), if required. Just specify the [annotation](https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer) required for your cloud provider. See [Amazon EKS](../../eks/helm-chart/) and [Google Kubernetes Engine](../../gke/helm-chart/) for examples.
@@ -392,23 +392,23 @@ You can also bring up an internal LoadBalancer (for either YB-Master or YB-TServ
 In case you want to use a storage class other than the standard class for your deployment, provision the storage class and then pass in the name of the class while running the helm install command.
 
 ```sh
-$ helm install yugabyte --namespace yb-demo --name yb-demo --set storage.master.storageClass=<desired storage class>,storage.tserver.storageClass=<desired storage class> --wait
+$ helm install ZNbase --namespace yb-demo --name yb-demo --set storage.master.storageClass=<desired storage class>,storage.tserver.storageClass=<desired storage class> --wait
 ```
 
 ## Upgrade cluster
 
-You can perform rolling upgrades on the YugabyteDB cluster with the following command. Change the `Image.tag` value to any valid tag from [YugabyteDB's listing on the Docker Hub registry](https://hub.docker.com/r/yugabytedb/yugabyte/tags/). By default, the installation uses the `latest` Docker image. In the examples, the Docker image specified is `2.0.10.0-b4`.
+You can perform rolling upgrades on the ZNbaseDB cluster with the following command. Change the `Image.tag` value to any valid tag from [ZNbaseDB's listing on the Docker Hub registry](https://hub.docker.com/r/ZNbasedb/ZNbase/tags/). By default, the installation uses the `latest` Docker image. In the examples, the Docker image specified is `2.0.10.0-b4`.
 
 **For Helm 2:**
 
 ```sh
-$ helm upgrade yb-demo yugabytedb/yugabyte --set Image.tag=2.0.10.0-b4 --wait
+$ helm upgrade yb-demo ZNbasedb/ZNbase --set Image.tag=2.0.10.0-b4 --wait
 ```
 
 **For Helm 3:**
 
 ```sh
-$ helm upgrade yb-demo yugabytedb/yugabyte --set Image.tag=2.0.10.0-b4 --wait -n yb-demo
+$ helm upgrade yb-demo ZNbasedb/ZNbase --set Image.tag=2.0.10.0-b4 --wait -n yb-demo
 ```
 
 ## Delete cluster

@@ -1,10 +1,10 @@
 /* ----------
  * pg_yb_utils.h
  *
- * Utilities for YugaByte/PostgreSQL integration that have to be defined on the
+ * Utilities for ZNbase/PostgreSQL integration that have to be defined on the
  * PostgreSQL side.
  *
- * Copyright (c) YugaByte, Inc.
+ * Copyright (c) ZNbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License.  You may obtain a copy
@@ -72,18 +72,18 @@ extern uint64_t YBGetActiveCatalogCacheVersion();
 extern void YBResetCatalogVersion();
 
 /*
- * Checks whether YugaByte functionality is enabled within PostgreSQL.
+ * Checks whether ZNbase functionality is enabled within PostgreSQL.
  * This relies on pgapi being non-NULL, so probably should not be used
  * in postmaster (which does not need to talk to YB backend) or early
  * in backend process initialization. In those cases the
  * YBIsEnabledInPostgresEnvVar function might be more appropriate.
  */
-extern bool IsYugaByteEnabled();
+extern bool IsZNbaseEnabled();
 
 extern bool yb_read_from_followers;
 
 /*
- * Given a relation, checks whether the relation is supported in YugaByte mode.
+ * Given a relation, checks whether the relation is supported in ZNbase mode.
  */
 extern void CheckIsYBSupportedRelation(Relation relation);
 
@@ -91,21 +91,21 @@ extern void CheckIsYBSupportedRelationByKind(char relkind);
 
 /*
  * Given a relation (table) id, returns whether this table is handled by
- * YugaByte: i.e. it is not a temporary or foreign table.
+ * ZNbase: i.e. it is not a temporary or foreign table.
  */
 extern bool IsYBRelationById(Oid relid);
 
 extern bool IsYBRelation(Relation relation);
 
 /*
- * Same as IsYBRelation but it additionally includes views on YugaByte
+ * Same as IsYBRelation but it additionally includes views on ZNbase
  * relations i.e. views on persistent (non-temporary) tables.
  */
 extern bool IsYBBackedRelation(Relation relation);
 
 /*
  * Returns whether a relation's attribute is a real column in the backing
- * YugaByte table. (It implies we can both read from and write to it).
+ * ZNbase table. (It implies we can both read from and write to it).
  */
 extern bool IsRealYBColumn(Relation rel, int attrNum);
 
@@ -150,7 +150,7 @@ extern bool YBRelHasOldRowTriggers(Relation rel, CmdType operation);
 extern bool YBRelHasSecondaryIndices(Relation relation);
 
 /*
- * Whether to route BEGIN / COMMIT / ROLLBACK to YugaByte's distributed
+ * Whether to route BEGIN / COMMIT / ROLLBACK to ZNbase's distributed
  * transactions.
  */
 extern bool YBTransactionsEnabled();
@@ -209,12 +209,12 @@ extern void YBCRecreateTransaction();
 extern void YBCRestartTransaction();
 
 /*
- * Commits the current YugaByte-level transaction (if any).
+ * Commits the current ZNbase-level transaction (if any).
  */
 extern void YBCCommitTransaction();
 
 /*
- * Aborts the current YugaByte-level transaction.
+ * Aborts the current ZNbase-level transaction.
  */
 extern void YBCAbortTransaction();
 
@@ -237,20 +237,20 @@ extern const char* YBPgTypeOidToStr(Oid type_id);
 extern const char* YBCPgDataTypeToStr(YBCPgDataType yb_type);
 
 /*
- * Report an error saying the given type as not supported by YugaByte.
+ * Report an error saying the given type as not supported by ZNbase.
  */
 extern void YBReportTypeNotSupported(Oid type_id);
 
 /*
- * Log whether or not YugaByte is enabled.
+ * Log whether or not ZNbase is enabled.
  */
-extern void YBReportIfYugaByteEnabled();
+extern void YBReportIfZNbaseEnabled();
 
 #define YB_REPORT_TYPE_NOT_SUPPORTED(type_id) do { \
 		Oid computed_type_id = type_id; \
 		ereport(ERROR, \
 				(errcode(ERRCODE_FEATURE_NOT_SUPPORTED), \
-					errmsg("Type not yet supported in YugaByte: %d (%s)", \
+					errmsg("Type not yet supported in ZNbase: %d (%s)", \
 						computed_type_id, YBPgTypeOidToStr(computed_type_id)))); \
 	} while (0)
 
@@ -322,7 +322,7 @@ extern double PowerWithUpperLimit(double base, int exponent, double upper_limit)
 // YB GUC variables.
 
 /**
- * YSQL guc variables that can be used to toggle yugabyte features.
+ * YSQL guc variables that can be used to toggle ZNbase features.
  * See also the corresponding entries in guc.c.
  */
 
@@ -333,7 +333,7 @@ extern bool yb_enable_create_with_table_oid;
 // YB Debug utils.
 
 /**
- * YSQL guc variables that can be used to toggle yugabyte debug features.
+ * YSQL guc variables that can be used to toggle ZNbase debug features.
  * e.g. 'SET yb_debug_report_error_stacktrace=true' and
  *      'RESET yb_debug_report_error_stacktrace'.
  * See also the corresponding entries in guc.c.

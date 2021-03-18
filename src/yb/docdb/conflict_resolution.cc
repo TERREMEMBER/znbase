@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -520,7 +520,7 @@ class StrongConflictChecker {
     //
     // (Note that when writing a strong intent on the entire table, e.g. as part of locking the
     // table, there is currently a performance issue and we'll need a better approach:
-    // https://github.com/yugabyte/yugabyte-db/issues/6055).
+    // https://github.com/ZNbase/ZNbase-db/issues/6055).
     //
     // If we are resolving conflicts for writing a weak intent, only look at records in regular
     // RocksDB with the same key as the intent (not including hybrid time). This is because a weak

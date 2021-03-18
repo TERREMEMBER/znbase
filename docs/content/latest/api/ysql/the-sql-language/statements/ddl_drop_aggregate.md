@@ -52,44 +52,44 @@ See the semantics of each option in the [PostgreSQL docs][postgresql-docs-drop-a
 Basic example.
 
 ```plpgsql
-yugabyte=# CREATE AGGREGATE newcnt(*) (
+ZNbase=# CREATE AGGREGATE newcnt(*) (
              sfunc = int8inc,
              stype = int8,
              initcond = '0',
              parallel = safe
            );
-yugabyte=# DROP AGGREGATE newcnt(*);
+ZNbase=# DROP AGGREGATE newcnt(*);
 ```
 
 `IF EXISTS` example.
 
 ```plpgsql
-yugabyte=# DROP AGGREGATE IF EXISTS newcnt(*);
-yugabyte=# CREATE AGGREGATE newcnt(*) (
+ZNbase=# DROP AGGREGATE IF EXISTS newcnt(*);
+ZNbase=# CREATE AGGREGATE newcnt(*) (
              sfunc = int8inc,
              stype = int8,
              initcond = '0',
              parallel = safe
            );
-yugabyte=# DROP AGGREGATE IF EXISTS newcnt(*);
+ZNbase=# DROP AGGREGATE IF EXISTS newcnt(*);
 ```
 
 `CASCADE` and `RESTRICT` example.
 
 ```plpgsql
-yugabyte=# CREATE AGGREGATE newcnt(*) (
+ZNbase=# CREATE AGGREGATE newcnt(*) (
              sfunc = int8inc,
              stype = int8,
              initcond = '0',
              parallel = safe
            );
-yugabyte=# CREATE VIEW cascade_view AS
+ZNbase=# CREATE VIEW cascade_view AS
              SELECT newcnt(*) FROM pg_aggregate;
-yugabyte=# -- The following should error:
-yugabyte=# DROP AGGREGATE newcnt(*) RESTRICT;
-yugabyte=# -- The following should error:
-yugabyte=# DROP AGGREGATE newcnt(*);
-yugabyte=# DROP AGGREGATE newcnt(*) CASCADE;
+ZNbase=# -- The following should error:
+ZNbase=# DROP AGGREGATE newcnt(*) RESTRICT;
+ZNbase=# -- The following should error:
+ZNbase=# DROP AGGREGATE newcnt(*);
+ZNbase=# DROP AGGREGATE newcnt(*) CASCADE;
 ```
 
 ## See also

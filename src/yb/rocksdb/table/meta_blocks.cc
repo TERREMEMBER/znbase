@@ -3,9 +3,9 @@
 //  LICENSE file in the root directory of this source tree. An additional grant
 //  of patent rights can be found in the PATENTS file in the same directory.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -43,9 +43,9 @@ ReadOptions CreateMetaBlockReadOptions(RandomAccessFileReader* file) {
   ReadOptions read_options;
 
   // We need to verify checksums for meta blocks in order to recover from the encryption format
-  // issue described at https://github.com/yugabyte/yugabyte-db/issues/3707.
+  // issue described at https://github.com/ZNbase/ZNbase-db/issues/3707.
   // However, we only do that for encrypted files in order to prevent lots of RocksDB unit tests
-  // from failing as described at https://github.com/yugabyte/yugabyte-db/issues/3974.
+  // from failing as described at https://github.com/ZNbase/ZNbase-db/issues/3974.
   read_options.verify_checksums = file->file()->IsEncrypted() &&
                                   FLAGS_verify_encrypted_meta_block_checksums;
   return read_options;

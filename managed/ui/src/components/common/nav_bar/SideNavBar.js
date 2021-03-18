@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import { Link, IndexLink, withRouter } from 'react-router';
@@ -125,7 +125,7 @@ export default class SideNavBar extends Component {
                         <h4>Talk to Community</h4>
                         <li>
                           <a
-                            href="https://www.yugabyte.com/slack"
+                            href="https://www.ZNbase.com/slack"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -137,7 +137,7 @@ export default class SideNavBar extends Component {
                         </li>
                         <li>
                           <a
-                            href="https://forum.yugabyte.com/"
+                            href="https://forum.ZNbase.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -146,7 +146,7 @@ export default class SideNavBar extends Component {
                         </li>
                         <li>
                           <a
-                            href="https://stackoverflow.com/questions/tagged/yugabyte-db"
+                            href="https://stackoverflow.com/questions/tagged/ZNbase-db"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -156,7 +156,7 @@ export default class SideNavBar extends Component {
                         <h4>Resources</h4>
                         <li>
                           <a
-                            href="https://docs.yugabyte.com/"
+                            href="https://docs.ZNbase.com/"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
@@ -165,7 +165,7 @@ export default class SideNavBar extends Component {
                         </li>
                         <li>
                           <a
-                            href="https://github.com/yugabyte"
+                            href="https://github.com/ZNbase"
                             target="_blank"
                             rel="noopener noreferrer"
                           >

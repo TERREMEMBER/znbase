@@ -10,7 +10,7 @@ menu:
    weight: 2950
 ---
 
-Use these sample datasets to explore and learn YugabyteDB. All of these are PostgreSQL-compatible, so you can use them to compare between PostgreSQL and YugabyteDB.
+Use these sample datasets to explore and learn ZNbaseDB. All of these are PostgreSQL-compatible, so you can use them to compare between PostgreSQL and ZNbaseDB.
 
 <div class="row">
 

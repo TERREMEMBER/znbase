@@ -52,19 +52,19 @@ See [`CREATE ROLE`](../dcl_create_role) for more details.
 - Create a sample user with password.
 
 ```plpgsql
-yugabyte=# CREATE USER John WITH PASSWORD 'password';
+ZNbase=# CREATE USER John WITH PASSWORD 'password';
 ```
 
-- Grant John all permissions on the `yugabyte` database.
+- Grant John all permissions on the `ZNbase` database.
 
 ```plpgsql
-yugabyte=# GRANT ALL ON DATABASE yugabyte TO John;
+ZNbase=# GRANT ALL ON DATABASE ZNbase TO John;
 ```
 
-- Remove John's permissions from the `yugabyte` database.
+- Remove John's permissions from the `ZNbase` database.
 
 ```plpgsql
-yugabyte=# REVOKE ALL ON DATABASE yugabyte FROM John;
+ZNbase=# REVOKE ALL ON DATABASE ZNbase FROM John;
 ```
 
 ## See also

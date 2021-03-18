@@ -1,9 +1,9 @@
 ---
-title: Deploy YugabyteDB on a single-zone Kubernetes cluster
+title: Deploy ZNbaseDB on a single-zone Kubernetes cluster
 headerTitle: Deploy on single-zone Kubernetes
 linkTitle: Single-zone
 description: Deploy on single-zone Kubernetes
-headcontent: Deploy YugabyteDB on a single-zone Kubernetes cluster
+headcontent: Deploy ZNbaseDB on a single-zone Kubernetes cluster
 image: /images/section_icons/deploy/kubernetes.png
 block_indexing: true
 menu:

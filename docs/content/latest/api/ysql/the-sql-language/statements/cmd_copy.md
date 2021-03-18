@@ -91,7 +91,7 @@ Notice the `\.` terminator. You can simply execute `\i t.sql` at the  [`ysqlsh`]
 
 {{< note title="Some client-side languages have a dedicated exposure of COPY" >}}
 
-For example, the _"psycopg2"_ PostgreSQL driver for Python (and of course this works for YugabyteDB) has dedicated cursor methods for `COPY`.  See <a href="https://www.psycopg.org/docs/usage.html#using-copy-to-and-copy-from" target="_blank">Using COPY TO and COPY FROM <i class="fas fa-external-link-alt"></i></a>
+For example, the _"psycopg2"_ PostgreSQL driver for Python (and of course this works for ZNbaseDB) has dedicated cursor methods for `COPY`.  See <a href="https://www.psycopg.org/docs/usage.html#using-copy-to-and-copy-from" target="_blank">Using COPY TO and COPY FROM <i class="fas fa-external-link-alt"></i></a>
 
 {{< /note >}}
 
@@ -100,9 +100,9 @@ For example, the _"psycopg2"_ PostgreSQL driver for Python (and of course this w
 The examples below assume a table like this:
 
 ```plpgsql
-yugabyte=# CREATE TABLE users(id BIGSERIAL PRIMARY KEY, name TEXT);
-yugabyte=# INSERT INTO users(name) VALUES ('John Doe'), ('Jane Doe'), ('Dorian Gray');
-yugabyte=# SELECT * FROM users;
+ZNbase=# CREATE TABLE users(id BIGSERIAL PRIMARY KEY, name TEXT);
+ZNbase=# INSERT INTO users(name) VALUES ('John Doe'), ('Jane Doe'), ('Dorian Gray');
+ZNbase=# SELECT * FROM users;
  id |    name
 ----+-------------
   3 | Dorian Gray
@@ -116,7 +116,7 @@ yugabyte=# SELECT * FROM users;
 Copy the entire table to a CSV file using an absolute path, with column names in the header.
 
 ```plpgsql
-yugabyte=# COPY users TO '/home/yuga/Desktop/users.txt.sql' DELIMITER ',' CSV HEADER;
+ZNbase=# COPY users TO '/home/yuga/Desktop/users.txt.sql' DELIMITER ',' CSV HEADER;
 ```
 
 ### Export a partial table using the WHERE clause with column selection
@@ -125,7 +125,7 @@ In the following example, a `WHERE` clause is used to filter the rows and only t
 
 
 ```plpgsql
-yugabyte=# COPY (SELECT name FROM users where name='Dorian Gray') TO '/home/yuga/Desktop/users.txt.sql' DELIMITER
+ZNbase=# COPY (SELECT name FROM users where name='Dorian Gray') TO '/home/yuga/Desktop/users.txt.sql' DELIMITER
  ',' CSV HEADER;
 ```
 
@@ -134,17 +134,17 @@ yugabyte=# COPY (SELECT name FROM users where name='Dorian Gray') TO '/home/yuga
 In the following example, the data exported in the previous examples are imported in the `users` table.
 
 ```plpgsql
-yugabyte=# COPY users FROM '/home/yuga/Desktop/users.txt.sql' DELIMITER ',' CSV HEADER;
+ZNbase=# COPY users FROM '/home/yuga/Desktop/users.txt.sql' DELIMITER ',' CSV HEADER;
 ```
 
 
 ### Import a large table using smaller transactions
 
-When importing a very large table, Yugabyte recommends using many smaller transactions (rather than one large transaction).
+When importing a very large table, ZNbase recommends using many smaller transactions (rather than one large transaction).
 This can be achieved natively by using the `ROWS_PER_TRANSACTION` option.
 
 ```plpgsql
-yugabyte=# COPY large_table FROM '/home/yuga/Desktop/large_table.csv'
+ZNbase=# COPY large_table FROM '/home/yuga/Desktop/large_table.csv'
                WITH (FORMAT CSV, HEADER, ROWS_PER_TRANSACTION 1000);
 ```
 

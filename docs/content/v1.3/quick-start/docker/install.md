@@ -1,5 +1,5 @@
 **NOTE:**
-The Docker option to run local clusters is recommended only for advanced Docker users. This is because running stateful apps like YugabyteDB in Docker is more complex and error-prone than the more common stateless app use cases.
+The Docker option to run local clusters is recommended only for advanced Docker users. This is because running stateful apps like ZNbaseDB in Docker is more complex and error-prone than the more common stateless app use cases.
 
 ## Prerequisites
 
@@ -30,11 +30,11 @@ Python 2.7.10
 Download the [yb-docker-ctl](../../admin/yb-docker-ctl/) utility. This utility has a set of pre-built commands to create and thereafter administer a containerized local cluster.
 
 ```sh
-$ mkdir ~/yugabyte && cd ~/yugabyte
+$ mkdir ~/ZNbase && cd ~/ZNbase
 ```
 
 ```sh
-$ wget https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/bin/yb-docker-ctl && chmod +x yb-docker-ctl
+$ wget https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/bin/yb-docker-ctl && chmod +x yb-docker-ctl
 ```
 
 ## Install
@@ -49,8 +49,8 @@ $ docker ps
 $ python --version
 ```
 
-Pull the YugabyteDB container.
+Pull the ZNbaseDB container.
 
 ```sh
-$ docker pull yugabytedb/yugabyte
+$ docker pull ZNbasedb/ZNbase
 ```

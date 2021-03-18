@@ -2,7 +2,7 @@
 title: Verify deployment
 headerTitle: Verify deployment
 linkTitle: 5. Verify deployment
-description: Verify deployment of your YugabyteDB cluster
+description: Verify deployment of your ZNbaseDB cluster
 block_indexing: true
 menu:
   v2.1:

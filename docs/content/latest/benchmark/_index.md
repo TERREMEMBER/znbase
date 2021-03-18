@@ -1,11 +1,11 @@
 ---
-title: Benchmark YugabyteDB 
-headerTitle: Benchmark YugabyteDB
+title: Benchmark ZNbaseDB 
+headerTitle: Benchmark ZNbaseDB
 linkTitle: Benchmark
-description: Benchmark YugabyteDB using TPC-C, sysbench, YCSB and more.
+description: Benchmark ZNbaseDB using TPC-C, sysbench, YCSB and more.
 image: /images/section_icons/explore/high_performance.png
 headcontent:
-section: YUGABYTEDB CORE
+section: ZNbaseDB CORE
 menu:
   latest:
     identifier: benchmark
@@ -108,7 +108,7 @@ aliases:
         <div class="title">Performance Troubleshooting</div>
       </div>
       <div class="body">
-        Troubleshooting performance issues in YugabyteDB.
+        Troubleshooting performance issues in ZNbaseDB.
       </div>
     </a>
   </div>

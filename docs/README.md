@@ -1,4 +1,4 @@
-# Contributing to the YugabyteDB Documentation
+# Contributing to the ZNbaseDB Documentation
 
 This account has three sections:
 
@@ -7,13 +7,13 @@ This account has three sections:
 &nbsp;&nbsp;&nbsp;[2. Advanced usage](#2-advanced-usage)<br>
 &nbsp;&nbsp;&nbsp;[3. Mental model and glossary: creating and maintaining syntax diagrams for YSQL Docs](#3-mental-model-and-glossary-creating-and-maintaining-syntax-diagrams-for-ysql-docs)
 
-> **Note:** The account is intended mainly for Yugabyte staff. It assumes that you will make changes only in the `/latest/` subtree. You can easily generalise the account if you need to make changes in the `/stable/` tree. Both the `/latest/` and the `/stable/` subtrees are direct children of the [_content directory_](#content-directory). However, deciding the _policy_ for this is outside the scope of this document. You must establish the aims in this space in discussion with colleagues.
+> **Note:** The account is intended mainly for ZNbase staff. It assumes that you will make changes only in the `/latest/` subtree. You can easily generalise the account if you need to make changes in the `/stable/` tree. Both the `/latest/` and the `/stable/` subtrees are direct children of the [_content directory_](#content-directory). However, deciding the _policy_ for this is outside the scope of this document. You must establish the aims in this space in discussion with colleagues.
 
-All the source material for the YugabyteDB documentation is held in the main [yugabyte-db](https://github.com/yugabyte/yugabyte-db) GitHub repository. Users read this documentation by starting at [docs.yugabyte.com/](https://docs.yugabyte.com/).
+All the source material for the ZNbaseDB documentation is held in the main [ZNbase-db](https://github.com/ZNbase/ZNbase-db) GitHub repository. Users read this documentation by starting at [docs.ZNbase.com/](https://docs.ZNbase.com/).
 
-If you want to make changes to existing documentation, or to add new content, make sure first to [open a GitHub issue](https://github.com/yugabyte/yugabyte-db/issues/new). Then reference the Issue Number in your eventual Pull Request. Start the title with `[DOC]` and select the label `area/documentation` By clicking the gearwheel icon at "**Labels**" in the list of classifications on the right.
+If you want to make changes to existing documentation, or to add new content, make sure first to [open a GitHub issue](https://github.com/ZNbase/ZNbase-db/issues/new). Then reference the Issue Number in your eventual Pull Request. Start the title with `[DOC]` and select the label `area/documentation` By clicking the gearwheel icon at "**Labels**" in the list of classifications on the right.
 
-YugabyteDB docs are based on the "hugo" framework and use the "Material Docs" theme.
+ZNbaseDB docs are based on the "hugo" framework and use the "Material Docs" theme.
 
 - [Hugo framework](https://gohugo.io/getting-started/)
 
@@ -29,7 +29,7 @@ This is a highly recommended relatively recent work. You can [download the PDF](
 
 ### Google developer documentation style guide
 
-The [Google developer documentation style guide](https://developers.google.com/style) is far more prescriptive than Pinker's book and is limited to the sub-genre of documentation to which the YugabyteDB corpus belongs. It's also a recommended read.
+The [Google developer documentation style guide](https://developers.google.com/style) is far more prescriptive than Pinker's book and is limited to the sub-genre of documentation to which the ZNbaseDB corpus belongs. It's also a recommended read.
 
 ## 1. Basic usage
 
@@ -39,7 +39,7 @@ In this kind of work, the nature of your documentation change means that you wil
 
 Follow these steps if this is the first time you are setting up to work on the docs locally.
 
-> **Note**: Many Yugabyte engineers use an Apple Mac computer; and many have taken the bold step of upgrading to MacOS Catalina—or even to Big Sur. The move from Mojave to Catalina brought all sorts of changes that cannot be resisted and that seem to make things suddenly "just not work". In particular, `git` commands and  `npm ci` (see below) fail. The error messages are inscrutable. For example `npm ci` produces pages of errors including ones like this:
+> **Note**: Many ZNbase engineers use an Apple Mac computer; and many have taken the bold step of upgrading to MacOS Catalina—or even to Big Sur. The move from Mojave to Catalina brought all sorts of changes that cannot be resisted and that seem to make things suddenly "just not work". In particular, `git` commands and  `npm ci` (see below) fail. The error messages are inscrutable. For example `npm ci` produces pages of errors including ones like this:
 
    ```
    No receipt for 'com.apple.pkg.DeveloperToolsCLI' ...
@@ -76,18 +76,18 @@ Follow these steps if this is the first time you are setting up to work on the d
 
 Then:
 
-Fork the yugabyte-db GitHub repository and create a local clone of your fork with a command like this:
+Fork the ZNbase-db GitHub repository and create a local clone of your fork with a command like this:
 
 ```
-git clone https://github.com/<YOUR_GITHUB_ID>/yugabyte-db.git
+git clone https://github.com/<YOUR_GITHUB_ID>/ZNbase-db.git
 ```
 
 Identify your fork as `origin` and the original YB repository as `upstream`:
 
 ```
-cd <your path>/yugabyte-db/
-git remote set-url origin git@github.com:<YOUR_GITHUB_ID>/yugabyte-db.git
-git remote add upstream git@github.com:YugaByte/yugabyte-db.git
+cd <your path>/ZNbase-db/
+git remote set-url origin git@github.com:<YOUR_GITHUB_ID>/ZNbase-db.git
+git remote add upstream git@github.com:ZNbase/ZNbase-db.git
 ```
 
 For belt-and-braces, make sure that your local git is still current with the YB repo:
@@ -131,7 +131,7 @@ You _must_ do this if ever you drop your local `git` (for example after a succes
 You might also find yourself needing to do this if you want to review a colleague's pending doc PR in WYSIWYG mode using "hugo". If your colleague's GitHub ID is _"archieb"_ and if the branch used to make the changes is called _"some_doc_changes"_, then clone it thus:
 
 ```
-git clone --branch some_doc_changes https://github.com/archieb/yugabyte-db.git
+git clone --branch some_doc_changes https://github.com/archieb/ZNbase-db.git
 ```
 
 Start the local webserver on `127.0.0.1` interface by running the following:
@@ -141,7 +141,7 @@ npm start
 ```
 You can now see the local version of the docs by browsing to [localhost:1313/](http://localhost:1313/).
 
-> **Note #1:** You'll probably find that the first time after the very first `npm start` in a newly-cloned local `git` that you view a page that "hugo" generates, it will look like nonsense. Simply control-C "hugo" and re-issue `npm start`. This sometimes happens, too, after rebasing to the latest commit in the GitHub `yugabyte-db` repo.
+> **Note #1:** You'll probably find that the first time after the very first `npm start` in a newly-cloned local `git` that you view a page that "hugo" generates, it will look like nonsense. Simply control-C "hugo" and re-issue `npm start`. This sometimes happens, too, after rebasing to the latest commit in the GitHub `ZNbase-db` repo.
 
 > **Note #2:** The URL may be different if the port 1313 is not available. In any case, the URL is printed out on your shell as shown below.
 
@@ -177,7 +177,7 @@ Once you are satisfied with your changes, use `git status` to list the files tha
 
 > **Note**: If you commit files with non-Unix-style line endings, then you risk getting spurious conflicts reported when you do `git rebase master`. In particular, you risk confusing the `git` differencing heuristics so that it reports that your file and the same-named file that someone else has changed, and that _does_ have Unix-style line endings, are _entirely_ different—even when human inspection shows only two small non-conflicting changes.
 
-Then commit your changes to your local branch and push these changes to your fork of the [yugabyte-db](https://github.com/yugabyte/yugabyte-db) GitHub repository. Do this by running the following commands.
+Then commit your changes to your local branch and push these changes to your fork of the [ZNbase-db](https://github.com/ZNbase/ZNbase-db) GitHub repository. Do this by running the following commands.
 
 #### Add files you have made changes to.
 
@@ -191,7 +191,7 @@ git add .
 git commit -m "A useful brief comment about what you did."
 ```
 
-#### Bring your local git up to date with the yugabyte-db GitHub repository
+#### Bring your local git up to date with the ZNbase-db GitHub repository
 
 ```
 git checkout master
@@ -209,7 +209,7 @@ git push origin feature_branch_name
 You can now check that your work arrived safely by visiting this URL and then navigating the file hierarchy:
 
 ```
-https://github.com/<YOUR_GITHUB_ID>/yugabyte-db/blob/feature_branch_name/docs/
+https://github.com/<YOUR_GITHUB_ID>/ZNbase-db/blob/feature_branch_name/docs/
 ```
 
 ### Submit a pull request
@@ -243,7 +243,7 @@ The nature of your documentation change will determine which selection of the fo
 - Create new [_free-standing generated grammar-diagram pair(s)_](#free-standing-generated-grammar-diagram-pair)
 - Add [_diagram inclusion HTML_](#diagram-inclusion-HTML) to one or more of the content files that you modified or created.
 
-Very occasionally, you might want to reorganize the hierarchical structure of a part of the overall documentation as the user sees it. (This is the hierarchy that you see and navigate in the left-hand navigation panel.) Such changes involve moving existing  [_humanly typed documentation source_](#humanly-typed-documentation-source) file(s) within the directory tree that starts at the [_content directory_](#content-directory). If you do this, then you must use your favorite editor (a generic plain text editor is best for this purpose) to do manually driven global search and replace to update URL references to moved files at their old locations. However, because you will do this only within the scope of the files that you worked on (most likely, the `/latest/` subtree), you must also establish URL redirects in each moved file to avoid breaking links in other Yugabyte Internet properties, or in third party sites. The _frontmatter_ allows this easily. Here is an example.
+Very occasionally, you might want to reorganize the hierarchical structure of a part of the overall documentation as the user sees it. (This is the hierarchy that you see and navigate in the left-hand navigation panel.) Such changes involve moving existing  [_humanly typed documentation source_](#humanly-typed-documentation-source) file(s) within the directory tree that starts at the [_content directory_](#content-directory). If you do this, then you must use your favorite editor (a generic plain text editor is best for this purpose) to do manually driven global search and replace to update URL references to moved files at their old locations. However, because you will do this only within the scope of the files that you worked on (most likely, the `/latest/` subtree), you must also establish URL redirects in each moved file to avoid breaking links in other ZNbase Internet properties, or in third party sites. The _frontmatter_ allows this easily. Here is an example.
 
 ```
 title: SELECT statement [YSQL]
@@ -262,13 +262,13 @@ showAsideToc: true
 The `aliases` page property allows a list of many URLs. Notice that these are _relative_ to the [_content directory_](#content-directory). The `.md` file in this example used to be here:
 
 ```
-<your path>/yugabyte-db/docs/content/latest/api/ysql/commands/dml_select.md
+<your path>/ZNbase-db/docs/content/latest/api/ysql/commands/dml_select.md
 ```
 
 It was moved to here:
 
 ```
-<your path>/yugabyte-db/docs/content/latest/api/ysql/the-sql-language/statements/dml_select.md
+<your path>/ZNbase-db/docs/content/latest/api/ysql/the-sql-language/statements/dml_select.md
 ```
 
 Your specific documentation enhancement will determine if you need only to change existing content pages or to add new ones. You will decide, in turn, if you need to modify any existing [_syntax rules_](#syntax-rule) or to define new ones. And if you do define new ones, you will decide in which files you need to include the "grammar" and "diagram" depictions. (See the section about [_free-standing generated grammar-diagram pairs_](#free-standing-generated-grammar-diagram-pair).)
@@ -284,7 +284,7 @@ Follow this general flow on each local editing cycle.
 1. If necessary, add (or update) the `aliases` page property in any  [_humanly typed documentation source_](#humanly-typed-documentation-source) file(s) that you relocated.
 1. Manually check the new docs page(s) and index page(s) to make sure that there are no broken links.
 
-> **Note:** There is no tool for link checking within your local git. Broken links are detected when a Yugabyte staff member periodically runs a link checker on the published doc on the Internet. The scope of this check includes _all_ of the Yugabyte properties (for example, the [Blogs site](https://blog.yugabyte.com)). Broken links that this check finds are reported and fixed manually.
+> **Note:** There is no tool for link checking within your local git. Broken links are detected when a ZNbase staff member periodically runs a link checker on the published doc on the Internet. The scope of this check includes _all_ of the ZNbase properties (for example, the [Blogs site](https://blog.ZNbase.com)). Broken links that this check finds are reported and fixed manually.
 
 ## 3. Mental model and glossary: creating and maintaining syntax diagrams for YSQL Docs
 
@@ -296,9 +296,9 @@ The ordering of the glossary terms is insignificant. There’s a fair amount of 
 >
 > **Note:** the two terms, “grammar” and “syntax”, mean pretty much the same as each other. But one, or the other, of these is used by convention in the spellings and definitions of the terms of art that this glossary defines.
 >
-> **Note:** Users of the Internet-facing YugabyteDB documentation typically access the sub-corpus that starts here:
+> **Note:** Users of the Internet-facing ZNbaseDB documentation typically access the sub-corpus that starts here:
 >
-> [`docs.yugabyte.com/latest/`](https://docs.yugabyte.com/latest/)
+> [`docs.ZNbase.com/latest/`](https://docs.ZNbase.com/latest/)
 >
 > Users with more specific requirements will start at `.../stable/` or, maybe, something like `.../v2.1/`. This account assumes that users will work on content only in the `/latest/` subtree.
 
@@ -306,11 +306,11 @@ The ordering of the glossary terms is insignificant. There’s a fair amount of 
 
 - **The formal definition of the grammar of a SQL statement, or a component of a SQL statement**.
 
-Every [_syntax rule_](#syntax-rule) is defined textually in the single [_diagram definition file_](#diagram-definition-file). The set of all these rules is intended to define the entirety of the YSQL grammar—but nothing beyond this. Presently, the definitions of some [_syntax rules_](#syntax-rule) (while these are implemented in the YSQL subsystem of YugabyteDB) remain to be written down.
+Every [_syntax rule_](#syntax-rule) is defined textually in the single [_diagram definition file_](#diagram-definition-file). The set of all these rules is intended to define the entirety of the YSQL grammar—but nothing beyond this. Presently, the definitions of some [_syntax rules_](#syntax-rule) (while these are implemented in the YSQL subsystem of ZNbaseDB) remain to be written down.
 
-Sometimes, the grammar of an entire SQL statement can be comfortably described by a single, self-contained [_syntax rule_](#syntax-rule). The [Syntax section](https://docs.yugabyte.com/latest/api/ysql/the-sql-language/statements/txn_commit/#syntax) of the account of the `COMMIT` statement provides an example. More commonly, the grammar of a SQL statement includes references (by name) to the definition(s) of one or more other rule(s). And often such referenced [_syntax rules_](#syntax-rule) are the targets of references from many other [_syntax rules_](#syntax-rule). The complete account of a very flexible SQL statement can end up as a very large closure of multiply referenced rules. [`SELECT`](https://docs.yugabyte.com/latest/api/ysql/the-sql-language/statements/dml_select/#syntax) is the canonical example of complexity. For example, a terminal like [`integer`](https://docs.yugabyte.com/latest/api/ysql/syntax_resources/grammar_diagrams/#integer) can end up as the reference target in very many distinct syntax spots within the total definition of the `SELECT` statement, and of other statements.
+Sometimes, the grammar of an entire SQL statement can be comfortably described by a single, self-contained [_syntax rule_](#syntax-rule). The [Syntax section](https://docs.ZNbase.com/latest/api/ysql/the-sql-language/statements/txn_commit/#syntax) of the account of the `COMMIT` statement provides an example. More commonly, the grammar of a SQL statement includes references (by name) to the definition(s) of one or more other rule(s). And often such referenced [_syntax rules_](#syntax-rule) are the targets of references from many other [_syntax rules_](#syntax-rule). The complete account of a very flexible SQL statement can end up as a very large closure of multiply referenced rules. [`SELECT`](https://docs.ZNbase.com/latest/api/ysql/the-sql-language/statements/dml_select/#syntax) is the canonical example of complexity. For example, a terminal like [`integer`](https://docs.ZNbase.com/latest/api/ysql/syntax_resources/grammar_diagrams/#integer) can end up as the reference target in very many distinct syntax spots within the total definition of the `SELECT` statement, and of other statements.
 
-A [_syntax rule_](#syntax-rule) is specified using EBNF notation. EBNF stands for “extended Backus–Naur form”. See this [Wikipedia article](https://en.wikipedia.org/wiki/Extended_Backus–Naur_form). Here is an example for the [`PREPARE`](https://docs.yugabyte.com/latest/api/ysql/the-sql-language/statements/perf_prepare/#syntax) statement:
+A [_syntax rule_](#syntax-rule) is specified using EBNF notation. EBNF stands for “extended Backus–Naur form”. See this [Wikipedia article](https://en.wikipedia.org/wiki/Extended_Backus–Naur_form). Here is an example for the [`PREPARE`](https://docs.ZNbase.com/latest/api/ysql/the-sql-language/statements/perf_prepare/#syntax) statement:
 
 ```
 prepare_statement ::= 'PREPARE' name [ '(' data_type { ',' data_type } ')' ] 'AS' statement ;
@@ -333,7 +333,7 @@ Notice the following:
 ### diagram definition file
 
 ```
-<your path>/yugabyte-db/docs/content/latest/api/ysql/syntax_resources/ysql_grammar.ebnf
+<your path>/ZNbase-db/docs/content/latest/api/ysql/syntax_resources/ysql_grammar.ebnf
 ```
 
 Located directly on the [_syntax resources directory_](#syntax-resources-directory), this file, uniquely under the whole of the [_ysql directory_](#ysql-directory) is not a `.md` file. And uniquely under the [_syntax resources directory_](#syntax-resources-directory), it is typed up humanly. It holds the definition, written in EBNF notation, of every [_syntax rule_](#syntax-rule) that is processed by the [_diagram generator_](#diagram-generator).
@@ -350,14 +350,14 @@ The [_diagram generator_](#diagram-generator) doesn’t care about the order of 
 
 The [_syntax diagram_](#syntax-diagram) and the [_syntax rule_](#syntax-rule) bear a one-to-one mutual relationship.
 
-The [Syntax section](https://docs.yugabyte.com/latest/api/ysql/the-sql-language/statements/perf_prepare/#syntax) of the account of the [`PREPARE`](https://docs.yugabyte.com/latest/api/ysql/the-sql-language/statements/perf_prepare/) statement provides a short, but sufficient, example. The [_syntax diagram_](#syntax-diagram) appears as a (member of a) tabbed pair which gives the reader the choice to see a [_syntax rule_](#syntax-rule) as either the “Grammar” form (in the syntax used in the PostgreSQL documentation and the documentation for several other databases) or the “Diagram” form (a so-called “railroad diagram” that again is used commonly in the documentation for several other databases).
+The [Syntax section](https://docs.ZNbase.com/latest/api/ysql/the-sql-language/statements/perf_prepare/#syntax) of the account of the [`PREPARE`](https://docs.ZNbase.com/latest/api/ysql/the-sql-language/statements/perf_prepare/) statement provides a short, but sufficient, example. The [_syntax diagram_](#syntax-diagram) appears as a (member of a) tabbed pair which gives the reader the choice to see a [_syntax rule_](#syntax-rule) as either the “Grammar” form (in the syntax used in the PostgreSQL documentation and the documentation for several other databases) or the “Diagram” form (a so-called “railroad diagram” that again is used commonly in the documentation for several other databases).
 
 ### docs directory
 
 - **The directory within your local git of the entire documentation source (the [_humanly typed documentation source_](#humanly-typed-documentation-source), the [_free-standing generated grammar-diagram pairs_](#free-standing-generated-grammar-diagram-pair) and the [_diagram definition file_](#diagram-definition-file)) together with the [_supporting doc infrastructure_](#supporting-doc-infrastructure)**:
 
 ```
-cd <your path>/yugabyte-db/docs
+cd <your path>/ZNbase-db/docs
 ```
 You install the [_diagram generator_](#diagram-generator) here. And you stand here when you [_run the generator_](#run-the-generator). You also typically stand here when you start "hugo"; and when you prepare for, and then do, a `git push` to your personal GitHub fork.
 
@@ -368,7 +368,7 @@ You install the [_diagram generator_](#diagram-generator) here. And you stand he
 In other words, it holds the entire [_humanly typed documentation source_](#humanly-typed-documentation-source) (not just for YSQL), the [_free-standing generated grammar-diagram pairs_](#free-standing-generated-grammar-diagram-pair) and the [_diagram definition file_](#diagram-definition-file):
 
 ```
-cd <your path>/yugabyte-db/docs/content
+cd <your path>/ZNbase-db/docs/content
 ```
 "hugo" uses the tree starting at the [_content directory_](#content-directory) to generate the documentation site (under the influence of the [_supporting doc infrastructure_](#supporting-doc-infrastructure)) as a set of static files.
 
@@ -384,10 +384,10 @@ Both the `/latest/` and the `/stable/` subtrees are direct children of the [_con
 
 ### ysql directory
 
-- **The directory tree that holds all the [_humanly typed documentation source_](#humanly-typed-documentation-source), the [_free-standing generated grammar-diagram pairs_](#free-standing-generated-grammar-diagram-pair), and the [_diagram definition file_](#diagram-definition-file) that jointly describe the YugabyteDB YSQL subsystem in the /latest/ tree**.
+- **The directory tree that holds all the [_humanly typed documentation source_](#humanly-typed-documentation-source), the [_free-standing generated grammar-diagram pairs_](#free-standing-generated-grammar-diagram-pair), and the [_diagram definition file_](#diagram-definition-file) that jointly describe the ZNbaseDB YSQL subsystem in the /latest/ tree**.
 
 ```
-cd <your path>/yugabyte-db/docs/content/latest/api/ysql
+cd <your path>/ZNbase-db/docs/content/latest/api/ysql
 ```
 
 ### supporting doc infrastructure
@@ -409,7 +409,7 @@ With just a few on the [_ysql directory_](#ysql-directory) itself, the [_humanly
 ### syntax resources directory
 
 ```
-cd <your path>/yugabyte-db/docs/content/latest/api/ysql/syntax_resources
+cd <your path>/ZNbase-db/docs/content/latest/api/ysql/syntax_resources
 ```
 
 With the one exception of the [_diagram definition file_](#diagram-definition-file), every file within the [_syntax resources directory_](#syntax-resources-directory) tree is generated.
@@ -422,10 +422,10 @@ All are located within the [_syntax resources directory_](#syntax-resources-dire
 
 Notice that there is no garbage collection scheme for unreferenced [_generated documentation source_](#generated-documentation-source) files. Content authors must do this task manually.
 
-### grammar diagrams file ([here](https://docs.yugabyte.com/latest/api/ysql/syntax_resources/grammar_diagrams/#abort))
+### grammar diagrams file ([here](https://docs.ZNbase.com/latest/api/ysql/syntax_resources/grammar_diagrams/#abort))
 
 ```
-<your path>/yugabyte-db/docs/content/latest/api/ysql/syntax_resources/grammar_diagrams.md
+<your path>/ZNbase-db/docs/content/latest/api/ysql/syntax_resources/grammar_diagrams.md
 ```
 
 This contains every [_syntax diagram_](#syntax-diagram) that is generated from all of the [_syntax rules_](#syntax-rule) that are found in the [_diagram definition file_](#diagram-definition-file).
@@ -456,7 +456,7 @@ Such a pair should be placed in the exact mirror sibling directory, in the [_syn
 Here is an example. Suppose that the file `wants-to-include.md` wants to include the [_syntax diagram_](#syntax-diagram) with a rule set denoted by the appropriately spelled identifier `<rule set X>`. And suppose that the [_humanly typed documentation source_](#humanly-typed-documentation-source) file is here:
 
 ```
-<your path>/yugabyte-db/docs/content/latest/api/ysql                 /dir_1/dir_2/dir_3/wants-to-include.md
+<your path>/ZNbase-db/docs/content/latest/api/ysql                 /dir_1/dir_2/dir_3/wants-to-include.md
 ```
 
 The white space between `/ysql` and `/dir_1` has been introduced as a device to advertise the convention. It doesn’t exist in the actual file path.
@@ -464,8 +464,8 @@ The white space between `/ysql` and `/dir_1` has been introduced as a device to 
 The [_free-standing generated grammar-diagram pair_](#free-standing-generated-grammar-diagram-pair) _must_ be placed here.
 
 ```
-<your path>/yugabyte-db/docs/content/latest/api/ysql/syntax_resources/dir_1/dir_2/dir_3/<rule set X>.grammar.md
-<your path>/yugabyte-db/docs/content/latest/api/ysql/syntax_resources/dir_1/dir_2/dir_3/<rule set X>.diagram.md
+<your path>/ZNbase-db/docs/content/latest/api/ysql/syntax_resources/dir_1/dir_2/dir_3/<rule set X>.grammar.md
+<your path>/ZNbase-db/docs/content/latest/api/ysql/syntax_resources/dir_1/dir_2/dir_3/<rule set X>.diagram.md
 ```
 
 Suppose that a [_syntax rule_](#syntax-rule) includes a reference to another [_syntax rule_](#syntax-rule). If the referenced [_syntax rule_](#syntax-rule) is included (by virtue of the name of the _diagram-grammar file pair_) in the same [_syntax diagram set_](#syntax-diagram-set), then the name of the [_syntax rule_](#syntax-rule) in the referring [_syntax diagram_](#syntax-diagram) becomes a link to the [_syntax rule_](#syntax-rule) in that same [_syntax diagram set_](#syntax-diagram-set). Otherwise the generated link target of the referring rule is within the [_grammar diagrams file_](#grammar-diagrams-file-here). The way that this link is spelled depends on the location, within the [_ysql directory_](#ysql-directory) tree, of the `.md` file that includes the generated [_syntax diagram_](#syntax-diagram).
@@ -483,7 +483,7 @@ If you don’t follow this rule, then (as long as you specify the right path to 
 Consider this example:
 
 ```
-<your path>/yugabyte-db/docs/content/latest/api/ysql/dir_1/dir_2/dir_3/wants-to-include.md
+<your path>/ZNbase-db/docs/content/latest/api/ysql/dir_1/dir_2/dir_3/wants-to-include.md
 ```
 
 You must include this boilerplate text in `wants-to-include.md` at the location in this file where you want the [_syntax diagram_](#syntax-diagram) to be seen:
@@ -537,9 +537,9 @@ It's implemented by `rrdiagram.jar` on the [_docs directory_](#docs-directory).
 Here are the download instructions. You need to do this just once in a newly created local git (typically created from one’s personal fork of the master YB repo).
 
 ```
-cd <your path>/yugabyte-db/docs/
+cd <your path>/ZNbase-db/docs/
 
-wget $(curl -s https://api.github.com/repos/Yugabyte/RRDiagram/releases/latest \
+wget $(curl -s https://api.github.com/repos/ZNbase/RRDiagram/releases/latest \
        | grep browser_download_url | cut -d \" -f 4)
 ```
 
@@ -552,7 +552,7 @@ Use `ls rrdiagram.jar` to check that it is now present. (It isn't shown by "git 
 Specifically:
 
 ```
-cd <your path>/yugabyte-db/docs
+cd <your path>/ZNbase-db/docs
 java -jar rrdiagram.jar content/latest/api/ysql/syntax_resources/ysql_grammar.ebnf \
   content/latest/api/ysql/syntax_resources/
 ```
@@ -594,7 +594,7 @@ demo-2-irrelevant-for-ysql-syntax ::= ( ( a 'K' b ) { ',' ( a 'K' b ) } ) ;
 Suppose that this [_humanly typed documentation source_](#humanly-typed-documentation-source) file:
 
 ```
-<your path>/yugabyte-db/docs/content/latest/api/ysql/exprs/window_functions/window-definition.md
+<your path>/ZNbase-db/docs/content/latest/api/ysql/exprs/window_functions/window-definition.md
 ```
 wants to include a [_syntax diagram set_](#syntax-diagram-set) with these [_syntax rules_](#syntax-rule):
 
@@ -605,9 +605,9 @@ _Step 1:_ If they all already exist in the [_diagram definition file_](#diagram-
 _Step 2:_ Create these empty files (for example, with `touch`).
 
 ```
-<your path>/yugabyte-db/docs/content/latest/api/ysql/syntax_resources/exprs/window_functions/frame_clause,frame_bounds,frame_bound.diagram.md
+<your path>/ZNbase-db/docs/content/latest/api/ysql/syntax_resources/exprs/window_functions/frame_clause,frame_bounds,frame_bound.diagram.md
 
-<your path>/yugabyte-db/docs/content/latest/api/ysql/syntax_resources/exprs/window_functions/frame_clause,frame_bounds,frame_bound.grammar.md
+<your path>/ZNbase-db/docs/content/latest/api/ysql/syntax_resources/exprs/window_functions/frame_clause,frame_bounds,frame_bound.grammar.md
 ```
 
 _Step 3:_ Copy a reliable example of the [_diagram inclusion HTML_](#diagram-inclusion-HTML) and paste it into `window-definition.md` at the location where you want the syntax diagram set to appear. Edit the bolded text shown above appropriately.

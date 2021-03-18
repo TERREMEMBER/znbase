@@ -26,9 +26,9 @@ isTocNested: true
 </ul>
 
 ## Overview
-sysbench is a popular tool for benchmarking databases like Postgres and MySQL, as well as system capabilities like CPU, memory and I/O. Follow the steps below to run Sysbench against YugabyteDB.
+sysbench is a popular tool for benchmarking databases like Postgres and MySQL, as well as system capabilities like CPU, memory and I/O. Follow the steps below to run Sysbench against ZNbaseDB.
 
-The [YugabyteDB version of sysbench](https://github.com/yugabyte/sysbench) is forked from the [official](https://github.com/akopytov/sysbench) version with a few modifications to better reflect YugabyteDB's distributed nature.
+The [ZNbaseDB version of sysbench](https://github.com/ZNbase/sysbench) is forked from the [official](https://github.com/akopytov/sysbench) version with a few modifications to better reflect ZNbaseDB's distributed nature.
 
 {{< note title="Note" >}}
 To ensure the recommended hardware requirements are met and the database is correctly configured before benchmarking, review the [deployment checklist](../../deploy/checklist/)  
@@ -42,7 +42,7 @@ Install sysbench using the following steps.
 
 ```sh
 $ cd $HOME
-$ git clone https://github.com/yugabyte/sysbench.git
+$ git clone https://github.com/ZNbase/sysbench.git
 $ cd sysbench
 $ ./autogen.sh && ./configure --with-pgsql && make -j && sudo make install
 ```
@@ -51,13 +51,13 @@ $ ./autogen.sh && ./configure --with-pgsql && make -j && sudo make install
 The above steps will install the sysbench utility in '/usr/local/bin'
 {{< /note >}}
 
-Make sure you have the YSQL shell `ysqlsh` exported to the `PATH` variable. You can download [`ysqlsh`](https://download.yugabyte.com/) if you do not have it.
+Make sure you have the YSQL shell `ysqlsh` exported to the `PATH` variable. You can download [`ysqlsh`](https://download.ZNbase.com/) if you do not have it.
 ```sh
 $ export PATH=$PATH:/path/to/ysqlsh
 ```
 
-### 2. Start YugabyteDB
-Start your YugabyteDB cluster by following the steps [here](../../deploy/manual-deployment/).
+### 2. Start ZNbaseDB
+Start your ZNbaseDB cluster by following the steps [here](../../deploy/manual-deployment/).
 
 {{< tip title="Tip" >}}
 You will need the IP addresses of the nodes in the cluster for the next step.
@@ -85,8 +85,8 @@ $ sysbench oltp_point_select        \
       --db-driver=pgsql             \
       --pgsql-host=127.0.0.1        \
       --pgsql-port=5433             \
-      --pgsql-user=yugabyte         \
-      --pgsql-db=yugabyte           \
+      --pgsql-user=ZNbase         \
+      --pgsql-db=ZNbase           \
       prepare
 ```
 
@@ -100,8 +100,8 @@ $ sysbench oltp_point_select        \
       --db-driver=pgsql             \
       --pgsql-host=127.0.0.1        \
       --pgsql-port=5433             \
-      --pgsql-user=yugabyte         \
-      --pgsql-db=yugabyte           \
+      --pgsql-user=ZNbase         \
+      --pgsql-db=ZNbase           \
       --threads=64                  \
       --time=120                    \
       --warmup-time=120             \

@@ -1,8 +1,8 @@
 ---
-title: Build a YugabyteDB application using Python and YEDIS
+title: Build a ZNbaseDB application using Python and YEDIS
 headerTitle: Build an application using Python
 linkTitle: Python
-description: Use Python to build a YugabyteDB application that interacts with YEDIS
+description: Use Python to build a ZNbaseDB application that interacts with YEDIS
 block_indexing: true
 menu:
   v2.2:
@@ -26,7 +26,7 @@ $ sudo pip install yedis
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe, and are able to interact with it using the Redis shell. If not, follow the steps in [Quick start](../../../../quick-start/).
+- installed ZNbaseDB, created a universe, and are able to interact with it using the Redis shell. If not, follow the steps in [Quick start](../../../../quick-start/).
 
 ### Write the HelloWorld Python application
 

@@ -1,33 +1,33 @@
 ---
-title: yugabyted reference
-headerTitle: yugabyted
-linkTitle: yugabyted
-description: Use yugabyted to run single-node YugabyteDB clusters.
+title: ZNbased reference
+headerTitle: ZNbased
+linkTitle: ZNbased
+description: Use ZNbased to run single-node ZNbaseDB clusters.
 menu:
   latest:
-    identifier: yugabyted
+    identifier: ZNbased
     parent: configuration
     weight: 2451
 isTocNested: true
 showAsideToc: true
 ---
 
-`yugabyted` is a new database server that acts as a parent server across the [`yb-tserver`](../yb-tserver) and [`yb-master`](../yb-master) servers. Since its inception, YugabyteDB has relied on a 2-server architecture with YB-TServers managing the data and YB-Masters managing the metadata. However, this can introduce a burden on new users who want to get started right away. yugabyted is the answer to this user need. It also adds a new UI similar to the Yugabyte Platform UI so that users can experience a richer data placement map and metrics dashboard.
+`ZNbased` is a new database server that acts as a parent server across the [`yb-tserver`](../yb-tserver) and [`yb-master`](../yb-master) servers. Since its inception, ZNbaseDB has relied on a 2-server architecture with YB-TServers managing the data and YB-Masters managing the metadata. However, this can introduce a burden on new users who want to get started right away. ZNbased is the answer to this user need. It also adds a new UI similar to the ZNbase Platform UI so that users can experience a richer data placement map and metrics dashboard.
 
-The `yugabyted` executable file is located in the YugabyteDB home's `bin` directory. 
+The `ZNbased` executable file is located in the ZNbaseDB home's `bin` directory. 
 
 {{< note title="Note" >}}
 
-- yugabyted currently supports both single-node and multi-node clusters (using the `join` option in the `start` command). However, ability to create multi-node clusters is currently under BETA.
+- ZNbased currently supports both single-node and multi-node clusters (using the `join` option in the `start` command). However, ability to create multi-node clusters is currently under BETA.
 
-- yugabytedb is not recommended for production deployments at this time. For production deployments with fully-distributed multi-node clusters, use [`yb-tserver`](../yb-tserver) and [`yb-master`](../yb-master) directly using the [Deploy](../../../deploy) docs.
+- ZNbasedb is not recommended for production deployments at this time. For production deployments with fully-distributed multi-node clusters, use [`yb-tserver`](../yb-tserver) and [`yb-master`](../yb-master) directly using the [Deploy](../../../deploy) docs.
 
 {{< /note >}}
 
 ## Syntax
 
 ```sh
-yugabyted [-h] [ <command> ] [ <flags> ]
+ZNbased [-h] [ <command> ] [ <flags> ]
 ```
 
 - *command*: command to run
@@ -36,25 +36,25 @@ yugabyted [-h] [ <command> ] [ <flags> ]
 ### Example 
 
 ```sh
-$ ./bin/yugabyted start
+$ ./bin/ZNbased start
 ```
 
 ### Online help
 
-You can access the overview command line help for `yugabyted` by running one of the following examples from the YugabyteDB home.
+You can access the overview command line help for `ZNbased` by running one of the following examples from the ZNbaseDB home.
 
 ```sh
-$ ./bin/yugabyted -h
+$ ./bin/ZNbased -h
 ```
 
 ```sh
-$ ./bin/yugabyted -help
+$ ./bin/ZNbased -help
 ```
 
-For help with specific `yugabyted` commands, run 'yugabyted [ command ] -h'. For example, you can print the command line help for the `yugabyted start` command by running the following:
+For help with specific `ZNbased` commands, run 'ZNbased [ command ] -h'. For example, you can print the command line help for the `ZNbased start` command by running the following:
 
 ```sh
-$ ./bin/yugabyted start -h
+$ ./bin/ZNbased start -h
 ```
 
 ## Commands
@@ -74,12 +74,12 @@ The following commands are available:
 
 ### start
 
-Use the `yugabyted start` command to start a one-node YugabyteDB cluster in your local environment. This one-node cluster includes [`yb-tserver`](../yb-tserver) and [`yb-master`](../yb-master) services.
+Use the `ZNbased start` command to start a one-node ZNbaseDB cluster in your local environment. This one-node cluster includes [`yb-tserver`](../yb-tserver) and [`yb-master`](../yb-master) services.
 
 #### Syntax
 
 ```sh
-Usage: yugabyted start [-h] [--config CONFIG] [--data_dir DATA_DIR]
+Usage: ZNbased start [-h] [--config CONFIG] [--data_dir DATA_DIR]
                                 [--base_dir BASE_DIR] [--log_dir LOG_DIR]
                                 [--ycql_port YCQL_PORT]
                                 [--ysql_port YSQL_PORT]
@@ -105,15 +105,15 @@ The path to the configuration file.
 
 ##### --data_dir *data-directory*
 
-The directory where yugabyted stores data. Must be an absolute path.
+The directory where ZNbased stores data. Must be an absolute path.
 
 ##### --base_dir *base-directory*
 
-The directory where yugabyted stores data, conf and logs. Must be an absolute path.
+The directory where ZNbased stores data, conf and logs. Must be an absolute path.
 
 ##### --log_dir *log-directory*
 
-The directory to store yugabyted logs. Must be an absolute path.
+The directory to store ZNbased logs. Must be an absolute path.
 
 ##### --ycql_port *ycql-port*
 
@@ -145,7 +145,7 @@ The port on which main webserver will run.
 
 ##### --listen *bind-ip*
 
-The IP address or localhost name to which `yugabyted` will listen.
+The IP address or localhost name to which `ZNbased` will listen.
 
 ##### --join *master-ip*
 
@@ -155,15 +155,15 @@ This feature is currently in [BETA](../../../faq/general/#what-is-the-definition
 
 {{< /note >}}
 
-The IP address of the existing `yugabyted` server to which the new `yugabyted` server will join.
+The IP address of the existing `ZNbased` server to which the new `ZNbased` server will join.
 
 ##### --daemon *bool*
 
-Enable or disable running `yugabyted` in the background as a daemon. Does not persist on restart. Default is `true`.
+Enable or disable running `ZNbased` in the background as a daemon. Does not persist on restart. Default is `true`.
 
 ##### --callhome *bool*
 
-Enable or disable the "call home" feature that sends analytics data to Yugabyte. Default is `true`.
+Enable or disable the "call home" feature that sends analytics data to ZNbase. Default is `true`.
 
 ##### --ui *bool*
 
@@ -192,7 +192,7 @@ If the `YCQL_USER` or `YCQL_PASSWORD` environment variables exist then, authenti
 
 ##### --initial_scripts_dir *initial-scripts-dir*
 
-The directory from where yugabyted reads initialization scripts.
+The directory from where ZNbased reads initialization scripts.
 The format will be: For YSQL - `.sql`, For YCQL - `.cql`.
 Initialization scripts will be executed in sorted name order.
 
@@ -200,12 +200,12 @@ Initialization scripts will be executed in sorted name order.
 
 ### stop
 
-Use the `yugabyted stop` command to stop a YugabyteDB cluster.
+Use the `ZNbased stop` command to stop a ZNbaseDB cluster.
 
 #### Syntax
 
 ```sh
-Usage: yugabyted stop [-h] [--config CONFIG] [--data_dir DATA_DIR]
+Usage: ZNbased stop [-h] [--config CONFIG] [--data_dir DATA_DIR]
                                [--base_dir BASE_DIR]
 ```
 
@@ -217,7 +217,7 @@ Print the command line help and exit.
   
 ##### --config *config-file*
 
-The path to the configuration file of the yugabyted server that needs to be stopped.
+The path to the configuration file of the ZNbased server that needs to be stopped.
   
 ##### --data_dir *data-directory*
 
@@ -231,12 +231,12 @@ The base directory for the yugabtyed server that needs to be stopped.
 
 ### status
 
-Use the `yugabyted status` command to check the status.
+Use the `ZNbased status` command to check the status.
 
 #### Syntax
 
 ```
-Usage: yugabyted status [-h] [--config CONFIG] [--data_dir DATA_DIR]
+Usage: ZNbased status [-h] [--config CONFIG] [--data_dir DATA_DIR]
                                  [--base_dir BASE_DIR]
 ```
 
@@ -248,7 +248,7 @@ Print the command line help and exit.
   
 ##### --config *config-file*
 
-The path to the configuration file of the yugabyted server whose status is desired.
+The path to the configuration file of the ZNbased server whose status is desired.
   
 ##### --data_dir *data-directory*
 
@@ -262,12 +262,12 @@ The base directory for the yugabtyed server that whose status is desired.
 
 ### version
 
-Use the `yugabyted version` command to check the version number.
+Use the `ZNbased version` command to check the version number.
 
 #### Syntax
 
 ```
-Usage: yugabyted version [-h] [--config CONFIG] [--data_dir DATA_DIR]
+Usage: ZNbased version [-h] [--config CONFIG] [--data_dir DATA_DIR]
                                   [--base_dir BASE_DIR]
 ```
 
@@ -279,7 +279,7 @@ Print the command line help and exit.
   
 ##### --config *config-file*
 
-The path to the configuration file of the yugabyted server whose version is desired.
+The path to the configuration file of the ZNbased server whose version is desired.
   
 ##### --data_dir *data-directory*
 
@@ -293,12 +293,12 @@ The base directory for the yugabtyed server that whose version is desired.
 
 ### collect_logs
 
-Use the `yugabyted collect_logs` command to generate a zipped file with all logs.
+Use the `ZNbased collect_logs` command to generate a zipped file with all logs.
 
 #### Syntax
 
 ```
-Usage: yugabyted collect_logs [-h] [--config CONFIG]
+Usage: ZNbased collect_logs [-h] [--config CONFIG]
                                        [--data_dir DATA_DIR]
                                        [--base_dir BASE_DIR]
 ```
@@ -311,7 +311,7 @@ Print the command line help and exit.
   
 ##### --config *config-file*
 
-The path to the configuration file of the yugabyted server whose logs are desired.
+The path to the configuration file of the ZNbased server whose logs are desired.
   
 ##### --data_dir *data-directory*
 
@@ -325,12 +325,12 @@ The base directory for the yugabtyed server that whose logs are desired.
 
 ### connect
 
-Use the `yugabyted connect` command to connect to the cluster with `ysqlsh` or `ycqlsh` cli.
+Use the `ZNbased connect` command to connect to the cluster with `ysqlsh` or `ycqlsh` cli.
 
 #### Syntax
 
 ```
-Usage: yugabyted connect [-h] {ycql,ysql} ...
+Usage: ZNbased connect [-h] {ycql,ysql} ...
 
 Commands:
   {ycql,ysql}
@@ -356,12 +356,12 @@ Connect with `ycqlsh` cli.
 
 ### demo
 
-Use the `yugabyted demo connect` command to start YugabyteDB with the [northwind sample dataset](../../../sample-data/northwind/). 
+Use the `ZNbased demo connect` command to start ZNbaseDB with the [northwind sample dataset](../../../sample-data/northwind/). 
 
 #### Syntax
 
 ```
-Usage: yugabyted demo [-h] {connect,destroy} ...
+Usage: ZNbased demo [-h] {connect,destroy} ...
 ```
 
 #### Flags
@@ -376,7 +376,7 @@ Loads the `northwind` sample dataset into a new `yb_demo_northwind` SQL database
 
 ##### destroy
 
-Shuts down the yugabyted single-node cluster and removes data, configuration, and log directories.
+Shuts down the ZNbased single-node cluster and removes data, configuration, and log directories.
 
 Deletes the `yb_demo_northwind` northwind database.
 
@@ -392,11 +392,11 @@ Combinations of environment variables and their uses.
 
 - `YSQL_PASSWORD`
    
-  Update the default yugabyte user's password.
+  Update the default ZNbase user's password.
 
 - `YSQL_PASSWORD, YSQL_DB`
 
-  Update the default yugabyte user's password and create `YSQL_DB` named DB.
+  Update the default ZNbase user's password and create `YSQL_DB` named DB.
 
 - `YSQL_PASSWORD, YSQL_USER`
 
@@ -464,7 +464,7 @@ Combinations of environment variables and their uses.
 Create a single-node cluster with a given base dir and listen address. Note the need to provide a fully-qualified directory path for the base dir parameter.
 
 ```sh
-bin/yugabyted start --base_dir=/Users/username/yugabyte-2.3.3.0/data1 --listen=127.0.0.1
+bin/ZNbased start --base_dir=/Users/username/ZNbase-2.3.3.0/data1 --listen=127.0.0.1
 ```
 
 ### Pass additional flags to tserver
@@ -472,7 +472,7 @@ bin/yugabyted start --base_dir=/Users/username/yugabyte-2.3.3.0/data1 --listen=1
 Create a single-node cluster and set additional flags to the yb-tserver process.
 
 ```sh
-bin/yugabyted start --tserver_flags="pg_yb_session_timeout_ms=1200000,ysql_max_connections=400"
+bin/ZNbased start --tserver_flags="pg_yb_session_timeout_ms=1200000,ysql_max_connections=400"
 ```
 
 ### Create a multi-node cluster
@@ -480,8 +480,8 @@ bin/yugabyted start --tserver_flags="pg_yb_session_timeout_ms=1200000,ysql_max_c
 Add two more nodes to the cluster using the `join` option.
 
 ```sh
-bin/yugabyted start --base_dir=/Users/username/yugabyte-2.3.3.0/data2 --listen=127.0.0.2 --join=127.0.0.1
-bin/yugabyted start --base_dir=/Users/username/yugabyte-2.3.3.0/data3 --listen=127.0.0.3 --join=127.0.0.1
+bin/ZNbased start --base_dir=/Users/username/ZNbase-2.3.3.0/data2 --listen=127.0.0.2 --join=127.0.0.1
+bin/ZNbased start --base_dir=/Users/username/ZNbase-2.3.3.0/data3 --listen=127.0.0.3 --join=127.0.0.1
 ```
 
 ### Destroy a multi-node cluster
@@ -489,7 +489,7 @@ bin/yugabyted start --base_dir=/Users/username/yugabyte-2.3.3.0/data3 --listen=1
 Destroy the above multi-node cluster.
 
 ```sh
-bin/yugabyted destroy --base_dir=/Users/username/yugabyte-2.3.3.0/data1
-bin/yugabyted destroy --base_dir=/Users/username/yugabyte-2.3.3.0/data2
-bin/yugabyted destroy --base_dir=/Users/username/yugabyte-2.3.3.0/data1
+bin/ZNbased destroy --base_dir=/Users/username/ZNbase-2.3.3.0/data1
+bin/ZNbased destroy --base_dir=/Users/username/ZNbase-2.3.3.0/data2
+bin/ZNbased destroy --base_dir=/Users/username/ZNbase-2.3.3.0/data1
 ```

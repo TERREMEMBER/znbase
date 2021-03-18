@@ -1,12 +1,12 @@
 #@IgnoreInspection BashAddShebang
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 # Common Bash code for the devops repository.
 # Include this in a script as follows:
@@ -31,7 +31,7 @@ fi
 # Make a regular expression from a list of possible values. This function takes any non-zero number
 # of arguments, but each argument is further broken down into components separated by whitespace,
 # and those components are treated as separate possible values. Empty values are ignored.
-# This function should be the same as in yugabyte/build-support/common-build-env.sh.
+# This function should be the same as in ZNbase/build-support/common-build-env.sh.
 regex_from_list() {
   local regex=""
   # No quotes around $@ on purpose: we want to break arguments containing spaces.

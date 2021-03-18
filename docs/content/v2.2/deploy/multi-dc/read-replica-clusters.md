@@ -14,11 +14,11 @@ isTocNested: true
 showAsideToc: true
 ---
 
-In a YugabyteDB deployment, replication of data between nodes of your primary cluster runs synchronously and guarantees strong consistency. Optionally, you can create a read replica cluster that asynchronously replicates data from the primary cluster and guarantees timeline consistency (with bounded staleness). A synchronously replicated primary cluster can accept writes to the system. Using a read replica cluster allows applications to serve low latency reads in remote regions.
+In a ZNbaseDB deployment, replication of data between nodes of your primary cluster runs synchronously and guarantees strong consistency. Optionally, you can create a read replica cluster that asynchronously replicates data from the primary cluster and guarantees timeline consistency (with bounded staleness). A synchronously replicated primary cluster can accept writes to the system. Using a read replica cluster allows applications to serve low latency reads in remote regions.
 
 In a read replica cluster, read replicas are _observer nodes_ that do not participate in writes, but get a timeline-consistent copy of the data through asynchronous replication from the primary cluster.
 
-Use the steps below to deploy a read replica cluster using YugabyteDB. For information on deploying read replica clusters using the Yugabyte Platform, see [Read replicas](../../../yugabyte-platform/manage/read-replicas/).
+Use the steps below to deploy a read replica cluster using ZNbaseDB. For information on deploying read replica clusters using the ZNbase Platform, see [Read replicas](../../../ZNbase-platform/manage/read-replicas/).
 
 ## Deploy a read replica cluster
 

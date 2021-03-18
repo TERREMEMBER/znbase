@@ -46,7 +46,7 @@ Cassandra Workbench: Generate configuration
 
 This will generate .cassandraWorkbench.jsonc configuration file.
 
-Open and configure adding cluster as you need with connections informations: YugabyteDB ContactPoints, Port and Authentication Details (if you using Password Authenticator)
+Open and configure adding cluster as you need with connections informations: ZNbaseDB ContactPoints, Port and Authentication Details (if you using Password Authenticator)
 
 ```
 // name must be unique!

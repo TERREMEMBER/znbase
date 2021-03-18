@@ -44,7 +44,7 @@ type_specification ::= { JSONB }
 Internally, numbers that appear in a JSONB string (used without quotes. e.g `{'a': 3.14}` ) are stored as floating point values. 
 Due to the inherent imprecision in storing floating-point numbers, one should avoid comparing them for equality. 
 Users can either use error bounds while querying for these values in order to perform the correct floating-point comparison, or store them as strings (e.g: `{'a': "3.14"}`). 
-[#996 issue](https://github.com/yugabyte/yugabyte-db/issues/996)
+[#996 issue](https://github.com/ZNbase/ZNbase-db/issues/996)
 
 
 {{< /note >}}

@@ -398,7 +398,7 @@ DefineIndex(Oid relationId,
 	 * Get whether the indexed table is colocated.  This includes tables that
 	 * are colocated because they are part of a tablegroup with colocation.
 	 */
-	if (IsYugaByteEnabled() &&
+	if (IsZNbaseEnabled() &&
 		!IsBootstrapProcessingMode() &&
 		!YBIsPreparingTemplates() &&
 		IsYBRelationById(relationId))
@@ -685,10 +685,10 @@ DefineIndex(Oid relationId,
 	accessMethodName = stmt->accessMethod;
 
 	/*
-	 * In Yugabyte mode, switch index method from "btree" or "hash" to "lsm" depending on whether
-	 * the table is stored in Yugabyte storage or not (such as temporary tables).
+	 * In ZNbase mode, switch index method from "btree" or "hash" to "lsm" depending on whether
+	 * the table is stored in ZNbase storage or not (such as temporary tables).
 	 */
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 	{
 		if (accessMethodName == NULL)
 		{
@@ -699,7 +699,7 @@ DefineIndex(Oid relationId,
 			if (strcmp(accessMethodName, "btree") == 0 || strcmp(accessMethodName, "hash") == 0)
 			{
 				ereport(NOTICE,
-						(errmsg("index method \"%s\" was replaced with \"%s\" in YugabyteDB",
+						(errmsg("index method \"%s\" was replaced with \"%s\" in ZNbaseDB",
 								accessMethodName, DEFAULT_YB_INDEX_TYPE)));
 				accessMethodName = DEFAULT_YB_INDEX_TYPE;
 			}
@@ -733,7 +733,7 @@ DefineIndex(Oid relationId,
 		ereport(ERROR,
 				(errmsg("index method \"%s\" not supported yet",
 						accessMethodName),
-				 errhint("See https://github.com/YugaByte/yugabyte-db/issues/1337. "
+				 errhint("See https://github.com/ZNbase/ZNbase-db/issues/1337. "
 						 "Click '+' on the description to raise its priority")));
 
 	accessMethodForm = (Form_pg_am) GETSTRUCT(tuple);
@@ -1450,12 +1450,12 @@ ComputeIndexAttrs(IndexInfo *indexInfo,
 		nextExclOp = NULL;
 
 	/*
-	 * Get whether the index will use Yugabyte ordering and whather it will be
+	 * Get whether the index will use ZNbase ordering and whather it will be
 	 * colocated.  For now, regarding colocation, the index always follows the
 	 * indexed table, so just figure out whether the indexed table is
 	 * colocated.
 	 */
-	if (IsYugaByteEnabled() &&
+	if (IsZNbaseEnabled() &&
 		!IsBootstrapProcessingMode() &&
 		!YBIsPreparingTemplates())
 	{
@@ -1470,7 +1470,7 @@ ComputeIndexAttrs(IndexInfo *indexInfo,
 
 	/* Get whether the index is part of a tablegroup */
 	Oid tablegroupId = InvalidOid;
-	if (TablegroupCatalogExists && IsYugaByteEnabled() &&
+	if (TablegroupCatalogExists && IsZNbaseEnabled() &&
 		!IsBootstrapProcessingMode() && !YBIsPreparingTemplates())
 		tablegroupId = get_tablegroup_oid_by_table_oid(relId);
 
@@ -1486,7 +1486,7 @@ ComputeIndexAttrs(IndexInfo *indexInfo,
 		Oid			atttype;
 		Oid			attcollation;
 
-		if (IsYugaByteEnabled())
+		if (IsZNbaseEnabled())
 		{
 			if (use_yb_ordering)
 			{
@@ -1766,12 +1766,12 @@ ComputeIndexAttrs(IndexInfo *indexInfo,
 			/* default ordering is ASC */
 			if (attribute->ordering == SORTBY_DESC)
 				colOptionP[attn] |= INDOPTION_DESC;
-			if (IsYugaByteEnabled() &&
+			if (IsZNbaseEnabled() &&
 				attribute->ordering == SORTBY_HASH)
 				colOptionP[attn] |= INDOPTION_HASH;
 
 			/*
-			 * In Yugabyte, use HASH as the default for the first column of
+			 * In ZNbase, use HASH as the default for the first column of
 			 * non-colocated tables
 			 */
 			if (use_yb_ordering &&

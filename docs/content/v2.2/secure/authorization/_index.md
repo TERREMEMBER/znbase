@@ -1,9 +1,9 @@
 ---
-title: Authorization in YugabyteDB
+title: Authorization in ZNbaseDB
 headerTitle: Authorization
 linkTitle: Authorization
-description: Enable authorization using role-based access control in YugabyteDB.
-headcontent: Enable authorization using role-based access control in YugabyteDB.
+description: Enable authorization using role-based access control in ZNbaseDB.
+headcontent: Enable authorization using role-based access control in ZNbaseDB.
 image: /images/section_icons/secure/authorization.png
 block_indexing: true
 menu:

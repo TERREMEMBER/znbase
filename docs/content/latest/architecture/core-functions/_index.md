@@ -2,9 +2,9 @@
 title: Core functions
 headerTitle: Core functions
 linkTitle: Core functions
-description: Learn about the internals of YugabyteDB in the context of the core database functions.
+description: Learn about the internals of ZNbaseDB in the context of the core database functions.
 image: /images/section_icons/architecture/core_functions.png
-headcontent: Learn about the internals of YugabyteDB in the context of the core database functions.
+headcontent: Learn about the internals of ZNbaseDB in the context of the core database functions.
 aliases:
   - /architecture/core-functions/
 menu:
@@ -22,7 +22,7 @@ menu:
         <div class="title">Universe creation</div>
       </div>
       <div class="body">
-        How a universe gets created in YugabyteDB.
+        How a universe gets created in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -34,7 +34,7 @@ menu:
         <div class="title">Table creation</div>
       </div>
       <div class="body">
-        How a table gets created in YugabyteDB.
+        How a table gets created in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -46,7 +46,7 @@ menu:
         <div class="title">Write IO path (single shard)</div>
       </div>
       <div class="body">
-        How single-shard writes occur in YugabyteDB.
+        How single-shard writes occur in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -58,7 +58,7 @@ menu:
         <div class="title">Read IO path (single shard)</div>
       </div>
       <div class="body">
-        How single-shard reads occur in YugabyteDB.
+        How single-shard reads occur in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -70,7 +70,7 @@ menu:
         <div class="title">High availability</div>
       </div>
       <div class="body">
-        How YugabyteDB achieves high availability.
+        How ZNbaseDB achieves high availability.
       </div>
     </a>
   </div>

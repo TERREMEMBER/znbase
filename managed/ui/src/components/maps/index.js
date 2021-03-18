@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 export { default as MapMarker } from './MapMarker';
 export { default as MarkerClusterLayer } from './MarkerClusterLayer';

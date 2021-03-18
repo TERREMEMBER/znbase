@@ -126,7 +126,7 @@ This is used to specify a default value for the column. If an `INSERT` statement
 #### Deferrable constraints
 
 Constraints can be deferred using the `DEFERRABLE` clause. Currently, only foreign key constraints
-can be deferred in YugabyteDB. A constraint that is not deferrable will be checked after every row
+can be deferred in ZNbaseDB. A constraint that is not deferrable will be checked after every row
 within a statement. In the case of deferrable constraints, the checking of the constraint can be postponed
 until the end of the transaction.
 

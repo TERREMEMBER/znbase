@@ -53,7 +53,7 @@ To build your Java application using the [PostgreSQL JDBC driver](https://jdbc.p
 
 This tutorial assumes that you have:
 
-- YugabyteDB up and running. If you are new to YugabyteDB, you can download, install, and have YugabyteDB up and running within five minutes by following the steps in the [Quick Start guide](../../../../quick-start/).
+- ZNbaseDB up and running. If you are new to ZNbaseDB, you can download, install, and have ZNbaseDB up and running within five minutes by following the steps in the [Quick Start guide](../../../../quick-start/).
 - Java Development Kit (JDK) 1.8, or later, is installed. JDK installers for Linux and macOS can be downloaded from [OpenJDK](http://jdk.java.net/), [AdoptOpenJDK](https://adoptopenjdk.net/), or [Azul Systems](https://www.azul.com/downloads/zulu-community/).
 - [Apache Maven](https://maven.apache.org/index.html) 3.3, or later, is installed.
 
@@ -69,7 +69,7 @@ Create a maven build file `pom.xml` and add the following content into it.
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.yugabyte.sample.apps</groupId>
+  <groupId>com.ZNbase.sample.apps</groupId>
   <artifactId>hello-world</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
@@ -123,13 +123,13 @@ Create a maven build file `pom.xml` and add the following content into it.
 Create the appropriate directory structure as expected by Maven.
 
 ```sh
-$ mkdir -p src/main/java/com/yugabyte/sample/apps
+$ mkdir -p src/main/java/com/ZNbase/sample/apps
 ```
 
-Copy the following contents into the file `src/main/java/com/yugabyte/sample/apps/YBSqlHelloWorld.java`.
+Copy the following contents into the file `src/main/java/com/ZNbase/sample/apps/YBSqlHelloWorld.java`.
 
 ```java
-package com.yugabyte.sample.apps;
+package com.ZNbase.sample.apps;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -143,7 +143,7 @@ public class YBSqlHelloWorld {
       Class.forName("org.postgresql.Driver");
       Connection connection = null;
       connection = DriverManager.getConnection(
-                 "jdbc:postgresql://127.0.0.1:5433/yugabyte","yugabyte", "yugabyte");
+                 "jdbc:postgresql://127.0.0.1:5433/ZNbase","ZNbase", "ZNbase");
 
       // Create table 'employee'
       String createStmt = "CREATE TABLE employee (id int PRIMARY KEY, " +
@@ -191,7 +191,7 @@ $ mvn package
 To run the program, run the following command.
 
 ```sh
-$ java -cp "target/hello-world-1.0.jar:target/lib/*" com.yugabyte.sample.apps.YBSqlHelloWorld
+$ java -cp "target/hello-world-1.0.jar:target/lib/*" com.ZNbase.sample.apps.YBSqlHelloWorld
 ```
 
 You should see the following as the output.

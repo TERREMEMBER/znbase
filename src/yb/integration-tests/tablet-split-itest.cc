@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -839,7 +839,7 @@ TEST_F(TabletSplitITest, TestLoadBalancerAndSplit) {
   ASSERT_NO_FATALS(WaitForTestTableTabletsCompactionFinish(5s * kTimeMultiplier));
 }
 
-// Test for https://github.com/yugabyte/yugabyte-db/issues/4312 reproducing a deadlock
+// Test for https://github.com/ZNbase/ZNbase-db/issues/4312 reproducing a deadlock
 // between TSTabletManager::ApplyTabletSplit and Heartbeater::Thread::TryHeartbeat.
 TEST_F(TabletSplitITest, SlowSplitSingleTablet) {
   const auto leader_failure_timeout = FLAGS_leader_failure_max_missed_heartbeat_periods *
@@ -1035,13 +1035,13 @@ void TabletSplitITest::SplitClientRequestsIds(int split_depth) {
   ASSERT_OK(s);
 }
 
-// Test for https://github.com/yugabyte/yugabyte-db/issues/5415.
+// Test for https://github.com/ZNbase/ZNbase-db/issues/5415.
 // Client knows about split parent for final tablets.
 TEST_F(TabletSplitITest, SplitClientRequestsIdsDepth1) {
   SplitClientRequestsIds(1);
 }
 
-// Test for https://github.com/yugabyte/yugabyte-db/issues/5415.
+// Test for https://github.com/ZNbase/ZNbase-db/issues/5415.
 // Client doesn't know about split parent for final tablets.
 TEST_F(TabletSplitITest, SplitClientRequestsIdsDepth2) {
   SplitClientRequestsIds(2);
@@ -1156,7 +1156,7 @@ TEST_F(TabletSplitITest, SplitDuringReplicaOffline) {
     }, 30s * kTimeMultiplier, "Waiting for TS-1 to catch up ..."), AsString(s));
 }
 
-// Test for https://github.com/yugabyte/yugabyte-db/issues/6890.
+// Test for https://github.com/ZNbase/ZNbase-db/issues/6890.
 // Writes data to the tablet, splits it and then tries to do full scan with `select count(*)`
 // using two different instances of YBTable one after another.
 TEST_F(TabletSplitITest, DifferentYBTableInstances) {

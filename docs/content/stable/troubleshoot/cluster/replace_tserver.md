@@ -12,7 +12,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-If you have a failed YB-TServer in a YugabyteDB cluster that needs to be replaced, follow these steps:
+If you have a failed YB-TServer in a ZNbaseDB cluster that needs to be replaced, follow these steps:
 
 ## Start the new YB-TServer
 

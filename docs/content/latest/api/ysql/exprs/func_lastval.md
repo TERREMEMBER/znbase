@@ -26,7 +26,7 @@ Use the `lastval()` function to return the value returned from the last call to 
 Create two sequences and call `nextval()` for each of them.
 
 ```plpgsql
-yugabyte=# CREATE SEQUENCE s1;
+ZNbase=# CREATE SEQUENCE s1;
 ```
 
 ```
@@ -34,7 +34,7 @@ CREATE SEQUENCE
 ```
 
 ```plpgsql
-yugabyte=# CREATE SEQUENCE s2 START -100 MINVALUE -100;
+ZNbase=# CREATE SEQUENCE s2 START -100 MINVALUE -100;
 ```
 
 ```
@@ -42,7 +42,7 @@ CREATE SEQUENCE
 ```
 
 ```plpgsql
-yugabyte=# SELECT nextval('s1');
+ZNbase=# SELECT nextval('s1');
 ```
 
 ```
@@ -53,7 +53,7 @@ yugabyte=# SELECT nextval('s1');
 ```
 
 ```plpgsql
-yugabyte=# SELECT nextval('s2');
+ZNbase=# SELECT nextval('s2');
 ```
 
 ```
@@ -66,7 +66,7 @@ yugabyte=# SELECT nextval('s2');
 Call `lastval()`.
 
 ```plpgsql
-yugabyte=# SELECT lastval()
+ZNbase=# SELECT lastval()
 ```
 
 ```

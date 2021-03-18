@@ -1,8 +1,8 @@
 ---
-title: Configure Yugabyte Platform
-headerTitle: Configure Yugabyte Platform
-linkTitle: 3. Configure Yugabyte Platform
-description: Configure Yugabyte Platform.
+title: Configure ZNbase Platform
+headerTitle: Configure ZNbase Platform
+linkTitle: 3. Configure ZNbase Platform
+description: Configure ZNbase Platform.
 block_indexing: true
 menu:
   v2.1:
@@ -13,27 +13,27 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Configuring Yugabyte Platform, with its YugabyteDB Admin Console, is simple. A randomly generated password for the Yugabyte Platform configuration database is already pre-filled. You can make a note of it for future use or change it to a new password of your choice. Additionally, `/opt/yugabyte` is pre-filled as the location of the directory on the Yugabyte Platform host where all Yugabyte Platform data will be stored.  Click **Save** on this page to take you to the Replicated Dashboard.
+Configuring ZNbase Platform, with its ZNbaseDB Admin Console, is simple. A randomly generated password for the ZNbase Platform configuration database is already pre-filled. You can make a note of it for future use or change it to a new password of your choice. Additionally, `/opt/ZNbase` is pre-filled as the location of the directory on the ZNbase Platform host where all ZNbase Platform data will be stored.  Click **Save** on this page to take you to the Replicated Dashboard.
 
-![Replicated Yugabyte Platform Config](/images/replicated/replicated-yugaware-config.png)
+![Replicated ZNbase Platform Config](/images/replicated/replicated-yugaware-config.png)
 
-For air-gapped installations, all the containers powering the Yugabyte Platform application are already available with Replicated. For non-air-gapped installations, these containers will be downloaded from the Quay.io Registry when the Dashboard is first launched. Replicated will automatically start the Yugabyte Platform as soon as all the container images are available.
+For air-gapped installations, all the containers powering the ZNbase Platform application are already available with Replicated. For non-air-gapped installations, these containers will be downloaded from the Quay.io Registry when the Dashboard is first launched. Replicated will automatically start the ZNbase Platform as soon as all the container images are available.
 
 ![Replicated Dashboard](/images/replicated/replicated-dashboard.png)
 
-To see the release history of the Yugabyte Platform (aka YugaWare) application, click **View release history**.
+To see the release history of the ZNbase Platform (aka YugaWare) application, click **View release history**.
 
 ![Replicated Release History](/images/replicated/replicated-release-history.png)
 
-After starting the Yugabyte Platform, you must register a new tenant by following the instructions in the section below.
+After starting the ZNbase Platform, you must register a new tenant by following the instructions in the section below.
 
 ## Register tenant
 
-Go to [http://yugaware-host-public-ip/register](http://yugaware-host-public-ip/register) to register a tenant account. Note that by default Yugabyte Platform runs as a single-tenant application.
+Go to [http://yugaware-host-public-ip/register](http://yugaware-host-public-ip/register) to register a tenant account. Note that by default ZNbase Platform runs as a single-tenant application.
 
 ![Register](/images/ee/register.png)
 
-After you click **Submit**, you are automatically logged into the YugabyteDB Admin Console. You can then proceed to [configuring cloud providers using the YugabyteDB Admin Console](../configure-cloud-providers/).
+After you click **Submit**, you are automatically logged into the ZNbaseDB Admin Console. You can then proceed to [configuring cloud providers using the ZNbaseDB Admin Console](../configure-cloud-providers/).
 
 ## Log in
 
@@ -45,41 +45,41 @@ Click on the top right drop-down list or go directly to [http://yugaware-host-pu
 
 ![Profile](/images/ee/profile.png)
 
-Next step is to configure one or more cloud providers in the YugabyteDB Admin Console as documented [here](../configure-cloud-providers/).
+Next step is to configure one or more cloud providers in the ZNbaseDB Admin Console as documented [here](../configure-cloud-providers/).
 
 ## Back up data
 
-We recommend a weekly machine snapshot and weekly backups of `/opt/yugabyte`.
+We recommend a weekly machine snapshot and weekly backups of `/opt/ZNbase`.
 
-Before performing an update is, you should create a machine snapshot and back up the `/opt/yugabyte` directory.
+Before performing an update is, you should create a machine snapshot and back up the `/opt/ZNbase` directory.
 
 ## Upgrade
 
-Upgrades to the Yugabyte Platform are managed seamlessly in the Replicated UI. When a new version is available for upgrade, the Replicated UI will show the same. You can apply the upgrade at your convenience.
+Upgrades to the ZNbase Platform are managed seamlessly in the Replicated UI. When a new version is available for upgrade, the Replicated UI will show the same. You can apply the upgrade at your convenience.
 
 To upgrade Replicated, rerun the Replicated install command. This will upgrade Replicated components with the latest build.
 
 ## Uninstall
 
-Stop and remove the Yugabyte Platform on Replicated first.
+Stop and remove the ZNbase Platform on Replicated first.
 
 ```sh
 $ /usr/local/bin/replicated apps
 ```
 
-Replace <appid> with the application ID of Yugabyte Platform from the command above.
+Replace <appid> with the application ID of ZNbase Platform from the command above.
 
 ```sh
 $ /usr/local/bin/replicated app <appid> stop
 ```
 
-Remove the Yugabyte Platform application.
+Remove the ZNbase Platform application.
 
 ```sh
 $ /usr/local/bin/replicated app <appid> rm
 ```
 
-Remove all Yugabyte Platform containers.
+Remove all ZNbase Platform containers.
 
 ```sh
 $ docker images | grep "yuga" | awk '{print $3}' | xargs docker rmi -f
@@ -88,14 +88,14 @@ $ docker images | grep "yuga" | awk '{print $3}' | xargs docker rmi -f
 Delete the mapped directory.
 
 ```sh
-$ rm -rf /opt/yugabyte
+$ rm -rf /opt/ZNbase
 ```
 
 Nex, uninstall Replicated itself by following instructions documented [here](https://help.replicated.com/docs/native/customer-installations/installing-via-script/#removing-replicated).
 
 ## Troubleshoot
 
-### SELinux turned on the Yugabyte Platform host
+### SELinux turned on the ZNbase Platform host
 
 If your host has SELinux turned on, then the Docker engine may not be able to connect with the host. To open the ports using firewall exceptions, run the following command.
 
@@ -115,7 +115,7 @@ sudo firewall-cmd --zone=public --add-port=9874-9879/tcp
 
 ### Unable to perform passwordless SSH into the data nodes
 
-If your Yugabyte Platform is not able to do passwordless SSH to the data nodes, follow the steps below.
+If your ZNbase Platform is not able to do passwordless SSH to the data nodes, follow the steps below.
 
 Generate a key pair.
 

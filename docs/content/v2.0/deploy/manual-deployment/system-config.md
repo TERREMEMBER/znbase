@@ -39,7 +39,7 @@ Run the following command to check the `ulimit` settings.
 $ ulimit -a
 ```
 
-The following settings are recommended when running YugabyteDB.
+The following settings are recommended when running ZNbaseDB.
 
 ```
 core file size          (blocks, -c) unlimited

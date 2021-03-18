@@ -3,7 +3,7 @@ title: Restore data
 linkTitle: Restore data
 description: Restore data
 image: /images/section_icons/manage/enterprise.png
-headcontent: Restore data in YugabyteDB.
+headcontent: Restore data in ZNbaseDB.
 block_indexing: true
 menu:
   v2.0:
@@ -27,13 +27,13 @@ menu:
   </li>
 </ul>
 
-To restore your YugabyteDB databases that were backed up using the `ysql_dump` and `ysql_dumpall` backup utilities, you can use the [`ysqlsh`](../../../admin/ysqlsh) to restore one or all databases.
+To restore your ZNbaseDB databases that were backed up using the `ysql_dump` and `ysql_dumpall` backup utilities, you can use the [`ysqlsh`](../../../admin/ysqlsh) to restore one or all databases.
 
 ## Restore databases using `ysqlsh \i`
 
 To restore databases using the `ysqlsh` shell:
 
-1. Open the `ysqlsh` from the YugabyteDB home directory.
+1. Open the `ysqlsh` from the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/ysqlsh
@@ -43,13 +43,13 @@ $ ./bin/ysqlsh
 ysqlsh (11.2-YB-2.0.9.0-b0)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 2. At the `ysqlsh` shell prompt, run the following `\i` command.
 
 ```postgresql
-yugabyte=# \i <db-sql-script>
+ZNbase=# \i <db-sql-script>
 ```
 
 - *db-sql-script*: the SQL script file dumped using `ysql_dump` or `ysql_dumpall`.

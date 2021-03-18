@@ -2,7 +2,7 @@
 title: Default ports reference
 headerTitle: Default ports
 linkTitle: Default ports
-description: Default ports for YugabyteDB including client APIs, RPC communication, and monitoring.
+description: Default ports for ZNbaseDB including client APIs, RPC communication, and monitoring.
 section: REFERENCE
 menu:
   latest:
@@ -59,7 +59,7 @@ Along with the above, include the following common ports in firewall rules.
 
 ## Prometheus monitoring
 
-YugabyteDB servers expose time-series performance metrics in the [Prometheus exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/#text-based-format) on multiple HTTP endpoints. These endpoints have the following structure.
+ZNbaseDB servers expose time-series performance metrics in the [Prometheus exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/#text-based-format) on multiple HTTP endpoints. These endpoints have the following structure.
 
 ```
 <target>/prometheus-metrics
@@ -86,4 +86,4 @@ Use the following `yb-tserver` targets for the various API metrics.
 | ycql    | `<yb-tserver-address>:12000` |
 | yedis   | `<yb-tserver-address>:11000` |
 
-For a quick tutorial on using Prometheus with YugabyteDB, see [Observability with Prometheus](../../../explore/observability).
+For a quick tutorial on using Prometheus with ZNbaseDB, see [Observability with Prometheus](../../../explore/observability).

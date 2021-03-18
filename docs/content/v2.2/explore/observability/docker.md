@@ -2,7 +2,7 @@
 title: Explore observability with Prometheus on Docker
 headerTitle: Observability with Prometheus
 linkTitle: Observability 
-description: Learn about observability and monitoring with Prometheus in a local three-node YugabyteDB cluster on Docker.
+description: Learn about observability and monitoring with Prometheus in a local three-node ZNbaseDB cluster on Docker.
 block_indexing: true
 menu:
   v2.2:
@@ -45,18 +45,18 @@ showAsideToc: true
 -->
 </ul>
 
-You can monitor your local YugabyteDB cluster with a local instance of [Prometheus](https://prometheus.io/), a popular standard for time-series monitoring of cloud native infrastructure. YugabyteDB services and APIs expose metrics in the Prometheus format at the `/prometheus-metrics` endpoint.
+You can monitor your local ZNbaseDB cluster with a local instance of [Prometheus](https://prometheus.io/), a popular standard for time-series monitoring of cloud native infrastructure. ZNbaseDB services and APIs expose metrics in the Prometheus format at the `/prometheus-metrics` endpoint.
 
-For details on the metrics targets for YugabyteDB, see [Monitoring with Prometheus](../../../reference/configuration/default-ports/#monitoring-with-prometheus).
+For details on the metrics targets for ZNbaseDB, see [Monitoring with Prometheus](../../../reference/configuration/default-ports/#monitoring-with-prometheus).
 
 ## Prerequisite
 
-Install a local YugabyteDB universe on Docker using the steps below.
+Install a local ZNbaseDB universe on Docker using the steps below.
 
 ```sh
-mkdir ~/yugabyte && cd ~/yugabyte
-wget https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/bin/yb-docker-ctl && chmod +x yb-docker-ctl
-docker pull yugabytedb/yugabyte
+mkdir ~/ZNbase && cd ~/ZNbase
+wget https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/bin/yb-docker-ctl && chmod +x yb-docker-ctl
+docker pull ZNbasedb/ZNbase
 ```
 
 ## 1. Create universe
@@ -75,16 +75,16 @@ $ ./yb-docker-ctl create  --rf 3
 
 ## 2. Run sample key-value app
 
-Pull the [yb-sample-apps](https://github.com/yugabyte/yb-sample-apps) docker container. This container has built-in Java client programs for various workloads including SQL inserts and updates.
+Pull the [yb-sample-apps](https://github.com/ZNbase/yb-sample-apps) docker container. This container has built-in Java client programs for various workloads including SQL inserts and updates.
 
 ```sh
-$ docker pull yugabytedb/yb-sample-apps
+$ docker pull ZNbasedb/yb-sample-apps
 ```
 
 Run the simple `CassandraKeyValue` workload application in a separate shell.
 
 ```sh
-$ docker run --name yb-sample-apps --hostname yb-sample-apps --net yb-net yugabytedb/yb-sample-apps --workload CassandraKeyValue \
+$ docker run --name yb-sample-apps --hostname yb-sample-apps --net yb-net ZNbasedb/yb-sample-apps --workload CassandraKeyValue \
   --nodes yb-tserver-n1:9042 \
   --num_threads_write 1 \
   --num_threads_read 4
@@ -92,7 +92,7 @@ $ docker run --name yb-sample-apps --hostname yb-sample-apps --net yb-net yugaby
 
 ## 3. Prepare Prometheus config file
 
-Copy the following into a file called `yugabytedb.yml`. Move this file to the `/tmp` directory so that you can bind the file to the Prometheus container later on.
+Copy the following into a file called `ZNbasedb.yml`. Move this file to the `/tmp` directory so that you can bind the file to the Prometheus container later on.
 
 ```sh
 global:
@@ -100,9 +100,9 @@ global:
   evaluation_interval: 5s # Evaluate rules every 5 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
 
-# YugabyteDB configuration to scrape Prometheus time-series metrics 
+# ZNbaseDB configuration to scrape Prometheus time-series metrics 
 scrape_configs:
-  - job_name: 'yugabytedb'
+  - job_name: 'ZNbasedb'
     metrics_path: /prometheus-metrics
 
     static_configs:
@@ -134,7 +134,7 @@ Start the Prometheus server as below. The `prom/prometheus` container image will
 ```sh
 $ docker run \
 	-p 9090:9090 \
-	-v /tmp/yugabytedb.yml:/etc/prometheus/prometheus.yml \
+	-v /tmp/ZNbasedb.yml:/etc/prometheus/prometheus.yml \
 	--net yb-net \
     prom/prometheus
 ```
@@ -145,7 +145,7 @@ Open the Prometheus UI at http://localhost:9090 and then navigate to the Targets
 
 ## 5. Analyze key metrics
 
-On the Prometheus Graph UI, you can now plot the read/write throughput and latency for the `CassandraKeyValue` sample app. As you can see from the [source code](https://github.com/yugabyte/yugabyte-db/blob/master/java/yb-loadtester/src/main/java/com/yugabyte/sample/apps/CassandraKeyValue.java) of the app, it uses only SELECT statements for reads and INSERT statements for writes (aside from the initial CREATE TABLE). This means you can measure throughput and latency by simply using the metrics corresponding to the SELECT and INSERT statements.
+On the Prometheus Graph UI, you can now plot the read/write throughput and latency for the `CassandraKeyValue` sample app. As you can see from the [source code](https://github.com/ZNbase/ZNbase-db/blob/master/java/yb-loadtester/src/main/java/com/ZNbase/sample/apps/CassandraKeyValue.java) of the app, it uses only SELECT statements for reads and INSERT statements for writes (aside from the initial CREATE TABLE). This means you can measure throughput and latency by simply using the metrics corresponding to the SELECT and INSERT statements.
 
 Paste the following expressions into the Expression box and click Execute followed by Add Graph.
 

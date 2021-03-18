@@ -54,38 +54,38 @@ To reset the role back to current user, `RESET ROLE` or `SET ROLE NONE` can be u
 - Change to new role John.
 
 ```postgresql
-yugabyte=# select session_user, current_user;
+ZNbase=# select session_user, current_user;
  session_user | current_user
 --------------+--------------
- yugabyte     | yugabyte
+ ZNbase     | ZNbase
 (1 row)
-yugabyte=# set role john;
+ZNbase=# set role john;
 SET
-yugabyte=# select session_user, current_user;
+ZNbase=# select session_user, current_user;
  session_user | current_user
 --------------+--------------
- yugabyte     | john
+ ZNbase     | john
 (1 row)
 ```
 
 - Changing to new role assumes the privileges available to that role.
 
 ```postgresql
-yugabyte=# select session_user, current_user;
+ZNbase=# select session_user, current_user;
  session_user | current_user
 --------------+--------------
- yugabyte     | yugabyte
+ ZNbase     | ZNbase
 (1 row)
-yugabyte=# create database db1;
+ZNbase=# create database db1;
 CREATE DATABASE
-yugabyte=# set role john;
+ZNbase=# set role john;
 SET
-yugabyte=# select session_user, current_user;
+ZNbase=# select session_user, current_user;
  session_user | current_user
 --------------+--------------
- yugabyte     | john
+ ZNbase     | john
 (1 row)
-yugabyte=# create database db2;
+ZNbase=# create database db2;
 ERROR:  permission denied to create database
 ```
 

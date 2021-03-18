@@ -2,7 +2,7 @@
 title: Deploy on Google Kubernetes Engine (GKE) using YAML (local disk)
 headerTitle: Google Kubernetes Engine (GKE)
 linkTitle: Google Kubernetes Engine (GKE)
-description: Deploy a single-zone YugabyteDB cluster on Google Kubernetes Engine (GKE) using YAML (local disk).
+description: Deploy a single-zone ZNbaseDB cluster on Google Kubernetes Engine (GKE) using YAML (local disk).
 block_indexing: true
 menu:
   v2.1:
@@ -52,19 +52,19 @@ $ gcloud components install kubectl
 
 - Configure defaults for `gcloud`
 
-Set the project ID as `yugabyte`. You can change this as needed.
+Set the project ID as `ZNbase`. You can change this as needed.
 
 ```sh
-$ gcloud config set project yugabyte
+$ gcloud config set project ZNbase
 ```
 
 ## 1. Create a GKE cluster
 
-Each cluster brings up 3 nodes each of the type `n1-standard-1` for the Kubernetes masters. You can directly create a cluster with the desired machine type using the `--machine-type` option. In this example, you are going to create a node-pool with `n1-standard-8` type nodes for the YugabyteDB universe.
+Each cluster brings up 3 nodes each of the type `n1-standard-1` for the Kubernetes masters. You can directly create a cluster with the desired machine type using the `--machine-type` option. In this example, you are going to create a node-pool with `n1-standard-8` type nodes for the ZNbaseDB universe.
 
 - Choose the zone
 
-First, choose the zone in which you want to run the cluster in. In this tutorial, you are going to deploy the Kubernetes masters using the default machine type `n1-standard-1` in the zone `us-west1-a`, and add a node pool with the desired node type and node count in order to deploy the YugabyteDB universe. You can view the list of zones by running the following command:
+First, choose the zone in which you want to run the cluster in. In this tutorial, you are going to deploy the Kubernetes masters using the default machine type `n1-standard-1` in the zone `us-west1-a`, and add a node pool with the desired node type and node count in order to deploy the ZNbaseDB universe. You can view the list of zones by running the following command:
 
 ```sh
 $ gcloud compute zones list
@@ -84,7 +84,7 @@ us-west1-a                 us-west1                 UP
 Create a Kubernetes cluster on GKE by running the following in order to create a cluster in the desired zone.
 
 ```sh
-$ gcloud container clusters create yugabyte --zone us-west1-b
+$ gcloud container clusters create ZNbase --zone us-west1-b
 ```
 
 - List the cluster
@@ -97,11 +97,11 @@ $ gcloud container clusters list
 
 ```sh
 NAME      LOCATION    MASTER_VERSION  MASTER_IP       MACHINE_TYPE   NODE_VERSION  NUM_NODES  STATUS
-yugabyte  us-west1-b  1.8.7-gke.1     35.199.164.253  n1-standard-1  1.8.7-gke.1   3          RUNNING
+ZNbase  us-west1-b  1.8.7-gke.1     35.199.164.253  n1-standard-1  1.8.7-gke.1   3          RUNNING
 ```
 
 ```sh
-Created [https://container.googleapis.com/v1/projects/yugabyte/zones/us-west1-b/clusters/yugabyte].
+Created [https://container.googleapis.com/v1/projects/ZNbase/zones/us-west1-b/clusters/ZNbase].
 ```
 
 ## 2. Create a node pool
@@ -110,7 +110,7 @@ Create a node pool with three nodes, each having eight CPUs and two local SSDs.
 
 ```sh
 $ gcloud container node-pools create node-pool-8cpu-2ssd \
-      --cluster=yugabyte \
+      --cluster=ZNbase \
       --local-ssd-count=2 \
       --machine-type=n1-standard-8 \
       --num-nodes=3 \
@@ -128,7 +128,7 @@ Note the `--local-ssd-count` option above, which tells gcloud to mount the nodes
 You can list all the node pools by running the following command.
 
 ```sh
-$ gcloud container node-pools list --cluster yugabyte --zone=us-west1-b
+$ gcloud container node-pools list --cluster ZNbase --zone=us-west1-b
 ```
 
 ```sh
@@ -140,7 +140,7 @@ node-pool-8cpu-2ssd  n1-standard-8  100           1.8.7-gke.1
 You can view details of the node-pool just created by running the following command:
 
 ```sh
-$ gcloud container node-pools describe node-pool-8cpu-2ssd --cluster yugabyte --zone=us-west1-b
+$ gcloud container node-pools describe node-pool-8cpu-2ssd --cluster ZNbase --zone=us-west1-b
 ```
 
 ```sh
@@ -153,23 +153,23 @@ initialNodeCount: 3
 name: node-pool-8cpu-2ssd
 ```
 
-## 3. Create a YugabyteDB universe
+## 3. Create a ZNbaseDB universe
 
 If this is your only container cluster, `kubectl` automatically points to this cluster. However, if you have multiple clusters, you should switch `kubectl` to point to this cluster by running the following command:
 
 ```sh
-$ gcloud container clusters get-credentials yugabyte --zone us-west1-b
+$ gcloud container clusters get-credentials ZNbase --zone us-west1-b
 ```
 
 ```sh
 Fetching cluster endpoint and auth data.
-kubeconfig entry generated for yugabyte.
+kubeconfig entry generated for ZNbase.
 ```
 
 You can launch a universe on this node pool to run on local SSDs by running the following command.
 
 ```sh
-$ kubectl apply -f https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/cloud/kubernetes/yugabyte-statefulset-local-ssd-gke.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/cloud/kubernetes/ZNbase-statefulset-local-ssd-gke.yaml
 ```
 
 ```sh
@@ -180,9 +180,9 @@ service "yb-tservers" created
 statefulset "yb-tserver" created
 ```
 
-You can see the [YAML file to launch a YugabyteDB kubernetes universe on nodes with local disks](https://github.com/yugabyte/yugabyte-db/blob/master/cloud/kubernetes/yugabyte-statefulset-local-ssd-gke.yaml).
+You can see the [YAML file to launch a ZNbaseDB kubernetes universe on nodes with local disks](https://github.com/ZNbase/ZNbase-db/blob/master/cloud/kubernetes/ZNbase-statefulset-local-ssd-gke.yaml).
 
-Note the following `nodeSelector` snippet in the YAML file which instructs the Kubernetes scheduler to place the YugabyteDB pods on nodes that have local disks:
+Note the following `nodeSelector` snippet in the YAML file which instructs the Kubernetes scheduler to place the ZNbaseDB pods on nodes that have local disks:
 
 ```
   nodeSelector:
@@ -210,7 +210,7 @@ Also, note that you instruct the scheduler to place the various pods in the `yb-
 
 ## 4. View the universe
 
-You can verify that the YugabyteDB pods are running by running the following command:
+You can verify that the ZNbaseDB pods are running by running the following command:
 
 ```sh
 $ kubectl get pods
@@ -240,9 +240,9 @@ yb-masters     ClusterIP      None          <none>          7000/TCP,7100/TCP   
 yb-tservers    ClusterIP      None          <none>          9000/TCP,9100/TCP,9042/TCP,6379/TCP   1m
 ```
 
-Note the `yb-master-ui` service above. It is a load balancer service, which exposes the YugabyteDB universe UI. You can view this by browsing to the URL `http://XX.XX.XX.XX:7000`. It should look as follows.
+Note the `yb-master-ui` service above. It is a load balancer service, which exposes the ZNbaseDB universe UI. You can view this by browsing to the URL `http://XX.XX.XX.XX:7000`. It should look as follows.
 
-![GKE YugabyteDB dashboard](/images/deploy/kubernetes/gke-kubernetes-dashboard.png)
+![GKE ZNbaseDB dashboard](/images/deploy/kubernetes/gke-kubernetes-dashboard.png)
 
 ## 5. Connect to the universe
 
@@ -255,7 +255,7 @@ $ kubectl exec -it yb-tserver-0 -- bash
 You can observe the local disks by running the following command.
 
 ```sh
-[root@yb-tserver-0 yugabyte]# df -kh
+[root@yb-tserver-0 ZNbase]# df -kh
 Filesystem      Size  Used Avail Use% Mounted on
 ...
 /dev/sdb        369G   70M  350G   1% /mnt/disk0
@@ -280,20 +280,20 @@ system_schema  system_auth  system
 
 ## 6. [Optional] Destroy the cluster
 
-You can destroy the YugabyteDB universe by running the following command. Note that this does not destroy the data, and you may not be able to respawn the cluster because there is data left behind on the persistent disks.
+You can destroy the ZNbaseDB universe by running the following command. Note that this does not destroy the data, and you may not be able to respawn the cluster because there is data left behind on the persistent disks.
 
 ```sh
-$ kubectl delete -f https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/cloud/kubernetes/yugabyte-statefulset-local-ssd-gke.yaml
+$ kubectl delete -f https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/cloud/kubernetes/ZNbase-statefulset-local-ssd-gke.yaml
 ```
 
 You can destroy the node-pool you created by running the following command:
 
 ```sh
-$ gcloud container node-pools delete node-pool-8cpu-2ssd --cluster yugabyte --zone=us-west1-b
+$ gcloud container node-pools delete node-pool-8cpu-2ssd --cluster ZNbase --zone=us-west1-b
 ```
 
 Finally, you can destroy the entire gcloud container cluster by running the following command:
 
 ```sh
-$ gcloud beta container clusters delete yugabyte --zone us-west1-b
+$ gcloud beta container clusters delete ZNbase --zone us-west1-b
 ```

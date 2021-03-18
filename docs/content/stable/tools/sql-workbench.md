@@ -1,5 +1,5 @@
 ---
-title: Use SQL Workbench/J with YugabyteDB YSQL
+title: Use SQL Workbench/J with ZNbaseDB YSQL
 headerTitle: SQL Workbench/J
 linkTitle: SQL Workbench/J
 description: Query distributed SQL databases using SQL Workbench/J.
@@ -12,7 +12,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-[SQL Workbench/J](https://www.sql-workbench.eu/index.html) is a free, DBMS-independent, cross-platform SQL query tool that also works with YugabyteDB. SQL Workbench/J is written in Java and should run on any operating system that provides a Java Runtime Environment (JRE).
+[SQL Workbench/J](https://www.sql-workbench.eu/index.html) is a free, DBMS-independent, cross-platform SQL query tool that also works with ZNbaseDB. SQL Workbench/J is written in Java and should run on any operating system that provides a Java Runtime Environment (JRE).
 
 SQL Workbench/J has the following main focus:
 
@@ -21,15 +21,15 @@ SQL Workbench/J has the following main focus:
 - Editing, inserting, and deleting data directly in the query result view
 - Running queries in console mode
 
-In this section, you'll learn how to connect SQL Workbench/J with all of the YugabyteDB APIs on a local cluster. SQL Workbench/J works without any issues with YugabyteDB because the YugabyteDB APIs are compatible at the wire protocol level with databases already supported by SQL Workbench/J.
+In this section, you'll learn how to connect SQL Workbench/J with all of the ZNbaseDB APIs on a local cluster. SQL Workbench/J works without any issues with ZNbaseDB because the ZNbaseDB APIs are compatible at the wire protocol level with databases already supported by SQL Workbench/J.
 
 ## Before you begin
 
-To use SQL Workbench/J with YugabyteDB, you need to have YugabyteDB up and running, the required Java Runtime Environment (JRE), and the required PostgreSQL JDBC driver.
+To use SQL Workbench/J with ZNbaseDB, you need to have ZNbaseDB up and running, the required Java Runtime Environment (JRE), and the required PostgreSQL JDBC driver.
 
-### YugabyteDB
+### ZNbaseDB
 
-Your YugabyteDB cluster should be up and running. If you are new to YugabyteDB, you can quickly create a local cluster by following the steps in [Quick start](../../../quick-start/install).
+Your ZNbaseDB cluster should be up and running. If you are new to ZNbaseDB, you can quickly create a local cluster by following the steps in [Quick start](../../../quick-start/install).
 
 ### Java runtime environment (JRE)
 
@@ -39,7 +39,7 @@ For details on the JRE requirements, see the prerequisites section in the SQL Wo
 
 ### PostgreSQL JDBC driver
 
-To connect SQL Workbench/J to a YugabyteDB cluster, you need the PostgreSQL JDBC driver installed. To download the current version that supports Java 8 or later, go to the [PostgreSQL JDBC Driver Download page](https://jdbc.postgresql.org/download.html) page.
+To connect SQL Workbench/J to a ZNbaseDB cluster, you need the PostgreSQL JDBC driver installed. To download the current version that supports Java 8 or later, go to the [PostgreSQL JDBC Driver Download page](https://jdbc.postgresql.org/download.html) page.
 
 ## Install SQL Workbench/J
 
@@ -52,7 +52,7 @@ The application is now ready to run — no further steps are necessary. For deta
 
 ### Configure the PostgreSQL driver
 
-YugabyteDB is PostgreSQL-compatible, so when working with SQL Workbench/J, use the PostgreSQL JDBC Driver.
+ZNbaseDB is PostgreSQL-compatible, so when working with SQL Workbench/J, use the PostgreSQL JDBC Driver.
 
 1. Launch the SQL Workbench/J application. The **Select Connection Profile** pop-up window appears.
 
@@ -64,7 +64,7 @@ YugabyteDB is PostgreSQL-compatible, so when working with SQL Workbench/J, use t
 
 3. In the list of drivers, select `PostgreSQL` and then edit the fields for the driver:
 
-    - **Name**:`PostgreSQL (for YugabyteDB)`
+    - **Name**:`PostgreSQL (for ZNbaseDB)`
     - **Library**: Displays the location of the PostgreSQL JDBC driver's JAR file. [For a new configuration, browse to the location of the file and click **Choose**.] When installed, the default location of the JRE or JDK is:
 
       ```
@@ -72,7 +72,7 @@ YugabyteDB is PostgreSQL-compatible, so when working with SQL Workbench/J, use t
       ```
 
     - **Classname**: `org.postgresql.Driver`
-    - **Sample URL**: `jdbc:postgresql:127.0.0.1:5433/name_of_database` (based on YugabyteDB default values). When opening the driver configuration initially, this field displays
+    - **Sample URL**: `jdbc:postgresql:127.0.0.1:5433/name_of_database` (based on ZNbaseDB default values). When opening the driver configuration initially, this field displays
   
         ```
        jdbc:postgresql://host:port/name_of_database
@@ -80,24 +80,24 @@ YugabyteDB is PostgreSQL-compatible, so when working with SQL Workbench/J, use t
 
 4. Click **OK**. The **Manage drivers** window closes and returns you to the **Select Connection Profile** window.
 
-You have now configured the PostgreSQL JDBC driver to work with YugabyteDB and can now create a connection profile.
+You have now configured the PostgreSQL JDBC driver to work with ZNbaseDB and can now create a connection profile.
 
 For more information, see:
 
 - [JDBC Drivers](http://www.sql-workbench.net/manual/jdbc-setup.html) in the SQL Workbench/J user manual.
 - [PostgreSQL JDBC Driver](https://jdbc.postgresql.org/documentation/documentation.html) documentation.
 
-### Create a YugabyteDB connection profile
+### Create a ZNbaseDB connection profile
 
 You need to create a connection profile for each database you use and you can always get to the **Select Connection Profile** window from the menu by selecting **File > Connect window**.
 
 1. In the **Select Connection Profile** window, click **Create a new connection profile**. A new profile is created.
 2. Replace `New profile` with a meaningful name for the connection profile. Because you need a separate profile for each database connection, include the database name in your profile name.
-3. For **Driver**, select `PostgreSQL (for YugabyteDB) (org.postgresql.Driver)`.
+3. For **Driver**, select `PostgreSQL (for ZNbaseDB) (org.postgresql.Driver)`.
 4. For **URL**, replace `name_of_database` with the name of the database you want to connect to.
-5. For **Username**, enter `yugabyte`, or the user name you will be using.
+5. For **Username**, enter `ZNbase`, or the user name you will be using.
 6. For **Password**, leave the field empty unless YSQL authentication is enabled.
-7. Select **Autocommit**. In PostgreSQL and YugabyteDB, `AUTOCOMMIT` is on by default.
+7. Select **Autocommit**. In PostgreSQL and ZNbaseDB, `AUTOCOMMIT` is on by default.
 8. Click **Test** to verify that the connection works successfully.
 9. Click **OK**.  The SQL Workbench/J default window appears. Your connection is now ready to be used.
 
@@ -105,6 +105,6 @@ That's all of the settings you need to start using the connection. For details o
 
 ## What's next
 
-Now that you know how to configure SQL Workbench/J to work with your YugabyteDB databases, you can start exploring the features of SQL Workbench/J. For details on using SQL Workbench/J, see [SQL Workbench/J User's Manual](https://www.sql-workbench.eu/manual/workbench-manual.html).
+Now that you know how to configure SQL Workbench/J to work with your ZNbaseDB databases, you can start exploring the features of SQL Workbench/J. For details on using SQL Workbench/J, see [SQL Workbench/J User's Manual](https://www.sql-workbench.eu/manual/workbench-manual.html).
 
-If you're looking for sample databases to explore YugabyteDB using SQL Workbench/J, see [Sample data](../../sample-data/).
+If you're looking for sample databases to explore ZNbaseDB using SQL Workbench/J, see [Sample data](../../sample-data/).

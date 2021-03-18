@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import RegisterForm from './RegisterForm';
 import { register, registerResponse } from '../../../../actions/customers';

@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -2142,7 +2142,7 @@ public class TestAuthorizationEnforcement extends BaseAuthenticationCQLTest {
     assertPermissionsGranted(s, username, canonicalResource, Arrays.asList());
   }
 
-  // This tests the fix for issue https://github.com/YugaByte/yugabyte-db/issues/592.
+  // This tests the fix for issue https://github.com/ZNbase/ZNbase-db/issues/592.
   @Test
   public void testAlterStmtFailsWihoutProperties() throws Exception {
     thrown.expect(SyntaxError.class);
@@ -2167,7 +2167,7 @@ public class TestAuthorizationEnforcement extends BaseAuthenticationCQLTest {
   }
 
 
-  // Test for https://github.com/yugabyte/yugabyte-db/issues/2505.
+  // Test for https://github.com/ZNbase/ZNbase-db/issues/2505.
   @Test
   public void testAlterOwnSuperuserStatusFails() throws Exception {
     thrown.expect(UnauthorizedException.class);
@@ -2176,7 +2176,7 @@ public class TestAuthorizationEnforcement extends BaseAuthenticationCQLTest {
     s.execute("ALTER ROLE cassandra WITH SUPERUSER = false");
   }
 
-  // Test for https://github.com/yugabyte/yugabyte-db/issues/2505.
+  // Test for https://github.com/ZNbase/ZNbase-db/issues/2505.
   @Test
   public void testAlterSuperuserStatusOfGrantedRoleFails() throws Exception {
     testCreateRoleHelperWithSession("parent", "", false, true, false, s);
@@ -2260,7 +2260,7 @@ public class TestAuthorizationEnforcement extends BaseAuthenticationCQLTest {
     level0Session.execute("CREATE KEYSPACE somekeyspace2");
   }
 
-  // This test a fix for https://github.com/yugabyte/yugabyte-db/issues/4062.
+  // This test a fix for https://github.com/ZNbase/ZNbase-db/issues/4062.
   // The issue is that when different permissions are inherited from roles granted to another role,
   // it's possible that they might replace the permissions granted directly.
   // For example:

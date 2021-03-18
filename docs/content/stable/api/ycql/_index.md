@@ -1,6 +1,6 @@
 ---
-title: Yugabyte Cloud Query Language (YCQL)
-headerTitle: Yugabyte Cloud Query Language (YCQL)
+title: ZNbase Cloud Query Language (YCQL)
+headerTitle: ZNbase Cloud Query Language (YCQL)
 linkTitle: YCQL
 description: YCQL is a semi-relational API that is best fit for internet-scale OLTP & HTAP applications.
 summary: Reference for the YCQL API
@@ -17,7 +17,7 @@ showAsideToc: true
 
 ## Introduction
 
-Yugabyte Cloud Query Language (YCQL) is a semi-relational SQL API that is best fit for internet-scale OLTP and HTAP applications needing massive data ingestion and blazing-fast queries. It supports strongly consistent secondary indexes, a native JSON column type, and distributed transactions. It has its roots in the [Cassandra Query Language (CQL)](http://cassandra.apache.org/doc/latest/cql/index.html). 
+ZNbase Cloud Query Language (YCQL) is a semi-relational SQL API that is best fit for internet-scale OLTP and HTAP applications needing massive data ingestion and blazing-fast queries. It supports strongly consistent secondary indexes, a native JSON column type, and distributed transactions. It has its roots in the [Cassandra Query Language (CQL)](http://cassandra.apache.org/doc/latest/cql/index.html). 
 
 This page covers the following YCQL features.
 
@@ -79,7 +79,7 @@ Primitive Type |
 
 ## DML statements
 
-Data manipulation language (DML) statements are used to read from and write to the existing database objects. YugabyteDB implicitly commits any updates by DML statements (similar to how Apache Cassandra behaves).
+Data manipulation language (DML) statements are used to read from and write to the existing database objects. ZNbaseDB implicitly commits any updates by DML statements (similar to how Apache Cassandra behaves).
 
 Statement | Description |
 ----------|-------------|

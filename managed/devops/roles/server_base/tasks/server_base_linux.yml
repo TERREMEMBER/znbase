@@ -1,10 +1,10 @@
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 #
 # Common server configuration tasks for Linux (currently Debian and RedHat families).
 #
@@ -124,7 +124,7 @@
 
     when: ansible_os_family == "RedHat" and (cloud_type is not defined or cloud_type != "onprem")
 
-  - name: Install linux packages we need on our YugaByte clusters on CentOS
+  - name: Install linux packages we need on our ZNbase clusters on CentOS
     become: yes
     become_method: sudo
     yum:
@@ -138,7 +138,7 @@
     retries: "{{ yum_retry_count }}"
     when: ansible_os_family == "RedHat"
 
-  - name: Install linux packages we need on our YugaByte clusters
+  - name: Install linux packages we need on our ZNbase clusters
     become: yes
     become_method: sudo
     package:

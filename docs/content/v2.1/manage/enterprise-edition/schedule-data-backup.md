@@ -2,7 +2,7 @@
 title: Schedule a data backup
 headerTitle: Schedule a data backup
 linkTitle: Schedule a data backup
-description: Use Yugabyte Platform to create a scheduled backup of a universe or cluster.
+description: Use ZNbase Platform to create a scheduled backup of a universe or cluster.
 block_indexing: true
 menu:
   v2.1:
@@ -14,11 +14,11 @@ showAsideToc: true
 
 ---
 
-Use Yugabyte Platform to perform a regularly scheduled backup of a full YugabyteDB universe or selected tables.
+Use ZNbase Platform to perform a regularly scheduled backup of a full ZNbaseDB universe or selected tables.
 
 ## Schedule a backup
 
-1. In the YugabyteDB Admin Console, click **Universes** in the navigation bar, then click the name of the universe you want to schedule backups for.
+1. In the ZNbaseDB Admin Console, click **Universes** in the navigation bar, then click the name of the universe you want to schedule backups for.
 2. Click the **Tables** tab and verify that backups are enabled. If disabled, click **Enable Backup**.
 3. Click the **Backups** tab and then click **Create Scheduled Backup**. The **Create Backup** form appears.
 

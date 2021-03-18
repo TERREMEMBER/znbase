@@ -12,7 +12,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This section details how to configure cloud providers for YugabyteDB using the YugaWare Admin Console. If no cloud providers are configured in YugaWare yet, the main Dashboard page highlights the need to configure at least one cloud provider.
+This section details how to configure cloud providers for ZNbaseDB using the YugaWare Admin Console. If no cloud providers are configured in YugaWare yet, the main Dashboard page highlights the need to configure at least one cloud provider.
 
 ![Configure Cloud Provider](/images/ee/configure-cloud-provider.png)
 
@@ -20,11 +20,11 @@ This section details how to configure cloud providers for YugabyteDB using the Y
 
 ### Public cloud
 
-If you plan to run YugabyteDB nodes on public cloud providers, such as Amazon Web Services (AWS) or Google Cloud Platform (GCP), all you need to provide on YugaWare UI is your cloud provider credentials. YugaWare will use those credentials to automatically provision and de-provision instances that run Yugabyte. An 'instance' for YugabyteDB includes a compute instance as well as local or remote disk storage attached to the compute instance.
+If you plan to run ZNbaseDB nodes on public cloud providers, such as Amazon Web Services (AWS) or Google Cloud Platform (GCP), all you need to provide on YugaWare UI is your cloud provider credentials. YugaWare will use those credentials to automatically provision and de-provision instances that run ZNbase. An 'instance' for ZNbaseDB includes a compute instance as well as local or remote disk storage attached to the compute instance.
 
 ### Private cloud or on-premise data centers
 
-The prerequisites for Yugabyte Platform data nodes are same as that of [YugabyteDB](../../checklist/).
+The prerequisites for ZNbase Platform data nodes are same as that of [ZNbaseDB](../../checklist/).
 
 ## Configure cloud providers
 
@@ -81,4 +81,4 @@ The prerequisites for Yugabyte Platform data nodes are same as that of [Yugabyte
 
 ## Next step
 
-You are now ready to create YugabyteDB universes as outlined in the next section.
+You are now ready to create ZNbaseDB universes as outlined in the next section.

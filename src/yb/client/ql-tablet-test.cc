@@ -1,5 +1,5 @@
 //
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1139,7 +1139,7 @@ class QLTabletRf1Test : public QLTabletTest {
 };
 
 // For this test we don't need actually RF3 setup which also makes test flaky because of
-// https://github.com/yugabyte/yugabyte-db/issues/4663.
+// https://github.com/ZNbase/ZNbase-db/issues/4663.
 TEST_F_EX(QLTabletTest, GetMiddleKey, QLTabletRf1Test) {
   FLAGS_db_write_buffer_size = 20_KB;
 

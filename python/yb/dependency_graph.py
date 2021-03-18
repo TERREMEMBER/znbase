@@ -27,7 +27,7 @@ from yb.common_util import \
         group_by, make_set, get_build_type_from_build_root, get_yb_src_root_from_build_root, \
         convert_to_non_ninja_build_root, get_bool_env_var, is_ninja_build_root  # nopep8
 from yb.command_util import mkdir_p  # nopep8
-from yugabyte_pycommon import WorkDirContext  # nopep8
+from ZNbase_pycommon import WorkDirContext  # nopep8
 
 
 def make_extensions(exts_without_dot):
@@ -89,7 +89,7 @@ NODE_TYPE_ANY = 'any'
 # As of August 2019, there is nothing in the "bin", "managed" and "www" directories that
 # is being used by tests.
 # If that changes, this needs to be updated. Note that the "bin" directory here is the
-# yugabyte/bin directory in the source tree, not the "bin" directory under the build
+# ZNbase/bin directory in the source tree, not the "bin" directory under the build
 # directory, so it only has scripts and not yb-master / yb-tserver binaries.
 DIRECTORIES_THAT_DO_NOT_AFFECT_TESTS = [
     'architecture',

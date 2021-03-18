@@ -1,8 +1,8 @@
 ---
 title: Deploy
 linkTitle: Deploy
-description: Deploy YugabyteDB
-headcontent: You can deploy YugabyteDB to any public cloud or private datacenter of your choice using either YugabyteDB OSS or the Yugabyte Platform.
+description: Deploy ZNbaseDB
+headcontent: You can deploy ZNbaseDB to any public cloud or private datacenter of your choice using either ZNbaseDB OSS or the ZNbase Platform.
 image: /images/section_icons/index/deploy.png
 section: USER GUIDES
 block_indexing: true
@@ -20,7 +20,7 @@ menu:
         <div class="title">Checklist</div>
       </div>
       <div class="body">
-          This page compiles system requirements, configuration details and other important details when deploying YugabyteDB in production.
+          This page compiles system requirements, configuration details and other important details when deploying ZNbaseDB in production.
       </div>
     </a>
   </div>
@@ -32,7 +32,7 @@ menu:
         <div class="title">Manual deployment</div>
       </div>
       <div class="body">
-          Manual deployment of YugabyteDB in a private datacenter using the basic admin commands.
+          Manual deployment of ZNbaseDB in a private datacenter using the basic admin commands.
       </div>
     </a>
   </div>
@@ -44,7 +44,7 @@ menu:
         <div class="title">Kubernetes</div>
       </div>
       <div class="body">
-        Orchestrated deployment of YugabyteDB using open source as well as managed Kubernetes services.
+        Orchestrated deployment of ZNbaseDB using open source as well as managed Kubernetes services.
       </div>
     </a>
   </div>
@@ -57,7 +57,7 @@ menu:
         <div class="title">Docker</div>
       </div>
       <div class="body">
-        Orchestrated deployment of YugabyteDB in Docker Swarm and Docker Compose.
+        Orchestrated deployment of ZNbaseDB in Docker Swarm and Docker Compose.
       </div>
     </a>
   </div>
@@ -68,7 +68,7 @@ menu:
         <div class="title">Pivotal Cloud Foundry</div>
       </div>
       <div class="body">
-        Deploying and managing YugabyteDB through Pivotal Cloud Foundry (PCF) and Pivotal Container Service (PKS).
+        Deploying and managing ZNbaseDB through Pivotal Cloud Foundry (PCF) and Pivotal Container Service (PKS).
       </div>
     </a>
   </div>
@@ -80,7 +80,7 @@ menu:
         <div class="title">Public clouds</div>
       </div>
       <div class="body">
-        Automated and manual deployments of YugabyteDB on various public clouds.
+        Automated and manual deployments of ZNbaseDB on various public clouds.
       </div>
     </a>
   </div>
@@ -89,10 +89,10 @@ menu:
       <div class="head">
         <img class="icon" src="/images/section_icons/deploy/enterprise.png" aria-hidden="true" />
         <div class="articles">4 articles</div>
-        <div class="title">Yugabyte Platform</div>
+        <div class="title">ZNbase Platform</div>
       </div>
       <div class="body">
-        The simplest way to run YugabyteDB on any public cloud or private datacenter.
+        The simplest way to run ZNbaseDB on any public cloud or private datacenter.
       </div>
     </a>
   </div>

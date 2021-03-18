@@ -1,28 +1,28 @@
 ---
-title: YugabyteDB JDBC Driver (with cluster awareness and load balancing)
-headerTitle: YugabyteDB JDBC Driver
-linkTitle: YugabyteDB JDBC Driver
-description: Add cluster awareness and load balancing to YugabyteDB distributed SQL databases 
+title: ZNbaseDB JDBC Driver (with cluster awareness and load balancing)
+headerTitle: ZNbaseDB JDBC Driver
+linkTitle: ZNbaseDB JDBC Driver
+description: Add cluster awareness and load balancing to ZNbaseDB distributed SQL databases 
 beta: /latest/faq/general/#what-is-the-definition-of-the-beta-feature-tag
 section: REFERENCE
 menu:
   latest:
-    identifier: yugabytedb-jdbc-driver
+    identifier: ZNbasedb-jdbc-driver
     parent: drivers
     weight: 2941
 aliases:
-  - /latest/reference/connectors/yugabytedb-jdbc-driver
+  - /latest/reference/connectors/ZNbasedb-jdbc-driver
 isTocNested: true
 showAsideToc: true
 ---
 
 ## Overview
 
-The YugabyteDB JDBC Driver is based on the open source [PostgreSQL JDBC Driver (PgJDBC)](https://github.com/pgjdbc/pgjdbc) and incorporates all of the functionality and behavior of that driver. The YugabyteDB JDBC Driver extends PgJDBC to add support for distributed SQL databases created in YugabyteDB universes, including cluster awareness and load balancing. Like PgJDBC, the YugabyteDB JDBC Driver is not based on [`libpq`](#libpq), but supports the [SCRAM-SHA-256 authentication method](../../../secure/authentication/password-authentication/#scram-sha-256).
+The ZNbaseDB JDBC Driver is based on the open source [PostgreSQL JDBC Driver (PgJDBC)](https://github.com/pgjdbc/pgjdbc) and incorporates all of the functionality and behavior of that driver. The ZNbaseDB JDBC Driver extends PgJDBC to add support for distributed SQL databases created in ZNbaseDB universes, including cluster awareness and load balancing. Like PgJDBC, the ZNbaseDB JDBC Driver is not based on [`libpq`](#libpq), but supports the [SCRAM-SHA-256 authentication method](../../../secure/authentication/password-authentication/#scram-sha-256).
 
 ### Cluster awareness
 
-The YugabyteDB JBDC Driver supports distributed SQL databases on a YugabyteDB universe, or cluster, and adds cluster awareness. When you specify any one node in your YugabyteDB cluster as the initial *contact point*  (`YBClusterAwareDataSource`), the driver discovers the rest of the nodes in the universe and automatically responds to nodes being started, stopped, added, or removed.
+The ZNbaseDB JBDC Driver supports distributed SQL databases on a ZNbaseDB universe, or cluster, and adds cluster awareness. When you specify any one node in your ZNbaseDB cluster as the initial *contact point*  (`YBClusterAwareDataSource`), the driver discovers the rest of the nodes in the universe and automatically responds to nodes being started, stopped, added, or removed.
 
 ### Connection pooling
 
@@ -30,22 +30,22 @@ Internally, the driver maintains a connection pool for each node and selects a l
 
 ### Load balancing
 
-When a connection is requested, the YugabyteDB JDBC driver uses a round-robin load balancing system to select a node to connect to. If that node has an available connection in the pool, a connection is opened. Upon releasing the connection, YugabyteDB returns the connection to the pool.
+When a connection is requested, the ZNbaseDB JDBC driver uses a round-robin load balancing system to select a node to connect to. If that node has an available connection in the pool, a connection is opened. Upon releasing the connection, ZNbaseDB returns the connection to the pool.
 
 ## Resources
 
-To get the latest source code, file issues, and track enhancements, see the [Yugabyte JDBC Driver repository](https://github.com/yugabyte/jdbc-yugabytedb).
+To get the latest source code, file issues, and track enhancements, see the [ZNbase JDBC Driver repository](https://github.com/ZNbase/jdbc-ZNbasedb).
 
 For details on functionality incorporated from the PostgreSQL JDBC driver, see [Documentation (PostgreSQL JDBC Driver)](https://jdbc.postgresql.org/documentation/documentation.html).
 
 ## Download
 
-Add the following lines to your Apache Maven project to access and download the YugabyteDB JDBC Driver.
+Add the following lines to your Apache Maven project to access and download the ZNbaseDB JDBC Driver.
 
 ```
 <dependency>
-  <groupId>com.yugabyte</groupId>
-  <artifactId>jdbc-yugabytedb</artifactId>
+  <groupId>com.ZNbase</groupId>
+  <artifactId>jdbc-ZNbasedb</artifactId>
   <version>42.2.7-yb-3</version>
 </dependency>
 ```
@@ -55,7 +55,7 @@ Add the following lines to your Apache Maven project to access and download the 
 1. Create the data source by passing an initial contact point.
 
     ```java
-    String jdbcUrl = "jdbc:postgresql://127.0.0.1:5433/yugabyte";
+    String jdbcUrl = "jdbc:postgresql://127.0.0.1:5433/ZNbase";
     YBClusterAwareDataSource ds = new YBClusterAwareDataSource(jdbcUrl);
     ```
 
@@ -72,10 +72,10 @@ Add the following lines to your Apache Maven project to access and download the 
 
 ## Develop and test locally
 
-1. Clone the [YugabyteDB JDBC Driver GitHub repository](https://github.com/yugabyte/jdbc-yugabytedb).
+1. Clone the [ZNbaseDB JDBC Driver GitHub repository](https://github.com/ZNbase/jdbc-ZNbasedb).
 
     ```sh
-    git clone https://github.com/yugabyte/jdbc-yugabytedb.git && cd jdbc-yugabytedb
+    git clone https://github.com/ZNbase/jdbc-ZNbasedb.git && cd jdbc-ZNbasedb
     ```
 
 2. Build and install into your local Maven directory.
@@ -88,8 +88,8 @@ Add the following lines to your Apache Maven project to access and download the 
 
     ```xml
     <dependency>
-        <groupId>com.yugabyte</groupId>
-        <artifactId>jdbc-yugabytedb</artifactId>
+        <groupId>com.ZNbase</groupId>
+        <artifactId>jdbc-ZNbasedb</artifactId>
         <version>42.2.7-yb-3-SNAPSHOT</version>
     </dependency>
     ```

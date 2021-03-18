@@ -45,7 +45,7 @@ Use the `CREATE TABLE AS` statement to create a table using the output of a subq
 
 ## Semantics
 
-YugabyteDB may extend the syntax to allow specifying PRIMARY KEY for `CREATE TABLE AS` command.
+ZNbaseDB may extend the syntax to allow specifying PRIMARY KEY for `CREATE TABLE AS` command.
 
 ### *create_table_as*
 
@@ -80,7 +80,7 @@ CREATE TABLE selective_sample SELECT * FROM sample WHERE k1 > 1;
 ```
 
 ```plpgsql
-yugabyte=# SELECT * FROM selective_sample ORDER BY k1;
+ZNbase=# SELECT * FROM selective_sample ORDER BY k1;
 ```
 
 ```

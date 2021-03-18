@@ -573,7 +573,7 @@ ClientAuthentication(Port *port)
 
 		case uaYbTserverKey:
 #ifdef HAVE_UNIX_SOCKETS
-			Assert(IsYugaByteEnabled());
+			Assert(IsZNbaseEnabled());
 			Assert(!YBCGetDisableIndexBackfill());
 			status = CheckYbTserverKeyAuth(port, &logdetail);
 #else
@@ -1039,7 +1039,7 @@ CheckSCRAMAuth(Port *port, char *shadow_pass, char **logdetail)
 }
 
 /*
- * Yugabyte internal tserver to postgres key authentication.
+ * ZNbase internal tserver to postgres key authentication.
  */
 static int
 CheckYbTserverKeyAuth(Port *port, char **logdetail)

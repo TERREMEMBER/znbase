@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -78,7 +78,7 @@ class LogReader;
 
 YB_STRONGLY_TYPED_BOOL(CreateNewSegment);
 
-// Log interface, inspired by Raft's (logcabin) Log. Provides durability to YugaByte as a normal
+// Log interface, inspired by Raft's (logcabin) Log. Provides durability to ZNbase as a normal
 // Write Ahead Log and also plays the role of persistent storage for the consensus state machine.
 //
 // Note: This class is not thread safe, the caller is expected to synchronize Log::Reserve() and

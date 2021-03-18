@@ -29,42 +29,42 @@ Object audit logging logs statements that affect a particular relation. Only SEL
 
 Object audit logging is intended to be a finger-grained replacement for `pgaudit.log = 'read, write'.` As such, it may not make sense to use them in conjunction but one possible scenario would be to use session logging to capture each statement and then supplement that with object logging to get more detail about specific relations.
 
-In YugabyteDB, object-level audit logging is implemented by reusing the PG role system. The `pgaudit.role` setting defines the role that will be used for audit logging. A relation ( TABLE, VIEW, etc.) will be audit logged when the audit role has permissions for the command executed or inherits the permissions from another role. This allows you to effectively have multiple audit roles even though there is a single master role in any context.
+In ZNbaseDB, object-level audit logging is implemented by reusing the PG role system. The `pgaudit.role` setting defines the role that will be used for audit logging. A relation ( TABLE, VIEW, etc.) will be audit logged when the audit role has permissions for the command executed or inherits the permissions from another role. This allows you to effectively have multiple audit roles even though there is a single master role in any context.
 
 In this example object audit logging is used to illustrate how a granular approach may be taken towards logging of SELECT and DML statements. 
 
 
 ## Step 1. Connect using `ysql`
 
-Open the YSQL shell (ysqlsh), specifying the `yugabyte` user and prompting for the password.
+Open the YSQL shell (ysqlsh), specifying the `ZNbase` user and prompting for the password.
 
 
 ```
-$ ./ysqlsh -U yugabyte -W
+$ ./ysqlsh -U ZNbase -W
 ```
 
 
-When prompted for the password, enter the yugabyte password. You should be able to login and see a response like below.
+When prompted for the password, enter the ZNbase password. You should be able to login and see a response like below.
 
 
 ```
 ysqlsh (11.2-YB-2.5.0.0-b0)
 Type "help" for help.
-yugabyte=#
+ZNbase=#
 ```
 
 
 
 ## Step 2. Enable `pgaudit`
 
-Enable `pgaudit` extension on the YugabyteDB cluster.
+Enable `pgaudit` extension on the ZNbaseDB cluster.
 
 
 ```
-yugabyte=> \c yugabyte yugabyte;
-You are now connected to database "yugabyte" as user "yugabyte".
+ZNbase=> \c ZNbase ZNbase;
+You are now connected to database "ZNbase" as user "ZNbase".
 
-yugabyte=# CREATE EXTENSION IF NOT EXISTS pgaudit;
+ZNbase=# CREATE EXTENSION IF NOT EXISTS pgaudit;
 CREATE EXTENSION
 ```
 
@@ -146,9 +146,9 @@ You should see the following output in the logs:
           from account;",<not logged>
 2020-11-09 19:47:02.531 UTC [3944] LOG:  AUDIT: OBJECT,2,1,WRITE,UPDATE,TABLE,public.account,"update account
            set password = 'HASH2';",<not logged>
-I1109 19:47:09.418772  3944 ybccmds.c:453] Creating Table yugabyte.public.account_role_map
-I1109 19:47:09.418812  3944 pg_ddl.cc:310] PgCreateTable: creating a transactional table: yugabyte.account_role_map
-I1109 19:47:09.538868  3944 table_creator.cc:307] Created table yugabyte.account_role_map of type PGSQL_TABLE_TYPE
+I1109 19:47:09.418772  3944 ybccmds.c:453] Creating Table ZNbase.public.account_role_map
+I1109 19:47:09.418812  3944 pg_ddl.cc:310] PgCreateTable: creating a transactional table: ZNbase.account_role_map
+I1109 19:47:09.538868  3944 table_creator.cc:307] Created table ZNbase.account_role_map of type PGSQL_TABLE_TYPE
 2020-11-09 19:47:22.752 UTC [3944] LOG:  AUDIT: OBJECT,3,1,READ,SELECT,TABLE,public.account,"select account.password,
                account_role_map.role_id
           from account

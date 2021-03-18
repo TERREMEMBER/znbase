@@ -9,14 +9,14 @@ menu:
 isTocNested: true
 showAsideToc: true
 ---
-`AUTH` authenticates a client connection to Yugabyte YEDIS API.
+`AUTH` authenticates a client connection to ZNbase YEDIS API.
 
 ## Synopsis
 
 <b>`AUTH password`</b><br>
-This command authenticates a client connection to YugabyteDB's YEDIS API.
+This command authenticates a client connection to ZNbaseDB's YEDIS API.
 
-YugabyteDB can be setup to require a password for clients to authenticate themselves. The password verification can be enforced by using the `CONFIG` command to set the intended password (See `CONFIG`).
+ZNbaseDB can be setup to require a password for clients to authenticate themselves. The password verification can be enforced by using the `CONFIG` command to set the intended password (See `CONFIG`).
 
 YEDIS allows for multiple passwords (up to 2) to be accepted.
 <li>If the given `password` matches with any of the server configured password(s), server returns the status string "OK" and begins processing commands from the authenticated client.</li>

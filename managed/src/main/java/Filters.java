@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import com.google.inject.Inject;
 import play.mvc.EssentialFilter;

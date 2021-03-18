@@ -1,5 +1,5 @@
 ---
-title: Encryption in Transit on YugabyteDB Clusters
+title: Encryption in Transit on ZNbaseDB Clusters
 headerTitle: Encryption in Transit
 linkTitle: Encryption in Transit
 description: Enable encryption in transit (using TLS) to protect network communication.
@@ -14,16 +14,16 @@ menu:
     weight: 725
 ---
 
-YugabyteDB can be configured to protect data in transit using the following:
+ZNbaseDB can be configured to protect data in transit using the following:
 
 - [Server-server encryption](./server-to-server) for intra-node communication between YB-Master and YB-TServer nodes.
 - [Client-server](./client-to-server) for communication between clients and nodes when using CLIs, tools, and APIs for YSQL and YCQL.
 
-YugabyteDB supports [Transport Layer Security (TLS)](https://en.wikipedia.org/wiki/Transport_Layer_Security) encryption based on [OpenSSL](https://www.openssl.org), an open source cryptography toolkit that provides an implementation of the Transport Layer Security (TLS) and Secure Socket Layer (SSL) protocols. 
+ZNbaseDB supports [Transport Layer Security (TLS)](https://en.wikipedia.org/wiki/Transport_Layer_Security) encryption based on [OpenSSL](https://www.openssl.org), an open source cryptography toolkit that provides an implementation of the Transport Layer Security (TLS) and Secure Socket Layer (SSL) protocols. 
 
 **Note:** Client-server TLS encryption is not supported for YEDIS.
 
-Follow the steps in this section to learn how to enable encryption using TLS for a three-node YugabyteDB cluster.
+Follow the steps in this section to learn how to enable encryption using TLS for a three-node ZNbaseDB cluster.
 
 <div class="row">
 
@@ -34,7 +34,7 @@ Follow the steps in this section to learn how to enable encryption using TLS for
         <div class="title">Create server certificates</div>
       </div>
       <div class="body">
-          Create server certificates (using TLS) for protecting data in transit between YugabyteDB nodes.
+          Create server certificates (using TLS) for protecting data in transit between ZNbaseDB nodes.
       </div>
     </a>
   </div>
@@ -47,7 +47,7 @@ Follow the steps in this section to learn how to enable encryption using TLS for
         <div class="title">Create client certificates</div>
       </div>
       <div class="body">
-          Create self-signed certificates to connect clients to YugabyteDB clusters.
+          Create self-signed certificates to connect clients to ZNbaseDB clusters.
       </div>
     </a>
   </div>
@@ -84,7 +84,7 @@ Follow the steps in this section to learn how to enable encryption using TLS for
         <div class="title">Connect to clusters</div>
       </div>
       <div class="body">
-          Connect clients, tools, and APIs to encryption-enabled YugabyteDB clusters.
+          Connect clients, tools, and APIs to encryption-enabled ZNbaseDB clusters.
       </div>
     </a>
   </div>

@@ -2,8 +2,8 @@
 title: JSON Support
 headerTitle: JSON Support
 linkTitle: JSON Support
-description: JSON Support in YugabyteDB.
-headcontent: JSON Support in YugabyteDB.
+description: JSON Support in ZNbaseDB.
+headcontent: JSON Support in ZNbaseDB.
 image: <div class="icon"><i class="fas fa-file-invoice"></i></div>
 menu:
   latest:
@@ -61,7 +61,7 @@ This section will focus on only the `jsonb` type.
 
 ## 1. Prerequisites
 
-You need a YugabyteDB cluster to run through the steps below. If do not have a YugabyteDB cluster, you can create one on your local machine as shown below.
+You need a ZNbaseDB cluster to run through the steps below. If do not have a ZNbaseDB cluster, you can create one on your local machine as shown below.
 
 ```sh
 $ ./bin/yb-ctl create
@@ -144,7 +144,7 @@ select * from books;
 This is the result:
 
 ```
-yugabyte=# select * from books;
+ZNbase=# select * from books;
  k |                                                                                                         doc
 ---+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  5 | {"ISBN": 8647295405123, "year": 1988, "genre": "science", "title": "A Brief History of Time", "author": {"given_name": "Stephen", "family_name": "Hawking"}, "editors": ["Melisa", "Mark", "John", "Fred", "Jane"]}
@@ -171,10 +171,10 @@ SELECT doc->'title' AS book_title,
 ```
 This is the result:
 ```
-yugabyte=# SELECT doc->'title' AS book_title,
-yugabyte-#        CONCAT(doc->'author'->'family_name',
-yugabyte(#               ', ', doc->'author'->'given_name') AS author
-yugabyte-#     FROM books;
+ZNbase=# SELECT doc->'title' AS book_title,
+ZNbase-#        CONCAT(doc->'author'->'family_name',
+ZNbase(#               ', ', doc->'author'->'given_name') AS author
+ZNbase-#     FROM books;
         book_title         |          author
 ---------------------------+--------------------------
  "A Brief History of Time" | "Hawking", "Stephen"
@@ -196,7 +196,7 @@ select '{"title": "Macbeth", "author": {"given_name": "William"}}'::jsonb
 This is the result:
 
 ```
-yugabyte=# select '{"title": "Macbeth", "author": {"given_name": "William"}}'::jsonb
+ZNbase=# select '{"title": "Macbeth", "author": {"given_name": "William"}}'::jsonb
              -> 'author' -> 'given_name' as first_name;
  first_name
 ------------
@@ -217,9 +217,9 @@ SELECT doc->'title' AS book_title,
 This is the result:
 
 ```
-yugabyte=# SELECT doc->'title' AS book_title,
-yugabyte-#        doc->'genre' as genre
-yugabyte-#     FROM books WHERE doc ? 'genre';
+ZNbase=# SELECT doc->'title' AS book_title,
+ZNbase-#        doc->'genre' as genre
+ZNbase-#     FROM books WHERE doc ? 'genre';
         book_title         |   genre
 ---------------------------+-----------
  "A Brief History of Time" | "science"
@@ -244,11 +244,11 @@ SELECT doc->'title' AS book_title,
 This is the result:
 
 ```
-yugabyte=# SELECT doc->'title' AS book_title,
-yugabyte-#        CONCAT(doc->'author'->'family_name',
-yugabyte(#               ', ', doc->'author'->'given_name') AS author
-yugabyte-#     FROM books
-yugabyte-#     WHERE doc @> '{"author": {"given_name": "William"}}'::jsonb;
+ZNbase=# SELECT doc->'title' AS book_title,
+ZNbase-#        CONCAT(doc->'author'->'family_name',
+ZNbase(#               ', ', doc->'author'->'given_name') AS author
+ZNbase-#     FROM books
+ZNbase-#     WHERE doc @> '{"author": {"given_name": "William"}}'::jsonb;
  book_title |          author
 ------------+--------------------------
  "Macbeth"  | "Shakespeare", "William"
@@ -272,7 +272,7 @@ UPDATE books SET doc = doc || '{"stock": "true"}';
 This is the result:
 
 ```
-yugabyte=# SELECT doc->'title' AS title, doc->'stock' as stock FROM books;
+ZNbase=# SELECT doc->'title' AS title, doc->'stock' as stock FROM books;
            title           | stock
 ---------------------------+--------
  "A Brief History of Time" | "true"
@@ -295,7 +295,7 @@ UPDATE books SET doc = doc - 'stock';
 This will remove the field from all the documents, as shown below.
 
 ```
-yugabyte=# SELECT doc->'title' AS title, doc->'stock' as stock FROM books;
+ZNbase=# SELECT doc->'title' AS title, doc->'stock' as stock FROM books;
            title           | stock
 ---------------------------+-------
  "A Brief History of Time" |
@@ -340,7 +340,7 @@ SELECT jsonb_each(doc) FROM books WHERE k=1;
 The output is shown below.
 
 ```
-yugabyte=# SELECT jsonb_each(doc) FROM books WHERE k=1;
+ZNbase=# SELECT jsonb_each(doc) FROM books WHERE k=1;
                                  jsonb_each
 ----------------------------------------------------------------------------
  (ISBN,4582546494267)
@@ -361,7 +361,7 @@ SELECT jsonb_object_keys(doc) FROM books WHERE k=1;
 This is the result:
 
 ```
-yugabyte=# SELECT jsonb_object_keys(doc) FROM books WHERE k=1;
+ZNbase=# SELECT jsonb_object_keys(doc) FROM books WHERE k=1;
  jsonb_object_keys
 -------------------
  ISBN
@@ -382,7 +382,7 @@ SELECT jsonb_pretty(doc) FROM books WHERE k=1;
 This is the result:
 
 ```
-yugabyte=# SELECT jsonb_pretty(doc) FROM books WHERE k=1;
+ZNbase=# SELECT jsonb_pretty(doc) FROM books WHERE k=1;
              jsonb_pretty
 --------------------------------------
  {                                   +
@@ -482,7 +482,7 @@ create unique index books_isbn_unq on books((doc->>'ISBN'));
 Inserting a row with a duplicate value would fail as shown below. The book has a new primary key `k` but an existing ISBN, `4582546494267`.
 
 ```plpgsql
-yugabyte=# insert into books values 
+ZNbase=# insert into books values 
            (7, '{  "ISBN"    : 4582546494267, 
                    "title"   : "Fake Book with duplicate ISBN" }');
 ERROR:  23505: duplicate key value violates unique constraint "books_isbn_unq"

@@ -33,18 +33,18 @@ operations on this data model such as:
 * deleting/overwriting a row or collection/object at an arbitrary nesting level without incurring a read penalty to determine what specific set of KVs need to be deleted
 * enforcing row/object level TTL based expiration
   
-A tighter coupling into the “read/compaction” layers of the underlying RocksDB key-value store is needed. Yugabyte uses RocksDB as an append-only store and operations, such as row or collection delete, are modeled as an insert of a special “delete marker”. This allows deleting an entire subdocument efficiently by just adding one key-value pair to RocksDB. Read hooks automatically recognize these markers and
+A tighter coupling into the “read/compaction” layers of the underlying RocksDB key-value store is needed. ZNbase uses RocksDB as an append-only store and operations, such as row or collection delete, are modeled as an insert of a special “delete marker”. This allows deleting an entire subdocument efficiently by just adding one key-value pair to RocksDB. Read hooks automatically recognize these markers and
 suppress expired data. Expired values within the subdocument are cleaned up/garbage collected by our customized compaction hooks.
 
 ### Raft vs RocksDB WAL logs
 
-DocDB uses Raft for replication. Changes to the distributed system are already recorded or journaled as part of Raft logs. When a change is accepted by a majority of peers, it is applied to each tablet peer’s DocDB, but the additional WAL mechanism in RocksDB (under DocDB) is unnecessary and adds overhead. For correctness, in addition to disabling the WAL mechanism in RocksDB, YugabyteDB tracks the Raft “sequence id” up to which data has been flushed from RocksDB’s memtables to SSTable files. This ensures that we can correctly garbage collect the Raft WAL logs as well as replay the minimal number of records from Raft WAL logs on a server crash or restart.
+DocDB uses Raft for replication. Changes to the distributed system are already recorded or journaled as part of Raft logs. When a change is accepted by a majority of peers, it is applied to each tablet peer’s DocDB, but the additional WAL mechanism in RocksDB (under DocDB) is unnecessary and adds overhead. For correctness, in addition to disabling the WAL mechanism in RocksDB, ZNbaseDB tracks the Raft “sequence id” up to which data has been flushed from RocksDB’s memtables to SSTable files. This ensures that we can correctly garbage collect the Raft WAL logs as well as replay the minimal number of records from Raft WAL logs on a server crash or restart.
 
 ### MVCC at a higher layer
 
 Multi-version concurrency control (MVCC) in DocDB is done at a higher layer, and does not use the MVCC mechanism of RocksDB.
 
-The mutations to records in the system are versioned using hybrid-timestamps maintained at the YBase layer. As a result, the notion of MVCC as implemented in a vanilla RocksDB (using sequence IDs) is not necessary and only adds overhead. YugabyteDB does not use RocksDB’s sequence IDs, and instead uses hybrid-timestamps that are part of the encoded key to implement MVCC.
+The mutations to records in the system are versioned using hybrid-timestamps maintained at the YBase layer. As a result, the notion of MVCC as implemented in a vanilla RocksDB (using sequence IDs) is not necessary and only adds overhead. ZNbaseDB does not use RocksDB’s sequence IDs, and instead uses hybrid-timestamps that are part of the encoded key to implement MVCC.
 
 ### Backups and snapshots
 

@@ -1,6 +1,6 @@
 ---
 title: "Schemas"
-metaTitle: "Schemas | YugabyteDB Tutorials"
+metaTitle: "Schemas | ZNbaseDB Tutorials"
 type: "COURSE"
 description: "Coming soon!"
 ---

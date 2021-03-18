@@ -34,18 +34,18 @@ showAsideToc: true
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe and are able to interact with it using the YCQL shell. If not, follow the steps in [Quick start YCQL](../../../../api/ycql/quick-start/).
+- installed ZNbaseDB, created a universe and are able to interact with it using the YCQL shell. If not, follow the steps in [Quick start YCQL](../../../../api/ycql/quick-start/).
 - installed Visual Studio.
 
 ## Write the HelloWorld C# app
 
 In your Visual Studio create a new **Project** and choose **Console Application** as template. Follow the instructions to save the project.
 
-### Install Yugabyte C# Driver for YCQL
+### Install ZNbase C# Driver for YCQL
 
-The [Yugabyte C# Driver for YCQL](https://github.com/yugabyte/cassandra-csharp-driver) is based on a fork of the Apache Cassandra C# Driver, but adds features unique to YCQL, including [JSONB support](../../../../api/ycql/type_jsonb/) and a different routing policy.
+The [ZNbase C# Driver for YCQL](https://github.com/ZNbase/cassandra-csharp-driver) is based on a fork of the Apache Cassandra C# Driver, but adds features unique to YCQL, including [JSONB support](../../../../api/ycql/type_jsonb/) and a different routing policy.
 
-To install the [Yugbyte C# Driver for YCQL](https://www.nuget.org/packages/YugaByteCassandraCSharpDriver/) in your Visual Studio project, follow the instructions in the [README](https://github.com/yugabyte/cassandra-csharp-driver).
+To install the [Yugbyte C# Driver for YCQL](https://www.nuget.org/packages/ZNbaseCassandraCSharpDriver/) in your Visual Studio project, follow the instructions in the [README](https://github.com/ZNbase/cassandra-csharp-driver).
 
 ### Copy the contents below to your `Program.cs` file
 
@@ -54,7 +54,7 @@ using System;
 using System.Linq;
 using Cassandra;
 
-namespace Yugabyte_CSharp_Demo
+namespace ZNbase_CSharp_Demo
 {
     class Program
     {
@@ -96,7 +96,7 @@ namespace Yugabyte_CSharp_Demo
             }
             catch (Cassandra.NoHostAvailableException)
             {
-                Console.WriteLine("Make sure YugabyteDB is running locally!.");
+                Console.WriteLine("Make sure ZNbaseDB is running locally!.");
             }
             catch (Cassandra.InvalidQueryException ie)
             {

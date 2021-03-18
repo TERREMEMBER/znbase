@@ -1465,7 +1465,7 @@ heap_beginscan_internal(Relation relation, Snapshot snapshot,
 {
 	HeapScanDesc scan;
 
-	/* YB scan methods should only be used for tables that are handled by YugaByte. */
+	/* YB scan methods should only be used for tables that are handled by ZNbase. */
 	if (IsYBRelation(relation))
 	{
 		return ybc_heap_beginscan(relation, snapshot, nkeys, key, temp_snap);
@@ -2478,7 +2478,7 @@ heap_insert(Relation relation, HeapTuple tup, CommandId cid,
 	{
 		ereport(ERROR,
 		        (errcode(ERRCODE_INTERNAL_ERROR), errmsg(
-				        "Operation not allowed in YugaByte mode %s",
+				        "Operation not allowed in ZNbase mode %s",
 				        __func__)));
 	}
 
@@ -2756,7 +2756,7 @@ heap_multi_insert(Relation relation, HeapTuple *tuples, int ntuples,
 	{
 		ereport(ERROR,
 		        (errcode(ERRCODE_INTERNAL_ERROR),
-				        errmsg("Operation not allowed in YugaByte mode")));
+				        errmsg("Operation not allowed in ZNbase mode")));
 	}
 
 	/* currently not needed (thus unsupported) for heap_multi_insert() */

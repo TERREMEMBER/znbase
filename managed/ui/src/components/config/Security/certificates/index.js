@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 export { default as CertificatesContainer } from './CertificatesContainer';
 export { default as Certificates } from './Certificates';

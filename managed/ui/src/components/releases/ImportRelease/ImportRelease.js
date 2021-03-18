@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
@@ -10,8 +10,8 @@ import { YBModalForm } from '../../../components/common/forms';
 
 export default class ImportRelease extends Component {
   importRelease = (values) => {
-    const { importYugaByteRelease, onHide, onModalSubmit } = this.props;
-    importYugaByteRelease(values);
+    const { importZNbaseRelease, onHide, onModalSubmit } = this.props;
+    importZNbaseRelease(values);
     onHide();
     onModalSubmit();
   };

@@ -45,32 +45,32 @@ SQL statements are shown below.
 
 ### Step 1. Connect using `ysql`
 
-Open the YSQL shell (ysqlsh), specifying the `yugabyte` user and prompting for the password.
+Open the YSQL shell (ysqlsh), specifying the `ZNbase` user and prompting for the password.
 
 ```
-$ ./ysqlsh -U yugabyte -W
+$ ./ysqlsh -U ZNbase -W
 ```
 
-When prompted for the password, enter the yugabyte password. You should be able to login and see a response like below.
+When prompted for the password, enter the ZNbase password. You should be able to login and see a response like below.
 
 
 ```
 ysqlsh (11.2-YB-2.5.0.0-b0)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 
 ### Step 2. Enable `pgaudit` extension
 
-Enable `pgaudit` extension on the YugabyteDB cluster.
+Enable `pgaudit` extension on the ZNbaseDB cluster.
 
 ```
-yugabyte=> \c yugabyte yugabyte;
-You are now connected to database "yugabyte" as user "yugabyte".
+ZNbase=> \c ZNbase ZNbase;
+You are now connected to database "ZNbase" as user "ZNbase".
 
-yugabyte=# CREATE EXTENSION IF NOT EXISTS pgaudit;
+ZNbase=# CREATE EXTENSION IF NOT EXISTS pgaudit;
 CREATE EXTENSION
 
 ```
@@ -79,7 +79,7 @@ CREATE EXTENSION
 
 ### Step 3. Enable session audit logging
 
-Enable session audit logging in YugabyteDB cluster.
+Enable session audit logging in ZNbaseDB cluster.
 
 ```
 set pgaudit.log = 'read, ddl';

@@ -3,5 +3,5 @@
 Add the following library dependency to your project configuration:
 
 ```
-libraryDependencies += "com.yugabyte.spark" %% "spark-cassandra-connector" % "2.0.5-yb-2"
+libraryDependencies += "com.ZNbase.spark" %% "spark-cassandra-connector" % "2.0.5-yb-2"
 ```

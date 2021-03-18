@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -28,7 +28,7 @@ ensure_option_has_arg() {
 
 show_help() {
   cat >&2 <<-EOT
-yb_build.sh (or "ybd") is the main build tool for Yugabyte Database.
+yb_build.sh (or "ybd") is the main build tool for ZNbase Database.
 Usage: ${0##*/} [<options>] [<build_type>] [<target_keywords>] [<yb_env_var_settings>]
 Options:
   -h, --help
@@ -275,7 +275,7 @@ print_report() {
     (
       echo
       thick_horizontal_line
-      echo "YUGABYTE BUILD SUMMARY"
+      echo "ZNbase BUILD SUMMARY"
       thick_horizontal_line
       print_report_line "%s" "Build type" "${build_type:-undefined}"
       if [[ -n ${YB_COMPILER_TYPE:-} ]]; then
@@ -1065,7 +1065,7 @@ handle_predefined_build_root
 
 unset cmake_opts
 set_cmake_build_type_and_compiler_type
-log "YugabyteDB build is running on host '$HOSTNAME'"
+log "ZNbaseDB build is running on host '$HOSTNAME'"
 log "YB_COMPILER_TYPE=$YB_COMPILER_TYPE"
 
 if "$verbose"; then

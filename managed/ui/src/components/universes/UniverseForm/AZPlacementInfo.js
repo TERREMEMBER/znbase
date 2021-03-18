@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -96,7 +96,7 @@ export default class AZPlacementInfo extends Component {
         }
       }
     });
-    
+
 
     if (placementInfo.error) {
       currentStatusType = placementInfo.error.type;

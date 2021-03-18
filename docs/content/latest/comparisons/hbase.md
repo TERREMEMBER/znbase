@@ -1,8 +1,8 @@
 ---
-title: Compare Apache HBase with YugabyteDB
+title: Compare Apache HBase with ZNbaseDB
 headerTitle: Apache HBase
 linkTitle: Apache HBase
-description: Compare Apache HBase with YugabyteDB.
+description: Compare Apache HBase with ZNbaseDB.
 aliases:
   - /comparisons/hbase/
 menu:
@@ -13,7 +13,7 @@ isTocNested: false
 showAsideToc: true
 ---
 
-Following are the key areas of differences between YugabyteDB and [Apache HBase](http://hbase.apache.org/).
+Following are the key areas of differences between ZNbaseDB and [Apache HBase](http://hbase.apache.org/).
 
 ## Simpler software stack
 
@@ -25,15 +25,15 @@ In HBase, on a region-server death, the unavailability window of shards/regions
 on the server can be in the order of 60 seconds or more. This is because the HBase master first
 needs to wait for the server’s ephemeral node in Zookeeper to expire, followed by time take to split
 the transaction logs into per-shard recovery logs, and the time taken to replay the edits from the
-transaction log by a new server before the shard is available to take IO. In contrast, in Yugabyte,
+transaction log by a new server before the shard is available to take IO. In contrast, in ZNbase,
 the tablet-peers are hot standbys, and within a matter of few heartbeats (a few seconds) detect
 failure of the leader, and initiate leader election.
 
 ## C++ implementation
 
 Avoids GC tuning; can run better on large memory machines.
-Richer data model: YugabyteDB offers a multi-model/multi-API using YSQL, YCQL, and YEDIS.
-Rather than deal with just byte keys and values, YugabyteDB offers a rich set of scalar (int, text,
+Richer data model: ZNbaseDB offers a multi-model/multi-API using YSQL, YCQL, and YEDIS.
+Rather than deal with just byte keys and values, ZNbaseDB offers a rich set of scalar (int, text,
 decimal, binary, timestamp, etc.) and composite types (such as collections, UDTs, etc.).
 
 ## Multi-data center deployment

@@ -1,4 +1,4 @@
-// Copyright YugaByte Inc.
+// Copyright ZNbase Inc.
 
 import { ResourceStringPanel } from '../../panels';
 import { connect } from 'react-redux';

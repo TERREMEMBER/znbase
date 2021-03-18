@@ -1,8 +1,8 @@
 ---
-title: Deploy YugabyteDB in Google Cloud Platform with GCP Deployment Manager
+title: Deploy ZNbaseDB in Google Cloud Platform with GCP Deployment Manager
 headerTitle: Google Cloud Platform
 linkTitle: Google Cloud Platform
-description: Use the GCP Deployment Manager to deploy a YugabyteDB cluster in Google Cloud Platform.
+description: Use the GCP Deployment Manager to deploy a ZNbaseDB cluster in Google Cloud Platform.
 menu:
   stable:
     identifier: deploy-in-gcp-1-deployment-manager
@@ -38,11 +38,11 @@ menu:
 ## Prerequisites
 
 * Download and Install [gcloud](https://cloud.google.com/sdk/docs/) command line tool.
-* Clone git repo from [here](https://github.com/yugabyte/gcp-deployment-manager.git)
+* Clone git repo from [here](https://github.com/ZNbase/gcp-deployment-manager.git)
 
 ## Deploying using Cloud Shell
 
-<a href="https://console.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2Fyugabyte%2Fgcp-deployment-manager.git" target="_blank">
+<a href="https://console.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https%3A%2F%2Fgithub.com%2FZNbase%2Fgcp-deployment-manager.git" target="_blank">
     <img src="https://gstatic.com/cloudssh/images/open-btn.svg"/>
 </a>
 
@@ -50,7 +50,7 @@ menu:
 * Use gcloud command to create deployment-manager deployment <br/>
 
     ```
-    $ gcloud deployment-manager deployments create <your-deployment-name> --config=yugabyte-deployment.yaml
+    $ gcloud deployment-manager deployments create <your-deployment-name> --config=ZNbase-deployment.yaml
     ```
 
 * Wait for 5-10 minutes after the creation of all resources is complete by the above command.
@@ -60,4 +60,4 @@ menu:
     $ gcloud deployment-manager deployments describe <your-deployment-name>
     ```
 
-    In the output, you will get the YugabyteDB admin URL, JDBC URL, YSQL, YCQL and YEDIS connection string. You can use YugabyteDB admin URL to access admin portal.
+    In the output, you will get the ZNbaseDB admin URL, JDBC URL, YSQL, YCQL and YEDIS connection string. You can use ZNbaseDB admin URL to access admin portal.

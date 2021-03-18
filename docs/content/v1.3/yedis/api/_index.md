@@ -17,7 +17,7 @@ showAsideToc: true
 
 ## Introduction
 
-The YEDIS API provides a clustered, auto-sharded, globally distributed and persistent key-value API that is compatible with the Redis commands library.  A Redis client can connect, send requests, and receive results from YugabyteDB. 
+The YEDIS API provides a clustered, auto-sharded, globally distributed and persistent key-value API that is compatible with the Redis commands library.  A Redis client can connect, send requests, and receive results from ZNbaseDB. 
 
 ## Data types
 
@@ -33,11 +33,11 @@ List | Not yet supported |
 Bitmaps | Not yet supported |
 HyperLogLogs | Not yet supported |
 GeoSpatial | Not yet supported |
-Time series | New data type in YugabyteDB |
+Time series | New data type in ZNbaseDB |
 
 ## Commands
 
-Redis-cli or any Redis applications can access YugabyteDB using the YEDIS API. The following Redis commands are accepted.
+Redis-cli or any Redis applications can access ZNbaseDB using the YEDIS API. The following Redis commands are accepted.
 
 Command | Description |
 --------|-------------|

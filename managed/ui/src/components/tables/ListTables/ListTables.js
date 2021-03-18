@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router';
@@ -41,7 +41,7 @@ class TableTitle extends Component {
             <YBResourceCount kind="YEDIS" size={numRedisTables} />
           </div>
         </div>
-        {!isHidden(currentCustomer.data.features, 'universes.backup') && 
+        {!isHidden(currentCustomer.data.features, 'universes.backup') &&
           <div className="pull-right">
             <div className="backup-action-btn-group">
               <UniverseAction

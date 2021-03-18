@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -11,8 +11,8 @@
 // under the License.
 //
 
-#ifndef CODE_YUGABYTE_SRC_YB_TSERVER_METRICS_SNAPSHOTTER_H
-#define CODE_YUGABYTE_SRC_YB_TSERVER_METRICS_SNAPSHOTTER_H
+#ifndef CODE_ZNbase_SRC_YB_TSERVER_METRICS_SNAPSHOTTER_H
+#define CODE_ZNbase_SRC_YB_TSERVER_METRICS_SNAPSHOTTER_H
 
 #include <memory>
 
@@ -52,4 +52,4 @@ class MetricsSnapshotter {
 
 } // namespace tserver
 } // namespace yb
-#endif /* CODE_YUGABYTE_SRC_YB_TSERVER_METRICS_SNAPSHOTTER_H */
+#endif /* CODE_ZNbase_SRC_YB_TSERVER_METRICS_SNAPSHOTTER_H */

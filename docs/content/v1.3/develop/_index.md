@@ -1,8 +1,8 @@
 ---
 title: Develop
 linkTitle: Develop
-description: Develop apps on YugabyteDB
-headcontent: Get started building applications on top of YugabyteDB.
+description: Develop apps on ZNbaseDB
+headcontent: Get started building applications on top of ZNbaseDB.
 image: /images/section_icons/index/develop.png
 section: USER GUIDES
 block_indexing: true
@@ -22,7 +22,7 @@ menu:
         <div class="title">Learn application development</div>
       </div>
       <div class="body">
-        Learn how to build cloud services and applications on YugabyteDB.
+        Learn how to build cloud services and applications on ZNbaseDB.
       </div>
     </a>
   </div>
@@ -46,7 +46,7 @@ menu:
         <div class="title">Real world examples</div>
       </div>
       <div class="body">
-        A walk-through of real world, end-to-end applications build on top of YugabyteDB.
+        A walk-through of real world, end-to-end applications build on top of ZNbaseDB.
       </div>
     </a>
   </div>
@@ -56,7 +56,7 @@ menu:
     </div>
     <div class="text">
       Port Existing Apps
-      <div class="caption">How you can port your existing applications to run on top of Yugabyte-DB.</div>
+      <div class="caption">How you can port your existing applications to run on top of ZNbase-DB.</div>
     </div>
   </a>-->
 </div>

@@ -2,7 +2,7 @@
 title: Explore fault tolerance on Kubernetes
 headerTitle: Fault tolerance
 linkTitle: Fault tolerance
-description: Simulate fault tolerance and resilience in a local three-node YugabyteDB cluster on Kubernetes (Minikube).
+description: Simulate fault tolerance and resilience in a local three-node ZNbaseDB cluster on Kubernetes (Minikube).
 menu:
   stable:
     identifier: fault-tolerance-4-kubernetes
@@ -44,9 +44,9 @@ showAsideToc: true
 
 </ul>
 
-YugabyteDB can automatically handle failures and therefore provides [high availability](../../../architecture/core-functions/high-availability/). You will create YSQL tables with a replication factor (RF) of `3` that allows a [fault tolerance](../../../architecture/concepts/docdb/replication/) of `1`. This means the cluster will remain available for both reads and writes even if one node fails. However, if another node fails, bringing the number of failures to two, then writes will become unavailable on the cluster in order to preserve data consistency.
+ZNbaseDB can automatically handle failures and therefore provides [high availability](../../../architecture/core-functions/high-availability/). You will create YSQL tables with a replication factor (RF) of `3` that allows a [fault tolerance](../../../architecture/concepts/docdb/replication/) of `1`. This means the cluster will remain available for both reads and writes even if one node fails. However, if another node fails, bringing the number of failures to two, then writes will become unavailable on the cluster in order to preserve data consistency.
 
-If you haven't installed YugabyteDB yet, you can create a local YugabyteDB cluster within five minutes by following the [Quick Start](../../../quick-start/install/) guide.
+If you haven't installed ZNbaseDB yet, you can create a local ZNbaseDB cluster within five minutes by following the [Quick Start](../../../quick-start/install/) guide.
 
 ## 1. Create universe
 
@@ -56,10 +56,10 @@ If you have a previously running local universe, destroy it using the following 
 $ helm uninstall yb-demo -n yb-demo
 $ kubectl delete pvc --namespace yb-demo --all
 ```
-Create a new YugabyteDB cluster.
+Create a new ZNbaseDB cluster.
 
 ```sh
-$ helm install yb-demo yugabytedb/yugabyte \
+$ helm install yb-demo ZNbasedb/ZNbase \
 --set resource.master.requests.cpu=0.5,resource.master.requests.memory=0.5Gi,\
 resource.tserver.requests.cpu=0.5,resource.tserver.requests.memory=0.5Gi --namespace yb-demo
 ```
@@ -82,7 +82,7 @@ $ kubectl --namespace yb-demo port-forward svc/yb-master-ui 7000:7000
 
 Now, you can view the [yb-master-0 Admin UI](../../../reference/configuration/yb-master/#admin-ui) is available at http://localhost:7000.
 
-## 3. Connect to YugabyteDB Shell
+## 3. Connect to ZNbaseDB Shell
 
 Connect to `ycqlsh` on node `1`.
 
@@ -116,14 +116,14 @@ Now insert some data by typing the following into `ycqlsh` shell.
 
 ```sql
 ycqlsh> INSERT INTO users.profile (id, email, password, profile) VALUES
-  (1000, 'james.bond@yugabyte.com', 'licensed2Kill',
+  (1000, 'james.bond@ZNbase.com', 'licensed2Kill',
    {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
   );
 ```
 
 ```sql
 ycqlsh> INSERT INTO users.profile (id, email, password, profile) VALUES
-  (2000, 'sherlock.holmes@yugabyte.com', 'itsElementary',
+  (2000, 'sherlock.holmes@ZNbase.com', 'itsElementary',
    {'firstname': 'Sherlock', 'lastname': 'Holmes'}
   );
 ```
@@ -137,8 +137,8 @@ ycqlsh> SELECT email, profile FROM users.profile;
 ```
  email                        | profile
 ------------------------------+---------------------------------------------------------------
-      james.bond@yugabyte.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
- sherlock.holmes@yugabyte.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
+      james.bond@ZNbase.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
+ sherlock.holmes@ZNbase.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
 
 (2 rows)
 ```
@@ -158,8 +158,8 @@ ycqlsh> SELECT email, profile FROM users.profile;
 ```
  email                        | profile
 ------------------------------+---------------------------------------------------------------
-      james.bond@yugabyte.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
- sherlock.holmes@yugabyte.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
+      james.bond@ZNbase.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
+ sherlock.holmes@ZNbase.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
 
 (2 rows)
 ```
@@ -202,7 +202,7 @@ Let us insert some data to ensure that the loss of a node hasn't impacted the ab
 
 ```sql
 ycqlsh> INSERT INTO users.profile (id, email, password, profile) VALUES 
-  (3000, 'austin.powers@yugabyte.com', 'imGroovy',
+  (3000, 'austin.powers@ZNbase.com', 'imGroovy',
    {'firstname': 'Austin', 'lastname': 'Powers'});
 ```
 
@@ -215,9 +215,9 @@ ycqlsh> SELECT email, profile FROM users.profile;
 ```
  email                        | profile
 ------------------------------+---------------------------------------------------------------
-      james.bond@yugabyte.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
- sherlock.holmes@yugabyte.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
-   austin.powers@yugabyte.com |                 {'firstname': 'Austin', 'lastname': 'Powers'}
+      james.bond@ZNbase.com | {'firstname': 'James', 'lastname': 'Bond', 'nickname': '007'}
+ sherlock.holmes@ZNbase.com |               {'firstname': 'Sherlock', 'lastname': 'Holmes'}
+   austin.powers@ZNbase.com |                 {'firstname': 'Austin', 'lastname': 'Powers'}
 
 (3 rows)
 ```
@@ -240,7 +240,7 @@ yb-tserver-1   1/1       Running   1          34m
 yb-tserver-2   1/1       Running   0          7s
 ```
 
-YugabyteDB's fault tolerance when combined with Kubernetes' automated operations ensures that distributed applications can be run with ease while ensuring extreme data resilience.
+ZNbaseDB's fault tolerance when combined with Kubernetes' automated operations ensures that distributed applications can be run with ease while ensuring extreme data resilience.
 
 ## 8. Clean up (optional)
 

@@ -1,8 +1,8 @@
 ---
-title: Build a YugabyteDB application using C++ and YEDIS
+title: Build a ZNbaseDB application using C++ and YEDIS
 headerTitle: Build an application using C++
 linkTitle: C++
-description: Use C++ to build a YugabyteDB application that interacts with YEDIS
+description: Use C++ to build a ZNbaseDB application that interacts with YEDIS
 aliases:
   - /latest/yedis/develop/client-drivers/cpp
 menu:
@@ -17,7 +17,7 @@ showAsideToc: true
 
 The tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe, and are able to interact with it using the Redis shell. If
+- installed ZNbaseDB, created a universe, and are able to interact with it using the Redis shell. If
   not, follow the steps in [Quick start](../../../../quick-start/).
 - have C++ 11 or later.
 

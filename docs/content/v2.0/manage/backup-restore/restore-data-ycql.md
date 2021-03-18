@@ -3,7 +3,7 @@ title: Restore data
 linkTitle: Restore data
 description: Restore data
 image: /images/section_icons/manage/enterprise.png
-headcontent: Restore data in YugabyteDB.
+headcontent: Restore data in ZNbaseDB.
 block_indexing: true
 menu:
   v2.0:

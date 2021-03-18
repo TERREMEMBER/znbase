@@ -2,7 +2,7 @@
 -- Create Tablespace should not work if neither LOCATION nor options
 -- are specified
 CREATE TABLESPACE x;
-CREATE TABLESPACE x OWNER yugabyte;
+CREATE TABLESPACE x OWNER ZNbase;
 
 -- Ill formed JSON
 CREATE TABLESPACE x WITH (replica_placement='[{"cloud"}]');

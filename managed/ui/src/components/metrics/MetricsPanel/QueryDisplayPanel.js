@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React from 'react';
 import { Link } from 'react-router';
@@ -12,8 +12,8 @@ const GRAPH_COL_WIDTH = 192;
 export const QueryDisplayPanel = ({ universeUUID }) => {
   const { ysqlQueries, loading, errors } = useSlowQueriesApi({
     universeUUID
-  }); 
-  
+  });
+
   // Get top 5 queries by total_time descending
   const topQueries = ysqlQueries.sort((a, b) => b.total_time - a.total_time).slice(0, 5);
 
@@ -98,7 +98,7 @@ export const QueryDisplayPanel = ({ universeUUID }) => {
         </TableHeaderColumn>
         <TableHeaderColumn dataField="datname" width="200px">
           Database
-        </TableHeaderColumn>              
+        </TableHeaderColumn>
       </BootstrapTable>
     </div>
   );

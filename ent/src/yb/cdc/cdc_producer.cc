@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -31,7 +31,7 @@
 DEFINE_int32(cdc_transaction_timeout_ms, 0,
   "Don't check for an aborted transaction unless its original write is lagging by this duration.");
 
-// Todo(Rahul): Enable this by default (https://github.com/yugabyte/yugabyte-db/issues/6128)
+// Todo(Rahul): Enable this by default (https://github.com/ZNbase/ZNbase-db/issues/6128)
 DEFINE_bool(cdc_enable_replicate_intents, true,
             "Enable replication of intents before they've been committed.");
 

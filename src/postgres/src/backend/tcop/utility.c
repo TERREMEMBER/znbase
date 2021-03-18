@@ -419,7 +419,7 @@ standard_ProcessUtility(PlannedStmt *pstmt,
 	/*
 	 * For tserver-postgres libpq connection, only authorize certain queries.
 	 */
-	if (IsYugaByteEnabled() &&
+	if (IsZNbaseEnabled() &&
 		!IsBootstrapProcessingMode() &&
 		!YBIsPreparingTemplates() &&
 		MyProcPort->yb_is_tserver_auth_method)
@@ -493,10 +493,10 @@ standard_ProcessUtility(PlannedStmt *pstmt,
 						break;
 
 					case TRANS_STMT_PREPARE:
-						if  (IsYugaByteEnabled()) {
+						if  (IsZNbaseEnabled()) {
 							ereport(ERROR,
 									(errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
-									errmsg("PREPARE not supported by YugaByte yet")));
+									errmsg("PREPARE not supported by ZNbase yet")));
 						}
 						PreventCommandDuringRecovery("PREPARE TRANSACTION");
 						if (!PrepareTransactionBlock(stmt->gid))
@@ -865,7 +865,7 @@ standard_ProcessUtility(PlannedStmt *pstmt,
 			break;
 
 		case T_BackfillIndexStmt:
-			Assert(IsYugaByteEnabled());
+			Assert(IsZNbaseEnabled());
 			Assert(!IsBootstrapProcessingMode());
 			Assert(!YBIsPreparingTemplates());
 			ereport(ERROR,
@@ -1074,7 +1074,7 @@ ProcessUtilitySlow(ParseState *pstate,
 															 stmt);
 
 							/* No need for toasting attributes in YB mode */
-							if (!IsYugaByteEnabled())
+							if (!IsZNbaseEnabled())
 							{
 								/*
 								* Let NewRelationCreateToastTable decide if this
@@ -1363,7 +1363,7 @@ ProcessUtilitySlow(ParseState *pstate,
 
 					if (stmt->concurrent)
 					{
-						if (IsYugaByteEnabled() &&
+						if (IsZNbaseEnabled() &&
 							!IsBootstrapProcessingMode() &&
 							!YBIsPreparingTemplates() &&
 							IsInTransactionBlock(isTopLevel))
@@ -1440,7 +1440,7 @@ ProcessUtilitySlow(ParseState *pstate,
 						 * Transparently switch to nonconcurrent index build.
 						 */
 						if (stmt->concurrent &&
-							IsYugaByteEnabled() &&
+							IsZNbaseEnabled() &&
 							!IsBootstrapProcessingMode() &&
 							!YBIsPreparingTemplates())
 						{
@@ -3593,7 +3593,7 @@ YBProcessUtilityDefaultHook(PlannedStmt *pstmt,
                             DestReceiver *dest,
                             char *completionTag)
 {
-	if (IsYugaByteEnabled() && !(IsA(pstmt->utilityStmt, ExecuteStmt) ||
+	if (IsZNbaseEnabled() && !(IsA(pstmt->utilityStmt, ExecuteStmt) ||
 			IsA(pstmt->utilityStmt, PrepareStmt) || IsA(pstmt->utilityStmt, DeallocateStmt) ||
 			IsA(pstmt->utilityStmt, ExplainStmt))) {
 		YBBeginOperationsBuffering();

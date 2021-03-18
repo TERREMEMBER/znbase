@@ -2,7 +2,7 @@
 title: Convert a PostgreSQL schema
 headerTitle: Convert a PostgreSQL schema
 linkTitle: Convert a PostgreSQL schema
-description: Steps for migrating a PostgreSQL schema for YugabyteDB.
+description: Steps for migrating a PostgreSQL schema for ZNbaseDB.
 menu:
   latest:
     identifier: migrate-postgresql-schema
@@ -12,7 +12,7 @@ isTocNested: false
 showAsideToc: true
 ---
 
-To convert the PostgreSQL schema to YugabyteDB schema, the following changes need to be made. 
+To convert the PostgreSQL schema to ZNbaseDB schema, the following changes need to be made. 
 
 {{< tip title="Tip" >}}
 
@@ -22,22 +22,22 @@ Using `ysql_dump` tool can simplify some steps of your schema migration, [read m
 
 ## Specify `PRIMARY KEY` inline
 
-YugabyteDB (as of v2.2) does not support the PostgreSQL syntax of first declaring a table, and subsequently running an ALTER TABLE command to add the primary key. This is because the data in YugabyteDB tables are index-organized according to the primary key specification. There is a significant performance difference in a distributed SQL database between a table that is organized by row id with an added primary key constraint, versus a table whose data layout is index-organized from the get go.
+ZNbaseDB (as of v2.2) does not support the PostgreSQL syntax of first declaring a table, and subsequently running an ALTER TABLE command to add the primary key. This is because the data in ZNbaseDB tables are index-organized according to the primary key specification. There is a significant performance difference in a distributed SQL database between a table that is organized by row id with an added primary key constraint, versus a table whose data layout is index-organized from the get go.
 
 {{< note title="Note" >}}
 
-Altering the primary key of a table after creation is a planned feature, the current status of this enhancement is tracked in [GitHub issue #1104](https://github.com/yugabyte/yugabyte-db/issues/1104).
+Altering the primary key of a table after creation is a planned feature, the current status of this enhancement is tracked in [GitHub issue #1104](https://github.com/ZNbase/ZNbase-db/issues/1104).
 
 {{< /note >}}
 
 
 ## Use `HASH` sort order
 
-In YugabyteDB, the sort order of the primary key (or index) of a table determines the data distribution strategy for that primary key (or index) table across the nodes of a cluster. Thus, the choice of the sort order is critical in determining the data distribution strategy.
+In ZNbaseDB, the sort order of the primary key (or index) of a table determines the data distribution strategy for that primary key (or index) table across the nodes of a cluster. Thus, the choice of the sort order is critical in determining the data distribution strategy.
 
 Indexes using the `ASC` or `DESC` sort order can efficiently handle both point and range lookups. However, they will start off with a single tablet, and therefore all reads and writes to this table will be handled by a single tablet initially. The tablet would need to undergo dynamic splitting for the table to leverage multiple nodes. Creating `ASC` or `DESC` sort orders for large datasets when range queries are not required could result in a hot shard problem.
 
-To overcome the above issues, YugabyteDB supports `HASH` ordering in addition to the standard `ASC` and `DESC` sort orders for indexes. With HASH ordering, a hash value is first computed by applying a hash function to the values of the corresponding columns, and the hash value is sorted. Because the sort order is effectively random, this results in a random distribution of data across the various nodes in the cluster. Random distribution of data has the following properties:
+To overcome the above issues, ZNbaseDB supports `HASH` ordering in addition to the standard `ASC` and `DESC` sort orders for indexes. With HASH ordering, a hash value is first computed by applying a hash function to the values of the corresponding columns, and the hash value is sorted. Because the sort order is effectively random, this results in a random distribution of data across the various nodes in the cluster. Random distribution of data has the following properties:
 
 * It can eliminate hot spots in the cluster by evenly distributing data across all nodes
 
@@ -59,7 +59,7 @@ Enabling the colocation property at a database level causes all tables created i
 
 {{< note title="Note" >}}
 
-Making colocation the default for all databases is [work in progress](https://github.com/yugabyte/yugabyte-db/issues/5239).
+Making colocation the default for all databases is [work in progress](https://github.com/ZNbase/ZNbase-db/issues/5239).
 
 {{< /note >}}
 
@@ -71,7 +71,7 @@ For larger tables and indexes that are range-sharded and the value ranges of the
 
 ## Remove collation on columns
 
-YugabyteDB does not currently support any collation options using the COLLATE keyword (adding [collation support is in the roadmap](https://github.com/YugaByte/yugabyte-db/issues/1127)). Remove the COLLATE options in order move the schema over to YugabyteDB.
+ZNbaseDB does not currently support any collation options using the COLLATE keyword (adding [collation support is in the roadmap](https://github.com/ZNbase/ZNbase-db/issues/1127)). Remove the COLLATE options in order move the schema over to ZNbaseDB.
 
 For example, consider the table definition below.
 
@@ -88,7 +88,7 @@ Attempting to create this table would result in the following error.
 ERROR:  0A000: COLLATE not supported yet
 LINE 2:     a text COLLATE "de_DE" PRIMARY KEY,
                    ^
-HINT:  See https://github.com/YugaByte/yugabyte-db/issues/1127. Click '+' on the description to raise its priority
+HINT:  See https://github.com/ZNbase/ZNbase-db/issues/1127. Click '+' on the description to raise its priority
 LOCATION:  raise_feature_not_supported_signal, gram.y:17113
 Time: 31.543 ms
 ```
@@ -133,7 +133,7 @@ ALTER SEQUENCE contacts_contact_id_seq CACHE 1000;
 You can find the name of the sequence as shown below.
 
 ```
-yugabyte=# SELECT pg_get_serial_sequence('contacts', 'contact_id');
+ZNbase=# SELECT pg_get_serial_sequence('contacts', 'contact_id');
      pg_get_serial_sequence
 --------------------------------
  public.contacts_contact_id_seq
@@ -167,7 +167,7 @@ CREATE TABLE contacts (
 
 The PostgreSQL utility, pg_dump, can be used to dump the schema of a database. However, this schema would need  to be slightly modified as described below. 
 
-The [`ysql_dump`](../../../admin/ysql-dump) tool (a YugabyteDB-specific version of the `pg_dump` tool) can connect to an existing PostgreSQL database and export a YugabyteDB-friendly version of the schema and, therefore, includes some of the schema modifications described below. The other changes mentioned below would need to be manually performed since they depend on the use case.
+The [`ysql_dump`](../../../admin/ysql-dump) tool (a ZNbaseDB-specific version of the `pg_dump` tool) can connect to an existing PostgreSQL database and export a ZNbaseDB-friendly version of the schema and, therefore, includes some of the schema modifications described below. The other changes mentioned below would need to be manually performed since they depend on the use case.
 
 {{< note title="Note" >}}
 

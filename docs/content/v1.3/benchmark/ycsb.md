@@ -3,7 +3,7 @@ title: YCSB
 linkTitle: YCSB
 description: YCSB
 image: /images/section_icons/architecture/concepts.png
-headcontent: Benchmark YugabyteDB using YCSB.
+headcontent: Benchmark ZNbaseDB using YCSB.
 block_indexing: true
 menu:
   v1.3:
@@ -42,7 +42,7 @@ cd YCSB
 <cassandra.cql.version>3.0.0</cassandra.cql.version>
 ```
 
-to the latest version of the Yugabyte-Cassandra driver
+to the latest version of the ZNbase-Cassandra driver
 
 ```
 <cassandra.cql.version>3.2.0-yb-17</cassandra.cql.version>
@@ -61,7 +61,7 @@ You can (and probably should) always check Maven to find the latest version.
 to
 
 ``` 
-<groupId>com.yugabyte</groupId>
+<groupId>com.ZNbase</groupId>
 ```
 
 ## Step 3. Build YCSB
@@ -74,11 +74,11 @@ mvn -pl com.yahoo.ycsb:cassandra-binding -am clean package -DskipTests
 
 ## Step 4. Setup cqlsh
 
-You can setup Yugabyte-cqlsh by doing the following:
+You can setup ZNbase-cqlsh by doing the following:
 
 ```sh
 cd $HOME
-git clone https://github.com/yugabyte/cqlsh
+git clone https://github.com/ZNbase/cqlsh
 ```
 
 ## Step 5. Prepare the driver script
@@ -161,7 +161,7 @@ run_workload workloade
 cleanup
 ```
 
-We use YugabyteDB with strongly consistent reads and writes, which corresponds, in Cassandra, to using the `QUORUM` option for both `cassandra.readconsistencylevel` and `cassandra.writeconsistencylevel` (see the command above).
+We use ZNbaseDB with strongly consistent reads and writes, which corresponds, in Cassandra, to using the `QUORUM` option for both `cassandra.readconsistencylevel` and `cassandra.writeconsistencylevel` (see the command above).
 
 ## Step 6. Run and check results
 

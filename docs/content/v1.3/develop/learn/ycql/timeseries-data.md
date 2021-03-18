@@ -22,7 +22,7 @@
 
 ## Sample Java Application
 
-You can find a working example of using transactions with Yugabyte in our [sample applications](../../../quick-start/run-sample-apps/). Here is how you can try out this sample application.
+You can find a working example of using transactions with ZNbase in our [sample applications](../../../quick-start/run-sample-apps/). Here is how you can try out this sample application.
 
 ```
  - CassandraTimeseries :
@@ -52,4 +52,4 @@ You can find a working example of using transactions with Yugabyte in our [sampl
 ```
 
 
-Browse the [Java source code for the batch application](https://github.com/yugabyte/yugabyte-db/blob/master/java/yb-loadtester/src/main/java/com/yugabyte/sample/apps/CassandraTimeseries.java) to see how everything fits together.
+Browse the [Java source code for the batch application](https://github.com/ZNbase/ZNbase-db/blob/master/java/yb-loadtester/src/main/java/com/ZNbase/sample/apps/CassandraTimeseries.java) to see how everything fits together.

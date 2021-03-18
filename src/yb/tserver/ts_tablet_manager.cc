@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1035,7 +1035,7 @@ Status TSTabletManager::ApplyTabletSplit(
     // Call CreatePeerAndOpenTablet asynchronously to avoid write-locking TSTabletManager::mutex_
     // here since apply of SPLIT_OP is done under ReplicaState lock and this could lead to deadlock
     // in case of reverse lock order in some other thread.
-    // See https://github.com/yugabyte/yugabyte-db/issues/4312 for more details.
+    // See https://github.com/ZNbase/ZNbase-db/issues/4312 for more details.
     RETURN_NOT_OK(apply_pool_->SubmitFunc(std::bind(
         &TSTabletManager::CreatePeerAndOpenTablet, this, tcmeta.raft_group_metadata,
         tcmeta.transition_deleter)));

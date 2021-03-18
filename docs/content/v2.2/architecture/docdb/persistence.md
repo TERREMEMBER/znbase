@@ -1,5 +1,5 @@
 ---
-title: Persistence in YugabyteDB
+title: Persistence in ZNbaseDB
 headerTitle: Persistence
 linkTitle: Persistence
 description: Learn how DocDB manages persistence using a RocksDB-based storage layer.
@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Once data is replicated using Raft across a majority of the YugabyteDB tablet-peers, it is applied to each tablet peer’s local DocDB document storage layer.
+Once data is replicated using Raft across a majority of the ZNbaseDB tablet-peers, it is applied to each tablet peer’s local DocDB document storage layer.
 
 ## Storage Model
 

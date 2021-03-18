@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -238,7 +238,7 @@ TEST_F(MasterReplicationTest, TestCycleThroughAllMasters) {
   YBClientBuilder builder;
   builder.master_server_addrs(master_addrs);
   // Bumped up timeout from 15 sec to 30 sec because master election can take longer than 15 sec.
-  // https://yugabyte.atlassian.net/browse/ENG-51
+  // https://ZNbase.atlassian.net/browse/ENG-51
   // Test log: https://gist.githubusercontent.com/mbautin/9f4269292e6ecb5b9a2fc644e2ee4398/raw
   builder.default_admin_operation_timeout(MonoDelta::FromSeconds(30));
   EXPECT_OK(builder.Build());

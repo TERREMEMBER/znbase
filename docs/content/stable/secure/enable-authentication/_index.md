@@ -25,7 +25,7 @@ showAsideToc: true
         <div class="title">Enable User Authentication</div>
       </div>
       <div class="body">
-          Enable user authentication in YugabyteDB.
+          Enable user authentication in ZNbaseDB.
       </div>
     </a>
   </div>

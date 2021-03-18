@@ -3,7 +3,7 @@ title: Performance
 linkTitle: Performance
 description: Performance
 image: /images/section_icons/architecture/concepts.png
-headcontent: Test the performance of YugabyteDB for various workloads.
+headcontent: Test the performance of ZNbaseDB for various workloads.
 block_indexing: true
 menu:
   v1.3:
@@ -16,7 +16,7 @@ isTocNested: True
 
 ## Goal
 
-The goal of this benchmark is to get an idea of the performance of YugabyteDB using a key-value workload.
+The goal of this benchmark is to get an idea of the performance of ZNbaseDB using a key-value workload.
 
 ## Recommended configuration
 
@@ -44,10 +44,10 @@ For this benchmark, we will setup a 3-node cluster with a replication factor of 
 
 ### Benchmark tool
 
-We will use the `yb-sample-apps.jar` tool to perform this benchmark. You can get it from [this GitHub repository](https://github.com/yugabyte/yb-sample-apps) as shown below.
+We will use the `yb-sample-apps.jar` tool to perform this benchmark. You can get it from [this GitHub repository](https://github.com/ZNbase/yb-sample-apps) as shown below.
 
 ```sh
-$ wget https://github.com/yugabyte/yb-sample-apps/releases/download/v1.2.0/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
+$ wget https://github.com/ZNbase/yb-sample-apps/releases/download/v1.2.0/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
 ```
 
 You would need to install java in order to run this tool. Also export the environment variable  $ENDPOINTS containing the IP addresses (plus port) for the nodes of the cluster.

@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component, PureComponent, Fragment } from 'react';
 import { Link } from 'react-router';
@@ -478,10 +478,10 @@ export default class UniverseOverviewNew extends Component {
                     showCancelButton={true}
                   >
                     <div>Query a sample database:</div>
-                    <YBCodeBlock>yugabyted demo connect</YBCodeBlock>
+                    <YBCodeBlock>ZNbased demo connect</YBCodeBlock>
                     <div>
                       Explore YSQL at{' '}
-                      <a href="https://docs.yugabyte.com/latest/quick-start/explore-ysql/">here</a>.
+                      <a href="https://docs.ZNbase.com/latest/quick-start/explore-ysql/">here</a>.
                     </div>
                   </YBModal>
                 </Fragment>
@@ -700,7 +700,7 @@ export default class UniverseOverviewNew extends Component {
     const lastUpdateDate = this.getLastUpdateDate();
     const {
       universe: { currentUniverse },
-      updateAvailable, 
+      updateAvailable,
       currentCustomer
     } = this.props;
     const showUpdate =

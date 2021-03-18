@@ -1,5 +1,5 @@
 //
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -17,7 +17,7 @@ import com.datastax.driver.core.*;
 import com.datastax.driver.core.policies.DCAwareRoundRobinPolicy;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.google.common.net.HostAndPort;
-import com.yugabyte.driver.core.policies.PartitionAwarePolicy;
+import com.ZNbase.driver.core.policies.PartitionAwarePolicy;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

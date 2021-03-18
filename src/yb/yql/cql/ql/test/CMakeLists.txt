@@ -1,4 +1,4 @@
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -41,7 +41,7 @@ ADD_YB_TEST(ql-alter-table-test)
 
 # Due to some reasons ybcmd is implemented as a gtest, although it is really a tool and not
 # intended to be run as a test. So, we put it in usual binary directory and don't add as a test.
-# TODO: https://yugabyte.atlassian.net/browse/ENG-1498: Refactor ybcmd - make it tool instead of
+# TODO: https://ZNbase.atlassian.net/browse/ENG-1498: Refactor ybcmd - make it tool instead of
 # test.
 add_executable(ybcmd ybcmd.cc)
 target_link_libraries(ybcmd ${YB_TEST_LINK_LIBS})

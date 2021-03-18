@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 #
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -22,9 +22,9 @@ import sys
 import time
 
 VERSION_STRING_RE = "^\d+\.\d+\.\d+\.\d+$"
-YB_HOME_DIR = "/home/yugabyte"
-YB_SOFTWARE_DIR = "/home/yugabyte/yb-software"
-YB_SOFTWARE_TEMP_DIR = "/home/yugabyte/yb-software/TEMPORARY"
+YB_HOME_DIR = "/home/ZNbase"
+YB_SOFTWARE_DIR = "/home/ZNbase/yb-software"
+YB_SOFTWARE_TEMP_DIR = "/home/ZNbase/yb-software/TEMPORARY"
 
 
 def list_command(service):
@@ -53,15 +53,15 @@ class ClusterManager(object):
     def __init__(self, args):
         self.master_ips = ClusterManager.get_arg(args, 'master_ips')
         self.tserver_ips = ClusterManager.get_arg(args, 'tserver_ips')
-        default_pem = os.path.join(os.environ["HOME"], ".yugabyte/no-such-key.pem")
+        default_pem = os.path.join(os.environ["HOME"], ".ZNbase/no-such-key.pem")
         self.pem_file = ClusterManager.get_arg(args, 'pem_file', default_pem)
-        self.user = ClusterManager.get_arg(args, 'user', 'yugabyte')
+        self.user = ClusterManager.get_arg(args, 'user', 'ZNbase')
         self.repo = ClusterManager.get_arg(args, 'repo',
-                                           os.path.join(os.environ["HOME"], 'code/yugabyte'))
+                                           os.path.join(os.environ["HOME"], 'code/ZNbase'))
         self.version_string = file("version.txt").read().strip().split("-")[0]
         if not re.match(VERSION_STRING_RE, self.version_string):
             raise ValueError("Invalid version format {}".format(self.version_string))
-        default_tar_prefix = "yugabyte-ee-{0}-{1}-release-{2}-{3}".format(
+        default_tar_prefix = "ZNbase-ee-{0}-{1}-release-{2}-{3}".format(
             self.version_string,
             subprocess.check_output(['git', 'rev-parse', 'HEAD']).strip(),
             platform.linux_distribution(full_distribution_name=False)[0].lower(),
@@ -90,7 +90,7 @@ class ClusterManager(object):
         parser.add_argument('--tar_prefix',
                             nargs='?',
                             help="tar file prefix (e.g., "
-                                 "yugabyte.2bdf48724db5869d0c88c85e0fa65e9ac3a21511-release)")
+                                 "ZNbase.2bdf48724db5869d0c88c85e0fa65e9ac3a21511-release)")
         parser.add_argument('--port', type=int, nargs='?', help="ssh port")
         parser.add_argument('--user', nargs='?', help='remote user to ssh or scp as')
 
@@ -298,7 +298,7 @@ class CopyTarProcedure(Procedure):
                 print("Extracting tar at {0}".format(self.host))
                 command = "mv /tmp/{0}.tar.gz {3}/ && " \
                           "tar xvf {3}/{0}.tar.gz -C {3}/ && " \
-                          "mv {3}/yugabyte-{1} {2}/{0} && " \
+                          "mv {3}/ZNbase-{1} {2}/{0} && " \
                           "{2}/{0}/bin/post_install.sh".format(
                               tar_prefix,
                               self.manager.version_string,

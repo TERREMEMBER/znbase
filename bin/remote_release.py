@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -32,7 +32,7 @@ def main():
                               'variable.').format(remote.REMOTE_BUILD_HOST_ENV_VAR))
     home = os.path.expanduser('~')
     cwd = os.getcwd()
-    default_path = '~/{0}'.format(cwd[len(home) + 1:] if cwd.startswith(home) else 'code/yugabyte')
+    default_path = '~/{0}'.format(cwd[len(home) + 1:] if cwd.startswith(home) else 'code/ZNbase')
 
     # Note: don't specify default arguments here, because they may come from the "profile".
     parser.add_argument('--remote-path', type=str, default=None,

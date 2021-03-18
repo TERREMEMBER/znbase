@@ -2,7 +2,7 @@
 title: Change cluster configuration
 headerTitle: Change cluster configuration
 linkTitle: Change cluster configuration
-description: Migrate a YugabyteDB cluster to a new set of nodes.
+description: Migrate a ZNbaseDB cluster to a new set of nodes.
 block_indexing: true
 menu:
   v2.1:
@@ -13,13 +13,13 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Sometimes there might be a need to move a YugabyteDB universe deployed on a set of nodes to a completely different set of nodes in an online manner. Some scenarios that require such a cluster change are:
+Sometimes there might be a need to move a ZNbaseDB universe deployed on a set of nodes to a completely different set of nodes in an online manner. Some scenarios that require such a cluster change are:
 
 - changing the instance or machine type.
 - updating the instance images on a regular basis (for example, AMI rehydration in AWS).
 - moving to a different set of zones, regions, or data centers.
 
-This page provides the steps needed to perform such a data move in an online manner from the initial setup to the final setup as described below. This tutorial assumes that you are familiar with the [YugabyteDB architecture](../../architecture/concepts/universe/).
+This page provides the steps needed to perform such a data move in an online manner from the initial setup to the final setup as described below. This tutorial assumes that you are familiar with the [ZNbaseDB architecture](../../architecture/concepts/universe/).
 
 ## Example scenario
 
@@ -60,7 +60,7 @@ Spin up a new set of VMs or servers (with the new AMI, for example) with IPs `no
 Use these two steps to configure the six new machines:
 
 - Follow the [System configuration](../../deploy/manual-deployment/system-config/) instructions for system setup.
-- Install [YugabyteDB Software](../../deploy/manual-deployment/install-software/) on each new machine.
+- Install [ZNbaseDB Software](../../deploy/manual-deployment/install-software/) on each new machine.
 
 ## 2. Start YB-Master servers
 

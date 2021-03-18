@@ -943,7 +943,7 @@ PostmasterMain(int argc, char *argv[])
 				(errmsg_internal("-----------------------------------------")));
 	}
 
-	YBReportIfYugaByteEnabled();
+	YBReportIfZNbaseEnabled();
 #ifdef __APPLE__
 	if (YBIsEnabledInPostgresEnvVar()) {
 		/*
@@ -952,7 +952,7 @@ PostmasterMain(int argc, char *argv[])
 		 * PostgreSQL backend processes in tests on macOS (especially debug
 		 * mode).
 		 *
-		 * See https://github.com/yugabyte/yugabyte-db/issues/2509 for details.
+		 * See https://github.com/ZNbase/ZNbase-db/issues/2509 for details.
 		 */
 		YBCResolveHostname();
 	}
@@ -1002,7 +1002,7 @@ PostmasterMain(int argc, char *argv[])
 	 * a good idea to call it before any modules had chance to take the
 	 * background worker slots.
 	 *
-	 * Logical replication is not supported in YugaByte mode currently and the
+	 * Logical replication is not supported in ZNbase mode currently and the
 	 * registration is disabled.
 	 */
 	if (!YBIsEnabledInPostgresEnvVar())
@@ -4375,7 +4375,7 @@ BackendRun(Port *port)
 	/* slightly hacky way to convert timestamptz into integers */
 	TimestampDifference(0, port->SessionStartTime, &secs, &usecs);
 #ifdef ADDRESS_SANITIZER
-	/* YugaByte fix for ASAN */
+	/* ZNbase fix for ASAN */
 	srandom((unsigned int) (MyProcPid ^ ((int64_t) usecs << 12) ^ secs));
 #else
 	srandom((unsigned int) (MyProcPid ^ (usecs << 12) ^ secs));

@@ -41,12 +41,12 @@ showAsideToc: true
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB and created a universe with YSQL enabled. If not, please follow these steps in the [Quick Start guide](../../../../quick-start/explore-ysql/).
+- installed ZNbaseDB and created a universe with YSQL enabled. If not, please follow these steps in the [Quick Start guide](../../../../quick-start/explore-ysql/).
 
 ## Clone the orm-examples repo
 
 ```sh
-$ git clone https://github.com/yugabyte/orm-examples.git
+$ git clone https://github.com/ZNbase/orm-examples.git
 ```
 
 This repository has a node.js example that implements a simple REST API server. The scenario is that of an e-commerce application. Database access in this application is managed through the Sequelize ORM. It consists of the following.
@@ -55,7 +55,7 @@ This repository has a node.js example that implements a simple REST API server. 
 - The `products` table contains a list of products the e-commerce site sells.
 - The orders placed by the users are populated in the `orders` table. An order can consist of multiple line items, each of these are inserted in the `orderline` table.
 
-The source for the above application can be found in the [repo](https://github.com/yugabyte/orm-examples/tree/master/node/sequelize). There are a number of options that can be customized in the properties file located at `config/config.json`. 
+The source for the above application can be found in the [repo](https://github.com/ZNbase/orm-examples/tree/master/node/sequelize). There are a number of options that can be customized in the properties file located at `config/config.json`. 
 
 ## Build the application
 
@@ -128,11 +128,11 @@ $ ./bin/ysqlsh
 ysqlsh (11.2)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM users;
+ZNbase=# SELECT count(*) FROM users;
 ```
 
 ```
@@ -143,7 +143,7 @@ yugabyte=# SELECT count(*) FROM users;
 ```
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM products;
+ZNbase=# SELECT count(*) FROM products;
 ```
 
 ```
@@ -154,7 +154,7 @@ yugabyte=# SELECT count(*) FROM products;
 ```
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM orders;
+ZNbase=# SELECT count(*) FROM orders;
 ```
 
 ```
@@ -253,4 +253,4 @@ $ curl http://localhost:8080/orders
 
 ## Explore the source
 
-As highlighted earlier, the source for the above application can be found in the [orm-examples repository](https://github.com/yugabyte/orm-examples/tree/master/node/sequelize).
+As highlighted earlier, the source for the above application can be found in the [orm-examples repository](https://github.com/ZNbase/orm-examples/tree/master/node/sequelize).

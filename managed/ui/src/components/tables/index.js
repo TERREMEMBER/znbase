@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 export { default as BulkImport } from './BulkImport/BulkImport';
 export { default as BulkImportContainer } from './BulkImport/BulkImportContainer';

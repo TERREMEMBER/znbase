@@ -1,3 +1,3 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 export { default as AlertsList } from './AlertList/AlertsList';

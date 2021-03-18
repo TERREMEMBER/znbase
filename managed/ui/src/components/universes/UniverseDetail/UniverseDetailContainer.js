@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import { connect } from 'react-redux';
 import { UniverseDetail } from '../../universes';
@@ -88,7 +88,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(getHealthCheckResponse(response.payload));
       });
     },
-    
+
     fetchCustomerTasks: () => {
       return dispatch(fetchCustomerTasks()).then((response) => {
         if (!response.error) {

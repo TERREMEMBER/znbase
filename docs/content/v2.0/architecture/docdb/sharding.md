@@ -19,7 +19,7 @@ User tables are implicitly managed as multiple shards by DocDB. These shards are
 
 ## Hash sharding
 
-The hash space for hash-sharded YugabyteDB tables is the 2-byte range from 0x0000 to 0xFFFF. Such
+The hash space for hash-sharded ZNbaseDB tables is the 2-byte range from 0x0000 to 0xFFFF. Such
 a table may therefore have at most 64K tablets. We expect this to be sufficient in practice even for
 very large data sets or cluster sizes.
 

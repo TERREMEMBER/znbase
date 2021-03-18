@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -14,9 +14,9 @@ package org.yb.loadtester;
 
 import com.datastax.driver.core.Host;
 import com.google.common.net.HostAndPort;
-import com.yugabyte.sample.Main;
-import com.yugabyte.sample.apps.CassandraStockTicker;
-import com.yugabyte.sample.common.CmdLineOpts;
+import com.ZNbase.sample.Main;
+import com.ZNbase.sample.apps.CassandraStockTicker;
+import com.ZNbase.sample.common.CmdLineOpts;
 import org.junit.After;
 import org.junit.Before;
 import org.slf4j.Logger;

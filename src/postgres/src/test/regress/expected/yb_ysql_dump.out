@@ -20,7 +20,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: chat_user; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: chat_user; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.chat_user (
@@ -29,10 +29,10 @@ CREATE TABLE public.chat_user (
 );
 
 
-ALTER TABLE public.chat_user OWNER TO yugabyte_test;
+ALTER TABLE public.chat_user OWNER TO ZNbase_test;
 
 --
--- Name: rls_private; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: rls_private; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.rls_private (
@@ -44,10 +44,10 @@ CREATE TABLE public.rls_private (
 ALTER TABLE ONLY public.rls_private FORCE ROW LEVEL SECURITY;
 
 
-ALTER TABLE public.rls_private OWNER TO yugabyte_test;
+ALTER TABLE public.rls_private OWNER TO ZNbase_test;
 
 --
--- Name: rls_public; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: rls_public; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.rls_public (
@@ -57,10 +57,10 @@ CREATE TABLE public.rls_public (
 );
 
 
-ALTER TABLE public.rls_public OWNER TO yugabyte_test;
+ALTER TABLE public.rls_public OWNER TO ZNbase_test;
 
 --
--- Name: tbl1; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl1; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl1 (
@@ -69,10 +69,10 @@ CREATE TABLE public.tbl1 (
 );
 
 
-ALTER TABLE public.tbl1 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl1 OWNER TO ZNbase_test;
 
 --
--- Name: tbl10; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl10; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl10 (
@@ -84,10 +84,10 @@ CREATE TABLE public.tbl10 (
 );
 
 
-ALTER TABLE public.tbl10 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl10 OWNER TO ZNbase_test;
 
 --
--- Name: tbl11; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl11; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl11 (
@@ -98,10 +98,10 @@ CREATE TABLE public.tbl11 (
 );
 
 
-ALTER TABLE public.tbl11 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl11 OWNER TO ZNbase_test;
 
 --
--- Name: tbl12; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl12; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl12 (
@@ -113,10 +113,10 @@ CREATE TABLE public.tbl12 (
 );
 
 
-ALTER TABLE public.tbl12 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl12 OWNER TO ZNbase_test;
 
 --
--- Name: tbl13; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl13; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl13 (
@@ -128,10 +128,10 @@ CREATE TABLE public.tbl13 (
 );
 
 
-ALTER TABLE public.tbl13 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl13 OWNER TO ZNbase_test;
 
 --
--- Name: tbl1_a_seq; Type: SEQUENCE; Schema: public; Owner: yugabyte_test
+-- Name: tbl1_a_seq; Type: SEQUENCE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE SEQUENCE public.tbl1_a_seq
@@ -143,17 +143,17 @@ CREATE SEQUENCE public.tbl1_a_seq
     CACHE 1;
 
 
-ALTER TABLE public.tbl1_a_seq OWNER TO yugabyte_test;
+ALTER TABLE public.tbl1_a_seq OWNER TO ZNbase_test;
 
 --
--- Name: tbl1_a_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yugabyte_test
+-- Name: tbl1_a_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ZNbase_test
 --
 
 ALTER SEQUENCE public.tbl1_a_seq OWNED BY public.tbl1.a;
 
 
 --
--- Name: tbl2; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl2; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl2 (
@@ -161,10 +161,10 @@ CREATE TABLE public.tbl2 (
 );
 
 
-ALTER TABLE public.tbl2 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl2 OWNER TO ZNbase_test;
 
 --
--- Name: tbl2_a_seq; Type: SEQUENCE; Schema: public; Owner: yugabyte_test
+-- Name: tbl2_a_seq; Type: SEQUENCE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE SEQUENCE public.tbl2_a_seq
@@ -176,17 +176,17 @@ CREATE SEQUENCE public.tbl2_a_seq
     CACHE 1;
 
 
-ALTER TABLE public.tbl2_a_seq OWNER TO yugabyte_test;
+ALTER TABLE public.tbl2_a_seq OWNER TO ZNbase_test;
 
 --
--- Name: tbl2_a_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: yugabyte_test
+-- Name: tbl2_a_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ZNbase_test
 --
 
 ALTER SEQUENCE public.tbl2_a_seq OWNED BY public.tbl2.a;
 
 
 --
--- Name: tbl3; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl3; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl3 (
@@ -196,10 +196,10 @@ CREATE TABLE public.tbl3 (
 );
 
 
-ALTER TABLE public.tbl3 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl3 OWNER TO ZNbase_test;
 
 --
--- Name: tbl4; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl4; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl4 (
@@ -209,10 +209,10 @@ CREATE TABLE public.tbl4 (
 );
 
 
-ALTER TABLE public.tbl4 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl4 OWNER TO ZNbase_test;
 
 --
--- Name: tbl5; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl5; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl5 (
@@ -223,10 +223,10 @@ CREATE TABLE public.tbl5 (
 );
 
 
-ALTER TABLE public.tbl5 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl5 OWNER TO ZNbase_test;
 
 --
--- Name: tbl6; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl6; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl6 (
@@ -235,10 +235,10 @@ CREATE TABLE public.tbl6 (
 );
 
 
-ALTER TABLE public.tbl6 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl6 OWNER TO ZNbase_test;
 
 --
--- Name: tbl7; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl7; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl7 (
@@ -250,10 +250,10 @@ CREATE TABLE public.tbl7 (
 );
 
 
-ALTER TABLE public.tbl7 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl7 OWNER TO ZNbase_test;
 
 --
--- Name: tbl8; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl8; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl8 (
@@ -265,10 +265,10 @@ CREATE TABLE public.tbl8 (
 );
 
 
-ALTER TABLE public.tbl8 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl8 OWNER TO ZNbase_test;
 
 --
--- Name: tbl9; Type: TABLE; Schema: public; Owner: yugabyte_test
+-- Name: tbl9; Type: TABLE; Schema: public; Owner: ZNbase_test
 --
 
 CREATE TABLE public.tbl9 (
@@ -279,24 +279,24 @@ CREATE TABLE public.tbl9 (
 );
 
 
-ALTER TABLE public.tbl9 OWNER TO yugabyte_test;
+ALTER TABLE public.tbl9 OWNER TO ZNbase_test;
 
 --
--- Name: tbl1 a; Type: DEFAULT; Schema: public; Owner: yugabyte_test
+-- Name: tbl1 a; Type: DEFAULT; Schema: public; Owner: ZNbase_test
 --
 
 ALTER TABLE ONLY public.tbl1 ALTER COLUMN a SET DEFAULT nextval('public.tbl1_a_seq'::regclass);
 
 
 --
--- Name: tbl2 a; Type: DEFAULT; Schema: public; Owner: yugabyte_test
+-- Name: tbl2 a; Type: DEFAULT; Schema: public; Owner: ZNbase_test
 --
 
 ALTER TABLE ONLY public.tbl2 ALTER COLUMN a SET DEFAULT nextval('public.tbl2_a_seq'::regclass);
 
 
 --
--- Data for Name: chat_user; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: chat_user; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.chat_user ("chatID") FROM stdin;
@@ -304,7 +304,7 @@ COPY public.chat_user ("chatID") FROM stdin;
 
 
 --
--- Data for Name: rls_private; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: rls_private; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.rls_private (k, v) FROM stdin;
@@ -312,7 +312,7 @@ COPY public.rls_private (k, v) FROM stdin;
 
 
 --
--- Data for Name: rls_public; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: rls_public; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.rls_public (k, v) FROM stdin;
@@ -320,7 +320,7 @@ COPY public.rls_public (k, v) FROM stdin;
 
 
 --
--- Data for Name: tbl1; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl1; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl1 (a, b) FROM stdin;
@@ -329,7 +329,7 @@ COPY public.tbl1 (a, b) FROM stdin;
 
 
 --
--- Data for Name: tbl10; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl10; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl10 (a, b, c, d) FROM stdin;
@@ -337,7 +337,7 @@ COPY public.tbl10 (a, b, c, d) FROM stdin;
 
 
 --
--- Data for Name: tbl11; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl11; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl11 (a, b, c) FROM stdin;
@@ -345,7 +345,7 @@ COPY public.tbl11 (a, b, c) FROM stdin;
 
 
 --
--- Data for Name: tbl12; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl12; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl12 (a, b, c, d) FROM stdin;
@@ -353,7 +353,7 @@ COPY public.tbl12 (a, b, c, d) FROM stdin;
 
 
 --
--- Data for Name: tbl13; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl13; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl13 (a, b, c, d) FROM stdin;
@@ -361,7 +361,7 @@ COPY public.tbl13 (a, b, c, d) FROM stdin;
 
 
 --
--- Data for Name: tbl2; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl2; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl2 (a) FROM stdin;
@@ -369,7 +369,7 @@ COPY public.tbl2 (a) FROM stdin;
 
 
 --
--- Data for Name: tbl3; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl3; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl3 (a, b) FROM stdin;
@@ -377,7 +377,7 @@ COPY public.tbl3 (a, b) FROM stdin;
 
 
 --
--- Data for Name: tbl4; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl4; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl4 (a, b) FROM stdin;
@@ -385,7 +385,7 @@ COPY public.tbl4 (a, b) FROM stdin;
 
 
 --
--- Data for Name: tbl5; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl5; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl5 (a, b, c) FROM stdin;
@@ -394,7 +394,7 @@ COPY public.tbl5 (a, b, c) FROM stdin;
 
 
 --
--- Data for Name: tbl6; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl6; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl6 (a) FROM stdin;
@@ -402,7 +402,7 @@ COPY public.tbl6 (a) FROM stdin;
 
 
 --
--- Data for Name: tbl7; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl7; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl7 (a, b, c, d) FROM stdin;
@@ -410,7 +410,7 @@ COPY public.tbl7 (a, b, c, d) FROM stdin;
 
 
 --
--- Data for Name: tbl8; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl8; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl8 (a, b, c, d) FROM stdin;
@@ -418,7 +418,7 @@ COPY public.tbl8 (a, b, c, d) FROM stdin;
 
 
 --
--- Data for Name: tbl9; Type: TABLE DATA; Schema: public; Owner: yugabyte_test
+-- Data for Name: tbl9; Type: TABLE DATA; Schema: public; Owner: ZNbase_test
 --
 
 COPY public.tbl9 (a, b, c) FROM stdin;
@@ -426,75 +426,75 @@ COPY public.tbl9 (a, b, c) FROM stdin;
 
 
 --
--- Name: tbl1_a_seq; Type: SEQUENCE SET; Schema: public; Owner: yugabyte_test
+-- Name: tbl1_a_seq; Type: SEQUENCE SET; Schema: public; Owner: ZNbase_test
 --
 
 SELECT pg_catalog.setval('public.tbl1_a_seq', 1, true);
 
 
 --
--- Name: tbl2_a_seq; Type: SEQUENCE SET; Schema: public; Owner: yugabyte_test
+-- Name: tbl2_a_seq; Type: SEQUENCE SET; Schema: public; Owner: ZNbase_test
 --
 
 SELECT pg_catalog.setval('public.tbl2_a_seq', 1, false);
 
 
 --
--- Name: tbl8_idx; Type: INDEX; Schema: public; Owner: yugabyte_test
+-- Name: tbl8_idx; Type: INDEX; Schema: public; Owner: ZNbase_test
 --
 
 CREATE INDEX tbl8_idx ON public.tbl8 USING lsm ((b, c) HASH);
 
 
 --
--- Name: tbl8_idx2; Type: INDEX; Schema: public; Owner: yugabyte_test
+-- Name: tbl8_idx2; Type: INDEX; Schema: public; Owner: ZNbase_test
 --
 
 CREATE INDEX tbl8_idx2 ON public.tbl8 USING lsm (a HASH, b);
 
 
 --
--- Name: rls_public p1; Type: POLICY; Schema: public; Owner: yugabyte_test
+-- Name: rls_public p1; Type: POLICY; Schema: public; Owner: ZNbase_test
 --
 
 CREATE POLICY p1 ON public.rls_public USING (((k % 2) = 0));
 
 
 --
--- Name: rls_private p2; Type: POLICY; Schema: public; Owner: yugabyte_test
+-- Name: rls_private p2; Type: POLICY; Schema: public; Owner: ZNbase_test
 --
 
 CREATE POLICY p2 ON public.rls_private FOR INSERT WITH CHECK (((k % 2) = 1));
 
 
 --
--- Name: rls_private p3; Type: POLICY; Schema: public; Owner: yugabyte_test
+-- Name: rls_private p3; Type: POLICY; Schema: public; Owner: ZNbase_test
 --
 
 CREATE POLICY p3 ON public.rls_private FOR UPDATE USING (((k % 2) = 1));
 
 
 --
--- Name: rls_private; Type: ROW SECURITY; Schema: public; Owner: yugabyte_test
+-- Name: rls_private; Type: ROW SECURITY; Schema: public; Owner: ZNbase_test
 --
 
 ALTER TABLE public.rls_private ENABLE ROW LEVEL SECURITY;
 
 --
--- Name: rls_public; Type: ROW SECURITY; Schema: public; Owner: yugabyte_test
+-- Name: rls_public; Type: ROW SECURITY; Schema: public; Owner: ZNbase_test
 --
 
 ALTER TABLE public.rls_public ENABLE ROW LEVEL SECURITY;
 
 --
--- Name: TABLE rls_private; Type: ACL; Schema: public; Owner: yugabyte_test
+-- Name: TABLE rls_private; Type: ACL; Schema: public; Owner: ZNbase_test
 --
 
 GRANT SELECT ON TABLE public.rls_private TO rls_user;
 
 
 --
--- Name: TABLE rls_public; Type: ACL; Schema: public; Owner: yugabyte_test
+-- Name: TABLE rls_public; Type: ACL; Schema: public; Owner: ZNbase_test
 --
 
 GRANT ALL ON TABLE public.rls_public TO PUBLIC;

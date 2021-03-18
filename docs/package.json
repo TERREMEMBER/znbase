@@ -1,26 +1,26 @@
 {
   "name": "docs",
   "version": "1.0.0",
-  "description": "Yugabyte Docs",
+  "description": "ZNbase Docs",
   "main": "public/index.html",
   "scripts": {
     "start": "run-p webpack-watch sass-watch hugo-server",
     "build": "rm -rf public && npm ci && run-s webpack-build sass-build hugo-build",
-    "hugo-build": "hugo -b https://docs.yugabyte.com",
+    "hugo-build": "hugo -b https://docs.ZNbase.com",
     "hugo-server": "hugo server --bind 0.0.0.0 --baseURL ${YB_HUGO_BASE:-localhost}",
     "sass-build": "node_modules/node-sass/bin/node-sass --output-style compressed styles/site.scss > static/css/site.css",
     "sass-watch": "npm run sass-build; node_modules/node-sass/bin/node-sass --watch --output static/css --output-style compressed styles/site.scss",
     "webpack-build": "webpack",
     "webpack-watch": "webpack -w",
-    "publish": "npm run build && aws s3 rm s3://docs.yugabyte.com --recursive && aws s3 sync public/ s3://docs.yugabyte.com"
+    "publish": "npm run build && aws s3 rm s3://docs.ZNbase.com --recursive && aws s3 sync public/ s3://docs.ZNbase.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/yugabyte/docs.git"
+    "url": "git+ssh://git@bitbucket.org/ZNbase/docs.git"
   },
-  "author": "Yugabyte, Inc.",
+  "author": "ZNbase, Inc.",
   "license": "UNLICENSED",
-  "homepage": "https://bitbucket.org/yugabyte/docs#readme",
+  "homepage": "https://bitbucket.org/ZNbase/docs#readme",
   "dependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",

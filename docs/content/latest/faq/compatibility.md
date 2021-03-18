@@ -1,8 +1,8 @@
 ---
-title: FAQs about YugabyteDB API compatibility
+title: FAQs about ZNbaseDB API compatibility
 headerTitle: API compatibility FAQ
 linkTitle: API compatibility FAQ
-description: Answers to common questions about YugabyteDB API compatibility.
+description: Answers to common questions about ZNbaseDB API compatibility.
 aliases:
   - /faq/cassandra/
   - /latest/faq/cassandra/
@@ -17,23 +17,23 @@ showAsideToc: true
 
 ## What does API compatibility exactly mean?
 
-API compatibility refers to the fact that the database APIs offered by YugabyteDB servers implement the same wire protocol and modeling/query language as that of an existing database. Since client drivers, command line shells, IDE integrations and other ecosystem integrations of the existing database rely on this wire protocol and modeling/query language, they are expected to work with YugabyteDB without major modifications. 
+API compatibility refers to the fact that the database APIs offered by ZNbaseDB servers implement the same wire protocol and modeling/query language as that of an existing database. Since client drivers, command line shells, IDE integrations and other ecosystem integrations of the existing database rely on this wire protocol and modeling/query language, they are expected to work with ZNbaseDB without major modifications. 
 
 {{< note title="Note" >}}
-The [YSQL](../../api/ysql) API is compatible with PostgreSQL. This means PostgreSQL client drivers, psql command line shell, IDE integrations such as TablePlus and DBWeaver and more can be used with YugabyteDB. The same concept applies to [YCQL](../../api/ycql) in the context of the Apache Cassandra Query Language.
+The [YSQL](../../api/ysql) API is compatible with PostgreSQL. This means PostgreSQL client drivers, psql command line shell, IDE integrations such as TablePlus and DBWeaver and more can be used with ZNbaseDB. The same concept applies to [YCQL](../../api/ycql) in the context of the Apache Cassandra Query Language.
 {{< /note >}}
 
-## Why are YugabyteDB APIs compatible with popular DB languages?
+## Why are ZNbaseDB APIs compatible with popular DB languages?
 
-- YugabyteDB's API compatibility is aimed at accelerating developer onboarding. By integrating well with the existing ecosystem, YugabyteDB ensures that developers can get started easily using a language they are already comfortable with. 
+- ZNbaseDB's API compatibility is aimed at accelerating developer onboarding. By integrating well with the existing ecosystem, ZNbaseDB ensures that developers can get started easily using a language they are already comfortable with. 
 
-- YugabyteDB's API compatibility is not aimed at lift-and-shift porting of existing applications written for the original language. This is because existing applications are not written to take advantage of the distributed, strongly-consistent storage architecture that YugabyteDB provides. For such existing applications, developers should expect to modify their previously monolithic PostgreSQL and/or non-transactional Cassandra data access logic as they look to migrate to YugabyteDB.
+- ZNbaseDB's API compatibility is not aimed at lift-and-shift porting of existing applications written for the original language. This is because existing applications are not written to take advantage of the distributed, strongly-consistent storage architecture that ZNbaseDB provides. For such existing applications, developers should expect to modify their previously monolithic PostgreSQL and/or non-transactional Cassandra data access logic as they look to migrate to ZNbaseDB.
 
 ## YSQL compatibility with PostgreSQL
 
 ### What is the extent of compatibility with PostgreSQL?
 
-As highlighted in [Distributed PostgreSQL on a Google Spanner Architecture – Query Layer](https://blog.yugabyte.com/distributed-postgresql-on-a-google-spanner-architecture-query-layer/), YSQL reuses open source PostgreSQL’s query layer (written in C) as much as possible and as a result is wire-compatible with PostgreSQL dialect and client drivers. Specifically, YSQL is based on PostgreSQL v11.2. Following are some of the currently supported features:
+As highlighted in [Distributed PostgreSQL on a Google Spanner Architecture – Query Layer](https://blog.ZNbase.com/distributed-postgresql-on-a-google-spanner-architecture-query-layer/), YSQL reuses open source PostgreSQL’s query layer (written in C) as much as possible and as a result is wire-compatible with PostgreSQL dialect and client drivers. Specifically, YSQL is based on PostgreSQL v11.2. Following are some of the currently supported features:
 
 - DDL statements: CREATE, DROP, and TRUNCATE tables
 - Data types: All primitive types including numeric types (integers and floats), text data types, byte arrays, date-time types, UUID, SERIAL, as well as JSONB
@@ -42,13 +42,13 @@ As highlighted in [Distributed PostgreSQL on a Google Spanner Architecture – Q
 - Expressions: Rich set of PostgreSQL built-in functions and operators
 - Other Features: VIEWs, EXPLAIN, PREPARE-BIND-EXECUTE, and JDBC support
 
-YugabyteDB's goal is to remain as compatible with PostgreSQL as much as possible. If you see a feature currently missing, please file a [GitHub issue](https://github.com/yugabyte/yugabyte-db/issues) for us.
+ZNbaseDB's goal is to remain as compatible with PostgreSQL as much as possible. If you see a feature currently missing, please file a [GitHub issue](https://github.com/ZNbase/ZNbase-db/issues) for us.
 
 ## Can I insert data using YCQL, but read using YSQL, or vice versa?
 
-The YugabyteDB APIs are currently isolated and independent from one another. Data inserted or managed by one API cannot be queried by the other API. Additionally, Yugabyte does not provide a way to access the data across the APIs. An external framework, such as Presto, might be useful for simple use cases. For an example that joins YCQL and YSQL data, see the blog post about [Presto on YugabyteDB: Interactive OLAP SQL Queries Made Easy](https://blog.yugabyte.com/presto-on-yugabyte-db-interactive-olap-sql-queries-made-easy-facebook/).
+The ZNbaseDB APIs are currently isolated and independent from one another. Data inserted or managed by one API cannot be queried by the other API. Additionally, ZNbase does not provide a way to access the data across the APIs. An external framework, such as Presto, might be useful for simple use cases. For an example that joins YCQL and YSQL data, see the blog post about [Presto on ZNbaseDB: Interactive OLAP SQL Queries Made Easy](https://blog.ZNbase.com/presto-on-ZNbase-db-interactive-olap-sql-queries-made-easy-facebook/).
 
-Allowing YCQL tables to be accessed from the PostgreSQL-compatible YSQL API as foreign tables using foreign data wrappers (FDW) is on the roadmap. You can comment or increase the priority of the associated [GitHub](https://github.com/yugabyte/yugabyte-db/issues/830) issue.
+Allowing YCQL tables to be accessed from the PostgreSQL-compatible YSQL API as foreign tables using foreign data wrappers (FDW) is on the roadmap. You can comment or increase the priority of the associated [GitHub](https://github.com/ZNbase/ZNbase-db/issues/830) issue.
 
 ## YCQL compatibility with Apache Cassandra QL
 
@@ -56,7 +56,7 @@ YCQL is compatible with v3.4 of Apache Cassandra QL (CQL). Following questions h
 
 ### Features present in YCQL but not present in CQL
 
-1. Strongly-consistent reads and writes for a single row as an absolute guarantee. This is because YugabyteDB is a Consistent & Partition-tolerant (CP) database as opposed to Apache Cassandra which is an Available & Partition-tolerant (AP) databse. [Official Jepsen tests](https://blog.yugabyte.com/yugabyte-db-1-2-passes-jepsen-testing/) prove this correctness aspect under extreme failure conditions.
+1. Strongly-consistent reads and writes for a single row as an absolute guarantee. This is because ZNbaseDB is a Consistent & Partition-tolerant (CP) database as opposed to Apache Cassandra which is an Available & Partition-tolerant (AP) databse. [Official Jepsen tests](https://blog.ZNbase.com/ZNbase-db-1-2-passes-jepsen-testing/) prove this correctness aspect under extreme failure conditions.
 2. [JSONB](../../develop/learn/data-types/) column type for modeling document data
 3. [Distributed transactions](../../develop/learn/acid-transactions/) for multi-row ACID transactions.
 
@@ -71,7 +71,7 @@ YCQL is compatible with v3.4 of Apache Cassandra QL (CQL). Following questions h
 1. Lightweight transactions for compare-and-swap operations (such as incrementing integers) are unnecessary because YCQL achieves single row linearizability by default.
 2. Tunable write consistency is disallowed in YCQL because writes are committed at quorum using Raft replication protocol.
 
-This [blog](https://blog.yugabyte.com/apache-cassandra-lightweight-transactions-secondary-indexes-tunable-consistency/) goes into the details of YCQL vs Apache Cassandra architecture and is recommended for further reading.
+This [blog](https://blog.ZNbase.com/apache-cassandra-lightweight-transactions-secondary-indexes-tunable-consistency/) goes into the details of YCQL vs Apache Cassandra architecture and is recommended for further reading.
 
 ### Do INSERTs do “upserts” by default? How do I insert data only if it is absent?
 
@@ -91,9 +91,9 @@ Yes, you can have collection data types as primary keys as long as they are mark
 
 ### What is the difference between a `COUNTER` data type and `INTEGER` data type?
 
-Unlike Apache Cassandra, YugabyteDB COUNTER type is almost the same as INTEGER types. There is no need of lightweight transactions requiring 4 round trips to perform increments in YugabyteDB - these are efficiently performed with just one round trip.
+Unlike Apache Cassandra, ZNbaseDB COUNTER type is almost the same as INTEGER types. There is no need of lightweight transactions requiring 4 round trips to perform increments in ZNbaseDB - these are efficiently performed with just one round trip.
 
-### How is 'USING TIMESTAMP' different in YugabyteDB?
+### How is 'USING TIMESTAMP' different in ZNbaseDB?
 
 In Apache Cassandra, the highest timestamp provided always wins. Example:
 
@@ -124,7 +124,7 @@ timestamp.
   1 |  2 |  3
 ```
 
-On the other hand in Yugabyte, for efficiency purposes INSERTs and UPDATEs without the `USING
+On the other hand in ZNbase, for efficiency purposes INSERTs and UPDATEs without the `USING
 TIMESTAMP` clause always overwrite the older values. On the other hand, if you have the `USING
 TIMESTAMP` clause, then appropriate timestamp ordering is performed. Example:
 

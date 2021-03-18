@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -94,7 +94,7 @@ void PgCommandTestBase::RunPsqlCommand(const string &statement, const string &ex
       GetPostgresInstallRoot() + "/bin/ysqlsh",
       "-h", pg_ts->bind_host(),
       "-p", std::to_string(pg_ts->pgsql_rpc_port()),
-      "-U", "yugabyte",
+      "-U", "ZNbase",
       "-f", tmp_file_name
   };
 
@@ -112,7 +112,7 @@ void PgCommandTestBase::RunPsqlCommand(const string &statement, const string &ex
   LOG(INFO) << "Run tool: " << yb::ToString(argv);
   Subprocess proc(argv.front(), argv);
   if (use_auth_) {
-    proc.SetEnv("PGPASSWORD", "yugabyte");
+    proc.SetEnv("PGPASSWORD", "ZNbase");
   }
 
   string psql_stdout;

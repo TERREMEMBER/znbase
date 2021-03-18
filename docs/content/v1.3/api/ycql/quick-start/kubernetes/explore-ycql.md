@@ -2,7 +2,7 @@
 * Run cqlsh to connect to the service.
 
 ```sh
-$ kubectl exec -it yb-tserver-0 /home/yugabyte/bin/cqlsh
+$ kubectl exec -it yb-tserver-0 /home/ZNbase/bin/cqlsh
 ```
 
 ```

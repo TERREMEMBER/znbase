@@ -1,14 +1,14 @@
 ---
-title: YugabyteDB quick start
+title: ZNbaseDB quick start
 headerTitle: Quick start
 linkTitle: Quick start
-description: Get started using YugabyteDB in less than five minutes on macOS, Linux, Docker, and Kubernetes (Minikube).
+description: Get started using ZNbaseDB in less than five minutes on macOS, Linux, Docker, and Kubernetes (Minikube).
 image: /images/section_icons/index/quick_start.png
-headcontent: The easiest way to test YugabyteDB's APIs and core features is to create a local cluster on a single host.
+headcontent: The easiest way to test ZNbaseDB's APIs and core features is to create a local cluster on a single host.
 type: page
 aliases:
   - /quick-start/
-section: YUGABYTEDB CORE
+section: ZNbaseDB CORE
 menu:
   latest:
     identifier: quick-start
@@ -17,7 +17,7 @@ menu:
 
 {{< note title="Note" >}}
 
-The local cluster setup on a single host is intended for development and learning. For production deployment, performance benchmarking, or deploying a true multi-node on multi-host setup, see [Deploy YugabyteDB](../../../deploy).
+The local cluster setup on a single host is intended for development and learning. For production deployment, performance benchmarking, or deploying a true multi-node on multi-host setup, see [Deploy ZNbaseDB](../../../deploy).
 
 {{< /note >}}
 
@@ -28,7 +28,7 @@ The local cluster setup on a single host is intended for development and learnin
     <a class="section-link icon-offset" href="install/">
       <div class="head">
         <img class="icon" src="/images/section_icons/quick_start/install.png" aria-hidden="true" />
-        <div class="title">1. Install YugabyteDB</div>
+        <div class="title">1. Install ZNbaseDB</div>
       </div>
       <div class="body">
         Install the binary on macOS or Linux or use a Docker image to run on the operating system of your choice.
@@ -55,7 +55,7 @@ The local cluster setup on a single host is intended for development and learnin
         <div class="title">3. Explore Distributed SQL APIs</div>
       </div>
       <div class="body">
-        Explore YugabyteDB's distributed SQL APIs.
+        Explore ZNbaseDB's distributed SQL APIs.
       </div>
     </a>
   </div>

@@ -1,8 +1,8 @@
 ---
 title: YEDIS
 linkTitle: YEDIS
-headerTitle: Yugabyte Dictionary Service (YEDIS)
-description: The YEDIS API allows YugabyteDB to function as a clustered, auto-sharded, globally distributed and persistent key-value database that is compatible with the Redis commands library.
+headerTitle: ZNbase Dictionary Service (YEDIS)
+description: The YEDIS API allows ZNbaseDB to function as a clustered, auto-sharded, globally distributed and persistent key-value database that is compatible with the Redis commands library.
 headcontent: 
 image: /images/section_icons/api/yedis.png
 type: page
@@ -14,11 +14,11 @@ menu:
     weight: 2900
 ---
 
-The YEDIS API allows YugabyteDB to function as a persistent, resilient, auto-sharded, globally-distributed key-value database that is compatible with the Redis commands library. A Redis client can connect, send requests, and receive results from this API.
+The YEDIS API allows ZNbaseDB to function as a persistent, resilient, auto-sharded, globally-distributed key-value database that is compatible with the Redis commands library. A Redis client can connect, send requests, and receive results from this API.
 
 {{< note title="Note" >}}
 <b>
-Yugabyte's current focus is on the two distributed SQL APIs, namely YSQL (Postgres-compatible fully-relational API) and YCQL (a semi-relational API with Cassandra QL roots). Given that YEDIS is not a focus, it must be viewed as a deprecated API for new application development purposes.
+ZNbase's current focus is on the two distributed SQL APIs, namely YSQL (Postgres-compatible fully-relational API) and YCQL (a semi-relational API with Cassandra QL roots). Given that YEDIS is not a focus, it must be viewed as a deprecated API for new application development purposes.
 </b>
 
 While YEDIS supports many Redis data types (such as string, hash, set, sorted set and a new timeseries type) and commands, there are some notable exceptions at present.
@@ -27,7 +27,7 @@ While YEDIS supports many Redis data types (such as string, hash, set, sorted se
 
 * List, Bitmaps, HyperLogLogs, GeoSpatial types/commands are not yet implemented.
 
-* YugabyteDB is a full-featured disk-based database and does not have an in-memory only architecture like Redis.
+* ZNbaseDB is a full-featured disk-based database and does not have an in-memory only architecture like Redis.
 
 The above means that YEDIS is not a drop-in replacement to an existing Redis app. For key-value workloads that need persistence, elasticity and fault tolerance, YCQL (with features like keyspaces, tables, role-based access control and more) is often a great fit, especially if the application is new rather than an existing one already written in Redis. The YCQL drivers are also more clustering aware in terms of routing the request directly to the node which hosts the row/key, and hence YCQL even performs marginally better than YEDIS for equivalent scenarios. In general, our new feature development (support for data types, built-ins, TLS, backups and more), correctness testing (using e.g., Jepsen) and performance work is in the YSQL and YCQL areas.  
 {{< /note >}}

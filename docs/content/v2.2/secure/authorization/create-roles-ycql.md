@@ -1,8 +1,8 @@
 ---
-title: Create YCQL roles in YugabyteDB
+title: Create YCQL roles in ZNbaseDB
 headerTitle: Create roles
 linkTitle: Create roles
-description: Create YCQL roles in YugabyteDB
+description: Create YCQL roles in ZNbaseDB
 headcontent: Creating roles
 image: /images/section_icons/secure/create-roles.png
 block_indexing: true
@@ -49,7 +49,7 @@ Roles that have `LOGIN` permissions are users. As an example, you can create a u
 cassandra@ycqlsh> CREATE ROLE IF NOT EXISTS john WITH PASSWORD = 'PasswdForJohn' AND LOGIN = true;
 ```
 
-Read about [how to create users in YugabyteDB](../../authentication/) in the authentication section.
+Read about [how to create users in ZNbaseDB](../../authentication/) in the authentication section.
 
 ## 2. Grant roles
 

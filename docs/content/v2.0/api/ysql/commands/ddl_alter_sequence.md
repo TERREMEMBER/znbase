@@ -89,7 +89,7 @@ It gives ownership of the sequence to the specified column (if any). This means 
 Create a simple sequence.
 
 ```postgresql
-yugabyte=# CREATE SEQUENCE s;
+ZNbase=# CREATE SEQUENCE s;
 ```
 
 ```
@@ -99,7 +99,7 @@ CEATE SEQUENCE
 Modify the increment value.
 
 ```postgresql
-yugabyte=# ALTER SEQUENCE s INCREMENT BY 5;
+ZNbase=# ALTER SEQUENCE s INCREMENT BY 5;
 ```
 
 ```
@@ -107,7 +107,7 @@ ALTER SEQUENCE
 ```
 
 ```postgresql
-yugabyte=# SELECT nextval('s');
+ZNbase=# SELECT nextval('s');
 ```
 
 ```
@@ -118,7 +118,7 @@ yugabyte=# SELECT nextval('s');
 ```
 
 ```postgresql
-yugabyte=# SELECT nextval('s');
+ZNbase=# SELECT nextval('s');
 ```
 
 ```
@@ -131,7 +131,7 @@ yugabyte=# SELECT nextval('s');
 Modify the starting value.
 
 ```postgresql
-yugabyte=# ALTER SEQUENCE s RESTART WITH 2;
+ZNbase=# ALTER SEQUENCE s RESTART WITH 2;
 ```
 
 ```
@@ -139,7 +139,7 @@ ALTER SEQUENCE
 ```
 
 ```postgresql
-yugabyte=# SELECT nextval('s');
+ZNbase=# SELECT nextval('s');
 ```
 
 ```
@@ -150,7 +150,7 @@ yugabyte=# SELECT nextval('s');
 ```
 
 ```postgresql
-yugabyte=# SELECT nextval('s');
+ZNbase=# SELECT nextval('s');
 ```
 
 ```

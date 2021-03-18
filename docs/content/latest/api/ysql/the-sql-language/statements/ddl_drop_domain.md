@@ -68,25 +68,25 @@ Refuse to drop the domain if objects depend on it (default).
 ### Example 1
 
 ```plpgsql
-yugabyte=# CREATE DOMAIN idx DEFAULT 5 CHECK (VALUE > 0);
+ZNbase=# CREATE DOMAIN idx DEFAULT 5 CHECK (VALUE > 0);
 ```
 
 ```plpgsql
-yugabyte=# DROP DOMAIN idx;
+ZNbase=# DROP DOMAIN idx;
 ```
 
 ### Example 2
 
 ```plpgsql
-yugabyte=# CREATE DOMAIN idx DEFAULT 5 CHECK (VALUE > 0);
+ZNbase=# CREATE DOMAIN idx DEFAULT 5 CHECK (VALUE > 0);
 ```
 
 ```plpgsql
-yugabyte=# CREATE TABLE t (k idx primary key);
+ZNbase=# CREATE TABLE t (k idx primary key);
 ```
 
 ```plpgsql
-yugabyte=# DROP DOMAIN idx CASCADE;
+ZNbase=# DROP DOMAIN idx CASCADE;
 ```
 
 ## See also

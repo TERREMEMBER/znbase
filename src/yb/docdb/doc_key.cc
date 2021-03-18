@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1105,7 +1105,7 @@ DocDbAwareHashedComponentsFilterPolicy::GetKeyTransformer() const {
 const rocksdb::FilterPolicy::KeyTransformer*
 DocDbAwareV2FilterPolicy::GetKeyTransformer() const {
   // We want for DocDbAwareV2FilterPolicy to disable bloom filtering during read path for
-  // range-partitioned tablets (see https://github.com/yugabyte/yugabyte-db/issues/6435).
+  // range-partitioned tablets (see https://github.com/ZNbase/ZNbase-db/issues/6435).
   return &DocKeyComponentsExtractor<DocKeyPart::kUpToHash>::GetInstance();
 }
 

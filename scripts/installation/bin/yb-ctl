@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -12,9 +12,9 @@
 # or implied.  See the License for the specific language governing permissions and limitations
 # under the License.
 #
-"""A script to manage a local YugaByte cluster.
+"""A script to manage a local ZNbase cluster.
 
-We will aim to maintain https://docs.yugabyte.com/admin/yb-ctl/ as public facing documentation!
+We will aim to maintain https://docs.ZNbase.com/admin/yb-ctl/ as public facing documentation!
 
 Example use cases:
 
@@ -235,7 +235,7 @@ def get_home_dir():
 
 
 def get_default_data_dir():
-    return os.path.join(get_home_dir(), 'yugabyte-data')
+    return os.path.join(get_home_dir(), 'ZNbase-data')
 
 
 def get_os_family():
@@ -309,9 +309,9 @@ def has_rel_paths(top_dir, rel_paths):
     return True
 
 
-def is_yugabyte_db_installation_dir(top_dir):
+def is_ZNbase_db_installation_dir(top_dir):
     """
-    Checks if the given directory is a viable YugaByte DB installation directory. A build directory
+    Checks if the given directory is a viable ZNbase DB installation directory. A build directory
     with master/tserver/postgres binaries already built would match this definition.
     """
     if top_dir is None:
@@ -338,8 +338,8 @@ def is_flag_true(flags, name):
 
 
 class Installer:
-    YUGABYTE_DB_VERSION = '2.1.8.2'
-    DOWNLOAD_URL_PATTERN = 'https://downloads.yugabyte.com/yugabyte-{version}-{os}.tar.gz'
+    ZNbase_DB_VERSION = '2.1.8.2'
+    DOWNLOAD_URL_PATTERN = 'https://downloads.ZNbase.com/ZNbase-{version}-{os}.tar.gz'
     SHA256_SUM_BY_OS = {
         'darwin': 'dd6cbd63ad4dd150c9707ed5dc8f3696adf9828dff941bae2255bc04eff7e924',
         'linux': 'e4709b75bc6f180d91281b1c898b0dbe9ef7ea81ed7c9a5ee2368d78c66a664e'
@@ -350,32 +350,32 @@ class Installer:
         self.only_find_existing = only_find_existing
 
     def get_download_cache_dir(self):
-        return os.path.join(get_home_dir(), '.cache', 'yugabyte', 'downloads')
+        return os.path.join(get_home_dir(), '.cache', 'ZNbase', 'downloads')
 
     def get_software_installation_top_dir(self):
-        return os.path.join(get_home_dir(), 'yugabyte-db')
+        return os.path.join(get_home_dir(), 'ZNbase-db')
 
     def install_or_find_existing(self):
         """
-        Downloads/installs YugaByte DB, or only finds an existing installation, if
+        Downloads/installs ZNbase DB, or only finds an existing installation, if
         "only_find_existing" was set during this installer's creation.
 
-        Returns True in case YugaByte DB was installed or an existing installation was found.
+        Returns True in case ZNbase DB was installed or an existing installation was found.
         Returns False only if only_find_existing is specified and no existing installation found.
         Errors are still handled by raising exceptions.
         """
         installation_top_dir = self.get_software_installation_top_dir()
         self.installation_dir = os.path.join(
-                installation_top_dir, 'yugabyte-' + Installer.YUGABYTE_DB_VERSION)
+                installation_top_dir, 'ZNbase-' + Installer.ZNbase_DB_VERSION)
         if os.path.exists(self.installation_dir):
-            if not is_yugabyte_db_installation_dir(self.installation_dir):
+            if not is_ZNbase_db_installation_dir(self.installation_dir):
                 logging.error(
-                    "Directory %s exists but does not appear to be a valid YugaByte DB "
+                    "Directory %s exists but does not appear to be a valid ZNbase DB "
                     "installation directory. Remove that directory and re-run the script "
-                    "to re-install YugaByte DB.", self.installation_dir)
+                    "to re-install ZNbase DB.", self.installation_dir)
                 sys.exit(1)
             # Already installed.
-            logging.info("Found existing YugaByte DB installation at %s", self.installation_dir)
+            logging.info("Found existing ZNbase DB installation at %s", self.installation_dir)
             # This will re-run the post-install script if it did not complete initially.
             return self.run_post_install_script()
 
@@ -387,7 +387,7 @@ class Installer:
         mkdir_p(cache_dir)
         os_family = get_os_family()
         download_url = Installer.DOWNLOAD_URL_PATTERN.format(
-                version=self.YUGABYTE_DB_VERSION,
+                version=self.ZNbase_DB_VERSION,
                 os=os_family)
         download_name = download_url.rsplit('/', 1)[-1]
         download_dest_path = os.path.join(cache_dir, download_name)
@@ -593,8 +593,8 @@ class ClusterOptions:
 
     def _find_installation_dir(self):
         yb_src_root_candidate = os.path.dirname(os.path.dirname(os.path.dirname(self.script_dir)))
-        # For development, assume $PARENT_DIR/yugabyte-installation/bin/yb-ctl will have sibling
-        # directories $PARENT_DIR/yugabyte or $PARENT_DIR/yugabyte-db.
+        # For development, assume $PARENT_DIR/ZNbase-installation/bin/yb-ctl will have sibling
+        # directories $PARENT_DIR/ZNbase or $PARENT_DIR/ZNbase-db.
         installation_parent_dir = os.path.dirname(os.path.dirname(self.script_dir))
 
         self.installation_dirs_considered = [
@@ -604,26 +604,26 @@ class ClusterOptions:
 
         if os.environ.get('YB_CTL_NO_DEV_MODE') != '1':
             # "YB_USE_EXTERNAL_BUILD_ROOT" is a special way to place the build directory. This is
-            # only relevant when running yb-ctl from the yugabyte-db source tree.
+            # only relevant when running yb-ctl from the ZNbase-db source tree.
             use_external_build_root = os.environ.get('YB_USE_EXTERNAL_BUILD_ROOT') == '1'
 
             self.installation_dirs_considered += [
                 os.path.join(yb_src_root_candidate + '__build', 'latest') if use_external_build_root
                 else os.path.join(yb_src_root_candidate,  'build', 'latest'),
-                os.path.join(installation_parent_dir, 'yugabyte', 'build', 'latest'),
-                os.path.join(installation_parent_dir, 'yugabyte-db', 'build', 'latest')
+                os.path.join(installation_parent_dir, 'ZNbase', 'build', 'latest'),
+                os.path.join(installation_parent_dir, 'ZNbase-db', 'build', 'latest')
             ]
 
         for installation_dir_candidate in self.installation_dirs_considered:
             if self.yb_ctl_verbose:
                 logging.info(
-                        "Considering YugaByte DB installation directory candidate: %s",
+                        "Considering ZNbase DB installation directory candidate: %s",
                         installation_dir_candidate)
-            if is_yugabyte_db_installation_dir(installation_dir_candidate):
+            if is_ZNbase_db_installation_dir(installation_dir_candidate):
                 self.installation_dir = installation_dir_candidate
                 if self.yb_ctl_verbose:
                     logging.info(
-                            "Found YugaByte DB installation directory: %s",
+                            "Found ZNbase DB installation directory: %s",
                             self.installation_dir)
                 break
 
@@ -735,7 +735,7 @@ class ClusterOptions:
                 self.base_ports[protocol_type]['rpc'] = port
 
         # -----------------------------------------------------------------------------------------
-        # Automatic YugaByte DB installation
+        # Automatic ZNbase DB installation
         # -----------------------------------------------------------------------------------------
         if args.install_if_needed and not self.installation_dir:
             installer = Installer()
@@ -750,9 +750,9 @@ class ClusterOptions:
                     self.installation_dir = installation_finder.installation_dir
                 if not self.installation_dir:
                     raise ExitWithError(
-                        "Failed to determine YugaByte DB installation directory. Directories "
+                        "Failed to determine ZNbase DB installation directory. Directories "
                         "considered:\n%s\nPlease specify --install-if-needed to download and "
-                        "install YugaByte DB automatically." %
+                        "install ZNbase DB automatically." %
                         ("    " + "\n    ".join(self.installation_dirs_considered)))
 
     def validate_daemon_type(self, daemon_type):
@@ -890,7 +890,7 @@ class ClusterControl:
     def setup_parent_parser(self):
         self.parent_parser.add_argument(
             "--binary_dir", default=None,
-            help="Specify a custom directory in which to find the yugabyte binaries.")
+            help="Specify a custom directory in which to find the ZNbase binaries.")
         self.parent_parser.add_argument(
             "--data_dir", default=None,
             help="Specify a custom directory where to store data.")
@@ -917,7 +917,7 @@ class ClusterControl:
                  "affects yb-ctl and --v affects server processes.")
         self.parent_parser.add_argument(
             "--install-if-needed", action='store_true', default=None,
-            help="With this option, if YugaByte DB is not yet installed on the system, the latest "
+            help="With this option, if ZNbase DB is not yet installed on the system, the latest "
                  "version will be downloaded and installed automatically.")
 
     def get_cluster_config_file_path(self):
@@ -1012,7 +1012,7 @@ class ClusterControl:
         """
         self.parser.add_argument(
             "--binary_dir", default=None, dest="binary_dir_dest",
-            help="Specify a custom directory in which to find the yugabyte binaries.")
+            help="Specify a custom directory in which to find the ZNbase binaries.")
         self.parser.add_argument(
             "--data_dir", default=get_default_data_dir(), dest="data_dir_dest",
             help="Specify a custom directory where to store data.")
@@ -1042,7 +1042,7 @@ class ClusterControl:
                  "affects yb-ctl and --v affects server processes.")
         self.parser.add_argument(
             "--install-if-needed", dest="install_dest", action='store_true',
-            help="With this option, if YugaByte DB is not yet installed on the system, the latest "
+            help="With this option, if ZNbase DB is not yet installed on the system, the latest "
                  "version will be downloaded and installed automatically.")
 
         subparsers = {}
@@ -1061,7 +1061,7 @@ class ClusterControl:
                 ("stop_node", "Stop the specified node in the cluster"),
                 ("restart_node", "Restart the specified node in the cluster"),
                 ("status", "Get cluster information"),
-                ("setup_redis", "Setup YugaByte to support Redis API")):
+                ("setup_redis", "Setup ZNbase to support Redis API")):
 
             subparsers[cmd_name] = self.setup_base_parser(cmd_name, help=help)
 
@@ -1124,13 +1124,13 @@ class ClusterControl:
 
             subparsers[cmd].add_argument("--enable_ysql", "--enable_postgres",
                                          action='store_true',
-                                         help="Enable YugaByte SQL API. Useful for clusters where "
+                                         help="Enable ZNbase SQL API. Useful for clusters where "
                                               "YSQL was initially disabled.",
                                          default=None)
 
             subparsers[cmd].add_argument("--disable_ysql",
                                          action='store_true',
-                                         help="Disable YugaByte SQL API.",
+                                         help="Disable ZNbase SQL API.",
                                          default=None)
 
             subparsers[cmd].add_argument("--ysql_hba_conf_csv",
@@ -1644,7 +1644,7 @@ class ClusterControl:
     def wait_for_cluster_or_raise(self):
         print("Waiting for cluster to be ready.")
         if not self.wait_for_cluster():
-            raise RuntimeError("Timed out waiting for a YugaByte DB cluster!")
+            raise RuntimeError("Timed out waiting for a ZNbase DB cluster!")
 
     def print_status_box(self, title, body_kv_list):
         print("-" * 100)
@@ -1696,7 +1696,7 @@ class ClusterControl:
                 YSQL_DEFAULT_PORT)
 
             info_kv_list.extend([
-                ("JDBC", "jdbc:postgresql://{}:{}/yugabyte".format(
+                ("JDBC", "jdbc:postgresql://{}:{}/ZNbase".format(
                     ip_address, ysql_port)),
                 ("YSQL Shell", ysqlsh_cmd_line)
             ])
@@ -1826,7 +1826,7 @@ class ClusterControl:
             if self.options.enable_ysql and not self.cluster_config.get('enable_ysql'):
                 if self.already_running_daemons:
                     sys.stderr.write(
-                            "YugaByte DB was already running. If you are trying to enable YSQL "
+                            "ZNbase DB was already running. If you are trying to enable YSQL "
                             "on an existing cluster, please stop/start the cluster.\n")
                     # To prevent YSQL from showing up in the status.
                     self.options.enable_ysql = False
@@ -1928,7 +1928,7 @@ class ClusterControl:
             self.show_node_status(index, server_counts)
 
     def setup_redis_cmd_impl(self):
-        print("Setting up YugaByte DB support for Redis API.")
+        print("Setting up ZNbase DB support for Redis API.")
         self.set_master_addresses()
         self.wait_for_cluster_or_raise()
         cmd_setup_redis_table = self.yb_admin_cmd_list(
@@ -1945,7 +1945,7 @@ class ClusterControl:
     def run_cluster_wide_ysql_initdb(self):
         initdb_binary_path = self.options.get_binary_path("initdb")
 
-        logging.info("Running initdb to initialize YSQL metadata in the YugaByte DB cluster.")
+        logging.info("Running initdb to initialize YSQL metadata in the ZNbase DB cluster.")
         env = {'FLAGS_pggate_master_addresses': self.options.master_addresses,
                'YB_ENABLED_IN_POSTGRES': '1'}
         certs_dir = self.get_certs_dir()
@@ -1983,7 +1983,7 @@ class ClusterControl:
                             logging.info(line.rstrip())
 
         logging.info(
-            "Successfully ran initdb to initialize YSQL data in the YugaByte cluster")
+            "Successfully ran initdb to initialize YSQL data in the ZNbase cluster")
 
     def get_certs_dir(self):
         # We split parameters containing multiple '='s like 'vmodule=meta_cache=5,tablet=5' into

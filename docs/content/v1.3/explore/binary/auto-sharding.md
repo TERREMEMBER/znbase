@@ -45,7 +45,7 @@ $ ./bin/yb-ctl status
 | YCQL                : ./bin/cqlsh 127.0.0.1 9042                                                 |
 | YEDIS               : ./bin/redis-cli -h 127.0.0.1 -p 6379                                       |
 | Web UI              : http://127.0.0.1:7000/                                                     |
-| Cluster Data        : /Users/schoudhury/yugabyte-data                                            |
+| Cluster Data        : /Users/schoudhury/ZNbase-data                                            |
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 | Node 1: yb-tserver (pid 72053), yb-master (pid 72050)                                            |
@@ -54,9 +54,9 @@ $ ./bin/yb-ctl status
 | YSQL                : ./bin/ysqlsh                                                               |
 | YCQL                : ./bin/cqlsh 127.0.0.1 9042                                                 |
 | YEDIS               : ./bin/redis-cli -h 127.0.0.1 -p 6379                                       |
-| data-dir[0]         : /Users/schoudhury/yugabyte-data/node-1/disk-1/yb-data                      |
-| TServer Logs        : /Users/schoudhury/yugabyte-data/node-1/disk-1/yb-data/tserver/logs         |
-| Master Logs         : /Users/schoudhury/yugabyte-data/node-1/disk-1/yb-data/master/logs          |
+| data-dir[0]         : /Users/schoudhury/ZNbase-data/node-1/disk-1/yb-data                      |
+| TServer Logs        : /Users/schoudhury/ZNbase-data/node-1/disk-1/yb-data/tserver/logs         |
+| Master Logs         : /Users/schoudhury/ZNbase-data/node-1/disk-1/yb-data/master/logs          |
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 | Node 2: yb-tserver (pid 72128)                                                                   |
@@ -65,8 +65,8 @@ $ ./bin/yb-ctl status
 | YSQL                : ./bin/ysqlsh                                                               |
 | YCQL                : ./bin/cqlsh 127.0.0.2 9042                                                 |
 | YEDIS               : ./bin/redis-cli -h 127.0.0.2 -p 6379                                       |
-| data-dir[0]         : /Users/schoudhury/yugabyte-data/node-2/disk-1/yb-data                      |
-| TServer Logs        : /Users/schoudhury/yugabyte-data/node-2/disk-1/yb-data/tserver/logs         |
+| data-dir[0]         : /Users/schoudhury/ZNbase-data/node-2/disk-1/yb-data                      |
+| TServer Logs        : /Users/schoudhury/ZNbase-data/node-2/disk-1/yb-data/tserver/logs         |
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 | Node 3: yb-tserver (pid 72166)                                                                   |
@@ -75,8 +75,8 @@ $ ./bin/yb-ctl status
 | YSQL                : ./bin/ysqlsh -U postgres -h 127.0.0.3 -p 5433                              |
 | YCQL                : ./bin/cqlsh 127.0.0.3 9042                                                 |
 | YEDIS               : ./bin/redis-cli -h 127.0.0.3 -p 6379                                       |
-| data-dir[0]         : /Users/schoudhury/yugabyte-data/node-3/disk-1/yb-data                      |
-| TServer Logs        : /Users/schoudhury/yugabyte-data/node-3/disk-1/yb-data/tserver/logs         |
+| data-dir[0]         : /Users/schoudhury/ZNbase-data/node-3/disk-1/yb-data                      |
+| TServer Logs        : /Users/schoudhury/ZNbase-data/node-3/disk-1/yb-data/tserver/logs         |
 ----------------------------------------------------------------------------------------------------
 ```
 
@@ -96,7 +96,7 @@ cqlsh> CREATE KEYSPACE ybdemo_keyspace;
 cqlsh> CREATE TABLE ybdemo_keyspace.cassandrakeyvalue (k text PRIMARY KEY, v blob);
 ```
 
-For each table, we have instructed YugabyteDB to create 4 shards per tserver present in the universe. Since we have 3 nodes, we expect 12 tablets for the `ybdemo_keyspace.cassandrakeyvalue` table.
+For each table, we have instructed ZNbaseDB to create 4 shards per tserver present in the universe. Since we have 3 nodes, we expect 12 tablets for the `ybdemo_keyspace.cassandrakeyvalue` table.
 
 ## 3. Explore tablets
 
@@ -121,22 +121,22 @@ What we see here is that there are 12 tablets as expected, and the key ranges ow
 Let us list out all the tablet directories and see their sizes. This can be done as follows.
 
 ```sh
-$ du -hs /tmp/yugabyte-local-cluster/node*/disk*/yb-data/tserver/data/rocksdb/table*/* | grep -v '0B'
+$ du -hs /tmp/ZNbase-local-cluster/node*/disk*/yb-data/tserver/data/rocksdb/table*/* | grep -v '0B'
 ```
 
 ```
- 20K    /tmp/yugabyte-local-cluster/node-1/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-439ae3bde90049d6812e198e76ad29a4
- 20K    /tmp/yugabyte-local-cluster/node-1/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-eecd01f0a7cd4537ba571bdb85d0c094
- 20K    /tmp/yugabyte-local-cluster/node-1/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-4ea334056a3845518cc6614baef96966
- 20K    /tmp/yugabyte-local-cluster/node-1/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-52642a3a9d7b4d38a103dff5dd77a3c6
- 20K    /tmp/yugabyte-local-cluster/node-2/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-4e31e26b3b204e34a1e0cfd6f7500525
- 20K    /tmp/yugabyte-local-cluster/node-2/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-b7ac08a983aa45a3843ab92b1719799a
- 20K    /tmp/yugabyte-local-cluster/node-2/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-22c349a07afb48e3844b570c24455431
- 20K    /tmp/yugabyte-local-cluster/node-2/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-8955db9e1ec841f3a30535b77d707586
- 20K    /tmp/yugabyte-local-cluster/node-3/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-adac9f92466b4d288a4ae346aaad3880
- 20K    /tmp/yugabyte-local-cluster/node-3/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-f04a6d5113a74ba79a04f01c80423ef5
- 20K    /tmp/yugabyte-local-cluster/node-3/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-1c472c1204fe40afbc7948dadce22be8
- 20K    /tmp/yugabyte-local-cluster/node-3/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-5aaeb96381044aa2b09ed9973830bb27
+ 20K    /tmp/ZNbase-local-cluster/node-1/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-439ae3bde90049d6812e198e76ad29a4
+ 20K    /tmp/ZNbase-local-cluster/node-1/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-eecd01f0a7cd4537ba571bdb85d0c094
+ 20K    /tmp/ZNbase-local-cluster/node-1/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-4ea334056a3845518cc6614baef96966
+ 20K    /tmp/ZNbase-local-cluster/node-1/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-52642a3a9d7b4d38a103dff5dd77a3c6
+ 20K    /tmp/ZNbase-local-cluster/node-2/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-4e31e26b3b204e34a1e0cfd6f7500525
+ 20K    /tmp/ZNbase-local-cluster/node-2/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-b7ac08a983aa45a3843ab92b1719799a
+ 20K    /tmp/ZNbase-local-cluster/node-2/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-22c349a07afb48e3844b570c24455431
+ 20K    /tmp/ZNbase-local-cluster/node-2/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-8955db9e1ec841f3a30535b77d707586
+ 20K    /tmp/ZNbase-local-cluster/node-3/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-adac9f92466b4d288a4ae346aaad3880
+ 20K    /tmp/ZNbase-local-cluster/node-3/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-f04a6d5113a74ba79a04f01c80423ef5
+ 20K    /tmp/ZNbase-local-cluster/node-3/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-1c472c1204fe40afbc7948dadce22be8
+ 20K    /tmp/ZNbase-local-cluster/node-3/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-5aaeb96381044aa2b09ed9973830bb27
  ```
 
 ## 4. Insert and query a table
@@ -152,7 +152,7 @@ Let us insert a key-value entry, with the value size around 2MB. Since the memst
 Download the sample app JAR file.
 
 ```sh
-$ wget https://github.com/yugabyte/yb-sample-apps/releases/download/v1.2.0/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
+$ wget https://github.com/ZNbase/yb-sample-apps/releases/download/v1.2.0/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
 ```
 
 Run the workload.
@@ -195,7 +195,7 @@ cqlsh> SELECT k FROM ybdemo_keyspace.cassandrakeyvalue;
 Now let us check the sizes of the various tablets:
 
 ```sh
-$ du -hs /tmp/yugabyte-local-cluster/node*/disk*/yb-data/tserver/data/rocksdb/table*/* | grep -v '0B'
+$ du -hs /tmp/ZNbase-local-cluster/node*/disk*/yb-data/tserver/data/rocksdb/table*/* | grep -v '0B'
 ```
 
 ```

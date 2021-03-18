@@ -1,7 +1,7 @@
 ---
 title: 3. Explore YSQL 
 linkTitle: 3. Explore YSQL 
-description: Explore Yugabyte SQL (YSQL)
+description: Explore ZNbase SQL (YSQL)
 image: /images/section_icons/quick_start/explore_ysql.png
 block_indexing: true
 menu:
@@ -13,7 +13,7 @@ isTocNested: false
 showAsideToc: true
 ---
 
-After [creating a local cluster](../create-local-cluster/), follow the steps here to explore YugabyteDB's PostgreSQL-compatible [YSQL](../../api/ysql/) API.
+After [creating a local cluster](../create-local-cluster/), follow the steps here to explore ZNbaseDB's PostgreSQL-compatible [YSQL](../../api/ysql/) API.
 
 ## 1. Load sample data
 
@@ -22,13 +22,13 @@ Follow the steps to create a database and load sample data.
 1. Download the sample schema using the following `wget` command.
 
     ```sh
-    $ wget https://raw.githubusercontent.com/yugabyte/yb-sql-workshop/master/query-using-bi-tools/schema.sql
+    $ wget https://raw.githubusercontent.com/ZNbase/yb-sql-workshop/master/query-using-bi-tools/schema.sql
     ```
 
 2. Download the sample data archive by running the following `wget` command.
 
     ```sh
-    $ wget https://github.com/yugabyte/yb-sql-workshop/raw/master/query-using-bi-tools/sample-data.tgz
+    $ wget https://github.com/ZNbase/yb-sql-workshop/raw/master/query-using-bi-tools/sample-data.tgz
     ```
 
 3. Unpack the `sample-data.tgz` file running the following `tar` command.
@@ -96,13 +96,13 @@ Follow the steps to create a database and load sample data.
 1. Create a database named `yb_demo` by using the following `CREATE DATABASE` command.
 
     ```postgresql
-    yugabyte=# CREATE DATABASE yb_demo;
+    ZNbase=# CREATE DATABASE yb_demo;
     ```
 
 2. Connect to the new database using the following YSQL `\c` meta command.
 
     ```sql
-    yugabyte=# \c yb_demo;
+    ZNbase=# \c yb_demo;
     ```
 
 3. Create the database schema, which includes four tables, by running the following `\i` meta command.
@@ -129,7 +129,7 @@ Follow the steps to create a database and load sample data.
     yb_demo=# \i 'data/reviews.sql'
     ```
 
-    You now have sample data and are ready to begin exploring YSQL in YugabyteDB.
+    You now have sample data and are ready to begin exploring YSQL in ZNbaseDB.
 
 ## 2. Simple queries
 
@@ -419,15 +419,15 @@ yb_demo=# \d
                List of relations
  Schema |      Name       |   Type   |  Owner
 --------+-----------------+----------+----------
- public | channel         | view     | yugabyte
- public | orders          | table    | yugabyte
- public | orders_id_seq   | sequence | yugabyte
- public | products        | table    | yugabyte
- public | products_id_seq | sequence | yugabyte
- public | reviews         | table    | yugabyte
- public | reviews_id_seq  | sequence | yugabyte
- public | users           | table    | yugabyte
- public | users_id_seq    | sequence | yugabyte
+ public | channel         | view     | ZNbase
+ public | orders          | table    | ZNbase
+ public | orders_id_seq   | sequence | ZNbase
+ public | products        | table    | ZNbase
+ public | products_id_seq | sequence | ZNbase
+ public | reviews         | table    | ZNbase
+ public | reviews_id_seq  | sequence | ZNbase
+ public | users           | table    | ZNbase
+ public | users_id_seq    | sequence | ZNbase
 (9 rows)
 ```
 

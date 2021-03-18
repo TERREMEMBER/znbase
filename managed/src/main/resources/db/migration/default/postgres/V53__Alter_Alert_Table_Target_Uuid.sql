@@ -1,2 +1,2 @@
--- Copyright (c) YugaByte, Inc.
+-- Copyright (c) ZNbase, Inc.
 ALTER TABLE alert ADD COLUMN target_uuid uuid, ADD COLUMN target_type varchar(50);

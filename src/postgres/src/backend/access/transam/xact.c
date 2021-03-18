@@ -1192,7 +1192,7 @@ RecordTransactionCommit(void)
 	bool		RelcacheInitFileInval = false;
 	bool		wrote_xlog;
 
-	if (IsYugaByteEnabled() && !IsCurrentTxnWithPGRel())
+	if (IsZNbaseEnabled() && !IsCurrentTxnWithPGRel())
 	{
 		return latestXid;
 	}
@@ -1857,13 +1857,13 @@ AtSubCleanup_Memory(void)
  */
 
 /*
- * Do a Yugabyte-specific initialization of transaction when it starts,
+ * Do a ZNbase-specific initialization of transaction when it starts,
  * called as a part of StartTransaction
  */
 static void
 YBStartTransaction(TransactionState s)
 {
-	s->isYBTxnWithPostgresRel = !IsYugaByteEnabled();
+	s->isYBTxnWithPostgresRel = !IsZNbaseEnabled();
 	s->ybDataSent             = false;
 	s->YBPostponedDdlOps      = NULL;
 

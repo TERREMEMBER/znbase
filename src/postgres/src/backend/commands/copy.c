@@ -847,7 +847,7 @@ DoCopy(ParseState *pstate, const CopyStmt *stmt,
 						  (is_from ? RowExclusiveLock : AccessShareLock));
 
 		if (rel->rd_rel->relpersistence == RELPERSISTENCE_TEMP &&
-				IsYugaByteEnabled()) {
+				IsZNbaseEnabled()) {
 			SetTxnWithPGRel();
 		}
 
@@ -2100,7 +2100,7 @@ CopyTo(CopyState cstate)
 
 		/*
 		 * Create and switch to a temporary memory context that we can reset
-		 * once per row to recover Yugabyte palloc'd memory.
+		 * once per row to recover ZNbase palloc'd memory.
 		 */
 		if (is_yb_relation)
 		{
@@ -2122,13 +2122,13 @@ CopyTo(CopyState cstate)
 			CopyOneRowTo(cstate, HeapTupleGetOid(tuple), values, nulls);
 			processed++;
 
-			/* Free Yugabyte memory for this row */
+			/* Free ZNbase memory for this row */
 			if (is_yb_relation)
 				MemoryContextReset(yb_context);
 		}
 
 		/*
-		 * Switch out of and delete the temporary memory context for Yugabyte
+		 * Switch out of and delete the temporary memory context for ZNbase
 		 * palloc'd memory.
 		 */
 		if (is_yb_relation)

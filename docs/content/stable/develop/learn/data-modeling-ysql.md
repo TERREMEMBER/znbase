@@ -1,5 +1,5 @@
 ---
-title: YSQL data modeling in YugabyteDB
+title: YSQL data modeling in ZNbaseDB
 headerTitle: Data modeling
 linkTitle: 2. Data modeling
 description: Learn data modeling in YSQL and how to identify the patterns used to access data and the types of queries to be performed.

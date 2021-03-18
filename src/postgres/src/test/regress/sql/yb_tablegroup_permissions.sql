@@ -55,7 +55,7 @@ CREATE TABLE c(i text) TABLEGROUP owned_by2;
 --
 -- GRANT/REVOKE tests
 --
-\c test_tablegroup yugabyte
+\c test_tablegroup ZNbase
 -- Grant privs to user_1 and user_3 and revoke from user_2 (but still test that superuser supersedes)
 CREATE TABLEGROUP test_grant;
 GRANT CREATE ON TABLEGROUP test_grant TO user_1 WITH GRANT OPTION;
@@ -103,7 +103,7 @@ CREATE TABLE d(i text) TABLEGROUP test_grant;
 --
 -- Now REVOKE privs and ensure the users no longer have access.
 --
-\c test_tablegroup yugabyte
+\c test_tablegroup ZNbase
 REVOKE CREATE ON TABLEGROUP test_grant FROM user_1 CASCADE;
 REVOKE GRANT OPTION FOR CREATE ON TABLEGROUP test_grant FROM user_1;
 REVOKE ALL ON TABLEGROUP test_grant FROM user_3;
@@ -127,15 +127,15 @@ GRANT CREATE ON TABLEGROUP test_grant TO user_3;
 --
 -- ALTER DEFAULT PRIVILEGES tests
 --
-\c yugabyte yugabyte
+\c ZNbase ZNbase
 -- Grant user_1 CREATE for all future tablegroups
 ALTER DEFAULT PRIVILEGES GRANT CREATE ON TABLEGROUPS TO user_1;
 CREATE TABLEGROUP test_adef;
 \ddp
 -- Operations with user_1. Should work without explicit grant for test_adef.
-\c yugabyte user_1
+\c ZNbase user_1
 CREATE TABLE i(i text) TABLEGROUP test_adef;
 -- Revoke user_1 CREATE default
-\c yugabyte yugabyte
+\c ZNbase ZNbase
 ALTER DEFAULT PRIVILEGES REVOKE CREATE ON TABLEGROUPS FROM user_1;
 \ddp

@@ -1,7 +1,7 @@
 ---
-title: YugabyteDB CDC connector
-linkTitle: YugabyteDB CDC connector
-description: YugabyteDB CDC connector
+title: ZNbaseDB CDC connector
+linkTitle: ZNbaseDB CDC connector
+description: ZNbaseDB CDC connector
 beta: /latest/faq/general/#what-is-the-definition-of-the-beta-feature-tag
 block_indexing: true
 menu:
@@ -14,7 +14,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Use change data capture (CDC) in your YugabyteDB deployments to asynchronously stream data changes to external systems. In the sections below, learn how you can use the YugabyteDB CDC connector to send data changes to Apache Kafka or to `stdout`.
+Use change data capture (CDC) in your ZNbaseDB deployments to asynchronously stream data changes to external systems. In the sections below, learn how you can use the ZNbaseDB CDC connector to send data changes to Apache Kafka or to `stdout`.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ The JRE directory location can be found by looking at the `JAVA_HOME` environmen
 
 ## Install the connector
 
-1. Download the [YugabyteDB CDC connector (`yb-cdc-connector.jar`)](https://github.com/yugabyte/yb-kafka-connector/blob/master/yb-cdc/yb-cdc-connector.jar).
+1. Download the [ZNbaseDB CDC connector (`yb-cdc-connector.jar`)](https://github.com/ZNbase/yb-kafka-connector/blob/master/yb-cdc/yb-cdc-connector.jar).
 
 2. Install the JAR file in the following recommended location:
 
@@ -40,7 +40,7 @@ The JRE directory location can be found by looking at the `JAVA_HOME` environmen
 
 ## Use the connector
 
-To use the YugabyteDB CDC connector, run the `yb_cdc_connector` JAR file.
+To use the ZNbaseDB CDC connector, run the `yb_cdc_connector` JAR file.
 
 ### Syntax for Apache Kafka
 
@@ -106,28 +106,28 @@ Specify the existing stream ID. If you do not specify the stream ID, on restart 
 
 If specified (recommended), on restart, the log output stream resumes after the last output logged.
 
-To get the stream ID, run the YugabyteDB CDC connector and the first time you can get the stream ID from the console output.
+To get the stream ID, run the ZNbaseDB CDC connector and the first time you can get the stream ID from the console output.
 
 ## Examples
 
 ### Sending a CDC output stream to "stdout"
 
-The following command will start the YugabyteDB CDC connector and send an output stream from a 3-node YugabyteDB cluster to `stdout`.
+The following command will start the ZNbaseDB CDC connector and send an output stream from a 3-node ZNbaseDB cluster to `stdout`.
 
 ```sh
 java -jar yb_cdc_connector.jar
 --master_addrs 127.0.0.1,127.0.0.2,127.0.0.3
---table_name yugabyte.users
+--table_name ZNbase.users
 --log_only
 ```
 
 ### Sending a CDC output stream to a Kafka topic
 
-The following command will start the YugabyteDB CDC connector and send an output stream from a 3-node YugabyteDB cluster to a Kafka topic.
+The following command will start the ZNbaseDB CDC connector and send an output stream from a 3-node ZNbaseDB cluster to a Kafka topic.
 
 ```sh
 java -jar target/yb_cdc_connector.jar
---table_name yugabyte.users
+--table_name ZNbase.users
 --master_addrs 127.0.0.1:7100,127.0.0.2:7100,127.0.0.3:7100
 --kafka_addrs 127.0.0.1:9092
 --schema_registry_addrs 127.0.0.1:8081

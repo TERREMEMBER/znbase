@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1787,7 +1787,7 @@ public class TestIndex extends BaseCQLTest {
 
     // test_update: Row[4, 5, null, null] (updating all indexes)
     //TODO: If JSONB value == NULL: Error - Execution Error. Not enough data to process
-    //      https://github.com/yugabyte/yugabyte-db/issues/5899
+    //      https://github.com/ZNbase/ZNbase-db/issues/5899
     //      [YCQL] Incorrect 'null' value handling with secondary indexes based on JSONB column.
 /*
     assertIndexDataAndMetrics(tp, tableColumnMap, indexColumnMap,
@@ -1807,7 +1807,7 @@ public class TestIndex extends BaseCQLTest {
 
     // test_update: Row[44, 55, null, null] (updating all indexes)
     //TODO: If JSONB value == NULL: Error - Execution Error. Not enough data to process
-    //      https://github.com/yugabyte/yugabyte-db/issues/5899
+    //      https://github.com/ZNbase/ZNbase-db/issues/5899
     //      [YCQL] Incorrect 'null' value handling with secondary indexes based on JSONB column.
 /*
     assertIndexDataAndMetrics(tp, tableColumnMap, indexColumnMap,
@@ -1819,7 +1819,7 @@ public class TestIndex extends BaseCQLTest {
 
     // test_update: Row[66, 77, null, null] (updating all indexes)
     //TODO: If JSONB value == NULL: Error - Execution Error. Not enough data to process
-    //      https://github.com/yugabyte/yugabyte-db/issues/5899
+    //      https://github.com/ZNbase/ZNbase-db/issues/5899
     //      [YCQL] Incorrect 'null' value handling with secondary indexes based on JSONB column.
 /*
     assertIndexDataAndMetrics(tp, tableColumnMap, indexColumnMap,
@@ -1834,7 +1834,7 @@ public class TestIndex extends BaseCQLTest {
         "delete j from test_update where h = 66 and r = 77");
 
     //TODO: If JSONB value == NULL: Error - Execution Error. Not enough data to process
-    //      https://github.com/yugabyte/yugabyte-db/issues/5899
+    //      https://github.com/ZNbase/ZNbase-db/issues/5899
     //      [YCQL] Incorrect 'null' value handling with secondary indexes based on JSONB column.
 /*
     // (updating all indexes)

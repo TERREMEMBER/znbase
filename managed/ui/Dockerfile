@@ -1,11 +1,11 @@
 FROM node:alpine
-MAINTAINER YugaByte
+MAINTAINER ZNbase
 ENV container=yugaware-ui
 
 # Create app directory
 WORKDIR /opt/yugaware-ui
 
-RUN npm install -g pushstate-server 
+RUN npm install -g pushstate-server
 
 # Bundle app source
 COPY build /opt/yugaware-ui

@@ -2,8 +2,8 @@
 title: Transactions
 headerTitle: Transactions
 linkTitle: Transactions
-description: Transactions in YugabyteDB.
-headcontent: Transactions in YugabyteDB.
+description: Transactions in ZNbaseDB.
+headcontent: Transactions in ZNbaseDB.
 image: /images/section_icons/explore/transactional.png
 menu:
   stable:
@@ -12,7 +12,7 @@ menu:
     weight: 230
 ---
 
-YugabyteDB is a transactional database that supports distributed transactions. A transaction is a sequence of operations performed as a single logical unit of work. A transaction has four key properties - **Atomicity**, **Consistency**, **Isolation** and **Durability** - commonly abbreviated as ACID.
+ZNbaseDB is a transactional database that supports distributed transactions. A transaction is a sequence of operations performed as a single logical unit of work. A transaction has four key properties - **Atomicity**, **Consistency**, **Isolation** and **Durability** - commonly abbreviated as ACID.
 
 
 The table below summarizes the support for transactions across YSQL and YCQL APIs.
@@ -42,7 +42,7 @@ The various features are explained in the sections below.
         <div class="title">Distributed Transactions</div>
       </div>
       <div class="body">
-        Understand how distributed transactions work in YugabyteDB.
+        Understand how distributed transactions work in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -53,7 +53,7 @@ The various features are explained in the sections below.
         <div class="title">Isolation Levels</div>
       </div>
       <div class="body">
-        Details about isolation levels in YugabyteDB.
+        Details about isolation levels in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -76,7 +76,7 @@ The various features are explained in the sections below.
         <div class="title">DDL Operations</div>
       </div>
       <div class="body">
-        How YugabyteDB handles DDL operations in transaction blocks.
+        How ZNbaseDB handles DDL operations in transaction blocks.
       </div>
     </a>
   </div>

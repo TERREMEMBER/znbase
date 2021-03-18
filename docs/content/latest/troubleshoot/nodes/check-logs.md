@@ -1,8 +1,8 @@
 ---
 title: Inspect logs
 linkTitle: Inspect logs
-headerTitle: Inspect YugabyteDB logs
-description: Inspect YugabyteDB logs
+headerTitle: Inspect ZNbaseDB logs
+description: Inspect ZNbaseDB logs
 aliases:
   - /troubleshoot/nodes/check-logs/
 menu:
@@ -13,24 +13,24 @@ isTocNested: true
 showAsideToc: true
 ---
 
-## YugabyteDB base folder
+## ZNbaseDB base folder
 
-The logs for each node are written to a subdirectory of the YugabyteDB `yugabyte-data` directory and may vary depending on your deployment:
+The logs for each node are written to a subdirectory of the ZNbaseDB `ZNbase-data` directory and may vary depending on your deployment:
 
-- When you use `yb-ctl` to create local YugabyteDB clusters on a single host (for example, your laptop), the default location for each node is `/yugabyte-data/node-<node_nr>/`. 
+- When you use `yb-ctl` to create local ZNbaseDB clusters on a single host (for example, your laptop), the default location for each node is `/ZNbase-data/node-<node_nr>/`. 
 For a 3-node cluster, the `yb-ctl` utility creates three directories: `node-1`, `node-2` and `node-3`.
-- For a multi-node cluster deployment to multiple hosts, the location where YugabyteDB disks are set up can vary (for example, `/home/centos/`, `/mnt/`, or another directory) on each node (host).
+- For a multi-node cluster deployment to multiple hosts, the location where ZNbaseDB disks are set up can vary (for example, `/home/centos/`, `/mnt/`, or another directory) on each node (host).
 - When using the `--fs_data_dirs` flag with multiple directories, logs will be saved in the first directory in the list.
-- When using Yugabyte Platform, logs are located in `/home/yugabyte/{master,tserver}/logs`. This is a symlink to the first directory in `--fs_data_dirs` list.
+- When using ZNbase Platform, logs are located in `/home/ZNbase/{master,tserver}/logs`. This is a symlink to the first directory in `--fs_data_dirs` list.
 
-In the sections below, the YugabyteDB `yugabyte-data` directory is represented by `<yugabyte-data-directory>`.
+In the sections below, the ZNbaseDB `ZNbase-data` directory is represented by `<ZNbase-data-directory>`.
 
 ## YB-Master logs
 
 The YB-Master service manages system metadata, such as namespaces (databases or keyspaces) and tables. It also handles DDL statements such as `CREATE TABLE`, `DROP TABLE`, `ALTER TABLE` / `KEYSPACE/TYPE`.  It also manages users, permissions, and coordinate background operations, such as load balancing. Its logs can be found at:
 
 ```sh
-$ cd <yugabyte-data-directory>/disk1/yb-data/master/logs/
+$ cd <ZNbase-data-directory>/disk1/yb-data/master/logs/
 ```
 
 Logs are organized by error severity: `FATAL`, `ERROR`, `WARNING`, `INFO`. In case of issues, the `FATAL` and `ERROR` logs are most likely to be relevant.
@@ -40,7 +40,7 @@ Logs are organized by error severity: `FATAL`, `ERROR`, `WARNING`, `INFO`. In ca
 The YB-TServer service performs the actual I/O for end-user requests. It handles DML statements such as `INSERT`, `UPDATE`, `DELETE`, and `SELECT`. Its logs can be found at:
 
 ```sh
-$ cd <yugabyte-data-directory>/disk1/yb-data/tserver/logs/
+$ cd <ZNbase-data-directory>/disk1/yb-data/tserver/logs/
 ```
 
 Logs are organized by error severity: `FATAL`, `ERROR`, `WARNING`, `INFO`. In case of issues, the `FATAL` and `ERROR` logs are most likely to be relevant.

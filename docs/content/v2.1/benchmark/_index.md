@@ -1,8 +1,8 @@
 ---
-title: Benchmark YugabyteDB 
-headerTitle: Benchmark YugabyteDB
+title: Benchmark ZNbaseDB 
+headerTitle: Benchmark ZNbaseDB
 linkTitle: Benchmark
-description: Benchmark YugabyteDB using TPC-C, sysbench, YCSB and more.
+description: Benchmark ZNbaseDB using TPC-C, sysbench, YCSB and more.
 image: /images/section_icons/explore/high_performance.png
 headcontent:
 section: USER GUIDES

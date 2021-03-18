@@ -1,8 +1,8 @@
 ---
-title: Deploy YugabyteDB in Google Cloud Platform with Terraform
+title: Deploy ZNbaseDB in Google Cloud Platform with Terraform
 headerTitle: Google Cloud Platform
 linkTitle: Google Cloud Platform
-description: Use Terraform to deploy a YugabyteDB cluster in Google Cloud Platform.
+description: Use Terraform to deploy a ZNbaseDB cluster in Google Cloud Platform.
 block_indexing: true
 menu:
   v2.2:
@@ -65,7 +65,7 @@ Common commands:
   provider "google"
   {
     # Provide your Creadentilals
-    credentials = "${file("yugabyte-pcf-bc8114281026.json")}"
+    credentials = "${file("ZNbase-pcf-bc8114281026.json")}"
 
     # The name of your GCP project
     project = "<Your-GCP-Project-Name>"
@@ -74,11 +74,11 @@ Common commands:
 
   **NOTE:** :- You can get credentials file by following steps given [here](https://cloud.google.com/docs/authentication/getting-started)
 
-* Now add the Yugabyte Terraform module to your file.
+* Now add the ZNbase Terraform module to your file.
 
 ```
-  module "yugabyte-db-cluster" {
-  source = "github.com/Yugabyte/terraform-gcp-yugabyte.git"
+  module "ZNbase-db-cluster" {
+  source = "github.com/ZNbase/terraform-gcp-ZNbase.git"
 
   # The name of the cluster to be created.
   cluster_name = "test-cluster"
@@ -122,7 +122,7 @@ $ terraform apply
 Once the cluster is created, you can go to the URL `http://<node ip or dns name>:7000` to view the UI. You can find the node's ip or dns by running the following:
 
 ```sh
-$ terraform state show google_compute_instance.yugabyte_node[0]
+$ terraform state show google_compute_instance.ZNbase_node[0]
 ```
 
 You can access the cluster UI by going to any of the following URLs.
@@ -137,19 +137,19 @@ $ terraform show
 
 The following resources are created by this module:
 
-- `module.terraform-gcp-yugabyte.google_compute_instance.yugabyte_node` The GCP VM instances.
+- `module.terraform-gcp-ZNbase.google_compute_instance.ZNbase_node` The GCP VM instances.
 
-For cluster named `test-cluster`, the instances will be named `yugabyte-test-cluster-n1`, `yugabyte-test-cluster-n2`, `yugabyte-test-cluster-n3`.
+For cluster named `test-cluster`, the instances will be named `ZNbase-test-cluster-n1`, `ZNbase-test-cluster-n2`, `ZNbase-test-cluster-n3`.
 
-- `module.terraform-gcp-yugabyte.google_compute_firewall.Yugabyte-Firewall` The firwall rule that allows the various clients to access the YugabyteDB cluster.
+- `module.terraform-gcp-ZNbase.google_compute_firewall.ZNbase-Firewall` The firwall rule that allows the various clients to access the ZNbaseDB cluster.
 
-For cluster named `test-cluster`, this firewall rule will be named `default-yugabyte-test-cluster-firewall` with the ports 7000, 9000, 9042 and 6379 open to all.
+For cluster named `test-cluster`, this firewall rule will be named `default-ZNbase-test-cluster-firewall` with the ports 7000, 9000, 9042 and 6379 open to all.
 
-- `module.terraform-gcp-yugabyte.google_compute_firewall.Yugabyte-Intra-Firewall` The firewall rule that allows communication internal to the cluster.
+- `module.terraform-gcp-ZNbase.google_compute_firewall.ZNbase-Intra-Firewall` The firewall rule that allows communication internal to the cluster.
 
-For cluster named `test-cluster`, this firewall rule will be named `default-yugabyte-test-cluster-intra-firewall` with the ports 7100, 9100 open to all other vm instances in the same network.
+For cluster named `test-cluster`, this firewall rule will be named `default-ZNbase-test-cluster-intra-firewall` with the ports 7100, 9100 open to all other vm instances in the same network.
 
-- `module.terraform-gcp-yugabyte.null_resource.create_yugabyte_universe` A local script that configures the newly created instances to form a new YugabyteDB universe.
+- `module.terraform-gcp-ZNbase.null_resource.create_ZNbase_universe` A local script that configures the newly created instances to form a new ZNbaseDB universe.
 
 ## 4. Destroy the cluster (optional)
 

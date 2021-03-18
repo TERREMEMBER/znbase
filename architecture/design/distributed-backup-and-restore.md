@@ -1,6 +1,6 @@
 # Distributed Backup And Restore
 
-The traditional way to take backups in an RDBMS is to *dump* the data across all (or the desired set of) the tables in the database by performing a scan operation. However, in YugabyteDB - a *distributed* SQL database that is often considered for its massive scalability, the data set could become quite large, making a scan-based backup practically infeasible. The distributed backups and restore feature is aimed at making backups and restores very efficient even on large data sets.
+The traditional way to take backups in an RDBMS is to *dump* the data across all (or the desired set of) the tables in the database by performing a scan operation. However, in ZNbaseDB - a *distributed* SQL database that is often considered for its massive scalability, the data set could become quite large, making a scan-based backup practically infeasible. The distributed backups and restore feature is aimed at making backups and restores very efficient even on large data sets.
 
 > **Note:** An **in-cluster snapshot** refers to a read-only copy of the database created by creating a list of immutable files. A **backup** generally is an off-cluster copy of a snapshot of the database. For the purposes of this design, we will be using backups to refer to snapshots with the understanding that copying a snapshot off the cluster is a user driven exercise.
 
@@ -19,7 +19,7 @@ The traditional way to take backups in an RDBMS is to *dump* the data across all
 * Authentication and authorization - support backing up users, roles and permissions
 * Encryption of data at rest - support backuping up data with encryption preserved as well as un-encrypted
 #### 6. Ease of use
-* This functionality should work across all the YugabyteDB APIs (YSQL and YCQL)
+* This functionality should work across all the ZNbaseDB APIs (YSQL and YCQL)
 * Extend this functionality to the YSQL grammar to simplify this process
 
 ## Extending to point in time restores
@@ -59,7 +59,7 @@ This API request specifies the set of tablets that need to be backed up. The set
 ### 3. Picking the snapshot timestamp
 In order to ensure that a snapshot is consistent, it has to performed as of a fixed, cluster-wide timestamp, referred to subsequently as the snapshot hybrid timestamp, or the `snapshot-timestamp` for short. Upon receiving a `PerformSnapshot()` API call, the YB-Master leader first picks a suitable `snapshot-timestamp`.
 
-It is important to ensure that there are no changes to the data in the database older than the `snapshot-timestamp` after a snapshot is taken, while ensuring that all the updates made before the snapshot request are included. Based on how the distributed transactions algorithm of YugabyteDB works, we already know that in order for all recently written transaction to be included, we would need the timestamp that is computed as follows:
+It is important to ensure that there are no changes to the data in the database older than the `snapshot-timestamp` after a snapshot is taken, while ensuring that all the updates made before the snapshot request are included. Based on how the distributed transactions algorithm of ZNbaseDB works, we already know that in order for all recently written transaction to be included, we would need the timestamp that is computed as follows:
 ```
 snapshot-timestamp = current_physical_time_on_node() + max_clock_skew_in_cluster
 ```
@@ -112,4 +112,4 @@ Note the following:
 * The snapshot represents a distributed, immutable set of files across the various nodes in the cluster.
 * The replication factor of the snapshot is the same as that of the table that was snapshotted. This is done to ensure the fault tolerance of the snapshot. 
 
-[![Analytics](https://yugabyte.appspot.com/UA-104956980-4/architecture/design/distributed-backup-and-restore.md?pixel&useReferer)](https://github.com/yugabyte/ga-beacon)
+[![Analytics](https://ZNbase.appspot.com/UA-104956980-4/architecture/design/distributed-backup-and-restore.md?pixel&useReferer)](https://github.com/ZNbase/ga-beacon)

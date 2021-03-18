@@ -9,25 +9,25 @@ from ybops.common.exceptions import YBOpsRuntimeError, get_exception_message
 class TestReleasePackage(TestCase):
     good_inputs = [
         # Unofficial releases, old EE.
-        ('yugabyte-ee-1.3.1.0-94463ba1b01fd4c5ed0ed16f53be5314f4ff9919-release-centos-x86_64.tar.gz', False),
+        ('ZNbase-ee-1.3.1.0-94463ba1b01fd4c5ed0ed16f53be5314f4ff9919-release-centos-x86_64.tar.gz', False),
         ('yugaware-ee-1.3.1.0-94463ba1b01fd4c5ed0ed16f53be5314f4ff9919-centos-x86_64.tar.gz', False),
         ('devops-ee-1.3.1.0-94463ba1b01fd4c5ed0ed16f53be5314f4ff9919-centos-x86_64.tar.gz', False),
         # Unofficial releases, new non-EE.
-        ('yugabyte-1.3.1.0-94463ba1b01fd4c5ed0ed16f53be5314f4ff9919-centos-release-x86_64.tar.gz', False),
+        ('ZNbase-1.3.1.0-94463ba1b01fd4c5ed0ed16f53be5314f4ff9919-centos-release-x86_64.tar.gz', False),
         ('yugaware-1.3.1.0-94463ba1b01fd4c5ed0ed16f53be5314f4ff9919-centos-x86_64.tar.gz', False),
         ('devops-1.3.1.0-94463ba1b01fd4c5ed0ed16f53be5314f4ff9919-centos-x86_64.tar.gz', False),
         # Official releases, old EE.
-        ('yugabyte-1.3.1.0-b1-centos-x86_64.tar.gz', True),
+        ('ZNbase-1.3.1.0-b1-centos-x86_64.tar.gz', True),
         ('yugaware-1.3.1.0-b1-centos-x86_64.tar.gz', True),
         ('devops-1.3.1.0-b1-centos-x86_64.tar.gz', True),
         # Unofficial releases, new non-EE.
-        ('yugabyte-ee-1.3.1.0-b1-centos-x86_64.tar.gz', True),
+        ('ZNbase-ee-1.3.1.0-b1-centos-x86_64.tar.gz', True),
         ('yugaware-ee-1.3.1.0-b1-centos-x86_64.tar.gz', True),
         ('devops-ee-1.3.1.0-b1-centos-x86_64.tar.gz', True),
     ]
 
     bad_inputs = [
-        ('yugabyte-ee-1.3.1.0-invalid-centos-x86_64.tar.gz', True),
+        ('ZNbase-ee-1.3.1.0-invalid-centos-x86_64.tar.gz', True),
     ]
 
     def test_from_package_name_success(self):

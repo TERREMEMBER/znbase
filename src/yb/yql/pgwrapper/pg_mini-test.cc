@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -280,7 +280,7 @@ void PgMiniTest::TestInsertSelectRowLock(IsolationLevel isolation, RowMarkType r
     ASSERT_OK(read_conn.Execute("ABORT"));
   } else {
     ASSERT_OK(result);
-    // NOTE: vanilla PostgreSQL expects kKeys rows, but kKeys + 1 rows are expected for Yugabyte.
+    // NOTE: vanilla PostgreSQL expects kKeys rows, but kKeys + 1 rows are expected for ZNbase.
     ASSERT_EQ(PQntuples(result.get().get()), kKeys + 1);
     ASSERT_OK(read_conn.Execute("COMMIT"));
   }
@@ -317,7 +317,7 @@ void PgMiniTest::TestDeleteSelectRowLock(IsolationLevel isolation, RowMarkType r
     ASSERT_OK(read_conn.Execute("ABORT"));
   } else {
     ASSERT_OK(result);
-    // NOTE: vanilla PostgreSQL expects kKeys rows, but kKeys - 1 rows are expected for Yugabyte.
+    // NOTE: vanilla PostgreSQL expects kKeys rows, but kKeys - 1 rows are expected for ZNbase.
     ASSERT_EQ(PQntuples(result.get().get()), kKeys - 1);
     ASSERT_OK(read_conn.Execute("COMMIT"));
   }

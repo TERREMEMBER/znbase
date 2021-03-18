@@ -13,9 +13,9 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Yugabyte leverages PostgreSQL’s pg_hint_plan Extension to control query execution plans with hinting phrases using comments.
+ZNbase leverages PostgreSQL’s pg_hint_plan Extension to control query execution plans with hinting phrases using comments.
 
-Yugabyte uses PostgreSQL’s cost-based optimizer, which estimates the costs of each possible execution plan for an SQL statement. The execution plan with the lowest cost finally is executed. The planner does its best to select the best execution plan, but not perfect. Additionally, the version of YB's planner is sub-optimal. For instance, the cost-based optimizer is naive and assumes row counts for all tables to be 1000. Row counts however play a crucial role in calculating the cost estimates. To overcome these limitations, we enable pg_hint_plan.
+ZNbase uses PostgreSQL’s cost-based optimizer, which estimates the costs of each possible execution plan for an SQL statement. The execution plan with the lowest cost finally is executed. The planner does its best to select the best execution plan, but not perfect. Additionally, the version of YB's planner is sub-optimal. For instance, the cost-based optimizer is naive and assumes row counts for all tables to be 1000. Row counts however play a crucial role in calculating the cost estimates. To overcome these limitations, we enable pg_hint_plan.
 
 pg_hint_plan makes it possible to tweak execution plans using "hints", which are simple descriptions in the form of SQL comments.
 
@@ -101,14 +101,14 @@ pg_hint_plan parses hinting phrases of a special form present in SQL statements.
 In the example below, `HashJoin` is selected as the joining method for joining `pg_bench_branches` and `pg_bench_accounts` and a `SeqScan` is used for scanning the table `pgbench_accounts`.
 
 ```sql
-yugabyte=# /*+
-yugabyte*#    HashJoin(a b)
-yugabyte*#    SeqScan(a)
-yugabyte*#  */
-yugabyte-# EXPLAIN SELECT *
-yugabyte-#    FROM pgbench_branches b
-yugabyte-#    JOIN pgbench_accounts a ON b.bid = a.bid
-yugabyte-#   ORDER BY a.aid;
+ZNbase=# /*+
+ZNbase*#    HashJoin(a b)
+ZNbase*#    SeqScan(a)
+ZNbase*#  */
+ZNbase-# EXPLAIN SELECT *
+ZNbase-#    FROM pgbench_branches b
+ZNbase-#    JOIN pgbench_accounts a ON b.bid = a.bid
+ZNbase-#   ORDER BY a.aid;
 ```
 
 ```
@@ -129,14 +129,14 @@ yugabyte-#   ORDER BY a.aid;
 It is very useful to know the specific hints that pg_hint_plan utilizes and forwards to the query planner. There could be situations where syntactical errors or wrong hint names could be present in users’ hint phrases. Hence, to view these debug prints, users can execute the following commands.
 
 ```sql
-yugabyte=# SET pg_hint_plan.debug_print TO on;
-yugabyte=# \set SHOW_CONTEXT always
-yugabyte=# SET client_min_messages TO log;
+ZNbase=# SET pg_hint_plan.debug_print TO on;
+ZNbase=# \set SHOW_CONTEXT always
+ZNbase=# SET client_min_messages TO log;
 ```
 
 ## Hints for scan methods
 
-Scan method hints enforce the scanning method on tables when specified along with appropriate hint phrases. Users should specify their required scan method and their respective target tables by alias names if any. The list of scan methods that are supported by Yugabyte along with hint phrases from pg_hint_plan are as follows:
+Scan method hints enforce the scanning method on tables when specified along with appropriate hint phrases. Users should specify their required scan method and their respective target tables by alias names if any. The list of scan methods that are supported by ZNbase along with hint phrases from pg_hint_plan are as follows:
 
 | Option | Value |
 | :----- | :---- |
@@ -151,7 +151,7 @@ Scan method hints enforce the scanning method on tables when specified along wit
 | IndexOnlyScanRegexp(table regex) | Do not enable index scan on the table whose indices match with the regular expression defined by `regex`. |
 
 ``` sql
-yugabyte=# /*+SeqScan(t2)*/
+ZNbase=# /*+SeqScan(t2)*/
 EXPLAIN (COSTS false) SELECT * FROM t1, t2 WHERE t1.id = t2.id;
 LOG:  pg_hint_plan:
 used hint:
@@ -170,8 +170,8 @@ error hint:
 ```
 
 ``` sql
-yugabyte=# /*+SeqScan(t1)IndexScan(t2)*/
-yugabyte-# EXPLAIN (COSTS false) SELECT * FROM t1, t2 WHERE t1.id = t2.id;
+ZNbase=# /*+SeqScan(t1)IndexScan(t2)*/
+ZNbase-# EXPLAIN (COSTS false) SELECT * FROM t1, t2 WHERE t1.id = t2.id;
 LOG:  pg_hint_plan:
 used hint:
 SeqScan(t1)
@@ -190,8 +190,8 @@ error hint:
 ```
 
 ``` sql
-yugabyte=# /*+NoIndexScan(t1)*/
-yugabyte-# EXPLAIN (COSTS false) SELECT * FROM t1, t2 WHERE t1.id = t2.id;
+ZNbase=# /*+NoIndexScan(t1)*/
+ZNbase-# EXPLAIN (COSTS false) SELECT * FROM t1, t2 WHERE t1.id = t2.id;
 LOG:  pg_hint_plan:
 used hint:
 NoIndexScan(t1)
@@ -217,7 +217,7 @@ A single table can have many indices. Using pg_hint_plan, users can specify the 
 **Query without a hint phrase**:
 
 ``` sql
-yugabyte=# EXPLAIN (COSTS false) SELECT * FROM t3 WHERE t3.id = 1;
+ZNbase=# EXPLAIN (COSTS false) SELECT * FROM t3 WHERE t3.id = 1;
 ```
 
 ```
@@ -231,8 +231,8 @@ yugabyte=# EXPLAIN (COSTS false) SELECT * FROM t3 WHERE t3.id = 1;
 **Query using a secondary index**:
 
 ``` sql
-yugabyte=# /*+IndexScan(t3 t3_id2)*/
-yugabyte-# EXPLAIN (COSTS false) SELECT * FROM t3 WHERE t3.id = 1;
+ZNbase=# /*+IndexScan(t3 t3_id2)*/
+ZNbase-# EXPLAIN (COSTS false) SELECT * FROM t3 WHERE t3.id = 1;
 ```
 
 ```
@@ -254,8 +254,8 @@ error hint:
 **Query reverts to `SeqScan` as none of the indices can be used**:
 
 ``` sql
-yugabyte=# /*+IndexScan(t3 no_exist)*/
-yugabyte-# EXPLAIN (COSTS false) SELECT * FROM t3 WHERE t3.id = 1;
+ZNbase=# /*+IndexScan(t3 no_exist)*/
+ZNbase-# EXPLAIN (COSTS false) SELECT * FROM t3 WHERE t3.id = 1;
 ```
 
 ```
@@ -277,8 +277,8 @@ error hint:
 **Query with a selective list of indexes**:
 
 ``` sql
-yugabyte=# /*+IndexScan(t3 t3_id1 t3_id2)*/
-yugabyte-# EXPLAIN (COSTS false) SELECT * FROM t3 WHERE t3.id = 1;
+ZNbase=# /*+IndexScan(t3 t3_id1 t3_id2)*/
+ZNbase-# EXPLAIN (COSTS false) SELECT * FROM t3 WHERE t3.id = 1;
 ```
 
 ```
@@ -358,9 +358,9 @@ error hint:
 In this example, the first query uses a `HashJoin` on tables `t1` and `t2` respectively while the second query uses a `NestedLoop` join for the same. The required join methods are specified in their respective hint phrases. Users can utilize multiple hint phrases to combine join methods and scan methods.
 
 ```sql
-yugabyte=# /*+NestLoop(t2 t3 t1) SeqScan(t3) SeqScan(t2)*/
-yugabyte-# EXPLAIN (COSTS false) SELECT * FROM t1, t2, t3
-yugabyte-# WHERE t1.id = t2.id AND t1.id = t3.id;
+ZNbase=# /*+NestLoop(t2 t3 t1) SeqScan(t3) SeqScan(t2)*/
+ZNbase-# EXPLAIN (COSTS false) SELECT * FROM t1, t2, t3
+ZNbase-# WHERE t1.id = t2.id AND t1.id = t3.id;
 ```
 
 ```
@@ -393,7 +393,7 @@ In the preceding example, we use the hint `/*+NestLoop(t2 t3 t4 t1) SeqScan(t3) 
 Joining order hints execute joins in a particular order, as enumerated in a hint phrase's parameter list. You can enforce joining in a specific order using the `Leading` hint.
 
 ```sql
-yugabyte=# /*+Leading(t1 t2 t3)*/
+ZNbase=# /*+Leading(t1 t2 t3)*/
 EXPLAIN (COSTS false) SELECT * FROM t1, t2, t3 WHERE t1.id = t2.id AND t1.id = t3.id;
 ```
 
@@ -411,7 +411,7 @@ EXPLAIN (COSTS false) SELECT * FROM t1, t2, t3 WHERE t1.id = t2.id AND t1.id = t
 ```
 
 ```sql
-yugabyte=# /*+Leading(t2 t3 t1)*/
+ZNbase=# /*+Leading(t2 t3 t1)*/
 EXPLAIN (COSTS false) SELECT * FROM t1, t2, t3 WHERE t1.id = t2.id AND t1.id = t3.id;
 ```
 
@@ -435,7 +435,7 @@ The joining order in the first query is `/*+Leading(t1 t2 t3)*/` whereas the joi
 Users can leverage the `work_mem` setting in PostgreSQL to improve the performance of slow queries that sort, join or aggregate large sets of table rows. A detailed description of its implication is illustrated in the following [link](https://andreigridnev.com/blog/2016-04-16-increase-work_mem-parameter-in-postgresql-to-make-expensive-queries-faster/). The following example shows how to enable `work_mem` as a part of a hint plan.
 
 ``` sql
-yugabyte=# /*+Set(work_mem "1MB")*/
+ZNbase=# /*+Set(work_mem "1MB")*/
 EXPLAIN (COSTS false) SELECT * FROM t1, t2 WHERE t1.id = t2.id;
 ```
 
@@ -458,7 +458,7 @@ error hint:
 
 ## Configuring the planner method
 
-Planner method configuration parameters provide a crude method of influencing the query plans chosen by the query optimizer. If the default plan chosen by the optimizer for a particular query is not optimal, a temporary solution is to use one of these configuration parameters to force the optimizer to choose a different plan. A more detailed explanation of the Planner Method Configuration can be found in the following [link](https://www.postgresql.org/docs/11/runtime-config-query.html). Yugabyte supports the following configuration parameters:
+Planner method configuration parameters provide a crude method of influencing the query plans chosen by the query optimizer. If the default plan chosen by the optimizer for a particular query is not optimal, a temporary solution is to use one of these configuration parameters to force the optimizer to choose a different plan. A more detailed explanation of the Planner Method Configuration can be found in the following [link](https://www.postgresql.org/docs/11/runtime-config-query.html). ZNbase supports the following configuration parameters:
 
 * enable_hashagg
 * enable_hashjoin
@@ -475,7 +475,7 @@ Planner method configuration parameters provide a crude method of influencing th
 pg_hint_plan leverages the planner method configuration by embedding these configuration parameters in each query’s comment. Consider the following example:
 
 ```sql
-yugabyte=# EXPLAIN (COSTS false) SELECT * FROM t1, t2 WHERE t1.id = t2.id;
+ZNbase=# EXPLAIN (COSTS false) SELECT * FROM t1, t2 WHERE t1.id = t2.id;
 ```
 
 ```
@@ -489,7 +489,7 @@ yugabyte=# EXPLAIN (COSTS false) SELECT * FROM t1, t2 WHERE t1.id = t2.id;
 ```
 
 ```sql
-yugabyte=# /*+Set(enable_indexscan off)*/
+ZNbase=# /*+Set(enable_indexscan off)*/
 EXPLAIN (COSTS false) SELECT * FROM t1, t2 WHERE t1.id = t2.id;
 ```
 
@@ -533,7 +533,7 @@ SET pg_hint_plan.enable_hint_table = on;
 The following example illustrates this in detail.
 
 ```sql
-yugabyte=# INSERT INTO hint_plan.hints
+ZNbase=# INSERT INTO hint_plan.hints
 (norm_query_string,
  application_name,
  hints)
@@ -544,7 +544,7 @@ VALUES
 
 INSERT 0 1
 
-yugabyte=# INSERT INTO hint_plan.hints
+ZNbase=# INSERT INTO hint_plan.hints
 (norm_query_string,
  application_name,
  hints)
@@ -555,7 +555,7 @@ VALUES
 
 INSERT 0 1
 
-yugabyte=# select * from hint_plan.hints;
+ZNbase=# select * from hint_plan.hints;
 ```
 
 ```

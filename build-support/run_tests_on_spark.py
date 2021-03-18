@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -14,11 +14,11 @@
 #
 
 """
-Run YugaByte tests on Spark using PySpark.
+Run ZNbase tests on Spark using PySpark.
 
 Example (mostly useful during testing this script):
 
-cd ~/code/yugabyte
+cd ~/code/ZNbase
 
 Run all C++ tests:
 
@@ -143,13 +143,13 @@ PROPAGATED_ENV_VAR_PREFIX = 'YB_'
 SPARK_URLS = {
     'linux_default': os.getenv(
         'YB_LINUX_PY3_SPARK_URL',
-        'spark://spark-for-yugabyte-linux-default.example.com:7077'),
+        'spark://spark-for-ZNbase-linux-default.example.com:7077'),
     'linux_asan_tsan': os.getenv(
         'YB_ASAN_TSAN_PY3_SPARK_URL',
-        'spark://spark-for-yugabyte-linux-asan-tsan.example.com:7077'),
+        'spark://spark-for-ZNbase-linux-asan-tsan.example.com:7077'),
     'macos': os.getenv(
         'YB_MACOS_PY3_SPARK_URL',
-        'spark://spark-for-yugabyte-macos.example.com:7077'),
+        'spark://spark-for-ZNbase-macos.example.com:7077'),
 }
 
 # This has to match what we output in run-test.sh if YB_LIST_CTEST_TESTS_ONLY is set.
@@ -1032,7 +1032,7 @@ def main():
                         help='A file with a list of tests to run. Useful when e.g. re-running '
                              'failed tests using a file produced with --failed_test_list.')
     parser.add_argument('--build-root', dest='build_root', required=True,
-                        help='Build root (e.g. ~/code/yugabyte/build/debug-gcc-dynamic-community)')
+                        help='Build root (e.g. ~/code/ZNbase/build/debug-gcc-dynamic-community)')
     parser.add_argument('--max-tests', type=int, dest='max_tests',
                         help='Maximum number of tests to run. Useful when debugging this script '
                              'for faster iteration. This number of tests will be randomly chosen '

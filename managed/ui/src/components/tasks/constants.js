@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 export const TASK_SHORT_TIMEOUT = 6000;
 export const TASK_LONG_TIMEOUT = 240000;

@@ -12,9 +12,9 @@ isTocNested: false
 showAsideToc: true
 ---
 
-In workloads that need lower throughput and have a small data set, the bottleneck shifts from CPU/disk/network to the number of tablets that should be hosted per node. Since each table by default requires at least one tablet per node, a YugabyteDB cluster with 5000 relations (which includes tables and indexes) will result in 5000 tablets per node. There are practical limitations to the number of tablets that YugabyteDB can handle per node since each tablet adds some CPU, disk, and network overhead. If most or all of the tables in YugabyteDB cluster are small tables, then having separate tablets for each table unnecessarily adds pressure on CPU, network and disk.
+In workloads that need lower throughput and have a small data set, the bottleneck shifts from CPU/disk/network to the number of tablets that should be hosted per node. Since each table by default requires at least one tablet per node, a ZNbaseDB cluster with 5000 relations (which includes tables and indexes) will result in 5000 tablets per node. There are practical limitations to the number of tablets that ZNbaseDB can handle per node since each tablet adds some CPU, disk, and network overhead. If most or all of the tables in ZNbaseDB cluster are small tables, then having separate tablets for each table unnecessarily adds pressure on CPU, network and disk.
 
-To help accommodate such relational tables and workloads, YugabyteDB supports colocating SQL tables. Colocating tables puts all of their data into a single tablet, called the colocation tablet. This can dramatically increase the number of relations (tables, indexes, etc) that can be supported per node while keeping the number of tablets per node low. Note that all the data in the colocation tablet is still replicated across three nodes (or whatever the replication factor is). Large tablets can be dynamically split at a future date if there is need to serve more throughput over a larger data set.
+To help accommodate such relational tables and workloads, ZNbaseDB supports colocating SQL tables. Colocating tables puts all of their data into a single tablet, called the colocation tablet. This can dramatically increase the number of relations (tables, indexes, etc) that can be supported per node while keeping the number of tablets per node low. Note that all the data in the colocation tablet is still replicated across three nodes (or whatever the replication factor is). Large tablets can be dynamically split at a future date if there is need to serve more throughput over a larger data set.
 
 ## Motivation
 
@@ -76,4 +76,4 @@ To learn more about using this feature, see [Explore colocated tables](../../../
 
 ## What's next?
 
-For more information, see the architecture for [colocated tables](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/ysql-colocated-tables.md).
+For more information, see the architecture for [colocated tables](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/ysql-colocated-tables.md).

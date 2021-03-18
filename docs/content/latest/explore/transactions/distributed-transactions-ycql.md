@@ -2,8 +2,8 @@
 title: Distributed Transactions
 headerTitle: Distributed Transactions
 linkTitle: Distributed Transactions
-description: Distributed Transactions in YugabyteDB.
-headcontent: Distributed Transactions in YugabyteDB.
+description: Distributed Transactions in ZNbaseDB.
+headcontent: Distributed Transactions in ZNbaseDB.
 menu:
   latest:
     name: Distributed Transactions

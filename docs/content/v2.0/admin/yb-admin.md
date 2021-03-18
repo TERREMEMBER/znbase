@@ -13,13 +13,13 @@ showAsideToc: true
 block_indexing: true
 ---
 
-The `yb-admin` utility, located in the `bin` directory of YugabyteDB home, provides a command line interface for administering clusters.
+The `yb-admin` utility, located in the `bin` directory of ZNbaseDB home, provides a command line interface for administering clusters.
 
 It invokes the [`yb-master`](../../reference/configuration/yb-master/) and [`yb-tserver`](../../reference/configuration/yb-tserver/) binaries to perform the necessary administration.
 
 ## Syntax
 
-To use the `yb-admin` utility from the YugabyteDB home directory, run `./bin/yb-admin` using the following syntax.
+To use the `yb-admin` utility from the ZNbaseDB home directory, run `./bin/yb-admin` using the following syntax.
 
 ```sh
 yb-admin [ -master_addresses <master-addresses> ]  [ -timeout_ms <millisec> ] [ -certs_dir_name <dir_name> ] <command> [ command_options ]
@@ -34,7 +34,7 @@ yb-admin [ -master_addresses <master-addresses> ]  [ -timeout_ms <millisec> ] [ 
 
 ### Online help
 
-To display the online help, run `yb-admin --help` from the YugabyteDB home directory.
+To display the online help, run `yb-admin --help` from the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/yb-admin --help
@@ -280,7 +280,7 @@ $ ./bin/yb-admin -master_addresses ip1:7100,ip2:7100,ip3:7100 list_tables
 
 ```
 ...
-yugabyte.pg_range
+ZNbase.pg_range
 template1.pg_attrdef
 template0.pg_attrdef_adrelid_adnum_index
 template1.pg_conversion
@@ -292,7 +292,7 @@ system.local
 template1.pg_inherits_parent_index
 template1.pg_amproc
 system_platform.pg_rewrite
-yugabyte.pg_ts_config_cfgname_index
+ZNbase.pg_ts_config_cfgname_index
 template1.pg_trigger_tgconstraint_index
 template1.pg_class
 template1.pg_largeobject

@@ -523,14 +523,14 @@ extern char *const pgresStatus[];
 #ifdef USE_SSL
 
 #ifndef WIN32
-#define USER_CERT_FILE		".yugabytedb/yugabytedb.crt"
-#define USER_KEY_FILE		".yugabytedb/yugabytedb.key"
-#define ROOT_CERT_FILE		".yugabytedb/root.crt"
-#define ROOT_CRL_FILE		".yugabytedb/root.crl"
+#define USER_CERT_FILE		".ZNbasedb/ZNbasedb.crt"
+#define USER_KEY_FILE		".ZNbasedb/ZNbasedb.key"
+#define ROOT_CERT_FILE		".ZNbasedb/root.crt"
+#define ROOT_CRL_FILE		".ZNbasedb/root.crl"
 #else
 /* On Windows, the "home" directory is already PostgreSQL-specific */
-#define USER_CERT_FILE		"yugabytedb.crt"
-#define USER_KEY_FILE		"yugabytedb.key"
+#define USER_CERT_FILE		"ZNbasedb.crt"
+#define USER_KEY_FILE		"ZNbasedb.key"
 #define ROOT_CERT_FILE		"root.crt"
 #define ROOT_CRL_FILE		"root.crl"
 #endif

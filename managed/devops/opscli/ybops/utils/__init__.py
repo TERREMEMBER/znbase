@@ -1,12 +1,12 @@
 # !/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 from __future__ import print_function
 
@@ -45,7 +45,7 @@ from ybops.utils.remote_shell import RemoteShell
 
 BLOCK_SIZE = 4096
 HOME_FOLDER = os.environ["HOME"]
-YB_FOLDER_PATH = os.path.join(HOME_FOLDER, ".yugabyte")
+YB_FOLDER_PATH = os.path.join(HOME_FOLDER, ".ZNbase")
 SSH_RETRY_LIMIT = 20
 DEFAULT_SSH_PORT = 22
 # Timeout in seconds.
@@ -54,10 +54,10 @@ SSH_TIMEOUT = 45
 RSA_KEY_LENGTH = 2048
 RELEASE_VERSION_FILENAME = "version.txt"
 RELEASE_VERSION_PATTERN = "\d+.\d+.\d+.\d+"
-RELEASE_REPOS = set(["devops", "yugaware", "yugabyte"])
+RELEASE_REPOS = set(["devops", "yugaware", "ZNbase"])
 
-# Home directory of node instances. Try to read home dir from env, else assume it's /home/yugabyte.
-YB_HOME_DIR = os.environ.get("YB_HOME_DIR") or "/home/yugabyte"
+# Home directory of node instances. Try to read home dir from env, else assume it's /home/ZNbase.
+YB_HOME_DIR = os.environ.get("YB_HOME_DIR") or "/home/ZNbase"
 
 # TTL in seconds for how long DNS records will be cached.
 DNS_RECORD_SET_TTL = 5
@@ -111,7 +111,7 @@ class ReleasePackage(object):
           eg: <repo>[-ee]-<A.B.C.D>-b<build_number>-<system>-<machine>.tar.gz
 
         Note that each of these types has an optional -ee for backwards compatibility to our
-        previous enterprise vs community split. Also the yugabyte package has an optional build
+        previous enterprise vs community split. Also the ZNbase package has an optional build
         type, ie: -release, -debug, etc.
         """
         # Expect <repo>-<version>.

@@ -52,11 +52,11 @@ See the semantics of each option in the [PostgreSQL docs][postgresql-docs-drop-o
 Basic example.
 
 ```plpgsql
-yugabyte=# CREATE OPERATOR @#@ (
+ZNbase=# CREATE OPERATOR @#@ (
              rightarg = int8,
              procedure = numeric_fac
            );
-yugabyte=# DROP OPERATOR @#@ (NONE, int8);
+ZNbase=# DROP OPERATOR @#@ (NONE, int8);
 ```
 
 ## See also

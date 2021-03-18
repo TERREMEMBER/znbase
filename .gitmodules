@@ -1,6 +1,6 @@
-[submodule "submodules/yugabyte-bash-common"]
-	path = submodules/yugabyte-bash-common
-	url = https://github.com/yugabyte/yugabyte-bash-common.git
+[submodule "submodules/ZNbase-bash-common"]
+	path = submodules/ZNbase-bash-common
+	url = https://github.com/ZNbase/ZNbase-bash-common.git
 [submodule "thirdparty"]
 	path = thirdparty
-	url = https://github.com/yugabyte/yugabyte-db-thirdparty.git
+	url = https://github.com/ZNbase/ZNbase-db-thirdparty.git

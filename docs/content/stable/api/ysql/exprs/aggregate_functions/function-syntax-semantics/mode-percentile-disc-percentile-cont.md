@@ -27,7 +27,7 @@ order by grouping_column_1, grouping_column_1,...
 
 The syntax gives this kind of aggregate function its name.
 
-You might wonder why this particular syntax is required rather than the usual syntax that, for example, the `max()` and `min()` aggregate functions require. There is no underlying semantic reason. Rather, YugabyteDB inherits this from PostgreSQL. Other RDBMSs do use the same syntax for the  _"mode()"_ functionality as YugabyteDB uses for `max()` and `min()`—but they might spell the name of the function differently. Don't worry about this—the within-group ordered-set is sufficient to implement the required functionality.
+You might wonder why this particular syntax is required rather than the usual syntax that, for example, the `max()` and `min()` aggregate functions require. There is no underlying semantic reason. Rather, ZNbaseDB inherits this from PostgreSQL. Other RDBMSs do use the same syntax for the  _"mode()"_ functionality as ZNbaseDB uses for `max()` and `min()`—but they might spell the name of the function differently. Don't worry about this—the within-group ordered-set is sufficient to implement the required functionality.
 
 ## mode()
 
@@ -88,7 +88,7 @@ This is the result:
  <null>        | 1
 ```
 
-Some RDBMSs don't implement a _"mode()"_ function but require you to use a query like this together with further syntax to pick out the top hit. Here is the YugabyteDB approach:
+Some RDBMSs don't implement a _"mode()"_ function but require you to use a query like this together with further syntax to pick out the top hit. Here is the ZNbaseDB approach:
 
 ```plpgsql
 select
@@ -436,7 +436,7 @@ The median of a set of values is defined, naïvely, as the value that divides th
 
 The advantage brought by using the median in describing data rather than using the mean (implemented by the `avg()` aggregate function) is that it is not skewed so much by a small proportion of extremely large or small values; it therefore probably gives a better idea of a "typical" value. For example, household income or asset ownership is usually characterized by the median value because just a few multi-billionaires can skew the mean.
 
-Some SQL database systems have a built-in `median()` aggregate function. But PostgreSQL, and therefore YugabyteDB, do not. However, this is of no practical consequence because `percentile_cont(0.5)`, _by definition_, returns the median value.
+Some SQL database systems have a built-in `median()` aggregate function. But PostgreSQL, and therefore ZNbaseDB, do not. However, this is of no practical consequence because `percentile_cont(0.5)`, _by definition_, returns the median value.
 
 Here are some examples and counter-examples.
 

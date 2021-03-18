@@ -2,7 +2,7 @@
 title: Replace a failed YB-Master
 headerTitle: Replace a failed YB-Master
 linkTitle: Replace a failed YB-Master
-description: Steps to replace a failed YB-Master in a YugabyteDB cluster.
+description: Steps to replace a failed YB-Master in a ZNbaseDB cluster.
 menu:
   stable:
     identifier: replace-failed-master
@@ -12,7 +12,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-To replace a failed YB-Master server in a YugabyteDB cluster, follow these steps:
+To replace a failed YB-Master server in a ZNbaseDB cluster, follow these steps:
 
 For the steps below, the examples use the following scenario:
 
@@ -65,7 +65,7 @@ Validate that your set of masters is now `M2`, `M3` and `M4` using:
 yb-admin -master_addresses M2:7100,M3:7100,M4:7100 list_all_masters
 ```
 
-Until [#1542](https://github.com/yugabyte/yugabyte-db/issues/1542) is implemented, the TS will by default only know of 
+Until [#1542](https://github.com/ZNbase/ZNbase-db/issues/1542) is implemented, the TS will by default only know of 
 whatever masters are encoded in the `--tserver_master_addrs` flag that they are started with. 
 
 If any one of those masters is still part of the active quorum, then they will propagate the new master quorum over via heartbeats. 

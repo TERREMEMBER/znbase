@@ -39,12 +39,12 @@ Server Version: version.Info{Major:"1", Minor:"8", GitVersion:"v1.8.0", ...}
 
 ## Download
 
-Download `yugabyte-statefulset.yaml`. This will create a local YugabyteDB cluster on Kubernetes with a replication factor of 3.
+Download `ZNbase-statefulset.yaml`. This will create a local ZNbaseDB cluster on Kubernetes with a replication factor of 3.
 
 ```sh
-$ mkdir ~/yugabyte && cd ~/yugabyte
+$ mkdir ~/ZNbase && cd ~/ZNbase
 ```
 
 ```sh
-$ wget https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/cloud/kubernetes/yugabyte-statefulset-rf-1.yaml
+$ wget https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/cloud/kubernetes/ZNbase-statefulset-rf-1.yaml
 ```

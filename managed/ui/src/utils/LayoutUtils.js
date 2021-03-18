@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 import t from 'typy';
 import { browserHistory } from 'react-router';
 

@@ -2,7 +2,7 @@
 title: Migrate PostgreSQL data and applications
 headerTitle: Migrate from PostgreSQL
 linkTitle: Migrate from PostgreSQL
-description: Steps for migrating PostgreSQL data and applications to YugabyteDB.
+description: Steps for migrating PostgreSQL data and applications to ZNbaseDB.
 image: /images/section_icons/develop/learn.png
 menu:
   stable:
@@ -11,7 +11,7 @@ menu:
     weight: 730
 ---
 
-The steps below cover how to manually migrate PostgreSQL data and applications to YugabyteDB. The sections below assume that you have read [Migration process overview](../migration-process-overview). 
+The steps below cover how to manually migrate PostgreSQL data and applications to ZNbaseDB. The sections below assume that you have read [Migration process overview](../migration-process-overview). 
 
 {{< note title="Note" >}}
 
@@ -31,7 +31,7 @@ There are a number of tools that can be used to automate the entire migration fr
         <div class="title">Migrate a DDL schema</div>
       </div>
       <div class="body">
-        Migrate your DDL schema from PostgreSQL to YugabyteDB.
+        Migrate your DDL schema from PostgreSQL to ZNbaseDB.
       </div>
     </a>
   </div>
@@ -45,7 +45,7 @@ There are a number of tools that can be used to automate the entire migration fr
         <div class="title">Migrate a PostgreSQL application</div>
       </div>
       <div class="body">
-        Migrate a PostgreSQL application to YugabyteDB.
+        Migrate a PostgreSQL application to ZNbaseDB.
       </div>
     </a>
   </div>
@@ -59,7 +59,7 @@ There are a number of tools that can be used to automate the entire migration fr
         <div class="title">Export PostgreSQL data</div>
       </div>
       <div class="body">
-        Export data from PostgreSQL for importing into YugabyteDB.
+        Export data from PostgreSQL for importing into ZNbaseDB.
       </div>
     </a>
   </div>
@@ -73,7 +73,7 @@ There are a number of tools that can be used to automate the entire migration fr
         <div class="title">Prepare a cluster</div>
       </div>
       <div class="body">
-        Prepare your YugabyteDB cluster for data import.
+        Prepare your ZNbaseDB cluster for data import.
       </div>
     </a>
   </div>
@@ -87,7 +87,7 @@ There are a number of tools that can be used to automate the entire migration fr
         <div class="title">Import PostgreSQL data</div>
       </div>
       <div class="body">
-        Import PostgreSQL data into a YugabyteDB cluster.
+        Import PostgreSQL data into a ZNbaseDB cluster.
       </div>
     </a>
   </div>
@@ -101,7 +101,7 @@ There are a number of tools that can be used to automate the entire migration fr
         <div class="title">Verify the migration</div>
       </div>
       <div class="body">
-        Verify the migration to YugabyteDB was successful.
+        Verify the migration to ZNbaseDB was successful.
       </div>
     </a>
   </div>

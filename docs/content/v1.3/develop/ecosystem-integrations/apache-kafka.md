@@ -12,11 +12,11 @@ isTocNested: true
 showAsideToc: true
 ---
 
-In this tutorial, we are going to use the [Kafka Connect-based Sink Connector for YugabyteDB](https://github.com/yugabyte/yb-kafka-connector) to store events from Apache Kafka into YugabyteDB using YugabyteDB's [YCQL](../../../api/ycql) API.
+In this tutorial, we are going to use the [Kafka Connect-based Sink Connector for ZNbaseDB](https://github.com/ZNbase/yb-kafka-connector) to store events from Apache Kafka into ZNbaseDB using ZNbaseDB's [YCQL](../../../api/ycql) API.
 
 ## 1. Start local cluster
 
-Start a YugabyteDB cluster on your [local machine](../../../quick-start/install/). Check that you are able to connect to YugabyteDB using `cqlsh` by doing the following.
+Start a ZNbaseDB cluster on your [local machine](../../../quick-start/install/). Check that you are able to connect to ZNbaseDB using `cqlsh` by doing the following.
 
 ```sh
 $ ./bin/cqlsh localhost
@@ -46,13 +46,13 @@ $ wget http://apache.cs.utah.edu/kafka/2.0.0/kafka_2.11-2.0.0.tgz
 $ tar xvfz kafka_2.11-2.0.0.tgz && cd kafka_2.11-2.0.0
 ```
 
-## 3. Install the Kafka Sink Connector for YugabyteDB
+## 3. Install the Kafka Sink Connector for ZNbaseDB
 
 Clone the git `yb-kafka-connector` git repo.
 
 ```sh
 $ cd ~/yb-kafka
-$ git clone https://github.com/yugabyte/yb-kafka-connector.git
+$ git clone https://github.com/ZNbase/yb-kafka-connector.git
 $ cd yb-kafka-connector/
 ```
 
@@ -73,7 +73,7 @@ Go to the Kafka libs directory and get the additional jars that the connector de
 ```sh
 $ cd ~/yb-kafka/kafka_2.11-2.0.0/libs/
 $ wget http://central.maven.org/maven2/io/netty/netty-all/4.1.25.Final/netty-all-4.1.25.Final.jar
-$ wget http://central.maven.org/maven2/com/yugabyte/cassandra-driver-core/3.2.0-yb-18/cassandra-driver-core-3.2.0-yb-18.jar
+$ wget http://central.maven.org/maven2/com/ZNbase/cassandra-driver-core/3.2.0-yb-18/cassandra-driver-core-3.2.0-yb-18.jar
 $ wget http://central.maven.org/maven2/com/codahale/metrics/metrics-core/3.0.1/metrics-core-3.0.1.jar
 ```
 
@@ -93,7 +93,7 @@ $ ./bin/zookeeper-server-start.sh config/zookeeper.properties &
 $ ./bin/kafka-server-start.sh config/server.properties &
 ```
 
-Now create the Kafka topic that will be used to persist messages in the YugabyteDB table we created earlier.
+Now create the Kafka topic that will be used to persist messages in the ZNbaseDB table we created earlier.
 
 ```sh
 $ ./bin/kafka-topics.sh --create \
@@ -103,28 +103,28 @@ $ ./bin/kafka-topics.sh --create \
     --topic test
 ```
 
-## 5. Start Kafka Sink Connector for YugabyteDB
+## 5. Start Kafka Sink Connector for ZNbaseDB
 
-At this point, we have YugabyteDB's YCQL APU running at 9042 port with the `test_table` table created in the `demo` keyspace. We also have Kafka running at the 9092 port with the `test_topic` topic created. We are ready to start the connector.
+At this point, we have ZNbaseDB's YCQL APU running at 9042 port with the `test_table` table created in the `demo` keyspace. We also have Kafka running at the 9092 port with the `test_topic` topic created. We are ready to start the connector.
 
 ```sh
 $ ./bin/connect-standalone.sh \
     ~/yb-kafka/yb-kafka-connector/resources/examples/kafka.connect.properties \
-    ~/yb-kafka/yb-kafka-connector/resources/examples/yugabyte.sink.properties
+    ~/yb-kafka/yb-kafka-connector/resources/examples/ZNbase.sink.properties
 ```
 
-The `yugabyte.sink.properties` file used above (and shown below) has the configuration necessary for this sink to work correctly. You will have to change this file to the Kafka topic and YugabyteDB table necessary for your application.
+The `ZNbase.sink.properties` file used above (and shown below) has the configuration necessary for this sink to work correctly. You will have to change this file to the Kafka topic and ZNbaseDB table necessary for your application.
 
 ```
-# Sample yugabyte sink properties.
+# Sample ZNbase sink properties.
 
-name=yugabyte-sink
+name=ZNbase-sink
 connector.class=com.yb.connect.sink.YBSinkConnector
 
 topics=test_topic
 
-yugabyte.cql.keyspace=demo
-yugabyte.cql.tablename=test_table
+ZNbase.cql.keyspace=demo
+ZNbase.cql.tablename=test_table
 ```
 
 ## 6. Produce events for Kafka
@@ -145,9 +145,9 @@ Enter the following.
 {"key" : "C", "value" : 3, "ts" : 1541559413000}
 ```
 
-## 7. Verify events in YugabyteDB
+## 7. Verify events in ZNbaseDB
 
-The events above should now show up as rows in the YugabyteDB table.
+The events above should now show up as rows in the ZNbaseDB table.
 
 ```sql
 cqlsh> SELECT * FROM demo.test_table;

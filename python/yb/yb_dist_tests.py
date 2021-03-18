@@ -1,4 +1,4 @@
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -62,10 +62,10 @@ class TestDescriptor:
       the rest of tests not to be run.
     - A C++ test program name relative to the build root followed by the ':::' separator and the
       gtest filter identifying a test within that test program,
-    - A string like 'com.yugabyte.jedis.TestYBJedis#testPool[1]' describing a Java test. This is
+    - A string like 'com.ZNbase.jedis.TestYBJedis#testPool[1]' describing a Java test. This is
       something that could be passed directly to the -Dtest=... Maven option.
     - A Java test class source path (including .java/.scala extension) relative to the "java"
-      directory in the YugabyteDB source tree.
+      directory in the ZNbaseDB source tree.
     """
     def __init__(self, descriptor_str):
         self.descriptor_str = descriptor_str
@@ -96,7 +96,7 @@ class TestDescriptor:
         if self.is_jvm_based:
             # This is a Java/Scala test.
             if is_mvn_compatible_descriptor:
-                # This is a string of the form "com.yugabyte.jedis.TestYBJedis#testPool[1]".
+                # This is a string of the form "com.ZNbase.jedis.TestYBJedis#testPool[1]".
                 self.args_for_run_test = self.descriptor_str
                 output_file_name = self.descriptor_str
             else:

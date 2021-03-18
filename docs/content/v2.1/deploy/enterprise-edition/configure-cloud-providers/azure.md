@@ -1,8 +1,8 @@
 ---
-title: Configure Microsoft Azure for YugabyteDB deployments
+title: Configure Microsoft Azure for ZNbaseDB deployments
 headerTitle: Configure cloud providers
 linkTitle: 4. Configure cloud providers
-description: Configure Microsoft Azure for YugabyteDB deployments using the YugabyteDB Admin Console
+description: Configure Microsoft Azure for ZNbaseDB deployments using the ZNbaseDB Admin Console
 block_indexing: true
 menu:
   v2.1:
@@ -52,6 +52,6 @@ showAsideToc: true
 
 </ul>
 
-Support for Microsoft Azure in Yugabyte Platform is currently in the works.
+Support for Microsoft Azure in ZNbase Platform is currently in the works.
 Until support is added, you can configure Microsoft Azure as an
 [on-premises data center](../onprem).

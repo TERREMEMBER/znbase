@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -28,7 +28,7 @@ Options:
   -i, --ssh_key_file <keyfile>
     path to the ssh key for the tservers.
   -u, --ssh_user_name <username>
-    the username to use for ssh (default: yugabyte).
+    the username to use for ssh (default: ZNbase).
   -p, --ssh_port <port>
     the port to use for ssh (default: 54422).
   -d, --tablet_data_dir <tabletdatadir>
@@ -38,13 +38,13 @@ Options:
 EOT
 }
 
-TSERVER_CONF_FILE=/home/yugabyte/tserver/conf/server.conf
+TSERVER_CONF_FILE=/home/ZNbase/tserver/conf/server.conf
 
 tablet_id=""
 replicas=""
 ssh_key_file=""
 tablet_data_dir=""
-ssh_user_name="yugabyte"
+ssh_user_name="ZNbase"
 ssh_port=54422
 while [[ $# -gt 0 ]]; do
   case "$1" in

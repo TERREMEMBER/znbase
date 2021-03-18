@@ -146,7 +146,7 @@ This is the result:
 
 #### Unbounded ranges
 
-Either, or both of, the lower bound and the upper bound of a range value can be set to express the semantics "unbounded". The [PostgreSQL documentation](https://www.postgresql.org/docs/11/rangetypes.html#RANGETYPES-INFINITE) uses "unbounded" and "infinite" interchangeably to denote such a range. Yugabyte recommends always using the term "unbounded" and avoiding the term "infinite". The reason for this is explained later in this section.
+Either, or both of, the lower bound and the upper bound of a range value can be set to express the semantics "unbounded". The [PostgreSQL documentation](https://www.postgresql.org/docs/11/rangetypes.html#RANGETYPES-INFINITE) uses "unbounded" and "infinite" interchangeably to denote such a range. ZNbase recommends always using the term "unbounded" and avoiding the term "infinite". The reason for this is explained later in this section.
 
 - When a range value is defined using a literal, an unbounded lower or upper bound is specified as unbounded simply by omitting the value, like this:
 
@@ -248,7 +248,7 @@ This is the result:
  false
 ```
 
-{{< tip title="Yugabyte recommends always specifying an unbounded bound by omitting the value (in a literal) or by using NULL (in a constructor).">}}
+{{< tip title="ZNbase recommends always specifying an unbounded bound by omitting the value (in a literal) or by using NULL (in a constructor).">}}
 
 Using the special value `infinity` brings the following disadvantages:
 
@@ -443,4 +443,4 @@ Of course, because as has been seen, the values of _"r1"_, _"r2"_, _"r3"_, and _
 
 ## Current restriction
 
-See [GitHub Issue #7353](https://github.com/yugabyte/yugabyte-db/issues/7353). It tracks the fact that you cannot create an index on a column list that includes a column with a range data type. Correspondingly, you cannot define a primary key constraint on such a column list.
+See [GitHub Issue #7353](https://github.com/ZNbase/ZNbase-db/issues/7353). It tracks the fact that you cannot create an index on a column list that includes a column with a range data type. Correspondingly, you cannot define a primary key constraint on such a column list.

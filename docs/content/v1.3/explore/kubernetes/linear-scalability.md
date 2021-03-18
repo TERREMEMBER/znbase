@@ -3,13 +3,13 @@
 If you have a previously running local universe, destroy it using the following.
 
 ```sh
-$ kubectl delete -f yugabyte-statefulset.yaml
+$ kubectl delete -f ZNbase-statefulset.yaml
 ```
 
 Start a new local cluster - by default, this will create a 3 node universe with a replication factor of 3.
 
 ```sh
-$ kubectl apply -f yugabyte-statefulset.yaml
+$ kubectl apply -f ZNbase-statefulset.yaml
 ```
 
 Check the Kubernetes dashboard to see the 3 yb-tserver and 3 yb-master pods representing the 3 nodes of the cluster.
@@ -43,7 +43,7 @@ Add a node to the universe.
 $ kubectl scale statefulset yb-tserver --replicas=4
 ```
 
-Now we should have 4 nodes. Refresh the <a href='http://localhost:7000/tablet-servers' target="_blank">tablet-servers</a> page to see the stats update. YugabyteDB automatically updates application clients to use the newly added node for serving queries. This scaling out of client queries is completely transparent to the application logic, allowing the application to scale linearly for both reads and writes. 
+Now we should have 4 nodes. Refresh the <a href='http://localhost:7000/tablet-servers' target="_blank">tablet-servers</a> page to see the stats update. ZNbaseDB automatically updates application clients to use the newly added node for serving queries. This scaling out of client queries is completely transparent to the application logic, allowing the application to scale linearly for both reads and writes. 
 
 You can also observe the newly added node using the following command.
 
@@ -90,7 +90,7 @@ yb-tserver-3   1/1       Terminating   0          5m
 Optionally, you can shutdown the local cluster created in Step 1.
 
 ```sh
-$ kubectl delete -f yugabyte-statefulset.yaml
+$ kubectl delete -f ZNbase-statefulset.yaml
 ```
 
 Further, to destroy the persistent volume claims (**you will lose all the data if you do this**), run:

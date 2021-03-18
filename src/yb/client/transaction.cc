@@ -1,5 +1,5 @@
 //
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -392,7 +392,7 @@ class YBTransaction::Impl final {
         // If we have not written any intents and do not even have a transaction status tablet,
         // just report the transaction as committed.
         //
-        // See https://github.com/yugabyte/yugabyte-db/issues/3105 for details -- we might be able
+        // See https://github.com/ZNbase/ZNbase-db/issues/3105 for details -- we might be able
         // to remove this special case if it turns out there is a bug elsewhere.
         if (tablets_.empty() && running_requests_ == 0) {
           VLOG_WITH_PREFIX(4) << "Committed empty transaction";

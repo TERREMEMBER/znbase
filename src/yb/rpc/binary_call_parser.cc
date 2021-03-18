@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -135,7 +135,7 @@ Result<ProcessDataResult> BinaryCallParser::Parse(
           return ProcessDataResult{full_input_size, Slice(), call_data_size - call_received_size};
         } else {
           // For backward compatibility in behavior until we fix
-          // https://github.com/yugabyte/yugabyte-db/issues/2563.
+          // https://github.com/ZNbase/ZNbase-db/issues/2563.
           LOG(WARNING) << "Unable to allocate read buffer because of limit, required: "
                        << call_data_size << ", blocked by: " << AsString(blocking_mem_tracker)
                        << ", consumption: " << consumption << " of " << limit << "\n"

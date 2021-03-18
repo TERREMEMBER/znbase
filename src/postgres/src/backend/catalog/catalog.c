@@ -401,9 +401,9 @@ GetNewOid(Relation relation)
 	if (!OidIsValid(oidIndex))
 	{
 		/*
-		 * In YugaByte we convert the OID index into a primary key.
+		 * In ZNbase we convert the OID index into a primary key.
 		 */
-		if (!IsYugaByteEnabled())
+		if (!IsZNbaseEnabled())
 		{
 			/*
 			 * System catalogs that have OIDs should *always* have a unique OID

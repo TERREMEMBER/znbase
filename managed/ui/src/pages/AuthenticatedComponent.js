@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import NavBarContainer from '../components/common/nav_bar/NavBarContainer';
@@ -96,7 +96,7 @@ class AuthenticatedComponent extends Component {
     const welcomeDialogTitle = (
       <div>
         Welcome to
-        <img alt="YugaByte DB logo"
+        <img alt="ZNbase DB logo"
           className="social-media-logo"
           src={ybLogo}
           width="140"
@@ -165,22 +165,22 @@ class AuthenticatedComponent extends Component {
             <div className="intro-message-container">
               <a
                 className="social-media-btn icon-end"
-                href="https://www.yugabyte.com/slack"
+                href="https://www.ZNbase.com/slack"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <span>Join us on</span>
-                <img alt="YugaByte DB Slack" src={slackLogo} width="65" />
+                <img alt="ZNbase DB Slack" src={slackLogo} width="65" />
               </a>
               <a
                 className="social-media-btn icon-end"
-                href="https://github.com/yugabyte/yugabyte-db"
+                href="https://github.com/ZNbase/ZNbase-db"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <span>Star us on</span>
                 <img
-                  alt="YugaByte DB GitHub"
+                  alt="ZNbase DB GitHub"
                   className="social-media-logo"
                   src={githubLogo}
                   width="18"
@@ -191,7 +191,7 @@ class AuthenticatedComponent extends Component {
             <div className="intro-message-container">
               <a
                 className="social-media-btn"
-                href="https://www.yugabyte.com/community-rewards"
+                href="https://www.ZNbase.com/community-rewards"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -200,7 +200,7 @@ class AuthenticatedComponent extends Component {
               </a>
               <a
                 className="social-media-btn"
-                href="https://docs.yugabyte.com"
+                href="https://docs.ZNbase.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >

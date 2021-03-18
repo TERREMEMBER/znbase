@@ -3,7 +3,7 @@ title: Back up data
 linkTitle: Back up data
 description: Back up data
 image: /images/section_icons/manage/enterprise.png
-headcontent: Back up data in YugabyteDB.
+headcontent: Back up data in ZNbaseDB.
 block_indexing: true
 menu:
   v2.0:
@@ -27,18 +27,18 @@ menu:
   </li>
 </ul>
 
-YugabyteDB is designed for reliability, providing high fault tolerance and redundancy. Many YSQL applications do not require backups, except for disaster recovery needs or to create YugabyteDB clusters for development and testing. When you need backups, YugabyteDB provides two utilities, `ysql_dump` and `ysql_dumpall`, to back up databases.
+ZNbaseDB is designed for reliability, providing high fault tolerance and redundancy. Many YSQL applications do not require backups, except for disaster recovery needs or to create ZNbaseDB clusters for development and testing. When you need backups, ZNbaseDB provides two utilities, `ysql_dump` and `ysql_dumpall`, to back up databases.
 
 ## Back up a single database
 
-The YugabyteDB [`ysql_dump`](../../../admin/ysql-dump) backup utility, derived from PostgreSQL `pg_dump`,
-can be used to extract a single YugabyteDB database into a SQL script file.  `ysql_dump` will make a consistent backup for a database, even if it is being used concurrently, and does not block other database users (readers or writers).
+The ZNbaseDB [`ysql_dump`](../../../admin/ysql-dump) backup utility, derived from PostgreSQL `pg_dump`,
+can be used to extract a single ZNbaseDB database into a SQL script file.  `ysql_dump` will make a consistent backup for a database, even if it is being used concurrently, and does not block other database users (readers or writers).
 
-The SQL script dump is a plain-text file that include the SQL statements required to restore the database to the state it was in at the time it was saved. To restore a database from the SQL script file, use [`ysqlsh`](../../../admin/ysqlsh). For details on restoring an individual YugabyteDB database, see [Restore data](../restore-data).
+The SQL script dump is a plain-text file that include the SQL statements required to restore the database to the state it was in at the time it was saved. To restore a database from the SQL script file, use [`ysqlsh`](../../../admin/ysqlsh). For details on restoring an individual ZNbaseDB database, see [Restore data](../restore-data).
 
-To back up all of the databases in a YugabyteDB universe or cluster, including metadata (roles, sequences, and other database objects), use the `ysql_dumpall` utility.
+To back up all of the databases in a ZNbaseDB universe or cluster, including metadata (roles, sequences, and other database objects), use the `ysql_dumpall` utility.
 
-To back up a single database, from your YugabyteDB home directory, run the `ysql_dump` command, specifying the database to be backed up.
+To back up a single database, from your ZNbaseDB home directory, run the `ysql_dump` command, specifying the database to be backed up.
 
 ```sh
 $ ./postgres/bin/ysql_dump -d <db-name> > <backup-file>
@@ -57,15 +57,15 @@ For details on this utility and the optional parameters, see [`ysql_dump`](../..
 
 ## Back up all databases
 
-Use the [`ysql_dumpall`](../../../admin/ysql-dumpall) backup utility to write out (or "dump") all YugabyteDB databases of a universe into a single SQL script file. The script file is a plain-text file that contains SQL statements that can be used as input to `ysqlsh` to restore the databases. `ysql_dumpall` uses calls to `ysql_dump` for each database in the universe. Unlike the `ysql_dump` utility, the `ysql_dumpall` utility backs up all database objects, including roles, databases, schemas, tables, indexes, triggers, functions, constraints, ownerships, and privileges.
+Use the [`ysql_dumpall`](../../../admin/ysql-dumpall) backup utility to write out (or "dump") all ZNbaseDB databases of a universe into a single SQL script file. The script file is a plain-text file that contains SQL statements that can be used as input to `ysqlsh` to restore the databases. `ysql_dumpall` uses calls to `ysql_dump` for each database in the universe. Unlike the `ysql_dump` utility, the `ysql_dumpall` utility backs up all database objects, including roles, databases, schemas, tables, indexes, triggers, functions, constraints, ownerships, and privileges.
 
 {{< note title="Note" >}}
 
-*If you have enabled password authentication*, you will be prompted for a password as each database in your YugabyteDB universe is backed up because `ysql_dumpall` connects once per database. To have your backup proceed uninterrupted, you can use a password file (`~/.pgpass`).
+*If you have enabled password authentication*, you will be prompted for a password as each database in your ZNbaseDB universe is backed up because `ysql_dumpall` connects once per database. To have your backup proceed uninterrupted, you can use a password file (`~/.pgpass`).
 
 {{< /note >}}
 
-To back up all databases, from your YugabyteDB home directory, run the [`ysql_dumpall`](../../../admin/ysql-dumpall) utility command.
+To back up all databases, from your ZNbaseDB home directory, run the [`ysql_dumpall`](../../../admin/ysql-dumpall) utility command.
 
 ```sh
 $ ./postgres/bin/ysql_dumpall > <backup-file>

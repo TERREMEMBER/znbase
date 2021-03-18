@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
@@ -74,7 +74,7 @@ class UniverseAction extends Component {
       universe,
       universe: { universeConfig }
     } = this.props;
-  
+
     const universePaused = universe?.universeDetails?.universePaused;
     let btnLabel = null;
     let btnIcon = null;

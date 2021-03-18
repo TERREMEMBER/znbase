@@ -44,11 +44,11 @@ showAsideToc: true
 -->
 </ul>
 
-You can monitor your local YugabyteDB cluster with a local instance of [Prometheus](https://prometheus.io/), a popular standard for time-series monitoring of cloud native infrastructure. YugabyteDB services and APIs expose metrics in the Prometheus format at the `/prometheus-metrics` endpoint.
+You can monitor your local ZNbaseDB cluster with a local instance of [Prometheus](https://prometheus.io/), a popular standard for time-series monitoring of cloud native infrastructure. ZNbaseDB services and APIs expose metrics in the Prometheus format at the `/prometheus-metrics` endpoint.
 
-For details on the metrics targets for YugabyteDB, see [Monitoring with Prometheus](../../../reference/configuration/default-ports/#monitoring-with-prometheus).
+For details on the metrics targets for ZNbaseDB, see [Monitoring with Prometheus](../../../reference/configuration/default-ports/#monitoring-with-prometheus).
 
-If you haven't installed YugabyteDB yet, do so first by following the [Quick Start](../../../quick-start/install/) guide.
+If you haven't installed ZNbaseDB yet, do so first by following the [Quick Start](../../../quick-start/install/) guide.
 
 ## Prerequisite
 
@@ -65,18 +65,18 @@ If you have a previously running local universe, destroy it using the following.
 $ ./bin/yb-ctl destroy
 ```
 
-Start a new local YugabyteDB cluster - by default, this will create a three-node universe with a replication factor of `3`.
+Start a new local ZNbaseDB cluster - by default, this will create a three-node universe with a replication factor of `3`.
 
 ```sh
 $ ./bin/yb-ctl create
 ```
 
-## 2. Run the YugabyteDB workload generator
+## 2. Run the ZNbaseDB workload generator
 
-Download the [YugabyteDB workload generator](https://github.com/yugabyte/yb-sample-apps) JAR file (`yb-sample-apps.jar`) by running the following command.
+Download the [ZNbaseDB workload generator](https://github.com/ZNbase/yb-sample-apps) JAR file (`yb-sample-apps.jar`) by running the following command.
 
 ```sh
-$ wget https://github.com/yugabyte/yb-sample-apps/releases/download/v1.2.0/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar 
+$ wget https://github.com/ZNbase/yb-sample-apps/releases/download/v1.2.0/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar 
 ```
 
 Run the `CassandraKeyValue` workload in a separate shell.
@@ -91,7 +91,7 @@ $ java -jar ./yb-sample-apps.jar \
 
 ## 3. Prepare Prometheus configuration file
 
-Copy the following into a file called `yugabytedb.yml`.
+Copy the following into a file called `ZNbasedb.yml`.
 
 ```sh
 global:
@@ -99,9 +99,9 @@ global:
   evaluation_interval: 5s # Evaluate rules every 5 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
 
-# YugabyteDB configuration to scrape Prometheus time-series metrics
+# ZNbaseDB configuration to scrape Prometheus time-series metrics
 scrape_configs:
-  - job_name: 'yugabytedb'
+  - job_name: 'ZNbasedb'
     metrics_path: /prometheus-metrics
 
     static_configs:
@@ -131,7 +131,7 @@ scrape_configs:
 Go to the directory where Prometheus is installed and start the Prometheus server as below.
 
 ```sh
-$ ./prometheus --config.file=yugabytedb.yml
+$ ./prometheus --config.file=ZNbasedb.yml
 ```
 
 Open the Prometheus UI at http://localhost:9090 and then navigate to the Targets page under Status.
@@ -140,7 +140,7 @@ Open the Prometheus UI at http://localhost:9090 and then navigate to the Targets
 
 ## 5. Analyze key metrics
 
-On the Prometheus Graph UI, you can now plot the read IOPS and write IOPS for the `CassandraKeyValue` sample app. As we can see from the [source code](https://github.com/yugabyte/yugabyte-db/blob/master/java/yb-loadtester/src/main/java/com/yugabyte/sample/apps/CassandraKeyValue.java) of the app, it uses only SELECT statements for reads and INSERT statements for writes (aside from the initial CREATE TABLE). This means we can measure throughput and latency by simply using the metrics corresponding to the SELECT and INSERT statements.
+On the Prometheus Graph UI, you can now plot the read IOPS and write IOPS for the `CassandraKeyValue` sample app. As we can see from the [source code](https://github.com/ZNbase/ZNbase-db/blob/master/java/yb-loadtester/src/main/java/com/ZNbase/sample/apps/CassandraKeyValue.java) of the app, it uses only SELECT statements for reads and INSERT statements for writes (aside from the initial CREATE TABLE). This means we can measure throughput and latency by simply using the metrics corresponding to the SELECT and INSERT statements.
 
 Paste the following expressions into the **Expression** box and click **Execute** followed by **Add Graph**.
 

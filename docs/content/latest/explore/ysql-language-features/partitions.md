@@ -13,11 +13,11 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This section describes how to partition tables in YugabyteDB using YSQL.
+This section describes how to partition tables in ZNbaseDB using YSQL.
 
 ## Overview
 
-Partitioning is another term for physically dividing large tables in YugabyteDB into smaller, more manageable tables to improve performance. Typically, tables whose size exceeds the physical memory of the database server should be partitioned. With regards to the columns, the ones containing timestamps are usually subject to partitioning because of the historical and predictable nature of their data.
+Partitioning is another term for physically dividing large tables in ZNbaseDB into smaller, more manageable tables to improve performance. Typically, tables whose size exceeds the physical memory of the database server should be partitioned. With regards to the columns, the ones containing timestamps are usually subject to partitioning because of the historical and predictable nature of their data.
 
 Since partitioned tables do not appear nor act differently from the original table, applications accessing the database are not always aware of the fact that partitioning has taken place.
 

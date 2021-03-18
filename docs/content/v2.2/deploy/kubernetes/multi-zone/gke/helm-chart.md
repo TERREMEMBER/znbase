@@ -28,11 +28,11 @@ showAsideToc: true
 
 You must have a [multi-zonal](https://cloud.google.com/kubernetes-engine/docs/concepts/types-of-clusters#multi-zonal_clusters) or [regional](https://cloud.google.com/kubernetes-engine/docs/concepts/types-of-clusters#regional_clusters) GKE cluster that has Helm configured. If you have not installed the Helm client (`helm`), see [Installing Helm](https://helm.sh/docs/intro/install/).
 
-The YugabyteDB Helm Chart has been tested with the following software versions:
+The ZNbaseDB Helm Chart has been tested with the following software versions:
 
-- GKE running Kubernetes 1.14 (or later) with nodes such that a total of 12 CPU cores and 45 GB RAM can be allocated to YugabyteDB. This can be three nodes with 4 CPU core and 15 GB RAM allocated to YugabyteDB. `n1-standard-8` is the minimum instance type that meets these criteria.
+- GKE running Kubernetes 1.14 (or later) with nodes such that a total of 12 CPU cores and 45 GB RAM can be allocated to ZNbaseDB. This can be three nodes with 4 CPU core and 15 GB RAM allocated to ZNbaseDB. `n1-standard-8` is the minimum instance type that meets these criteria.
 - Helm 3.0 or later
-- YugabyteDB docker image (`yugabytedb/yugabyte`) 2.1.0 or later
+- ZNbaseDB docker image (`ZNbasedb/ZNbase`) 2.1.0 or later
 - For optimal performance, ensure you've set the appropriate [system limits using `ulimit`](../../../../manual-deployment/system-config/#ulimits) on each node in your Kubernetes cluster.
 
 The following steps show how to meet these prerequisites.
@@ -41,10 +41,10 @@ The following steps show how to meet these prerequisites.
 
 - Configure defaults for `gcloud`
 
-Set the project ID as `yugabyte`. You can change this as per your need.
+Set the project ID as `ZNbase`. You can change this as per your need.
 
 ```sh
-$ gcloud config set project yugabyte
+$ gcloud config set project ZNbase
 ```
 
 - Install `kubectl`
@@ -91,7 +91,7 @@ NAME                 LOCATION     MASTER_VERSION  MASTER_IP      MACHINE_TYPE   
 my-regional-cluster  us-central1  1.14.10-gke.17  35.226.36.261  n1-standard-8  1.14.10-gke.17  3          RUNNING
 ```
 
-As stated in the Prerequisites section, the default configuration in the YugabyteDB Helm Chart requires Kubernetes nodes to have a total of 12 CPU cores and 45 GB RAM allocated to YugabyteDB. This can be three nodes with 4 CPU cores and 15 GB RAM allocated to YugabyteDB. The smallest Google Cloud machine type that meets this requirement is `n1-standard-8` which has 8 CPU cores and 30 GB RAM.
+As stated in the Prerequisites section, the default configuration in the ZNbaseDB Helm Chart requires Kubernetes nodes to have a total of 12 CPU cores and 45 GB RAM allocated to ZNbaseDB. This can be three nodes with 4 CPU cores and 15 GB RAM allocated to ZNbaseDB. The smallest Google Cloud machine type that meets this requirement is `n1-standard-8` which has 8 CPU cores and 30 GB RAM.
 
 ### Create a storage class per zone
 
@@ -138,14 +138,14 @@ Apply the above configuration to your cluster.
 kubectl apply -f storage.yaml
 ```
 
-## 2. Create a YugabyteDB cluster
+## 2. Create a ZNbaseDB cluster
 
 ### Add charts repository
 
-To add the YugabyteDB charts repository, run the following command.
+To add the ZNbaseDB charts repository, run the following command.
 
 ```sh
-$ helm repo add yugabytedb https://charts.yugabyte.com
+$ helm repo add ZNbasedb https://charts.ZNbase.com
 ```
 
 Make sure that you have the latest updates to the repository by running the following command.
@@ -157,12 +157,12 @@ $ helm repo update
 Validate that you have the updated Chart version.
 
 ```sh
-$ helm search repo yugabytedb/yugabyte
+$ helm search repo ZNbasedb/ZNbase
 ```
 
 ```sh
 NAME                CHART VERSION APP VERSION   DESCRIPTION                                       
-yugabytedb/yugabyte 2.1.0        2.1.0.0-b18    YugabyteDB is the high-performance distr...
+ZNbasedb/ZNbase 2.1.0        2.1.0.0-b18    ZNbaseDB is the high-performance distr...
 ```
 
 ### Create override files
@@ -260,9 +260,9 @@ gflags:
     placement_zone: "us-central1-c"
 ```
 
-### Install YugabyteDB
+### Install ZNbaseDB
 
-Install YugabyteDB in the Kubernetes cluster using the commands below.
+Install ZNbaseDB in the Kubernetes cluster using the commands below.
 
 For Helm 3, you have to first create the 3 namespaces.
 
@@ -272,22 +272,22 @@ $ kubectl create namespace yb-demo-us-central1-b
 $ kubectl create namespace yb-demo-us-central1-c
 ```
 
-Now create the overall YugabyteDB cluster in such a way that one third of the nodes are hosted in each zone.
+Now create the overall ZNbaseDB cluster in such a way that one third of the nodes are hosted in each zone.
 
 ```sh
-$ helm install yb-demo-us-central1-a yugabytedb/yugabyte \
+$ helm install yb-demo-us-central1-a ZNbasedb/ZNbase \
  --namespace yb-demo-us-central1-a \
  -f overrides-us-central1-a.yaml --wait
 ```
 
 ```sh
-$ helm install yb-demo-us-central1-b yugabytedb/yugabyte \
+$ helm install yb-demo-us-central1-b ZNbasedb/ZNbase \
  --namespace yb-demo-us-central1-b \
  -f overrides-us-central1-b.yaml --wait
 ```
 
 ```sh
-$ helm install yb-demo-us-central1-c yugabytedb/yugabyte \
+$ helm install yb-demo-us-central1-c ZNbasedb/ZNbase \
  --namespace yb-demo-us-central1-c \
  -f overrides-us-central1-c.yaml --wait
 ```
@@ -350,14 +350,14 @@ To make the replica placement zone-aware, so that one replica is placed in each 
 
 ```sh
 kubectl exec -it -n yb-demo-us-central1-a yb-master-0 -- bash \
--c "/home/yugabyte/master/bin/yb-admin --master_addresses yb-master-0.yb-masters.yb-demo-us-central1-a.svc.cluster.local:7100,yb-master-0.yb-masters.yb-demo-us-central1-b.svc.cluster.local:7100,yb-master-0.yb-masters.yb-demo-us-central1-c.svc.cluster.local:7100 modify_placement_info gke.us-central1.us-central1-a,gke.us-central1.us-central1-b,gke.us-central1.us-central1-c 3"
+-c "/home/ZNbase/master/bin/yb-admin --master_addresses yb-master-0.yb-masters.yb-demo-us-central1-a.svc.cluster.local:7100,yb-master-0.yb-masters.yb-demo-us-central1-b.svc.cluster.local:7100,yb-master-0.yb-masters.yb-demo-us-central1-c.svc.cluster.local:7100 modify_placement_info gke.us-central1.us-central1-a,gke.us-central1.us-central1-b,gke.us-central1.us-central1-c 3"
 ```
 
 To see the new configuration, go to `http://<external-ip>:7000/cluster-config` to see the new configuration.
 
 ![after-zoneaware](/images/deploy/kubernetes/gke-multizone-after-zoneaware.png)
 
-## 5. Connect using YugabyteDB shells
+## 5. Connect using ZNbaseDB shells
 
 To connect and use the YSQL Shell (`ysqlsh`), run the following command.
 

@@ -1,4 +1,4 @@
-// Copyright (c) Yugabyte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 @import "./_colors.scss";
 
@@ -86,7 +86,7 @@ pre code.copy + textarea + button.copy, .copy pre code + textarea + button.copy,
   &:after {
     position: absolute;
     top: 0;
-    left: 0;    
+    left: 0;
     font: normal normal normal 18px/1 'Font Awesome 5 Free';
     font-weight: 900;
     content: '\f00c';
@@ -134,7 +134,7 @@ pre code.copy + textarea, .copy pre textarea {
 .content-flex-wrapper {
   display: flex;
   flex-direction: row;
-  
+
   .wrapper {
     flex-grow: 1;
     flex-shrink: 1;

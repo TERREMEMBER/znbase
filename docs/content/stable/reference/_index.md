@@ -1,10 +1,10 @@
 ---
-title: Yugabyte Reference
+title: ZNbase Reference
 headerTitle: Reference
 linkTitle: Reference
-description: Reference of YugabyteDB architecture, APIs, CLIs, drivers, connectors, tools, and sample data.
+description: Reference of ZNbaseDB architecture, APIs, CLIs, drivers, connectors, tools, and sample data.
 image: /images/section_icons/quick_start/sample_apps.png
-headcontent: Reference of YugabyteDB architecture, APIs, CLIs, drivers, connectors, tools, and sample data.
+headcontent: Reference of ZNbaseDB architecture, APIs, CLIs, drivers, connectors, tools, and sample data.
 section: REFERENCE
 menu:
   stable:
@@ -22,7 +22,7 @@ menu:
         <div class="title">Architecture</div>
       </div>
       <div class="body">
-        Learn how YugabyteDB works.
+        Learn how ZNbaseDB works.
       </div>
     </a>
   </div>
@@ -73,7 +73,7 @@ menu:
         <div class="title">Drivers</div>
       </div>
       <div class="body">
-        Drivers for powering applications with YugabyteDB.
+        Drivers for powering applications with ZNbaseDB.
       </div>
     </a>
   </div>
@@ -85,7 +85,7 @@ menu:
         <div class="title">Connectors</div>
       </div>
       <div class="body">
-        Connectors for integrating with YugabyteDB.
+        Connectors for integrating with ZNbaseDB.
       </div>
     </a>
   </div>
@@ -98,7 +98,7 @@ menu:
         <div class="title">Third party tools</div>
       </div>
       <div class="body">
-        GUI tools for developing and managing YugabyteDB databases. 
+        GUI tools for developing and managing ZNbaseDB databases. 
       </div>
     </a>
   </div>
@@ -111,7 +111,7 @@ menu:
         <div class="title">Sample datasets</div>
       </div>
       <div class="body">
-        Sample datasets for use with YugabyteDB.
+        Sample datasets for use with ZNbaseDB.
       </div>
     </a>
   </div>

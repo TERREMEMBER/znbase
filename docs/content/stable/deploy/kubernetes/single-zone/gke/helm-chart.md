@@ -2,7 +2,7 @@
 title: Use Helm Chart to deploy on Google Kubernetes Engine (GKE)
 headerTitle: Google Kubernetes Engine (GKE)
 linkTitle: Google Kubernetes Engine (GKE)
-description: Use Helm Chart to deploy a single-zone YugabyteDB cluster on Google Kubernetes Engine (GKE).
+description: Use Helm Chart to deploy a single-zone ZNbaseDB cluster on Google Kubernetes Engine (GKE).
 menu:
   stable:
     parent: deploy-kubernetes-sz
@@ -39,11 +39,11 @@ showAsideToc: true
 
 You must have a GKE cluster that has Helm configured. If you have not installed the Helm client (`helm`), see [Installing Helm](https://helm.sh/docs/intro/install/).
 
-The YugabyteDB Helm Chart has been tested with the following software versions:
+The ZNbaseDB Helm Chart has been tested with the following software versions:
 
-- GKE running Kubernetes 1.14+ with nodes such that a total of 12 CPU cores and 45 GB RAM can be allocated to YugabyteDB. This can be three nodes with 4 CPU core and 15 GB RAM allocated to YugabyteDB. `n1-standard-8` is the minimum instance type that meets these criteria.
+- GKE running Kubernetes 1.14+ with nodes such that a total of 12 CPU cores and 45 GB RAM can be allocated to ZNbaseDB. This can be three nodes with 4 CPU core and 15 GB RAM allocated to ZNbaseDB. `n1-standard-8` is the minimum instance type that meets these criteria.
 - Helm 3.0 or later
-- Docker image for YugabyteDB (`yugabytedb/yugabyte`) 2.1.0 or later
+- Docker image for ZNbaseDB (`ZNbasedb/ZNbase`) 2.1.0 or later
 - For optimal performance, ensure you set the appropriate [system limits using `ulimit`](../../../../manual-deployment/system-config/#ulimits) on each node in your Kubernetes cluster.
 
 The following steps show how to meet these prerequisites.
@@ -52,10 +52,10 @@ The following steps show how to meet these prerequisites.
 
 - Configure defaults for gcloud
 
-Set the project ID as `yugabyte`. You can change this as needed.
+Set the project ID as `ZNbase`. You can change this as needed.
 
 ```sh
-$ gcloud config set project yugabyte
+$ gcloud config set project ZNbase
 ```
 
 Set the default compute zone as `us-west1-b`. You can change this as needed.
@@ -93,19 +93,19 @@ version.BuildInfo{Version:"v3.0.3", GitCommit:"ac925eb7279f4a6955df663a0128044a8
 Create a Kubernetes cluster, if you have not already done so, by running the following command.
 
 ```sh
-$ gcloud container clusters create yugabyte --machine-type=n1-standard-8
+$ gcloud container clusters create ZNbase --machine-type=n1-standard-8
 ```
 
-As stated in [Prerequisites](#prerequisites) above, the default configuration in the YugabyteDB Helm Chart requires Kubernetes nodes to have a total of 12 CPU cores and 45 GB RAM allocated to YugabyteDB. This can be three nodes with 4 CPU cores and 15 GB RAM allocated to YugabyteDB. The smallest Google Cloud machine type that meets this requirement is `n1-standard-8` which has 8 CPU cores and 30GB RAM.
+As stated in [Prerequisites](#prerequisites) above, the default configuration in the ZNbaseDB Helm Chart requires Kubernetes nodes to have a total of 12 CPU cores and 45 GB RAM allocated to ZNbaseDB. This can be three nodes with 4 CPU cores and 15 GB RAM allocated to ZNbaseDB. The smallest Google Cloud machine type that meets this requirement is `n1-standard-8` which has 8 CPU cores and 30GB RAM.
 
-## 2. Create a YugabyteDB cluster
+## 2. Create a ZNbaseDB cluster
 
 ### Add charts repository
 
-To add the YugabyteDB charts repository, run the following command.
+To add the ZNbaseDB charts repository, run the following command.
 
 ```sh
-$ helm repo add yugabytedb https://charts.yugabyte.com
+$ helm repo add ZNbasedb https://charts.ZNbase.com
 ```
 
 ### Fetch updates from the repository
@@ -119,23 +119,23 @@ $ helm repo update
 ### Validate the Chart version
 
 ```sh
-$ helm search repo yugabytedb/yugabyte
+$ helm search repo ZNbasedb/ZNbase
 ```
 
 **Output:**
 
 ```sh
 NAME                CHART VERSION APP VERSION DESCRIPTION                                       
-yugabytedb/yugabyte 2.1.4         2.1.4.0-b5  YugabyteDB is the high-performance distributed ...
+ZNbasedb/ZNbase 2.1.4         2.1.4.0-b5  ZNbaseDB is the high-performance distributed ...
 ```
 
-### Install YugabyteDB
+### Install ZNbaseDB
 
-Run the following commands to create a namespace and then install Yugabyte.
+Run the following commands to create a namespace and then install ZNbase.
 
 ```sh
 $ kubectl create namespace yb-demo
-$ helm install yb-demo yugabytedb/yugabyte --namespace yb-demo --wait
+$ helm install yb-demo ZNbasedb/ZNbase --namespace yb-demo --wait
 ```
 
 ## Check the cluster status
@@ -156,10 +156,10 @@ STATUS: deployed
 REVISION: 1
 TEST SUITE: None
 NOTES:
-1. Get YugabyteDB Pods by running this command:
+1. Get ZNbaseDB Pods by running this command:
   kubectl --namespace yb-demo get pods
 
-2. Get list of YugabyteDB services that are running:
+2. Get list of ZNbaseDB services that are running:
   kubectl --namespace yb-demo get services
 
 3. Get information about the load balancer services:
@@ -171,7 +171,7 @@ NOTES:
 5. Run YSQL shell from inside of a tablet server:
   kubectl exec --namespace yb-demo -it yb-tserver-0 -- ysqlsh -h yb-tserver-0.yb-tservers.yb-demo
 
-6. Cleanup YugabyteDB Pods
+6. Cleanup ZNbaseDB Pods
   helm delete yb-demo --purge
   NOTE: You need to manually delete the persistent volume
   kubectl delete pvc --namespace yb-demo -l app=yb-master
@@ -218,10 +218,10 @@ $ helm history yb-demo -n yb-demo
 
 ```sh
 REVISION  UPDATED                   STATUS    CHART           APP VERSION DESCRIPTION     
-1         Tue Apr 21 17:29:01 2020  deployed  yugabyte-2.1.4  2.1.4.0-b5  Install complete
+1         Tue Apr 21 17:29:01 2020  deployed  ZNbase-2.1.4  2.1.4.0-b5  Install complete
 ```
 
-## Connect using YugabyteDB shells
+## Connect using ZNbaseDB shells
 
 To connect and use the YSQL Shell `ysqlsh`, run the following command.
 
@@ -256,15 +256,15 @@ You can configure the cluster using the same commands and options as [Open Sourc
 
 ### Independent LoadBalancers
 
-By default, the YugabyteDB Helm Chart will expose the client API endpoints as well as master UI endpoint using two LoadBalancers. If you want to expose the client APIs using independent LoadBalancers, you can do the following.
+By default, the ZNbaseDB Helm Chart will expose the client API endpoints as well as master UI endpoint using two LoadBalancers. If you want to expose the client APIs using independent LoadBalancers, you can do the following.
 
 ```sh
-helm install yb-demo yugabytedb/yugabyte -f https://raw.githubusercontent.com/yugabyte/charts/master/stable/yugabyte/expose-all.yaml --namespace yb-demo --wait
+helm install yb-demo ZNbasedb/ZNbase -f https://raw.githubusercontent.com/ZNbase/charts/master/stable/ZNbase/expose-all.yaml --namespace yb-demo --wait
 ```
 
 You can also bring up an internal LoadBalancer (for either YB-Master or YB-TServer services), if required. Just specify the [annotation](https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer) required for your cloud provider. The following command brings up an internal LoadBalancer for the YB-TServer service in Google Cloud Platform.
 
 ```sh
-$ helm install yugabyte -f https://raw.githubusercontent.com/yugabyte/charts/master/stable/yugabyte/expose-all.yaml --namespace yb-demo --name yb-demo \
+$ helm install ZNbase -f https://raw.githubusercontent.com/ZNbase/charts/master/stable/ZNbase/expose-all.yaml --namespace yb-demo --name yb-demo \
   --set annotations.tserver.loadbalancer."cloud\.google\.com/load-balancer-type"=Internal --wait
 ```

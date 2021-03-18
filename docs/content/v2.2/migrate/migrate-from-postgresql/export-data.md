@@ -13,11 +13,11 @@ isTocNested: false
 showAsideToc: true
 ---
 
-The recommended way to export data from PostgreSQL for purposes of importing it to YugabyteDB is using the CSV format.
+The recommended way to export data from PostgreSQL for purposes of importing it to ZNbaseDB is using the CSV format.
 
 ## Exporting an entire database
 
-The recommended way to dump an entire database from PostgreSQL is to use the YugabyteDB [`ysql_dump`](/v2.2/admin/ysql-dump) backup utility, which is in turn derived from PostgreSQL pg_dump.
+The recommended way to dump an entire database from PostgreSQL is to use the ZNbaseDB [`ysql_dump`](/v2.2/admin/ysql-dump) backup utility, which is in turn derived from PostgreSQL pg_dump.
 
 ```
 $ ysql_dump -d mydatabase > mydatabase-dump.sql

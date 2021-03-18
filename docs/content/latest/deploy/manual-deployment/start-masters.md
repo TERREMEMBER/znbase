@@ -1,8 +1,8 @@
 ---
-title: Start YB-Master nodes of YugabyteDB cluster
+title: Start YB-Master nodes of ZNbaseDB cluster
 headerTitle: Start YB-Masters
 linkTitle: 3. Start YB-Masters
-description: Start YB-Master servers of your YugabyteDB cluster
+description: Start YB-Master servers of your ZNbaseDB cluster
 aliases:
   - /deploy/manual-deployment/start-masters
 menu:

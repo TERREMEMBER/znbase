@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 import argparse
 import json
@@ -27,13 +27,13 @@ from multiprocessing import Pool
 from six import string_types, PY2, PY3
 
 
-# Try to read home dir from environment variable, else assume it's /home/yugabyte.
-YB_HOME_DIR = os.environ.get("YB_HOME_DIR", "/home/yugabyte")
+# Try to read home dir from environment variable, else assume it's /home/ZNbase.
+YB_HOME_DIR = os.environ.get("YB_HOME_DIR", "/home/ZNbase")
 YB_TSERVER_DIR = os.path.join(YB_HOME_DIR, "tserver")
 YB_CORES_DIR = os.path.join(YB_HOME_DIR, "cores/")
 YB_PROCESS_LOG_PATH_FORMAT = os.path.join(YB_HOME_DIR, "{}/logs/")
-VM_CERT_FILE_PATH = os.path.join(YB_HOME_DIR, "yugabyte-tls-config/ca.crt")
-K8S_CERT_FILE_PATH = "/opt/certs/yugabyte/ca.crt"
+VM_CERT_FILE_PATH = os.path.join(YB_HOME_DIR, "ZNbase-tls-config/ca.crt")
+K8S_CERT_FILE_PATH = "/opt/certs/ZNbase/ca.crt"
 
 RECENT_FAILURE_THRESHOLD_SEC = 8 * 60
 FATAL_TIME_THRESHOLD_MINUTES = 12
@@ -240,7 +240,7 @@ class NodeChecker():
             ])
         else:
             cmd_to_run.extend(
-                ['ssh', 'yugabyte@{}'.format(self.node), '-p', str(self.ssh_port),
+                ['ssh', 'ZNbase@{}'.format(self.node), '-p', str(self.ssh_port),
                  '-o', 'StrictHostKeyChecking no',
                  '-o', 'ConnectTimeout={}'.format(SSH_TIMEOUT_SEC),
                  '-o', 'UserKnownHostsFile /dev/null',
@@ -439,7 +439,7 @@ class NodeChecker():
         errors = []
         # If YSQL-auth is enabled, we'll try connecting over the UNIX domain socket in the hopes
         # that we can circumvent md5 authentication (assumption made:
-        # "local all yugabyte trust" is in the hba file)
+        # "local all ZNbase trust" is in the hba file)
         if self.enable_ysql_auth:
             socket_fds_output = self._remote_check_output("ls /tmp/.yb.*/.s.PGSQL.*").strip()
             socket_fds = socket_fds_output.split()
@@ -451,10 +451,10 @@ class NodeChecker():
                 return e.fill_and_return_entry(errors, True)
 
         if not self.enable_tls_client:
-            remote_cmd = "{} -h {} {} -U yugabyte -c \"\conninfo\"".format(
+            remote_cmd = "{} -h {} {} -U ZNbase -c \"\conninfo\"".format(
                 ysqlsh, host, port_args)
         else:
-            remote_cmd = "{} -h {} {} -U yugabyte {} -c \"\conninfo\"".format(
+            remote_cmd = "{} -h {} {} -U ZNbase {} -c \"\conninfo\"".format(
                 ysqlsh, host, port_args, '"sslmode=require"')
 
         output = self._remote_check_output(remote_cmd).strip()

@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 export { default as ProgressList } from './ProgressList';
 export { default as StepProgressBar } from './StepProgressBar';

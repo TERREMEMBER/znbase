@@ -1,8 +1,8 @@
 ---
-title: Explore YSQL, the YugabyteDB SQL API
+title: Explore YSQL, the ZNbaseDB SQL API
 headerTitle: 3. Explore YSQL 
 linkTitle: 3. Explore YSQL 
-description: Explore Yugabyte SQL (YSQL), a PostgreSQL-compatible distributed SQL API
+description: Explore ZNbase SQL (YSQL), a PostgreSQL-compatible distributed SQL API
 image: /images/section_icons/quick_start/explore_ysql.png
 block_indexing: true
 menu:
@@ -14,7 +14,7 @@ isTocNested: false
 showAsideToc: true
 ---
 
-After [creating a local cluster](../create-local-cluster/), you can now begin to explore YugabyteDB's PostgreSQL-compatible [YSQL](../../api/ysql/) API.
+After [creating a local cluster](../create-local-cluster/), you can now begin to explore ZNbaseDB's PostgreSQL-compatible [YSQL](../../api/ysql/) API.
 
 ## 1. Load sample data
 
@@ -22,13 +22,13 @@ Follow the steps below to create a database and load sample data.
 
 {{< note title="Note" >}}
 
-The five SQL scripts (aka `.sql` files) used to create and load the sample data in the steps below are located in the `share` directory of your YugabyteDB installation. You can verify the files are available by entering the following `ls` command from the YugabyteDB home directory.
+The five SQL scripts (aka `.sql` files) used to create and load the sample data in the steps below are located in the `share` directory of your ZNbaseDB installation. You can verify the files are available by entering the following `ls` command from the ZNbaseDB home directory.
 
 ```sh
 $ ls share/
 ```
 
-The `share` directory includes sample dataset files available for creating databases for learning YugabyteDB. The files that will be used in the steps below are `schema.sql`, `orders.sql`, `products.sql`,`reviews.sql` and `users.sql`.
+The `share` directory includes sample dataset files available for creating databases for learning ZNbaseDB. The files that will be used in the steps below are `schema.sql`, `orders.sql`, `products.sql`,`reviews.sql` and `users.sql`.
 
 {{< /note >}}
 
@@ -79,13 +79,13 @@ Open the YSQL shell (`ysqlsh) by running the following command.
 1. Create a database (`yb_demo`) by using the following `CREATE DATABASE` command.
 
     ```postgresql
-    yugabyte=# CREATE DATABASE yb_demo;
+    ZNbase=# CREATE DATABASE yb_demo;
     ```
 
 2. Connect to the new database using the following YSQL shell `\c` meta command.
 
     ```postgresql
-    yugabyte=# \c yb_demo;
+    ZNbase=# \c yb_demo;
     ```
 
 3. Create the database schema, which includes four tables, by running the following `\i` meta command.
@@ -112,7 +112,7 @@ Open the YSQL shell (`ysqlsh) by running the following command.
     yb_demo=# \i share/reviews.sql
     ```
 
-    You now have sample data and are ready to begin exploring YSQL in YugabyteDB.
+    You now have sample data and are ready to begin exploring YSQL in ZNbaseDB.
 
 ## 2. Simple queries
 
@@ -403,15 +403,15 @@ yb_demo=# \d
                List of relations
  Schema |      Name       |   Type   |  Owner
 --------+-----------------+----------+----------
- public | channel         | view     | yugabyte
- public | orders          | table    | yugabyte
- public | orders_id_seq   | sequence | yugabyte
- public | products        | table    | yugabyte
- public | products_id_seq | sequence | yugabyte
- public | reviews         | table    | yugabyte
- public | reviews_id_seq  | sequence | yugabyte
- public | users           | table    | yugabyte
- public | users_id_seq    | sequence | yugabyte
+ public | channel         | view     | ZNbase
+ public | orders          | table    | ZNbase
+ public | orders_id_seq   | sequence | ZNbase
+ public | products        | table    | ZNbase
+ public | products_id_seq | sequence | ZNbase
+ public | reviews         | table    | ZNbase
+ public | reviews_id_seq  | sequence | ZNbase
+ public | users           | table    | ZNbase
+ public | users_id_seq    | sequence | ZNbase
 (9 rows)
 ```
 

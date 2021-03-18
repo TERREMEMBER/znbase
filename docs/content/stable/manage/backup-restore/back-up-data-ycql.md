@@ -2,7 +2,7 @@
 title: Back up data
 headerTitle: Back up data
 linkTitle: Back up data
-description: Back up YCQL data in YugabyteDB.
+description: Back up YCQL data in ZNbaseDB.
 menu:
   stable:
     identifier: back-up-data-ycql
@@ -27,7 +27,7 @@ showAsideToc: true
   </li>
 </ul>
 
-This page documents backups for YugabyteDB’s [Cassandra compatible YCQL API](../../../api/ycql).
+This page documents backups for ZNbaseDB’s [Cassandra compatible YCQL API](../../../api/ycql).
 
 ## Schema backup
 
@@ -103,7 +103,7 @@ There are a number of useful options in the `COPY TO` command used to perform th
 
 We are going to use the example shown in the [quick start](../../../quick-start/test-cassandra/) section in order to demonstrate how to create backups.
 
-This section assumes you already have a YugabyteDB cluster. You can install a local cluster on your laptop using [these quick start instructions](../../../quick-start/install/).
+This section assumes you already have a ZNbaseDB cluster. You can install a local cluster on your laptop using [these quick start instructions](../../../quick-start/install/).
 
 ### Create a table with data
 

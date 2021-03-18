@@ -1,8 +1,8 @@
 ---
-title: YSQL - Yugabyte SQL for distributed databases (PostgreSQL-compatible)
-headerTitle: Yugabyte Structured Query Language (YSQL)
+title: YSQL - ZNbase SQL for distributed databases (PostgreSQL-compatible)
+headerTitle: ZNbase Structured Query Language (YSQL)
 linkTitle: YSQL
-description: Yugabyte Structured Query Language (YSQL) is the distributed SQL API for PostgreSQL-compatible YugabyteDB.
+description: ZNbase Structured Query Language (YSQL) is the distributed SQL API for PostgreSQL-compatible ZNbaseDB.
 summary: Reference for the YSQL API
 image: /images/section_icons/api/ysql.png
 block_indexing: true
@@ -17,7 +17,7 @@ showAsideToc: true
 
 ## Introduction
 
-Yugabyte Structured Query Language (YSQL) is an ANSI SQL, fully-relational API that is best fit for scale-out RDBMS applications needing ultra resilience, massive write scalability and geographic data distribution. Currently, YSQL is compatible with PostgreSQL 11.2 version and is in fact built by reusing PostgreSQL's native query layer. It supports all traditional relational modeling features, such as referential integrity (such as foreign keys), JOINs, distributed transactions, partial indexes, triggers and stored procedures.
+ZNbase Structured Query Language (YSQL) is an ANSI SQL, fully-relational API that is best fit for scale-out RDBMS applications needing ultra resilience, massive write scalability and geographic data distribution. Currently, YSQL is compatible with PostgreSQL 11.2 version and is in fact built by reusing PostgreSQL's native query layer. It supports all traditional relational modeling features, such as referential integrity (such as foreign keys), JOINs, distributed transactions, partial indexes, triggers and stored procedures.
 
 The main components of YSQL include the data definition language (DDL), the data manipulation language (DML), and the data control language (DCL). A number of elements are used to construct these components, including data types, database objects, names and qualifiers, expressions, and comments. Other components are also provided for different purposes such as system control, transaction control, and performance tuning.
 

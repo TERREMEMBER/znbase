@@ -145,7 +145,7 @@ Anyway, the ordinary good practice principle holds even more here: always check 
 
 {{< tip title="Download a zip of WITH clause demonstration scripts" >}}
 
-The [`recursive-cte-code-examples.zip`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/recursive-cte-code-examples/recursive-cte-code-examples.zip) file contains the `.sql` scripts that illustrate the use of the [recursive CTE](./recursive-cte/):
+The [`recursive-cte-code-examples.zip`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/recursive-cte-code-examples/recursive-cte-code-examples.zip) file contains the `.sql` scripts that illustrate the use of the [recursive CTE](./recursive-cte/):
 
 - [Case study—Using a recursive CTE to traverse an employee hierarchy](./emps-hierarchy/)
 

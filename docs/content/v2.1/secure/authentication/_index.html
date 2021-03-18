@@ -1,5 +1,5 @@
 ---
-title: Authentication in YugabyteDB
+title: Authentication in ZNbaseDB
 headerTitle: Authentication
 linkTitle: Authentication
 description: Verify that users and clients are who they say they are.

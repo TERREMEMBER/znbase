@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1068,7 +1068,7 @@ Status RaftConsensus::BecomeReplicaUnlocked(
 
   peer_manager_->Close();
 
-  // TODO: https://github.com/yugabyte/yugabyte-db/issues/5522. Add unit tests for this metric.
+  // TODO: https://github.com/ZNbase/ZNbase-db/issues/5522. Add unit tests for this metric.
   // We update the follower lag metric timestamp here because it's possible that a leader
   // that step downs could get partitioned before it receives any replicate message. If we
   // don't update the timestamp here, and the above scenario happens, the metric will keep the

@@ -3,7 +3,7 @@
  * ybctype.c
  *        Commands for creating and altering table structures and settings
  *
- * Copyright (c) YugaByte, Inc.
+ * Copyright (c) ZNbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License.  You may obtain a copy of the License at
@@ -89,8 +89,8 @@ static const YBCPgTypeEntity YBCVarLenByRefTypeEntity;
 void YBCDatumToDocdb(Datum datum, uint8 **data, int64 *bytes);
 
 /***************************************************************************************************
- * Find YugaByte storage type for each PostgreSQL datatype.
- * NOTE: Because YugaByte network buffer can be deleted after it is processed, Postgres layer must
+ * Find ZNbase storage type for each PostgreSQL datatype.
+ * NOTE: Because ZNbase network buffer can be deleted after it is processed, Postgres layer must
  *       allocate a buffer to keep the data in its slot.
  **************************************************************************************************/
 const YBCPgTypeEntity *
@@ -122,7 +122,7 @@ YBCDataTypeFromOidMod(int attnum, Oid type_id)
 			default:
 				ereport(ERROR,
 						(errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
-						 errmsg("System column not yet supported in YugaByte: %d", attnum)));
+						 errmsg("System column not yet supported in ZNbase: %d", attnum)));
 				break;
 		}
 	}
@@ -302,7 +302,7 @@ Datum YBCBPCharToDatum(const char *data, int64 bytes, const YBCPgTypeAttrs *type
 						errmsg("Invalid data size")));
 	}
 
-	/* Convert YugaByte cstring to Postgres internal representation */
+	/* Convert ZNbase cstring to Postgres internal representation */
 	LOCAL_FCINFO(fcinfo, 3);
 	PG_GETARG_DATUM(0) = CStringGetDatum(data);
 	PG_GETARG_DATUM(2) = Int32GetDatum(type_attrs->typmod);
@@ -321,7 +321,7 @@ Datum YBCVarcharToDatum(const char *data, int64 bytes, const YBCPgTypeAttrs *typ
 						errmsg("Invalid data size")));
 	}
 
-	/* Convert YugaByte cstring to Postgres internal representation */
+	/* Convert ZNbase cstring to Postgres internal representation */
 	LOCAL_FCINFO(fcinfo, 3);
 	PG_GETARG_DATUM(0) = CStringGetDatum(data);
 	PG_GETARG_DATUM(2) = Int32GetDatum(type_attrs->typmod);
@@ -369,7 +369,7 @@ Datum YBCCStrToDatum(const char *data, int64 bytes, const YBCPgTypeAttrs *type_a
 						errmsg("Invalid data size")));
 	}
 
-	/* Convert YugaByte cstring to Postgres internal representation */
+	/* Convert ZNbase cstring to Postgres internal representation */
 	LOCAL_FCINFO(fcinfo, 1);
 	PG_GETARG_DATUM(0) = CStringGetDatum(data);
 	return cstring_in(fcinfo);
@@ -499,7 +499,7 @@ void YBCDatumToUuid(Datum datum, unsigned char **data, int64 *bytes) {
 }
 
 Datum YBCUuidToDatum(const unsigned char *data, int64 bytes, const YBCPgTypeAttrs *type_attrs) {
-	// We have to make a copy for data because the "data" pointer belongs to YugaByte cache memory
+	// We have to make a copy for data because the "data" pointer belongs to ZNbase cache memory
 	// which can be cleared at any time.
 	pg_uuid_t *uuid;
 	if (bytes != UUID_LEN) {
@@ -562,8 +562,8 @@ Datum YBCIntervalToDatum(const void *data, int64 bytes, const YBCPgTypeAttrs *ty
  * Workaround: These conversion functions can be used as a quick workaround to support a type.
  * - Used for Datum that contains address or pointer of actual data structure.
  *     Datum = pointer to { 1 or 4 bytes for data-size | data }
- * - Save Datum exactly as-is in YugaByte storage when writing.
- * - Read YugaByte storage and copy as-is to Postgres's in-memory datum when reading.
+ * - Save Datum exactly as-is in ZNbase storage when writing.
+ * - Read ZNbase storage and copy as-is to Postgres's in-memory datum when reading.
  *
  * IMPORTANT NOTE: This doesn't work for data values that are cached in-place instead of in a
  * separate space to which the datum is pointing to. For example, it doesn't work for numeric
@@ -591,7 +591,7 @@ Datum YBCDocdbToDatum(const uint8 *data, int64 bytes, const YBCPgTypeAttrs *type
 
 /***************************************************************************************************
  * Conversion Table
- * Contain function pointers for conversion between PostgreSQL Datum to YugaByte data.
+ * Contain function pointers for conversion between PostgreSQL Datum to ZNbase data.
  *
  * TODO(Alex)
  * - Change NOT_SUPPORTED to proper datatype.

@@ -153,7 +153,7 @@ I0912 16:27:18.297732  8168 heartbeater.cc:374] Sending a full tablet report to 
 I0912 16:27:18.298435  8142 client-internal.cc:1112] Reinitialize master addresses from file: ../tserver.conf
 I0912 16:27:18.298691  8142 client-internal.cc:1123] New master addresses: 172.151.17.130:7100,172.151.17.220:7100,172.151.17.140:7100
 I0912 16:27:18.311367  8142 webserver.cc:156] Starting webserver on 0.0.0.0:12000
-I0912 16:27:18.311408  8142 webserver.cc:161] Document root: /home/centos/yugabyte/www
+I0912 16:27:18.311408  8142 webserver.cc:161] Document root: /home/centos/ZNbase/www
 I0912 16:27:18.311574  8142 webserver.cc:248] Webserver started. Bound to: http://0.0.0.0:12000/
 I0912 16:27:18.311748  8142 rpc_server.cc:158] RPC server started. Bound to: 0.0.0.0:9042
 I0912 16:27:18.311828  8142 tablet_server_main.cc:128] CQL server successfully started

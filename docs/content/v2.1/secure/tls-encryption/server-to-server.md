@@ -18,7 +18,7 @@ showAsideToc: true
 
 ## Prerequisites
 
-Before you can enable and use server-to-server encryption, you need to create and configure server certificates for each node of your YugabyteDB cluster. For information, see [Create server certificates](../server-certificates).
+Before you can enable and use server-to-server encryption, you need to create and configure server certificates for each node of your ZNbaseDB cluster. For information, see [Create server certificates](../server-certificates).
 
 ## Configure YB-Master and YB-TServer nodes
 
@@ -26,7 +26,7 @@ To enable server-to-server encryption using TLS, start your YB-Master and YB-TSe
 
 Flag                           | Node                  | Description                  |
 -------------------------------|--------------------------|------------------------------|
-`use_node_to_node_encryption`  | YB-Master, YB-TServer | Set to `true` to enable encryption between YugabyteDB nodes. Default value is `false`. |
+`use_node_to_node_encryption`  | YB-Master, YB-TServer | Set to `true` to enable encryption between ZNbaseDB nodes. Default value is `false`. |
 `allow_insecure_connections`   | YB-Master only           | Set to `false` to disallow any service with unencrypted communication from joining this cluster. Default value is `true`. Note that this flag requires `--use_node_to_node_encryption` to be enabled. |
 `certs_dir`                    | YB-Master, YB-TServer | Optional. This directory should contain the configuration that was prepared in the a step for this node to perform encrypted communication with the other nodes. Default value for YB-Masters is `<data drive>/yb-data/master/data/certs` and for YB-TServers this location is `<data drive>/yb-data/tserver/data/certs` |
 
@@ -73,7 +73,7 @@ $ ./bin/ysqlsh
 ysqlsh (11.2-YB-2.0.11.0-b0)
 Type "help" for help
 
-yugabyte=#
+ZNbase=#
 ```
 
 ### YCQL

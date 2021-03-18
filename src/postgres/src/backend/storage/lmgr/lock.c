@@ -581,7 +581,7 @@ LockHasWaiters(const LOCKTAG *locktag, LOCKMODE lockmode, bool sessionLock)
 	bool		hasWaiters = false;
 
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return false;
 	}
 
@@ -693,7 +693,7 @@ LockAcquire(const LOCKTAG *locktag,
 			bool dontWait)
 {
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return LOCKACQUIRE_OK;
 	}
 
@@ -737,7 +737,7 @@ LockAcquireExtended(const LOCKTAG *locktag,
 	bool		log_lock = false;
 
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return LOCKACQUIRE_OK;
 	}
 
@@ -1700,7 +1700,7 @@ void
 MarkLockClear(LOCALLOCK *locallock)
 {
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return;
 	}
 
@@ -1890,7 +1890,7 @@ LockRelease(const LOCKTAG *locktag, LOCKMODE lockmode, bool sessionLock)
 	bool		wakeupNeeded;
 
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return true;
 	}
 
@@ -2101,7 +2101,7 @@ LockReleaseAll(LOCKMETHODID lockmethodid, bool allLocks)
 	bool		have_fast_path_lwlock = false;
 
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return;
 	}
 
@@ -2373,7 +2373,7 @@ LockReleaseSession(LOCKMETHODID lockmethodid)
 	LOCALLOCK  *locallock;
 
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return;
 	}
 
@@ -2405,7 +2405,7 @@ void
 LockReleaseCurrentOwner(LOCALLOCK **locallocks, int nlocks)
 {
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return;
 	}
 
@@ -2506,7 +2506,7 @@ LockReassignCurrentOwner(LOCALLOCK **locallocks, int nlocks)
 {
 
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return;
 	}
 
@@ -2855,7 +2855,7 @@ GetLockConflicts(const LOCKTAG *locktag, LOCKMODE lockmode)
 	int			fast_count = 0;
 
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		vxids = (VirtualTransactionId *)
 			palloc0(sizeof(VirtualTransactionId));
 		vxids[0].backendId = InvalidBackendId;
@@ -3169,7 +3169,7 @@ AtPrepare_Locks(void)
 	LOCALLOCK  *locallock;
 
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return;
 	}
 
@@ -4333,7 +4333,7 @@ void
 VirtualXactLockTableInsert(VirtualTransactionId vxid)
 {
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return;
 	}
 	Assert(VirtualTransactionIdIsValid(vxid));
@@ -4363,7 +4363,7 @@ VirtualXactLockTableCleanup(void)
 	LocalTransactionId lxid;
 
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return;
 	}
 
@@ -4415,7 +4415,7 @@ VirtualXactLock(VirtualTransactionId vxid, bool wait)
 	PGPROC	   *proc;
 
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return false;
 	}
 	Assert(VirtualTransactionIdIsValid(vxid));
@@ -4519,7 +4519,7 @@ LockWaiterCount(const LOCKTAG *locktag)
 	int			waiters = 0;
 
 	if (!YBIsPgLockingEnabled()) {
-		/* Locking is handled separately by YugaByte. */
+		/* Locking is handled separately by ZNbase. */
 		return 0;
 	}
 

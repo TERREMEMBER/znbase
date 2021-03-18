@@ -1,12 +1,12 @@
 ---
-title: 1. Install YugabyteDB
-linkTitle: 1. Install YugabyteDB
-description: Install YugabyteDB
+title: 1. Install ZNbaseDB
+linkTitle: 1. Install ZNbaseDB
+description: Install ZNbaseDB
 block_indexing: true
 menu:
   v2.0:
     parent: quick-start
-    name: 1. Install YugabyteDB
+    name: 1. Install ZNbaseDB
     identifier: install-1-macos
     weight: 110
 type: page
@@ -50,7 +50,7 @@ showAsideToc: true
 
 1. <i class="fab fa-apple" aria-hidden="true"></i> macOS 10.12 or later.
 
-2. Verify that you have Python 2 installed. Support for Python 3 is in the works, status can be tracked on [GitHub](https://github.com/yugabyte/yugabyte-db/issues/3025).
+2. Verify that you have Python 2 installed. Support for Python 3 is in the works, status can be tracked on [GitHub](https://github.com/ZNbase/ZNbase-db/issues/3025).
 
     ```sh
     $ python --version
@@ -120,18 +120,18 @@ showAsideToc: true
 
     You might have to `unload` the service before loading it.
 
-## Download YugabyteDB
+## Download ZNbaseDB
 
-Download the YugabyteDB `tar.gz` file using the following `wget` command.
+Download the ZNbaseDB `tar.gz` file using the following `wget` command.
 
 ```sh
-$ wget https://downloads.yugabyte.com/yugabyte-2.0.11.0-darwin.tar.gz
+$ wget https://downloads.ZNbase.com/ZNbase-2.0.11.0-darwin.tar.gz
 ```
 
-To unpack the archive file and change to the YugabyteDB home directory, run the following command.
+To unpack the archive file and change to the ZNbaseDB home directory, run the following command.
 
 ```sh
-$ tar xvfz yugabyte-2.0.11.0-darwin.tar.gz && cd yugabyte-2.0.11.0/
+$ tar xvfz ZNbase-2.0.11.0-darwin.tar.gz && cd ZNbase-2.0.11.0/
 ```
 
 ## Configure 

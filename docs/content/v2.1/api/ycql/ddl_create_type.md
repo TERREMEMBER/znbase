@@ -77,7 +77,7 @@ ycqlsh:example> SELECT * FROM employees;
 ```
  employee_id | employee
 -------------+---------------------------------------------------------------------------
-           1 | {first_name: 'John', last_name: 'Doe', emails: ['john.doe@yugabyte.com']}
+           1 | {first_name: 'John', last_name: 'Doe', emails: ['john.doe@ZNbase.com']}
 
 ```
 

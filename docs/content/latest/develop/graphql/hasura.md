@@ -11,15 +11,15 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Use the [Hasura GraphQL Engine](https://hasura.io) with YugabyteDB to power your GraphQL applications with a distributed SQL database.
+Use the [Hasura GraphQL Engine](https://hasura.io) with ZNbaseDB to power your GraphQL applications with a distributed SQL database.
 
-Follow the steps below to begin using Hasura with YugabyteDB. For details on using Hasura, see the [Hasura GraphQL engine documentation](https://docs.hasura.io).
+Follow the steps below to begin using Hasura with ZNbaseDB. For details on using Hasura, see the [Hasura GraphQL engine documentation](https://docs.hasura.io).
 
 ## Before you begin
 
-### Install and start YugabyteDB
+### Install and start ZNbaseDB
 
-You can be up and running with YugabyteDB in under five minutes by following the steps in [Quick start](../../../quick-start/).
+You can be up and running with ZNbaseDB in under five minutes by following the steps in [Quick start](../../../quick-start/).
 
 PostgreSQL-compatible YSQL API is now available to serve application client requests at `localhost:5433`.
 
@@ -27,13 +27,13 @@ PostgreSQL-compatible YSQL API is now available to serve application client requ
 
 To install the Hasura GraphQL engine on an existing PostgreSQL database, follow the steps in the Hasura [Quick start with Docker](https://hasura.io/docs/1.0/graphql/manual/deployment/docker/index.html).
 
-To use Hasura with YugabyteDB, the configuration should be similar to PostgreSQL, except that the port should be `5433`.
+To use Hasura with ZNbaseDB, the configuration should be similar to PostgreSQL, except that the port should be `5433`.
 
 For a local Mac setup, the configuration should be:
 
 ```sh
 docker run -d -p 8080:8080 \
-  -e HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:@host.docker.internal:5433/yugabyte \
+  -e HASURA_GRAPHQL_DATABASE_URL=postgres://postgres:@host.docker.internal:5433/ZNbase \
   -e HASURA_GRAPHQL_ENABLE_CONSOLE=true \
   hasura/graphql-engine:v1.1.0
 ```
@@ -45,7 +45,7 @@ docker run -d -p 8080:8080 \
 
 ## Create sample tables and relationships
 
-Follow the steps below to add tables to the `yugabyte` database specified in the configuration above.
+Follow the steps below to add tables to the `ZNbase` database specified in the configuration above.
 You can use another database, if you want, but make sure to change the database name in the `HASURA_GRAPHQL_DATABASE_URL` setting.
 
 To perform the steps below, open the Hasura UI on http://localhost:8080 and go to the `DATA` tab as shown here.
@@ -92,7 +92,7 @@ Click **Add**, and then click **Save**.
 
 ### 5. Load sample data
 
-1. On the command line, change your directory to the root `yugabyte` directory, and then open `ysqlsh` (the YSQL CLI) to connect to the YugabyteDB cluster:
+1. On the command line, change your directory to the root `ZNbase` directory, and then open `ysqlsh` (the YSQL CLI) to connect to the ZNbaseDB cluster:
 
 ```sh
 $ ./bin/ysqlsh
@@ -162,13 +162,13 @@ Fetch a list of authors and a nested list of each author’s articles where the 
 
 Now that you're done with this exploration, you can clean up the pieces for your next adventure.
 
-1. Stop the YugabyteDB cluster by running the `yb-ctl stop` command.
+1. Stop the ZNbaseDB cluster by running the `yb-ctl stop` command.
 
     ```sh
     ./bin/yb-ctl stop
     ```
 
-    Note: To completely remove all YugabyteDB data/cluster-state you can instead run:
+    Note: To completely remove all ZNbaseDB data/cluster-state you can instead run:
 
     ```sh
     ./bin/yb-ctl destroy

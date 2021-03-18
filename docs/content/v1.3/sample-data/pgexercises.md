@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Download and install the PostgreSQL-compatible version of PgExercises on the YugabyteDB distributed SQL database. Work through 81 exercises to learn SQL or test your knowledge.
+Download and install the PostgreSQL-compatible version of PgExercises on the ZNbaseDB distributed SQL database. Work through 81 exercises to learn SQL or test your knowledge.
 
 ## About the PgExercises sample database
 
@@ -33,16 +33,16 @@ Follow the steps here to download and install the PgExercises sample database.
 
 ### Before you begin
 
-To use the PgExercises sample database, you must have installed and configured YugabyteDB. To get up and running quickly, see [Quick Start](/latest/quick-start/).
+To use the PgExercises sample database, you must have installed and configured ZNbaseDB. To get up and running quickly, see [Quick Start](/latest/quick-start/).
 
 ### 1. Download the SQL scripts
 
-You can download the PGExercise SQL scripts that is compatible with YugabyteDB from the [`sample` directory of the YugabyteDB GitHub repository](https://github.com/yugabyte/yugabyte-db/tree/master/sample).
+You can download the PGExercise SQL scripts that is compatible with ZNbaseDB from the [`sample` directory of the ZNbaseDB GitHub repository](https://github.com/ZNbase/ZNbase-db/tree/master/sample).
 
 Here are the two files you’ll need.
 
-- [`clubdata_ddl.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/clubdata_ddl.sql) — Creates the tables and other database objects
-- [`clubdata_data.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/clubdata_data.sql) — Loads the sample data
+- [`clubdata_ddl.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/clubdata_ddl.sql) — Creates the tables and other database objects
+- [`clubdata_data.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/clubdata_data.sql) — Loads the sample data
 
 ### 2. Open the YSQL shell
 
@@ -81,7 +81,7 @@ exercises=#
 To build the tables and database objects, run the `\i` command.
 
 ```
-exercises=# \i /Users/yugabyte/clubdata_ddl.sql
+exercises=# \i /Users/ZNbase/clubdata_ddl.sql
 ```
 
 You can verify that all three tables have been created by running the `\d` command.
@@ -95,7 +95,7 @@ exercises=# \d
 To load the `exercises` database with sample data, run the following command to execute commands in the file.
 
 ```
-exercises=# \i /Users/yugabyte/clubdata_data.sql
+exercises=# \i /Users/ZNbase/clubdata_data.sql
 ```
 
 You can verify that you have data to work with by running the following `SELECT` statement to pull data from the `bookings` table.
@@ -106,7 +106,7 @@ exercises=# SELECT * FROM bookings LIMIT 5;
 
 ## Explore the PgExercises database
 
-You are now ready to start working through the [PostgreSQL Exercises](https://pgexercises.com/) exercises using YugabyteDB as the backend. The 81 exercises at the PostgreSQL Exercises website are broken into the following major sections.
+You are now ready to start working through the [PostgreSQL Exercises](https://pgexercises.com/) exercises using ZNbaseDB as the backend. The 81 exercises at the PostgreSQL Exercises website are broken into the following major sections.
 
 - [Simple SQL Queries](https://pgexercises.com/questions/basic/)
 - [JOINs and Subqueries](https://pgexercises.com/questions/joins/)
@@ -116,13 +116,13 @@ You are now ready to start working through the [PostgreSQL Exercises](https://pg
 - [String Operations](https://pgexercises.com/questions/string/)
 - [Recursive Queries](https://pgexercises.com/questions/recursive/)
 
-YugabyteDB returns the same results as expected based on the solutions on the PostgreSQL Exercises website, with the following exceptions.
+ZNbaseDB returns the same results as expected based on the solutions on the PostgreSQL Exercises website, with the following exceptions.
 
 - ["Work out the start times of bookings for tennis courts"](https://pgexercises.com/questions/joins/simplejoin2.html)
-  - The `JOIN` does not return the correct row numbers. See [YugabyteDB GitHub issue #1827](https://github.com/yugabyte/yugabyte-db/issues/1827).
+  - The `JOIN` does not return the correct row numbers. See [ZNbaseDB GitHub issue #1827](https://github.com/ZNbase/ZNbase-db/issues/1827).
 - ["Find telephone numbers with parentheses"](https://pgexercises.com/questions/string/reg.html)
-  - YugabyteDB returns results with a sort order of strings different than in PostgreSQL due to [hash partitioning in YugabyteDB](../architecture/docdb/sharding/#hash-partitioning-tables).
+  - ZNbaseDB returns results with a sort order of strings different than in PostgreSQL due to [hash partitioning in ZNbaseDB](../architecture/docdb/sharding/#hash-partitioning-tables).
 - ["Update a row based on the contents of another row"](https://pgexercises.com/questions/updates/updatecalculated.html)
-  - YugabyteDB returns an error because using the `FROM` clause in `UPDATE` is not yet supported. See [YugabyteDB GitHub issue #738](https://github.com/yugabyte/yugabyte-db/issues/738).
+  - ZNbaseDB returns an error because using the `FROM` clause in `UPDATE` is not yet supported. See [ZNbaseDB GitHub issue #738](https://github.com/ZNbase/ZNbase-db/issues/738).
 - ["Delete based on a subquery"](https://pgexercises.com/questions/updates/deletewh2.html)
-  - YugabyteDB returns an error. See [YugabyteDB GitHub issue #1828](https://github.com/yugabyte/yugabyte-db/issues/1828).
+  - ZNbaseDB returns an error. See [ZNbaseDB GitHub issue #1828](https://github.com/ZNbase/ZNbase-db/issues/1828).

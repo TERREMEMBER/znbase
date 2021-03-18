@@ -205,7 +205,7 @@ EXPLAIN (COSTS false) SELECT (SELECT max(id) FROM t1 v_1 WHERE id < 10), id FROM
 -- EXPLAIN (COSTS false) SELECT (SELECT max(id) FROM t1 v_1 WHERE id < 10), id FROM v1 WHERE v1.id = (SELECT max(id) FROM t1 v_2 WHERE id < 10);
 --
 -- YB_COMMENT
--- CTID based scans and searches not supported in Yugabyte
+-- CTID based scans and searches not supported in ZNbase
 -- full scan hint pattern test
 EXPLAIN (COSTS false) SELECT * FROM t1 WHERE id < 10 AND ctid = '(1,1)';
 -- /*+SeqScan(t1)*/
@@ -790,7 +790,7 @@ EXPLAIN (COSTS false) SELECT * FROM t1, t2, t3, t4, t5 WHERE t1.id = t2.id AND t
 EXPLAIN (COSTS false) SELECT * FROM t1, t2, t3, t4, t5 WHERE t1.id = t2.id AND t1.id = t3.id AND t1.id = t4.id AND t1.id = t5.id;
 
 -- YB_COMMENT
--- Inheritance not supporte by Yugabyte
+-- Inheritance not supporte by ZNbase
 -- Inherited table test to specify the index's name
 EXPLAIN (COSTS false) SELECT * FROM p2 WHERE id >= 50 AND id <= 51 AND p2.ctid = '(1,1)';
 -- /*+IndexScan(p2 p2_pkey)*/

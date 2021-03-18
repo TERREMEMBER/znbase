@@ -11,7 +11,7 @@
     <title>{{ .Title }}{{ if not .IsHome }} | {{ .Site.Title }}{{ end }}</title>
     {{ hugo.Generator }}
 
-    <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else if .Site.Params.Description }}{{ .Site.Params.Description }}{{ else }}YugabyteDB is a transactional, high-performance database.{{ end }}">
+    <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else if .Site.Params.Description }}{{ .Site.Params.Description }}{{ else }}ZNbaseDB is a transactional, high-performance database.{{ end }}">
     <link rel="canonical" href="{{ .Permalink }}">
     {{ with .Site.Params.author }}
     <meta name="author" content="{{ . }}">
@@ -22,7 +22,7 @@
     {{ end }}
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@yugabyte" />
+    <meta name="twitter:site" content="@ZNbase" />
     <meta property="og:url" content="{{ .Permalink }}" />
     <meta property="og:title" content="{{ .Title }}{{ if not .IsHome }} | {{ .Site.Title }}{{ end }}" />
     <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}The high-performance distributed SQL database for global, internet-scale apps.{{ end }}" />

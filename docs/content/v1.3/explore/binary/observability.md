@@ -24,7 +24,7 @@ $ ./bin/yb-ctl create
 Download the sample app jar.
 
 ```sh
-$ wget https://github.com/yugabyte/yb-sample-apps/releases/download/v1.2.0/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar 
+$ wget https://github.com/ZNbase/yb-sample-apps/releases/download/v1.2.0/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar 
 ```
 
 Run a simple key-value workload in a separate shell.
@@ -39,7 +39,7 @@ $ java -jar ./yb-sample-apps.jar \
 
 ## 3. Prepare Prometheus config file
 
-Copy the following into a file called `yugabytedb.yml`.
+Copy the following into a file called `ZNbasedb.yml`.
 
 ```sh
 global:
@@ -47,9 +47,9 @@ global:
   evaluation_interval: 5s # Evaluate rules every 5 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
 
-# YugabyteDB configuration to scrape Prometheus time-series metrics 
+# ZNbaseDB configuration to scrape Prometheus time-series metrics 
 scrape_configs:
-  - job_name: 'yugabytedb'
+  - job_name: 'ZNbasedb'
     metrics_path: /prometheus-metrics
 
     static_configs:
@@ -79,7 +79,7 @@ scrape_configs:
 Go to the directory where Prometheus is installed and start the Prometheus server as below.
 
 ```sh
-$ ./prometheus --config.file=yugabytedb.yml
+$ ./prometheus --config.file=ZNbasedb.yml
 ```
 
 Open the Prometheus UI at http://localhost:9090 and then navigate to the Targets page under Status.
@@ -88,7 +88,7 @@ Open the Prometheus UI at http://localhost:9090 and then navigate to the Targets
 
 ## 5. Analyze key metrics
 
-On the Prometheus Graph UI, you can now plot the read IOPS and write IOPS for the `CassandraKeyValue` sample app. As we can see from the [source code](https://github.com/yugabyte/yugabyte-db/blob/master/java/yb-loadtester/src/main/java/com/yugabyte/sample/apps/CassandraKeyValue.java) of the app, it uses only SELECT statements for reads and INSERT statements for writes (aside from the initial CREATE TABLE). This means we can measure throughput and latency by simply using the metrics corresponding to the SELECT and INSERT statements.
+On the Prometheus Graph UI, you can now plot the read IOPS and write IOPS for the `CassandraKeyValue` sample app. As we can see from the [source code](https://github.com/ZNbase/ZNbase-db/blob/master/java/yb-loadtester/src/main/java/com/ZNbase/sample/apps/CassandraKeyValue.java) of the app, it uses only SELECT statements for reads and INSERT statements for writes (aside from the initial CREATE TABLE). This means we can measure throughput and latency by simply using the metrics corresponding to the SELECT and INSERT statements.
 
 
 Paste the following expressions into the Expression box and click Execute followed by Add Graph.

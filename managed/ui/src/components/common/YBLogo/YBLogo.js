@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React from 'react';
 import LogoFull from './images/yb_yblogo_darkbg.svg';
@@ -9,20 +9,20 @@ function YBLogo(props) {
   if (props.type === 'full') {
     return (
       <object className="logo" data={LogoFull} type="image/svg+xml">
-        Yugabyte Logo
+        ZNbase Logo
       </object>
     );
   }
   if (props.type === 'monochrome') {
     return (
       <object className="logo" data={LogoMonochrome} type="image/svg+xml">
-        Yugabyte Logo
+        ZNbase Logo
       </object>
     );
   }
   return (
     <object className="logo" data={LogoIcon} type="image/svg+xml">
-      Yugabyte Logo
+      ZNbase Logo
     </object>
   );
 }

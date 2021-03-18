@@ -2,7 +2,7 @@
 title: Benchmark resilience (fault tolerance)
 headerTitle: Resilience
 linkTitle: Resilience
-description: Benchmark YugabyteDB's ability to withstand component failure.
+description: Benchmark ZNbaseDB's ability to withstand component failure.
 image: /images/section_icons/explore/high_performance.png
 headcontent: Benchmarking the ability to withstand component failure.
 menu:
@@ -12,7 +12,7 @@ menu:
     weight: 21
 ---
 
-For a tutorial that explores how YugabyteDB handles component failure and provides high availability (HA), see [Fault tolerance](../../../explore/fault-tolerance).
+For a tutorial that explores how ZNbaseDB handles component failure and provides high availability (HA), see [Fault tolerance](../../../explore/fault-tolerance).
 
 <div class="row">
 

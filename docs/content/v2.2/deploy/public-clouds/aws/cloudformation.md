@@ -2,7 +2,7 @@
 title: Deploy on Amazon Web Services using AWS CloudFormation
 headerTitle: Amazon Web Services
 linkTitle: Amazon Web Services
-description: Deploy a YugabyteDB cluster on Amazon Web Services using AWS CloudFormation
+description: Deploy a ZNbaseDB cluster on Amazon Web Services using AWS CloudFormation
 block_indexing: true
 menu:
   v2.2:
@@ -43,14 +43,14 @@ showAsideToc: true
 5. Download the template file.
 
 ```sh
-$ wget https://raw.githubusercontent.com/yugabyte/aws-cloudformation/master/yugabyte_cloudformation.yaml
+$ wget https://raw.githubusercontent.com/ZNbase/aws-cloudformation/master/ZNbase_cloudformation.yaml
 ```
 
 {{< note title="Note" >}}
 
-When using an instance with local disks (not EBS), the `.yaml` file needs to be changed for YugabyteDB to recognize the local disks.
-Here is an example using [i3 instance types](https://github.com/yugabyte/aws-cloudformation/blob/master/yugabyte_cloudformation_i3_example.yaml) 
-that formats and mounts the nvme ssd automatically for each host and installs YugabyteDB on that mount.
+When using an instance with local disks (not EBS), the `.yaml` file needs to be changed for ZNbaseDB to recognize the local disks.
+Here is an example using [i3 instance types](https://github.com/ZNbase/aws-cloudformation/blob/master/ZNbase_cloudformation_i3_example.yaml) 
+that formats and mounts the nvme ssd automatically for each host and installs ZNbaseDB on that mount.
 
 {{< /note >}}
 
@@ -61,7 +61,7 @@ Create CloudFormation template:
 ```sh
 $ aws cloudformation create-stack \
   --stack-name <stack-name> \
-  --template-body file://yugabyte_cloudformation.yaml \
+  --template-body file://ZNbase_cloudformation.yaml \
   --parameters  ParameterKey=DBVersion,ParameterValue=2.1.6.0 ParameterKey=KeyName,ParameterValue=<ssh-key-name> \
   --region <aws-region>
 ```
@@ -74,7 +74,7 @@ $ aws cloudformation describe-stacks \
   --region <aws-region>
 ```
 
-From this output, you will be able to get the VPC id and YugabyteDB admin URL.
+From this output, you will be able to get the VPC id and ZNbaseDB admin URL.
 
 Because the stack creates a security group that restricts access to the database, you might need to update the security group inbound rules if you have trouble connecting to it. 
 if you have trouble connecting to the DB.
@@ -91,7 +91,7 @@ if you have trouble connecting to the DB.
 <img title="Prepare template" class="expandable-image" src="/images/deploy/aws/aws-cf-prepare-template.png" />
 <br>
 
-3. Specify the template file downloaded in Prerequisites: `yugabyte_cloudformation.yaml`
+3. Specify the template file downloaded in Prerequisites: `ZNbase_cloudformation.yaml`
 
 <img title="Upload template" class="expandable-image" src="/images/deploy/aws/aws-cf-upload-template.png" />
 <br>

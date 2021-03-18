@@ -2,7 +2,7 @@
 title: Chinook sample database
 headerTitle: Chinook sample database
 linkTitle: Chinook
-description: Use the Chinook sample database for a media store to explore and learn YugabyteDB.
+description: Use the Chinook sample database for a media store to explore and learn ZNbaseDB.
 menu:
   stable:
     identifier: chinook
@@ -12,7 +12,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-The Chinook sample database for a digital media store can be used to explore and learn YugabyteDB.
+The Chinook sample database for a digital media store can be used to explore and learn ZNbaseDB.
 
 ## About the Chinook database
 
@@ -34,21 +34,21 @@ For details, here's the entity relationship diagram of the Chinook data model.
 
 ## Before you begin
 
-To install and use the Chinook sample database, you need to have installed and configured YugabyteDB. To get up and running quickly, see [Quick Start](/latest/quick-start/).
+To install and use the Chinook sample database, you need to have installed and configured ZNbaseDB. To get up and running quickly, see [Quick Start](/latest/quick-start/).
 
 Install the Chinook sample database
 
 ### 1. Download the SQL scripts
 
-You can download the Chinook database that is compatible with YugabyteDB from the [`sample` directory of the YugabyteDB GitHub repository](https://github.com/yugabyte/yugabyte-db/tree/master/sample). Download the following three files.
+You can download the Chinook database that is compatible with ZNbaseDB from the [`sample` directory of the ZNbaseDB GitHub repository](https://github.com/ZNbase/ZNbase-db/tree/master/sample). Download the following three files.
 
-- [`chinook_ddl.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/42799a519726c75f502f463795ac6cd3ebda40c2/sample/chinook_ddl.sql) — Creates the tables and constraints
-- [`chinook_genres_artists_albums.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/42799a519726c75f502f463795ac6cd3ebda40c2/sample/chinook_genres_artists_albums.sql) — Loads artist and album information
-- [`chinook_songs.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/42799a519726c75f502f463795ac6cd3ebda40c2/sample/chinook_songs.sql) — Loads individual song information
+- [`chinook_ddl.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/42799a519726c75f502f463795ac6cd3ebda40c2/sample/chinook_ddl.sql) — Creates the tables and constraints
+- [`chinook_genres_artists_albums.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/42799a519726c75f502f463795ac6cd3ebda40c2/sample/chinook_genres_artists_albums.sql) — Loads artist and album information
+- [`chinook_songs.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/42799a519726c75f502f463795ac6cd3ebda40c2/sample/chinook_songs.sql) — Loads individual song information
 
 ### 2. Open the YSQL shell
 
-To open the YSQL shell, run the `ysqlsh` command from the YugabyteDB root directory.
+To open the YSQL shell, run the `ysqlsh` command from the ZNbaseDB root directory.
 
 ```sh
 $ ./bin/ysqlsh
@@ -57,7 +57,7 @@ $ ./bin/ysqlsh
 ```
 ysqlsh (11.2)
 Type "help" for help.
-yugabyte=#
+ZNbase=#
 ```
 
 ### 3. Create the Chinook database
@@ -65,23 +65,23 @@ yugabyte=#
 To create the `chinook` database, run the following command.
 
 ```plpgsql
-yugabyte=# CREATE DATABASE chinook;
+ZNbase=# CREATE DATABASE chinook;
 ```
 
 Confirm that you have the `chinook` database by using the `\l` command to list the databases on your cluster.
 
 ```plpgsql
-yugabyte=# \l
+ZNbase=# \l
 ```
 
 Connect to the `chinook` database.
 
 ```plpgsql
-yugabyte=# \c chinook
+ZNbase=# \c chinook
 ```
 
 ```
-You are now connected to database "chinook" as user "yugabyte".
+You are now connected to database "chinook" as user "ZNbase".
 chinook=#
 ```
 
@@ -139,4 +139,4 @@ chinook=# SELECT "Name", "Composer" FROM "Track" LIMIT 10;
 
 ## Explore the Chinook sample database
 
-That’s it! Using the command line or your favorite PostgreSQL development or administration tool, you are now ready to start exploring the chinook database and YugabyteDB features.
+That’s it! Using the command line or your favorite PostgreSQL development or administration tool, you are now ready to start exploring the chinook database and ZNbaseDB features.

@@ -11,24 +11,24 @@ isTocNested: true
 showAsideToc: true
 ---
 
-[Metabase](https://www.metabase.com/) is an extremly easy-to-use Business Intelligence (BI) tool. It bills itself as `the easy, open source way for everyone in your company to ask questions and learn from data`. This page shows how Metabase can be setup to integrate with YugabyteDB's PostgreSQL compatible API.
+[Metabase](https://www.metabase.com/) is an extremly easy-to-use Business Intelligence (BI) tool. It bills itself as `the easy, open source way for everyone in your company to ask questions and learn from data`. This page shows how Metabase can be setup to integrate with ZNbaseDB's PostgreSQL compatible API.
 
 ## 1. Start local cluster
 
-Follow [Quick Start](../../../quick-start/) instructions to run a local YugabyteDB cluster. Test YugabyteDB's PostgreSQL compatible YSQL API as [documented](../../../quick-start/test-postgresql/) so that you can confirm that you have a PostgresSQL compatible service running on `localhost:5433`. 
+Follow [Quick Start](../../../quick-start/) instructions to run a local ZNbaseDB cluster. Test ZNbaseDB's PostgreSQL compatible YSQL API as [documented](../../../quick-start/test-postgresql/) so that you can confirm that you have a PostgresSQL compatible service running on `localhost:5433`. 
 
 ## 2. Load data
 
 ### Download the sample schema
 
 ```sh
-$ wget https://raw.githubusercontent.com/yugabyte/yb-sql-workshop/master/query-using-bi-tools/schema.sql
+$ wget https://raw.githubusercontent.com/ZNbase/yb-sql-workshop/master/query-using-bi-tools/schema.sql
 ```
 
 ### Download the sample data
 
 ```sh
-$ wget https://github.com/yugabyte/yb-sql-workshop/raw/master/query-using-bi-tools/sample-data.tgz
+$ wget https://github.com/ZNbase/yb-sql-workshop/raw/master/query-using-bi-tools/sample-data.tgz
 ```
 
 ```sh
@@ -43,7 +43,7 @@ $ ls data/
 orders.sql	products.sql	reviews.sql	users.sql
 ```
 
-### Connect to YugabyteDB using ysqlsh
+### Connect to ZNbaseDB using ysqlsh
 
 You can do this as shown below.
 
@@ -55,21 +55,21 @@ $ ./bin/ysqlsh
 ysqlsh (11.2)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 ### Create a database
 
 ```plpgsql
-yugabyte=# CREATE DATABASE yb-demo;
+ZNbase=# CREATE DATABASE yb-demo;
 ```
 
 ```plpgsql
-yugabyte=# GRANT ALL ON DATABASE yb-demo to yugabyte;
+ZNbase=# GRANT ALL ON DATABASE yb-demo to ZNbase;
 ```
 
 ```plpgsql
-yugabyte=# \c yb-demo;
+ZNbase=# \c yb-demo;
 ```
 
 ### Create schema and load data
@@ -77,25 +77,25 @@ yugabyte=# \c yb-demo;
 First create the 4 tables necessary to store the data.
 
 ```plpgsql
-yugabyte=# \i 'schema.sql';
+ZNbase=# \i 'schema.sql';
 ```
 
 Now load the data into the tables.
 
 ```plpgsql
-yugabyte=# \i 'data/products.sql'
+ZNbase=# \i 'data/products.sql'
 ```
 
 ```plpgsql
-yugabyte=# \i 'data/users.sql'
+ZNbase=# \i 'data/users.sql'
 ```
 
 ```plpgsql
-yugabyte=# \i 'data/orders.sql'
+ZNbase=# \i 'data/orders.sql'
 ```
 
 ```plpgsql
-yugabyte=# \i 'data/reviews.sql'
+ZNbase=# \i 'data/reviews.sql'
 ```
 
 ## 3. Download and configure Metabase

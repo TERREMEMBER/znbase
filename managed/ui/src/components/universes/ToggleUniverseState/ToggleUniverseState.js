@@ -1,5 +1,5 @@
-// Copyright (c) YugaByte, Inc.
-// 
+// Copyright (c) ZNbase, Inc.
+//
 // Author: Nishant Sharma(nishant.sharma@hashedin.com)
 
 import React, { Component } from 'react';

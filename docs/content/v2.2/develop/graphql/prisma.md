@@ -12,21 +12,21 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Explore how you can use Prisma, and its GraphQL support, to interact with YugabyteDB. You will quickly build a GraphQL server and then use the Prisma client to write data to and run queries on a YugabyteDB database. Also, you'll get a taste of Prisma's ORM functionality.
+Explore how you can use Prisma, and its GraphQL support, to interact with ZNbaseDB. You will quickly build a GraphQL server and then use the Prisma client to write data to and run queries on a ZNbaseDB database. Also, you'll get a taste of Prisma's ORM functionality.
 
 [Prisma](https://prisma.io) is an [open source](https://github.com/prisma/prisma) suite of database tools that simplify database workflows by easing database access, migrations, and data management. Prisma replaces traditional ORMs and can be used to build GraphQL servers, REST APIs, microservices, and more. For an overview, see [Prisma Basics: Datamodel, Prisma Client & Server](https://www.prisma.io/docs/understand-prisma/prisma-basics-datamodel-client-and-server-fgz4/).
 
 ## Before you begin
 
-### YugabyteDB
+### ZNbaseDB
 
-If YugabyteDB is installed, run the following `yb-ctl create` command to start a YugabyteDB 1-node cluster, setting the default transaction isolation level to `serializable`:
+If ZNbaseDB is installed, run the following `yb-ctl create` command to start a ZNbaseDB 1-node cluster, setting the default transaction isolation level to `serializable`:
 
 ```sh
 ./bin/yb-ctl create --tserver_flags=ysql_pg_conf="default_transaction_isolation=serializable"
 ```
 
-If you are new to YugabyteDB, you can be up and running with YugabyteDB in under five minutes by following the steps in [Quick start](/v2.2/quick-start/). After installing YugabyteDB, make sure to follow the step mentioned above.
+If you are new to ZNbaseDB, you can be up and running with ZNbaseDB in under five minutes by following the steps in [Quick start](/v2.2/quick-start/). After installing ZNbaseDB, make sure to follow the step mentioned above.
 
 ### Prisma
 
@@ -51,7 +51,7 @@ To set up a Prisma project, named `prisma-yb`, run the following command.
 prisma init prisma-yb
 ```
 
-In order to quickly explore using Prisma with YugabyteDB, you will use the default database and user in the PostgreSQL-compatible YugabyteDB.
+In order to quickly explore using Prisma with ZNbaseDB, you will use the default database and user in the PostgreSQL-compatible ZNbaseDB.
 
 When prompted, enter or select the following values:
 
@@ -60,9 +60,9 @@ When prompted, enter or select the following values:
 - Does your database contain existing data? **No**
 - Enter database host: **localhost**
 - Enter database port: **5433**
-- Enter database user: **yugabyte**
+- Enter database user: **ZNbase**
 - Enter database password: [No password, just press **Enter**]
-- Enter database name (the database includes the schema) **yugabyte**
+- Enter database name (the database includes the schema) **ZNbase**
 - Use SSL? **N**
 - Select the programming language for the generated Prisma client: **Prisma JavaScript Client**
 
@@ -74,7 +74,7 @@ When finished, the following three files have created in the project directory, 
 
 ## 2. Start the Prisma server
 
-To start the Prisma server (in the Docker container) and launch the connected YugabyteDB database, go to the `prisma-yb` directory and then run the `docker-compose` command:
+To start the Prisma server (in the Docker container) and launch the connected ZNbaseDB database, go to the `prisma-yb` directory and then run the `docker-compose` command:
 
 ```sh
 cd prisma-yb
@@ -180,7 +180,7 @@ mutation {
 
 ## 6. Query the data
 
-Now that you have created some sample data, you can run some queries to get a taste of using Prisma to query YugabyteDB. In the following examples, you will use the Prisma client to retrieve data. Paste the following code examples into the left side of a tab, and then click the arrow to process your requests. 
+Now that you have created some sample data, you can run some queries to get a taste of using Prisma to query ZNbaseDB. In the following examples, you will use the Prisma client to retrieve data. Paste the following code examples into the left side of a tab, and then click the arrow to process your requests. 
 
 For details on using the Prisma client to read data, see [Reading Data (JavaScript)](https://www.prisma.io/docs/prisma-client/basic-data-access/reading-data-JAVASCRIPT-rsc2/).
 
@@ -309,13 +309,13 @@ node index.js
 
 Now that you're done with this exploration, you can clean up the pieces for your next adventure.
 
-1. Stop the YugabyteDB cluster
+1. Stop the ZNbaseDB cluster
 
 ```sh
 ./bin/yb-ctl stop
 ```
 
-To completely remove all YugabyteDB data/cluster-state you can instead run:
+To completely remove all ZNbaseDB data/cluster-state you can instead run:
 
 ```sh
 ./bin/yb-ctl destroy

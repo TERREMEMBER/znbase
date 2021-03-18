@@ -2,7 +2,7 @@
 title: YCSB
 linkTitle: YCSB
 description: YCSB
-headcontent: Benchmark YugabyteDB using YCSB.
+headcontent: Benchmark ZNbaseDB using YCSB.
 block_indexing: true
 menu:
   v2.0:
@@ -46,14 +46,14 @@ You can do this by running the following commands.
 
 ```sh
 $ cd $HOME
-$ wget https://github.com/yugabyte/YCSB/releases/download/1.0/ycsb.tar.gz
+$ wget https://github.com/ZNbase/YCSB/releases/download/1.0/ycsb.tar.gz
 $ tar -zxvf ycsb.tar.gz
 $ cd YCSB
 ```
 
-## Step 2. Start YugabyteDB
+## Step 2. Start ZNbaseDB
 
-Start your YugabyteDB cluster by following the steps in [Quick start](/latest/quick-start/explore-ysql/).
+Start your ZNbaseDB cluster by following the steps in [Quick start](/latest/quick-start/explore-ysql/).
 
 ## Step 3. Configure your database
 
@@ -72,7 +72,7 @@ Set the following connection configurations in `db.properties`:
 ```sh
 db.driver=org.postgresql.Driver
 db.url=jdbc:postgresql://<ip>:5433/ycsb;
-db.user=yugabyte
+db.user=ZNbase
 db.passwd=
 ```
 
@@ -80,20 +80,20 @@ The other configuration parameters, are described in detail at [this page](https
 
 ## Step 5. Running the workload
 
-Before starting the `yugabyteSQL` workload, you will need to load the data first.
+Before starting the `ZNbaseSQL` workload, you will need to load the data first.
 
 ```sh
-$ ./bin/ycsb load yugabyteSQL -P yugabyteSQL/db.properties -P workloads/workloada
+$ ./bin/ycsb load ZNbaseSQL -P ZNbaseSQL/db.properties -P workloads/workloada
 ```
 
 Then, you can run the workload:
 
 ```sh
-$ ./bin/ycsb run yugabyteSQL -P yugabyteSQL/db.properties -P workloads/workloada
+$ ./bin/ycsb run ZNbaseSQL -P ZNbaseSQL/db.properties -P workloads/workloada
 ```
 
 To run the other workloads (for example, `workloadb`), all you need to do is change that argument in the above command.
 
 ```sh
-$ ./bin/ycsb run yugabyteSQL -P yugabyteSQL/db.properties -P workloads/workloadb
+$ ./bin/ycsb run ZNbaseSQL -P ZNbaseSQL/db.properties -P workloads/workloadb
 ```

@@ -22,7 +22,7 @@ The SQL that this section presents uses the simpler representation. But the sect
 
 All of the `.sql` scripts that this case study presents for copy-and-paste at the `ysqlsh` prompt are included for download in a zip-file.
 
-[Download `recursive-cte-code-examples.zip`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/recursive-cte-code-examples/recursive-cte-code-examples.zip).
+[Download `recursive-cte-code-examples.zip`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/recursive-cte-code-examples/recursive-cte-code-examples.zip).
 
 After unzipping it on a convenient new directory, you'll see a `README.txt`.  It tells you how to start the master-script. Simply start it in `ysqlsh`. You can run it time and again. It always finishes silently. You can see the report that it produces on a dedicated spool directory and confirm that your report is identical to the reference copy that is delivered in the zip-file.
 {{< /tip >}}

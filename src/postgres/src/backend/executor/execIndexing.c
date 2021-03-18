@@ -346,7 +346,7 @@ ExecInsertIndexTuplesOptimized(TupleTableSlot *slot,
 			   indexRelation->rd_index->indisready);
 
 		/*
-		 * No need to update YugaByte primary key which is intrinic part of
+		 * No need to update ZNbase primary key which is intrinic part of
 		 * the base table.
 		 *
 		 * TODO(neil) The following YB check might not be needed due to later work on indexes.
@@ -496,7 +496,7 @@ ExecInsertIndexTuplesOptimized(TupleTableSlot *slot,
  *		This routine takes care of deleting index tuples
  *		from all the relations indexing the result relation
  *		when a heap tuple is updated or deleted in the result relation.
- *      This is used only for relations and indexes backed by YugabyteDB.
+ *      This is used only for relations and indexes backed by ZNbaseDB.
  * ----------------------------------------------------------------
  */
 void
@@ -565,12 +565,12 @@ ExecDeleteIndexTuplesOptimized(Datum ybctid,
 		  continue;
 
 		/*
-		 * No need to update YugaByte primary key which is intrinic part of
+		 * No need to update ZNbase primary key which is intrinic part of
 		 * the base table.
 		 *
 		 * TODO(neil) This function is obsolete and removed from Postgres's original code.
-		 * - We need to update YugaByte's code path to stop using this function.
-		 * - As a result, we don't need distinguish between Postgres and YugaByte here.
+		 * - We need to update ZNbase's code path to stop using this function.
+		 * - As a result, we don't need distinguish between Postgres and ZNbase here.
 		 *   I update this code only for clarity.
 		 */
 		if (isYBRelation && indexRelation->rd_index->indisprimary)
@@ -967,11 +967,11 @@ retry:
 		 * want to hold any index internal locks while waiting.
 		 */
 		/*
-		 * YugaByte manages transaction at a lower level, so we don't need to execute the following
+		 * ZNbase manages transaction at a lower level, so we don't need to execute the following
 		 * code block.
-		 * TODO(Mikhail) Verify correctness in YugaByte transaction management for on-conflict.
+		 * TODO(Mikhail) Verify correctness in ZNbase transaction management for on-conflict.
 		 */
-		if (!IsYugaByteEnabled()) {
+		if (!IsZNbaseEnabled()) {
 			xwait = TransactionIdIsValid(DirtySnapshot.xmin) ?
 				DirtySnapshot.xmin : DirtySnapshot.xmax;
 
@@ -1001,7 +1001,7 @@ retry:
 		if (violationOK)
 		{
 			conflict = true;
-			if (IsYugaByteEnabled()) {
+			if (IsZNbaseEnabled()) {
 				estate->yb_conflict_slot = existing_slot;
 			}
 			if (conflictTid)

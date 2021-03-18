@@ -1,10 +1,10 @@
 ---
-title: Yugabyte Platform
-headerTitle: Yugabyte Platform
-linkTitle: Yugabyte Platform
-description: Use Yugabyte Platform to manage YugabyteDB universes.
+title: ZNbase Platform
+headerTitle: ZNbase Platform
+linkTitle: ZNbase Platform
+description: Use ZNbase Platform to manage ZNbaseDB universes.
 image: /images/section_icons/manage/enterprise.png
-headcontent: Use Yugabyte Platform's orchestration and monitoring to manage YugabyteDB universes.
+headcontent: Use ZNbase Platform's orchestration and monitoring to manage ZNbaseDB universes.
 block_indexing: true
 menu:
   v2.1:
@@ -13,7 +13,7 @@ menu:
     weight: 707
 ---
 
-Yugabyte Platform can create a YugabyteDB universe with many instances (VMs, pods, machines, etc., provided by IaaS), logically grouped together to form one logical distributed database. Each universe includes one or more clusters. A universe is comprised of one primary cluster and, optionally, one or more read replica clusters. All instances belonging to a cluster run on the same type of cloud provider instance type.
+ZNbase Platform can create a ZNbaseDB universe with many instances (VMs, pods, machines, etc., provided by IaaS), logically grouped together to form one logical distributed database. Each universe includes one or more clusters. A universe is comprised of one primary cluster and, optionally, one or more read replica clusters. All instances belonging to a cluster run on the same type of cloud provider instance type.
 
 <div class="row">
 
@@ -24,7 +24,7 @@ Yugabyte Platform can create a YugabyteDB universe with many instances (VMs, pod
         <div class="title">Create a multi-zone universe</div>
       </div>
       <div class="body">
-        Use Yugabyte Platform to create a YugabyteDB universe spans multiple zones within one region.
+        Use ZNbase Platform to create a ZNbaseDB universe spans multiple zones within one region.
       </div>
     </a>
   </div>
@@ -36,7 +36,7 @@ Yugabyte Platform can create a YugabyteDB universe with many instances (VMs, pod
         <div class="title">Create a multi-region universe</div>
       </div>
       <div class="body">
-        Use Yugabyte Platform to create a YugabyteDB universe that spans multiple regions.
+        Use ZNbase Platform to create a ZNbaseDB universe that spans multiple regions.
       </div>
     </a>
   </div>
@@ -96,7 +96,7 @@ Yugabyte Platform can create a YugabyteDB universe with many instances (VMs, pod
         <div class="title">Create a read replica cluster</div>
       </div>
       <div class="body">
-        Create a YugabyteDB universe, with a primary cluster and one or more read replica clusters.
+        Create a ZNbaseDB universe, with a primary cluster and one or more read replica clusters.
       </div>
     </a>
   </div>
@@ -108,7 +108,7 @@ Yugabyte Platform can create a YugabyteDB universe with many instances (VMs, pod
         <div class="title">Back up and restore data</div>
       </div>
       <div class="body">
-        Use Yugabyte Platform to back up and restore universe data.
+        Use ZNbase Platform to back up and restore universe data.
       </div>
     </a>
   </div>
@@ -117,10 +117,10 @@ Yugabyte Platform can create a YugabyteDB universe with many instances (VMs, pod
     <a class="section-link icon-offset" href="back-up-restore-yp/">
       <div class="head">
         <img class="icon" src="/images/section_icons/manage/enterprise.png" aria-hidden="true" />
-        <div class="title">Back up and restore Yugabyte Platform</div>
+        <div class="title">Back up and restore ZNbase Platform</div>
       </div>
       <div class="body">
-        Back up and restore Yugabyte Platform for disaster recovery.
+        Back up and restore ZNbase Platform for disaster recovery.
       </div>
     </a>
   </div>
@@ -132,7 +132,7 @@ Yugabyte Platform can create a YugabyteDB universe with many instances (VMs, pod
         <div class="title">Schedule a data backup</div>
       </div>
       <div class="body">
-        Use Yugabyte Platform to perform a regular scheduled backup of universe data.
+        Use ZNbase Platform to perform a regular scheduled backup of universe data.
       </div>
     </a>
   </div>
@@ -180,7 +180,7 @@ Yugabyte Platform can create a YugabyteDB universe with many instances (VMs, pod
         <div class="title">Migrate from Helm 2 to Helm 3</div>
       </div>
       <div class="body">
-        Migrate YugabyteDB universes and Yugabyte Platform from Helm 2 to Helm 3.
+        Migrate ZNbaseDB universes and ZNbase Platform from Helm 2 to Helm 3.
       </div>
     </a>
   </div>

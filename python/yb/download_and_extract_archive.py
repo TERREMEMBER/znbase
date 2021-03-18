@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -241,7 +241,7 @@ def download_and_extract(url, dest_dir_parent, local_cache_dir, nfs_cache_dir):
 
         nfs_tar_gz_path = os.path.join(nfs_cache_dir, tar_gz_name)
         nfs_checksum_file_path = os.path.join(nfs_cache_dir, checksum_file_name)
-        if (os.path.isdir(nfs_cache_dir) and 
+        if (os.path.isdir(nfs_cache_dir) and
             os.access(nfs_cache_dir, os.W_OK) and
             (not os.path.exists(nfs_tar_gz_path) or
              not os.path.exists(nfs_checksum_file_path))):

@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 import json
 
@@ -62,7 +62,7 @@ class OnPremCloud(AbstractCloud):
                 instance_type=data.get("instanceType"),
                 ssh_port=data.get("sshPort", 22),
                 ssh_user=data.get("sshUser"),
-                # TODO: would we ever use this for non yugabyte servers?
+                # TODO: would we ever use this for non ZNbase servers?
                 server_type=AbstractInstancesMethod.YB_SERVER_TYPE
             )
             if not get_all:

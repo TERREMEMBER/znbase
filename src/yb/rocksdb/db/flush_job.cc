@@ -3,9 +3,9 @@
 //  LICENSE file in the root directory of this source tree. An additional grant
 //  of patent rights can be found in the PATENTS file in the same directory.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -150,7 +150,7 @@ Result<FileNumbersHolder> FlushJob::Run(FileMetaData* file_meta) {
     // transactional workload due to the flush filter preventing us from flushing any memtables in
     // the provisional records RocksDB.
     //
-    // See https://github.com/yugabyte/yugabyte-db/issues/437 for more details.
+    // See https://github.com/ZNbase/ZNbase-db/issues/437 for more details.
     YB_LOG_EVERY_N_SECS(WARNING, 1)
         << db_options_.log_prefix
         << "[" << cfd_->GetName() << "] Nothing in memtable to flush.";

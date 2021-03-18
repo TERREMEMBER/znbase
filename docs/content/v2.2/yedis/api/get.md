@@ -34,7 +34,7 @@ $ GET yugakey
 ```
 
 ```sh
-$ SET yugakey "Yugabyte"
+$ SET yugakey "ZNbase"
 ```
 
 ```
@@ -46,7 +46,7 @@ $ GET yugakey
 ```
 
 ```
-"Yugabyte"
+"ZNbase"
 ```
 
 

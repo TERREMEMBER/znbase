@@ -30,23 +30,23 @@ Detailed specific to Amazon EKS are coming soon. Refer to the [Kubernetes Open S
 
 ### LoadBalancer for services
 
-By default, the YugabyteDB Helm chart exposes only the master UI endpoint using LoadBalancer. If you want to expose the client API services (YSQL and YCQL) using LoadBalancer for your app to use, you could do that in couple of different ways.
+By default, the ZNbaseDB Helm chart exposes only the master UI endpoint using LoadBalancer. If you want to expose the client API services (YSQL and YCQL) using LoadBalancer for your app to use, you could do that in couple of different ways.
 
 If you want an individual LoadBalancer endpoint for each of the services, run the following command.
 
 ```sh
-$ helm install yugabyte -f expose-all.yaml --namespace yb-demo --name yb-demo --wait
+$ helm install ZNbase -f expose-all.yaml --namespace yb-demo --name yb-demo --wait
 ```
 
 If you want to create a shared LoadBalancer endpoint for all the services, run the following command.
 
 ```sh
-$ helm install yugabyte -f expose-all-shared.yaml --namespace yb-demo --name yb-demo --wait
+$ helm install ZNbase -f expose-all-shared.yaml --namespace yb-demo --name yb-demo --wait
 ```
 
 You can also bring up an internal LoadBalancer (for either YB-Master or YB-TServer services), if required. Just specify the [annotation](https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer) required for your cloud provider. The following command brings up an internal LoadBalancer for the YB-TServer service in AWS.
 
 ```sh
-$ helm install yugabyte -f expose-all.yaml --namespace yb-demo --name yb-demo \
+$ helm install ZNbase -f expose-all.yaml --namespace yb-demo --name yb-demo \
   --set annotations.tserver.loadbalancer."service\.beta\.kubernetes\.io/aws-load-balancer-internal"=0.0.0.0/0 --wait
 ```

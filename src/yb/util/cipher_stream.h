@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -51,7 +51,7 @@ class BlockAccessCipherStream {
   // Decrypt data at an offset.
   // counter_overflow_workaround indicates whether we should add one to byte 11 of the initilization
   // vector. Used to as a workaround in case of block checksum mismatches when reading data that is
-  // affected by https://github.com/yugabyte/yugabyte-db/issues/3707.
+  // affected by https://github.com/ZNbase/ZNbase-db/issues/3707.
   CHECKED_STATUS Decrypt(
       uint64_t file_offset,
       const Slice& input,

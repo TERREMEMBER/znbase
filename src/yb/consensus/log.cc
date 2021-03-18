@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1358,7 +1358,7 @@ Status Log::PreAllocateNewSegment() {
   CHECK_EQ(allocation_state(), kAllocationInProgress);
 
   WritableFileOptions opts;
-  // We always want to sync on close: https://github.com/yugabyte/yugabyte-db/issues/3490
+  // We always want to sync on close: https://github.com/ZNbase/ZNbase-db/issues/3490
   opts.sync_on_close = true;
   opts.o_direct = durable_wal_write_;
   RETURN_NOT_OK(CreatePlaceholderSegment(opts, &next_segment_path_, &next_segment_file_));

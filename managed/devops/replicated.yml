@@ -1,17 +1,17 @@
-# Copyright 2020 YugaByte, Inc. and Contributors
+# Copyright 2020 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 ---
 replicated_api_version: "2.8.0"
 name: "yugaware"
 properties:
   app_url: '{{repl if ConfigOptionEquals "https_enabled" "1"}}https://{{repl else}}http://{{repl end}}{{repl ConfigOption "hostname"}}{{repl if and (ConfigOptionNotEquals "nginx_external_port" "80") (ConfigOptionNotEquals "nginx_external_port" "443")}}:{{repl ConfigOption "nginx_external_port"}}{{repl end}}'
-  logo_url: https://s3-us-west-2.amazonaws.com/assets.yugabyte.com/yb-logo.png
-  console_title: YugaByte Platform Deployment Console
+  logo_url: https://s3-us-west-2.amazonaws.com/assets.ZNbase.com/yb-logo.png
+  console_title: ZNbase Platform Deployment Console
 backup:
   enabled: false
 monitors:
@@ -31,7 +31,7 @@ cmds:
   - name: storage_path_cmd
     cmd: echo
     args:
-      - "/opt/yugabyte"
+      - "/opt/ZNbase"
   - name: host_ip
     cmd: publicip
 
@@ -64,7 +64,7 @@ components:
             args: ["psql", "-U", "postgres", "-f", "/home/update_password.sql"]
             subscriptions:
               - component: app
-                container: yugabyte/yugaware
+                container: ZNbase/yugaware
                 action: start
         config_files:
           - filename: /home/update_password.sql
@@ -82,7 +82,7 @@ components:
             container_path: /prometheus
             permission: "0777"
           - host_path: '{{repl ConfigOption "storage_path"}}/yugaware/swamper_targets'
-            container_path: /opt/yugabyte/prometheus/targets
+            container_path: /opt/ZNbase/prometheus/targets
           - host_path: '{{repl ConfigOption "storage_path"}}/prometheus_configs'
             container_path: /prometheus_configs
             permission: "0777"
@@ -114,7 +114,7 @@ components:
                 - job_name: "node"
                   file_sd_configs:
                     - files:
-                      - '/opt/yugabyte/prometheus/targets/node.*.json'
+                      - '/opt/ZNbase/prometheus/targets/node.*.json'
                   metric_relabel_configs:
                     # Save the name of the metric so we can group_by since we cannot by __name__ directly...
                     - source_labels: ["__name__"]
@@ -122,11 +122,11 @@ components:
                       target_label: "saved_name"
                       replacement: "$1"
 
-                - job_name: "yugabyte"
+                - job_name: "ZNbase"
                   metrics_path: "/prometheus-metrics"
                   file_sd_configs:
                     - files:
-                      - '/opt/yugabyte/prometheus/targets/yugabyte.*.json'
+                      - '/opt/ZNbase/prometheus/targets/ZNbase.*.json'
                   metric_relabel_configs:
                     # Save the name of the metric so we can group_by since we cannot by __name__ directly...
                     - source_labels: ["__name__"]
@@ -153,17 +153,17 @@ components:
 
   - name: app
     containers:
-      - source: yugabyte
+      - source: ZNbase
         name: yugaware
-        image_name: yugabyte/yugaware
-        version: "YUGABYTE_RELEASE_VERSION"
+        image_name: ZNbase/yugaware
+        version: "ZNbase_RELEASE_VERSION"
         volumes:
           - host_path: '{{repl ConfigOption "storage_path"}}/yugaware/swamper_targets'
-            container_path: /opt/yugabyte/prometheus/targets
+            container_path: /opt/ZNbase/prometheus/targets
           - host_path: '{{repl ConfigOption "storage_path"}}/yugaware/data'
-            container_path: /opt/yugabyte/yugaware/data
+            container_path: /opt/ZNbase/yugaware/data
           - host_path: '{{repl ConfigOption "storage_path"}}/releases'
-            container_path: /opt/yugabyte/releases
+            container_path: /opt/ZNbase/releases
           - host_path: '{{repl ConfigOption "storage_path"}}/prometheusv2'
             container_path: /prometheus
           - host_path: '{{repl ConfigOption "storage_path"}}/prometheus_configs'
@@ -182,7 +182,7 @@ components:
                 container: nginx
                 action: start
         config_files:
-          - filename: /opt/yugabyte/yugaware/conf/application.docker.conf
+          - filename: /opt/ZNbase/yugaware/conf/application.docker.conf
             contents: |
               include classpath("application.common.conf")
               play.crypto.secret="{{repl ConfigOption "app_secret"}}"
@@ -200,7 +200,7 @@ components:
                 default.migration.auto=true
               }
               ebean {
-                default = ["com.yugabyte.yw.models.*"]
+                default = ["com.ZNbase.yw.models.*"]
               }
 
               play.modules.enabled += "org.flywaydb.play.PlayModule"
@@ -234,17 +234,17 @@ components:
               }
 
               yb {
-                devops.home = /opt/yugabyte/devops
+                devops.home = /opt/ZNbase/devops
                 metrics.host="{{repl HostPrivateIpAddress "prometheus" "prom/prometheus" }}"
-                storage.path = /opt/yugabyte/yugaware/data
+                storage.path = /opt/ZNbase/yugaware/data
                 docker.network = bridge
                 seedData = false
-                swamper.targetPath = /opt/yugabyte/prometheus/targets
+                swamper.targetPath = /opt/ZNbase/prometheus/targets
                 multiTenant = false
-                releases.path = "/opt/yugabyte/releases"
-                docker.release = "/opt/yugabyte/release"
+                releases.path = "/opt/ZNbase/releases"
+                docker.release = "/opt/ZNbase/release"
                 thirdparty.packagePath = /opt/third-party
-                helm.package = "/opt/yugabyte/helm/yugabyte-latest.tgz"
+                helm.package = "/opt/ZNbase/helm/ZNbase-latest.tgz"
                 health.check_interval_ms = 300000
                 health.status_interval_ms = 43200000
                 health.default_email = "YB_ALERTS_EMAIL_REPLACE"
@@ -292,7 +292,7 @@ components:
                 proxy_set_header Host $host;
 
                 location / {
-                  proxy_pass http://{{repl HostPrivateIpAddress "app" "yugabyte/yugaware" }}:{{repl ContainerExposedPort "app" "yugabyte/yugaware" "9000" }};
+                  proxy_pass http://{{repl HostPrivateIpAddress "app" "ZNbase/yugaware" }}:{{repl ContainerExposedPort "app" "ZNbase/yugaware" "9000" }};
                 }
               }
         ports:
@@ -367,7 +367,7 @@ config:
 
   - name: metrics
     title: Metrics config
-    description: Configure your yugabyte metrics
+    description: Configure your ZNbase metrics
     items:
       - name: prometheus_retention
         title: Amount of time to retain the metrics, default to 15 days

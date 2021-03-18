@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -56,7 +56,7 @@ YB_STRONGLY_TYPED_BOOL(UseHash);
 // TODO(dtxn) everywhere(?) in tests code where we use kNonTransactionalOperationContext we need
 // to check both code paths - for transactional tables (passing kNonTransactionalOperationContext)
 // and non-transactional tables (passing boost::none as transaction context).
-// https://yugabyte.atlassian.net/browse/ENG-2177.
+// https://ZNbase.atlassian.net/browse/ENG-2177.
 extern const TransactionOperationContext kNonTransactionalOperationContext;
 
 // Note: test data generator methods below are using a non-const reference for the random number

@@ -2,7 +2,7 @@
 title: Explore observability with Prometheus on Kubernetes
 headerTitle: Observability with Prometheus
 linkTitle: Observability 
-description: Learn about observability and monitoring with Prometheus using a local three-node YugabyteDB cluster on Kubernetes.
+description: Learn about observability and monitoring with Prometheus using a local three-node ZNbaseDB cluster on Kubernetes.
 block_indexing: true
 menu:
   v2.1:
@@ -45,24 +45,24 @@ showAsideToc: true
 -->
 </ul>
 
-You can monitor your local YugabyteDB cluster with a local instance of [Prometheus](https://prometheus.io/), a popular standard for time-series monitoring of cloud native infrastructure. YugabyteDB services and APIs expose metrics in the Prometheus format at the `/prometheus-metrics` endpoint.
+You can monitor your local ZNbaseDB cluster with a local instance of [Prometheus](https://prometheus.io/), a popular standard for time-series monitoring of cloud native infrastructure. ZNbaseDB services and APIs expose metrics in the Prometheus format at the `/prometheus-metrics` endpoint.
 
-For details on the metrics targets for YugabyteDB, see [Monitoring with Prometheus](../../../reference/configuration/default-ports/#monitoring-with-prometheus).
+For details on the metrics targets for ZNbaseDB, see [Monitoring with Prometheus](../../../reference/configuration/default-ports/#monitoring-with-prometheus).
 
-If you haven't installed YugabyteDB yet, do so first by following the [Quick Start](../../../quick-start/install/) guide.
+If you haven't installed ZNbaseDB yet, do so first by following the [Quick Start](../../../quick-start/install/) guide.
 
 ## 1. Create universe
 
 If you have a previously running local universe, destroy it using the following.
 
 ```sh
-$ kubectl delete -f yugabyte-statefulset.yaml
+$ kubectl delete -f ZNbase-statefulset.yaml
 ```
 
 Start a new local cluster - by default, this will create a three-node universe with a replication factor of `3`.
 
 ```sh
-$ kubectl apply -f yugabyte-statefulset.yaml
+$ kubectl apply -f ZNbase-statefulset.yaml
 ```
 
 ## Step 6. Clean up (optional)
@@ -70,7 +70,7 @@ $ kubectl apply -f yugabyte-statefulset.yaml
 Optionally, you can shut down the local cluster created in Step 1.
 
 ```sh
-$ kubectl delete -f yugabyte-statefulset.yaml
+$ kubectl delete -f ZNbase-statefulset.yaml
 ```
 
 Further, to destroy the persistent volume claims (**you will lose all the data if you do this**), run:

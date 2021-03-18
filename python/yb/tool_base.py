@@ -1,4 +1,4 @@
-# Copyright (c) Yugabyte, Inc.
+# Copyright (c) ZNbase, Inc.
 
 import argparse
 import os
@@ -10,7 +10,7 @@ from overrides import overrides, EnforceOverrides
 
 class YbBuildToolBase(EnforceOverrides):
     """
-    A base class for command-line tools that are part of YugabyteDB build.
+    A base class for command-line tools that are part of ZNbaseDB build.
     """
 
     def get_description(self):
@@ -76,7 +76,7 @@ class YbBuildToolBase(EnforceOverrides):
         self.arg_parser.add_argument(
             '--build_root',
             default=os.environ.get('BUILD_ROOT'),
-            help='YugabyteDB build root directory')
+            help='ZNbaseDB build root directory')
 
     def add_compiler_type_arg(self):
         self.arg_parser.add_argument(
@@ -88,4 +88,4 @@ class YbBuildToolBase(EnforceOverrides):
         self.arg_parser.add_argument(
             '--thirdparty_dir',
             default=os.getenv('YB_THIRDPARTY_DIR'),
-            help='YugabyteDB third-party dependencies directory')
+            help='ZNbaseDB third-party dependencies directory')

@@ -2,9 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file. See the AUTHORS file for names of contributors.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -17,7 +17,7 @@
 // under the License.
 //
 
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 
 #include "yb/util/status.h"
 
@@ -352,12 +352,12 @@ Status::Status(Code code,
       string_rep = ToString();
     }
     // We skip a couple of top frames like these:
-    //    ~/code/yugabyte/src/yb/util/status.cc:53:
+    //    ~/code/ZNbase/src/yb/util/status.cc:53:
     //        @ yb::Status::Status(yb::Status::Code, yb::Slice const&, yb::Slice const&, long,
     //                             char const*, int)
-    //    ~/code/yugabyte/src/yb/util/status.h:137:
+    //    ~/code/ZNbase/src/yb/util/status.h:137:
     //        @ yb::STATUS(Corruption, char const*, int, yb::Slice const&, yb::Slice const&, short)
-    //    ~/code/yugabyte/src/yb/common/doc_hybrid_time.cc:94:
+    //    ~/code/ZNbase/src/yb/common/doc_hybrid_time.cc:94:
     //        @ yb::DocHybridTime::DecodeFrom(yb::Slice*)
     LOG(WARNING) << "Non-OK status generated: " << string_rep << ", stack trace:\n"
                  << GetStackTrace(StackTraceLineFormat::DEFAULT, /* skip frames: */ 1);
@@ -427,7 +427,7 @@ std::string Status::ToString(bool include_file_and_line, bool include_code) cons
     // C++ code is located in $YB_SRC_ROOT/src, where $YB_SRC_ROOT is the repository root. Note that
     // this will break if the repository itself is located in a parent directory named "src".
     // However, neither Jenkins, nor our standard code location on a developer workstation
-    // (~/code/yugabyte) should have that problem.
+    // (~/code/ZNbase) should have that problem.
     const char* src_subpath = strstr(state_->file_name, "/src/");
     result.append(src_subpath != nullptr ? src_subpath + 5 : state_->file_name);
 

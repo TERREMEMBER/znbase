@@ -50,12 +50,12 @@ See the semantics of each option in the [PostgreSQL docs][postgresql-docs-create
 Basic example.
 
 ```plpgsql
-yugabyte=# CREATE TABLE t1(a int4, b int4);
-yugabyte=# CREATE TABLE t2(a int4, b int4);
-yugabyte=# CREATE RULE t1_to_t2 AS ON INSERT TO t1 DO INSTEAD
+ZNbase=# CREATE TABLE t1(a int4, b int4);
+ZNbase=# CREATE TABLE t2(a int4, b int4);
+ZNbase=# CREATE RULE t1_to_t2 AS ON INSERT TO t1 DO INSTEAD
              INSERT INTO t2 VALUES (new.a, new.b);
-yugabyte=# INSERT INTO t1 VALUES (3, 4);
-yugabyte=# SELECT * FROM t1;
+ZNbase=# INSERT INTO t1 VALUES (3, 4);
+ZNbase=# SELECT * FROM t1;
 ```
 
 ```
@@ -65,7 +65,7 @@ yugabyte=# SELECT * FROM t1;
 ```
 
 ```plpgsql
-yugabyte=# SELECT * FROM t2;
+ZNbase=# SELECT * FROM t2;
 ```
 
 ```

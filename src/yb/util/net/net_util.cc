@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -634,8 +634,8 @@ boost::optional<IpAddress> TryFastResolve(const std::string& host) {
     return *result;
   }
 
-  // For testing purpose we resolve A.B.C.D.ip.yugabyte to A.B.C.D.
-  static const std::string kYbIpSuffix = ".ip.yugabyte";
+  // For testing purpose we resolve A.B.C.D.ip.ZNbase to A.B.C.D.
+  static const std::string kYbIpSuffix = ".ip.ZNbase";
   if (boost::ends_with(host, kYbIpSuffix)) {
     boost::system::error_code ec;
     auto address = IpAddress::from_string(

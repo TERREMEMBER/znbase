@@ -50,7 +50,7 @@ showAsideToc: true
 
 ## 1. Create a local cluster
 
-You can use the [`yb-ctl`](../../../admin/yb-ctl/) utility, located in the `bin` directory of the YugabyteDB package, to create and administer a local cluster. The default data directory is `$HOME/yugabyte-data`. You can change the location of the data directory by using the [`--data_dir`](../../../admin/yb-ctl/#data-dir) configuration option.
+You can use the [`yb-ctl`](../../../admin/yb-ctl/) utility, located in the `bin` directory of the ZNbaseDB package, to create and administer a local cluster. The default data directory is `$HOME/ZNbase-data`. You can change the location of the data directory by using the [`--data_dir`](../../../admin/yb-ctl/#data-dir) configuration option.
 
 To quickly create a 1-node or 3-node local cluster, follow the steps below. For details on using the `yb-ctl create` command and the cluster configuration, see [Create a local cluster](../../../admin/yb-ctl/#create-cluster) in the utility reference.
 
@@ -72,9 +72,9 @@ To run a distributed SQL cluster locally for testing and development, you can qu
 $ ./bin/yb-ctl --rf 3 create
 ```
 
-You can now check `$HOME/yugabyte-data` to see `node-i` directories created where `i` represents the `node_id` of the node. Inside each such directory, there will be two disks, `disk1` and `disk2`, to highlight the fact that YugabyteDB can work with multiple disks at the same time. Note that the IP address of `node-i` is by default set to `127.0.0.i`.
+You can now check `$HOME/ZNbase-data` to see `node-i` directories created where `i` represents the `node_id` of the node. Inside each such directory, there will be two disks, `disk1` and `disk2`, to highlight the fact that ZNbaseDB can work with multiple disks at the same time. Note that the IP address of `node-i` is by default set to `127.0.0.i`.
 
-You can now check `$HOME/yugabyte-data` to see the `node-<id>` directories (where `<id>` represents the `node_id` of the node). Inside each node directory, there will be a subdirectory, named `disk-1`. Note that the IP address of `node-<id>` is by default set to `127.0.0.<id>`.
+You can now check `$HOME/ZNbase-data` to see the `node-<id>` directories (where `<id>` represents the `node_id` of the node). Inside each node directory, there will be a subdirectory, named `disk-1`. Note that the IP address of `node-<id>` is by default set to `127.0.0.<id>`.
 
 Clients can now connect to the YSQL and YCQL APIs at `localhost:5433` and `localhost:9042` respectively.
 
@@ -84,7 +84,7 @@ To see the `yb-master` and `yb-tserver` processes running locally, run the `yb-c
 
 ### Example
 
-For a 1-node cluster, the `yb-ctl status` command will show that you have 1 `yb-master` process and 1 `yb-tserver` process running on the localhost. For details about the roles of these processes in a YugabyteDB cluster (aka Universe), see [Universe](../../../architecture/concepts/universe/).
+For a 1-node cluster, the `yb-ctl status` command will show that you have 1 `yb-master` process and 1 `yb-tserver` process running on the localhost. For details about the roles of these processes in a ZNbaseDB cluster (aka Universe), see [Universe](../../../architecture/concepts/universe/).
 
 ```sh
 $ ./bin/yb-ctl status
@@ -99,7 +99,7 @@ $ ./bin/yb-ctl status
 | YCQL Shell          : bin/cqlsh                                                                  |
 | YEDIS Shell         : bin/redis-cli                                                              |
 | Web UI              : http://127.0.0.1:7000/                                                     |
-| Cluster Data        : /Users/yugabyte/yugabyte-data                                             |
+| Cluster Data        : /Users/ZNbase/ZNbase-data                                             |
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 | Node 1: yb-tserver (pid 20696), yb-master (pid 20693)                                            |
@@ -108,9 +108,9 @@ $ ./bin/yb-ctl status
 | YSQL Shell          : bin/ysqlsh                                                                 |
 | YCQL Shell          : bin/cqlsh                                                                  |
 | YEDIS Shell         : bin/redis-cli                                                              |
-| data-dir[0]         : /Users/yugabyte/yugabyte-data/node-1/disk-1/yb-data                       |
-| yb-tserver Logs     : /Users/yugabyte/yugabyte-data/node-1/disk-1/yb-data/tserver/logs          |
-| yb-master Logs      : /Users/yugabyte/yugabyte-data/node-1/disk-1/yb-data/master/logs           |
+| data-dir[0]         : /Users/ZNbase/ZNbase-data/node-1/disk-1/yb-data                       |
+| yb-tserver Logs     : /Users/ZNbase/ZNbase-data/node-1/disk-1/yb-data/tserver/logs          |
+| yb-master Logs      : /Users/ZNbase/ZNbase-data/node-1/disk-1/yb-data/master/logs           |
 ----------------------------------------------------------------------------------------------------
 ```
 
@@ -120,7 +120,7 @@ Node 1's [YB-Master Admin UI](../../../reference/configuration/yb-master/#admin-
 
 ### Overview and YB-Master status
 
-Node 1's master Admin UI home page shows that we have a cluster (aka a Universe) with `Replication Factor` of 1 and `Num Nodes (TServers)` as 1. The `Num User Tables` is 0 since there are no user tables created yet. YugabyteDB version number is also shown for your reference.
+Node 1's master Admin UI home page shows that we have a cluster (aka a Universe) with `Replication Factor` of 1 and `Num Nodes (TServers)` as 1. The `Num User Tables` is 0 since there are no user tables created yet. ZNbaseDB version number is also shown for your reference.
 
 ![master-home](/images/admin/master-home-binary-rf1.png)
 

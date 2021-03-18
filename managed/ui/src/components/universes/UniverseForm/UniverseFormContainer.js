@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
@@ -311,7 +311,7 @@ function mapStateToProps(state, ownProps) {
       numNodes: 3,
       isMultiAZ: true,
       instanceType: 'c5.large',
-      accessKeyCode: 'yugabyte-default',
+      accessKeyCode: 'ZNbase-default',
       assignPublicIP: true,
       useTimeSync: true,
       enableYSQL: true,

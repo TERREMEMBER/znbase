@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -39,7 +39,7 @@ class TransactionCleanup : public std::enable_shared_from_this<TransactionCleanu
     auto self = shared_from_this();
     for (const auto& tablet_id : tablet_ids) {
       // TODO(tsplit): pass table if needed as a part of
-      // https://github.com/yugabyte/yugabyte-db/issues/4942.
+      // https://github.com/ZNbase/ZNbase-db/issues/4942.
       client_->LookupTabletById(
           tablet_id,
           /* table =*/ nullptr,

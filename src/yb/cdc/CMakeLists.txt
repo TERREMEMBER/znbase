@@ -15,9 +15,9 @@
 # specific language governing permissions and limitations
 # under the License.
 #
-# The following only applies to changes made to this file as part of YugaByte development.
+# The following only applies to changes made to this file as part of ZNbase development.
 #
-# Portions Copyright (c) YugaByte, Inc.
+# Portions Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -43,7 +43,7 @@ YRPC_GENERATE(
   PROTO_FILES cdc_service.proto)
 
 PROTOBUF_GENERATE_CPP(
-  CDC_CONSUMER_YRPC_SRCS CDC_CONSUMER_YRPC_HDRS CDC_CONSUMER_YRPC_TGTS  
+  CDC_CONSUMER_YRPC_SRCS CDC_CONSUMER_YRPC_HDRS CDC_CONSUMER_YRPC_TGTS
   SOURCE_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/../..
   BINARY_ROOT ${CMAKE_CURRENT_BINARY_DIR}/../..
   PROTO_FILES cdc_consumer.proto)

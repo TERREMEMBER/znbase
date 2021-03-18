@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -290,7 +290,7 @@ Result<FilterDecision> DocDBCompactionFilter::DoFilter(
     within_merge_block_ = false;
   } else if (value.intent_doc_ht().is_valid() && ht.hybrid_time() < history_cutoff) {
     // Cleanup intent doc hybrid time when we don't need it anymore.
-    // See https://github.com/yugabyte/yugabyte-db/issues/4535 for details.
+    // See https://github.com/ZNbase/ZNbase-db/issues/4535 for details.
     value.ClearIntentDocHt();
 
     new_value->clear();

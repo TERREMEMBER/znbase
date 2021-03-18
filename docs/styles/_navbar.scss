@@ -1,4 +1,4 @@
-// Copyright (c) Yugabyte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 @import "./colors.scss";
 
@@ -100,7 +100,7 @@ body {
     .navbar-text .cta-button {
       color: $YB_TRANSLUCENT_WHITE !important;
     }
-    
+
     .navbar-text a {
       color: $YB_ORANGE !important;
     }
@@ -286,7 +286,7 @@ body {
       & > a, .dropdown > a {
         padding: 0 3px;
       }
-      
+
       a {
         padding: 0px 12px 6px;
         font-size: 13px;

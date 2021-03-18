@@ -334,12 +334,12 @@ static bool IsEnvSet(const char* name)
 	return env_var_value != NULL && strcmp(env_var_value, "1") == 0;
 }
 
-static bool IsYugaByteGlobalClusterInitdb()
+static bool IsZNbaseGlobalClusterInitdb()
 {
 	return IsEnvSet("YB_ENABLED_IN_POSTGRES");
 }
 
-static bool IsYugaByteLocalNodeInitdb()
+static bool IsZNbaseLocalNodeInitdb()
 {
 	return IsEnvSet("YB_PG_LOCAL_NODE_INITDB");
 }
@@ -347,7 +347,7 @@ static bool IsYugaByteLocalNodeInitdb()
 /*
  * pclose() plus useful error reporting
  *
- * YugaByte-specific version recognizes a special status indicating that initdb
+ * ZNbase-specific version recognizes a special status indicating that initdb
  * has already been run, or the cluster has been initialized from a sys catalog
  * snapshot.
  */
@@ -1032,7 +1032,7 @@ test_config_settings(void)
 #define MIN_BUFS_FOR_CONNS(nconns)	((nconns) * 10)
 
 	/*
-	 * For YugaByte we try larger number of connections (300) first.
+	 * For ZNbase we try larger number of connections (300) first.
 	 * TODO: we should also consider lowering the shared buffers below
 	 */
 	static const int trial_conns[] = {
@@ -1333,8 +1333,8 @@ setup_config(void)
 
 	free(conflines);
 
-	/* Do not create pg_hba.conf in yugabyte */
-	if (!IsYugaByteGlobalClusterInitdb() && !IsYugaByteLocalNodeInitdb()) {
+	/* Do not create pg_hba.conf in ZNbase */
+	if (!IsZNbaseGlobalClusterInitdb() && !IsZNbaseLocalNodeInitdb()) {
 		/* pg_hba.conf */
 
 		conflines = readfile(hba_file);
@@ -1477,7 +1477,7 @@ bootstrap_template1(void)
    * Lines from BKI file are not actually used in initdb on local node.
    * No need to substitute anything
    */
-	if (!IsYugaByteLocalNodeInitdb())
+	if (!IsZNbaseLocalNodeInitdb())
   {
     /* Substitute for various symbols used in the BKI file */
 
@@ -1539,7 +1539,7 @@ bootstrap_template1(void)
 
   for (line = bki_lines; *line != NULL; line++)
   {
-    if (!IsYugaByteLocalNodeInitdb())
+    if (!IsZNbaseLocalNodeInitdb())
       PG_CMD_PUTS(*line);
     free(*line);
   }
@@ -1729,8 +1729,8 @@ setup_depend(FILE *cmdfd)
 
 	for (line = pg_depend_setup; *line != NULL; line++)
 	{
-		/* Skip VACUUM commands in YugaByte mode */
-		if (IsYugaByteGlobalClusterInitdb() && strncmp(*line, "VACUUM", 6) == 0)
+		/* Skip VACUUM commands in ZNbase mode */
+		if (IsZNbaseGlobalClusterInitdb() && strncmp(*line, "VACUUM", 6) == 0)
 			continue;
 		PG_CMD_PUTS(*line);
 	}
@@ -1828,7 +1828,7 @@ setup_collation(FILE *cmdfd)
 				   BOOTSTRAP_SUPERUSERID, COLLPROVIDER_LIBC, PG_UTF8);
 
 	/* Now import all collations we can find in the operating system */
-	if (!IsYugaByteGlobalClusterInitdb())
+	if (!IsZNbaseGlobalClusterInitdb())
 		PG_CMD_PUTS("SELECT pg_import_system_collations('pg_catalog');\n\n");
 }
 
@@ -2158,7 +2158,7 @@ make_template0(FILE *cmdfd)
 	 * 14/12/2018.
 	 * TODO revert this change when we do support it.
 	 */
-	if (IsYugaByteGlobalClusterInitdb())
+	if (IsZNbaseGlobalClusterInitdb())
 	{
 		PG_CMD_PUTS(template0_setup[0]);
 		PG_CMD_PUTS(template0_setup[2]);
@@ -2191,20 +2191,20 @@ make_postgres(FILE *cmdfd)
 
 
 /*
- * Create yugabyte database and user.
+ * Create ZNbase database and user.
  */
 static void
-make_yugabyte(FILE *cmdfd)
+make_ZNbase(FILE *cmdfd)
 {
 	const char *const *line;
-	static const char *const yugabyte_setup[] = {
-		"CREATE USER yugabyte SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'yugabyte';\n\n"
-		"CREATE DATABASE yugabyte;\n\n",
-		"COMMENT ON DATABASE yugabyte IS 'default administrative connection database';\n\n",
+	static const char *const ZNbase_setup[] = {
+		"CREATE USER ZNbase SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'ZNbase';\n\n"
+		"CREATE DATABASE ZNbase;\n\n",
+		"COMMENT ON DATABASE ZNbase IS 'default administrative connection database';\n\n",
 		NULL
 	};
 
-	for (line = yugabyte_setup; *line; line++)
+	for (line = ZNbase_setup; *line; line++)
 		PG_CMD_PUTS(*line);
 }
 
@@ -2217,7 +2217,7 @@ make_system_platform(FILE *cmdfd) {
 	const char *const *line;
 	static const char *const system_platform_setup[] = {
 		"CREATE DATABASE system_platform;\n\n",
-		"COMMENT ON DATABASE system_platform IS 'system database for YugaByte platform';\n\n",
+		"COMMENT ON DATABASE system_platform IS 'system database for ZNbase platform';\n\n",
 		NULL
 	};
 
@@ -2476,7 +2476,7 @@ setlocales(void)
 	/* Use LC_COLLATE=C with everything else as en_US.UTF-8 as default locale in YB mode. */
 	/* This is because as of 06/15/2019 we don't support collation-aware string comparisons, */
 	/* but we still want to support storing UTF-8 strings. */
-	if (!locale && (IsYugaByteLocalNodeInitdb() || IsYugaByteGlobalClusterInitdb())) {
+	if (!locale && (IsZNbaseLocalNodeInitdb() || IsZNbaseGlobalClusterInitdb())) {
 		const char *kYBDefaultLocaleForSortOrder = "C";
 		const char *kYBDefaultLocaleForEncoding = "en_US.UTF-8";
 
@@ -2484,9 +2484,9 @@ setlocales(void)
 		lc_collate = pg_strdup(kYBDefaultLocaleForSortOrder);
 		fprintf(
 			stderr,
-			_("In YugabyteDB, setting LC_COLLATE to %s and all other locale settings to %s "
+			_("In ZNbaseDB, setting LC_COLLATE to %s and all other locale settings to %s "
 			  "by default. Locale support will be enhanced as part of addressing "
-			  "https://github.com/yugabyte/yugabyte-db/issues/1557\n"),
+			  "https://github.com/ZNbase/ZNbase-db/issues/1557\n"),
 			lc_collate, locale);
 	}
 
@@ -2808,7 +2808,7 @@ setup_locale_encoding(void)
 void
 setup_data_file_paths(void)
 {
-  if (IsYugaByteGlobalClusterInitdb())
+  if (IsZNbaseGlobalClusterInitdb())
     set_input(&bki_file, "yb_postgres.bki");
   else
     set_input(&bki_file, "postgres.bki");
@@ -2821,7 +2821,7 @@ setup_data_file_paths(void)
 	set_input(&dictionary_file, "snowball_create.sql");
 	set_input(&info_schema_file, "information_schema.sql");
 	set_input(&features_file, "sql_features.txt");
-	if (IsYugaByteGlobalClusterInitdb())
+	if (IsZNbaseGlobalClusterInitdb())
 		set_input(&system_views_file, "yb_system_views.sql");
 	else
 		set_input(&system_views_file, "system_views.sql");
@@ -3175,8 +3175,8 @@ initialize_data_directory(void)
 
 	/* Bootstrap template1 */
 	bootstrap_template1();
-	
-	if (IsYugaByteLocalNodeInitdb())
+
+	if (IsZNbaseLocalNodeInitdb())
 		return;
 
 	/*
@@ -3210,12 +3210,12 @@ initialize_data_directory(void)
 	setup_sysviews(cmdfd);
 
 	/* Do not support copy in YB yet */
-	if (!IsYugaByteGlobalClusterInitdb())
+	if (!IsZNbaseGlobalClusterInitdb())
 		setup_description(cmdfd);
 
 	setup_collation(cmdfd);
 
-	if (!IsYugaByteGlobalClusterInitdb())
+	if (!IsZNbaseGlobalClusterInitdb())
 	{
 		setup_conversion(cmdfd);
 
@@ -3231,7 +3231,7 @@ initialize_data_directory(void)
 	/* Enable pg_stat_statements */
 	enable_pg_stat_statements(cmdfd);
 
-	if (!IsYugaByteGlobalClusterInitdb())
+	if (!IsZNbaseGlobalClusterInitdb())
 	{
 		/* Do not need to vacuum in YB */
 		vacuum_db(cmdfd);
@@ -3241,11 +3241,11 @@ initialize_data_directory(void)
 
 	make_postgres(cmdfd);
 
-	if (IsYugaByteGlobalClusterInitdb()) {
-		/* Create the yugabyte db and user (defaults for YugaByte/ysqlsh) */
-		make_yugabyte(cmdfd);
+	if (IsZNbaseGlobalClusterInitdb()) {
+		/* Create the ZNbase db and user (defaults for ZNbase/ysqlsh) */
+		make_ZNbase(cmdfd);
 
-		/* Create the system_platform database used by the YugaByte platform UI */
+		/* Create the system_platform database used by the ZNbase platform UI */
 		make_system_platform(cmdfd);
 	}
 
@@ -3258,7 +3258,7 @@ initialize_data_directory(void)
 int
 main(int argc, char *argv[])
 {
-	if (IsYugaByteGlobalClusterInitdb() || IsYugaByteLocalNodeInitdb())
+	if (IsZNbaseGlobalClusterInitdb() || IsZNbaseLocalNodeInitdb())
 		YBSetInitDbModeEnvVar();
 
 	static struct option long_options[] = {
@@ -3572,14 +3572,14 @@ main(int argc, char *argv[])
 	else
 		printf(_("\nSync to disk skipped.\nThe data directory might become corrupt if the operating system crashes.\n"));
 
-	if (IsYugaByteLocalNodeInitdb())
+	if (IsZNbaseLocalNodeInitdb())
 		return 0;
 
-	if (authwarning != NULL && !IsYugaByteGlobalClusterInitdb())
+	if (authwarning != NULL && !IsZNbaseGlobalClusterInitdb())
 		fprintf(stderr, "%s", authwarning);
 
-	/* In YugaByte mode we only call this indirectly and manage starting the server automatically */
-	if (!IsYugaByteGlobalClusterInitdb())
+	/* In ZNbase mode we only call this indirectly and manage starting the server automatically */
+	if (!IsZNbaseGlobalClusterInitdb())
 	{
 
 		/*

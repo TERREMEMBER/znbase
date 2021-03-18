@@ -1,8 +1,8 @@
 ---
-title: Prepare cloud environments for Yugabyte Platform
+title: Prepare cloud environments for ZNbase Platform
 headerTitle: Prepare cloud environment
 linkTitle: 1. Prepare cloud environment
-description: Prepare your cloud environment for the Yugabyte Platform.
+description: Prepare your cloud environment for the ZNbase Platform.
 block_indexing: true
 menu:
   v2.1:
@@ -11,7 +11,7 @@ menu:
     weight: 669
 ---
 
-A dedicated host or virtual machine (VM) is required to run the Yugabyte Platform server. For more details, see [this faq](../../../faq/enterprise-edition/#what-are-the-os-requirements-and-permissions-to-run-yugaware-the-yugabyte-admin-console). This page highlights the basic setup needed in order to install Yugabyte Platform.
+A dedicated host or virtual machine (VM) is required to run the ZNbase Platform server. For more details, see [this faq](../../../faq/enterprise-edition/#what-are-the-os-requirements-and-permissions-to-run-yugaware-the-ZNbase-admin-console). This page highlights the basic setup needed in order to install ZNbase Platform.
 
 <ul class="nav nav-tabs nav-tabs-yb">
   <li>

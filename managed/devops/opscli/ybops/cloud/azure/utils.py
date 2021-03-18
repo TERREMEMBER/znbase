@@ -1,10 +1,10 @@
-# Copyright 2020 YugaByte, Inc. and Contributors
+# Copyright 2020 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 from azure.common.credentials import ServicePrincipalCredentials
 from azure.mgmt.network import NetworkManagementClient
@@ -33,10 +33,10 @@ PRIVATE_DNS_ZONE_ID_FORMAT_STRING = "/subscriptions/{}/resourceGroups/{}/provide
 AZURE_SKU_FORMAT = {"premium_lrs": "Premium_LRS",
                     "standardssd_lrs": "StandardSSD_LRS",
                     "ultrassd_lrs": "UltraSSD_LRS"}
-YUGABYTE_VNET_PREFIX = "yugabyte-vnet-{}"
-YUGABYTE_SUBNET_PREFIX = "yugabyte-subnet-{}"
-YUGABYTE_SG_PREFIX = "yugabyte-sg-{}"
-YUGABYTE_PEERING_FORMAT = "yugabyte-peering-{}-{}"
+ZNbase_VNET_PREFIX = "ZNbase-vnet-{}"
+ZNbase_SUBNET_PREFIX = "ZNbase-subnet-{}"
+ZNbase_SG_PREFIX = "ZNbase-sg-{}"
+ZNbase_PEERING_FORMAT = "ZNbase-peering-{}-{}"
 RESOURCE_SKU_URL = "https://management.azure.com/subscriptions/{}/providers/Microsoft.Compute/skus".format(SUBSCRIPTION_ID)
 GALLERY_IMAGE_ID_REGEX = re.compile("/subscriptions/(?P<subscription_id>[^/]*)/resourceGroups/(?P<resource_group>[^/]*)/providers/Microsoft.Compute/galleries/(?P<gallery_name>[^/]*)/images/(?P<image_definition_name>[^/]*)/versions/(?P<version_id>[^/]*)")
 VM_PRICING_URL_FORMAT = "https://prices.azure.com/api/retail/prices?$filter=" \
@@ -91,10 +91,10 @@ class AzureBootstrapClient():
             },
         }
         logging.debug("Creating Virtual Network {} with CIDR {}".format(
-            YUGABYTE_VNET_PREFIX.format(region), cidr))
+            ZNbase_VNET_PREFIX.format(region), cidr))
         creation_result = self.network_client.virtual_networks.create_or_update(
             RESOURCE_GROUP,
-            YUGABYTE_VNET_PREFIX.format(region),
+            ZNbase_VNET_PREFIX.format(region),
             vnet_params
         )
         return creation_result.result().name
@@ -104,13 +104,13 @@ class AzureBootstrapClient():
             'address_prefix': cidr
         }
         logging.debug("Creating Subnet {} with CIDR {}".format(
-            YUGABYTE_SUBNET_PREFIX.format(region),
+            ZNbase_SUBNET_PREFIX.format(region),
             cidr
         ))
         creation_result = self.network_client.subnets.create_or_update(
             RESOURCE_GROUP,
             vNet,
-            YUGABYTE_SUBNET_PREFIX.format(region),
+            ZNbase_SUBNET_PREFIX.format(region),
             subnet_params
         )
 
@@ -123,10 +123,10 @@ class AzureBootstrapClient():
             # parse vnet from ID
             vnetName = id_to_name(vnetJson.get("id"))
             if (vnetJson.get("location") == region and
-                    vnetName.startswith(YUGABYTE_VNET_PREFIX.format(''))):
+                    vnetName.startswith(ZNbase_VNET_PREFIX.format(''))):
                 logging.debug("Found default vnet {}".format(vnetName))
                 return vnetName
-        logging.info("Could not find default {} in region {}".format(YUGABYTE_VNET_PREFIX, region))
+        logging.info("Could not find default {} in region {}".format(ZNbase_VNET_PREFIX, region))
         return None
 
     def get_default_subnet(self, vnet):
@@ -137,10 +137,10 @@ class AzureBootstrapClient():
                    self.network_client.subnets.list(RESOURCE_GROUP, vnet)]
         for subnet in subnets:
             # Maybe change to tags rather than filtering on name prefix
-            if(subnet.get("name").startswith(YUGABYTE_SUBNET_PREFIX.format(''))):
+            if(subnet.get("name").startswith(ZNbase_SUBNET_PREFIX.format(''))):
                 logging.debug("Found default subnet {}".format(subnet.get("name")))
                 return subnet.get("name")
-        logging.info("Could not find default {} in vnet {}".format(YUGABYTE_SUBNET_PREFIX, vnet))
+        logging.info("Could not find default {} in vnet {}".format(ZNbase_SUBNET_PREFIX, vnet))
         return None
 
     def get_default_sg(self, region):
@@ -153,9 +153,9 @@ class AzureBootstrapClient():
                self.network_client.network_security_groups.list(RESOURCE_GROUP)]
         for sg in sgs:
             if (sg.get("location") == region and
-                    sg.get("name").startswith(YUGABYTE_SG_PREFIX.format(''))):
+                    sg.get("name").startswith(ZNbase_SG_PREFIX.format(''))):
                 return sg.get("name")
-        logging.info("Could not find default {} in region {}".format(YUGABYTE_SG_PREFIX, region))
+        logging.info("Could not find default {} in region {}".format(ZNbase_SG_PREFIX, region))
         return None
 
     def get_vnet_cidr(self, region):
@@ -228,12 +228,12 @@ class AzureBootstrapClient():
             self.network_client.virtual_network_peerings.get(
                 RESOURCE_GROUP,
                 vnet1,
-                YUGABYTE_PEERING_FORMAT.format(region1, region2)
+                ZNbase_PEERING_FORMAT.format(region1, region2)
             )
             self.network_client.virtual_network_peerings.get(
                 RESOURCE_GROUP,
                 vnet2,
-                YUGABYTE_PEERING_FORMAT.format(region2, region1)
+                ZNbase_PEERING_FORMAT.format(region2, region1)
             )
             logging.debug("Found peerings on Virtual Network {} and Virtual Network {}.".format(
                 vnet1, vnet2
@@ -250,14 +250,14 @@ class AzureBootstrapClient():
         peer1 = self.network_client.virtual_network_peerings.create_or_update(
             RESOURCE_GROUP,
             vnet1,
-            YUGABYTE_PEERING_FORMAT.format(region1, region2),
+            ZNbase_PEERING_FORMAT.format(region1, region2),
             pp1
         )
         # Peer 1 to 2
         peer2 = self.network_client.virtual_network_peerings.create_or_update(
             RESOURCE_GROUP,
             vnet2,
-            YUGABYTE_PEERING_FORMAT.format(region2, region1),
+            ZNbase_PEERING_FORMAT.format(region2, region1),
             pp2
         )
         peer1.result()

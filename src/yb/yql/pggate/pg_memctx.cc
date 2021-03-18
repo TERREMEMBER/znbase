@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------------------
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -27,7 +27,7 @@ PgMemctx::~PgMemctx() {
 
 namespace {
   // Table of memory contexts.
-  // - Although defined in Yugabyte, this table is owned and managed by Postgres process.
+  // - Although defined in ZNbase, this table is owned and managed by Postgres process.
   //   Other processes cannot control "pggate::PgMemctx" to avoid memory violations.
   // - Table "postgres_process_memctxs" is to help releasing the references to PgStatement when
   //   Postgres Process (a C program) is exiting.

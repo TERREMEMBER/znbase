@@ -71,14 +71,14 @@ There are a number of display widgets available. These are listed below.
 ### Note box
 
 A note box gives some important information that is often not optional. It looks as follows:
-![Note Box](https://raw.githubusercontent.com/yugabyte/docs/master/contributing/info-box-NOTE.png)
+![Note Box](https://raw.githubusercontent.com/ZNbase/docs/master/contributing/info-box-NOTE.png)
 
 Hugo shortcode to add a note box:
 
 ```
 {{< note title="Note" >}}
 
-This is a note with a [link](https://www.yugabyte.com).
+This is a note with a [link](https://www.ZNbase.com).
 
 {{< /note >}}
 ```
@@ -86,14 +86,14 @@ This is a note with a [link](https://www.yugabyte.com).
 ### Tip box
 
 A tip box gives a hint or other useful but optional piece of information. It looks as follows:
-![Tip Box](https://raw.githubusercontent.com/yugabyte/docs/master/contributing/info-box-TIP.png)
+![Tip Box](https://raw.githubusercontent.com/ZNbase/docs/master/contributing/info-box-TIP.png)
 
 Hugo shortcode to add a tip box:
 
 ```
 {{< tip title="Tip" >}}
 
-This is a tip with a [link](https://www.yugabyte.com).
+This is a tip with a [link](https://www.ZNbase.com).
 
 {{< /tip >}}
 ```
@@ -101,14 +101,14 @@ This is a tip with a [link](https://www.yugabyte.com).
 ### Warning box
 
 A warning box informs the user about a potential issue or something to watch out for. It looks as follows:
-![Warning Box](https://raw.githubusercontent.com/yugabyte/docs/master/contributing/info-box-WARNING.png)
+![Warning Box](https://raw.githubusercontent.com/ZNbase/docs/master/contributing/info-box-WARNING.png)
 
 Hugo shortcode to add a warning box:
 
 ```
 {{< warning title="Warning" >}}
 
-This is a warning with a [link](https://www.yugabyte.com).
+This is a warning with a [link](https://www.ZNbase.com).
 
 {{< /warning >}}
 ```
@@ -117,7 +117,7 @@ This is a warning with a [link](https://www.yugabyte.com).
 
 An inline section switcher lets you switch between content sections **without a separate URL***. If you want to link to sub-sections inside a switcher, use tabs. This widget looks as follows:
 
-![Inline section switcher](https://raw.githubusercontent.com/yugabyte/docs/master/contributing/inline-section-switcher.png)
+![Inline section switcher](https://raw.githubusercontent.com/ZNbase/docs/master/contributing/inline-section-switcher.png)
 
 The corresponding code for this widget is shown below. Note that the actual content must be placed in a file with the `.md` extension inside a subdirectory whose name is easy to associate with the switcher title.
 

@@ -2,7 +2,7 @@
 title: Replication in DocDB
 headerTitle: Replication
 linkTitle: Replication
-description: Learn how YugabyteDB uses the Raft consensus in DocDB to replicate data across multiple independent fault domains like nodes, zones, regions and clouds.
+description: Learn how ZNbaseDB uses the Raft consensus in DocDB to replicate data across multiple independent fault domains like nodes, zones, regions and clouds.
 menu:
   stable:
     identifier: architecture-docdb-replication-default
@@ -28,11 +28,11 @@ Data is typically replicated across fault domains to be resilient to the outage 
 
 ### Fault tolerance
 
-The **fault tolerance** (FT) of a YugabyteDB universe is the maximum number of node failures it can survive while continuing to preserve correctness of data.
+The **fault tolerance** (FT) of a ZNbaseDB universe is the maximum number of node failures it can survive while continuing to preserve correctness of data.
 
 ### Replication factor
 
-YugabyteDB replicates data across nodes (or fault domains) in order to tolerate faults. The **replication factor** (RF) is the number of copies of data in a YugabyteDB universe.  FT and RF are correlated. To achieve a FT of `k` nodes, the universe has to be configured with a RF of
+ZNbaseDB replicates data across nodes (or fault domains) in order to tolerate faults. The **replication factor** (RF) is the number of copies of data in a ZNbaseDB universe.  FT and RF are correlated. To achieve a FT of `k` nodes, the universe has to be configured with a RF of
 (2k + 1).
 
 ## Tablet peers
@@ -79,7 +79,7 @@ As soon as a zone outage occurs, we assume that all nodes in that zone become un
 
 <img src="/images/architecture/replication/tablet-leaders-vs-followers-zone-outage.png" style="max-width:750px;"/>
 
-For the affected one-third, YugabyteDB automatically performs a failover to instances in the other two zones. Once again, the tablets being failed over are distributed across the two remaining zones evenly.
+For the affected one-third, ZNbaseDB automatically performs a failover to instances in the other two zones. Once again, the tablets being failed over are distributed across the two remaining zones evenly.
 
 <img src="/images/architecture/replication/automatic-failover-zone-outage.png" style="max-width:750px;"/>
 
@@ -96,7 +96,7 @@ The RPO (recovery point objective) for each of these tablets is 0, meaning no da
 ## Follower reads
 
 Only the tablet leader can process user-facing write and read requests. Note that while this is the
-case for strongly consistent reads, YugabyteDB offers reading from **followers** with relaxed
+case for strongly consistent reads, ZNbaseDB offers reading from **followers** with relaxed
 guarantees which is desired in some deployment models. All other tablet-peers are called followers
 and merely replicate data, and are available as hot standbys that can take over quickly in case the
 leader fails.

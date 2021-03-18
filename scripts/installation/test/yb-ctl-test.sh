@@ -8,7 +8,7 @@ export YB_DISABLE_CALLHOME=1
 readonly YSQL_DEFAULT_PORT=5433
 ysql_ip=127.0.0.1
 
-# This will be auto-detected the first time yb-ctl auto-downloads and installs YugaByte DB.
+# This will be auto-detected the first time yb-ctl auto-downloads and installs ZNbase DB.
 installation_dir=""
 
 log() {
@@ -22,8 +22,8 @@ fatal() {
 
 detect_installation_dir() {
   if [[ -z $installation_dir ]]; then
-    installation_dir=$( ls -td "$HOME/yugabyte-db/yugabyte-"* | grep -v .tar.gz | head -1 )
-    log "YugaByte DB has been automatically installed into directory: $installation_dir"
+    installation_dir=$( ls -td "$HOME/ZNbase-db/ZNbase-"* | grep -v .tar.gz | head -1 )
+    log "ZNbase DB has been automatically installed into directory: $installation_dir"
   fi
 }
 
@@ -80,7 +80,7 @@ start_cluster_run_tests() {
   # It looks like if we try to create a table in this state, the master is trying to assign
   # tablets to node 1, which is down, and times out:
   #
-  # TODO: re-enable when https://github.com/YugaByte/yugabyte-db/issues/1508 is fixed.
+  # TODO: re-enable when https://github.com/ZNbase/ZNbase-db/issues/1508 is fixed.
   if false; then
     verify_ysqlsh 2
   fi
@@ -254,7 +254,7 @@ log "USER: $USER"
 log "CI_RUN: $CI_RUN"
 
 # Mac needs loopback aliases explicitly created:
-#   https://docs.yugabyte.com/latest/quick-start/install/
+#   https://docs.ZNbase.com/latest/quick-start/install/
 if [[ ${CI_RUN} == "true" && $OSTYPE == darwin* ]]; then
   sudo ifconfig lo0 alias 127.0.0.2
   sudo ifconfig lo0 alias 127.0.0.3
@@ -361,7 +361,7 @@ start_cluster_run_tests "${installation_dir}/bin"
 
 log_heading \
   "Pretending we've just built the code and are running yb-ctl from the bin directory in the code"
-yb_src_root=$HOME/yugabyte-db-src-root
+yb_src_root=$HOME/ZNbase-db-src-root
 submodule_bin_dir=$yb_src_root/scripts/installation/bin
 mkdir -p "$submodule_bin_dir"
 cp bin/yb-ctl "$submodule_bin_dir"

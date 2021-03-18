@@ -12,10 +12,10 @@
 ###################################################################################################
 
 # Returns the list of masters for a given instance.
-GET     /metamaster/universe/:universeUUID            com.yugabyte.yw.controllers.MetaMasterController.get(universeUUID: java.util.UUID)
+GET     /metamaster/universe/:universeUUID            com.ZNbase.yw.controllers.MetaMasterController.get(universeUUID: java.util.UUID)
 
 # To proxy requests to master/tserver UI
-GET     /universes/:uniUUID/proxy/*proxyUrl           com.yugabyte.yw.controllers.SessionController.proxyRequest(uniUUID: java.util.UUID, proxyUrl: String)
+GET     /universes/:uniUUID/proxy/*proxyUrl           com.ZNbase.yw.controllers.SessionController.proxyRequest(uniUUID: java.util.UUID, proxyUrl: String)
 
 ###################################################################################################
 #

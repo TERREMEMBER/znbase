@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import axios from 'axios';
 import { IN_DEVELOPMENT_MODE, ROOT_URL, USE_SSO } from '../config';
@@ -582,7 +582,7 @@ export function getLogsFailure(error) {
   };
 }
 
-export function getYugaByteReleases() {
+export function getZNbaseReleases() {
   const cUUID = localStorage.getItem('customerId');
   const request = axios.get(`${ROOT_URL}/customers/${cUUID}/releases?includeMetadata=true`);
   return {
@@ -591,14 +591,14 @@ export function getYugaByteReleases() {
   };
 }
 
-export function getYugaByteReleasesResponse(response) {
+export function getZNbaseReleasesResponse(response) {
   return {
     type: GET_RELEASES_RESPONSE,
     payload: response
   };
 }
 
-export function refreshYugaByteReleases() {
+export function refreshZNbaseReleases() {
   const cUUID = localStorage.getItem('customerId');
   const request = axios.put(`${ROOT_URL}/customers/${cUUID}/releases`);
   return {
@@ -607,14 +607,14 @@ export function refreshYugaByteReleases() {
   };
 }
 
-export function refreshYugaByteReleasesResponse(response) {
+export function refreshZNbaseReleasesResponse(response) {
   return {
     type: REFRESH_RELEASES_RESPONSE,
     payload: response
   };
 }
 
-export function importYugaByteRelease(payload) {
+export function importZNbaseRelease(payload) {
   const cUUID = localStorage.getItem('customerId');
   const request = axios.post(`${ROOT_URL}/customers/${cUUID}/releases`, payload);
   return {
@@ -623,14 +623,14 @@ export function importYugaByteRelease(payload) {
   };
 }
 
-export function importYugaByteReleaseResponse(response) {
+export function importZNbaseReleaseResponse(response) {
   return {
     type: IMPORT_RELEASE_RESPONSE,
     payload: response
   };
 }
 
-export function updateYugaByteRelease(version, payload) {
+export function updateZNbaseRelease(version, payload) {
   const cUUID = localStorage.getItem('customerId');
   const request = axios.put(`${ROOT_URL}/customers/${cUUID}/releases/${version}`, payload);
   return {
@@ -639,7 +639,7 @@ export function updateYugaByteRelease(version, payload) {
   };
 }
 
-export function updateYugaByteReleaseResponse(response) {
+export function updateZNbaseReleaseResponse(response) {
   return {
     type: UPDATE_RELEASE_RESPONSE,
     payload: response

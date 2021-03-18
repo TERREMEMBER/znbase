@@ -3,7 +3,7 @@
 
 A project forms the basis for creating, enabling and using all GCP services, managing APIs, enabling billing, adding and removing collaborators, and managing permissions. You would need browse to the [GCP cloud resource manager](https://console.cloud.google.com/cloud-resource-manager) and click on create project to get started. You can follow these instructions to [create a new GCP project](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
 
-Give the project a suitable name (eg: `yugabyte-gcp`) and note the project ID (eg: `yugabyte-gcp`). You should see a dialog that looks like the screenshot below.
+Give the project a suitable name (eg: `ZNbase-gcp`) and note the project ID (eg: `ZNbase-gcp`). You should see a dialog that looks like the screenshot below.
 
 ![Creating a GCP project](/images/ee/gcp-setup/project-create.png)
 

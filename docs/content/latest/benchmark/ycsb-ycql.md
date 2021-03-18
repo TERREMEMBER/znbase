@@ -65,20 +65,20 @@ Download the YCSB binaries. You can do this by running the following commands.
 
 ```sh
 $ cd $HOME
-$ wget https://github.com/yugabyte/YCSB/releases/download/1.0/ycsb.tar.gz
+$ wget https://github.com/ZNbase/YCSB/releases/download/1.0/ycsb.tar.gz
 $ tar -zxvf ycsb.tar.gz
 $ cd YCSB
 ```
 
-Make sure you have the YCQL shell `ycqlsh` exported to the `PATH` variable. You can download [`ycqlsh`](https://download.yugabyte.com/) if you do not have it.
+Make sure you have the YCQL shell `ycqlsh` exported to the `PATH` variable. You can download [`ycqlsh`](https://download.ZNbase.com/) if you do not have it.
 
 ```sh
 $ export PATH=$PATH:/path/to/ycqlsh
 ```
 
-### 2. Start YugabyteDB
+### 2. Start ZNbaseDB
 
-Start your YugabyteDB cluster by following the steps [here](../../deploy/manual-deployment/).
+Start your ZNbaseDB cluster by following the steps [here](../../deploy/manual-deployment/).
 
 {{< tip title="Tip" >}}
 
@@ -93,10 +93,10 @@ Update the file `db.properties` in the YCSB directory with the following content
 ```sh
 hosts=<ip>
 port=9042
-cassandra.username=yugabyte
+cassandra.username=ZNbase
 ```
 
-For details on other configuration parameters, like username, password, connection parameters, etc., see [YugabyteCQL binding](https://github.com/yugabyte/YCSB/tree/master/yugabyteCQL).
+For details on other configuration parameters, like username, password, connection parameters, etc., see [ZNbaseCQL binding](https://github.com/ZNbase/YCSB/tree/master/ZNbaseCQL).
 
 ### 4. Run the benchmark
 
@@ -153,10 +153,10 @@ ycqlsh:ycsb> create table usertable (
                 field8 varchar, field9 varchar);
 ```
 
-Before starting the `yugabyteCQL` workload, you first need to load the data.
+Before starting the `ZNbaseCQL` workload, you first need to load the data.
 
 ```sh
-$ ./bin/ycsb load yugabyteCQL -s \
+$ ./bin/ycsb load ZNbaseCQL -s \
       -P db.properties           \
       -P workloads/workloada     \
       -p recordcount=1000000     \
@@ -168,7 +168,7 @@ $ ./bin/ycsb load yugabyteCQL -s \
 Then, you can run the workload:
 
 ```sh
-$ ./bin/ycsb run yugabyteCQL -s  \
+$ ./bin/ycsb run ZNbaseCQL -s  \
       -P db.properties           \
       -P workloads/workloada     \
       -p recordcount=1000000     \
@@ -180,7 +180,7 @@ $ ./bin/ycsb run yugabyteCQL -s  \
 To run the other workloads (for example, `workloadb`), all you need to do is change that argument in the above command.
 
 ```sh
-$ ./bin/ycsb run yugabyteCQL -s  \
+$ ./bin/ycsb run ZNbaseCQL -s  \
       -P db.properties           \
       -P workloads/workloadb     \
       -p recordcount=1000000     \

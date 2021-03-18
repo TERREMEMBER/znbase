@@ -1,8 +1,8 @@
 ---
-title: Deploy a YugabyteDB cluster on Docker Swarm
+title: Deploy a ZNbaseDB cluster on Docker Swarm
 headerTitle: Docker
 linkTitle: Docker
-description: Deploy a YugabyteDB cluster on Docker Swarm.
+description: Deploy a ZNbaseDB cluster on Docker Swarm.
 block_indexing: true
 menu:
   v2.2:
@@ -59,7 +59,7 @@ As noted in the [Docker documentation](https://docs.docker.com/engine/swarm/swar
 
 Following bash script is a simpler form of Docker's own swarm beginner tutorial [bash script](https://github.com/docker/labs/blob/master/swarm-mode/beginner-tutorial/swarm-node-vbox-setup.sh). You can use this for Linux and macOS. If you are using Windows, then download and change the [Powershell Hyper-V version](https://github.com/docker/labs/blob/master/swarm-mode/beginner-tutorial/swarm-node-hyperv-setup.ps1) of the same script.
 
-- The script first instantiates three [nodes](https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/) using Docker Machine and VirtualBox. Thereafter, it initializes the swarm cluster by creating a swarm [manager](https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/#manager-nodes) on the first node. Finally, it adds the remaining nodes as [workers](https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/#worker-nodes) to the cluster. It also pulls the `yugabytedb/yugabyte` container image into each of the nodes to expedite the next steps.
+- The script first instantiates three [nodes](https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/) using Docker Machine and VirtualBox. Thereafter, it initializes the swarm cluster by creating a swarm [manager](https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/#manager-nodes) on the first node. Finally, it adds the remaining nodes as [workers](https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/#worker-nodes) to the cluster. It also pulls the `ZNbasedb/ZNbase` container image into each of the nodes to expedite the next steps.
 
 {{< note title="Note" >}}
 In more fault-tolerant setups, there will be multiple manager nodes and they will be independent of the worker nodes. A 3-node master and 3-node worker setup is used in the Docker tutorial script referenced above.
@@ -106,12 +106,12 @@ do
     $(docker-machine ip worker1)"
 done
 
-# pull the yugabytedb container
+# pull the ZNbasedb container
 for node in $(seq 1 $workers);
 do
-    echo "======> pulling yugabytedb/yugabyte container on worker$node ..."
+    echo "======> pulling ZNbasedb/ZNbase container on worker$node ..."
     docker-machine ssh worker$node \
-    "docker pull yugabytedb/yugabyte"
+    "docker pull ZNbasedb/ZNbase"
 done
 
 # show members of swarm
@@ -142,7 +142,7 @@ $ docker-machine ssh worker1
 - Create an [overlay network](https://docs.docker.com/network/overlay/) that the swarm services can use to communicate with each other. The `attachable` option allows standalone containers to connect to swarm services on the network.
 
 ```sh
-$ docker network create --driver overlay --attachable yugabytedb
+$ docker network create --driver overlay --attachable ZNbasedb
 ```
 
 ## 3. Create yb-master services
@@ -160,10 +160,10 @@ $ docker service create \
 --replicas 1 \
 --name yb-master1 \
 --hostname yb-master1 \
---network yugabytedb \
+--network ZNbasedb \
 --mount type=volume,source=yb-master1,target=/mnt/data0 \
 --publish 7000:7000 \
-yugabytedb/yugabyte:latest /home/yugabyte/bin/yb-master \
+ZNbasedb/ZNbase:latest /home/ZNbase/bin/yb-master \
 --fs_data_dirs=/mnt/data0 \
 --master_addresses=yb-master1:7100,yb-master2:7100,yb-master3:7100 \
 --rpc_bind_addresses=yb-master1:7100 \
@@ -175,9 +175,9 @@ $ docker service create \
 --replicas 1 \
 --name yb-master2 \
 --hostname yb-master2 \
---network yugabytedb \
+--network ZNbasedb \
 --mount type=volume,source=yb-master2,target=/mnt/data0 \
-yugabytedb/yugabyte:latest /home/yugabyte/bin/yb-master \
+ZNbasedb/ZNbase:latest /home/ZNbase/bin/yb-master \
 --fs_data_dirs=/mnt/data0 \
 --master_addresses=yb-master1:7100,yb-master2:7100,yb-master3:7100 \
 --rpc_bind_addresses=yb-master2:7100 \
@@ -189,9 +189,9 @@ $ docker service create \
 --replicas 1 \
 --name yb-master3 \
 --hostname yb-master3 \
---network yugabytedb \
+--network ZNbasedb \
 --mount type=volume,source=yb-master3,target=/mnt/data0 \
-yugabytedb/yugabyte:latest /home/yugabyte/bin/yb-master \
+ZNbasedb/ZNbase:latest /home/ZNbase/bin/yb-master \
 --fs_data_dirs=/mnt/data0 \
 --master_addresses=yb-master1:7100,yb-master2:7100,yb-master3:7100 \
 --rpc_bind_addresses=yb-master3:7100 \
@@ -206,9 +206,9 @@ $ docker service ls
 
 ```sh
 ID                  NAME                MODE                REPLICAS            IMAGE                        PORTS
-jfnrqfvnrc5b        yb-master1          replicated          1/1                 yugabytedb/yugabyte:latest   *:7000->7000/tcp
-kqp6eju3kq88        yb-master2          replicated          1/1                 yugabytedb/yugabyte:latest
-ah6wfodd4noh        yb-master3          replicated          1/1                 yugabytedb/yugabyte:latest
+jfnrqfvnrc5b        yb-master1          replicated          1/1                 ZNbasedb/ZNbase:latest   *:7000->7000/tcp
+kqp6eju3kq88        yb-master2          replicated          1/1                 ZNbasedb/ZNbase:latest
+ah6wfodd4noh        yb-master3          replicated          1/1                 ZNbasedb/ZNbase:latest
 ```
 
 - View the yb-master Admin UI by going to the port 7000 of any node, courtesy of the publish option used when yb-master1 was created. For example, you can see from Step 1 that worker2's IP address is `192.168.99.101`. So, `http://192.168.99.101:7000` takes us to the yb-master Admin UI.
@@ -225,10 +225,10 @@ The global services concept in Docker Swarm is similar to [Kubernetes DaemonSets
 $ docker service create \
 --mode global \
 --name yb-tserver \
---network yugabytedb \
+--network ZNbasedb \
 --mount type=volume,source=yb-tserver,target=/mnt/data0 \
 --publish 9000:9000 \
-yugabytedb/yugabyte:latest /home/yugabyte/bin/yb-tserver \
+ZNbasedb/ZNbase:latest /home/ZNbase/bin/yb-tserver \
 --fs_data_dirs=/mnt/data0 \
 --rpc_bind_addresses=0.0.0.0:9100 \
 --tserver_master_addrs=yb-master1:7100,yb-master2:7100,yb-master3:7100
@@ -246,10 +246,10 @@ $ docker service ls
 
 ```sh
 ID                  NAME                MODE                REPLICAS            IMAGE                        PORTS
-jfnrqfvnrc5b        yb-master1          replicated          1/1                 yugabytedb/yugabyte:latest   *:7000->7000/tcp
-kqp6eju3kq88        yb-master2          replicated          1/1                 yugabytedb/yugabyte:latest
-ah6wfodd4noh        yb-master3          replicated          1/1                 yugabytedb/yugabyte:latest
-n6padh2oqjk7        yb-tserver          global              3/3                 yugabytedb/yugabyte:latest   *:9000->9000/tcp
+jfnrqfvnrc5b        yb-master1          replicated          1/1                 ZNbasedb/ZNbase:latest   *:7000->7000/tcp
+kqp6eju3kq88        yb-master2          replicated          1/1                 ZNbasedb/ZNbase:latest
+ah6wfodd4noh        yb-master3          replicated          1/1                 ZNbasedb/ZNbase:latest
+n6padh2oqjk7        yb-tserver          global              3/3                 ZNbasedb/ZNbase:latest   *:9000->9000/tcp
 ```
 
 - Now you can go to `http://192.168.99.101:9000` to see the yb-tserver admin UI.
@@ -261,7 +261,7 @@ n6padh2oqjk7        yb-tserver          global              3/3                 
 - Connect to the ysqlsh client in yb-tserver.
 
 ```sh
-$ docker exec -it <ybtserver_container_id> /home/yugabyte/bin/ysqlsh
+$ docker exec -it <ybtserver_container_id> /home/ZNbase/bin/ysqlsh
 ```
 
 ```
@@ -269,7 +269,7 @@ $ docker exec -it <ybtserver_container_id> /home/yugabyte/bin/ysqlsh
 ysqlsh (11.2-YB-2.0.1.0-b0)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 - Follow the test instructions as noted in [Quick Start](../../../quick-start/explore-ysql/).
@@ -281,7 +281,7 @@ yugabyte=#
 - Connect to that container using that container ID.
 
 ```sh
-$ docker exec -it <ybtserver_container_id> /home/yugabyte/bin/ycqlsh
+$ docker exec -it <ybtserver_container_id> /home/ZNbase/bin/ycqlsh
 ```
 
 ```sh
@@ -300,7 +300,7 @@ ycqlsh>
 - Initialize the YEDIS API.
 
 ```sh
-$ docker exec -it <ybmaster_container_id> /home/yugabyte/bin/yb-admin --master_addresses yb-master1:7100,yb-master2:7100,yb-master3:7100 setup_redis_table
+$ docker exec -it <ybmaster_container_id> /home/ZNbase/bin/yb-admin --master_addresses yb-master1:7100,yb-master2:7100,yb-master3:7100 setup_redis_table
 ```
 
 ```sh
@@ -338,10 +338,10 @@ SWMTKN-1-aadasdsadas-2ja2q2esqsivlfx2ygi8u62yq
 $ docker-machine create -d virtualbox worker4
 ```
 
-- Pull the YugabyteDB container.
+- Pull the ZNbaseDB container.
 
 ```sh
-$ docker-machine ssh worker4 "docker pull yugabytedb/yugabyte"
+$ docker-machine ssh worker4 "docker pull ZNbasedb/ZNbase"
 ```
 
 - Join worker4 with existing swarm.
@@ -363,10 +363,10 @@ $ docker service ls
 
 ```sh
 ID                  NAME                MODE                REPLICAS            IMAGE                        PORTS
-jfnrqfvnrc5b        yb-master1          replicated          1/1                 yugabytedb/yugabyte:latest   *:7000->7000/tcp
-kqp6eju3kq88        yb-master2          replicated          1/1                 yugabytedb/yugabyte:latest
-ah6wfodd4noh        yb-master3          replicated          1/1                 yugabytedb/yugabyte:latest
-n6padh2oqjk7        yb-tserver          global              4/4                 yugabytedb/yugabyte:latest   *:9000->9000/tcp
+jfnrqfvnrc5b        yb-master1          replicated          1/1                 ZNbasedb/ZNbase:latest   *:7000->7000/tcp
+kqp6eju3kq88        yb-master2          replicated          1/1                 ZNbasedb/ZNbase:latest
+ah6wfodd4noh        yb-master3          replicated          1/1                 ZNbasedb/ZNbase:latest
+n6padh2oqjk7        yb-tserver          global              4/4                 ZNbasedb/ZNbase:latest   *:9000->9000/tcp
 ```
 
 ## 8. Remove services and destroy nodes

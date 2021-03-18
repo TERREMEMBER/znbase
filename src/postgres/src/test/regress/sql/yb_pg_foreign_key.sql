@@ -1,7 +1,7 @@
 --
 -- FOREIGN KEY
 --
--- TODO: Run this test with REPEATABLE READ isolation level:                                                                                                                                                            --       https://github.com/yugabyte/yugabyte-db/issues/2604
+-- TODO: Run this test with REPEATABLE READ isolation level:                                                                                                                                                            --       https://github.com/ZNbase/ZNbase-db/issues/2604
 --
 -- MATCH FULL
 --
@@ -528,7 +528,7 @@ ptest3) REFERENCES pktable(ptest1, ptest2));
 CREATE TABLE PKTABLE (ptest1 int, ptest2 text, ptest3 int, ptest4 text, PRIMARY KEY(ptest1, ptest2), FOREIGN KEY(ptest4,
 ptest3) REFERENCES pktable);
 
--- TODO: YugaByte does not yet support table inheritance.
+-- TODO: ZNbase does not yet support table inheritance.
 --       Leaving the first failing statement uncommented so that this test
 --       will fail when the feature is implemented (the full test should
 --       be uncommented then).

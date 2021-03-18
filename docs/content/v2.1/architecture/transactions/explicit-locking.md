@@ -2,7 +2,7 @@
 title: Explicit locking
 headerTitle: Explicit locking
 linkTitle: Explicit locking
-description: Learn about support for explicit locks in YugabyteDB.
+description: Learn about support for explicit locks in ZNbaseDB.
 block_indexing: true
 menu:
   v2.1:
@@ -13,13 +13,13 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This section explains how explicit locking works in YugabyteDB. The transactions layer of YugabyteDB can support both optimistic and pessimistic locks.
+This section explains how explicit locking works in ZNbaseDB. The transactions layer of ZNbaseDB can support both optimistic and pessimistic locks.
 
 ## Concurrency control
 
 [Concurrency control](https://en.wikipedia.org/wiki/Concurrency_control) in databases ensures that multiple transactions can execute concurrently while preserving data integrity. Concurrency control is essential for correctness in environments where two or more transactions can access the same data at the same time.
 
-The two primary mechanisms to achieve concurrency control are *optimistic* and *pessimistic*. Concurrency control in YugabyteDB can accomodate both of these depending on the scenario.
+The two primary mechanisms to achieve concurrency control are *optimistic* and *pessimistic*. Concurrency control in ZNbaseDB can accomodate both of these depending on the scenario.
 
 
 DocDB exposes the ability to write [provisional records]() which is exercised by the query layer. Provisional records are used to order persist locks on rows in order to detect conflicts. Provisional records have a *priority* assosciated with them, which is a number. When two transactions conflict, the transaction with the lower priority is aborted.
@@ -30,7 +30,7 @@ DocDB exposes the ability to write [provisional records]() which is exercised by
 
 In scenarios where too many transactions do not conflict with each other, optimistic concurrency control is a good strategy. This is generally the case in high-volume systems. For example, most web applications have short-lived the connections to the database.
 
-YugabyteDB opts for optimistic concurrency in the case of simple transactions. This is achieved by assigning a random priority to each of the transactions. In the case of a conflict, the transaction with a lower priority is aborted. Some transactions that get aborted due to a conflict are internally retried while others result in an error to the end application.
+ZNbaseDB opts for optimistic concurrency in the case of simple transactions. This is achieved by assigning a random priority to each of the transactions. In the case of a conflict, the transaction with a lower priority is aborted. Some transactions that get aborted due to a conflict are internally retried while others result in an error to the end application.
 
 ### Pessimistic concurrency control
 
@@ -40,7 +40,7 @@ YugabyteDB opts for optimistic concurrency in the case of simple transactions. T
 
 Pessimistic locking is good when there are longer running operations that would increase the probability of transaction conflicts. For example, if there are multiple concurrent transactions that update many rows in the database and conflict with one another, these transactions could continuously get aborted because they conflict with one another. Pessimistic locking allows these transaction to make progress and complete by avoiding these conflicts. 
 
-YugabyteDB opts for pessimistic locks in case of *explicit row-locks* which is discussed in a section below. This is done by the query layer assigning a very high value for the priority of the transaction that is being run under pessimistic concurrency control. This has the effect of causing all other transactions that conflict with the current transaction to fail, because they have a lower value for the transaction priority.
+ZNbaseDB opts for pessimistic locks in case of *explicit row-locks* which is discussed in a section below. This is done by the query layer assigning a very high value for the priority of the transaction that is being run under pessimistic concurrency control. This has the effect of causing all other transactions that conflict with the current transaction to fail, because they have a lower value for the transaction priority.
 
 {{< note title="Note" >}}
 
@@ -57,12 +57,12 @@ When using perrimistic locks, there could be a possiblity of introducing [deadlo
 
 > The introduction of granular (subset) locks creates the possibility for a situation called deadlock. Deadlock is possible when incremental locking (locking one entity, then locking one or more additional entities) is used. To illustrate, if two bank customers asked two clerks to obtain their account information so they could transfer some money into other accounts, the two accounts would essentially be locked. Then, if the customers told their clerks that the money was to be transferred into each other's accounts, the clerks would search for the other accounts but find them to be "in use" and wait for them to be returned. Unknowingly, the two clerks are waiting for each other, and neither of them can complete their transaction until the other gives up and returns the account. 
 
-YugabyteDB currently avoids deadlocks because of its transaction conflict handling semantics, where the transaction with the lower priority is completely aborted.
+ZNbaseDB currently avoids deadlocks because of its transaction conflict handling semantics, where the transaction with the lower priority is completely aborted.
 
 
 ## Row-level locks
 
-YugabyteDB supports the following row-level locks, similar to PostgreSQL. Explicit row-locks use pessimistic concurrency control, therefore two transactions can never hold conflicting locks on the same row. A list of lock modes supported is shown below. Row-level locks do not affect querying data. They only block performing writes and obtaining locks to the locked row.
+ZNbaseDB supports the following row-level locks, similar to PostgreSQL. Explicit row-locks use pessimistic concurrency control, therefore two transactions can never hold conflicting locks on the same row. A list of lock modes supported is shown below. Row-level locks do not affect querying data. They only block performing writes and obtaining locks to the locked row.
 
 There is no limit on the number of rows that can be locked at a time. Row locks are not stored in memory, they result in writes to the disk.
 
@@ -76,7 +76,7 @@ The `FOR UPDATE` lock causes the rows retrieved by the `SELECT` statement to be 
 
 {{< note title="Note" >}}
 
-Unlike PostgreSQL, the operations on a previously locked row do not currently block in YugabyteDB until the transaction holding a lock finishes. This work is planned and will be the behavior in a future release.
+Unlike PostgreSQL, the operations on a previously locked row do not currently block in ZNbaseDB until the transaction holding a lock finishes. This work is planned and will be the behavior in a future release.
 
 {{</note >}}
 
@@ -97,20 +97,20 @@ Behaves similarly to `FOR SHARE`, except that the lock is weaker: `SELECT FOR UP
 
 {{< note title="Note" >}}
 
-YugabyteDB still uses optimistic locking in the case of `FOR KEY SHARE`. Making this pessimistic is work in progress.
+ZNbaseDB still uses optimistic locking in the case of `FOR KEY SHARE`. Making this pessimistic is work in progress.
 
 {{</note >}}
 
 ### Example
 
-As an example, connect to a YugabyteDB cluster using `ysqlsh`. Create a table `t` and insert one row into it as shown below.
+As an example, connect to a ZNbaseDB cluster using `ysqlsh`. Create a table `t` and insert one row into it as shown below.
 
 ```postgres
-yugabyte=# CREATE TABLE t (k VARCHAR, v VARCHAR);
-yugabyte=# INSERT INTO t VALUES ('k1', 'v1');
+ZNbase=# CREATE TABLE t (k VARCHAR, v VARCHAR);
+ZNbase=# INSERT INTO t VALUES ('k1', 'v1');
 ```
 
-Next, connect two different instances of the ysqlsh shell to YugabyteDB. We will refer to these as `session #1` and `session #2` below.
+Next, connect two different instances of the ysqlsh shell to ZNbaseDB. We will refer to these as `session #1` and `session #2` below.
 
 1. Run the following in `session #1` first. The example below uses an explicit row-level lock using `SELECT FOR UPDATE`, which use pessimistic concurrency control.
 

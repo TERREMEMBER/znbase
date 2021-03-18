@@ -2,7 +2,7 @@
 title: YCSB
 linkTitle: YCSB
 description: YCSB
-headcontent: Benchmark YugabyteDB using YCSB.
+headcontent: Benchmark ZNbaseDB using YCSB.
 block_indexing: true
 menu:
   v2.0:
@@ -46,14 +46,14 @@ You can do this by running the following commands.
 
 ```sh
 $ cd $HOME
-$ wget https://github.com/yugabyte/YCSB/releases/download/1.0/ycsb.tar.gz
+$ wget https://github.com/ZNbase/YCSB/releases/download/1.0/ycsb.tar.gz
 $ tar -zxvf ycsb.tar.gz
 $ cd YCSB
 ```
 
-## Step 2. Start YugabyteDB
+## Step 2. Start ZNbaseDB
 
-Start your YugabyteDB cluster by following the steps in [Quick start](/latest/quick-start/explore-ysql/).
+Start your ZNbaseDB cluster by following the steps in [Quick start](/latest/quick-start/explore-ysql/).
 
 ## Step 3. Create your keyspace
 
@@ -72,28 +72,28 @@ Set the following connection configuration options in `db.properties`:
 ```sh
 hosts=<ip>
 port=9042
-cassandra.username=yugabyte
+cassandra.username=ZNbase
 ```
 
 For details on other configuration parameters, like username, password, connection
-parameters, etc., see [YugabyteCQL binding](https://github.com/yugabyte/YCSB/tree/master/yugabyteCQL).
+parameters, etc., see [ZNbaseCQL binding](https://github.com/ZNbase/YCSB/tree/master/ZNbaseCQL).
 
 ## Step 5. Running the workload
 
-Before starting the `yugabyteCQL` workload, you first need to load the data.
+Before starting the `ZNbaseCQL` workload, you first need to load the data.
 
 ```sh
-$ ./bin/ycsb load yugabyteCQL -P yugabyteCQL/db.properties -P workloads/workloada
+$ ./bin/ycsb load ZNbaseCQL -P ZNbaseCQL/db.properties -P workloads/workloada
 ```
 
 Then, you can run the workload:
 
 ```sh
-$ ./bin/ycsb run yugabyteCQL -P yugabyteCQL/db.properties -P workloads/workloada
+$ ./bin/ycsb run ZNbaseCQL -P ZNbaseCQL/db.properties -P workloads/workloada
 ```
 
 To run the other workloads (for example, `workloadb`), all we need to do is change that argument in the above command.
 
 ```sh
-$ ./bin/ycsb run yugabyteCQL -P yugabyteCQL/db.properties -P workloads/workloadb
+$ ./bin/ycsb run ZNbaseCQL -P ZNbaseCQL/db.properties -P workloads/workloadb
 ```

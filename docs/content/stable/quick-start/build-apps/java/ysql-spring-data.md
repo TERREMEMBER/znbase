@@ -45,25 +45,25 @@ showAsideToc: true
 
 This tutorial assumes that you have:
 
-- YugabyteDB up and running. If you are new to YugabyteDB, you can download, install, and have YugabyteDB up and running within five minutes by following the steps in [Quick start](../../../../quick-start/).
+- ZNbaseDB up and running. If you are new to ZNbaseDB, you can download, install, and have ZNbaseDB up and running within five minutes by following the steps in [Quick start](../../../../quick-start/).
 - Java Development Kit (JDK) 1.8, or later, is installed. JDK installers for Linux and macOS can be downloaded from [OpenJDK](http://jdk.java.net/), [AdoptOpenJDK](https://adoptopenjdk.net/), or [Azul Systems](https://www.azul.com/downloads/zulu-community/).
 - [Apache Maven](https://maven.apache.org/index.html) 3.3, or later, is installed.
 
 ## Clone the "orm-examples" repository
 
 ```sh
-$ git clone https://github.com/yugabyte/orm-examples.git
+$ git clone https://github.com/ZNbase/orm-examples.git
 ```
 
-The [Using ORMs with YugabyteDB `orm-examples` repository](https://github.com/yugabyte/orm-examples) has a [Spring Boot](https://spring.io/projects/spring-boot) example that implements a simple REST API server. The scenario is that of an e-commerce application. Database access in this application is managed through [Spring Data JPA](https://spring.io/projects/spring-data-jpa), which internally uses Hibernate as the JPA provider. It consists of the following:
+The [Using ORMs with ZNbaseDB `orm-examples` repository](https://github.com/ZNbase/orm-examples) has a [Spring Boot](https://spring.io/projects/spring-boot) example that implements a simple REST API server. The scenario is that of an e-commerce application. Database access in this application is managed through [Spring Data JPA](https://spring.io/projects/spring-data-jpa), which internally uses Hibernate as the JPA provider. It consists of the following:
 
 - The users of the e-commerce site are stored in the `users` table.
 - The `products` table contains a list of products the e-commerce site sells.
 - The orders placed by the users are populated in the `orders` table. An order can consist of multiple line items, each of these are inserted in the `orderline` table.
 
-The source for this example application can be found in the [repository](https://github.com/yugabyte/orm-examples/tree/master/java/spring/src/main/java/com/yugabyte/springdemo).
+The source for this example application can be found in the [repository](https://github.com/ZNbase/orm-examples/tree/master/java/spring/src/main/java/com/ZNbase/springdemo).
 
-There are a number of options that can be customized in the properties file located at `src/main/resources/application.properties`. Given YSQL's compatibility with the PostgreSQL language, the `spring.jpa.database` property is set to `POSTGRESQL` and the `spring.datasource.url` is set to the YSQL JDBC URL: `jdbc:postgresql://localhost:5433/yugabyte`.
+There are a number of options that can be customized in the properties file located at `src/main/resources/application.properties`. Given YSQL's compatibility with the PostgreSQL language, the `spring.jpa.database` property is set to `POSTGRESQL` and the `spring.datasource.url` is set to the YSQL JDBC URL: `jdbc:postgresql://localhost:5433/ZNbase`.
 
 ## Build the application
 
@@ -137,33 +137,33 @@ $ ./bin/ysqlsh
 ysqlsh (11.2)
 Type "help" for help.
 
-yugabyte=#
+ZNbase=#
 ```
 
 List the tables created by the app.
 
 ```plpgsql
-yugabyte=# \d
+ZNbase=# \d
 ```
 
 ```
 List of relations
  Schema |          Name           |   Type   |  Owner
 --------+-------------------------+----------+----------
- public | orderline               | table    | yugabyte
- public | orders                  | table    | yugabyte
- public | orders_user_id_seq      | sequence | yugabyte
- public | products                | table    | yugabyte
- public | products_product_id_seq | sequence | yugabyte
- public | users                   | table    | yugabyte
- public | users_user_id_seq       | sequence | yugabyte
+ public | orderline               | table    | ZNbase
+ public | orders                  | table    | ZNbase
+ public | orders_user_id_seq      | sequence | ZNbase
+ public | products                | table    | ZNbase
+ public | products_product_id_seq | sequence | ZNbase
+ public | users                   | table    | ZNbase
+ public | users_user_id_seq       | sequence | ZNbase
 (7 rows)
 ```
 
 Note the 4 tables and 3 sequences in the list above.
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM users;
+ZNbase=# SELECT count(*) FROM users;
 ```
 
 ```
@@ -174,7 +174,7 @@ yugabyte=# SELECT count(*) FROM users;
 ```
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM products;
+ZNbase=# SELECT count(*) FROM products;
 ```
 
 ```
@@ -185,7 +185,7 @@ yugabyte=# SELECT count(*) FROM products;
 ```
 
 ```plpgsql
-yugabyte=# SELECT count(*) FROM orders;
+ZNbase=# SELECT count(*) FROM orders;
 ```
 
 ```
@@ -196,7 +196,7 @@ yugabyte=# SELECT count(*) FROM orders;
 ```
 
 ```plpgsql
-yugabyte=# SELECT * FROM orderline;
+ZNbase=# SELECT * FROM orderline;
 ```
 
 ```
@@ -300,4 +300,4 @@ $ curl http://localhost:8080/orders
 
 ## Explore the source
 
-As highlighted earlier, the source for the above application is available in the [orm-examples repository](https://github.com/yugabyte/orm-examples/tree/master/java/spring/src/main/java/com/yugabyte/springdemo).
+As highlighted earlier, the source for the above application is available in the [orm-examples repository](https://github.com/ZNbase/orm-examples/tree/master/java/spring/src/main/java/com/ZNbase/springdemo).

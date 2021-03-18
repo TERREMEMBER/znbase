@@ -87,7 +87,7 @@ get_role_password(const char *role, char **logdetail)
 }
 
 /*
- * Fetch stored key from Yugabyte tserver shared memory, for authentication.
+ * Fetch stored key from ZNbase tserver shared memory, for authentication.
  *
  * On success, return a palloc'd pointer to the key.
  *

@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------------------
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -251,7 +251,7 @@ TEST_F(QLTestParser, TestQLParser) {
   PARSE_VALID_STMT("UPDATE t SET v1 = 4, v2 = 'd' WHERE h1 = 1 AND h2 = 'a' AND r1 = 2 AND "
                    "r2 = 'b' IF NOT EXISTS OR v1 = 3 AND v2 = 'c' ELSE ERROR;");
 
-  // Test the issue: https://github.com/yugabyte/yugabyte-db/issues/2476
+  // Test the issue: https://github.com/ZNbase/ZNbase-db/issues/2476
   PARSE_INVALID_STMT("VALUES (1, 'Bob', 35, 'Ruby', '{\"name\": \"John\", 33, \"age\": 35}');");
 }
 

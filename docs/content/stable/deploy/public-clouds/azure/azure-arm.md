@@ -2,7 +2,7 @@
 title: Deploy on Microsoft Azure using Azure Resource Manager (ARM)
 headerTitle: Microsoft Azure
 linkTitle: Microsoft Azure
-description: Deploy YugabyteDB on Microsoft Azure using Azure Resource Manager (ARM).
+description: Deploy ZNbaseDB on Microsoft Azure using Azure Resource Manager (ARM).
 menu:
   stable:
     identifier: deploy-on-azure-1-azure-arm
@@ -35,16 +35,16 @@ showAsideToc: true
 
 <br/>
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fyugabyte%2Fazure-resource-manager%2Fmaster%2Fyugabyte_deployment.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FZNbase%2Fazure-resource-manager%2Fmaster%2FZNbase_deployment.json" target="_blank">
     <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
 </a>
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fyugabyte%2Fazure-resource-manager%2Fmaster%2Fyugabyte_deployment.json" target="_blank">
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FZNbase%2Fazure-resource-manager%2Fmaster%2FZNbase_deployment.json" target="_blank">
     <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.png"/>
 </a>
 
 ## Prerequisites
 
-1. Create a resource group for our YugabyteDB deployment.
+1. Create a resource group for our ZNbaseDB deployment.
 
 - Login into your [Azure portal](https://portal.azure.com/).
 - Click Resource groups from the menu of services to access the Resource Groups blade. You will see all the resource groups in your subscription listed in tblade.
@@ -52,7 +52,7 @@ showAsideToc: true
 - Provide the needed information for the new resource group.
 - Click Create. The resource group might take a few seconds to create. Once it is created, you see the resource group on the Azure portal dashboard.
 
-2. Create an SSH key for our user to get access to deployed YugabyteDB VMs.
+2. Create an SSH key for our user to get access to deployed ZNbaseDB VMs.
 
 - Open the terminal on your local computer.
 - Run the following command.
@@ -76,7 +76,7 @@ showAsideToc: true
   Enter same passphrase again:
   ```
 
-- After this, you will have a public and private key that you can use to authenticate YugabyteDB VMs.
+- After this, you will have a public and private key that you can use to authenticate ZNbaseDB VMs.
 
     ```
     Your identification has been saved in /home/username/.ssh/id_rsa.
@@ -107,7 +107,7 @@ showAsideToc: true
 - Clone this repository.
 
     ```
-    $ git clone https://github.com/yugabyte/azure-resource-manager.git
+    $ git clone https://github.com/ZNbase/azure-resource-manager.git
     ```
 
 - Change the current directory to the cloned GitHub repository directory
@@ -119,7 +119,7 @@ showAsideToc: true
 - Use Azure CLI command to create deployments. <br/>
 
     ```
-     $ az group deployment create --resource-group <Your-Azure-Resource-Group> --template-file yugabyte_deployment.json --parameters ClusterName='<Your-Cluster-Name>'  SshUser='<Your-SSH-USER>' YBVersion='2.0.6.0' SshKeypair='<Your-SSH-USER-PublicKey-File-Contents>'
+     $ az group deployment create --resource-group <Your-Azure-Resource-Group> --template-file ZNbase_deployment.json --parameters ClusterName='<Your-Cluster-Name>'  SshUser='<Your-SSH-USER>' YBVersion='2.0.6.0' SshKeypair='<Your-SSH-USER-PublicKey-File-Contents>'
      ```
 
 - Once the deployment creation is complete, you can describe it as shown below.
@@ -128,22 +128,22 @@ showAsideToc: true
     $ az group deployment show -g <Your-Azure-Resource-Group> -n <Your-Deployment-Name> --query properties.outputs
     ```
     
-    In the output, you will get the YugabyteDB admin URL, JDBC URL, YSQL, YCQL and YEDIS connection string. You can use YugabyteDB admin URL to access admin portal.
+    In the output, you will get the ZNbaseDB admin URL, JDBC URL, YSQL, YCQL and YEDIS connection string. You can use ZNbaseDB admin URL to access admin portal.
 
 ## Deploy using Azure Portal
 
 - Clone this repository locally.
 
     ```
-    $ git clone https://github.com/yugabyte/azure-resource-manager.git
+    $ git clone https://github.com/ZNbase/azure-resource-manager.git
     ```
 
 - First create a resource group, to create a new resource group, select **Resource groups** from the [Azure portal](https://portal.azure.com/).
 - Under newly created Resource groups, select **Add**.
 - In opened marketplace search for Template deployment (deploy using custom templates) and click **Create**.
 - Now click **Build your own template in the editor**.
-- Click **Load file** button in specify template section and upload the `yugabyte_deployment.json` file from cloned repo.
+- Click **Load file** button in specify template section and upload the `ZNbase_deployment.json` file from cloned repo.
 - Click **Save** at the bottom of the window.
 - Now provide the required details.
 - Once details are provided, then check the **Terms and Condition** checkbox and click **Purchase**.
-- Once deployments get completed, you can access the YugabyteDB Admin from the URL you get in the deployment output section.
+- Once deployments get completed, you can access the ZNbaseDB Admin from the URL you get in the deployment output section.

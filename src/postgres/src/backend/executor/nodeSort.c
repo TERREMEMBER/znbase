@@ -79,10 +79,10 @@ ExecSort(PlanState *pstate)
 
 		/*
 		 * Use default prefetch limit when ORDER BY is present.
-		 * YugaByte doesn't sort the row, but Postgres layer does. YB has to do full scan and let
+		 * ZNbase doesn't sort the row, but Postgres layer does. YB has to do full scan and let
 		 * Postgres engine sort and limit the rows.
 		 */
-		if (IsYugaByteEnabled()) {
+		if (IsZNbaseEnabled()) {
 			estate->yb_exec_params.limit_use_default = true;
 		}
 

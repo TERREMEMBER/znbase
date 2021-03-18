@@ -1,11 +1,11 @@
 ---
-title: Migrate applications to YugabyteDB 
-headerTitle: Migrate applications to YugabyteDB
+title: Migrate applications to ZNbaseDB 
+headerTitle: Migrate applications to ZNbaseDB
 linkTitle: Migrate
-description: Migrate existing PostgreSQL and other RDBMS applications to YugabyteDB.
+description: Migrate existing PostgreSQL and other RDBMS applications to ZNbaseDB.
 image: /images/section_icons/explore/high_performance.png
-headcontent: Migrate your PostgreSQL and other existing applications to YugabyteDB.
-section: YUGABYTEDB CORE
+headcontent: Migrate your PostgreSQL and other existing applications to ZNbaseDB.
+section: ZNbaseDB CORE
 menu:
   latest:
     identifier: migrate
@@ -22,7 +22,7 @@ menu:
         <div class="title">Migration process</div>
       </div>
       <div class="body">
-        An overview of the migration process to YugabyteDB.
+        An overview of the migration process to ZNbaseDB.
       </div>
     </a>
   </div>
@@ -34,7 +34,7 @@ menu:
         <div class="title">Migrate from PostgreSQL</div>
       </div>
       <div class="body">
-        Migrate your PostgreSQL data and applications to YugabyteDB.
+        Migrate your PostgreSQL data and applications to ZNbaseDB.
       </div>
     </a>
   </div>

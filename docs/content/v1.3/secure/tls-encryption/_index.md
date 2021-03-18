@@ -2,7 +2,7 @@
 title: TLS encryption
 linkTitle: TLS encryption
 description: TLS encryption
-headcontent: Enable TLS encryption over the wire in YugabyteDB (Yugabyte Platform only).
+headcontent: Enable TLS encryption over the wire in ZNbaseDB (ZNbase Platform only).
 image: /images/section_icons/secure/tls-encryption.png
 block_indexing: true
 menu:
@@ -12,7 +12,7 @@ menu:
     weight: 720
 ---
 
-YugabyteDB supports Transport Layer Security (TLS) encryption using [OpenSSL](https://www.openssl.org), which is natively available for Linux, BSD, and macOS operating systems. You can configure YugabyteDB to encrypt network communication, including:
+ZNbaseDB supports Transport Layer Security (TLS) encryption using [OpenSSL](https://www.openssl.org), which is natively available for Linux, BSD, and macOS operating systems. You can configure ZNbaseDB to encrypt network communication, including:
 
 * Server-server — between YB-Masters and YB-TServers
 * Client-server — using CLIs and APIs for YSQL and YCQL
@@ -23,7 +23,7 @@ YEDIS does not include support for client-server TLS encryption.
 
 {{</note>}}
 
-In this section, we will look at how to set up a 3-node YugabyteDB cluster with TLS encryption enabled.
+In this section, we will look at how to set up a 3-node ZNbaseDB cluster with TLS encryption enabled.
 
 <div class="row">
   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
@@ -66,7 +66,7 @@ In this section, we will look at how to set up a 3-node YugabyteDB cluster with 
         <div class="title">4. Connect to cluster</div>
       </div>
       <div class="body">
-          Connect to a YugabyteDB cluster with TLS encryption enabled.
+          Connect to a ZNbaseDB cluster with TLS encryption enabled.
       </div>
     </a>
   </div>

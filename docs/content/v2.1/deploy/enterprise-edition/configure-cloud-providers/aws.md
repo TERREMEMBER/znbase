@@ -1,8 +1,8 @@
 ---
-title: Configure Amazon Web Services (AWS) for YugabyteDB deployments
+title: Configure Amazon Web Services (AWS) for ZNbaseDB deployments
 headerTitle: Configure cloud providers
 linkTitle: 4. Configure cloud providers
-description: Configure Amazon Web Services (AWS) for YugabyteDB deployments using the YugabyteDB Admin Console
+description: Configure Amazon Web Services (AWS) for ZNbaseDB deployments using the ZNbaseDB Admin Console
 block_indexing: true
 menu:
   v2.1:
@@ -52,7 +52,7 @@ showAsideToc: true
 
 </ul>
 
-This page details how to configure Amazon Web Services (AWS) for YugabyteDB using the YugabyteDB Admin Console. If no cloud providers are configured, the main Dashboard page highlights the need to configure at least one cloud provider.
+This page details how to configure Amazon Web Services (AWS) for ZNbaseDB using the ZNbaseDB Admin Console. If no cloud providers are configured, the main Dashboard page highlights the need to configure at least one cloud provider.
 
 ![Configure Cloud Provider](/images/ee/configure-cloud-provider.png)
 
@@ -60,43 +60,43 @@ This page details how to configure Amazon Web Services (AWS) for YugabyteDB usin
 
 ### Amazon Web Services (AWS)
 
-If you plan to run YugabyteDB nodes on Amazon Web Services (AWS), all you need to provide on YugabyteDB Admin Console is your cloud provider credentials. The Yugabyte Platform will use those credentials to automatically provision and de-provision instances that run YugabyteDB. An 'instance' for YugabyteDB includes a compute instance as well as local or remote disk storage attached to the compute instance.
+If you plan to run ZNbaseDB nodes on Amazon Web Services (AWS), all you need to provide on ZNbaseDB Admin Console is your cloud provider credentials. The ZNbase Platform will use those credentials to automatically provision and de-provision instances that run ZNbaseDB. An 'instance' for ZNbaseDB includes a compute instance as well as local or remote disk storage attached to the compute instance.
 
 ## Configure AWS
 
-Configuring the Yugabyte Platform to deploy universes in AWS provides several options for you to tweak, depending on your preferences:
+Configuring the ZNbase Platform to deploy universes in AWS provides several options for you to tweak, depending on your preferences:
 
 ![AWS Empty Provider](/images/ee/aws-setup/aws_provider_empty.png)
 
 ## Provider name
 
-This is an internal tag used for organizing your providers, so you know where you want to deploy your YugabyteDB universes.
+This is an internal tag used for organizing your providers, so you know where you want to deploy your ZNbaseDB universes.
 
 ## Credentials
 
-In order to actually deploy YugabyteDB nodes in your AWS account, the Yugabyte Platform will require access to a set of cloud credentials. These can be provided in one of the following ways:
+In order to actually deploy ZNbaseDB nodes in your AWS account, the ZNbase Platform will require access to a set of cloud credentials. These can be provided in one of the following ways:
 
 - Directly provide your [AWS Access Key ID and Secret Key](http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html)
-- Attach an [IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) to the Yugabyte Platform VM in the EC2 tab.
+- Attach an [IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) to the ZNbase Platform VM in the EC2 tab.
 
 ## KeyPairs
 
-In order to be able to provision EC2 instances with YugabyteDB, the Yugabyte Platform will require SSH access to these. To that end, there are two  to choose from:
+In order to be able to provision EC2 instances with ZNbaseDB, the ZNbase Platform will require SSH access to these. To that end, there are two  to choose from:
 
-- Allow Yugabyte Platform to create and manage [KeyPairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html). In this mode, the Yugabyte Platform will create KeyPairs across all the regions you choose to setup and store the relevant private key part of these locally in order to SSH into future EC2 instances.
+- Allow ZNbase Platform to create and manage [KeyPairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html). In this mode, the ZNbase Platform will create KeyPairs across all the regions you choose to setup and store the relevant private key part of these locally in order to SSH into future EC2 instances.
 - Use your own already existing KeyPairs. For this you will need to provide the name of the KeyPair, as well as the private key content and the corresponding SSH user. **Note that currently, all this info must be the same across all the regions you choose to provision!**
 
 ## Enabling Hosted Zones
 
-Integrating with hosted zones can make YugabyteDB universes easily discoverable. The Yugabyte Platform can integrate with Route53 to provide you managed CNAME entries for your YugabyteDB universes, which will be updated as you change the set of nodes, to include all the relevant ones for each of your universes.
+Integrating with hosted zones can make ZNbaseDB universes easily discoverable. The ZNbase Platform can integrate with Route53 to provide you managed CNAME entries for your ZNbaseDB universes, which will be updated as you change the set of nodes, to include all the relevant ones for each of your universes.
 
 ## Global deployment
 
-For deployment, the Yugabyte Platform aims to provide you with easy access to the many regions that AWS makes available globally. To that end, it allows you to select which regions you wish to deploy to and supports two different ways of configuring your setup, based on your environment:
+For deployment, the ZNbase Platform aims to provide you with easy access to the many regions that AWS makes available globally. To that end, it allows you to select which regions you wish to deploy to and supports two different ways of configuring your setup, based on your environment:
 
-### Yugabyte Platform-managed configuration
+### ZNbase Platform-managed configuration
 
-If you choose to use the Yugabyte Platform to configure, own and, manage a full cross-region deployment of VPCs, it will generate a YugabyteDB-specific VPC in each selected region, then interconnect them, as well as the VPC in which the Yugabyte Platform was deployed, through [VPC Peering](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-peering.html). This mode will also setup all the other relevant sub-components in all regions, such as Subnets, Security Groups, and Routing Table entries. Some notes:
+If you choose to use the ZNbase Platform to configure, own and, manage a full cross-region deployment of VPCs, it will generate a ZNbaseDB-specific VPC in each selected region, then interconnect them, as well as the VPC in which the ZNbase Platform was deployed, through [VPC Peering](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-peering.html). This mode will also setup all the other relevant sub-components in all regions, such as Subnets, Security Groups, and Routing Table entries. Some notes:
 
 - You can **optionally** provide a custom CIDR block for each regional VPC, else we will choose some sensible defaults internally, aiming to not overlap across regions.
 - You can **optionally** provide a custom AMI ID to use in each region, else, we will use a recent [AWS Marketplace CentOS AMI](https://wiki.centos.org/Cloud/AWS).
@@ -108,8 +108,8 @@ If you choose to use the Yugabyte Platform to configure, own and, manage a full 
 If you wish to use your own custom VPCs, this is also supported. This will allow you the most level of customization over your VPC setup:
 
 - You **must** provide a VPC ID to use for each region.
-- You **must** provide a Security Group ID to use for each region. This will be attached to all YugabyteDB nodes and must allow traffic from all other YugabyteDB nodes, even across regions, if you deploy across multiple regions.
-- You **must** provide the mapping of what Subnet IDs to use for each Availability Zone in which you wish to be able to deploy. This is required to ensure the Yugabyte Platform can deploy nodes in the correct network isolation that you desire in your environment.
+- You **must** provide a Security Group ID to use for each region. This will be attached to all ZNbaseDB nodes and must allow traffic from all other ZNbaseDB nodes, even across regions, if you deploy across multiple regions.
+- You **must** provide the mapping of what Subnet IDs to use for each Availability Zone in which you wish to be able to deploy. This is required to ensure the ZNbase Platform can deploy nodes in the correct network isolation that you desire in your environment.
 - You can **optionally** provide a custom AMI ID to use in each region, else, we will use a recent [AWS Marketplace CentOS AMI](https://wiki.centos.org/Cloud/AWS).
 
 ![Custom Region Modal](/images/ee/aws-setup/aws_custom_region.png)
@@ -119,11 +119,11 @@ One really important note if you choose to provide your own VPC information: **i
 - VPC Peering Connections must be established in an N x N matrix, such that every VPC in every region you configure must be peered to every other VPC in every other region.
 - Routing Table entries in every regional VPC should route traffic to every other VPC CIDR block across the PeeringConnection to that respective VPC. This must match the Subnets that you provided during the configuration step.
 - Security Groups in each VPC can be hardened by only opening up the relevant ports to the CIDR blocks of the VPCs from which you are expecting traffic.
-- Lastly, if you deploy Yugabyte Platform in a different VPC than the ones in which you intend to deploy YugabyteDB nodes, then its own VPC must also be part of this cross-region VPC mesh, as well as setting up Routing Table entries in the source VPC (Yugabyte Platform) and allowing one further CIDR block (or public IP) ingress rule on the Security Groups for the YugabyteDB nodes (to allow traffic from the Yugabyte Platform or its VPC).
+- Lastly, if you deploy ZNbase Platform in a different VPC than the ones in which you intend to deploy ZNbaseDB nodes, then its own VPC must also be part of this cross-region VPC mesh, as well as setting up Routing Table entries in the source VPC (ZNbase Platform) and allowing one further CIDR block (or public IP) ingress rule on the Security Groups for the ZNbaseDB nodes (to allow traffic from the ZNbase Platform or its VPC).
 
 ## Final notes
 
-If you use the Yugabyte Platform to manage KeyPairs for you and you deploy multiple Yugabyte Platform instances across your environment, then the AWS Provider name should be unique for each instance of Yugabyte Platform integrating with a given AWS Account.
+If you use the ZNbase Platform to manage KeyPairs for you and you deploy multiple ZNbase Platform instances across your environment, then the AWS Provider name should be unique for each instance of ZNbase Platform integrating with a given AWS Account.
 
 ## Marketplace acceptance
 
@@ -137,8 +137,8 @@ If so, please click the **Accept Terms** button and wait for the page to switch 
 
 ![Marketplace success](/images/ee/aws-setup/marketplace-success.png)
 
-Now, you are ready to create a YugabyteDB universe on AWS.
+Now, you are ready to create a ZNbaseDB universe on AWS.
 
 ## Next step
 
-You are now ready to create YugabyteDB universes as outlined in the next section.
+You are now ready to create ZNbaseDB universes as outlined in the next section.

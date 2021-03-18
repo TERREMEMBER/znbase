@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -376,7 +376,7 @@ TEST_F_EX(ClientStressTest, MasterQueueFull, ClientStressTestSmallQueueMultiMast
 
 namespace {
 
-// TODO: Add peak root mem tracker metric after https://github.com/yugabyte/yugabyte-db/issues/3442
+// TODO: Add peak root mem tracker metric after https://github.com/ZNbase/ZNbase-db/issues/3442
 // is implemented. Retrieve metric value using RPC instead of parsing HTML report.
 Result<size_t> GetPeakRootConsumption(const ExternalTabletServer& ts) {
   EasyCurl c;
@@ -461,8 +461,8 @@ class ClientStressTest_FollowerOom : public ClientStressTest {
 // 1. Kill follower, wait some time, then restart.
 // 2. That should lead to follower trying to catch up with leader, but due to big UpdateConsensus
 // RPC requests and slow parsing, requests will be consuming more and more memory
-// (https://github.com/yugabyte/yugabyte-db/issues/2563,
-// https://github.com/yugabyte/yugabyte-db/issues/2564)
+// (https://github.com/ZNbase/ZNbase-db/issues/2563,
+// https://github.com/ZNbase/ZNbase-db/issues/2564)
 // 3. We expect in this scenario follower to hit soft memory limit and fix for #2563 should
 // start throttling inbound RPCs.
 //

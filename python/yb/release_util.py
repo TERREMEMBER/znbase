@@ -1,5 +1,5 @@
 """
-Copyright (c) YugaByte, Inc.
+Copyright (c) ZNbase, Inc.
 
 This module provides utilities for generating and publishing release.
 """
@@ -25,7 +25,7 @@ THIRDPARTY_PREFIX_RE = re.compile('^thirdparty/(.*)$')
 
 
 class ReleaseUtil(object):
-    """Packages a YugaByte package with the appropriate file naming schema."""
+    """Packages a ZNbase package with the appropriate file naming schema."""
     def __init__(self, repository, build_type, distribution_path, force, commit, build_root,
                  package_name):
         self.repo = repository
@@ -165,21 +165,21 @@ class ReleaseUtil(object):
         if system == "linux":
             system = distro.linux_distribution(full_distribution_name=False)[0].lower()
 
-        release_file_name = "yugabyte-{}-{}-{}.tar.gz".format(
+        release_file_name = "ZNbase-{}-{}-{}.tar.gz".format(
             release_name, system, platform.machine().lower())
         return os.path.join(self.build_path, release_file_name)
 
     def generate_release(self):
-        yugabyte_folder_prefix = "yugabyte-{}".format(self.base_version)
+        ZNbase_folder_prefix = "ZNbase-{}".format(self.base_version)
         tmp_parent_dir = self.distribution_path + '.tmp_for_tar_gz'
         os.mkdir(tmp_parent_dir)
 
-        # Move the distribution directory to a new location named yugabyte-<version> and archive
+        # Move the distribution directory to a new location named ZNbase-<version> and archive
         # it from there so it has the right name when extracted.
         #
         # We used to do this using the --transform option to the tar command, but that has an
         # unintended side effect of corrupting library symlinks to files in the same directory.
-        tmp_distribution_dir = os.path.join(tmp_parent_dir, yugabyte_folder_prefix)
+        tmp_distribution_dir = os.path.join(tmp_parent_dir, ZNbase_folder_prefix)
         shutil.move(self.distribution_path, tmp_distribution_dir)
 
         def change_permissions(mode):
@@ -198,7 +198,7 @@ class ReleaseUtil(object):
             change_permissions('a+X')
             logging.info("Creating a package '%s' from directory %s",
                          release_file, tmp_distribution_dir)
-            run_program(['gtar', 'cvzf', release_file, yugabyte_folder_prefix],
+            run_program(['gtar', 'cvzf', release_file, ZNbase_folder_prefix],
                         cwd=tmp_parent_dir)
             return release_file
         finally:

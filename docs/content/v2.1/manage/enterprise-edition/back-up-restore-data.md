@@ -1,8 +1,8 @@
 ---
-title: Back up and restore data using Yugabyte Platform
+title: Back up and restore data using ZNbase Platform
 headerTitle: Back up and restore data
 linkTitle: Back up and restore data
-description: Use Yugabyte Platform to back up and restore data in YCQL tables.
+description: Use ZNbase Platform to back up and restore data in YCQL tables.
 block_indexing: true
 menu:
   v2.1:
@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This section will describe how to use the Yugabyte Platform to back up and restore data in YCQL tables.
+This section will describe how to use the ZNbase Platform to back up and restore data in YCQL tables.
 
 ## Create universe
 
@@ -33,10 +33,10 @@ In this example, you create a local directory on the tserver to back up to. Sele
 
 ![Connect Modal](/images/ee/br-connect-modal.png)
 
-Once you are connected using `ssh`, create a directory `/backup` and change the owner to `yugabyte`.
+Once you are connected using `ssh`, create a directory `/backup` and change the owner to `ZNbase`.
 
 ```sh
-$ sudo mkdir /backup; sudo chown yugabyte /backup
+$ sudo mkdir /backup; sudo chown ZNbase /backup
 ```
 
 Note that when you have more than one node, an `nfs` mounted on each server is recommended, and

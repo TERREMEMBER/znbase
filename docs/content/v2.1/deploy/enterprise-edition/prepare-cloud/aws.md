@@ -1,18 +1,18 @@
 
 ## 1. [Optional] Create a new security group
 
-In order to access Yugabyte Platform from outside the AWS environment, you would need to enable access by assigning an appropriate security group to the YugaWare machine. You will at minimum need to:
+In order to access ZNbase Platform from outside the AWS environment, you would need to enable access by assigning an appropriate security group to the YugaWare machine. You will at minimum need to:
 
-- Access the Yugabyte Platform instance over SSH (port tcp:22)
-- Check, manage, and upgrade Yugabyte Platform (port tcp:8800)
-- View the YugabyteDB Admin Console (port tcp:80)
+- Access the ZNbase Platform instance over SSH (port tcp:22)
+- Check, manage, and upgrade ZNbase Platform (port tcp:8800)
+- View the ZNbaseDB Admin Console (port tcp:80)
 
 Let us create a security group enabling all of that!
 
 Go to `EC2` -> `Security Groups`, click on `Create Security Group` and add the following values:
 
 - Enter `yugaware-sg` as the name (you can change the name if you want).
-- Add a description (for example, `Security group for Yugabyte Platform access`).
+- Add a description (for example, `Security group for ZNbase Platform access`).
 - Add the appropriate ip addresses to the `Source IP ranges` field. To allow access from any machine, add `0.0.0.0/0` but note that this is not very secure.
 - Add the ports `22`, `8800`, `80` to the `Port Range` field. The `Protocol` must be `TCP`.
 
@@ -22,7 +22,7 @@ You should see something like the screenshot below, click `Create` next.
 
 ## 2. [Optional] Create a new IAM role
 
-In order for Yugabyte Platform to manage YugabyteDB nodes, it will require some limited access to your AWS infrastructure. This can be accomplished through directly providing a set of credentials, when configuring the AWS provider, which you can read more later on [here](../configure-cloud-providers/). Alternatively, the EC2 instance where the Yugabyte Platform will be running can be brought up with an IAM role with enough permissions to take all the actions required by Yugabyte Platform. Here is a sample of such a role:
+In order for ZNbase Platform to manage ZNbaseDB nodes, it will require some limited access to your AWS infrastructure. This can be accomplished through directly providing a set of credentials, when configuring the AWS provider, which you can read more later on [here](../configure-cloud-providers/). Alternatively, the EC2 instance where the ZNbase Platform will be running can be brought up with an IAM role with enough permissions to take all the actions required by ZNbase Platform. Here is a sample of such a role:
 
 ```sh
 {
@@ -76,9 +76,9 @@ In order for Yugabyte Platform to manage YugabyteDB nodes, it will require some 
 }
 ```
 
-## 3. Provision instance for Yugabyte Platform
+## 3. Provision instance for ZNbase Platform
 
-Create an instance to run the Yugabyte Platform server. In order to do so, go to `EC2` -> `Instances` and click on `Launch Instance`. Fill in the following values.
+Create an instance to run the ZNbase Platform server. In order to do so, go to `EC2` -> `Instances` and click on `Launch Instance`. Fill in the following values.
 
 - Change the boot disk image to `Ubuntu 16.04` and continue to the next step.
 ![Pick OS Image](/images/ee/aws-setup/yugaware-create-instance-os.png)
@@ -95,6 +95,6 @@ Create an instance to run the Yugabyte Platform server. In order to do so, go to
 
 - Pick an existing key pair (or create a new one) in order to access the machine. Make sure you have the ssh access key. This is important to enable `ssh` access to this machine. In this example, assume that the key pair is `~/.ssh/yugaware.pem`.
 
-Finally, click `Launch` to launch the Yugabyte Platform server. You should see a machine being created as shown in the image below.
+Finally, click `Launch` to launch the ZNbase Platform server. You should see a machine being created as shown in the image below.
 
 ![Pick OS Image](/images/ee/aws-setup/yugaware-machine-creation.png)

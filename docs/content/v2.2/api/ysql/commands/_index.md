@@ -1,7 +1,7 @@
 ---
 title: Statements
 headerTitle: Statements
-description: List of PostgreSQL-compatible SQL statements supported by Yugabyte SQL (YSQL).
+description: List of PostgreSQL-compatible SQL statements supported by ZNbase SQL (YSQL).
 headcontent:
 image: /images/section_icons/api/ysql.png
 block_indexing: true
@@ -14,7 +14,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Yugabyte Structured Query Language (YSQL), the PostgreSQL-compatible SQL dialect for YugabyteDB, supports the following SQL statements.
+ZNbase Structured Query Language (YSQL), the PostgreSQL-compatible SQL dialect for ZNbaseDB, supports the following SQL statements.
 
 | Statement | Description |
 |-----------|-------------|

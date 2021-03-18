@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 from ybops.cloud.common.ansible import AnsibleProcess
 from ybops.cloud.common.base import AbstractCommandParser
@@ -44,11 +44,11 @@ class AbstractCloud(AbstractCommandParser):
     PUBLIC_EXPONENT = 65537
     CERT_VALID_DURATION = 365
     CERTS_TEMP_DIR = "/opt/yugaware/certs"
-    YSQLSH_CERT_DIR = os.path.join(YB_HOME_DIR, ".yugabytedb")
+    YSQLSH_CERT_DIR = os.path.join(YB_HOME_DIR, ".ZNbasedb")
     ROOT_CERT_NAME = "ca.crt"
     CLIENT_ROOT_NAME = "root.crt"
-    CLIENT_CERT_NAME = "yugabytedb.crt"
-    CLIENT_KEY_NAME = "yugabytedb.key"
+    CLIENT_CERT_NAME = "ZNbasedb.crt"
+    CLIENT_KEY_NAME = "ZNbasedb.key"
 
     def __init__(self, name):
         super(AbstractCloud, self).__init__(name)

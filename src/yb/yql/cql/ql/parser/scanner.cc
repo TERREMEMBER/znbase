@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------------------------------------
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -16,7 +16,7 @@
 // Portions Copyright (c) 1996-2015, PostgreSQL Global Development Group
 // Portions Copyright (c) 1994, Regents of the University of California
 //
-// API for the core scanner (flex machine). Some of the functions are not following Yugabyte naming
+// API for the core scanner (flex machine). Some of the functions are not following ZNbase naming
 // convention because they are PostgreQL code.
 //--------------------------------------------------------------------------------------------------
 

@@ -110,7 +110,7 @@ CONTEXT:  PL/pgSQL function transfer(integer,integer,numeric) line 4 at RAISE
 ```
 
 ```plpgsql
-yugabyte=# CALL transfer(1, 2, -20.00);
+ZNbase=# CALL transfer(1, 2, -20.00);
 ```
 
 ```

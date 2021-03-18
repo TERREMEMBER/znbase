@@ -380,7 +380,7 @@ get_mergejoin_opfamilies(Oid opno)
 		Form_pg_amop aform = (Form_pg_amop) GETSTRUCT(tuple);
 
 		/* must be btree equality */
-		if ((aform->amopmethod == BTREE_AM_OID || aform->amopmethod == LSM_AM_OID) && 
+		if ((aform->amopmethod == BTREE_AM_OID || aform->amopmethod == LSM_AM_OID) &&
 			aform->amopstrategy == BTEqualStrategyNumber)
 			result = lappend_oid(result, aform->amopfamily);
 	}
@@ -2875,8 +2875,8 @@ get_attavgwidth(Oid relid, AttrNumber attnum)
 	HeapTuple	tp;
 	int32		stawidth;
 
-	/* Do not support avg width stats for YugaByte tables as of 14/12/2018 */
-	if (IsYugaByteEnabled())
+	/* Do not support avg width stats for ZNbase tables as of 14/12/2018 */
+	if (IsZNbaseEnabled())
 		return 0;
 
 	if (get_attavgwidth_hook)

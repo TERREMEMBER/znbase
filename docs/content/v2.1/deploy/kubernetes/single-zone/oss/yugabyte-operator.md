@@ -1,8 +1,8 @@
 ---
-title: Open source Kubernetes using YugabyteDB operator
+title: Open source Kubernetes using ZNbaseDB operator
 headerTitle: Open source Kubernetes
 linkTitle: Open source Kubernetes
-description: Deploy a YugabyteDB cluster with a Kubernetes native customer resource.
+description: Deploy a ZNbaseDB cluster with a Kubernetes native customer resource.
 block_indexing: true
 menu:
   v2.1:
@@ -24,9 +24,9 @@ showAsideToc: true
     </a>
   </li>
   <li >
-    <a href="/latest/deploy/kubernetes/single-zone/oss/yugabyte-operator" class="nav-link active">
+    <a href="/latest/deploy/kubernetes/single-zone/oss/ZNbase-operator" class="nav-link active">
       <i class="fas fa-cubes" aria-hidden="true"></i>
-      YugabyteDB operator
+      ZNbaseDB operator
     </a>
   </li>
   <li >
@@ -44,18 +44,18 @@ showAsideToc: true
 </ul>
 
 
-Create and manage a YugabyteDB cluster with a Kubernetes native custom resource `ybcluster.yugabyte.com`. The custom resource definition and other necessary specifications can be found in [YugabyteDB k8s operator repository](https://github.com/yugabyte/yugabyte-k8s-operator/). This operator currently provides more configuration flags as compared to the Rook operator. The Rook operator, in near future, will get these flags too. See full list of configuration flags [here](#configuration-flags).
+Create and manage a ZNbaseDB cluster with a Kubernetes native custom resource `ybcluster.ZNbase.com`. The custom resource definition and other necessary specifications can be found in [ZNbaseDB k8s operator repository](https://github.com/ZNbase/ZNbase-k8s-operator/). This operator currently provides more configuration flags as compared to the Rook operator. The Rook operator, in near future, will get these flags too. See full list of configuration flags [here](#configuration-flags).
 
 ## Prerequisites
 
-Clone [yugabyte-k8s-operator](https://github.com/yugaByte/yugabyte-k8s-operator/) repository on your local computer. Change into the cloned directory and follow instructions as below.
+Clone [ZNbase-k8s-operator](https://github.com/ZNbase/ZNbase-k8s-operator/) repository on your local computer. Change into the cloned directory and follow instructions as below.
 
-## Deploy a YugabyteDB cluster with this operator
+## Deploy a ZNbaseDB cluster with this operator
 
-To create a YugabyteDB cluster, first you need to register the custom resource that would represent YugabyteDB cluster: `ybclusters.yugabyte.com`.
+To create a ZNbaseDB cluster, first you need to register the custom resource that would represent ZNbaseDB cluster: `ybclusters.ZNbase.com`.
 
 ```sh
-kubectl create -f deploy/crds/yugabyte_v1alpha1_ybcluster_crd.yaml
+kubectl create -f deploy/crds/ZNbase_v1alpha1_ybcluster_crd.yaml
 ```
 
 Setup RBAC for operator and create the operator itself. Run the following command, from root of the repository, to do the same.
@@ -70,10 +70,10 @@ After a few seconds the operator should be up & running. Verify the operator sta
 kubectl -n yb-operator get po,deployment
 ```
 
-Finally create an instance of the custom resource with which the operator would create a YugabyteDB cluster.
+Finally create an instance of the custom resource with which the operator would create a ZNbaseDB cluster.
 
 ```sh
-kubectl create -f deploy/crds/yugabyte_v1alpha1_ybcluster_cr.yaml
+kubectl create -f deploy/crds/ZNbase_v1alpha1_ybcluster_cr.yaml
 ```
 
 Verify that the cluster is up and running with the following command. You should see 3 pods each for YB-Master and YB-TServer services.
@@ -98,7 +98,7 @@ kubectl exec -it yb-tserver-0 -- ycqlsh yb-tserver-0
 
 ### Image
 
-Mention YugabyteDB Docker image attributes such as `repository`, `tag` and `pullPolicy` under `image`.
+Mention ZNbaseDB Docker image attributes such as `repository`, `tag` and `pullPolicy` under `image`.
 
 ### Replication factor
 
@@ -106,11 +106,11 @@ Specify the required data replication factor. This is a **required** field.
 
 ### TLS
 
-Enable TLS encryption for YugabyteDB, if desired. It is disabled by default. You can enable the TLS encryption with 3 flags, explained later. If you have set `enabled` to true, then you need to generate root certificate and key. Specify the two under `rootCA.cert` & `rootCA.key`. Refer to  [TLS encryption docs](../../../../../secure/tls-encryption/server-certificates/) (through the `Generate root configuration` section) for how to generate the certificate and key files.
+Enable TLS encryption for ZNbaseDB, if desired. It is disabled by default. You can enable the TLS encryption with 3 flags, explained later. If you have set `enabled` to true, then you need to generate root certificate and key. Specify the two under `rootCA.cert` & `rootCA.key`. Refer to  [TLS encryption docs](../../../../../secure/tls-encryption/server-certificates/) (through the `Generate root configuration` section) for how to generate the certificate and key files.
 
 ### YB-Master and YB-TServer
 
-YB-Master and YB-TServer are two essential components of a YugabyteDB cluster. YB-Master is responsible for recording and maintaining system metadata & for admin activities. YB-TServer is responsible for data I/O.
+YB-Master and YB-TServer are two essential components of a ZNbaseDB cluster. YB-Master is responsible for recording and maintaining system metadata & for admin activities. YB-TServer is responsible for data I/O.
 Specify YB-Master and YB-TServer attributes under `master`/`tserver`. The valid attributes are as described below. These two are **required** fields.
 
 #### Replicas
@@ -140,7 +140,7 @@ Table depicting acceptable port names, applicable component (Master/TServer) and
 
 #### podManagementPolicy
 
-Specify pod management policy for Statefulsets created as part of YugabyteDB cluster. Valid values are `Parallel` & `OrderedReady`, `Parallel` being the default value.
+Specify pod management policy for Statefulsets created as part of ZNbaseDB cluster. Valid values are `Parallel` & `OrderedReady`, `Parallel` being the default value.
 
 #### storage
 
@@ -152,7 +152,7 @@ Specify resource `requests` and `limits` under `resources` attribute. The resour
 
 #### flags
 
-Specify flags for additional control of the YugabyteDB cluster. For available, see [YB-Master flags](../../../../../reference/configuration/yb-master/#flags) and [YB-TServer flags](../../../../../reference/configuration/yb-tserver/#flags).
+Specify flags for additional control of the ZNbaseDB cluster. For available, see [YB-Master flags](../../../../../reference/configuration/yb-master/#flags) and [YB-TServer flags](../../../../../reference/configuration/yb-tserver/#flags).
 
 If you have enabled TLS encryption, then you can set:
 

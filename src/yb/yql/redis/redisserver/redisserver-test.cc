@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1493,7 +1493,7 @@ TEST_F(TestRedisService, TestSetThenGet) {
       EncodeAsArray({  // The request is sent as a multi bulk array.
           "set"s,
           "name"s,
-          "yugabyte"s
+          "ZNbase"s
       }),
       EncodeAsSimpleString("OK")  // The response is in the simple string format.
   );
@@ -1503,7 +1503,7 @@ TEST_F(TestRedisService, TestSetThenGet) {
           "get"s,
           "name"s
       }),
-      EncodeAsBulkString("yugabyte")  // The response is in the bulk string format.
+      EncodeAsBulkString("ZNbase")  // The response is in the bulk string format.
   );
 }
 

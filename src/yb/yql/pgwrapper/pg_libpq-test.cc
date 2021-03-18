@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -114,18 +114,18 @@ TEST_F(PgLibPqTest, YB_DISABLE_TEST_IN_TSAN(Uri)) {
   const std::string& host = pg_ts->bind_host();
   const uint16_t port = pg_ts->pgsql_rpc_port();
   {
-    const std::string& conn_str = Format("postgres://yugabyte@$0:$1", host, port);
+    const std::string& conn_str = Format("postgres://ZNbase@$0:$1", host, port);
     LOG(INFO) << "Connecting using string: " << conn_str;
     PGConn conn = ASSERT_RESULT(ConnectUsingString(conn_str));
     {
       auto res = ASSERT_RESULT(conn.Fetch("select current_database()"));
       auto answer = ASSERT_RESULT(GetString(res.get(), 0, 0));
-      ASSERT_EQ(answer, "yugabyte");
+      ASSERT_EQ(answer, "ZNbase");
     }
     {
       auto res = ASSERT_RESULT(conn.Fetch("select current_user"));
       auto answer = ASSERT_RESULT(GetString(res.get(), 0, 0));
-      ASSERT_EQ(answer, "yugabyte");
+      ASSERT_EQ(answer, "ZNbase");
     }
     {
       auto res = ASSERT_RESULT(conn.Fetch("show listen_addresses"));
@@ -140,7 +140,7 @@ TEST_F(PgLibPqTest, YB_DISABLE_TEST_IN_TSAN(Uri)) {
   }
   // Supply database name.
   {
-    const std::string& conn_str = Format("postgres://yugabyte@$0:$1/template1", host, port);
+    const std::string& conn_str = Format("postgres://ZNbase@$0:$1/template1", host, port);
     LOG(INFO) << "Connecting using string: " << conn_str;
     PGConn conn = ASSERT_RESULT(ConnectUsingString(conn_str));
     {
@@ -149,11 +149,11 @@ TEST_F(PgLibPqTest, YB_DISABLE_TEST_IN_TSAN(Uri)) {
       ASSERT_EQ(answer, "template1");
     }
   }
-  // Supply an incorrect password.  Since HBA config gives the yugabyte user trust access, postgres
+  // Supply an incorrect password.  Since HBA config gives the ZNbase user trust access, postgres
   // won't request a password, our client won't send this password, and the authentication should
   // succeed.
   {
-    const std::string& conn_str = Format("postgres://yugabyte:monkey123@$0:$1", host, port);
+    const std::string& conn_str = Format("postgres://ZNbase:monkey123@$0:$1", host, port);
     LOG(INFO) << "Connecting using string: " << conn_str;
     ASSERT_OK(ConnectUsingString(conn_str));
   }
@@ -164,7 +164,7 @@ void PgLibPqTest::TestUriAuth() {
   const uint16_t port = pg_ts->pgsql_rpc_port();
   // Don't supply password.
   {
-    const std::string& conn_str = Format("postgres://yugabyte@$0:$1", host, port);
+    const std::string& conn_str = Format("postgres://ZNbase@$0:$1", host, port);
     LOG(INFO) << "Connecting using string: " << conn_str;
     Result<PGConn> result = ConnectUsingString(
         conn_str,
@@ -176,7 +176,7 @@ void PgLibPqTest::TestUriAuth() {
   }
   // Supply an incorrect password.
   {
-    const std::string& conn_str = Format("postgres://yugabyte:monkey123@$0:$1", host, port);
+    const std::string& conn_str = Format("postgres://ZNbase:monkey123@$0:$1", host, port);
     LOG(INFO) << "Connecting using string: " << conn_str;
     Result<PGConn> result = ConnectUsingString(
         conn_str,
@@ -188,7 +188,7 @@ void PgLibPqTest::TestUriAuth() {
   }
   // Supply the correct password.
   {
-    const std::string& conn_str = Format("postgres://yugabyte:yugabyte@$0:$1", host, port);
+    const std::string& conn_str = Format("postgres://ZNbase:ZNbase@$0:$1", host, port);
     LOG(INFO) << "Connecting using string: " << conn_str;
     ASSERT_OK(ConnectUsingString(conn_str));
   }
@@ -917,7 +917,7 @@ Result<string> GetTableIdByTableName(
 } // namespace
 
 TEST_F(PgLibPqTest, YB_DISABLE_TEST_IN_TSAN(CompoundKeyColumnOrder)) {
-  const string namespace_name = "yugabyte";
+  const string namespace_name = "ZNbase";
   const string table_name = "test";
   auto conn = ASSERT_RESULT(Connect());
   ASSERT_OK(conn.ExecuteFormat(
@@ -1248,7 +1248,7 @@ TEST_F(PgLibPqTest, YB_DISABLE_TEST_IN_TSAN(TableColocation)) {
 }
 
 // Test for ensuring that transaction conflicts work as expected for colocated tables.
-// Related to https://github.com/yugabyte/yugabyte-db/issues/3251.
+// Related to https://github.com/ZNbase/ZNbase-db/issues/3251.
 TEST_F(PgLibPqTest, YB_DISABLE_TEST_IN_TSAN(TxnConflictsForColocatedTables)) {
   auto conn = ASSERT_RESULT(Connect());
   ASSERT_OK(conn.Execute("CREATE DATABASE test_db WITH colocated = true"));
@@ -1590,7 +1590,7 @@ TEST_F_EX(PgLibPqTest, YB_DISABLE_TEST_IN_TSAN(ColocatedTablegroups),
 }
 
 // Test that the number of RPCs sent to master upon first connection is not too high.
-// See https://github.com/yugabyte/yugabyte-db/issues/3049
+// See https://github.com/ZNbase/ZNbase-db/issues/3049
 TEST_F(PgLibPqTest, YB_DISABLE_TEST_IN_TSAN(NumberOfInitialRpcs)) {
   auto get_master_inbound_rpcs_created = [&cluster_ = this->cluster_]() -> Result<int64_t> {
     int64_t m_in_created = 0;
@@ -1615,7 +1615,7 @@ TEST_F(PgLibPqTest, YB_DISABLE_TEST_IN_TSAN(NumberOfInitialRpcs)) {
 }
 
 TEST_F(PgLibPqTest, YB_DISABLE_TEST_IN_TSAN(RangePresplit)) {
-  const string kDatabaseName ="yugabyte";
+  const string kDatabaseName ="ZNbase";
   auto client = ASSERT_RESULT(cluster_->CreateClient());
 
   auto conn = ASSERT_RESULT(ConnectToDB(kDatabaseName));
@@ -1820,7 +1820,7 @@ class PgLibPqTestNoRetry : public PgLibPqTest {
 // specified.
 void PgLibPqTest::TestCacheRefreshRetry(const bool is_retry_disabled) {
   constexpr int kNumTries = 5;
-  const std::string kNamespaceName = "yugabyte";
+  const std::string kNamespaceName = "ZNbase";
   const std::string kTableName = "t";
   int num_successes = 0;
   std::array<PGConn, 2> conns = {
@@ -1970,7 +1970,7 @@ class PgLibPqTableTimeoutTest : public PgLibPqTest {
 };
 
 TEST_F(PgLibPqTableTimeoutTest, YB_DISABLE_TEST_IN_TSAN(TestTableTimeoutGC)) {
-  const string kDatabaseName ="yugabyte";
+  const string kDatabaseName ="ZNbase";
   NamespaceName test_name = "test_pgsql_table";
   auto client = ASSERT_RESULT(cluster_->CreateClient());
 
@@ -2001,7 +2001,7 @@ TEST_F(PgLibPqTableTimeoutTest, YB_DISABLE_TEST_IN_TSAN(TestTableTimeoutGC)) {
 }
 
 TEST_F(PgLibPqTableTimeoutTest, YB_DISABLE_TEST_IN_TSAN(TestTableTimeoutAndRestartGC)) {
-  const string kDatabaseName ="yugabyte";
+  const string kDatabaseName ="ZNbase";
   NamespaceName test_name = "test_pgsql_table";
   auto client = ASSERT_RESULT(cluster_->CreateClient());
 

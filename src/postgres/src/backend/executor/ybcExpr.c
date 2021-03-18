@@ -2,7 +2,7 @@
  * ybcExpr.c
  *        Routines to construct YBC expression tree.
  *
- * Copyright (c) YugaByte, Inc.
+ * Copyright (c) ZNbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License.  You may obtain a copy of the License at
@@ -75,7 +75,7 @@ YBCPgExpr YBCNewEvalSingleParamExprCall(YBCPgStatement ybc_stmt,
 }
 
 /*
- * Assuming the first param is the target column, therefore representing both 
+ * Assuming the first param is the target column, therefore representing both
  * the first argument and return type.
  */
 YBCPgExpr YBCNewEvalExprCall(YBCPgStatement ybc_stmt,
@@ -104,7 +104,7 @@ YBCPgExpr YBCNewEvalExprCall(YBCPgStatement ybc_stmt,
 		Datum typid = Int32GetDatum(params[i].typid);
 		YBCPgExpr typid_expr = YBCNewConstant(ybc_stmt, INT4OID, typid, /* IsNull */ false);
 		YBCPgOperatorAppendArg(ybc_expr, typid_expr);
-		
+
 		Datum typmod = Int32GetDatum(params[i].typmod);
 		YBCPgExpr typmod_expr = YBCNewConstant(ybc_stmt, INT4OID, typmod, /* IsNull */ false);
 		YBCPgOperatorAppendArg(ybc_expr, typmod_expr);

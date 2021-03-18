@@ -1,4 +1,4 @@
-// Copyright YugaByte Inc.
+// Copyright ZNbase Inc.
 
 import { UniverseInfoPanel } from '../../panels';
 import { connect } from 'react-redux';

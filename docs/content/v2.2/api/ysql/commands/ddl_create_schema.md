@@ -59,26 +59,26 @@ Other kinds of objects may be created in separate commands after the schema is c
 - Create a new schema.
 
 ```plpgsql
-yugabyte=# CREATE SCHEMA IF NOT EXIST branch;
+ZNbase=# CREATE SCHEMA IF NOT EXIST branch;
 ```
 
 - Create a schema for a user.
 
 ```plpgsql
-yugabyte=# CREATE ROLE John;
-yugabyte=# CREATE SCHEMA AUTHORIZATION john;
+ZNbase=# CREATE ROLE John;
+ZNbase=# CREATE SCHEMA AUTHORIZATION john;
 ```
 
 - Create a schema that will be owned by another role.
 
 ```plpgsql
-yugabyte=# CREATE SCHEMA branch AUTHORIZATION john;
+ZNbase=# CREATE SCHEMA branch AUTHORIZATION john;
 ```
 
 - Create a schema and an object within that schema.
 
 ```plpgsql
-yugabyte=# CREATE SCHEMA branch
+ZNbase=# CREATE SCHEMA branch
                CREATE TABLE dept(
                    dept_id INT NOT NULL,
                    dept_name TEXT NOT NULL,

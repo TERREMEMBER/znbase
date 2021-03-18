@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -46,7 +46,7 @@ const TableId kPgTablespaceTableId =
 
 namespace {
 
-// Layout of Postgres database and table 4-byte oids in a YugaByte 16-byte table UUID:
+// Layout of Postgres database and table 4-byte oids in a ZNbase 16-byte table UUID:
 //
 // +-----------------------------------------------------------------------------------------------+
 // |  0  |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10 |  11 |  12 |  13 |  14 |  15 |

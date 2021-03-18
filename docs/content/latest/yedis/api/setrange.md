@@ -49,7 +49,7 @@ $ GET yugakey
 ```
 
 ```
-"Yugabyte"
+"ZNbase"
 ```
 
 ## See also

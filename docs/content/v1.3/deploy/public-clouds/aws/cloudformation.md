@@ -2,7 +2,7 @@
 
 Download the template file 
 ```sh
-$ wget https://raw.githubusercontent.com/yugabyte/aws-cloudformation/master/yugabyte_cloudformation.yaml
+$ wget https://raw.githubusercontent.com/ZNbase/aws-cloudformation/master/ZNbase_cloudformation.yaml
 ```
 
 ## AWS Command Line
@@ -10,14 +10,14 @@ $ wget https://raw.githubusercontent.com/yugabyte/aws-cloudformation/master/yuga
 Create CloudFormation template:
 
 ```sh
-$ aws cloudformation create-stack --stack-name <stack-name> --template-body yugabyte_cloudformation.yaml --parameters DBVersion=1.2.8.0, KeyName=<ssh-key-name>
+$ aws cloudformation create-stack --stack-name <stack-name> --template-body ZNbase_cloudformation.yaml --parameters DBVersion=1.2.8.0, KeyName=<ssh-key-name>
 ```
 Once resource creation completes, check that stack was created:
 
 ```sh
 $ aws cloudformation describe-stacks --stack-name <stack-name>
 ```
-From this output, you will be able to get the VPC id and YugabyteDB admin URL.
+From this output, you will be able to get the VPC id and ZNbaseDB admin URL.
 
 ## AWS Console
 
@@ -27,7 +27,7 @@ From this output, you will be able to get the VPC id and YugabyteDB admin URL.
 2. Prepare template using the downloaded template
 <img title="Prepare template" class="expandable-image" src="/images/deploy/aws/aws-cf-prepare-template.png" />
 <br>
-3. Specify the template file downloaded in Prerequisites: `yugabyte_cloudformation.yaml`
+3. Specify the template file downloaded in Prerequisites: `ZNbase_cloudformation.yaml`
 <img title="Upload template" class="expandable-image" src="/images/deploy/aws/aws-cf-upload-template.png" />
 <br>
 4. Provide the required parameters. Each of these fields are prefilled with information from the configuration yaml file that was uploaded. `LatestAmiId` refers to the id of the machine image to use, see [more](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html).

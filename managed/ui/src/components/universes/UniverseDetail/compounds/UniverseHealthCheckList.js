@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import { Alert, Row } from 'react-bootstrap';
@@ -65,7 +65,7 @@ export const UniverseHealthCheckList = (props) => {
             <div className="pull-left">
               <h2>Health Checks</h2>
             </div>
-            {isNotHidden(currentCustomer.data.features, 'universes.details.health.alerts') && 
+            {isNotHidden(currentCustomer.data.features, 'universes.details.health.alerts') &&
               <div className="pull-right">
                 <div className="backup-action-btn-group">
                   <UniverseAction
@@ -77,7 +77,7 @@ export const UniverseHealthCheckList = (props) => {
                   />
                 </div>
               </div>
-            }            
+            }
           </Row>
           <Row>{nodesCronStatus}</Row>
         </div>

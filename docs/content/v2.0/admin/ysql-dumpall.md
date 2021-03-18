@@ -2,7 +2,7 @@
 title: ysql_dumpall
 linkTitle: ysql_dumpall
 description: ysql_dumpall
-headcontent: Extract all YugabyteDB databases and roles into a SQL script file.
+headcontent: Extract all ZNbaseDB databases and roles into a SQL script file.
 block_indexing: true
 menu:
   v2.0:
@@ -13,13 +13,13 @@ isTocNested: 3
 showAsideToc: true
 ---
 
-`ysql_dumpall` is a utility for writing out (“dumping”) all YugabyteDB databases of a cluster into one plain-text, SQL script file. The script file contains SQL statements that can be used as input to `ysqlsh` to restore the databases. It does this by calling [`ysql_dump`](../ysql-dump) for each database in the YugabyteDB cluster. `ysql_dumpall` also dumps global objects that are common to all databases, such as database roles. (`ysql_dump` does not export roles.)
+`ysql_dumpall` is a utility for writing out (“dumping”) all ZNbaseDB databases of a cluster into one plain-text, SQL script file. The script file contains SQL statements that can be used as input to `ysqlsh` to restore the databases. It does this by calling [`ysql_dump`](../ysql-dump) for each database in the ZNbaseDB cluster. `ysql_dumpall` also dumps global objects that are common to all databases, such as database roles. (`ysql_dump` does not export roles.)
 
 Because `ysql_dumpall` reads tables from all databases, you will most likely have to connect as a database superuser in order to produce a complete dump. Also, you will need superuser privileges to execute the saved script in order to be allowed to add roles and create databases.
 
 The SQL script will be written to the standard output. Use the [`-f|--file`](#f-file-filename) option or shell operators to redirect it into a file.
 
-`ysql_dumpall` needs to connect multiple times (once per database) to the YugabyteDB cluster. If you use password authentication, it will ask for a password each time. It is convenient to have a `~/.pgpass` file in such cases.
+`ysql_dumpall` needs to connect multiple times (once per database) to the ZNbaseDB cluster. If you use password authentication, it will ask for a password each time. It is convenient to have a `~/.pgpass` file in such cases.
 
 ## Syntax
 
@@ -88,7 +88,7 @@ Prevent dumping of access privileges (`GRANT` and `REVOKE` statements).
 
 #### --column-inserts, --attribute-inserts
 
-Dump data as `INSERT` statements with explicit column names (`INSERT INTO table (column, ...) VALUES ...`). This will make restoration very slow; it is mainly useful for making dumps that can be loaded into non-YugabyteDB databases.
+Dump data as `INSERT` statements with explicit column names (`INSERT INTO table (column, ...) VALUES ...`). This will make restoration very slow; it is mainly useful for making dumps that can be loaded into non-ZNbaseDB databases.
 
 #### --disable-dollar-quoting
 
@@ -106,7 +106,7 @@ Use conditional statements (that is, add an `IF EXISTS` clause) to drop database
 
 #### --inserts
 
-Dump data as `INSERT` statements (rather than `COPY` statements). This will make restoration very slow; it is mainly useful for making dumps that can be loaded into non-YugabyteDB databases. Note that the restore might fail altogether if you have rearranged column order. The [`--column-inserts`](#column-inserts-attribute-inserts) option is safer, though even slower.
+Dump data as `INSERT` statements (rather than `COPY` statements). This will make restoration very slow; it is mainly useful for making dumps that can be loaded into non-ZNbaseDB databases. Note that the restore might fail altogether if you have rearranged column order. The [`--column-inserts`](#column-inserts-attribute-inserts) option is safer, though even slower.
 
 #### --load-via-partition-root
 
@@ -126,7 +126,7 @@ Do not dump publications.
 
 #### --no-role-passwords
 
-Do not dump passwords for roles. When restored, roles will have a null password, and password authentication will always fail until the password is set. Since password values aren't needed when this option is specified, the role information is read from the catalog view `pg_roles` instead of `pg_authid`. Therefore, this option also helps if access to `pg_authid` is restricted by some security policy. [**Note**: YugabyteDB uses the `pg_roles` and `pg_authid` system tables for PostgreSQL compatibility.]
+Do not dump passwords for roles. When restored, roles will have a null password, and password authentication will always fail until the password is set. Since password values aren't needed when this option is specified, the role information is read from the catalog view `pg_roles` instead of `pg_authid`. Therefore, this option also helps if access to `pg_authid` is restricted by some security policy. [**Note**: ZNbaseDB uses the `pg_roles` and `pg_authid` system tables for PostgreSQL compatibility.]
 
 #### --no-security-labels
 
@@ -146,7 +146,7 @@ Do not dump the contents of unlogged tables. This option has no effect on whethe
 
 #### --quote-all-identifiers
 
-Force quoting of all identifiers. This option is recommended when dumping a database from a server whose YugabyteDB major version is different from the `ysql_dumpall` version, or when the output is intended to be loaded into a server of a different major version. By default, `ysql_dumpall` quotes only identifiers that are reserved words in its own major version. This sometimes results in compatibility issues when dealing with servers of other versions that may have slightly different sets of reserved words. Using `--quote-all-identifiers` prevents such issues, at the price of a harder-to-read dump script.
+Force quoting of all identifiers. This option is recommended when dumping a database from a server whose ZNbaseDB major version is different from the `ysql_dumpall` version, or when the output is intended to be loaded into a server of a different major version. By default, `ysql_dumpall` quotes only identifiers that are reserved words in its own major version. This sometimes results in compatibility issues when dealing with servers of other versions that may have slightly different sets of reserved words. Using `--quote-all-identifiers` prevents such issues, at the price of a harder-to-read dump script.
 
 #### --use-set-session-authorization
 
@@ -172,7 +172,7 @@ Specifies the host name of the machine on which the database server is running. 
 
 #### -l *dbname*, --database=*database*
 
-Specifies the name of the database to connect to for dumping global objects and discovering what other databases should be dumped. If not specified, the `yugabyte` database will be used, and if that does not exist, `template1` will be used.
+Specifies the name of the database to connect to for dumping global objects and discovering what other databases should be dumped. If not specified, the `ZNbase` database will be used, and if that does not exist, `template1` will be used.
 
 #### -p *port*, --port=*port*
 
@@ -204,7 +204,7 @@ Specifies a role name to be used to create the dump. This option causes `ysql_du
 
 ## Environment
 
-The following PostgreSQL environment variables, referenced in some `ysql_dumpall` and `ysql_dump` options, are used by YugabyteDB for PostgreSQL compatibility:
+The following PostgreSQL environment variables, referenced in some `ysql_dumpall` and `ysql_dump` options, are used by ZNbaseDB for PostgreSQL compatibility:
 
 - `PGHOST`
 - `PGPORT`
@@ -217,7 +217,7 @@ This utility also uses the environment variables supported by `libpq`.
 ## Notes
 
 - Since `ysql_dumpall` calls [`ysql_dump`](../ysql-dump) internally, some diagnostic messages will refer to `ysql_dump`.
-- The [`-c|--clean`](#c-clean) option can be useful even when your intention is to restore the dump script into a fresh cluster. Use of `-c|--clean` authorizes the script to drop and recreate the built-in `yugabyte`, `postgres`, and `template1` databases, ensuring that those databases will retain the same properties (for instance, locale and encoding) that they had in the source cluster. Without the option, those databases will retain their existing database-level properties, as well as any pre-existing contents.
+- The [`-c|--clean`](#c-clean) option can be useful even when your intention is to restore the dump script into a fresh cluster. Use of `-c|--clean` authorizes the script to drop and recreate the built-in `ZNbase`, `postgres`, and `template1` databases, ensuring that those databases will retain the same properties (for instance, locale and encoding) that they had in the source cluster. Without the option, those databases will retain their existing database-level properties, as well as any pre-existing contents.
 - Once restored, it is wise to run `ANALYZE` on each database so the optimizer has useful statistics. You can also run `vacuumdb -a -z` to analyze all databases.
 - The dump script should not be expected to run completely without errors. In particular, because the script will issue `CREATE ROLE` statements for every role existing in the source cluster, it is certain to get a `role already exists` error for the bootstrap superuser, unless the destination cluster was initialized with a different bootstrap superuser name. This error is harmless and should be ignored. Use of the [`-c|--clean`](#c-clean) option is likely to produce additional harmless error messages about non-existent objects, although you can minimize those by adding [`--if-exists`](#if-exists).
 
@@ -232,7 +232,7 @@ $ ./postgres/bin/ysql_dumpall > db.out
 To reload databases from this file, you can use:
 
 ```sh
-$ ./bin/ysqlsh -f db.out yugabyte
+$ ./bin/ysqlsh -f db.out ZNbase
 ```
 
 It is not important to which database you connect here since the script file created by `ysql_dumpall` will contain the appropriate statements to create and connect to the saved databases. An exception is that if you specified [`-c|--clean`](#c-clean), you must connect to the `postgres` database initially; the script will attempt to drop other databases immediately, and that will fail for the database you are connected to.

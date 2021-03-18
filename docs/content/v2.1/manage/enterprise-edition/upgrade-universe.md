@@ -1,8 +1,8 @@
 ---
-title: Upgrade a universe using Yugabyte Platform
+title: Upgrade a universe using ZNbase Platform
 headerTitle: Upgrade a universe
 linkTitle: Upgrade a universe
-description: Use Yugabyte Platform to upgrade a universe.
+description: Use ZNbase Platform to upgrade a universe.
 block_indexing: true
 menu:
   v2.1:
@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-YugabyteDB powering a universe can be upgraded by clicking **Upgrade Software** from the **More** drop-down on the **Universe Detail** page. Select the new YugabyteDB version from the drop-down in the resulting confirmation and let the YugabyteDB Admin Console upgrade the universe in a rolling manner.
+ZNbaseDB powering a universe can be upgraded by clicking **Upgrade Software** from the **More** drop-down on the **Universe Detail** page. Select the new ZNbaseDB version from the drop-down in the resulting confirmation and let the ZNbaseDB Admin Console upgrade the universe in a rolling manner.
 
 ![Upgrade Universe Dropdown](/images/ee/upgrade-univ-1.png)
 

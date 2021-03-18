@@ -1,8 +1,8 @@
 ---
-title: Troubleshoot YugabyteDB
-headerTitle: Troubleshoot YugabyteDB
+title: Troubleshoot ZNbaseDB
+headerTitle: Troubleshoot ZNbaseDB
 linkTitle: Troubleshoot
-description: Diagnose and solve YugabyteDB cluster and node issues.
+description: Diagnose and solve ZNbaseDB cluster and node issues.
 image: /images/section_icons/index/troubleshoot.png
 headcontent:
 section: USER GUIDES
@@ -20,7 +20,7 @@ menu:
         <div class="title">Overview</div>
       </div>
       <div class="body">
-        Starting point for troubleshooting YugabyteDB issues.
+        Starting point for troubleshooting ZNbaseDB issues.
       </div>
     </a>
   </div>
@@ -33,7 +33,7 @@ menu:
         <div class="title">Cluster level issues</div>
       </div>
       <div class="body">
-        Diagnose and solve common YugabyteDB cluster issues.
+        Diagnose and solve common ZNbaseDB cluster issues.
       </div>
     </a>
   </div>
@@ -46,7 +46,7 @@ menu:
         <div class="title">Node level issues</div>
       </div>
       <div class="body">
-        Diagnose and solve issues on an individual YugabyteDB node.
+        Diagnose and solve issues on an individual ZNbaseDB node.
       </div>
     </a>
   </div>
@@ -55,10 +55,10 @@ menu:
     <a class="section-link icon-offset" href="enterprise-edition">
       <div class="head">
         <img class="icon" src="/images/section_icons/manage/enterprise.png" aria-hidden="true" />
-        <div class="title">Yugabyte Platform</div>
+        <div class="title">ZNbase Platform</div>
       </div>
       <div class="body">
-        Tools and issues specific to the Yugabyte Platform.
+        Tools and issues specific to the ZNbase Platform.
       </div>
     </a>
   </div>

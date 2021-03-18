@@ -1,9 +1,9 @@
 
 
-* Initialize YEDIS API in the YugabyteDB universe we just setup by running the following `yb-admin` command. 
+* Initialize YEDIS API in the ZNbaseDB universe we just setup by running the following `yb-admin` command. 
 
 ```sh
-$ kubectl exec -it yb-master-0 /home/yugabyte/bin/yb-admin -- --master_addresses yb-master-0.yb-masters.default.svc.cluster.local:7100 setup_redis_table
+$ kubectl exec -it yb-master-0 /home/ZNbase/bin/yb-admin -- --master_addresses yb-master-0.yb-masters.default.svc.cluster.local:7100 setup_redis_table
 ```
 
 ```
@@ -17,7 +17,7 @@ I0127 19:38:10.358872   115 yb-admin_client.cc:400] Table 'system_redis.redis' c
 You can do this as shown below.
 
 ```sh
-$ kubectl exec -it yb-tserver-0 /home/yugabyte/bin/redis-cli
+$ kubectl exec -it yb-tserver-0 /home/ZNbase/bin/redis-cli
 ```
 
 ```

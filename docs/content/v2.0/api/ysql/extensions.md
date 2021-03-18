@@ -13,11 +13,11 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This page documents how to install and use PostgreSQL extensions that are tested to work with YSQL. Note that since YugabyteDB’s storage architecture is not the same as that of native PostgreSQL, PostgreSQL extensions especially those that interact with the storage layer are not expected to work as-is on YugabyteDB. We intend to incrementally develop support for as many extensions as possible. 
+This page documents how to install and use PostgreSQL extensions that are tested to work with YSQL. Note that since ZNbaseDB’s storage architecture is not the same as that of native PostgreSQL, PostgreSQL extensions especially those that interact with the storage layer are not expected to work as-is on ZNbaseDB. We intend to incrementally develop support for as many extensions as possible. 
 
 ## Use Included Extensions
 
-These are extensions that are included in the standard YugabyteDB distribution and can be enabled in YSQL by simply running the `CREATE EXTENSION` statememt.
+These are extensions that are included in the standard ZNbaseDB distribution and can be enabled in YSQL by simply running the `CREATE EXTENSION` statememt.
 
 ### pgcrypto
 
@@ -54,7 +54,7 @@ The `fuzzystrmatch` extension provides several functions to determine similariti
 
 ```postgresql
 CREATE EXTENSION fuzzystrmatch;
-SELECT levenshtein('Yugabyte', 'yugabyte'), metaphone('yugabyte', 8);
+SELECT levenshtein('ZNbase', 'ZNbase'), metaphone('ZNbase', 8);
 ```
 
 ```
@@ -104,14 +104,14 @@ The specific extensions currently supported in YSQL are:
     Each insert should add the current role as `username` and the current timestamp as `moddate`.
 
     ```postgresql
-    SET ROLE yugabyte;
+    SET ROLE ZNbase;
     INSERT INTO spi_test VALUES(1, 'desc1');
 
     SET ROLE postgres;
     INSERT INTO spi_test VALUES(2, 'desc2');
     INSERT INTO spi_test VALUES(3, 'desc3');
 
-    SET ROLE yugabyte;
+    SET ROLE ZNbase;
     INSERT INTO spi_test VALUES(4, 'desc4');
 
     SELECT * FROM spi_test ORDER BY id;
@@ -120,16 +120,16 @@ The specific extensions currently supported in YSQL are:
     ```
      id | content | username |          moddate
     ----+---------+----------+----------------------------
-      1 | desc1   | yugabyte | 2019-09-13 16:55:53.969907
+      1 | desc1   | ZNbase | 2019-09-13 16:55:53.969907
       2 | desc2   | postgres | 2019-09-13 16:55:53.983306
       3 | desc3   | postgres | 2019-09-13 16:55:53.98658
-      4 | desc4   | yugabyte | 2019-09-13 16:55:53.991315
+      4 | desc4   | ZNbase | 2019-09-13 16:55:53.991315
     (4 rows)
     ```
 
   {{< note title="Note" >}}
 
-  YSQL should have users `yugabyte` and (for compatibility) `postgres` created by default. 
+  YSQL should have users `ZNbase` and (for compatibility) `postgres` created by default. 
 
   {{< /note >}}
 
@@ -146,10 +146,10 @@ The specific extensions currently supported in YSQL are:
     ```
      id |    content    | username |          moddate
     ----+---------------+----------+----------------------------
-      1 | desc1_updated | yugabyte | 2019-09-13 16:56:27.623513
+      1 | desc1_updated | ZNbase | 2019-09-13 16:56:27.623513
       2 | desc2         | postgres | 2019-09-13 16:55:53.983306
-      3 | desc3_updated | yugabyte | 2019-09-13 16:56:27.634099
-      4 | desc4         | yugabyte | 2019-09-13 16:55:53.991315
+      3 | desc3_updated | ZNbase | 2019-09-13 16:56:27.634099
+      4 | desc4         | ZNbase | 2019-09-13 16:55:53.991315
     (4 rows)
     ```
 For more information see [`spi module`](https://www.postgresql.org/docs/current/contrib-spi.html) in the PostgreSQL Docs.
@@ -171,14 +171,14 @@ Typically extensions need three types of files:
 - SQL files (`<name>--<version>.sql`)
 - Control files (`<name>.control`)
 
-In order to install an extension you need to copy these files into the respective directories of your YugabyteDB installation.
+In order to install an extension you need to copy these files into the respective directories of your ZNbaseDB installation.
 
 
 Shared library files will be in the `pkglibdir` directory while SQL and control files should be in the `extension` subdirectory of the `libdir` directory.
-To find these directories on your local installation, you can use Yugabyte's `pg_config` executable.
-First, alias it to `yb_pg_config` by replacing `<yugabyte-path>` with the path to your YugabyteDB installation in the command below and then running it.  
+To find these directories on your local installation, you can use ZNbase's `pg_config` executable.
+First, alias it to `yb_pg_config` by replacing `<ZNbase-path>` with the path to your ZNbaseDB installation in the command below and then running it.  
 ```sh
-$ alias yb_pg_config=/<yugabyte-path>/postgres/bin/pg_config
+$ alias yb_pg_config=/<ZNbase-path>/postgres/bin/pg_config
 ```
 
 Now you can list existing shared libraries with:
@@ -202,7 +202,7 @@ $ ls "$(pg_config --pkglibdir)" | grep <name>
 $ ls "$(pg_config --sharedir)"/extension/ | grep <name>
 ```
 
-Copy those files to the YugabyteDB installation.
+Copy those files to the ZNbaseDB installation.
 Restart the cluster (or the respective node in a multi-node install).
 Finally, connect to the cluster with `ysqlsh` and run the `CREATE EXTENSION` statement to create the extension.
 
@@ -210,7 +210,7 @@ Finally, connect to the cluster with `ysqlsh` and run the `CREATE EXTENSION` sta
 {{< note title="Note" >}}
 
 Only some extensions are currently supported.
-If you encounter any problems with installing or using a particular extension please post an issue on our [GitHub](https://github.com/yugabyte/yugabyte-db/issues).
+If you encounter any problems with installing or using a particular extension please post an issue on our [GitHub](https://github.com/ZNbase/ZNbase-db/issues).
 
 {{< /note >}}
 
@@ -229,7 +229,7 @@ For instance, on macOS, you can either
     $ brew install postgres && brew install postgis
     ```
 
-Now follow the instructions described above to copy the needed files into your YugabyteDB installation, and then create 
+Now follow the instructions described above to copy the needed files into your ZNbaseDB installation, and then create 
 the extension.
 
 ```sh
@@ -323,7 +323,7 @@ This might take a couple of minutes.
 
 {{< note title="Note" >}}
 
-YSQL does not yet support GiST indexes. This is tracked in [this GitHub issue](https://github.com/yugabyte/yugabyte-db/issues/1337).
+YSQL does not yet support GiST indexes. This is tracked in [this GitHub issue](https://github.com/ZNbase/ZNbase-db/issues/1337).
 
 {{< /note >}}
 
@@ -332,7 +332,7 @@ YSQL does not yet support GiST indexes. This is tracked in [this GitHub issue](h
 
 The `uuid-ossp` extension provides functions to generate universally unique identifiers (UUIDs) and also functions to produce certain special UUID constants.
 
-The easiest way to install it is to copy the files from an existing PostgreSQL installation into Yugabyte, and then create the extension.
+The easiest way to install it is to copy the files from an existing PostgreSQL installation into ZNbase, and then create the extension.
 
 ```sh
 $ cp -v "$(pg_config --pkglibdir)"/*uuid-ossp*.so "$(yb_pg_config --pkglibdir)" && 

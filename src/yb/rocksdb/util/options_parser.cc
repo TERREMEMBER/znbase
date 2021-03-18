@@ -3,9 +3,9 @@
 // LICENSE file in the root directory of this source tree. An additional grant
 // of patent rights can be found in the PATENTS file in the same directory.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -65,7 +65,7 @@ Status PersistRocksDBOptions(const DBOptions& db_opt,
       option_file_header + "[" +
       opt_section_titles[kOptionSectionVersion] +
       "]\n"
-      "  yugabyte_version=" + yb::VersionInfo::GetShortVersionString() + "\n"));
+      "  ZNbase_version=" + yb::VersionInfo::GetShortVersionString() + "\n"));
   RETURN_NOT_OK(writable->Append("  options_file_version=" +
                                  ToString(ROCKSDB_OPTION_FILE_MAJOR) + "." +
                                  ToString(ROCKSDB_OPTION_FILE_MINOR) + "\n"));

@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
@@ -20,7 +20,7 @@ export default class HelpItems extends Component {
           </Col>
           <Col lg={6}>
             <p>
-              <a href="https://www.yugabyte.com/slack" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.ZNbase.com/slack" target="_blank" rel="noopener noreferrer">
                 <object data={slackIcon} type="image/svg+xml" width="16">
                   Icon
                 </object>{' '}
@@ -28,13 +28,13 @@ export default class HelpItems extends Component {
               </a>
             </p>
             <p>
-              <a href="https://forum.yugabyte.com/" target="_blank" rel="noopener noreferrer">
+              <a href="https://forum.ZNbase.com/" target="_blank" rel="noopener noreferrer">
                 <i className="fa fa-comment"></i> Forum
               </a>
             </p>
             <p>
               <a
-                href="https://stackoverflow.com/questions/tagged/yugabyte-db"
+                href="https://stackoverflow.com/questions/tagged/ZNbase-db"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -52,12 +52,12 @@ export default class HelpItems extends Component {
           </Col>
           <Col lg={6}>
             <p>
-              <a href="https://docs.yugabyte.com/" target="_blank" rel="noopener noreferrer">
+              <a href="https://docs.ZNbase.com/" target="_blank" rel="noopener noreferrer">
                 <i className="fa fa-book"></i> Documentation
               </a>
             </p>
             <p>
-              <a href="https://github.com/yugabyte" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/ZNbase" target="_blank" rel="noopener noreferrer">
                 <i className="fa fa-github"></i> GitHub
               </a>
             </p>

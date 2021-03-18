@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -13,7 +13,7 @@
 # under the License.
 
 """
-Runs the PVS Studio static analyzer on YugabyteDB's C/C++ code.
+Runs the PVS Studio static analyzer on ZNbaseDB's C/C++ code.
 """
 
 import argparse
@@ -24,7 +24,7 @@ import logging
 import multiprocessing
 from overrides import overrides
 
-from yugabyte_pycommon import init_logging, mkdir_p
+from ZNbase_pycommon import init_logging, mkdir_p
 from yb.common_util import YB_SRC_ROOT, find_executable, rm_rf, check_call_and_log
 from yb.tool_base import YbBuildToolBase
 from yb.compile_commands import COMBINED_RAW_COMPILE_COMMANDS_FILE_NAME, filter_compile_commands
@@ -62,7 +62,7 @@ class PvsStudioAnalyzerTool(YbBuildToolBase):
     def run_pvs_analyzer(self):
         pvs_config_path = os.path.join(self.args.build_root, 'PVS-Studio.cfg')
 
-        rules_config_path = os.path.join(YB_SRC_ROOT, 'yugabytedb.pvsconfig')
+        rules_config_path = os.path.join(YB_SRC_ROOT, 'ZNbasedb.pvsconfig')
         if not os.path.exists(rules_config_path):
             raise IOError(
                 "PVS Studio rules configuration file does not exist: %s" % rules_config_path)

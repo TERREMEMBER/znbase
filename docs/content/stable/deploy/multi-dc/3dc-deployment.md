@@ -2,7 +2,7 @@
 title: Deploy to three or more data centers
 headerTitle: Three+ data center (3DC)
 linkTitle: Three+ data center (3DC)
-description: Deploy YugabyteDB clusters to three or more data centers.
+description: Deploy ZNbaseDB clusters to three or more data centers.
 menu:
   stable:
     parent: multi-dc
@@ -15,11 +15,11 @@ showAsideToc: true
 
 {{< tip title="Recommended Reading" >}}
 
-[9 Techniques to Build Cloud-Native, Geo-Distributed SQL Apps with Low Latency](https://blog.yugabyte.com/9-techniques-to-build-cloud-native-geo-distributed-sql-apps-with-low-latency/) highlights the various multi-DC deployment strategies (including 3DC deployments) for a distributed SQL database like YugabyteDB. 
+[9 Techniques to Build Cloud-Native, Geo-Distributed SQL Apps with Low Latency](https://blog.ZNbase.com/9-techniques-to-build-cloud-native-geo-distributed-sql-apps-with-low-latency/) highlights the various multi-DC deployment strategies (including 3DC deployments) for a distributed SQL database like ZNbaseDB. 
 
 {{< /tip >}}
 
-Three data center deployments of YugabyteDB are essentially a natural extension of the three availability zone (AZ) deployments documented in the [Manual deployment](../../manual-deployment/) section. Equal number of nodes are now placed in each data center of the three data centers. Inside a single data center, a multi-AZ deployment is recommended to ensure resilience against zone failures. This approach works fine for any odd number of AZs or data centers. Given YugabyteDB's distributed consensus-based replication which requires majority quorum for continuous availability of write requests, deploying a single cluster across an even number of AZs or data centers is not recommended. 
+Three data center deployments of ZNbaseDB are essentially a natural extension of the three availability zone (AZ) deployments documented in the [Manual deployment](../../manual-deployment/) section. Equal number of nodes are now placed in each data center of the three data centers. Inside a single data center, a multi-AZ deployment is recommended to ensure resilience against zone failures. This approach works fine for any odd number of AZs or data centers. Given ZNbaseDB's distributed consensus-based replication which requires majority quorum for continuous availability of write requests, deploying a single cluster across an even number of AZs or data centers is not recommended. 
 
 ## Example scenario
 
@@ -30,13 +30,13 @@ Three data center deployments of YugabyteDB are essentially a natural extension 
 
 ## Prerequisites
 
-Follow the [Checklist](../../../deploy/checklist/) to ensure you have prepared the nodes for installing YugabyteDB.
+Follow the [Checklist](../../../deploy/checklist/) to ensure you have prepared the nodes for installing ZNbaseDB.
 
 Execute the following steps on each of the instances.
 
 ## 1. Install software
 
-Follow the [installation instructions](../../../deploy/manual-deployment/install-software) to install YugabyteDB on each of the nodes.
+Follow the [installation instructions](../../../deploy/manual-deployment/install-software) to install ZNbaseDB on each of the nodes.
 
 ## 2. Start YB-Masters
 

@@ -59,19 +59,19 @@ Specify the name of the domain. An error is raised if DOMAIN `name` does not exi
 ## Examples
 
 ```plpgsql
-yugabyte=# CREATE DOMAIN idx DEFAULT 5 CHECK (VALUE > 0);
+ZNbase=# CREATE DOMAIN idx DEFAULT 5 CHECK (VALUE > 0);
 ```
 
 ```plpgsql
-yugabyte=# ALTER DOMAIN idx DROP DEFAULT;
+ZNbase=# ALTER DOMAIN idx DROP DEFAULT;
 ```
 
 ```plpgsql
-yugabyte=# ALTER DOMAIN idx RENAME TO idx_new;
+ZNbase=# ALTER DOMAIN idx RENAME TO idx_new;
 ```
 
 ```plpgsql
-yugabyte=# DROP DOMAIN idx_new;
+ZNbase=# DROP DOMAIN idx_new;
 ```
 
 ## See also

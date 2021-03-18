@@ -23,7 +23,7 @@ showAsideToc: true
 
 All of the `.sql` scripts that this section presents for copy-and-paste at the `ysqlsh` prompt are included for download in a zip-file.
 
-[Download `recursive-cte-code-examples.zip`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/recursive-cte-code-examples/recursive-cte-code-examples.zip).
+[Download `recursive-cte-code-examples.zip`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/recursive-cte-code-examples/recursive-cte-code-examples.zip).
 
 After unzipping it on a convenient new directory, you'll see a `README.txt`.  It tells you how to start a couple of master-scripts. Simply start each in `ysqlsh`. You can run them time and again. They always finish silently. You can see the reports that they produce on dedicated spool directories and confirm that your reports are identical to the reference copies that are delivered in the zip-file.
 {{< /tip >}}

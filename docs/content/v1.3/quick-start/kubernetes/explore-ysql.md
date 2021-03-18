@@ -1,7 +1,7 @@
 First copy the schema and data files into one of the containers.
 
 ```sh
-$ kubectl cp ./schema.sql yb-tserver-n1:/home/yugabyte/.
+$ kubectl cp ./schema.sql yb-tserver-n1:/home/ZNbase/.
 ```
 
 Create a data directory to copy the data files.
@@ -19,16 +19,16 @@ Exit out of the container after the above command.
 Now copy the data files.
 
 ```sh
-$ kubectl cp ./data/orders.sql yb-tserver-n1:/home/yugabyte/data/.
-kubectl cp ./data/products.sql yb-tserver-n1:/home/yugabyte/data/.
-kubectl cp ./data/reviews.sql yb-tserver-n1:/home/yugabyte/data/.
-kubectl cp ./data/users.sql yb-tserver-n1:/home/yugabyte/data/.
+$ kubectl cp ./data/orders.sql yb-tserver-n1:/home/ZNbase/data/.
+kubectl cp ./data/products.sql yb-tserver-n1:/home/ZNbase/data/.
+kubectl cp ./data/reviews.sql yb-tserver-n1:/home/ZNbase/data/.
+kubectl cp ./data/users.sql yb-tserver-n1:/home/ZNbase/data/.
 ```
 
 Run ysqlsh to connect to the service.
 
 ```sh
-$ kubectl exec -it yb-tserver-0 -- /home/yugabyte/bin/ysqlsh -h yb-tserver-0 --echo-queries
+$ kubectl exec -it yb-tserver-0 -- /home/ZNbase/bin/ysqlsh -h yb-tserver-0 --echo-queries
 ```
 
 ```

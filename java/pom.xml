@@ -18,9 +18,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -43,10 +43,10 @@
   <version>0.8.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>YugaByte</name>
+  <name>ZNbase</name>
 
   <description>
-    YugaByte client, YBCli, CQL.
+    ZNbase client, YBCli, CQL.
   </description>
 
   <!-- Properties Management -->
@@ -427,7 +427,7 @@
         <version>${jsr305.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.yugabyte</groupId>
+        <groupId>com.ZNbase</groupId>
         <artifactId>cassandra-driver-core</artifactId>
         <version>${cassandra-driver-core.version}</version>
       </dependency>
@@ -467,12 +467,12 @@
         <version>${commons-codec.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.yugabyte.spark</groupId>
+        <groupId>com.ZNbase.spark</groupId>
         <artifactId>spark-cassandra-connector_2.11</artifactId>
         <version>${spark-cassandra-connector.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.yugabyte</groupId>
+        <groupId>com.ZNbase</groupId>
         <artifactId>jedis</artifactId>
         <version>${jedis.version}</version>
       </dependency>
@@ -526,12 +526,12 @@
   </dependencyManagement>
   <distributionManagement>
     <repository>
-      <id>${yugabyte.releases.repository.id}</id>
-      <url>${yugabyte.releases.repository.url}</url>
+      <id>${ZNbase.releases.repository.id}</id>
+      <url>${ZNbase.releases.repository.url}</url>
     </repository>
     <snapshotRepository>
-      <id>${yugabyte.snapshots.repository.id}</id>
-      <url>${yugabyte.snapshots.repository.url}</url>
+      <id>${ZNbase.snapshots.repository.id}</id>
+      <url>${ZNbase.snapshots.repository.url}</url>
     </snapshotRepository>
   </distributionManagement>
 

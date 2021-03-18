@@ -1,9 +1,9 @@
 ---
-title: YugabyteDB drivers
+title: ZNbaseDB drivers
 headerTitle: Drivers
 linkTitle: Drivers
-description: Use drivers to power applications with YugabyteDB.
-headcontent: Use drivers to power applications with YugabyteDB.
+description: Use drivers to power applications with ZNbaseDB.
+headcontent: Use drivers to power applications with ZNbaseDB.
 image: /images/section_icons/sample-data/s_s1-sampledata-3x.png
 section: REFERENCE
 block_indexing: true
@@ -22,19 +22,19 @@ menu:
         <div class="title">Client drivers for YSQL API</div>
       </div>
       <div class="body">
-        Find a supported client drivers to connect to and interact with YugabyteDB using the YSQL API.
+        Find a supported client drivers to connect to and interact with ZNbaseDB using the YSQL API.
       </div>
     </a>
   </div>
 
    <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-    <a class="section-link icon-offset" href="yugabytedb-jdbc-driver/">
+    <a class="section-link icon-offset" href="ZNbasedb-jdbc-driver/">
       <div class="head">
         <img class="icon" src="/images/section_icons/api/ysql.png" aria-hidden="true" />
-        <div class="title">YugabyteDB JDBC driver</div>
+        <div class="title">ZNbaseDB JDBC driver</div>
       </div>
       <div class="body">
-        Build applications using the cluster-aware YugabyteDB JDBC driver.
+        Build applications using the cluster-aware ZNbaseDB JDBC driver.
       </div>
     </a>
   </div>
@@ -46,20 +46,20 @@ menu:
         <div class="title">Client drivers for YCQL API</div>
       </div>
       <div class="body">
-        Find a supported client driver to connect to and interact with YugabyteDB using the YCQL API.
+        Find a supported client driver to connect to and interact with ZNbaseDB using the YCQL API.
       </div>
     </a>
   </div>
 
 
   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-   <a class="section-link icon-offset" href="spring-data-yugabytedb/">
+   <a class="section-link icon-offset" href="spring-data-ZNbasedb/">
      <div class="head">
        <img class="icon" src="/images/section_icons/api/ysql.png" aria-hidden="true" />
-       <div class="title">Spring Data YugabyteDB</div>
+       <div class="title">Spring Data ZNbaseDB</div>
      </div>
      <div class="body">
-       Build your Spring applications using the Spring Data YugabyteDB module.
+       Build your Spring applications using the Spring Data ZNbaseDB module.
      </div>
    </a>
   </div>

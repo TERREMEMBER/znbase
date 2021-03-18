@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -34,7 +34,7 @@ using yb::operator"" _MB;
 
 // Maximumum value size is 64MB
 DEFINE_int32(yql_max_value_size, 64_MB,
-             "Maximum size of a value in the Yugabyte Query Layer");
+             "Maximum size of a value in the ZNbase Query Layer");
 
 // The list of unsupported datypes to use in switch statements
 #define QL_UNSUPPORTED_TYPES_IN_SWITCH \

@@ -3,7 +3,7 @@
  * ybcModifyTable.c
  *        YB routines to stmt_handle ModifyTable nodes.
  *
- * Copyright (c) YugaByte, Inc.
+ * Copyright (c) ZNbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License.  You may obtain a copy of the License at
@@ -216,7 +216,7 @@ static void YBCExecWriteStmt(YBCPgStatement ybc_stmt,
 }
 
 /*
- * Utility method to insert a tuple into the relation's backing YugaByte table.
+ * Utility method to insert a tuple into the relation's backing ZNbase table.
  */
 static Oid YBCExecuteInsertInternal(Relation rel,
                                     TupleDesc tupleDesc,
@@ -539,7 +539,7 @@ bool YBCExecuteDelete(Relation rel, TupleTableSlot *slot, EState *estate, Modify
 	{
 		ereport(ERROR,
 		        (errcode(ERRCODE_UNDEFINED_COLUMN), errmsg(
-					"Missing column ybctid in DELETE request to YugaByte database")));
+					"Missing column ybctid in DELETE request to ZNbase database")));
 	}
 
 	/* Bind ybctid to identify the current row. */
@@ -636,7 +636,7 @@ bool YBCExecuteUpdate(Relation rel,
 	{
 		ereport(ERROR,
 		        (errcode(ERRCODE_UNDEFINED_COLUMN), errmsg(
-					"Missing column ybctid in UPDATE request to YugaByte database")));
+					"Missing column ybctid in UPDATE request to ZNbase database")));
 	}
 
 	/* Bind ybctid to identify the current row. */
@@ -750,7 +750,7 @@ void YBCDeleteSysCatalogTuple(Relation rel, HeapTuple tuple)
 	if (tuple->t_ybctid == 0)
 		ereport(ERROR,
 		        (errcode(ERRCODE_UNDEFINED_COLUMN), errmsg(
-				        "Missing column ybctid in DELETE request to YugaByte database")));
+				        "Missing column ybctid in DELETE request to ZNbase database")));
 
 	/* Prepare DELETE statement. */
 	HandleYBStatus(YBCPgNewDelete(dboid,

@@ -39,7 +39,7 @@ showAsideToc: true
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe and are able to interact with it using the CQL shell. If not, please follow these steps in the [Quick start](../../../../quick-start/test-cassandra/).
+- installed ZNbaseDB, created a universe and are able to interact with it using the CQL shell. If not, please follow these steps in the [Quick start](../../../../quick-start/test-cassandra/).
 - installed Go version 1.8+
 
 ## Install the Go Cassandra driver
@@ -47,7 +47,7 @@ This tutorial assumes that you have:
 To install the driver locally, run:
 
 ```sh
-$ go get github.com/yugabyte/gocql
+$ go get github.com/ZNbase/gocql
 ```
 
 ## Writing a HelloWorld CQL app
@@ -62,7 +62,7 @@ import (
     "log"
     "time"
 
-    "github.com/yugabyte/gocql"
+    "github.com/ZNbase/gocql"
 )
 
 func main() {

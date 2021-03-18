@@ -4,7 +4,7 @@ headerTitle: DocDB transactions layer
 linkTitle: DocDB transactions layer
 description: DocDB transactions layer
 image: /images/section_icons/architecture/distributed_acid.png
-headcontent: DocDB is YugabyteDB's distributed document store responsible for transactions, sharding, replication, and persistence.
+headcontent: DocDB is ZNbaseDB's distributed document store responsible for transactions, sharding, replication, and persistence.
 block_indexing: true
 menu:
   v2.2:
@@ -15,7 +15,7 @@ menu:
 
 {{< note title="Note" >}}
 
-YugabyteDB's distributed ACID transaction architecture is inspired by <a href="https://research.google.com/archive/spanner-osdi2012.pdf">Google Spanner</a>.
+ZNbaseDB's distributed ACID transaction architecture is inspired by <a href="https://research.google.com/archive/spanner-osdi2012.pdf">Google Spanner</a>.
 
 {{</note >}}
 
@@ -28,7 +28,7 @@ YugabyteDB's distributed ACID transaction architecture is inspired by <a href="h
         <div class="title">Transactions overview</div>
       </div>
       <div class="body">
-        An overview of transactions support in YugabyteDB.
+        An overview of transactions support in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -52,7 +52,7 @@ YugabyteDB's distributed ACID transaction architecture is inspired by <a href="h
         <div class="title">Explicit row locks</div>
       </div>
       <div class="body">
-        Learn about how YugabyteDB uses a combination of optimistic and pessimistic concurrency control to support explicit row locking.
+        Learn about how ZNbaseDB uses a combination of optimistic and pessimistic concurrency control to support explicit row locking.
       </div>
     </a>
   </div>
@@ -64,7 +64,7 @@ YugabyteDB's distributed ACID transaction architecture is inspired by <a href="h
         <div class="title">Single-row transactions</div>
       </div>
       <div class="body">
-        How single row transactions work in YugabyteDB
+        How single row transactions work in ZNbaseDB
       </div>
     </a>
   </div>
@@ -76,7 +76,7 @@ YugabyteDB's distributed ACID transaction architecture is inspired by <a href="h
         <div class="title">Distributed transactions</div>
       </div>
       <div class="body">
-        How distributed (aka multi-shard) transactions work in YugabyteDB
+        How distributed (aka multi-shard) transactions work in ZNbaseDB
       </div>
     </a>
   </div>

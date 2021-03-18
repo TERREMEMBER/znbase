@@ -2,7 +2,7 @@
 title: SportsDB sample database
 headerTitle: SportsDB sample database
 linkTitle: SportsDB
-description: Use the SportsDB to query sports statistics while learning YugabyteDB.
+description: Use the SportsDB to query sports statistics while learning ZNbaseDB.
 block_indexing: true
 menu:
   v2.1:
@@ -13,7 +13,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-If you like sports statistics, you can install the PostgreSQL-compatible version of SportsDB on the YugabyteDB distributed SQL database and explore statistics for your favorite sport.
+If you like sports statistics, you can install the PostgreSQL-compatible version of SportsDB on the ZNbaseDB distributed SQL database and explore statistics for your favorite sport.
 
 ## About the SportsDB sample database
 
@@ -29,21 +29,21 @@ Follow the steps here to download and install the SportsDB sample database.
 
 ### Before you begin
 
-To use the SportsDB sample database, you must have installed and configured YugabyteDB. To get up and running quickly, see [Quick Start](/latest/quick-start/).
+To use the SportsDB sample database, you must have installed and configured ZNbaseDB. To get up and running quickly, see [Quick Start](/latest/quick-start/).
 
 ### 1. Download the SportsDB scripts
 
-The SQL scripts that you need to create the SportsDB sample database (YugabyteDB-compatible) are available in the [`sample` directory of the YugabyteDB GitHub repository](https://github.com/yugabyte/yugabyte-db/tree/master/sample). Download the following five files.
+The SQL scripts that you need to create the SportsDB sample database (ZNbaseDB-compatible) are available in the [`sample` directory of the ZNbaseDB GitHub repository](https://github.com/ZNbase/ZNbase-db/tree/master/sample). Download the following five files.
 
-- [`sportsdb_tables.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/sportsdb_tables.sql) — Creates the tables and sequences
-- [`sportsdb_inserts.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/sportsdb_inserts.sql) — Loads the sample data into the `sportsdb` database
-- [`sportsdb_constraints.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/sportsdb_constraints.sql) — Creates the unique constraints
-- [`sportsdb_fks.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/sportsdb_fks.sql) — Creates the foreign key constraints
-- [`sportsdb_indexes.sql`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/sportsdb_indexes.sql) — Creates the indexes
+- [`sportsdb_tables.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/sportsdb_tables.sql) — Creates the tables and sequences
+- [`sportsdb_inserts.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/sportsdb_inserts.sql) — Loads the sample data into the `sportsdb` database
+- [`sportsdb_constraints.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/sportsdb_constraints.sql) — Creates the unique constraints
+- [`sportsdb_fks.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/sportsdb_fks.sql) — Creates the foreign key constraints
+- [`sportsdb_indexes.sql`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/sportsdb_indexes.sql) — Creates the indexes
 
 ### 2. Open the YSQL shell
 
-To open the Yugabyte SQL (YSQL) shell, run the `ysqlsh` command from the YugabyteDB root directory.
+To open the ZNbase SQL (YSQL) shell, run the `ysqlsh` command from the ZNbaseDB root directory.
 
 ```sh
 $ ./bin/ysqlsh
@@ -52,7 +52,7 @@ $ ./bin/ysqlsh
 ```
 ysqlsh (11.2)
 Type "help" for help.
-yugabyte=#
+ZNbase=#
 ```
 
 ### 3. Create the SportsDB database
@@ -66,17 +66,17 @@ CREATE DATABASE sportsdb;
 Confirm that you have the `sportsdb` database by listing out the databases on your cluster.
 
 ```postgresql
-yugabyte=# \l
+ZNbase=# \l
 ```
 
 Connect to the `sportsdb` database.
 
 ```postgresql
-yugabyte=# \c sportsdb
+ZNbase=# \c sportsdb
 ```
 
 ```
-You are now connected to database "sportsdb" as user "yugabyte".
+You are now connected to database "sportsdb" as user "ZNbase".
 sportsdb=#
 ```
 
@@ -132,4 +132,4 @@ sportsdb=# \i share/sportsdb_indexes.sql
 
 ## Explore the SportsDB database
 
-That’s it! Using the command line or your favorite PostgreSQL development or administration tool, you are now ready to start exploring the SportsDB database and YugabyteDB features.
+That’s it! Using the command line or your favorite PostgreSQL development or administration tool, you are now ready to start exploring the SportsDB database and ZNbaseDB features.

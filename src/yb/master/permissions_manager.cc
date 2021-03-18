@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -387,7 +387,7 @@ Status PermissionsManager::AlterRole(
       return SetupError(resp->mutable_error(), MasterErrorPB::ROLE_NOT_FOUND, s);
     }
 
-    // Fix for https://github.com/yugabyte/yugabyte-db/issues/2505.
+    // Fix for https://github.com/ZNbase/ZNbase-db/issues/2505.
     // A role cannot modify its own superuser status, nor the superuser status of any role granted
     // to it directly or through inheritance. This check should happen before the next check that
     // verifies that the role requesting the modification is a superuser.

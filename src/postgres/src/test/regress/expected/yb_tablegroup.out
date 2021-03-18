@@ -127,46 +127,46 @@ COMMENT ON TABLEGROUP tgroup2 IS 'Comment for Tablegroup 2';
 List of tablegroups
   Name   |  Owner
 ---------+----------
- tgroup1 | yugabyte
- tgroup2 | yugabyte
- tgroup3 | yugabyte
+ tgroup1 | ZNbase
+ tgroup2 | ZNbase
+ tgroup3 | ZNbase
 (3 rows)
 
 \dgr+
                              List of tablegroups
   Name   |  Owner   | Access privileges |       Description        | Options
 ---------+----------+-------------------+--------------------------+---------
- tgroup1 | yugabyte |                   | Comment for Tablegroup 1 |
- tgroup2 | yugabyte |                   | Comment for Tablegroup 2 |
- tgroup3 | yugabyte |                   |                          |
+ tgroup1 | ZNbase |                   | Comment for Tablegroup 1 |
+ tgroup2 | ZNbase |                   | Comment for Tablegroup 2 |
+ tgroup3 | ZNbase |                   |                          |
 (3 rows)
 
 \dgrt
                       List of tablegroup tables
  Group Name | Group Owner |          Name          | Type  |  Owner
 ------------+-------------+------------------------+-------+----------
- tgroup1    | yugabyte    | tgroup_test1           | table | yugabyte
- tgroup1    | yugabyte    | tgroup_test2           | table | yugabyte
- tgroup1    | yugabyte    | tgroup_test1_col2_idx  | index | yugabyte
- tgroup1    | yugabyte    | tgroup_test3_col1_idx1 | index | yugabyte
- tgroup2    | yugabyte    | tgroup_test4_col2_idx  | index | yugabyte
- tgroup2    | yugabyte    | tgroup_test4           | table | yugabyte
- tgroup2    | yugabyte    | tgroup_test4_col1_idx  | index | yugabyte
- tgroup2    | yugabyte    | tgroup_test3           | table | yugabyte
+ tgroup1    | ZNbase    | tgroup_test1           | table | ZNbase
+ tgroup1    | ZNbase    | tgroup_test2           | table | ZNbase
+ tgroup1    | ZNbase    | tgroup_test1_col2_idx  | index | ZNbase
+ tgroup1    | ZNbase    | tgroup_test3_col1_idx1 | index | ZNbase
+ tgroup2    | ZNbase    | tgroup_test4_col2_idx  | index | ZNbase
+ tgroup2    | ZNbase    | tgroup_test4           | table | ZNbase
+ tgroup2    | ZNbase    | tgroup_test4_col1_idx  | index | ZNbase
+ tgroup2    | ZNbase    | tgroup_test3           | table | ZNbase
 (8 rows)
 
 \dgrt+
                                                                     List of tablegroup tables
  Group Name | Group Owner | Access privileges |    Group Description     | Group Options |          Name          | Type  |  Owner   | Rel Description |  Size
 ------------+-------------+-------------------+--------------------------+---------------+------------------------+-------+----------+-----------------+---------
- tgroup1    | yugabyte    |                   | Comment for Tablegroup 1 |               | tgroup_test1           | table | yugabyte |                 | 0 bytes
- tgroup1    | yugabyte    |                   | Comment for Tablegroup 1 |               | tgroup_test2           | table | yugabyte |                 | 0 bytes
- tgroup1    | yugabyte    |                   | Comment for Tablegroup 1 |               | tgroup_test1_col2_idx  | index | yugabyte |                 | 0 bytes
- tgroup1    | yugabyte    |                   | Comment for Tablegroup 1 |               | tgroup_test3_col1_idx1 | index | yugabyte |                 | 0 bytes
- tgroup2    | yugabyte    |                   | Comment for Tablegroup 2 |               | tgroup_test4_col2_idx  | index | yugabyte |                 | 0 bytes
- tgroup2    | yugabyte    |                   | Comment for Tablegroup 2 |               | tgroup_test4           | table | yugabyte |                 | 0 bytes
- tgroup2    | yugabyte    |                   | Comment for Tablegroup 2 |               | tgroup_test4_col1_idx  | index | yugabyte |                 | 0 bytes
- tgroup2    | yugabyte    |                   | Comment for Tablegroup 2 |               | tgroup_test3           | table | yugabyte |                 | 0 bytes
+ tgroup1    | ZNbase    |                   | Comment for Tablegroup 1 |               | tgroup_test1           | table | ZNbase |                 | 0 bytes
+ tgroup1    | ZNbase    |                   | Comment for Tablegroup 1 |               | tgroup_test2           | table | ZNbase |                 | 0 bytes
+ tgroup1    | ZNbase    |                   | Comment for Tablegroup 1 |               | tgroup_test1_col2_idx  | index | ZNbase |                 | 0 bytes
+ tgroup1    | ZNbase    |                   | Comment for Tablegroup 1 |               | tgroup_test3_col1_idx1 | index | ZNbase |                 | 0 bytes
+ tgroup2    | ZNbase    |                   | Comment for Tablegroup 2 |               | tgroup_test4_col2_idx  | index | ZNbase |                 | 0 bytes
+ tgroup2    | ZNbase    |                   | Comment for Tablegroup 2 |               | tgroup_test4           | table | ZNbase |                 | 0 bytes
+ tgroup2    | ZNbase    |                   | Comment for Tablegroup 2 |               | tgroup_test4_col1_idx  | index | ZNbase |                 | 0 bytes
+ tgroup2    | ZNbase    |                   | Comment for Tablegroup 2 |               | tgroup_test3           | table | ZNbase |                 | 0 bytes
 (8 rows)
 
 COMMENT ON TABLEGROUP tgroup2 IS NULL;
@@ -174,17 +174,17 @@ COMMENT ON TABLEGROUP tgroup2 IS NULL;
                       List of tablegroups
   Name   |  Owner   | Access privileges | Description | Options
 ---------+----------+-------------------+-------------+---------
- tgroup2 | yugabyte |                   |             |
+ tgroup2 | ZNbase |                   |             |
 (1 row)
 
 \dgrt tgroup2
                       List of tablegroup tables
  Group Name | Group Owner |         Name          | Type  |  Owner
 ------------+-------------+-----------------------+-------+----------
- tgroup2    | yugabyte    | tgroup_test3          | table | yugabyte
- tgroup2    | yugabyte    | tgroup_test4          | table | yugabyte
- tgroup2    | yugabyte    | tgroup_test4_col1_idx | index | yugabyte
- tgroup2    | yugabyte    | tgroup_test4_col2_idx | index | yugabyte
+ tgroup2    | ZNbase    | tgroup_test3          | table | ZNbase
+ tgroup2    | ZNbase    | tgroup_test4          | table | ZNbase
+ tgroup2    | ZNbase    | tgroup_test4_col1_idx | index | ZNbase
+ tgroup2    | ZNbase    | tgroup_test4_col2_idx | index | ZNbase
 (4 rows)
 
 -- Describe table

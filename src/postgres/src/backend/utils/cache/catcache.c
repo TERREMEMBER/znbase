@@ -1049,7 +1049,7 @@ CatalogCacheInitializeCache(CatCache *cache)
 }
 
 /*
- * YugaByte utility method to set the data for a cache list entry.
+ * ZNbase utility method to set the data for a cache list entry.
  * Used during InitCatCachePhase2 (specifically for the procedure name list
  * and for rewrite rules).
  * Code basically takes the second part of SearchCatCacheList (which sets the
@@ -1157,7 +1157,7 @@ SetCatCacheList(CatCache *cache,
 				if (ct->hash_value != hashValue)
 					continue;    /* quickly skip entry if wrong hash val */
 
-				if (IsYugaByteEnabled())
+				if (IsZNbaseEnabled())
 					continue; /* Cannot rely on ctid comparison in YB mode */
 
 				if (!ItemPointerEquals(&(ct->tuple.t_self),
@@ -1284,7 +1284,7 @@ InitCatCachePhase2(CatCache *cache, bool touch_index)
 	 * TODO(mihnea/robert) This could be enabled if we handle
 	 * "primary key as index" so that PG can open the primary indexes by id.
 	 */
-	if (IsYugaByteEnabled())
+	if (IsZNbaseEnabled())
 	{
 		return;
 	}
@@ -1384,7 +1384,7 @@ IndexScanOK(CatCache *cache, ScanKey cur_skey)
 
 /*
  * Utility to add a Tuple entry to the cache only if it does not exist.
- * Used only when IsYugaByteEnabled() is true.
+ * Used only when IsZNbaseEnabled() is true.
  * Currently used in two cases:
  *  1. When initializing the caches (i.e. on backend start).
  *  2. When inserting a new entry to the sys catalog (i.e. on DDL create).
@@ -1789,11 +1789,11 @@ SearchCatCacheMiss(CatCache *cache,
 			return NULL;
 
 		/*
-		 * Disable negative entries for YugaByte to handle case where the entry
+		 * Disable negative entries for ZNbase to handle case where the entry
 		 * was added by (running a command on) another node.
 		 * We also don't support tuple update as of 14/12/2018.
 		 */
-		if (IsYugaByteEnabled())
+		if (IsZNbaseEnabled())
 		{
 			/*
 			 * Special cases where we allow negative caches:
@@ -2088,7 +2088,7 @@ SearchCatCacheList(CatCache *cache,
 				if (ct->hash_value != hashValue)
 					continue;	/* quickly skip entry if wrong hash val */
 
-				if (IsYugaByteEnabled())
+				if (IsZNbaseEnabled())
 					continue; /* Cannot rely on ctid comparison in YB mode */
 
 				if (!ItemPointerEquals(&(ct->tuple.t_self), &(ntp->t_self)))

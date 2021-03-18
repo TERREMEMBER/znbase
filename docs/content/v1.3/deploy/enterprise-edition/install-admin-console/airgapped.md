@@ -7,7 +7,7 @@ An “airgapped” host has either no or a restricted path to inbound or outboun
 In order to install Replicated and YugaWare on a host with no Internet connectivity at all, you have to first download the binaries on a machine that has Internet connectivity and then copy the files over to the appropriate host. In case of restricted connectivity, the following endpoints have to be whitelisted to ensure that they are accessible from the host marked for installation.
 
 ```sh
-https://downloads.yugabyte.com
+https://downloads.ZNbase.com
 https://download.docker.com
 ```
 
@@ -40,13 +40,13 @@ $ cd /opt/downloads
 Get the replicated binary.
 
 ```sh
-$ wget https://downloads.yugabyte.com/replicated.tar.gz
+$ wget https://downloads.ZNbase.com/replicated.tar.gz
 ```
 
 Get the yugaware binary where the last 4 digits refer to the version of the binary. Change this number as needed.
 
 ```sh
-$ wget https://downloads.yugabyte.com/yugaware-1.2.6.0.airgap
+$ wget https://downloads.ZNbase.com/yugaware-1.2.6.0.airgap
 ```
 
 Change to the directory.
@@ -97,7 +97,7 @@ The simplest option is use a self-signed cert for now and add the custom SSL cer
 
 ### Upload license file
 
-Now upload the Yugabyte license file received from [Yugabyte](https://www.yugabyte.com/platform/#request-trial-form).
+Now upload the ZNbase license file received from [ZNbase](https://www.ZNbase.com/platform/#request-trial-form).
 
 ![Replicated License Upload](/images/replicated/replicated-license-upload.png)
 
@@ -111,7 +111,7 @@ Two options to install YugaWare are presented.
 
 ### Secure Replicated
 
-The next step is to add a password to protect the Replicated Admin Console (note that this Admin Console is for Replicated and is different from YugaWare, the Admin Console for YugabyteDB).
+The next step is to add a password to protect the Replicated Admin Console (note that this Admin Console is for Replicated and is different from YugaWare, the Admin Console for ZNbaseDB).
 
 ![Replicated Password](/images/replicated/replicated-password.png)
 
@@ -123,4 +123,4 @@ Replicated will perform a set of pre-flight checks to ensure that the host is se
 
 Clicking Continue above will bring us to YugaWare configuration.
 
-In case the pre-flight check fails, review the [Troubleshoot Yugabyte Platform](../../../troubleshoot/enterprise-edition/) section below to identify the resolution.
+In case the pre-flight check fails, review the [Troubleshoot ZNbase Platform](../../../troubleshoot/enterprise-edition/) section below to identify the resolution.

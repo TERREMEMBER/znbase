@@ -2,7 +2,7 @@
 title: Column-Level Security
 headerTitle: Column-Level Security
 linkTitle: Column-Level Security
-description: Column-Level Security in YugabyteDB
+description: Column-Level Security in ZNbaseDB
 menu:
   latest:
     name: Column-Level Security
@@ -23,28 +23,28 @@ showAsideToc: true
   </li>
 </ul>
 
-Column level security in YugabyteDB is used to restrict the users to view a particular column or set of columns in a table. The simplest way to achieve column-level security in YugabyteDB is to **create a view** that includes only the columns that the user needs to have access to.
+Column level security in ZNbaseDB is used to restrict the users to view a particular column or set of columns in a table. The simplest way to achieve column-level security in ZNbaseDB is to **create a view** that includes only the columns that the user needs to have access to.
 
 The steps below show how to enable column-level security using `CREATE VIEW` command.
 
 
 ## Step 1. Create example table
 
-Open the YSQL shell (ysqlsh), specifying the `yugabyte` user and prompting for the password.
+Open the YSQL shell (ysqlsh), specifying the `ZNbase` user and prompting for the password.
 
 
 ```
-$ ./ysqlsh -U yugabyte -W
+$ ./ysqlsh -U ZNbase -W
 ```
 
 
-When prompted for the password, enter the yugabyte password. You should be able to login and see a response like below.
+When prompted for the password, enter the ZNbase password. You should be able to login and see a response like below.
 
 
 ```
 ysqlsh (11.2-YB-2.5.0.0-b0)
 Type "help" for help.
-yugabyte=#
+ZNbase=#
 ```
 
 
@@ -54,18 +54,18 @@ Create a employee table and insert few sample rows
 
 
 ```
-yugabyte=# create table employees ( empno int, ename text, 
+ZNbase=# create table employees ( empno int, ename text, 
            address text, salary int, account_number text );
 CREATE TABLE
 
-yugabyte=# insert into employees values (1, 'joe', '56 grove st',  20000, 'AC-22001' );
+ZNbase=# insert into employees values (1, 'joe', '56 grove st',  20000, 'AC-22001' );
 INSERT 0 1
-yugabyte=# insert into employees values (2, 'mike', '129 81 st',  80000, 'AC-48901' );
+ZNbase=# insert into employees values (2, 'mike', '129 81 st',  80000, 'AC-48901' );
 INSERT 0 1
-yugabyte=# insert into employees values (3, 'julia', '1 finite loop',  40000, 'AC-77051');
+ZNbase=# insert into employees values (3, 'julia', '1 finite loop',  40000, 'AC-77051');
 INSERT 0 1
 
-yugabyte=# select * from employees;
+ZNbase=# select * from employees;
  empno | ename |    address    | salary | account_number
 -------+-------+---------------+--------+----------------
      1 | Joe   | 56 grove st   |  20000 | AC-22001
@@ -82,13 +82,13 @@ Create a user `ybadmin` and provide all privileges on the table to `ybadmin` use
 
 
 ```
-yugabyte=> \c yugabyte yugabyte;
-You are now connected to database "yugabyte" as user "yugabyte".
+ZNbase=> \c ZNbase ZNbase;
+You are now connected to database "ZNbase" as user "ZNbase".
 
-yugabyte=# create user ybadmin;
+ZNbase=# create user ybadmin;
 CREATE ROLE
 
-yugabyte=# GRANT ALL PRIVILEGES ON employees TO ybadmin;
+ZNbase=# GRANT ALL PRIVILEGES ON employees TO ybadmin;
 GRANT
 ```
 
@@ -97,8 +97,8 @@ Connect to the database with` ybadmin `user
 
 
 ```
-yugabyte=# \c yugabyte ybadmin;
-You are now connected to database "yugabyte" as user "ybadmin".
+ZNbase=# \c ZNbase ybadmin;
+You are now connected to database "ZNbase" as user "ybadmin".
 ```
 
 
@@ -109,13 +109,13 @@ User `ybadmin `has access to view all the contents of the table.
 
 
 ```
-yugabyte=> select current_user;
+ZNbase=> select current_user;
  current_user
 --------------
  ybadmin
 (1 row)
 
-yugabyte=> select * from employees;
+ZNbase=> select * from employees;
  empno | ename |    address    | salary | account_number
 -------+-------+---------------+--------+----------------
      1 | joe   | 56 grove st   |  20000 | AC-22001
@@ -132,15 +132,15 @@ Admin user `ybadmin` has permissions to view all the contents on employees table
 
 
 ```
-yugabyte=> \c yugabyte yugabyte;
-You are now connected to database "yugabyte" as user "yugabyte".
+ZNbase=> \c ZNbase ZNbase;
+You are now connected to database "ZNbase" as user "ZNbase".
 
-yugabyte=# REVOKE SELECT ON employees FROM ybadmin;
+ZNbase=# REVOKE SELECT ON employees FROM ybadmin;
 REVOKE
-yugabyte=# CREATE VIEW emp_info as select empno, ename, address from employees;
+ZNbase=# CREATE VIEW emp_info as select empno, ename, address from employees;
 CREATE VIEW
 
-yugabyte=# grant SELECT on emp_info TO ybadmin;
+ZNbase=# grant SELECT on emp_info TO ybadmin;
 GRANT
 ```
 
@@ -152,10 +152,10 @@ Verify the permissions of ybadmin user on employee table as shown below.
 
 
 ```
-yugabyte=# \c yugabyte ybadmin;
-You are now connected to database "yugabyte" as user "ybadmin".
+ZNbase=# \c ZNbase ybadmin;
+You are now connected to database "ZNbase" as user "ybadmin".
 
-yugabyte=> select current_user;
+ZNbase=> select current_user;
  current_user
 --------------
  ybadmin
@@ -167,7 +167,7 @@ Since permission is revoked for `ybadmin`, this user will not be able to query e
 
 
 ```
-yugabyte=> select * from employees;
+ZNbase=> select * from employees;
 ERROR:  permission denied for table employees
 ```
 
@@ -176,7 +176,7 @@ Since `ybadmin` was granted select permission on `emp_info` table, `ybadmin` use
 
 
 ```
-yugabyte=> select * from emp_info;
+ZNbase=> select * from emp_info;
  empno | ename |    address
 -------+-------+---------------
      1 | joe   | 56 grove st
@@ -189,16 +189,16 @@ yugabyte=> select * from emp_info;
 
 ## Step 4b. Restrict column access using `GRANT`
 
-Instead of creating views, YugabyteDB supports column level permissions, where users can be provided access to select columns in a table using `GRANT` command.
+Instead of creating views, ZNbaseDB supports column level permissions, where users can be provided access to select columns in a table using `GRANT` command.
 
 Considering the above example, instead of creating a new view, `ybadmin` user can be provided with permissions to view all columns except salary and account_number like below.
 
 
 ```
-yugabyte=> \c yugabyte yugabyte;
-You are now connected to database "yugabyte" as user "yugabyte".
+ZNbase=> \c ZNbase ZNbase;
+You are now connected to database "ZNbase" as user "ZNbase".
 
-yugabyte=# grant select (empno, ename, address) on employees to ybadmin;
+ZNbase=# grant select (empno, ename, address) on employees to ybadmin;
 GRANT
 ```
 
@@ -210,10 +210,10 @@ User `ybadmin` will now be able to access the columns to which permissions were 
 
 
 ```
-yugabyte=# \c yugabyte ybadmin;
-You are now connected to database "yugabyte" as user "ybadmin".
+ZNbase=# \c ZNbase ybadmin;
+You are now connected to database "ZNbase" as user "ybadmin".
 
-yugabyte=> select empno, ename, address from employees;
+ZNbase=> select empno, ename, address from employees;
  empno | ename |    address
 -------+-------+---------------
      1 | joe   | 56 grove st
@@ -227,7 +227,7 @@ yugabyte=> select empno, ename, address from employees;
 
 
 ```
-yugabyte=> select empno, ename, address, salary from employees;
+ZNbase=> select empno, ename, address, salary from employees;
 ERROR:  permission denied for table employees
 ```
 

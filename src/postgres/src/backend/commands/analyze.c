@@ -369,7 +369,7 @@ do_analyze_rel(Relation onerel, int options, VacuumParams *params,
 	int			save_nestlevel;
 
 	/*
-	 * ANALYZE not supported for Yugabyte relations.
+	 * ANALYZE not supported for ZNbase relations.
 	 */
 	if (IsYBRelation(onerel))
 	{

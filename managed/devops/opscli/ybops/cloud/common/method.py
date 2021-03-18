@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 import getpass
 import glob
@@ -222,7 +222,7 @@ class CreateInstancesMethod(AbstractInstancesMethod):
 
     This class will create an instance, if one does not already exist with the same conditions,
     such as name, region or zone, etc. It will also wait for this instance to become SSHable on
-    any of the valid YugaByte ports.
+    any of the valid ZNbase ports.
     """
     INSTANCE_LOOKUP_RETRY_LIMIT = 120
     DEFAULT_OS_NAME = "centos"
@@ -460,8 +460,8 @@ class CronCheckMethod(AbstractInstancesMethod):
         super(CronCheckMethod, self).__init__(base_command, "croncheck")
 
     def get_ssh_user(self):
-        # Force croncheck to be done on yugabyte user.
-        return "yugabyte"
+        # Force croncheck to be done on ZNbase user.
+        return "ZNbase"
 
     def callback(self, args):
         host_info = self.cloud.get_host_info(args)
@@ -511,10 +511,10 @@ class ConfigureInstancesMethod(AbstractInstancesMethod):
         self.parser.add_argument('--cert_valid_duration', default=365)
         self.parser.add_argument('--org_name', default="example.com")
         self.parser.add_argument('--certs_node_dir',
-                                 default=os.path.join(YB_HOME_DIR, "yugabyte-tls-config"))
+                                 default=os.path.join(YB_HOME_DIR, "ZNbase-tls-config"))
         self.parser.add_argument('--encryption_key_source_file')
         self.parser.add_argument('--encryption_key_target_dir',
-                                 default="yugabyte-encryption-files")
+                                 default="ZNbase-encryption-files")
 
         self.parser.add_argument('--master_http_port', default=7000)
         self.parser.add_argument('--master_rpc_port', default=7100)
@@ -528,16 +528,16 @@ class ConfigureInstancesMethod(AbstractInstancesMethod):
                                  help="Path to download packages for itest. Only for AWS/onprem.")
 
     def get_ssh_user(self):
-        # Force the yugabyte user for configuring instances. The configure step performs YB specific
-        # operations like creating directories under /home/yugabyte/ which can be performed only
-        # by the yugabyte user without sudo. Since we don't want the configure step to require
-        # sudo, we force the yugabyte user here.
-        return "yugabyte"
+        # Force the ZNbase user for configuring instances. The configure step performs YB specific
+        # operations like creating directories under /home/ZNbase/ which can be performed only
+        # by the ZNbase user without sudo. Since we don't want the configure step to require
+        # sudo, we force the ZNbase user here.
+        return "ZNbase"
 
     def callback(self, args):
         if args.type == self.YB_SERVER_TYPE:
             if args.master_addresses_for_tserver is None:
-                raise YBOpsRuntimeError("Missing argument for YugaByte configure")
+                raise YBOpsRuntimeError("Missing argument for ZNbase configure")
             self.extra_vars.update({
                 "instance_name": args.search_pattern,
                 "master_addresses_for_tserver": args.master_addresses_for_tserver,
@@ -697,7 +697,7 @@ class InitYSQLMethod(AbstractInstancesMethod):
     def callback(self, args):
         ssh_options = {
             # TODO: replace with args.ssh_user when it's setup in the flow
-            "ssh_user": "yugabyte",
+            "ssh_user": "ZNbase",
             "private_key_file": args.private_key_file
         }
         host_info = self.cloud.get_host_info(args)
@@ -711,8 +711,8 @@ class InitYSQLMethod(AbstractInstancesMethod):
 
 class ControlInstanceMethod(AbstractInstancesMethod):
     def get_ssh_user(self):
-        # Force control instances to use the "yugabyte" user.
-        return "yugabyte"
+        # Force control instances to use the "ZNbase" user.
+        return "ZNbase"
 
     def callback(self, args):
         host_info = self.cloud.get_host_info(args)

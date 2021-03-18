@@ -12,9 +12,9 @@ select count(gen_random_uuid());
 -- Testing fuzzystrmatch.
 create extension fuzzystrmatch;
 
-select levenshtein('YugaByte', 'yugabyte');
+select levenshtein('ZNbase', 'ZNbase');
 
-select metaphone('yugabyte', 8);
+select metaphone('ZNbase', 8);
 
 -- Clean up.
 drop extension pgcrypto;
@@ -25,7 +25,7 @@ select digest('xyz', 'sha1');
 drop extension fuzzystrmatch;
 
 -- Expect failure since function should be removed.
-select levenshtein('YugaByte', 'yugabyte');
+select levenshtein('ZNbase', 'ZNbase');
 
 -- Testing pg_stat_statements;
 select pg_stat_statements_reset();
@@ -41,7 +41,7 @@ drop table test;
 -- Testing uuid-ossp
 create extension "uuid-ossp";
 
-select uuid_generate_v5('00000000-0000-0000-0000-000000000000', 'yugabyte');
+select uuid_generate_v5('00000000-0000-0000-0000-000000000000', 'ZNbase');
 
 -- generated values are random, so to ensure deterministic output ignore the actual values.
 select uuid_generate_v1() != uuid_generate_v4();

@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -57,7 +57,7 @@ class SecureConnectionTest : public client::KeyValueTableTest<MiniCluster> {
     FLAGS_use_node_to_node_encryption = true;
     FLAGS_use_client_to_server_encryption = true;
     FLAGS_allow_insecure_connections = false;
-    FLAGS_TEST_public_hostname_suffix = ".ip.yugabyte";
+    FLAGS_TEST_public_hostname_suffix = ".ip.ZNbase";
     FLAGS_TEST_private_broadcast_address = true;
     FLAGS_certs_dir = CertsDir();
 
@@ -191,7 +191,7 @@ class SecureConnectionVerifyNameOnlyTest : public SecureConnectionTest {
   void SetUp() override {
     FLAGS_TEST_nodes_per_cloud = 100;
     FLAGS_node_to_node_encryption_use_client_certificates = true;
-    FLAGS_node_to_node_encryption_required_uid = "yugabyte-test";
+    FLAGS_node_to_node_encryption_required_uid = "ZNbase-test";
     SecureConnectionTest::SetUp();
   }
 

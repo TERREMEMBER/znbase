@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
@@ -100,7 +100,7 @@ const initialState = {
   ybSoftwareVersion: '',
   gflags: {},
   storageType: DEFAULT_STORAGE_TYPES['AWS'],
-  accessKeyCode: 'yugabyte-default',
+  accessKeyCode: 'ZNbase-default',
   // Maximum Number of nodes currently in use OnPrem case
   maxNumNodes: -1,
   assignPublicIP: true,

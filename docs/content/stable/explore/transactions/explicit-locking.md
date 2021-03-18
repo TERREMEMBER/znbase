@@ -2,8 +2,8 @@
 title: Explicit Locking
 headerTitle: Explicit Locking
 linkTitle: Explicit Locking
-description: Explicit Locking in YugabyteDB.
-headcontent: Explicit Locking in YugabyteDB.
+description: Explicit Locking in ZNbaseDB.
+headcontent: Explicit Locking in ZNbaseDB.
 image: <div class="icon"><i class="fas fa-file-invoice-dollar"></i></div>
 menu:
   stable:
@@ -26,12 +26,12 @@ showAsideToc: true
 
 </ul>
 
-This section explains how explicit locking works in YugabyteDB.
+This section explains how explicit locking works in ZNbaseDB.
 
-Explicit row-locks use transaction priorities to ensure that two transactions can never hold conflicting locks on the same row. This is done by the query layer assigning a very high value for the priority of the transaction that is being run to acquire the row lock, causing all other transactions that conflict with the current transaction to fail (because they have a lower value for the transaction priority). YugabyteDB supports most row-level locks, similar to PostgreSQL.
+Explicit row-locks use transaction priorities to ensure that two transactions can never hold conflicting locks on the same row. This is done by the query layer assigning a very high value for the priority of the transaction that is being run to acquire the row lock, causing all other transactions that conflict with the current transaction to fail (because they have a lower value for the transaction priority). ZNbaseDB supports most row-level locks, similar to PostgreSQL.
 
 {{< note title="Note" >}}
-Explicit locking is an area of active development in YugabyteDB. A number of enhancements are planned in this area. Unlike PostgreSQL, YugabyteDB uses optimistic concurrency control and does not block / wait for currently held locks, instead opting to abort the conflicting transaction with a lower priority. Pessimistic concurrency control is currently under development.
+Explicit locking is an area of active development in ZNbaseDB. A number of enhancements are planned in this area. Unlike PostgreSQL, ZNbaseDB uses optimistic concurrency control and does not block / wait for currently held locks, instead opting to abort the conflicting transaction with a lower priority. Pessimistic concurrency control is currently under development.
 {{</note >}}
 
 The types of row locks currently supported are: 
@@ -43,8 +43,8 @@ The types of row locks currently supported are:
 Let us look at en example with the `FOR UPDATE` row lock, where we first `SELECT` a row for update to lock it and subsequently update it. A concurrent transaction should not be able to abort this transaction by updating the value of that row after the row is locked. To try out this scenario, first create an example table with sample data as shown below.
 
 ```sql
-yugabyte=# CREATE TABLE t (k VARCHAR, v VARCHAR);
-yugabyte=# INSERT INTO t VALUES ('k1', 'v1');
+ZNbase=# CREATE TABLE t (k VARCHAR, v VARCHAR);
+ZNbase=# INSERT INTO t VALUES ('k1', 'v1');
 ```
 
 Next, connect to the cluster using two independent `ysqlsh` instances called *session #1* and *session #2* below. 

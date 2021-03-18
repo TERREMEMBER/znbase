@@ -1,8 +1,8 @@
 ---
-title: Manage YugabyteDB
+title: Manage ZNbaseDB
 headerTitle: Manage
 linkTitle: Manage
-description: Manage YugabyteDB clusters.
+description: Manage ZNbaseDB clusters.
 image: /images/section_icons/quick_start/sample_apps.png
 headcontent:
 section: USER GUIDES
@@ -21,7 +21,7 @@ menu:
         <div class="title">Back up and restore</div>
       </div>
       <div class="body">
-        Back up and restore data in YugabyteDB.
+        Back up and restore data in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -33,7 +33,7 @@ menu:
         <div class="title">Migrate data</div>
       </div>
       <div class="body">
-        Bulk data import and export in the context of YugabyteDB.
+        Bulk data import and export in the context of ZNbaseDB.
       </div>
     </a>
   </div>
@@ -79,10 +79,10 @@ menu:
       <div class="head">
         <img class="icon" src="/images/section_icons/manage/enterprise.png" aria-hidden="true" />
         <div class="articles">11 articles</div>
-        <div class="title">Yugabyte Platform</div>
+        <div class="title">ZNbase Platform</div>
       </div>
       <div class="body">
-        Use Yugabyte Platform's orchestration and monitoring to manage YugabyteDB universes.
+        Use ZNbase Platform's orchestration and monitoring to manage ZNbaseDB universes.
       </div>
     </a>
   </div>

@@ -2,7 +2,7 @@
 title: Connect remote clients to Kubernetes clusters
 headerTitle: Connect clients to Kubernetes clusters
 linkTitle: Connect clients
-description: Connect remote clients to YugabyteDB clusters deployed within Kubernetes.
+description: Connect remote clients to ZNbaseDB clusters deployed within Kubernetes.
 menu:
   stable:
     identifier: clients-kubernetes
@@ -15,11 +15,11 @@ showAsideToc: true
 
 ## Introduction
 
-This document describes options available for connecting to a Yugabyte cluster deployed within Kubernetes.
+This document describes options available for connecting to a ZNbase cluster deployed within Kubernetes.
 
 ## Prerequisites
 
-You must have a Yugabyte cluster set up according to the [Kubernetes deployment instructions.](../../kubernetes)
+You must have a ZNbase cluster set up according to the [Kubernetes deployment instructions.](../../kubernetes)
 
 ## Connecting from Within the Kubernetes Cluster
 
@@ -34,15 +34,15 @@ yb-tservers   ClusterIP   None         <none>        7100/TCP,9000/TCP,6379/TCP,
 The following example shows a client that uses the YSQL shell ([`ysqlsh`](../../../admin/ysqlsh)) to connect:
 
 ```sh
-$ kubectl run ysqlsh-client -it --rm  --image yugabytedb/yugabyte-client --command -- ysqlsh -h yb-tservers.yb-demo.svc.cluster.local
-yugabyte=# CREATE TABLE demo(id INT PRIMARY KEY);
+$ kubectl run ysqlsh-client -it --rm  --image ZNbasedb/ZNbase-client --command -- ysqlsh -h yb-tservers.yb-demo.svc.cluster.local
+ZNbase=# CREATE TABLE demo(id INT PRIMARY KEY);
 CREATE TABLE
 ```
 
 The following example shows a client that uses the YCQL shell ([`ycqlsh`](../../../admin/cqlsh)) to connect:
 
 ```sh
-$ kubectl run cqlsh-shell -it --rm  --image yugabytedb/yugabyte-client --command -- cqlsh yb-tservers.yb-demo.svc.cluster.local 9042
+$ kubectl run cqlsh-shell -it --rm  --image ZNbasedb/ZNbase-client --command -- cqlsh yb-tservers.yb-demo.svc.cluster.local 9042
 ycqlsh> CREATE KEYSPACE demo;
 ycqlsh> use demo;
 ycqlsh:demo> CREATE TABLE t_demo(id INT PRIMARY KEY);
@@ -66,15 +66,15 @@ yb-tservers          ClusterIP      None            <none>        7100/TCP,9000/
 The following example shows a client that uses the YSQL shell ([`ysqlsh`](../../../admin/ysqlsh)) to connect:
 
 ```sh
-$ docker run yugabytedb/yugabyte-client ysqlsh -h 98.138.219.232
-yugabyte=# CREATE TABLE demo(id INT PRIMARY KEY);
+$ docker run ZNbasedb/ZNbase-client ysqlsh -h 98.138.219.232
+ZNbase=# CREATE TABLE demo(id INT PRIMARY KEY);
 CREATE TABLE
 ```
 
 The following example shows a client that uses the YCQL shell ([`ycqlsh`](../../../admin/cqlsh)) to connect:
 
 ```sh
-$ docker run yugabytedb/yugabyte-client ycqlsh 98.138.219.232 9042
+$ docker run ZNbasedb/ZNbase-client ycqlsh 98.138.219.232 9042
 ycqlsh> CREATE KEYSPACE demo;
 ycqlsh> use demo;
 ycqlsh:demo> CREATE TABLE t_demo(id INT PRIMARY KEY);
@@ -110,12 +110,12 @@ Status:
         loadbalancer emulator: no errors
 ```
 
-## Connecting TLS-Secured YugabyteDB Cluster Deployed by Helm Charts
+## Connecting TLS-Secured ZNbaseDB Cluster Deployed by Helm Charts
 
-To start a YugabyteDB cluster with encryption in transit (TLS) enabled, follow the steps at [Google Kubernetes Service (GKE) - Helm Chart](/latest/deploy/kubernetes/single-zone/gke/helm-chart/) and set the flag `tls.enabled=true` in the helm command line, as shown in the following example:
+To start a ZNbaseDB cluster with encryption in transit (TLS) enabled, follow the steps at [Google Kubernetes Service (GKE) - Helm Chart](/latest/deploy/kubernetes/single-zone/gke/helm-chart/) and set the flag `tls.enabled=true` in the helm command line, as shown in the following example:
 
 ```shell
-helm install yugabyte --namespace yb-demo --name yb-demo --set=tls.enabled=true
+helm install ZNbase --namespace yb-demo --name yb-demo --set=tls.enabled=true
 ```
 
 ### Connect from Within the Kubernetes Cluster
@@ -131,17 +131,17 @@ metadata:
 spec:
   containers:
   - name: yb-client
-    image: yugabytedb/yugabyte-client:latest
+    image: ZNbasedb/ZNbase-client:latest
     env:
     - name: SSL_CERTFILE
-      value: "/root/.yugabytedb/root.crt"
+      value: "/root/.ZNbasedb/root.crt"
     volumeMounts:
-    - name: yugabyte-tls-client-cert
-      mountPath: "/root/.yugabytedb/"
+    - name: ZNbase-tls-client-cert
+      mountPath: "/root/.ZNbasedb/"
   volumes:
-  - name: yugabyte-tls-client-cert
+  - name: ZNbase-tls-client-cert
     secret:
-      secretName: yugabyte-tls-client-cert
+      secretName: ZNbase-tls-client-cert
       defaultMode: 256
 ```
 
@@ -153,8 +153,8 @@ ysqlsh (11.2-YB-2.1.5.0-b0)
 SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)
 Type "help" for help.
 
-yugabyte=# \conninfo
-You are connected to database "yugabyte" as user "yugabyte" on host "yb-tservers.yb-demo.svc.cluster.local" at port "5433".
+ZNbase=# \conninfo
+You are connected to database "ZNbase" as user "ZNbase" on host "yb-tservers.yb-demo.svc.cluster.local" at port "5433".
 SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)
 ```
 
@@ -178,31 +178,31 @@ pod "yb-client" deleted
 
 ### Connect Externally
 
-To connect externally to a TLS-enabled YugabyteDB helm cluster, start by downloading the root certificate from the Kubernetes cluster's  secrets, as follows:
+To connect externally to a TLS-enabled ZNbaseDB helm cluster, start by downloading the root certificate from the Kubernetes cluster's  secrets, as follows:
 
 ```sh
 $ mkdir $(pwd)/certs
-$ kubectl get secret yugabyte-tls-client-cert  -n yb-demo -o jsonpath='{.data.root\.crt}' | base64 --decode > $(pwd)/certs/root.crt
+$ kubectl get secret ZNbase-tls-client-cert  -n yb-demo -o jsonpath='{.data.root\.crt}' | base64 --decode > $(pwd)/certs/root.crt
 ```
 
 When a client that uses the `YSQL shell` ([`ysqlsh`](../../../admin/ysqlsh)) to connect, the command to execute specifies the external LoadBalancer IP of the `yb-tserver-service`, as described in [Connect using external clients](../single-zone/oss/helm-chart/#connect-using-external-clients). You can verify the connection via the following command:
 
 ```sh
-$ docker run -it --rm -v $(pwd)/certs/:/root/.yugabytedb/:ro yugabytedb/yugabyte-client:latest ysqlsh -h <External_Cluster_IP> "sslmode=require"
+$ docker run -it --rm -v $(pwd)/certs/:/root/.ZNbasedb/:ro ZNbasedb/ZNbase-client:latest ysqlsh -h <External_Cluster_IP> "sslmode=require"
 ysqlsh (11.2-YB-2.1.5.0-b0)
 SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)
 Type "help" for help.
 
-yugabyte=# \conninfo
-You are connected to database "yugabyte" as user "yugabyte" on host "35.200.205.208" at port "5433".
+ZNbase=# \conninfo
+You are connected to database "ZNbase" as user "ZNbase" on host "35.200.205.208" at port "5433".
 SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256, compression: off)
 ```
 
 When a client uses the `YCQL shell` ([`ycqlsh`](../../../admin/cqlsh)) to connect, you can verify the connection by executing the following `docker run` command:
 
 ```sh
-$ docker run -it --rm -v $(pwd)/certs/:/root/.yugabytedb/:ro \
---env SSL_CERTFILE=/root/.yugabytedb/root.crt yugabytedb/yugabyte-client:latest ycqlsh <External_Cluster_IP> 9042 --ssl
+$ docker run -it --rm -v $(pwd)/certs/:/root/.ZNbasedb/:ro \
+--env SSL_CERTFILE=/root/.ZNbasedb/root.crt ZNbasedb/ZNbase-client:latest ycqlsh <External_Cluster_IP> 9042 --ssl
 ysqlsh (11.2-YB-2.1.5.0-b0)
 Connected to local cluster at 35.200.205.208:9042.
 [cqlsh 5.0.1 | Cassandra 3.9-SNAPSHOT | CQL spec 3.4.2 | Native protocol v4]

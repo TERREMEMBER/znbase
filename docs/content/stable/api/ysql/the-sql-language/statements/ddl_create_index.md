@@ -47,7 +47,7 @@ Use the `CREATE INDEX` statement to create an index on the specified columns of 
 
 {{< note title="Note" >}}
 
-When an index is created on a populated table, YugabyteDB automatically backfills the existing data into the index. Currently, this is not done in an online manner. To online backfill an index, you can set the `ysql_disable_index_backfill` flag to `false` when starting yb-tservers. Note that we don't recommend setting this flag in a production cluster yet. For details on how online index backfill works, see [Online Index Backfill](https://github.com/yugabyte/yugabyte-db/blob/master/architecture/design/online-index-backfill.md).
+When an index is created on a populated table, ZNbaseDB automatically backfills the existing data into the index. Currently, this is not done in an online manner. To online backfill an index, you can set the `ysql_disable_index_backfill` flag to `false` when starting yb-tservers. Note that we don't recommend setting this flag in a production cluster yet. For details on how online index backfill works, see [Online Index Backfill](https://github.com/ZNbase/ZNbase-db/blob/master/architecture/design/online-index-backfill.md).
 
 {{< /note >}}
 
@@ -97,7 +97,7 @@ Presplitting indexes, using `SPLIT INTO`, distributes index workloads on a produ
 
 {{< note title="Note" >}}
 
-By default, YugabyteDB presplits an index into `ysql_num_shards_per_tserver * num_of_tserver` tablets. The `SPLIT INTO` clause can be used to override that setting on a per-index basis.
+By default, ZNbaseDB presplits an index into `ysql_num_shards_per_tserver * num_of_tserver` tablets. The `SPLIT INTO` clause can be used to override that setting on a per-index basis.
 
 {{< /note >}}
 
@@ -108,11 +108,11 @@ By default, YugabyteDB presplits an index into `ysql_num_shards_per_tserver * nu
 Create a unique index with hash ordered columns.
 
 ```plpgsql
-yugabyte=# CREATE TABLE products(id int PRIMARY KEY,
+ZNbase=# CREATE TABLE products(id int PRIMARY KEY,
                                  name text,
                                  code text);
-yugabyte=# CREATE UNIQUE INDEX ON products(code);
-yugabyte=# \d products
+ZNbase=# CREATE UNIQUE INDEX ON products(code);
+ZNbase=# \d products
               Table "public.products"
  Column |  Type   | Collation | Nullable | Default
 --------+---------+-----------+----------+---------
@@ -129,8 +129,8 @@ Indexes:
 Create an index with ascending ordered key.
 
 ```plpgsql
-yugabyte=# CREATE INDEX products_name ON products(name ASC);
-yugabyte=# \d products_name
+ZNbase=# CREATE INDEX products_name ON products(name ASC);
+ZNbase=# \d products_name
    Index "public.products_name"
  Column | Type | Key? | Definition
 --------+------+------+------------
@@ -143,8 +143,8 @@ lsm, for table "public.products
 Create an index with ascending ordered key and include other columns as non-key columns
 
 ```plpgsql
-yugabyte=# CREATE INDEX products_name_code ON products(name) INCLUDE (code);
-yugabyte=# \d products_name_code;
+ZNbase=# CREATE INDEX products_name_code ON products(name) INCLUDE (code);
+ZNbase=# \d products_name_code;
  Index "public.products_name_code"
  Column | Type | Key? | Definition
 --------+------+------+------------
@@ -167,6 +167,6 @@ CREATE INDEX ON employees(first_name, last_name) SPLIT INTO 10 TABLETS;
 Consider an application maintaining shipments information. It has a `shipments` table with a column for `delivery_status`. If the application needs to access in-flight shipments frequently, then it can use a partial index to exclude rows whose shipment status is `delivered`.
 
 ```plpgsql
-yugabyte=# create table shipments(id int, delivery_status text, address text, delivery_date date);
-yugabyte=# create index shipment_delivery on shipments(delivery_status, address, delivery_date) where delivery_status != 'delivered';
+ZNbase=# create table shipments(id int, delivery_status text, address text, delivery_date date);
+ZNbase=# create index shipment_delivery on shipments(delivery_status, address, delivery_date) where delivery_status != 'delivered';
 ```

@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -487,7 +487,7 @@ Status YBClient::Data::CreateTable(YBClient* client,
       LOG_IF(DFATAL, keyspace.empty()) << "No keyspace. Request:\n" << req.DebugString();
       const YBTableName table_name(db_type, keyspace, req.name());
 
-      // A fix for https://yugabyte.atlassian.net/browse/ENG-529:
+      // A fix for https://ZNbase.atlassian.net/browse/ENG-529:
       // If we've been retrying table creation, and the table is now in the process is being
       // created, we can sometimes see an empty schema. Wait until the table is fully created
       // before we compare the schema.

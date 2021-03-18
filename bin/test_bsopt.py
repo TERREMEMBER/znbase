@@ -12,9 +12,9 @@ import json
 import sys
 import subprocess
 
-# YugaByte directories
-YUGABYTE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-YBSAMPLEAPPS_DIR = os.path.normpath(os.path.join(YUGABYTE_DIR, '..', 'yb-sample-apps'))
+# ZNbase directories
+ZNbase_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+YBSAMPLEAPPS_DIR = os.path.normpath(os.path.join(ZNbase_DIR, '..', 'yb-sample-apps'))
 
 # Number of tablets to use
 NUM_TABLETS = 2
@@ -43,15 +43,15 @@ def test_cluster(opt_on):
 
     # Use yb-admin to flush all writes to RocksDB
     subprocess.check_call(
-        YUGABYTE_DIR +
+        ZNbase_DIR +
         "/build/latest/bin/yb-admin -master_addresses 127.0.0.1 flush_table " +
         "ybdemo_keyspace cassandrakeyvalue 60",
         shell=True)
 
     # Restart the cluster
-    subprocess.check_call([YUGABYTE_DIR + "/bin/yb-ctl", "stop"])
+    subprocess.check_call([ZNbase_DIR + "/bin/yb-ctl", "stop"])
     subprocess.check_call(
-        YUGABYTE_DIR + "/bin/yb-ctl start --tserver_flags \"skip_flushed_entries=" +
+        ZNbase_DIR + "/bin/yb-ctl start --tserver_flags \"skip_flushed_entries=" +
         str(opt_on).lower() + "\"",
         shell=True)
     time.sleep(10)
@@ -78,10 +78,10 @@ def test_cluster(opt_on):
 
 # Destroy and remake the cluster from scratch
 def remake_cluster():
-    subprocess.check_call(YUGABYTE_DIR + "/bin/yb-ctl stop", shell=True)
-    subprocess.check_call(YUGABYTE_DIR + "/bin/yb-ctl destroy", shell=True)
+    subprocess.check_call(ZNbase_DIR + "/bin/yb-ctl stop", shell=True)
+    subprocess.check_call(ZNbase_DIR + "/bin/yb-ctl destroy", shell=True)
     subprocess.check_call(
-        YUGABYTE_DIR + "/bin/yb-ctl --num_shards_per_tserver " + str(NUM_TABLETS) + " create",
+        ZNbase_DIR + "/bin/yb-ctl --num_shards_per_tserver " + str(NUM_TABLETS) + " create",
         shell=True)
     time.sleep(5)
 

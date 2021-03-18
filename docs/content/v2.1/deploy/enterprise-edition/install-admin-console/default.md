@@ -1,8 +1,8 @@
 ---
-title: Install Yugabyte Platform using Replicated
-headerTitle: Install Yugabyte Platform
-linkTitle: 2. Install Yugabyte Platform
-description: Use Replicated to install Yugabyte Platform (aka YugaWare).
+title: Install ZNbase Platform using Replicated
+headerTitle: Install ZNbase Platform
+linkTitle: 2. Install ZNbase Platform
+description: Use Replicated to install ZNbase Platform (aka YugaWare).
 block_indexing: true
 menu:
   v2.1:
@@ -35,11 +35,11 @@ showAsideToc: true
   </li>
 </ul>
 
-YugabyteDB universes and clusters are created and managed using the Yugabyte Platform. The default option to install Yugabyte Platform on a host machine that is connected to the Internet.
+ZNbaseDB universes and clusters are created and managed using the ZNbase Platform. The default option to install ZNbase Platform on a host machine that is connected to the Internet.
 
 ## Step 1. Install Replicated
 
-Connect to the Yugabyte Platform instance and do the following.
+Connect to the ZNbase Platform instance and do the following.
 
 - Install Replicated.
 
@@ -67,7 +67,7 @@ You should see an output similar to the following.
 
 ![Replicated successfully installed](/images/replicated/replicated-success.png)
 
-## Step 2. Install Yugabyte Platform
+## Step 2. Install ZNbase Platform
 
 ### Set up HTTPS for Replicated
 
@@ -85,7 +85,7 @@ The simplest option is use a self-signed cert for now and add the custom SSL cer
 
 ### Upload license file
 
-Now upload the Yugabyte license file received from [Yugabyte](https://www.yugabyte.com/platform/#request-trial-form).
+Now upload the ZNbase license file received from [ZNbase](https://www.ZNbase.com/platform/#request-trial-form).
 
 ![Replicated License Upload](/images/replicated/replicated-license-upload.png)
 
@@ -97,16 +97,16 @@ If you are asked to choose an installation type, choose `Online`.
 
 ### Secure Replicated
 
-The next step is to add a password to protect the Replicated Admin Console (note that this Admin Console is for Replicated and is different from Yugabyte Platform, the Admin Console for YugabyteDB).
+The next step is to add a password to protect the Replicated Admin Console (note that this Admin Console is for Replicated and is different from ZNbase Platform, the Admin Console for ZNbaseDB).
 
 ![Replicated Password](/images/replicated/replicated-password.png)
 
 ### Pre-flight checks
 
-Replicated will perform a set of pre-flight checks to ensure that the host is setup correctly for the Yugabyte Platform application.
+Replicated will perform a set of pre-flight checks to ensure that the host is setup correctly for the ZNbase Platform application.
 
 ![Replicated Checks](/images/replicated/replicated-checks.png)
 
-Clicking Continue above will bring us to Yugabyte Platform configuration.
+Clicking Continue above will bring us to ZNbase Platform configuration.
 
-In case the pre-flight check fails, see [Troubleshoot Yugabyte Platform](../../../troubleshoot/enterprise-edition/) to identify the resolution.
+In case the pre-flight check fails, see [Troubleshoot ZNbase Platform](../../../troubleshoot/enterprise-edition/) to identify the resolution.

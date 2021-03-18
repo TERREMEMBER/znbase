@@ -1,8 +1,8 @@
 ---
-title: Build a Scala application using Apache Spark and YugabyteDB
+title: Build a Scala application using Apache Spark and ZNbaseDB
 headerTitle: Apache Spark
 linkTitle: Apache Spark
-description: Build a Scala application using Apache Spark and YugabyteDB
+description: Build a Scala application using Apache Spark and ZNbaseDB
 block_indexing: true
 menu:
   v2.2:
@@ -42,17 +42,17 @@ isTocNested: true
 
 ### sbt
 
-To build your Scala application using the YugabyteDB Spark Connector for YCQL, add the following sbt dependency to your application:
+To build your Scala application using the ZNbaseDB Spark Connector for YCQL, add the following sbt dependency to your application:
 
 ```
-libraryDependencies += "com.yugabyte.spark" %% "spark-cassandra-connector" % "2.4-yb-3"
+libraryDependencies += "com.ZNbase.spark" %% "spark-cassandra-connector" % "2.4-yb-3"
 ```
 
 ## Build a sample application
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe, and are able to interact with it using the YCQL shell (`ycqlsh`). If not, please follow these steps in the [quick start guide](../../../../api/ycql/quick-start/).
+- installed ZNbaseDB, created a universe, and are able to interact with it using the YCQL shell (`ycqlsh`). If not, please follow these steps in the [quick start guide](../../../../api/ycql/quick-start/).
 
 - installed Scala version 2.12 or later and sbt 1.3.8 or later/
 
@@ -74,8 +74,8 @@ scalacOptions := Seq("-unchecked", "-deprecation")
 
 val sparkVersion = "2.4.4"
 
-// maven repo at https://mvnrepository.com/artifact/com.yugabyte.spark/spark-cassandra-connector
-libraryDependencies += "com.yugabyte.spark" %% "spark-cassandra-connector" % "2.4-yb-3"
+// maven repo at https://mvnrepository.com/artifact/com.ZNbase.spark/spark-cassandra-connector
+libraryDependencies += "com.ZNbase.spark" %% "spark-cassandra-connector" % "2.4-yb-3"
 
 // maven repo at https://mvnrepository.com/artifact/org.apache.spark/spark-core
 libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion % Provided
@@ -89,7 +89,7 @@ libraryDependencies += "org.apache.spark" %% "spark-sql" % sparkVersion % Provid
 Copy the following contents into the file `CassandraSparkWordCount.scala`.
 
 ```scala
-package com.yugabyte.sample.apps
+package com.ZNbase.sample.apps
 
 import com.datastax.spark.connector.cql.CassandraConnector
 import org.apache.spark.SparkConf
@@ -297,7 +297,7 @@ $ sbt assembly
 To run the program, run the following command.
 
 ```sh
-$ spark-submit --class com.yugabyte.sample.apps.CassandraSparkWordCount \
+$ spark-submit --class com.ZNbase.sample.apps.CassandraSparkWordCount \
     target/scala-2.11/CassandraSparkWordCount-assembly-1.0.jar
 ```
 

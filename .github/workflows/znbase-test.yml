@@ -1,0 +1,35 @@
+name: ZNbased-test
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**/ZNbased*'
+
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '**/ZNbased*'
+
+jobs:
+  ZNbased-test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ ubuntu-18.04 ]
+        python-version: [ 2.7, 3.8 ]
+
+    steps:
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - uses: actions/checkout@v2
+
+      - name: Run ZNbase-test-runner
+        run: |
+          scripts/ZNbased/test/ZNbased-test-runner.sh -y bin/ZNbased

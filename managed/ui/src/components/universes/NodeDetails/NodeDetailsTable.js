@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component, Fragment } from 'react';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
@@ -282,7 +282,7 @@ export default class NodeDetailsTable extends Component {
             >
               Processes
             </TableHeaderColumn>
-            {displayNodeActions && (           
+            {displayNodeActions && (
               <TableHeaderColumn
                 dataField="nodeAction"
                 className={'yb-actions-cell'}

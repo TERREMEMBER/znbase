@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component, ReactNode } from 'react';
 import { Row, Col } from 'react-bootstrap';
@@ -16,17 +16,17 @@ interface UpdateReleaseProps {
   visible: boolean,
   releaseInfo: {
     version: string,
-  },  
+  },
   actionType: ReleaseStateEnum,
   onHide(): void,
-  updateYugaByteRelease(value: string, state: object): void,
+  updateZNbaseRelease(value: string, state: object): void,
   onModalSubmit(): void
 }
 
 export default class UpdateRelease extends Component<UpdateReleaseProps> {
   updateRelease = () => {
-    const { releaseInfo, updateYugaByteRelease, onModalSubmit, onHide, actionType } = this.props;
-    updateYugaByteRelease(releaseInfo.version, {
+    const { releaseInfo, updateZNbaseRelease, onModalSubmit, onHide, actionType } = this.props;
+    updateZNbaseRelease(releaseInfo.version, {
       state: actionType
     });
     onHide();

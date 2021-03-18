@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -73,8 +73,8 @@ def parse_args():
         "--log-url",
         help="The test log URL to insert into the test result XML file. "
              "We need this so we can navigate directly to the test log "
-             "from a test result page such as https://jenkins.dev.yugabyte.com/job/"
-             "yugabyte-ubuntu-phabricator/131/testReport/junit/(root)/ClientTest"
+             "from a test result page such as https://jenkins.dev.ZNbase.com/job/"
+             "ZNbase-ubuntu-phabricator/131/testReport/junit/(root)/ClientTest"
              "/TestInvalidPredicates/.",
         dest="log_url",
         metavar="LOG_URL")

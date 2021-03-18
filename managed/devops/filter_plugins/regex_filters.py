@@ -1,12 +1,12 @@
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 import re
 import os
@@ -35,16 +35,16 @@ def extract_archive_folder_name(archive_filename):
     return re.sub("[.]tar[.]gz$", "", archive_filename)
 
 
-def extract_yugabyte_release_folder(archive_filename):
-    if "yugabyte" in archive_filename:
+def extract_ZNbase_release_folder(archive_filename):
+    if "ZNbase" in archive_filename:
         release = _get_release_from_archive(archive_filename)
-        # In case of yugabyte package alone, we would put it under
-        # /home/yugabyte/yb-software/releases/.
+        # In case of ZNbase package alone, we would put it under
+        # /home/ZNbase/yb-software/releases/.
         return os.path.join("releases", release.get_release_name())
 
 
-def yugabyte_directories(mount_points, yb_process_type, dir_type):
-    return map(lambda m: m + os.path.join('/yugabyte', yb_process_type, dir_type), mount_points)
+def ZNbase_directories(mount_points, yb_process_type, dir_type):
+    return map(lambda m: m + os.path.join('/ZNbase', yb_process_type, dir_type), mount_points)
 
 
 def strip_whitespace(s):
@@ -62,8 +62,8 @@ class FilterModule(object):
         return {
             "extract_release_version": extract_release_version,
             "extract_archive_folder_name": extract_archive_folder_name,
-            "extract_yugabyte_release_folder": extract_yugabyte_release_folder,
-            "yugabyte_directories": yugabyte_directories,
+            "extract_ZNbase_release_folder": extract_ZNbase_release_folder,
+            "ZNbase_directories": ZNbase_directories,
             "strip": strip_whitespace,
             "get_value": get_value
         }

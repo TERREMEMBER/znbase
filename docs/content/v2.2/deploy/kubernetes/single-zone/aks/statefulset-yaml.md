@@ -87,12 +87,12 @@ aks-nodepool1-25019584-1   Ready     agent     4h        v1.7.9
 aks-nodepool1-25019584-2   Ready     agent     4h        v1.7.9
 ```
 
-## 2. Create a YugabyteDB cluster
+## 2. Create a ZNbaseDB cluster
 
-Create a YugabyteDB cluster by running the following.
+Create a ZNbaseDB cluster by running the following.
 
 ```sh
-$ kubectl create -f https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/cloud/kubernetes/yugabyte-statefulset.yaml
+$ kubectl create -f https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/cloud/kubernetes/ZNbase-statefulset.yaml
 ```
 
 ```
@@ -166,12 +166,12 @@ ycqlsh> DESCRIBE KEYSPACES;
 system_schema  system_auth  system
 ```
 
-## 5. Destroy the YugabyteDB cluster (optional)
+## 5. Destroy the ZNbaseDB cluster (optional)
 
-Destroy the YugabyteDB cluster you created above by running the following.
+Destroy the ZNbaseDB cluster you created above by running the following.
 
 ```sh
-$ kubectl delete -f https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/cloud/kubernetes/yugabyte-statefulset.yaml
+$ kubectl delete -f https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/cloud/kubernetes/ZNbase-statefulset.yaml
 ```
 
 ```

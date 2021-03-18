@@ -2,7 +2,7 @@
  * ybcExpr.h
  *	  prototypes for ybcExpr.c
  *
- * Copyright (c) YugaByte, Inc.
+ * Copyright (c) ZNbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License.  You may obtain a copy of the License at
@@ -17,7 +17,7 @@
  * src/include/executor/ybcExpr.h
  *
  * NOTES:
- *   - For performance reasons, some expressions must be sent to YugaByte for execution.
+ *   - For performance reasons, some expressions must be sent to ZNbase for execution.
  *   - This module constructs expression tree to be sent to YBC API.
  *   - In the future, we can move a portion of Postgres datum and engine to /yb/common such that
  *     DocDB can execute Postgres expression without constructing YBC tree.  That involves a lot
@@ -49,10 +49,10 @@ extern YBCPgExpr YBCNewConstant(YBCPgStatement ybc_stmt, Oid type_id, Datum datu
 extern YBCPgExpr YBCNewConstantVirtual(YBCPgStatement ybc_stmt, Oid type_id, YBCPgDatumKind kind);
 
 // Construct a generic eval_expr call for given a PG Expr and its expected type and attno.
-extern YBCPgExpr YBCNewEvalSingleParamExprCall(YBCPgStatement ybc_stmt, 
-                                               Expr *expr, 
-                                               int32_t attno, 
-                                               int32_t type_id, 
+extern YBCPgExpr YBCNewEvalSingleParamExprCall(YBCPgStatement ybc_stmt,
+                                               Expr *expr,
+                                               int32_t attno,
+                                               int32_t type_id,
                                                int32_t type_mod);
 
 YBCPgExpr YBCNewEvalExprCall(YBCPgStatement ybc_stmt,

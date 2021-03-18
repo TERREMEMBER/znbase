@@ -10,9 +10,9 @@ menu:
     weight: 240
 ---
 
-You can monitor your local YugabyteDB cluster with a local instance of [Prometheus](https://prometheus.io/), the de-facto standard for time-series monitoring of cloud native infrastructure. Every YugabyteDB service exposes metrics in the Prometheus format at the `/prometheus-metrics` endpoint.
+You can monitor your local ZNbaseDB cluster with a local instance of [Prometheus](https://prometheus.io/), the de-facto standard for time-series monitoring of cloud native infrastructure. Every ZNbaseDB service exposes metrics in the Prometheus format at the `/prometheus-metrics` endpoint.
 
-If you haven't installed YugabyteDB yet, do so first by following the [Quick Start](../../quick-start/install/) guide.
+If you haven't installed ZNbaseDB yet, do so first by following the [Quick Start](../../quick-start/install/) guide.
 
 <ul class="nav nav-tabs nav-tabs-yb">
   <li >

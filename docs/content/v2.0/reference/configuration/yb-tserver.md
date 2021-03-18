@@ -12,7 +12,7 @@ isTocNested: 3
 showAsideToc: true
 ---
 
-Use the `yb-tserver` binary and its options to configure the [YB-TServer](../../../architecture/concepts/yb-tserver/) server. The `yb-tserver` executable file is located in the `bin` directory of YugabyteDB home.
+Use the `yb-tserver` binary and its options to configure the [YB-TServer](../../../architecture/concepts/yb-tserver/) server. The `yb-tserver` executable file is located in the `bin` directory of ZNbaseDB home.
 
 ## Syntax
 
@@ -32,7 +32,7 @@ $ ./bin/yb-tserver \
 
 ### Online help
 
-To display the online help, run `yb-tserver --help` from the YugabyteDB home directory.
+To display the online help, run `yb-tserver --help` from the ZNbaseDB home directory.
 
 ```sh
 $ ./bin/yb-tserver --help
@@ -155,7 +155,7 @@ Default: `9000`
 
 The monitoring web server home directory..
 
-Default: The `www` directory in the YugabyteDB home directory.
+Default: The `www` directory in the ZNbaseDB home directory.
 
 ---
 
@@ -337,9 +337,9 @@ Enables YSQL authentication.
 
 {{< note title="Note" >}}
 
-**Yugabyte 2.0:** Assign a password for the default `yugabyte` user to be able to sign in after enabling YSQL authentication.
+**ZNbase 2.0:** Assign a password for the default `ZNbase` user to be able to sign in after enabling YSQL authentication.
 
-**Yugabyte 2.0.1:** When YSQL authentication is enabled, you can sign into `ysqlsh` using the default `yugabyte` user that has a default password of `yugabyte".
+**ZNbase 2.0.1:** When YSQL authentication is enabled, you can sign into `ysqlsh` using the default `ZNbase` user that has a default password of `ZNbase".
 
 {{< /note >}}
 
@@ -355,7 +355,7 @@ Default: `0.0.0.0:5433`
 
 {{< note title="Note" >}}
 
-When using local YugabyteDB clusters built using the
+When using local ZNbaseDB clusters built using the
 
 {{< /note >}}
 
@@ -401,11 +401,11 @@ Specifies the default transaction isolation level.
 
 Valid values: `READ UNCOMMITTED`, `READ COMMITTED`, `REPEATABLE READ`, and `SERIALIZABLE`.
 
-Default: `READ COMMITTED` (implemented in YugabyteDB as `REPEATABLE READ`)
+Default: `READ COMMITTED` (implemented in ZNbaseDB as `REPEATABLE READ`)
 
 {{< note title="Note" >}}
 
-YugabyteDB supports two transaction isolation levels: `REPEATABLE READ` (aka snapshot) and `SERIALIZABLE`. The transaction isolation levels of `READ UNCOMMITTED` and `READ COMMITTED` are implemented in YugabyteDB as `REPEATABLE READ`.
+ZNbaseDB supports two transaction isolation levels: `REPEATABLE READ` (aka snapshot) and `SERIALIZABLE`. The transaction isolation levels of `READ UNCOMMITTED` and `READ COMMITTED` are implemented in ZNbaseDB as `REPEATABLE READ`.
 
 {{< /note >}}
 
@@ -553,7 +553,7 @@ Default: `false`
 
 ##### --use_node_to_node_encryption
 
-Enable server-server, or node-to-node, encryption between YugabyteDB YB-Master and YB-TServer servers in a cluster or universe. To work properly, all YB-Master servers must also have their [`--use_node_to_node_encryption`](../yb-master/#use-node-to-node-encryption) setting enabled. When enabled, then [`--allow_insecure_connections`](#allow-insecure-connections) must be disabled.
+Enable server-server, or node-to-node, encryption between ZNbaseDB YB-Master and YB-TServer servers in a cluster or universe. To work properly, all YB-Master servers must also have their [`--use_node_to_node_encryption`](../yb-master/#use-node-to-node-encryption) setting enabled. When enabled, then [`--allow_insecure_connections`](#allow-insecure-connections) must be disabled.
 
 Default: `false`
 

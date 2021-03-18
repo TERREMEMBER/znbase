@@ -12,7 +12,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Configuring YugaWare, the YugabyteDB Admin Console, is really simple. A randomly generated password for the YugaWare config database is already pre-filled. You can make a note of it for future use or change it to a new password of your choice. Additionally, `/opt/yugabyte` is pre-filled as the location of the directory on the YugaWare host where all the YugaWare data will be stored.  Clicking Save on this page will take us to the Replicated Dashboard.
+Configuring YugaWare, the ZNbaseDB Admin Console, is really simple. A randomly generated password for the YugaWare config database is already pre-filled. You can make a note of it for future use or change it to a new password of your choice. Additionally, `/opt/ZNbase` is pre-filled as the location of the directory on the YugaWare host where all the YugaWare data will be stored.  Clicking Save on this page will take us to the Replicated Dashboard.
 
 ![Replicated YugaWare Config](/images/replicated/replicated-yugaware-config.png)
 
@@ -48,7 +48,7 @@ Next step is to configure one or more cloud providers in YugaWare as documented 
 
 ## Backup data
 
-We recommend a weekly machine snapshot and weekly backups of `/opt/yugabyte`.
+We recommend a weekly machine snapshot and weekly backups of `/opt/ZNbase`.
 
 Doing a machine snapshot and backing up the above directory before performing an update is recommended as well.
 
@@ -86,7 +86,7 @@ $ docker images | grep "yuga" | awk '{print $3}' | xargs docker rmi -f
 Delete the mapped directory.
 
 ```sh
-$ rm -rf /opt/yugabyte
+$ rm -rf /opt/ZNbase
 ```
 
 Nex, uninstall Replicated itself by following instructions documented [here](https://help.replicated.com/docs/native/customer-installations/installing-via-script/#removing-replicated).

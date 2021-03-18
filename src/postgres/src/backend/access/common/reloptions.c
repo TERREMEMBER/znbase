@@ -1630,7 +1630,7 @@ tablespace_reloptions(Datum reloptions, bool validate)
 }
 
 /*
- * Option parser for yugabyte tablespace reloptions
+ * Option parser for ZNbase tablespace reloptions
  */
 bytea *
 yb_tablespace_reloptions(Datum reloptions, bool validate)

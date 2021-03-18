@@ -16,7 +16,7 @@ showAsideToc: true
 
 All of the `.sql` scripts that this section presents for copy-and-paste at the `ysqlsh` prompt are included for download in a zip-file.
 
-[Download `recursive-cte-code-examples.zip`](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/recursive-cte-code-examples/recursive-cte-code-examples.zip).
+[Download `recursive-cte-code-examples.zip`](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/recursive-cte-code-examples/recursive-cte-code-examples.zip).
 
 After unzipping it on a convenient new directory, you'll see a `README.txt`.  It tells you how to start the Bacon Numbers master-script. This invokes all the child scripts that: (1) ingest the `imdb.small.txt` data set from the Oberlin College Computer Science department's [CSCI 151 Lab 10—Everything is better with Bacon](https://www.cs.oberlin.edu/~rhoyle/16f-cs151/lab10/index.html); and (2) solve the Bacon Numbers problem using this data set. (The `imdb.small.txt` file is included in the `.zip`.) Simply start it in `ysqlsh`. You can run it time and again. It always finishes silently. You can see the report that it produces on a dedicated spool directory and confirm that your reports are identical to the reference copies that are delivered in the zip-file.
 {{< /tip >}}

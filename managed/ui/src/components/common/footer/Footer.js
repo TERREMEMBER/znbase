@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { PureComponent } from 'react';
 import './stylesheets/Footer.scss';
@@ -24,21 +24,21 @@ class Footer extends PureComponent {
           {version && <span> Version: {version.substr(0, version.indexOf('-'))}</span>}
         </div>
         <div className="footer-social-container">
-          <a href="https://www.yugabyte.com/slack" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.ZNbase.com/slack" target="_blank" rel="noopener noreferrer">
             <span className="social-media-cta">
               Join us on
-              <img alt="YugabyteDB Slack" src={slackLogo} width="65" />
+              <img alt="ZNbaseDB Slack" src={slackLogo} width="65" />
             </span>
           </a>
           <a
-            href="https://github.com/yugabyte/yugabyte-db/"
+            href="https://github.com/ZNbase/ZNbase-db/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <span className="social-media-cta">
               Star us on
               <img
-                alt="YugabyteDB GitHub"
+                alt="ZNbaseDB GitHub"
                 className="social-media-logo"
                 src={githubLogo}
                 width="18"
@@ -47,14 +47,14 @@ class Footer extends PureComponent {
             </span>
           </a>
           <a
-            href="https://www.yugabyte.com/community-rewards/"
+            href="https://www.ZNbase.com/community-rewards/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <span className="social-media-cta">
               Free t-shirt at
               <img
-                alt="YugabyteDB Community Rewards"
+                alt="ZNbaseDB Community Rewards"
                 className="social-media-logo"
                 src={ybLogoImage}
                 width="100"
@@ -62,7 +62,7 @@ class Footer extends PureComponent {
             </span>
           </a>
         </div>
-        <div className="copyright">&copy; {moment().get('year')} Yugabyte, Inc.</div>
+        <div className="copyright">&copy; {moment().get('year')} ZNbase, Inc.</div>
       </footer>
     );
   }

@@ -23,7 +23,7 @@ Returns status string.
 ## Examples
 
 ```sh
-$ SETEX yugakey 10 "Yugabyte"
+$ SETEX yugakey 10 "ZNbase"
 ```
 
 ```
@@ -35,7 +35,7 @@ $ GET yugakey
 ```
 
 ```
-"Yugabyte"
+"ZNbase"
 ```
 ```sh
 $ TTL yugakey

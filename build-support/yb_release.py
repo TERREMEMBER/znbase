@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -50,7 +50,7 @@ def main():
     parser.add_argument('--commit', help='Custom specify a git commit.')
     parser.add_argument('--skip_build', help='Skip building the code', action='store_true')
     parser.add_argument('--build_target',
-                        help='Target directory to put the YugaByte distribution into. This can '
+                        help='Target directory to put the ZNbase distribution into. This can '
                              'be used for debugging this script without having to build the '
                              'tarball. If specified, this directory must either not exist or be '
                              'empty.')
@@ -122,7 +122,7 @@ def main():
     if not build_type:
         build_type = 'release'
 
-    logging.info("Building YugabyteDB {} build".format(build_type))
+    logging.info("Building ZNbaseDB {} build".format(build_type))
 
     build_desc_path = os.path.join(tmp_dir, 'build_descriptor.yaml')
     build_cmd_list = [

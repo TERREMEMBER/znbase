@@ -45,7 +45,7 @@ Where
 ## Semantics
 
 - An error is raised if the specified `keyspace_name` already exists unless `IF NOT EXISTS` option is present.
-- CQL keyspace properties are supported in the syntax but have no effect internally (where YugabyteDB defaults are used instead).
+- CQL keyspace properties are supported in the syntax but have no effect internally (where ZNbaseDB defaults are used instead).
 
 ## Examples
 

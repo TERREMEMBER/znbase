@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -653,7 +653,7 @@ class ResultResponse : public CQLResponse {
         SET       = 0x0022,
         UDT       = 0x0030,
         TUPLE     = 0x0031,
-        JSONB     = 0x0080  // Yugabyte specific types start here
+        JSONB     = 0x0080  // ZNbase specific types start here
       };
 
       Id id = Id::CUSTOM;

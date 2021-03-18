@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- Copyright (c) YugaByte, Inc. -->
+<!-- Copyright (c) ZNbase, Inc. -->
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
@@ -34,7 +34,7 @@
       <!-- Exclude Cassandra driver because it is already included by Spark -->
       <exclusions>
         <exclusion>
-          <groupId>com.yugabyte</groupId>
+          <groupId>com.ZNbase</groupId>
           <artifactId>cassandra-driver-core</artifactId>
         </exclusion>
       </exclusions>
@@ -65,11 +65,11 @@
       <artifactId>commons-codec</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.yugabyte</groupId>
+      <groupId>com.ZNbase</groupId>
       <artifactId>jedis</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.yugabyte.spark</groupId>
+      <groupId>com.ZNbase.spark</groupId>
       <artifactId>spark-cassandra-connector_2.11</artifactId>
     </dependency>
     <dependency>
@@ -93,7 +93,7 @@
       <artifactId>postgresql</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.yugabyte</groupId>
+      <groupId>com.ZNbase</groupId>
       <artifactId>yb-sample-apps</artifactId>
       <version>1.0.9</version>
     </dependency>

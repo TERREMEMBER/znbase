@@ -2,7 +2,7 @@
 title: CREATE ROLE statement [YSQL]
 headerTitle: CREATE ROLE
 linkTitle: CREATE ROLE
-description: Use the CREATE ROLE statement to add a role to a YugabyteDB database cluster.
+description: Use the CREATE ROLE statement to add a role to a ZNbaseDB database cluster.
 menu:
   stable:
     identifier: dcl_create_role
@@ -13,7 +13,7 @@ showAsideToc: true
 
 ## Synopsis
 
-Use the `CREATE ROLE` statement to add a role to a YugabyteDB database cluster. A role is an entity that can own database objects and have database privileges.
+Use the `CREATE ROLE` statement to add a role to a ZNbaseDB database cluster. A role is an entity that can own database objects and have database privileges.
 A role can be a user or a group, depending on how it is used. A role with atttribute `LOGIN` can be considered as a "user".
 You must have `CREATEROLE` privilege or be a database superuser to use this command.
 
@@ -74,19 +74,19 @@ Note that password is always stored encrypted in system catalogs and the optiona
 - Create a role that can login.
 
 ```plpgsql
-yugabyte=# CREATE ROLE John LOGIN;
+ZNbase=# CREATE ROLE John LOGIN;
 ```
 
 - Create a role that can login and has a password.
 
 ```plpgsql
-yugabyte=# CREATE ROLE Jane LOGIN PASSWORD 'password';
+ZNbase=# CREATE ROLE Jane LOGIN PASSWORD 'password';
 ```
 
 - Create a role that can manage databases and roles.
 
 ```plpgsql
-yugabyte=# CREATE ROLE SysAdmin CREATEDB CREATEROLE;
+ZNbase=# CREATE ROLE SysAdmin CREATEDB CREATEROLE;
 ```
 
 ## See also

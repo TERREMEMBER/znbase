@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -1164,7 +1164,7 @@ void MetaCache::InvalidateTableCache(const YBTable& table) {
     table_data.tablet_lookups_by_group.clear();
 
     // Only update partitions here after invalidating TableData cache to avoid inconsistencies.
-    // See https://github.com/yugabyte/yugabyte-db/issues/6890.
+    // See https://github.com/ZNbase/ZNbase-db/issues/6890.
     table_data.partition_list = table_partition_list;
   }
   for (const auto& callback : to_notify) {

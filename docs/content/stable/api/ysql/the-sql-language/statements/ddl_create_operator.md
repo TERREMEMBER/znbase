@@ -50,11 +50,11 @@ See the semantics of each option in the [PostgreSQL docs][postgresql-docs-create
 Basic example.
 
 ```plpgsql
-yugabyte=# CREATE OPERATOR @#@ (
+ZNbase=# CREATE OPERATOR @#@ (
              rightarg = int8,
              procedure = numeric_fac
            );
-yugabyte=# SELECT @#@ 5;
+ZNbase=# SELECT @#@ 5;
 ```
 
 ```

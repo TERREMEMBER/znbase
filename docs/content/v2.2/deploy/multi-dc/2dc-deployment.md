@@ -17,7 +17,7 @@ showAsideToc: true
 
 {{< tip title="Recommended Reading" >}}
 
-[9 Techniques to Build Cloud-Native, Geo-Distributed SQL Apps with Low Latency](https://blog.yugabyte.com/9-techniques-to-build-cloud-native-geo-distributed-sql-apps-with-low-latency/) highlights the various multi-DC deployment strategies (including 2DC deployments) for a distributed SQL database like YugabyteDB.
+[9 Techniques to Build Cloud-Native, Geo-Distributed SQL Apps with Low Latency](https://blog.ZNbase.com/9-techniques-to-build-cloud-native-geo-distributed-sql-apps-with-low-latency/) highlights the various multi-DC deployment strategies (including 2DC deployments) for a distributed SQL database like ZNbaseDB.
 
 {{< /tip >}}
 
@@ -31,7 +31,7 @@ Follow the steps below to set up a 2DC deployment using either unidirectional (a
 
 To create the producer universe, follow these steps.
 
-1. Create the “yugabyte-producer” universe using the [Manual deployment](../../manual-deployment) steps.
+1. Create the “ZNbase-producer” universe using the [Manual deployment](../../manual-deployment) steps.
 
 2. Create the the tables for the APIs being used.
 
@@ -39,7 +39,7 @@ To create the producer universe, follow these steps.
 
 To create the consumer universe, follow these steps.
 
-1. Create the “yugabyte-consumer” universe using the [Manual deployment](../../manual-deployment) steps.
+1. Create the “ZNbase-consumer” universe using the [Manual deployment](../../manual-deployment) steps.
 
 2. Create the tables for the APIs being used.
 
@@ -51,7 +51,7 @@ After creating the required tables, you can now set up asysnchronous replication
 
 1. Look up the producer universe UUID and the table IDs for the two tables and the index table on master UI.
 
-2. Run the following `yb-admin` [`setup_universe_replication`](../../../admin/yb-admin/#setup-universe-replication) command from the YugabyteDB home directory in the producer universe.
+2. Run the following `yb-admin` [`setup_universe_replication`](../../../admin/yb-admin/#setup-universe-replication) command from the ZNbaseDB home directory in the producer universe.
 
 ```sh
 ./bin/yb-admin -master_addresses <consumer_universe_master_addresses>
@@ -77,15 +77,15 @@ There should be three table IDs in the command above — two of those are YSQL f
 
 ## 3. Bidirectional (aka multi-master) replication
 
-To set up bidirectional replication, follow the steps above in the Unidirectional replication section above and then do the same steps for the the “yugabyte-consumer” universe.
+To set up bidirectional replication, follow the steps above in the Unidirectional replication section above and then do the same steps for the the “ZNbase-consumer” universe.
 
-Note that this time, “yugabyte-producer” will be set up to consume data from “yugabyte-consumer”.
+Note that this time, “ZNbase-producer” will be set up to consume data from “ZNbase-consumer”.
 
 ## 4. Load data into producer universe
 
-1. Download the YugabyteDB workload generator JAR file (`yb-sample-apps.jar`) from [GitHub](https://github.com/yugabyte/yb-sample-apps).
+1. Download the ZNbaseDB workload generator JAR file (`yb-sample-apps.jar`) from [GitHub](https://github.com/ZNbase/yb-sample-apps).
 
-2. Start loading data into “yugabyte-producer” using the YugabyteDB workload generator JAR.
+2. Start loading data into “ZNbase-producer” using the ZNbaseDB workload generator JAR.
 
 **YSQL example**
 
@@ -99,17 +99,17 @@ java -jar yb-sample-apps.jar --workload SqlSecondaryIndex  --nodes 127.0.0.1:543
 java -jar yb-sample-apps.jar --workload CassandraBatchKeyValue --nodes 127.0.0.1:9042
 ```
 
-For bidirectional replication, repeat this step in the "yugabyte-consumer" universe.
+For bidirectional replication, repeat this step in the "ZNbase-consumer" universe.
 
 ## 5. Verify replication
 
 **For unidirectional replication**
 
-Connect to “yugabyte-consumer” universe using the YSQL shell (`ysqlsh`) or the YCQL shell (`ycqlsh`), and then confirm that you can see expected records.
+Connect to “ZNbase-consumer” universe using the YSQL shell (`ysqlsh`) or the YCQL shell (`ycqlsh`), and then confirm that you can see expected records.
 
 **For bidirectional replication**
 
-Repeat the steps above, but pump data into “yugabyte-consumer”. To avoid primary key conflict errors, keep the key space for the two universes separate.
+Repeat the steps above, but pump data into “ZNbase-consumer”. To avoid primary key conflict errors, keep the key space for the two universes separate.
 
 
 {{< tip title="How to check replication lag" >}}

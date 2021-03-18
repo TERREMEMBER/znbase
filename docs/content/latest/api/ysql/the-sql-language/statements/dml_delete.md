@@ -88,7 +88,7 @@ INSERT INTO sample VALUES (1, 2.0, 3, 'a'), (2, 3.0, 4, 'b'), (3, 4.0, 5, 'c');
 ```
 
 ```plpgsql
-yugabyte=# SELECT * FROM sample ORDER BY k1;
+ZNbase=# SELECT * FROM sample ORDER BY k1;
 ```
 
 ```
@@ -105,7 +105,7 @@ DELETE FROM sample WHERE k1 = 2 AND k2 = 3;
 ```
 
 ```plpgsql
-yugabyte=# SELECT * FROM sample ORDER BY k1;
+ZNbase=# SELECT * FROM sample ORDER BY k1;
 ```
 
 ```

@@ -1,9 +1,9 @@
 ---
-title: Observability in YugabyteDB
+title: Observability in ZNbaseDB
 headerTitle: Observability
 linkTitle: Observability
-description: Observability in YugabyteDB.
-headcontent: Observability in YugabyteDB.
+description: Observability in ZNbaseDB.
+headcontent: Observability in ZNbaseDB.
 image: /images/section_icons/secure/authorization.png
 menu:
   stable:
@@ -21,7 +21,7 @@ menu:
         <div class="title">Prometheus Integration</div>
       </div>
       <div class="body">
-          Export YugabyteDB metrics into Prometheus to inspect various metrics.
+          Export ZNbaseDB metrics into Prometheus to inspect various metrics.
       </div>
     </a>
   </div>

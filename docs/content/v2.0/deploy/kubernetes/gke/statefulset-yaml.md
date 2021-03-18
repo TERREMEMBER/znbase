@@ -52,10 +52,10 @@ $ gcloud components install kubectl
 
 - Configure defaults for gcloud
 
-Set the project ID as `yugabyte`. You can change this as per your need.
+Set the project ID as `ZNbase`. You can change this as per your need.
 
 ```sh
-$ gcloud config set project yugabyte
+$ gcloud config set project ZNbase
 ```
 
 Set the default compute zone as `us-west1-b`. You can change this as per your need.
@@ -69,15 +69,15 @@ $ gcloud config set compute/zone us-west1-b
 Create a Kubernetes cluster, if you have not already done so, by running the following command.
 
 ```sh
-$ gcloud container clusters create yugabyte
+$ gcloud container clusters create ZNbase
 ```
 
-## 2. Create a YugabyteDB cluster
+## 2. Create a ZNbaseDB cluster
 
-Create a YugabyteDB cluster by running the following.
+Create a ZNbaseDB cluster by running the following.
 
 ```sh
-$ kubectl create -f https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/cloud/kubernetes/yugabyte-statefulset.yaml
+$ kubectl create -f https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/cloud/kubernetes/ZNbase-statefulset.yaml
 ```
 
 ```
@@ -153,10 +153,10 @@ system_schema  system_auth  system
 
 ## 5. Destroy cluster (optional)
 
-Destroy the YugabyteDB cluster we created above by running the following.
+Destroy the ZNbaseDB cluster we created above by running the following.
 
 ```sh
-$ kubectl delete -f https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/cloud/kubernetes/yugabyte-statefulset.yaml
+$ kubectl delete -f https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/cloud/kubernetes/ZNbase-statefulset.yaml
 ```
 
 ```
@@ -178,7 +178,7 @@ $ kubectl delete pvc -l app=yb-tserver
 To destroy the machines we created for the gcloud cluster, run the following.
 
 ```sh
-$ gcloud container clusters delete yugabyte
+$ gcloud container clusters delete ZNbase
 ```
 
 ## Advanced Kubernetes deployment

@@ -16,7 +16,7 @@ RETURN NEW;
 END;
 $$;
 
-ALTER FUNCTION public.notice_on_trigger() OWNER TO yugabyte;
+ALTER FUNCTION public.notice_on_trigger() OWNER TO ZNbase;
 
 SET default_tablespace = '';
 
@@ -26,7 +26,7 @@ CREATE TABLE public.with_constraints__fk_ref (
     id integer
 );
 
-ALTER TABLE public.with_constraints__fk_ref OWNER TO yugabyte;
+ALTER TABLE public.with_constraints__fk_ref OWNER TO ZNbase;
 
 
 CREATE TABLE public.with_constraints_and_such (
@@ -39,7 +39,7 @@ CREATE TABLE public.with_constraints_and_such (
     CONSTRAINT with_constraints_and_such_checked_nn_check CHECK ((checked_nn > 0))
 );
 
-ALTER TABLE public.with_constraints_and_such OWNER TO yugabyte;
+ALTER TABLE public.with_constraints_and_such OWNER TO ZNbase;
 
 COPY public.with_constraints__fk_ref (id) FROM stdin;
 10

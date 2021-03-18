@@ -46,12 +46,12 @@
         <version>3.0.1</version>
       </dependency>
     <dependency>
-      <groupId>com.yugabyte</groupId>
+      <groupId>com.ZNbase</groupId>
       <artifactId>java-driver-core</artifactId>
       <version>4.6.0-yb-6</version>
     </dependency>
     <dependency>
-      <groupId>com.yugabyte</groupId>
+      <groupId>com.ZNbase</groupId>
       <artifactId>java-driver-query-builder</artifactId>
       <version>4.6.0-yb-6</version>
     </dependency>
@@ -76,7 +76,7 @@
         <artifactId>guava</artifactId>
       </dependency>
       <dependency>
-        <groupId>com.yugabyte</groupId>
+        <groupId>com.ZNbase</groupId>
         <artifactId>jedis</artifactId>
       </dependency>
       <dependency>
@@ -88,7 +88,7 @@
         <artifactId>commons-codec</artifactId>
       </dependency>
       <dependency>
-        <groupId>com.yugabyte.spark</groupId>
+        <groupId>com.ZNbase.spark</groupId>
         <artifactId>spark-cassandra-connector_2.12</artifactId>
         <version>3.0-yb-2</version>
       </dependency>

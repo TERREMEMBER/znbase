@@ -31,9 +31,9 @@ showAsideToc: true
 
 </ul>
 
-YugabyteDB can easily be deployed in a globally distributed manner to serve application queries from the region closest to the end users with low latencies as well as to survive any outages to ensure high availability.
+ZNbaseDB can easily be deployed in a globally distributed manner to serve application queries from the region closest to the end users with low latencies as well as to survive any outages to ensure high availability.
 
-This tutorial will simulate AWS regions on a local machine. First, you will deploy YugabyteDB in the `us-west-2` region across multiple availability zones (`a`, `b`, `c`). We will start a key-value workload against this universe. Next, you will change this setup to run across multiple geographic regions in US East (`us-east-1`) and Tokyo (`ap-northeast-1`), with the workload running uninterrupted during the entire transition.
+This tutorial will simulate AWS regions on a local machine. First, you will deploy ZNbaseDB in the `us-west-2` region across multiple availability zones (`a`, `b`, `c`). We will start a key-value workload against this universe. Next, you will change this setup to run across multiple geographic regions in US East (`us-east-1`) and Tokyo (`ap-northeast-1`), with the workload running uninterrupted during the entire transition.
 
 This tutorial uses the [yb-ctl](../../../admin/yb-ctl) local cluster management utility.
 
@@ -61,10 +61,10 @@ You can view the tablet servers on the [tablet servers page](http://localhost:70
 
 ## 2. Start a workload
 
-Download the [YugabyteDB workload generator](https://github.com/yugabyte/yb-sample-apps) JAR file (`yb-sample-apps.jar`) by running the following command.
+Download the [ZNbaseDB workload generator](https://github.com/ZNbase/yb-sample-apps) JAR file (`yb-sample-apps.jar`) by running the following command.
 
 ```sh
-$ wget https://github.com/yugabyte/yb-sample-apps/releases/download/1.3.1/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
+$ wget https://github.com/ZNbase/yb-sample-apps/releases/download/1.3.1/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
 ```
 
 Run a `SqlInserts` workload in a separate shell.

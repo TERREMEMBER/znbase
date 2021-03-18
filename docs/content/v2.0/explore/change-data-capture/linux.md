@@ -31,9 +31,9 @@ showAsideToc: true
 
 </ul>
 
-[Change data capture (CDC)](../../architecture/cdc-architecture) can be used to asynchronously stream data changes from a YugabyteDB cluster to external systems like message queues and OLAP warehouses. The data changes in YugabyteDB are detected, captured, and then output to the specified target.  In the steps below, you will use a local YugabyteDB cluster to stream data changes to `stdout` using the CDC API.
+[Change data capture (CDC)](../../architecture/cdc-architecture) can be used to asynchronously stream data changes from a ZNbaseDB cluster to external systems like message queues and OLAP warehouses. The data changes in ZNbaseDB are detected, captured, and then output to the specified target.  In the steps below, you will use a local ZNbaseDB cluster to stream data changes to `stdout` using the CDC API.
 
-If you haven't installed YugabyteDB yet, do so first by following the [Quick Start](../../quick-start/install/) guide.
+If you haven't installed ZNbaseDB yet, do so first by following the [Quick Start](../../quick-start/install/) guide.
 
 ## Prerequisites
 
@@ -43,13 +43,13 @@ A JRE (or JDK), for Java 8 or later, is installed. JDK and JRE installers for Li
 
 ## 1. Add a database table
 
-Start your local YugabyteDB cluster and run `ysqlsh` to connect to the service.
+Start your local ZNbaseDB cluster and run `ysqlsh` to connect to the service.
 
 ```sh
 $ ./bin/ysqlsh 
 ```
 
-Add a table, named `users`, to the default `yugabyte` database.
+Add a table, named `users`, to the default `ZNbase` database.
 
 ```postgresql
 CREATE TABLE products(
@@ -65,22 +65,22 @@ CREATE TABLE products(
 );
 ```
 
-## 2. Download the YugabyteDB CDC Connector
+## 2. Download the ZNbaseDB CDC Connector
 
 Download the CDC Connector JAR file (`yb-cdc-connector.jar`).
 
 ```sh
-$ wget -O yb-cdc-connector.jar https://github.com/yugabyte/yb-kafka-connector/blob/master/yb-cdc/yb-cdc-connector.jar?raw=true
+$ wget -O yb-cdc-connector.jar https://github.com/ZNbase/yb-kafka-connector/blob/master/yb-cdc/yb-cdc-connector.jar?raw=true
 
 ```
 
 ## 3. Stream the log output stream to "stdout"
 
-Run the command below to to start logging an output stream of data changes from the YugabyteDB `cdc` table to `stdout`.
+Run the command below to to start logging an output stream of data changes from the ZNbaseDB `cdc` table to `stdout`.
 
 ```sh
 java -jar yb-cdc-connector.jar \
---table_name yugabyte.products \
+--table_name ZNbase.products \
 --log_only
 ```
 

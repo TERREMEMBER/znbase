@@ -92,7 +92,7 @@ Pre-splitting indexes, using `SPLIT INTO`, distributes index workloads on a prod
 
 {{< note title="Note" >}}
 
-By default, YugabyteDB pre-splits an index into `ysql_num_shards_per_tserver * num_of_tserver` tablets. The `SPLIT INTO` clause can be used to override that setting on a per-index basis.
+By default, ZNbaseDB pre-splits an index into `ysql_num_shards_per_tserver * num_of_tserver` tablets. The `SPLIT INTO` clause can be used to override that setting on a per-index basis.
 
 {{< /note >}}
 
@@ -103,11 +103,11 @@ By default, YugabyteDB pre-splits an index into `ysql_num_shards_per_tserver * n
 Create a unique index with hash ordered columns.
 
 ```postgresql
-yugabyte=# CREATE TABLE products(id int PRIMARY KEY,
+ZNbase=# CREATE TABLE products(id int PRIMARY KEY,
                                  name text,
                                  code text);
-yugabyte=# CREATE UNIQUE INDEX ON products(code);
-yugabyte=# \d products
+ZNbase=# CREATE UNIQUE INDEX ON products(code);
+ZNbase=# \d products
               Table "public.products"
  Column |  Type   | Collation | Nullable | Default
 --------+---------+-----------+----------+---------
@@ -124,8 +124,8 @@ Indexes:
 Create an index with ascending ordered key.
 
 ```postgresql
-yugabyte=# CREATE INDEX products_name ON products(name ASC);
-yugabyte=# \d products_name
+ZNbase=# CREATE INDEX products_name ON products(name ASC);
+ZNbase=# \d products_name
    Index "public.products_name"
  Column | Type | Key? | Definition
 --------+------+------+------------
@@ -138,8 +138,8 @@ lsm, for table "public.products
 Create an index with ascending ordered key and include other columns as non-key columns
 
 ```postgresql
-yugabyte=# CREATE INDEX products_name_code ON products(name) INCLUDE (code);
-yugabyte=# \d products_name_code;
+ZNbase=# CREATE INDEX products_name_code ON products(name) INCLUDE (code);
+ZNbase=# \d products_name_code;
  Index "public.products_name_code"
  Column | Type | Key? | Definition
 --------+------+------+------------
@@ -162,6 +162,6 @@ CREATE INDEX ON employees(first_name, last_name) SPLIT INTO 10 TABLETS;
 Consider an application maintaining shipments information. It has a `shipments` table with a column for `delivery_status`. If the application needs to access in-flight shipments frequently, then it can use a partial index to exclude rows whose shipment status is `delivered`.
 
 ```postgresql
-yugabyte=# create table shipments(id int, delivery_status text, address text, delivery_date date);
-yugabyte=# create index shipment_delivery on shipments(delivery_status, address, delivery_date) where delivery_status != 'delivered';
+ZNbase=# create table shipments(id int, delivery_status text, address text, delivery_date date);
+ZNbase=# create index shipment_delivery on shipments(delivery_status, address, delivery_date) where delivery_status != 'delivered';
 ```

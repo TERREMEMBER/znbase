@@ -2,7 +2,7 @@
 title: Explore auto sharding on macOS
 headerTitle: Auto sharding
 linkTitle: Auto sharding
-description: Follow this macOS-based tutorial to learn how YugabyteDB automatically splits tables into shards.
+description: Follow this macOS-based tutorial to learn how ZNbaseDB automatically splits tables into shards.
 block_indexing: true
 menu:
   v2.1:
@@ -46,16 +46,16 @@ showAsideToc: true
 -->
 </ul>
 
-YugabyteDB automatically splits user tables into multiple shards, called *tablets*. The primary key for each row in the table uniquely determines the tablet the row lives in. For data distribution purposes, a hash based partitioning scheme is used. Read more about [how sharding works](../../../architecture/docdb/sharding/) in YugabyteDB.
+ZNbaseDB automatically splits user tables into multiple shards, called *tablets*. The primary key for each row in the table uniquely determines the tablet the row lives in. For data distribution purposes, a hash based partitioning scheme is used. Read more about [how sharding works](../../../architecture/docdb/sharding/) in ZNbaseDB.
 
-By default, YugabyteDB creates eight tablets per node in the cluster for each table and automatically distributes the data across the various tablets, which in turn are distributed evenly across the nodes. In this tutorial, you will explore how automatic sharding is done internally for tables. The system Redis table works in an identical manner.
+By default, ZNbaseDB creates eight tablets per node in the cluster for each table and automatically distributes the data across the various tablets, which in turn are distributed evenly across the nodes. In this tutorial, you will explore how automatic sharding is done internally for tables. The system Redis table works in an identical manner.
 
-We will explore automatic sharding inside YugabyteDB by creating these tables:
+We will explore automatic sharding inside ZNbaseDB by creating these tables:
 
 - Use a replication factor (RF) of `1`. This will make it easier to understand how automatic sharding is achieved independent of data replication.
 - Insert entries one by one, and examine which how the data gets distributed across the various nodes.
 
-If you haven't installed YugabyteDB yet, do so first by following the [Quick start](../../../quick-start/install/) guide.
+If you haven't installed ZNbaseDB yet, do so first by following the [Quick start](../../../quick-start/install/) guide.
 
 ## 1. Create a universe
 
@@ -103,7 +103,7 @@ $ ./bin/yb-ctl status
 | YCQL                : ./bin/ycqlsh 127.0.0.1 9042                                                 |
 | YEDIS               : ./bin/redis-cli -h 127.0.0.1 -p 6379                                       |
 | Web UI              : http://127.0.0.1:7000/                                                     |
-| Cluster Data        : /Users/schoudhury/yugabyte-data                                            |
+| Cluster Data        : /Users/schoudhury/ZNbase-data                                            |
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 | Node 1: yb-tserver (pid 72053), yb-master (pid 72050)                                            |
@@ -112,9 +112,9 @@ $ ./bin/yb-ctl status
 | YSQL                : ./bin/ysqlsh                                                               |
 | YCQL                : ./bin/ycqlsh 127.0.0.1 9042                                                 |
 | YEDIS               : ./bin/redis-cli -h 127.0.0.1 -p 6379                                       |
-| data-dir[0]         : /Users/schoudhury/yugabyte-data/node-1/disk-1/yb-data                      |
-| TServer Logs        : /Users/schoudhury/yugabyte-data/node-1/disk-1/yb-data/tserver/logs         |
-| Master Logs         : /Users/schoudhury/yugabyte-data/node-1/disk-1/yb-data/master/logs          |
+| data-dir[0]         : /Users/schoudhury/ZNbase-data/node-1/disk-1/yb-data                      |
+| TServer Logs        : /Users/schoudhury/ZNbase-data/node-1/disk-1/yb-data/tserver/logs         |
+| Master Logs         : /Users/schoudhury/ZNbase-data/node-1/disk-1/yb-data/master/logs          |
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 | Node 2: yb-tserver (pid 72128)                                                                   |
@@ -123,8 +123,8 @@ $ ./bin/yb-ctl status
 | YSQL                : ./bin/ysqlsh                                                               |
 | YCQL                : ./bin/ycqlsh 127.0.0.2 9042                                                 |
 | YEDIS               : ./bin/redis-cli -h 127.0.0.2 -p 6379                                       |
-| data-dir[0]         : /Users/schoudhury/yugabyte-data/node-2/disk-1/yb-data                      |
-| TServer Logs        : /Users/schoudhury/yugabyte-data/node-2/disk-1/yb-data/tserver/logs         |
+| data-dir[0]         : /Users/schoudhury/ZNbase-data/node-2/disk-1/yb-data                      |
+| TServer Logs        : /Users/schoudhury/ZNbase-data/node-2/disk-1/yb-data/tserver/logs         |
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 | Node 3: yb-tserver (pid 72166)                                                                   |
@@ -133,14 +133,14 @@ $ ./bin/yb-ctl status
 | YSQL                : ./bin/ysqlsh -U postgres -h 127.0.0.3 -p 5433                              |
 | YCQL                : ./bin/ycqlsh 127.0.0.3 9042                                                 |
 | YEDIS               : ./bin/redis-cli -h 127.0.0.3 -p 6379                                       |
-| data-dir[0]         : /Users/schoudhury/yugabyte-data/node-3/disk-1/yb-data                      |
-| TServer Logs        : /Users/schoudhury/yugabyte-data/node-3/disk-1/yb-data/tserver/logs         |
+| data-dir[0]         : /Users/schoudhury/ZNbase-data/node-3/disk-1/yb-data                      |
+| TServer Logs        : /Users/schoudhury/ZNbase-data/node-3/disk-1/yb-data/tserver/logs         |
 ----------------------------------------------------------------------------------------------------
 ```
 
 ## 2. Create a table
 
-Create a YCQL table. Since you will be using a workload application in the [YugabyteDB workload generator](https://github.com/yugabyte/yb-sample-apps) to write data into this table, the keyspace and table name below must created exactly as shown.
+Create a YCQL table. Since you will be using a workload application in the [ZNbaseDB workload generator](https://github.com/ZNbase/yb-sample-apps) to write data into this table, the keyspace and table name below must created exactly as shown.
 
 ```sh
 $ ./bin/ycqlsh
@@ -154,7 +154,7 @@ ycqlsh> CREATE KEYSPACE ybdemo_keyspace;
 ycqlsh> CREATE TABLE ybdemo_keyspace.cassandrakeyvalue (k text PRIMARY KEY, v blob);
 ```
 
-For each table, you have instructed YugabyteDB to create four shards for each YB-TServer in this universe. Because you have three nodes, you expect 12 tablets for the `ybdemo_keyspace.cassandrakeyvalue` table.
+For each table, you have instructed ZNbaseDB to create four shards for each YB-TServer in this universe. Because you have three nodes, you expect 12 tablets for the `ybdemo_keyspace.cassandrakeyvalue` table.
 
 ## 3. Explore tablets
 
@@ -179,22 +179,22 @@ What you see here is that there are 12 tablets as expected, and the key ranges o
 Let us list out all the tablet directories and see their sizes. This can be done as follows.
 
 ```sh
-$ du -hs /yugabyte-data/node*/disk*/yb-data/tserver/data/rocksdb/table*/* | grep -v '0B'
+$ du -hs /ZNbase-data/node*/disk*/yb-data/tserver/data/rocksdb/table*/* | grep -v '0B'
 ```
 
 ```
- 20K    /yugabyte-data/node-1/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-439ae3bde90049d6812e198e76ad29a4
- 20K    /yugabyte-data/node-1/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-eecd01f0a7cd4537ba571bdb85d0c094
- 20K    /yugabyte-data/node-1/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-4ea334056a3845518cc6614baef96966
- 20K    /yugabyte-data/node-1/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-52642a3a9d7b4d38a103dff5dd77a3c6
- 20K    /yugabyte-data/node-2/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-4e31e26b3b204e34a1e0cfd6f7500525
- 20K    /yugabyte-data/node-2/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-b7ac08a983aa45a3843ab92b1719799a
- 20K    /yugabyte-data/node-2/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-22c349a07afb48e3844b570c24455431
- 20K    /yugabyte-data/node-2/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-8955db9e1ec841f3a30535b77d707586
- 20K    /yugabyte-data/node-3/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-adac9f92466b4d288a4ae346aaad3880
- 20K    /yugabyte-data/node-3/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-f04a6d5113a74ba79a04f01c80423ef5
- 20K    /yugabyte-data/node-3/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-1c472c1204fe40afbc7948dadce22be8
- 20K    /yugabyte-data/node-3/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-5aaeb96381044aa2b09ed9973830bb27
+ 20K    /ZNbase-data/node-1/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-439ae3bde90049d6812e198e76ad29a4
+ 20K    /ZNbase-data/node-1/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-eecd01f0a7cd4537ba571bdb85d0c094
+ 20K    /ZNbase-data/node-1/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-4ea334056a3845518cc6614baef96966
+ 20K    /ZNbase-data/node-1/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-52642a3a9d7b4d38a103dff5dd77a3c6
+ 20K    /ZNbase-data/node-2/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-4e31e26b3b204e34a1e0cfd6f7500525
+ 20K    /ZNbase-data/node-2/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-b7ac08a983aa45a3843ab92b1719799a
+ 20K    /ZNbase-data/node-2/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-22c349a07afb48e3844b570c24455431
+ 20K    /ZNbase-data/node-2/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-8955db9e1ec841f3a30535b77d707586
+ 20K    /ZNbase-data/node-3/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-adac9f92466b4d288a4ae346aaad3880
+ 20K    /ZNbase-data/node-3/disk-1/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-f04a6d5113a74ba79a04f01c80423ef5
+ 20K    /ZNbase-data/node-3/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-1c472c1204fe40afbc7948dadce22be8
+ 20K    /ZNbase-data/node-3/disk-2/yb-data/tserver/data/rocksdb/table-9987797012ce4c1c91782c25e7608c34/tablet-5aaeb96381044aa2b09ed9973830bb27
  ```
 
 ## 4. Insert and query a table
@@ -207,10 +207,10 @@ Let us insert a key-value entry, with the value size around 2MB. Since the memst
 - `--value_size 10000000`  - Generate the value being written as a random byte string of around 10MB size.
 - `--nouuid` - Do not prefix a UUID to the key. A UUID allows multiple instances of the load tester to run without interfering with each other.
 
-Download the YugabyteDB workload generator JAR file (`yb-sample-apps.jar`) by running the following command.
+Download the ZNbaseDB workload generator JAR file (`yb-sample-apps.jar`) by running the following command.
 
 ```sh
-$ wget https://github.com/yugabyte/yb-sample-apps/releases/download/v1.2.0/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
+$ wget https://github.com/ZNbase/yb-sample-apps/releases/download/v1.2.0/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
 ```
 
 Run the `CasandraKeyValue` workload application.
@@ -253,7 +253,7 @@ ycqlsh> SELECT k FROM ybdemo_keyspace.cassandrakeyvalue;
 Now let us check the sizes of the various tablets:
 
 ```sh
-$ du -hs /yugabyte-data/node*/disk*/yb-data/tserver/data/rocksdb/table*/* | grep -v '0B'
+$ du -hs /ZNbase-data/node*/disk*/yb-data/tserver/data/rocksdb/table*/* | grep -v '0B'
 ```
 
 ```

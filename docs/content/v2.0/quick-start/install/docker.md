@@ -1,12 +1,12 @@
 ---
-title: 1. Install YugabyteDB
-linkTitle: 1. Install YugabyteDB
-description: Install YugabyteDB
+title: 1. Install ZNbaseDB
+linkTitle: 1. Install ZNbaseDB
+description: Install ZNbaseDB
 block_indexing: true
 menu:
   v2.0:
     parent: quick-start
-    name: 1. Install YugabyteDB
+    name: 1. Install ZNbaseDB
     identifier: install-3-docker
     weight: 110
 type: page
@@ -49,7 +49,7 @@ showAsideToc: true
 
 {{< note title="Note" >}}
 
-The Docker option to run local clusters is recommended only for advanced Docker users. This is because running stateful apps like YugabyteDB in Docker is more complex and error-prone than the more common stateless app use cases.
+The Docker option to run local clusters is recommended only for advanced Docker users. This is because running stateful apps like ZNbaseDB in Docker is more complex and error-prone than the more common stateless app use cases.
 
 {{< /note >}}
 
@@ -68,7 +68,7 @@ a) You must have the Docker runtime installed on your localhost. Follow the link
 
 <i class="fab fa-windows" aria-hidden="true"></i> [Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows)
 
-b) Verify that you have python2 installed.Support for Python 3 is in the works, status can be tracked on [GitHub](https://github.com/yugabyte/yugabyte-db/issues/3025).
+b) Verify that you have python2 installed.Support for Python 3 is in the works, status can be tracked on [GitHub](https://github.com/ZNbase/ZNbase-db/issues/3025).
 
 ```sh
 $ python --version
@@ -83,11 +83,11 @@ Python 2.7.10
 Download the [yb-docker-ctl](../../../admin/yb-docker-ctl/) utility. This utility has a set of pre-built commands to create and thereafter administer a containerized local cluster.
 
 ```sh
-$ mkdir ~/yugabyte && cd ~/yugabyte
+$ mkdir ~/ZNbase && cd ~/ZNbase
 ```
 
 ```sh
-$ wget https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/bin/yb-docker-ctl && chmod +x yb-docker-ctl
+$ wget https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/bin/yb-docker-ctl && chmod +x yb-docker-ctl
 ```
 
 ## Install
@@ -102,8 +102,8 @@ $ docker ps
 $ python --version
 ```
 
-Pull the YugabyteDB container.
+Pull the ZNbaseDB container.
 
 ```sh
-$ docker pull yugabytedb/yugabyte
+$ docker pull ZNbasedb/ZNbase
 ```

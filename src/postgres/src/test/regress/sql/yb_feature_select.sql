@@ -1,8 +1,8 @@
 --
 -- YB_FEATURE Testsuite: SELECT
---   An introduction on whether or not a feature is supported in YugaByte.
+--   An introduction on whether or not a feature is supported in ZNbase.
 --   This test suite does not go in depth for each command.
--- 
+--
 -- SELECT Statements
 --
 -- Select all.

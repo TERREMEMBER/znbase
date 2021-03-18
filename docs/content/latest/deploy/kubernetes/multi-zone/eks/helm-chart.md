@@ -2,7 +2,7 @@
 title: Deploy on Amazon Elastic Kubernetes Service (EKS) using Helm Chart
 headerTitle: Amazon Elastic Kubernetes Service (EKS)
 linkTitle: Amazon Elastic Kubernetes Service (EKS)
-description: Deploy a multi-zone YugabyteDB cluster on Amazon Elastic Kubernetes Service (EKS) using Helm Chart.
+description: Deploy a multi-zone ZNbaseDB cluster on Amazon Elastic Kubernetes Service (EKS) using Helm Chart.
 menu:
   latest:
     parent: deploy-kubernetes-mz
@@ -30,11 +30,11 @@ showAsideToc: true
 
 You must have a Amazon EKS cluster that has Helm configured. Note that Amazon EKS clusters are deployed across multiple zones by default. If you have not installed the Helm client (`helm`), see [Installing Helm](https://helm.sh/docs/intro/install/).
 
-The YugabyteDB Helm chart has been tested with the following software versions:
+The ZNbaseDB Helm chart has been tested with the following software versions:
 
-- Amazon EKS running Kubernetes 1.14+ with nodes such that a total of 12 CPU cores and 45 GB RAM can be allocated to YugabyteDB. This can be three nodes with 4 CPU core and 15 GB RAM allocated to YugabyteDB. `m5.2xlarge` is the minimum AWS EC2 instance type that meets these criteria.
+- Amazon EKS running Kubernetes 1.14+ with nodes such that a total of 12 CPU cores and 45 GB RAM can be allocated to ZNbaseDB. This can be three nodes with 4 CPU core and 15 GB RAM allocated to ZNbaseDB. `m5.2xlarge` is the minimum AWS EC2 instance type that meets these criteria.
 - Helm 3.0 or later
-- YugabyteDB docker image (yugabytedb/yugabyte) 2.1.0 or later
+- ZNbaseDB docker image (ZNbasedb/ZNbase) 2.1.0 or later
 - For optimal performance, ensure you've set the appropriate [system limits using `ulimit`](../../../../manual-deployment/system-config/#ulimits) on each node in your Kubernetes cluster.
 
 The following steps show how to meet these prerequisites.
@@ -94,7 +94,7 @@ $ eksctl create cluster \
 --managed
 ```
 
-As stated in the Prerequisites section, the default configuration in the YugabyteDB Helm Chart requires Kubernetes nodes to have a total of 12 CPU cores and 45 GB RAM allocated to YugabyteDB. This can be three nodes with 4 CPU cores and 15 GB RAM allocated to YugabyteDB. The smallest AWS instance type that meets this requirement is `m5.2xlarge` which has 8 CPU cores and 32 GB RAM.
+As stated in the Prerequisites section, the default configuration in the ZNbaseDB Helm Chart requires Kubernetes nodes to have a total of 12 CPU cores and 45 GB RAM allocated to ZNbaseDB. This can be three nodes with 4 CPU cores and 15 GB RAM allocated to ZNbaseDB. The smallest AWS instance type that meets this requirement is `m5.2xlarge` which has 8 CPU cores and 32 GB RAM.
 
 ### Create a storage class per zone
 
@@ -138,14 +138,14 @@ Apply the above configuration to your cluster.
 kubectl apply -f storage.yaml
 ```
 
-## 2. Create a YugabyteDB cluster
+## 2. Create a ZNbaseDB cluster
 
 ### Add charts repository
 
-To add the YugabyteDB charts repository, run the following command.
+To add the ZNbaseDB charts repository, run the following command.
 
 ```sh
-$ helm repo add yugabytedb https://charts.yugabyte.com
+$ helm repo add ZNbasedb https://charts.ZNbase.com
 ```
 
 Make sure that you have the latest updates to the repository by running the following command.
@@ -157,12 +157,12 @@ $ helm repo update
 Validate that you have the updated char version.
 
 ```sh
-$ helm search repo yugabytedb/yugabyte
+$ helm search repo ZNbasedb/ZNbase
 ```
 
 ```sh
 NAME                CHART VERSION APP VERSION DESCRIPTION                                       
-yugabytedb/yugabyte 2.1.0         2.1.0.0-b18 YugabyteDB is the high-performance distributed ...
+ZNbasedb/ZNbase 2.1.0         2.1.0.0-b18 ZNbaseDB is the high-performance distributed ...
 ```
 
 ### Create override files
@@ -260,9 +260,9 @@ gflags:
     placement_zone: "us-east-1c"
 ```
 
-### Install YugabyteDB
+### Install ZNbaseDB
 
-Install YugabyteDB in the Kubernetes cluster using the commands below. 
+Install ZNbaseDB in the Kubernetes cluster using the commands below. 
 
 For Helm 3, you have to first create the 3 namespaces.
 
@@ -272,22 +272,22 @@ $ kubectl create namespace yb-demo-us-east-1b
 $ kubectl create namespace yb-demo-us-east-1c
 ```
 
-Now create the overall YugabyteDB cluster in such a way that one third of the nodes are hosted in each zone.
+Now create the overall ZNbaseDB cluster in such a way that one third of the nodes are hosted in each zone.
 
 ```sh
-$ helm install yb-demo-us-east-1a yugabytedb/yugabyte \
+$ helm install yb-demo-us-east-1a ZNbasedb/ZNbase \
  --namespace yb-demo-us-east-1a \
  -f overrides-us-east-1a.yaml --wait
 ```
 
 ```sh
-$ helm install yb-demo-us-east-1b yugabytedb/yugabyte \
+$ helm install yb-demo-us-east-1b ZNbasedb/ZNbase \
  --namespace yb-demo-us-east-1b \
  -f overrides-us-east-1b.yaml --wait
 ```
 
 ```sh
-$ helm install yb-demo-us-east-1c yugabytedb/yugabyte \
+$ helm install yb-demo-us-east-1c ZNbasedb/ZNbase \
  --namespace yb-demo-us-east-1c \
  -f overrides-us-east-1c.yaml --wait
 ```
@@ -341,14 +341,14 @@ To make the replica placement zone-aware, so that one replica is placed in each 
 
 ```sh
 kubectl exec -it -n yb-demo-us-east-1a yb-master-0 -- bash \
--c "/home/yugabyte/master/bin/yb-admin --master_addresses yb-master-0.yb-masters.yb-demo-us-east-1a.svc.cluster.local:7100,yb-master-0.yb-masters.yb-demo-us-east-1b.svc.cluster.local:7100,yb-master-0.yb-masters.yb-demo-us-east-1c.svc.cluster.local:7100 modify_placement_info aws.us-east-1.us-east-1a,aws.us-east-1.us-east-1b,aws.us-east-1.us-east-1c 3"
+-c "/home/ZNbase/master/bin/yb-admin --master_addresses yb-master-0.yb-masters.yb-demo-us-east-1a.svc.cluster.local:7100,yb-master-0.yb-masters.yb-demo-us-east-1b.svc.cluster.local:7100,yb-master-0.yb-masters.yb-demo-us-east-1c.svc.cluster.local:7100 modify_placement_info aws.us-east-1.us-east-1a,aws.us-east-1.us-east-1b,aws.us-east-1.us-east-1c 3"
 ```
 
 To see the new configuration, go to `http://<external-ip>:7000/cluster-config`.
 
 ![after-zoneaware](/images/deploy/kubernetes/aws-multizone-after-zoneaware.png)
 
-## 5. Connect using YugabyteDB shells
+## 5. Connect using ZNbaseDB shells
 
 To connect and use the YSQL Shell (`ysqlsh`), run the following command.
 

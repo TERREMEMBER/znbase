@@ -162,25 +162,25 @@ CREATE INDEX idx_range_nogrp ON tab_range_nogrp (a);
                List of relations
  Schema |        Name        | Type  |  Owner
 --------+--------------------+-------+----------
- public | tab_hash_nogrp     | table | yugabyte
- public | tab_nonkey         | table | yugabyte
- public | tab_nonkey_nogrp   | table | yugabyte
- public | tab_range          | table | yugabyte
- public | tab_range2         | table | yugabyte
- public | tab_range_multicol | table | yugabyte
- public | tab_range_nogrp    | table | yugabyte
+ public | tab_hash_nogrp     | table | ZNbase
+ public | tab_nonkey         | table | ZNbase
+ public | tab_nonkey_nogrp   | table | ZNbase
+ public | tab_range          | table | ZNbase
+ public | tab_range2         | table | ZNbase
+ public | tab_range_multicol | table | ZNbase
+ public | tab_range_nogrp    | table | ZNbase
 (7 rows)
 
 \di
                             List of relations
  Schema |          Name           | Type  |  Owner   |       Table
 --------+-------------------------+-------+----------+--------------------
- public | idx_range2              | index | yugabyte | tab_range2
- public | idx_range_nogrp         | index | yugabyte | tab_range_nogrp
- public | tab_hash_nogrp_pkey     | index | yugabyte | tab_hash_nogrp
- public | tab_range_multicol_pkey | index | yugabyte | tab_range_multicol
- public | tab_range_nogrp_pkey    | index | yugabyte | tab_range_nogrp
- public | tab_range_pkey          | index | yugabyte | tab_range
+ public | idx_range2              | index | ZNbase | tab_range2
+ public | idx_range_nogrp         | index | ZNbase | tab_range_nogrp
+ public | tab_hash_nogrp_pkey     | index | ZNbase | tab_hash_nogrp
+ public | tab_range_multicol_pkey | index | ZNbase | tab_range_multicol
+ public | tab_range_nogrp_pkey    | index | ZNbase | tab_range_nogrp
+ public | tab_range_pkey          | index | ZNbase | tab_range
 (6 rows)
 
 -- TRUNCATE TABLE
@@ -307,22 +307,22 @@ LINE 1: SELECT * FROM tab_range2;
                   List of relations
  Schema |          Name           | Type  |  Owner
 --------+-------------------------+-------+----------
- public | tab_hash_nogrp          | table | yugabyte
- public | tab_nonkey              | table | yugabyte
- public | tab_range_alter_renamed | table | yugabyte
- public | tab_range_multicol      | table | yugabyte
- public | tab_range_nogrp         | table | yugabyte
+ public | tab_hash_nogrp          | table | ZNbase
+ public | tab_nonkey              | table | ZNbase
+ public | tab_range_alter_renamed | table | ZNbase
+ public | tab_range_multicol      | table | ZNbase
+ public | tab_range_nogrp         | table | ZNbase
 (5 rows)
 
 \di
                                List of relations
  Schema |          Name           | Type  |  Owner   |          Table
 --------+-------------------------+-------+----------+-------------------------
- public | idx_range_nogrp         | index | yugabyte | tab_range_nogrp
- public | tab_hash_nogrp_pkey     | index | yugabyte | tab_hash_nogrp
- public | tab_range_alter_pkey    | index | yugabyte | tab_range_alter_renamed
- public | tab_range_multicol_pkey | index | yugabyte | tab_range_multicol
- public | tab_range_nogrp_pkey    | index | yugabyte | tab_range_nogrp
+ public | idx_range_nogrp         | index | ZNbase | tab_range_nogrp
+ public | tab_hash_nogrp_pkey     | index | ZNbase | tab_hash_nogrp
+ public | tab_range_alter_pkey    | index | ZNbase | tab_range_alter_renamed
+ public | tab_range_multicol_pkey | index | ZNbase | tab_range_multicol
+ public | tab_range_nogrp_pkey    | index | ZNbase | tab_range_nogrp
 (5 rows)
 
 -- DROP TABLEGROUP
@@ -330,7 +330,7 @@ DROP TABLEGROUP tg_test1; -- fail
 ERROR:  tablegroup "tg_test1" is not empty
 DROP TABLEGROUP tg_test2;
 -- drop database
-\c yugabyte
+\c ZNbase
 DROP DATABASE test_tablegroups;
 \c test_tablegroups
 \connect: FATAL:  database "test_tablegroups" does not exist

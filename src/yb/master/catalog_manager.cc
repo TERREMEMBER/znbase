@@ -15,9 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-// The following only applies to changes made to this file as part of YugaByte development.
+// The following only applies to changes made to this file as part of ZNbase development.
 //
-// Portions Copyright (c) YugaByte, Inc.
+// Portions Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -4395,7 +4395,7 @@ Status CatalogManager::AlterTable(const AlterTableRequestPB* req,
   }
 
   // TODO(hector): Simplify the AlterSchema workflow to avoid doing the same checks on every layer
-  // this request goes through: https://github.com/YugaByte/yugabyte-db/issues/1882.
+  // this request goes through: https://github.com/ZNbase/ZNbase-db/issues/1882.
   if (req->has_wal_retention_secs()) {
     if (has_changes) {
       const Status s = STATUS(InvalidArgument,
@@ -4403,7 +4403,7 @@ Status CatalogManager::AlterTable(const AlterTableRequestPB* req,
       return SetupError(resp->mutable_error(), MasterErrorPB::INVALID_REQUEST, s);
     }
     // TODO(hector): Handle co-partitioned tables:
-    // https://github.com/YugaByte/yugabyte-db/issues/1905.
+    // https://github.com/ZNbase/ZNbase-db/issues/1905.
     table_pb.set_wal_retention_secs(req->wal_retention_secs());
     has_changes = true;
   }
@@ -4540,7 +4540,7 @@ Result<TabletInfo*> CatalogManager::RegisterNewTabletForSplit(
     // If we first save new_tablet to syscatalog and then crash - we would have table with old
     // partitions version, but new set of tablets which would break invariant that table partitions
     // set is not changed within the same partitions version.
-    // TODO: rework this after https://github.com/yugabyte/yugabyte-db/issues/4912 is implemented.
+    // TODO: rework this after https://github.com/ZNbase/ZNbase-db/issues/4912 is implemented.
     RETURN_NOT_OK(sys_catalog_->AddItem(new_tablet, leader_ready_term()));
 
     table->AddTablet(new_tablet);

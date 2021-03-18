@@ -1,8 +1,8 @@
 ---
-title: YugabyteDB query layer (YQL)
+title: ZNbaseDB query layer (YQL)
 headerTitle: Query layer
 linkTitle: Query layer
-description: Learn how YugabyteDB's extensible query layer implements YSQL and YCQL.
+description: Learn how ZNbaseDB's extensible query layer implements YSQL and YCQL.
 image: /images/section_icons/index/api.png
 headcontent: 
 aliases:
@@ -17,7 +17,7 @@ menu:
 
 {{< note title="Note" >}}
 
-YugabyteDB has an extensible query layer. It currently implements the following APIs:
+ZNbaseDB has an extensible query layer. It currently implements the following APIs:
 
 * **YSQL**, a distributed SQL API wire compatible with PostgreSQL
 * **YCQL**, a semi-relational API built for high performance and massive scale, with its roots in Cassandra Query Language

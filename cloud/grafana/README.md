@@ -1,12 +1,12 @@
-# YugabyteDB Grafana Dashboard
+# ZNbaseDB Grafana Dashboard
 
-To import the YugabyteDB Grafana dashboard, please see this [Grafana documentation link](https://grafana.com/docs/grafana/latest/reference/export_import/#importing-a-dashboard).
+To import the ZNbaseDB Grafana dashboard, please see this [Grafana documentation link](https://grafana.com/docs/grafana/latest/reference/export_import/#importing-a-dashboard).
 
 This dashboard was tested with Grafana v6.0.0 and v7.0.3.
 
 ## Best Practice:
-- In cases where YugabyteDB is being [manually deployed](https://docs.yugabyte.com/latest/deploy/manual-deployment/), please specify a unique value for the flag `--metric_node_name` for each server in order to see distinct graphs.
-- This dashboard uses the label `node_prefix` to separate multiple YugabyteDB clusters. Creating individual scrape jobs for each cluster will allow the graphs to be separated cleanly.
+- In cases where ZNbaseDB is being [manually deployed](https://docs.ZNbase.com/latest/deploy/manual-deployment/), please specify a unique value for the flag `--metric_node_name` for each server in order to see distinct graphs.
+- This dashboard uses the label `node_prefix` to separate multiple ZNbaseDB clusters. Creating individual scrape jobs for each cluster will allow the graphs to be separated cleanly.
 
 ## Prometheus configuration
 Here is a sample Prometheus configuration with required relabel configurations.
@@ -19,9 +19,9 @@ Here is a sample Prometheus configuration with required relabel configurations.
     evaluation_interval: 5s # Evaluate rules every 5 seconds. The default is every 1 minute.
     # scrape_timeout is set to the global default (10s).
 
-  # YugaByte DB configuration to scrape Prometheus time-series metrics
+  # ZNbase DB configuration to scrape Prometheus time-series metrics
   scrape_configs:
-    - job_name: "yugabytedb-cluster-1"
+    - job_name: "ZNbasedb-cluster-1"
       metrics_path: /prometheus-metrics
       relabel_configs:
         - target_label: "node_prefix"

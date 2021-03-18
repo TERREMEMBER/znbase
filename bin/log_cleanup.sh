@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -32,8 +32,8 @@ EOT
 }
 
 gzip_only=false
-YB_HOME_DIR=/home/yugabyte
-YB_CORES_DIR="/var/yugabyte/cores"
+YB_HOME_DIR=/home/ZNbase
+YB_CORES_DIR="/var/ZNbase/cores"
 
 logs_disk_percent_max=10
 postgres_max_log_size_kb=$((100 * 1000))
@@ -68,8 +68,8 @@ while [[ $# -gt 0 ]]; do
   shift
 done
 
-if [[ "$(id -u)" != "0" && "$USER" != "yugabyte" ]]; then
-  echo "This script must be run as root or yugabyte" >&2
+if [[ "$(id -u)" != "0" && "$USER" != "ZNbase" ]]; then
+  echo "This script must be run as root or ZNbase" >&2
   exit 1
 fi
 

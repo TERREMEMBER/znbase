@@ -2,7 +2,7 @@
 title: Explore follower reads on macOS
 headerTitle: Follower reads
 linkTitle: Follower reads
-description: Learn how you can use follower reads to lower read latencies in local YugabyteDB clusters on macOS.
+description: Learn how you can use follower reads to lower read latencies in local ZNbaseDB clusters on macOS.
 aliases:
   - /explore/tunable-reads/
   - /latest/explore/tunable-reads/
@@ -36,9 +36,9 @@ showAsideToc: true
 
 </ul>
 
-With YugabyteDB, you can use follower reads to lower read latencies since the DB now has less work to do at read time including serving the read from the tablet followers. Follower reads is similar to reading from a cache, which can give more read IOPS with low latency but might have slightly stale yet timeline-consistent data (that is, no out of order is possible). In this tutorial, you will update a single key-value over and over, and read it from the tablet leader. While that workload is running, you will start another workload to read from a follower and verify that you are able to read from a tablet follower.
+With ZNbaseDB, you can use follower reads to lower read latencies since the DB now has less work to do at read time including serving the read from the tablet followers. Follower reads is similar to reading from a cache, which can give more read IOPS with low latency but might have slightly stale yet timeline-consistent data (that is, no out of order is possible). In this tutorial, you will update a single key-value over and over, and read it from the tablet leader. While that workload is running, you will start another workload to read from a follower and verify that you are able to read from a tablet follower.
 
-YugabyteDB also allows you to specify the maximum staleness of data when reading from tablet followers. If the follower hasn't heard from the leader for  10 seconds (by default), the read request is forwarded to the leader. When there is a long distance between the tablet follower and the tablet leader, you might need to increase the duration. To change the duration for maximum staleness, add the [`yb-tserver` `--max_stale_read_bound_time_ms`](../../../reference/configuration/yb-tserver/#max-stale-read-bound-time-ms) flag and increase the value (default is 10 seconds). For details on how to add this flag when using `yb-ctl`, see [Creating a local cluster with custom flags](../../../admin/yb-ctl/#create a-local-cluster-with-custom-flags).
+ZNbaseDB also allows you to specify the maximum staleness of data when reading from tablet followers. If the follower hasn't heard from the leader for  10 seconds (by default), the read request is forwarded to the leader. When there is a long distance between the tablet follower and the tablet leader, you might need to increase the duration. To change the duration for maximum staleness, add the [`yb-tserver` `--max_stale_read_bound_time_ms`](../../../reference/configuration/yb-tserver/#max-stale-read-bound-time-ms) flag and increase the value (default is 10 seconds). For details on how to add this flag when using `yb-ctl`, see [Creating a local cluster with custom flags](../../../admin/yb-ctl/#create a-local-cluster-with-custom-flags).
 
 ## 1. Create universe
 
@@ -62,13 +62,13 @@ $ ./bin/yb-ctl add_node
 
 ## 2. Write some data
 
-Download the [YugabyteDB workload generator](https://github.com/yugabyte/yb-sample-apps) JAR file (`yb-sample-apps.jar`) by running the following command.
+Download the [ZNbaseDB workload generator](https://github.com/ZNbase/yb-sample-apps) JAR file (`yb-sample-apps.jar`) by running the following command.
 
 ```sh
-$ wget https://github.com/yugabyte/yb-sample-apps/releases/download/1.3.1/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
+$ wget https://github.com/ZNbase/yb-sample-apps/releases/download/1.3.1/yb-sample-apps.jar?raw=true -O yb-sample-apps.jar
 ```
 
-By default, the YugabyteDB workload generator runs with strong read consistency, where all data is read from the tablet leader. We are going to populate exactly one key with a `10KB` value into the system. Since the replication factor is `3`, this key will get replicated to only three of the four nodes in the universe.
+By default, the ZNbaseDB workload generator runs with strong read consistency, where all data is read from the tablet leader. We are going to populate exactly one key with a `10KB` value into the system. Since the replication factor is `3`, this key will get replicated to only three of the four nodes in the universe.
 
 Run the `CassandraKeyValue` workload application to constantly update this key-value, as well as perform reads with strong consistency against the local universe.
 

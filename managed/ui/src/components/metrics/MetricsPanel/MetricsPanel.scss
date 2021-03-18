@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 @import '../../../_style/colors.scss';
 
@@ -66,7 +66,7 @@
         margin: 0 !important;
       }
     }
-    
+
     .metric-bar {
       background: #322965;
       height: 10px;
@@ -79,9 +79,9 @@
       position: absolute;
       border-right: 1px solid $YB_BRAND_ORANGE;
       border-left: 1px solid $YB_BRAND_ORANGE;
-      background: linear-gradient(180deg, 
-        rgba(0,0,0,0) calc(50% - 1px), 
-        $YB_BRAND_ORANGE calc(50%), 
+      background: linear-gradient(180deg,
+        rgba(0,0,0,0) calc(50% - 1px),
+        $YB_BRAND_ORANGE calc(50%),
         rgba(0,0,0,0) calc(50% + 1px)
       );
       height: 8px;

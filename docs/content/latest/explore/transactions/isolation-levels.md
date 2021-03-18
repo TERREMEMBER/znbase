@@ -2,8 +2,8 @@
 title: Isolation Levels
 headerTitle: Isolation Levels
 linkTitle: Isolation Levels
-description: Isolation Levels in YugabyteDB.
-headcontent: Isolation Levels in YugabyteDB.
+description: Isolation Levels in ZNbaseDB.
+headcontent: Isolation Levels in ZNbaseDB.
 image: <div class="icon"><i class="fas fa-file-invoice-dollar"></i></div>
 menu:
   latest:
@@ -36,7 +36,7 @@ showAsideToc: true
 
 The YSQL API supports two isolation levels - `Serializable` and `Snapshot`. PostgreSQL (and the SQL standard( have four isolation levels - `Serializable`, `Repeatable read`, `Read committed` and `Read uncommitted`. The mapping between the PostgreSQL isolation levels in YSQL, along with which transaction anomalies can occur at each isolation level are shown below.
 
-PostgreSQL Isolation  | YugabyteDB Equivalent | Dirty <br/>Read | Nonrepeatable Read | Phantom <br/>Read | Serialization Anomaly
+PostgreSQL Isolation  | ZNbaseDB Equivalent | Dirty <br/>Read | Nonrepeatable Read | Phantom <br/>Read | Serialization Anomaly
 -----------------|--------------|------------------------|---|---|---
 Read <br/>uncommitted | Snapshot | Allowed, but not in YSQL |  Allowed, but not in YSQL | Allowed, but not in YSQL | Possible
 Read <br/>committed   | Snapshot | Not possible | Allowed, but not in YSQL | Allowed, but not in YSQL | Possible

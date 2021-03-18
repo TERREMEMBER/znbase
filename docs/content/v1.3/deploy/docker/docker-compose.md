@@ -29,7 +29,7 @@ showAsideToc: true
   </li>
 </ul>
 
-Use [docker-compose](https://docs.docker.com/compose/overview/) utility to create and manage YugabyteDB local clusters. Note that this approach is not recommended for multi-node clusters used for performance testing and production environments.
+Use [docker-compose](https://docs.docker.com/compose/overview/) utility to create and manage ZNbaseDB local clusters. Note that this approach is not recommended for multi-node clusters used for performance testing and production environments.
 
 ## 1. Create a single node cluster
 
@@ -38,7 +38,7 @@ Use [docker-compose](https://docs.docker.com/compose/overview/) utility to creat
 Pull the container from docker hub registry
 
 ```sh
-$ docker pull yugabytedb/yugabyte
+$ docker pull ZNbasedb/ZNbase
 ```
 
 ### Create a docker-compose.yaml file
@@ -50,9 +50,9 @@ version: '2'
 
 services:
   yb-master:
-      image: yugabytedb/yugabyte:latest
+      image: ZNbasedb/ZNbase:latest
       container_name: yb-master-n1
-      command: [ "/home/yugabyte/bin/yb-master", 
+      command: [ "/home/ZNbase/bin/yb-master", 
                 "--fs_data_dirs=/mnt/disk0,/mnt/disk1", 
                 "--master_addresses=yb-master-n1:7100", 
                 "--replication_factor=1"]
@@ -62,9 +62,9 @@ services:
         SERVICE_7000_NAME: yb-master
 
   yb-tserver:
-      image: yugabytedb/yugabyte:latest
+      image: ZNbasedb/ZNbase:latest
       container_name: yb-tserver-n1
-      command: [ "/home/yugabyte/bin/yb-tserver", 
+      command: [ "/home/ZNbase/bin/yb-tserver", 
                 "--fs_data_dirs=/mnt/disk0,/mnt/disk1",
                 "--start_pgsql_proxy", 
                 "--tserver_master_addrs=yb-master-n1:7100"]
@@ -93,13 +93,13 @@ $ docker-compose up -d
 Enable the YSQL API by running the following command.
 
 ```sh
-$ docker exec -it yb-master-n1 bash  -c "YB_ENABLED_IN_POSTGRES=1 FLAGS_pggate_master_addresses=yb-master-n1:7100 /home/yugabyte/postgres/bin/initdb -D /tmp/yb_pg_initdb_tmp_data_dir -U postgres"
+$ docker exec -it yb-master-n1 bash  -c "YB_ENABLED_IN_POSTGRES=1 FLAGS_pggate_master_addresses=yb-master-n1:7100 /home/ZNbase/postgres/bin/initdb -D /tmp/yb_pg_initdb_tmp_data_dir -U postgres"
 ```
 
 Optionally, you can enable YEDIS API by running the following command.
 
 ```sh
-$ docker exec -it yb-master-n1 /home/yugabyte/bin/yb-admin --master_addresses yb-master-n1:7100 setup_redis_table
+$ docker exec -it yb-master-n1 /home/ZNbase/bin/yb-admin --master_addresses yb-master-n1:7100 setup_redis_table
 ```
 
 Clients can now connect to the YSQL(Beta) API at localhost:5433, YCQL API at localhost:9042 and YEDIS API at localhost:6379. The yb-master admin service is available at http://localhost:7000.

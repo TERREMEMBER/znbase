@@ -2,7 +2,7 @@
 title: Quick start YCQL
 headerTitle: Quick start YCQL
 linkTitle: Quick start YCQL
-description: Quick start to explore YCQL in YugabyteDB.
+description: Quick start to explore YCQL in ZNbaseDB.
 image: /images/section_icons/quick_start/explore_ycql.png
 block_indexing: true
 menu:

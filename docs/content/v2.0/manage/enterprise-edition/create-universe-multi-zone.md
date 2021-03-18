@@ -81,7 +81,7 @@ This should bring up a dialog showing how to connect to the nodes.
 Copy the first command (highlighted above) and run it from the YugaWare machine. This will connect us to the first node, `yb-dev-helloworld1-n1`.
 
 ```
-centos@yugaware-1:~$ sudo ssh -i /opt/yugabyte/yugaware/data/keys/b933ff7a-be8a-429a-acc1-145882d90dc0/yb-dev-google-compute-key.pem centos@10.138.0.4 -p 54422
+centos@yugaware-1:~$ sudo ssh -i /opt/ZNbase/yugaware/data/keys/b933ff7a-be8a-429a-acc1-145882d90dc0/yb-dev-google-compute-key.pem centos@10.138.0.4 -p 54422
 Are you sure you want to continue connecting (yes/no)? yes
 [centos@yb-dev-helloworld1-n1 ~]$
 ```
@@ -100,10 +100,10 @@ You can do this as shown below.
 $ sudo yum install java-1.8.0-openjdk.x86_64 -y
 ```
 
-- **Switch to the `yugabyte` user**
+- **Switch to the `ZNbase` user**
 
 ```sh
-$ sudo su - yugabyte
+$ sudo su - ZNbase
 ```
 
 - **Export the `YCQL_ENDPOINTS` env variable**
@@ -135,7 +135,7 @@ $ export YEDIS_ENDPOINTS="10.138.0.3:6379,10.138.0.4:6379,10.138.0.5:6379"
 To start the workload, run the following command.
 
 ```sh
-$ java -jar /home/yugabyte/tserver/java/yb-sample-apps.jar \
+$ java -jar /home/ZNbase/tserver/java/yb-sample-apps.jar \
             --workload CassandraKeyValue \
             --nodes $YCQL_ENDPOINTS \
             --num_threads_write 2 \
@@ -170,7 +170,7 @@ Let us stop the load tester and run a yedis workload.
 To start the workload, run the following command.
 
 ```sh
-$ java -jar /home/yugabyte/tserver/java/yb-sample-apps.jar \
+$ java -jar /home/ZNbase/tserver/java/yb-sample-apps.jar \
             --workload RedisKeyValue \
             --nodes $YEDIS_ENDPOINTS \
             --num_threads_write 2 \
@@ -199,7 +199,7 @@ Stop the sample app.
 You can connect to the YCQL service by running the following command.
 
 ```sh
-$ /home/yugabyte/tserver/bin/cqlsh <ip address of the node>
+$ /home/ZNbase/tserver/bin/cqlsh <ip address of the node>
 ```
 
 You can view the table schema as well as the data entered as shown below.
@@ -232,7 +232,7 @@ cqlsh> SELECT * FROM ybdemo_keyspace.cassandrakeyvalue LIMIT 5;
 You can connect to the YEDIS service by running the following command.
 
 ```sh
-$ /home/yugabyte/tserver/bin/redis-cli -h <ip address of the node>
+$ /home/ZNbase/tserver/bin/redis-cli -h <ip address of the node>
 ```
 
 You can view the data by running the following commands.

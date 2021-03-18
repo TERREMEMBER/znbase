@@ -2,7 +2,7 @@
 
 This tutorial assumes that you have:
 
-- installed YugabyteDB, created a universe, and are able to interact with it using the Redis shell. If not, please follow these steps in the [quick start guide](../../../quick-start).
+- installed ZNbaseDB, created a universe, and are able to interact with it using the Redis shell. If not, please follow these steps in the [quick start guide](../../../quick-start).
 - installed Visual Studio
 
 ## Writing a HelloWorld C# app
@@ -25,7 +25,7 @@ using System;
 using System.Collections.Generic;
 using StackExchange.Redis;
 
-namespace Yugabyte_CSharp_Demo
+namespace ZNbase_CSharp_Demo
 {
     class Program
     {
@@ -47,7 +47,7 @@ namespace Yugabyte_CSharp_Demo
                         { "127.0.0.1", 6379 },
                     },
                     CommandMap = CommandMap.Create(new HashSet<string>
-                    {   // EXCLUDE commands that are not fully supported on YugabyteDB side.
+                    {   // EXCLUDE commands that are not fully supported on ZNbaseDB side.
                         "SUBSCRIBE", "CLUSTER", "TIME", "PING"
                     }, available: false)
                 };
@@ -71,7 +71,7 @@ namespace Yugabyte_CSharp_Demo
             }
             catch (RedisConnectionException e)
             {
-                Console.WriteLine("Unable to make a connection to local YugabyteDB. " +
+                Console.WriteLine("Unable to make a connection to local ZNbaseDB. " +
                                   "Error:", e.Message);
             }
         }

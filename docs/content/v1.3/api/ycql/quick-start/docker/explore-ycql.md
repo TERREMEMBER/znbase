@@ -4,7 +4,7 @@
 You can do this as shown below.
 
 ```sh
-$ docker exec -it yb-tserver-n3 /home/yugabyte/bin/cqlsh
+$ docker exec -it yb-tserver-n3 /home/ZNbase/bin/cqlsh
 ```
 
 ```

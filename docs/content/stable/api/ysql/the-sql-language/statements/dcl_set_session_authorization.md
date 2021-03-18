@@ -53,14 +53,14 @@ To reset the session user back to current authenticated user, `RESET SESSION AUT
 - Set session user to John.
 
 ```plpgsql
-yugabyte=# select session_user, current_user;
+ZNbase=# select session_user, current_user;
  session_user | current_user
 --------------+--------------
- yugabyte     | yugabyte
+ ZNbase     | ZNbase
 (1 row)
-yugabyte=# set session authorization john;
+ZNbase=# set session authorization john;
 SET
-yugabyte=# select session_user, current_user;
+ZNbase=# select session_user, current_user;
  session_user | current_user
 --------------+--------------
  john     | john

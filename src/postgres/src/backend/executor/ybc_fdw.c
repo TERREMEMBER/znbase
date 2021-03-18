@@ -1,9 +1,9 @@
 /*--------------------------------------------------------------------------------------------------
  *
  * ybc_fdw.c
- *		  Foreign-data wrapper for YugabyteDB.
+ *		  Foreign-data wrapper for ZNbaseDB.
  *
- * Copyright (c) YugaByte, Inc.
+ * Copyright (c) ZNbase, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License.  You may obtain a copy of the License at
@@ -165,7 +165,7 @@ ybcGetForeignPlan(PlannerInfo *root,
 
 	scan_clauses = extract_actual_clauses(scan_clauses, false);
 
-	/* Get the target columns that need to be retrieved from YugaByte */
+	/* Get the target columns that need to be retrieved from ZNbase */
 	foreach(lc, baserel->reltarget->exprs)
 	{
 		Expr *expr = (Expr *) lfirst(lc);
@@ -212,7 +212,7 @@ ybcGetForeignPlan(PlannerInfo *root,
 							        attnum)));
 					break;
 				case TableOidAttributeNumber:
-					/* Nothing to do in YugaByte: Postgres will handle this. */
+					/* Nothing to do in ZNbase: Postgres will handle this. */
 					break;
 				case ObjectIdAttributeNumber:
 				case YBTupleIdAttributeNumber:
@@ -247,13 +247,13 @@ typedef struct YbFdwExecState
 {
 	/* The handle for the internal YB Select statement. */
 	YBCPgStatement	handle;
-	YBCPgExecParameters *exec_params; /* execution control parameters for YugaByte */
+	YBCPgExecParameters *exec_params; /* execution control parameters for ZNbase */
 	bool is_exec_done; /* Each statement should be executed exactly one time */
 } YbFdwExecState;
 
 /*
  * ybcBeginForeignScan
- *		Initiate access to the Yugabyte by allocating a Select handle.
+ *		Initiate access to the ZNbase by allocating a Select handle.
  */
 static void
 ybcBeginForeignScan(ForeignScanState *node, int eflags)
@@ -354,7 +354,7 @@ ybcSetupScanTargets(ForeignScanState *node)
 		/*
 		 * We can have no target columns at this point for e.g. a count(*). For now
 		 * we request the first non-dropped column in that case.
-		 * TODO look into handling this on YugaByte side.
+		 * TODO look into handling this on ZNbase side.
 		 */
 		if (!has_targets)
 		{
@@ -481,8 +481,8 @@ ybcIterateForeignScan(ForeignScanState *node)
 	bool           has_data   = false;
 
 	/* Execute the select statement one time.
-	 * TODO(neil) Check whether YugaByte PgGate should combine Exec() and Fetch() into one function.
-	 * - The first fetch from YugaByte PgGate requires a number of operations including allocating
+	 * TODO(neil) Check whether ZNbase PgGate should combine Exec() and Fetch() into one function.
+	 * - The first fetch from ZNbase PgGate requires a number of operations including allocating
 	 *   operators and protobufs. These operations are done by YBCPgExecSelect() function.
 	 * - The subsequent fetches don't need to setup the query with these operations again.
 	 */
@@ -584,7 +584,7 @@ ybcEndForeignScan(ForeignScanState *node)
 
 /*
  * Foreign-data wrapper handler function: return a struct with pointers
- * to YugaByte callback routines.
+ * to ZNbase callback routines.
  */
 Datum
 ybc_fdw_handler()

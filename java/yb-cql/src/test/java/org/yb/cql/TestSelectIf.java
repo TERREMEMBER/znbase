@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -19,8 +19,8 @@ import java.text.SimpleDateFormat;
 import com.datastax.driver.core.LocalDate;
 import com.datastax.driver.core.SimpleStatement;
 import com.datastax.driver.core.Statement;
-import com.yugabyte.driver.core.TableSplitMetadata;
-import com.yugabyte.driver.core.policies.PartitionAwarePolicy;
+import com.ZNbase.driver.core.TableSplitMetadata;
+import com.ZNbase.driver.core.policies.PartitionAwarePolicy;
 import org.junit.Test;
 
 import org.yb.minicluster.IOMetrics;

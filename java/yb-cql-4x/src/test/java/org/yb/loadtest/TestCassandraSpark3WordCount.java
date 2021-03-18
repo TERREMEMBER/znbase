@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 // in compliance with the License.  You may obtain a copy of the License at
@@ -15,8 +15,8 @@ package org.yb.loadtest;
 import com.datastax.oss.driver.api.core.cql.ResultSet;
 import com.datastax.oss.driver.api.core.cql.Row;
 import com.datastax.oss.driver.api.core.CqlSession;
-import com.yugabyte.sample.apps.CassandraSparkWordCount;
-import com.yugabyte.sample.common.CmdLineOpts;
+import com.ZNbase.sample.apps.CassandraSparkWordCount;
+import com.ZNbase.sample.common.CmdLineOpts;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -2,7 +2,7 @@
 title: Explore core features
 headerTitle: Explore core features
 linkTitle: Explore core features
-description: Explore the core features of YugabyteDB on macOS, Linux, Docker, and Kubernetes (Minikube).
+description: Explore the core features of ZNbaseDB on macOS, Linux, Docker, and Kubernetes (Minikube).
 headcontent:
 image: /images/section_icons/index/explore.png
 section: GET STARTED
@@ -15,7 +15,7 @@ menu:
 
 {{< tip title="Tip" >}}
 
-Use your [local cluster](../quick-start/) to explore all the core features of YugabyteDB.
+Use your [local cluster](../quick-start/) to explore all the core features of ZNbaseDB.
 
 {{< /tip >}}
 
@@ -106,7 +106,7 @@ Use your [local cluster](../quick-start/) to explore all the core features of Yu
         <div class="title">Change data capture (CDC)</div>
       </div>
       <div class="body">
-        Stream data changes from YugabyteDB to external systems.
+        Stream data changes from ZNbaseDB to external systems.
       </div>
     </a>
   </div>

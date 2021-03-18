@@ -2,7 +2,7 @@
 title: Verify Migration
 headerTitle: Verify Migration
 linkTitle: Verify Migration
-description: Verify migration to YugabyteDB.
+description: Verify migration to ZNbaseDB.
 block_indexing: true
 menu:
   v2.2:
@@ -18,12 +18,12 @@ Here are some things that can be verified to ensure that the migration was succe
 
 ## Verify database objects
 
-* Verify that all the tables and indexes have been created in YugabyteDB
+* Verify that all the tables and indexes have been created in ZNbaseDB
 * Ensure that triggers and constraints are migrated and are working as expected
 
 ## Verify row counts for tables
 
-For tables with 1 million rows or less, run a `COUNT(*)` command to verify that the total number of rows match between the source database and YugabyteDB. This can be done as shown below using a PLPGSQL function.
+For tables with 1 million rows or less, run a `COUNT(*)` command to verify that the total number of rows match between the source database and ZNbaseDB. This can be done as shown below using a PLPGSQL function.
 
 **Step 1.** First create the following function to print out the number of rows in a single table.
 

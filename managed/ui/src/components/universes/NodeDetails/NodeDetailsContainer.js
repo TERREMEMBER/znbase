@@ -1,4 +1,4 @@
-// Copyright YugaByte Inc.
+// Copyright ZNbase Inc.
 
 import { NodeDetails } from '../../universes';
 import { connect } from 'react-redux';

@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 # Post-installation script. Set dynamic linker path on executables in the "bin" directory. This
-# script is expected to be installed into the "bin" directory of the YugaByte distribution.
+# script is expected to be installed into the "bin" directory of the ZNbase distribution.
 
 #
-# The following only applies to changes made to this file as part of YugaByte development.
+# The following only applies to changes made to this file as part of ZNbase development.
 #
-# Portions Copyright (c) YugaByte, Inc.
+# Portions Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -92,7 +92,7 @@ if [[ $install_mode == "true" ]]; then
   cd "$bin_dir"
   # ${...} macro variables will be substituted during packaging.
   # If you are looking at the actual post_install.sh script in an installed distribution of
-  # YugabyteDB, you won't see the ${...} macro variables because they have been replaced with their
+  # ZNbaseDB, you won't see the ${...} macro variables because they have been replaced with their
   # actual values.
   for f in ${main_elf_names_to_patch}; do
     patch_binary "$f"

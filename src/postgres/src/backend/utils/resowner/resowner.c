@@ -174,9 +174,9 @@ static void PrintFileLeakWarning(File file);
 static void PrintDSMLeakWarning(dsm_segment *seg);
 
 /**
- * YugaByte-specific
+ * ZNbase-specific
  */
-static void PrintYugaByteStmtLeakWarning(YBCPgStatement yb_stmt);
+static void PrintZNbaseStmtLeakWarning(YBCPgStatement yb_stmt);
 
 /*****************************************************************************
  *	  INTERNAL ROUTINES														 *

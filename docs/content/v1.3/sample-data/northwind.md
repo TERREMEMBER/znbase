@@ -12,7 +12,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-Download and install the PostgreSQL-compatible version of Northwind on the YugabyteDB distributed SQL database.
+Download and install the PostgreSQL-compatible version of Northwind on the ZNbaseDB distributed SQL database.
 
 ## About the Northwind sample database
 
@@ -37,14 +37,14 @@ Follow the steps here to download and install the Northwind sample database.
 
 ### Before you begin
 
-To use the Northwind sample database, you must have installed and configured YugabyteDB. To get up and running quickly, see [Quick Start](/latest/quick-start/).
+To use the Northwind sample database, you must have installed and configured ZNbaseDB. To get up and running quickly, see [Quick Start](/latest/quick-start/).
 
 ### 1. Download the SQL scripts
 
-You can download the Northwind database files, which are compatible with YugabyteDB, from the [`sample` directory of the YugabyteDB GitHub repository](https://github.com/yugabyte/yugabyte-db/tree/master/sample). Here are the two files you’ll need.
+You can download the Northwind database files, which are compatible with ZNbaseDB, from the [`sample` directory of the ZNbaseDB GitHub repository](https://github.com/ZNbase/ZNbase-db/tree/master/sample). Here are the two files you’ll need.
 
-[northwind_ddl.sql](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/northwind_ddl.sql) — Creates tables and other database objects
-[northwind_data.sql](https://raw.githubusercontent.com/yugabyte/yugabyte-db/master/sample/northwind_data.sql) — Loads the sample data
+[northwind_ddl.sql](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/northwind_ddl.sql) — Creates tables and other database objects
+[northwind_data.sql](https://raw.githubusercontent.com/ZNbase/ZNbase-db/master/sample/northwind_data.sql) — Loads the sample data
 
 ### 2. Open the YSQL shell
 
@@ -83,7 +83,7 @@ northwind=#
 To build the tables and database objects, execute the `northwind_ddl.sql` SQL script.
 
 ```
-northwind=# \i /Users/yugabyte/northwind_ddl.sql
+northwind=# \i /Users/ZNbase/northwind_ddl.sql
 ```
 
 You can verify that all 14 tables have been created by running the `\d` command.
@@ -97,7 +97,7 @@ northwind=# \d
 To load the `northwind` database with sample data, run the `\i` command to execute commands in the `northwind_data.sql` file.
 
 ```
-northwind=# \i /Users/yugabyte/northwind_data.sql
+northwind=# \i /Users/ZNbase/northwind_data.sql
 ```
 
 To verify that you have some data to work with, you can run a simple SELECT statement to pull data from the `customers` table.
@@ -108,4 +108,4 @@ northwind=# SELECT * FROM customers LIMIT 2;
 
 ## Explore the Northwind database
 
-That’s it! You are now ready to start exploring the Northwind database and YugabyteDB features using the command line or your favorite PostgreSQL tool.
+That’s it! You are now ready to start exploring the Northwind database and ZNbaseDB features using the command line or your favorite PostgreSQL tool.

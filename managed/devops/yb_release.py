@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 #
-# Copyright 2019 YugaByte, Inc. and Contributors
+# Copyright 2019 ZNbase, Inc. and Contributors
 #
 # Licensed under the Polyform Free Trial License 1.0.0 (the "License"); you
 # may not use this file except in compliance with the License. You
 # may obtain a copy of the License at
 #
-# https://github.com/YugaByte/yugabyte-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
+# https://github.com/ZNbase/ZNbase-db/blob/master/licenses/POLYFORM-FREE-TRIAL-LICENSE-1.0.0.txt
 
 import os
 import logging
@@ -18,7 +18,7 @@ from ybops.common.exceptions import YBOpsRuntimeError
 from ybops.release_manager import ReleaseManager
 
 
-"""This scripts calls the yugabyte release manager api to generate the
+"""This scripts calls the ZNbase release manager api to generate the
    release based on the release manifest.
 """
 parser = argparse.ArgumentParser()

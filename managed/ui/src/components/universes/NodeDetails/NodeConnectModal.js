@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
@@ -58,7 +58,7 @@ class NodeConnectModal extends Component {
       const accessKey = accessKeys.data.filter((key) => key.idKey.providerUUID === providerUUID)[0];
       const accessKeyInfo = accessKey.keyInfo;
       const sshPort = accessKeyInfo.sshPort || 54422;
-      accessCommand = `sudo ssh -i ${accessKeyInfo.privateKey} -ostricthostkeychecking=no -p ${sshPort} yugabyte@${nodeIPs.privateIP}`;
+      accessCommand = `sudo ssh -i ${accessKeyInfo.privateKey} -ostricthostkeychecking=no -p ${sshPort} ZNbase@${nodeIPs.privateIP}`;
     }
 
     const btnId = _.uniqueId('node_action_btn_');

@@ -51,47 +51,47 @@ See the semantics of each option in the [PostgreSQL docs][postgresql-docs-create
 `WITH FUNCTION` example.
 
 ```postgresql
-yugabyte=# CREATE FUNCTION sql_to_date(integer) RETURNS date AS $$
+ZNbase=# CREATE FUNCTION sql_to_date(integer) RETURNS date AS $$
              SELECT $1::text::date
              $$ LANGUAGE SQL IMMUTABLE STRICT;
-yugabyte=# CREATE CAST (integer AS date) WITH FUNCTION sql_to_date(integer) AS ASSIGNMENT;
-yugabyte=# SELECT CAST (3 AS date);
+ZNbase=# CREATE CAST (integer AS date) WITH FUNCTION sql_to_date(integer) AS ASSIGNMENT;
+ZNbase=# SELECT CAST (3 AS date);
 ```
 
 `WITHOUT FUNCTION` example.
 
 ```postgresql
-yugabyte=# CREATE TYPE myfloat4;
-yugabyte=# CREATE FUNCTION myfloat4_in(cstring) RETURNS myfloat4
+ZNbase=# CREATE TYPE myfloat4;
+ZNbase=# CREATE FUNCTION myfloat4_in(cstring) RETURNS myfloat4
              LANGUAGE internal IMMUTABLE STRICT PARALLEL SAFE AS 'float4in';
-yugabyte=# CREATE FUNCTION myfloat4_out(myfloat4) RETURNS cstring
+ZNbase=# CREATE FUNCTION myfloat4_out(myfloat4) RETURNS cstring
              LANGUAGE internal IMMUTABLE STRICT PARALLEL SAFE AS 'float4out';
-yugabyte=# CREATE TYPE myfloat4 (
+ZNbase=# CREATE TYPE myfloat4 (
              INPUT = myfloat4_in,
              OUTPUT = myfloat4_out,
              LIKE = float4
            );
-yugabyte=# SELECT CAST('3.14'::myfloat4 AS float4);
-yugabyte=# CREATE CAST (myfloat4 AS float4) WITHOUT FUNCTION;
-yugabyte=# SELECT CAST('3.14'::myfloat4 AS float4);
+ZNbase=# SELECT CAST('3.14'::myfloat4 AS float4);
+ZNbase=# CREATE CAST (myfloat4 AS float4) WITHOUT FUNCTION;
+ZNbase=# SELECT CAST('3.14'::myfloat4 AS float4);
 ```
 
 `WITH INOUT` example.
 
 ```postgresql
-yugabyte=# CREATE TYPE myint4;
-yugabyte=# CREATE FUNCTION myint4_in(cstring) RETURNS myint4
+ZNbase=# CREATE TYPE myint4;
+ZNbase=# CREATE FUNCTION myint4_in(cstring) RETURNS myint4
              LANGUAGE internal IMMUTABLE STRICT PARALLEL SAFE AS 'int4in';
-yugabyte=# CREATE FUNCTION myint4_out(myint4) RETURNS cstring
+ZNbase=# CREATE FUNCTION myint4_out(myint4) RETURNS cstring
              LANGUAGE internal IMMUTABLE STRICT PARALLEL SAFE AS 'int4out';
-yugabyte=# CREATE TYPE myint4 (
+ZNbase=# CREATE TYPE myint4 (
              INPUT = myint4_in,
              OUTPUT = myint4_out,
              LIKE = int4
            );
-yugabyte=# SELECT CAST('2'::myint4 AS int4);
-yugabyte=# CREATE CAST (myint4 AS int4) WITH INOUT;
-yugabyte=# SELECT CAST('2'::myint4 AS int4);
+ZNbase=# SELECT CAST('2'::myint4 AS int4);
+ZNbase=# CREATE CAST (myint4 AS int4) WITH INOUT;
+ZNbase=# SELECT CAST('2'::myint4 AS int4);
 ```
 
 ## See also

@@ -29,7 +29,7 @@ Specify the name of the sequence.
 ### Create a sequence
 
 ```postgresql
-yugabyte=# CREATE SEQUENCE s;
+ZNbase=# CREATE SEQUENCE s;
 ```
 
 ```
@@ -39,7 +39,7 @@ CREATE SEQUENCE
 Call `nextval()`.
 
 ```postgresql
-yugabyte=# SELECT nextval('s');
+ZNbase=# SELECT nextval('s');
 ```
 
 ```
@@ -50,7 +50,7 @@ yugabyte=# SELECT nextval('s');
 ```
 
 ```postgresql
-yugabyte=# SELECT currval('s');
+ZNbase=# SELECT currval('s');
 ```
 
 ```
@@ -63,7 +63,7 @@ yugabyte=# SELECT currval('s');
 Call `currval()` before `nextval()` is called.
 
 ```postgresql
-yugabyte=# CREATE SEQUENCE s2;
+ZNbase=# CREATE SEQUENCE s2;
 ```
 
 ```

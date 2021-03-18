@@ -8072,7 +8072,7 @@ opt_index_name:
 
 access_method_clause:
 			USING access_method						{ $$ = $2; }
-			| /*EMPTY*/								{ $$ = IsYugaByteEnabled() ?
+			| /*EMPTY*/								{ $$ = IsZNbaseEnabled() ?
 															 NULL : DEFAULT_INDEX_TYPE;	}
 		;
 
@@ -8168,7 +8168,7 @@ index_elem:	ColId opt_collate opt_class opt_yb_index_sort_order opt_nulls_order
 		;
 
 /*
- * For YugabyteDB, index column can be grouped and hashed together. Unfortunately, we cannot
+ * For ZNbaseDB, index column can be grouped and hashed together. Unfortunately, we cannot
  * use "columnList" below due to reduce/reduce conflict.
  */
 yb_index_elem: index_elem
@@ -8220,7 +8220,7 @@ opt_asc_desc: ASC							{ $$ = SORTBY_ASC; }
 		;
 
 /*
- * For YugabyteDB, index column can be hash-distributed also.
+ * For ZNbaseDB, index column can be hash-distributed also.
  */
 opt_yb_index_sort_order: opt_asc_desc			{ $$ = $1; }
 			| HASH							{ $$ = SORTBY_HASH; }
@@ -17379,7 +17379,7 @@ raise_feature_not_supported_signal(int pos, core_yyscan_t yyscanner, const char 
 		ereport(signal_level,
 				(errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
 				 errmsg("%s", msg),
-				 errhint("See https://github.com/YugaByte/yugabyte-db/issues/%d. "
+				 errhint("See https://github.com/ZNbase/ZNbase-db/issues/%d. "
 						 "Click '+' on the description to raise its priority", issue),
 				 parser_errposition(pos)));
 
@@ -17390,7 +17390,7 @@ raise_feature_not_supported_signal(int pos, core_yyscan_t yyscanner, const char 
 				(errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
 				 errmsg("%s", msg),
 				 errhint("Please report the issue on "
-						 "https://github.com/YugaByte/yugabyte-db/issues"),
+						 "https://github.com/ZNbase/ZNbase-db/issues"),
 				 parser_errposition(pos)));
 	}
 }

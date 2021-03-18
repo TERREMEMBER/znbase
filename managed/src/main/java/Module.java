@@ -1,23 +1,23 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.yugabyte.yw.cloud.AWSInitializer;
-import com.yugabyte.yw.cloud.aws.AWSCloudModule;
-import com.yugabyte.yw.commissioner.*;
-import com.yugabyte.yw.common.*;
-import com.yugabyte.yw.common.config.RuntimeConfigFactory;
-import com.yugabyte.yw.common.config.impl.SettableRuntimeConfigFactory;
-import com.yugabyte.yw.common.ha.PlatformReplicationManager;
-import com.yugabyte.yw.common.kms.EncryptionAtRestManager;
-import com.yugabyte.yw.common.kms.util.EncryptionAtRestUniverseKeyCache;
-import com.yugabyte.yw.common.services.LocalYBClientService;
-import com.yugabyte.yw.common.services.YBClientService;
-import com.yugabyte.yw.common.ha.PlatformReplicationHelper;
-import com.yugabyte.yw.controllers.PlatformHttpActionAdapter;
-import com.yugabyte.yw.metrics.MetricQueryHelper;
-import com.yugabyte.yw.queries.QueryHelper;
-import com.yugabyte.yw.scheduler.Scheduler;
+import com.ZNbase.yw.cloud.AWSInitializer;
+import com.ZNbase.yw.cloud.aws.AWSCloudModule;
+import com.ZNbase.yw.commissioner.*;
+import com.ZNbase.yw.common.*;
+import com.ZNbase.yw.common.config.RuntimeConfigFactory;
+import com.ZNbase.yw.common.config.impl.SettableRuntimeConfigFactory;
+import com.ZNbase.yw.common.ha.PlatformReplicationManager;
+import com.ZNbase.yw.common.kms.EncryptionAtRestManager;
+import com.ZNbase.yw.common.kms.util.EncryptionAtRestUniverseKeyCache;
+import com.ZNbase.yw.common.services.LocalYBClientService;
+import com.ZNbase.yw.common.services.YBClientService;
+import com.ZNbase.yw.common.ha.PlatformReplicationHelper;
+import com.ZNbase.yw.controllers.PlatformHttpActionAdapter;
+import com.ZNbase.yw.metrics.MetricQueryHelper;
+import com.ZNbase.yw.queries.QueryHelper;
+import com.ZNbase.yw.scheduler.Scheduler;
 import org.pac4j.core.client.Clients;
 import org.pac4j.core.config.Config;
 import org.pac4j.oidc.client.OidcClient;

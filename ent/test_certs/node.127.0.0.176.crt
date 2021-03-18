@@ -3,7 +3,7 @@ Certificate:
         Version: 3 (0x2)
         Serial Number: 651 (0x28b)
     Signature Algorithm: sha256WithRSAEncryption
-        Issuer: CN=YugaByte CA
+        Issuer: CN=ZNbase CA
         Validity
             Not Before: Jan 27 08:52:46 2019 GMT
             Not After : Jan 31 08:52:46 2024 GMT
@@ -23,12 +23,12 @@ Certificate:
                     3e:f3:0e:71:8c:ce:53:84:ed
                 Exponent: 65537 (0x10001)
         X509v3 extensions:
-            X509v3 Basic Constraints: 
+            X509v3 Basic Constraints:
                 CA:FALSE
-            X509v3 Extended Key Usage: 
+            X509v3 Extended Key Usage:
                 TLS Web Client Authentication, TLS Web Server Authentication
-            X509v3 Subject Alternative Name: 
-                IP Address:127.0.0.176, DNS:127.*.*.177.ip.yugabyte
+            X509v3 Subject Alternative Name:
+                IP Address:127.0.0.176, DNS:127.*.*.177.ip.ZNbase
     Signature Algorithm: sha256WithRSAEncryption
          0c:8b:ce:25:32:99:02:b6:11:c8:63:b8:7b:2d:3a:39:49:d3:
          33:ce:61:86:f3:59:4f:86:38:41:8e:5e:c2:63:ac:fb:1e:d6:

@@ -12,7 +12,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This section will describe how to back up and restore tables using the Yugabyte Admin Console.
+This section will describe how to back up and restore tables using the ZNbase Admin Console.
 
 ## Create universe
 
@@ -32,10 +32,10 @@ In this example, we create a local directory on the tserver to backup to. Select
 
 ![Connect Modal](/images/ee/br-connect-modal.png)
 
-Once you are sshed in, create a directory `/backup` and change the owner to yugabyte.
+Once you are sshed in, create a directory `/backup` and change the owner to ZNbase.
 
 ```sh
-$ sudo mkdir /backup; sudo chown yugabyte /backup
+$ sudo mkdir /backup; sudo chown ZNbase /backup
 ```
 
 Note that when there are more than 1 nodes, an nfs mounted on each server is recommended, and

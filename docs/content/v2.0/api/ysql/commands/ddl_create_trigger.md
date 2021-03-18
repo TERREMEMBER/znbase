@@ -79,14 +79,14 @@ Use the `CREATE TRIGGER` statement to define a new trigger.
 
 
     ```postgresql
-    SET ROLE yugabyte;
+    SET ROLE ZNbase;
     INSERT INTO posts VALUES(1, 'desc1');
 
     SET ROLE postgres;
     INSERT INTO posts VALUES(2, 'desc2');
     INSERT INTO posts VALUES(3, 'desc3');
 
-    SET ROLE yugabyte;
+    SET ROLE ZNbase;
     INSERT INTO posts VALUES(4, 'desc4');
 
     SELECT * FROM posts ORDER BY id;
@@ -95,15 +95,15 @@ Use the `CREATE TRIGGER` statement to define a new trigger.
     ```
      id | content | username |          moddate
     ----+---------+----------+----------------------------
-      1 | desc1   | yugabyte | 2019-09-13 16:55:53.969907
+      1 | desc1   | ZNbase | 2019-09-13 16:55:53.969907
       2 | desc2   | postgres | 2019-09-13 16:55:53.983306
       3 | desc3   | postgres | 2019-09-13 16:55:53.98658
-      4 | desc4   | yugabyte | 2019-09-13 16:55:53.991315
+      4 | desc4   | ZNbase | 2019-09-13 16:55:53.991315
     ```
 
   {{< note title="Note" >}}
 
-  YSQL should have users `yugabyte` and (for compatibility) `postgres` created by default.
+  YSQL should have users `ZNbase` and (for compatibility) `postgres` created by default.
 
   {{< /note >}}
 
@@ -120,10 +120,10 @@ Use the `CREATE TRIGGER` statement to define a new trigger.
     ```
      id |    content    | username |          moddate
     ----+---------------+----------+----------------------------
-      1 | desc1_updated | yugabyte | 2019-09-13 16:56:27.623513
+      1 | desc1_updated | ZNbase | 2019-09-13 16:56:27.623513
       2 | desc2         | postgres | 2019-09-13 16:55:53.983306
-      3 | desc3_updated | yugabyte | 2019-09-13 16:56:27.634099
-      4 | desc4         | yugabyte | 2019-09-13 16:55:53.991315
+      3 | desc3_updated | ZNbase | 2019-09-13 16:56:27.634099
+      4 | desc4         | ZNbase | 2019-09-13 16:55:53.991315
     ```
 
 ## See also

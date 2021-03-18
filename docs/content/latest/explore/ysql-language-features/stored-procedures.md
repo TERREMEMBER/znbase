@@ -17,7 +17,7 @@ This section describes how to use stored procedures to perform transactions.
 
 ## Overview
 
-Stored procedures, in large part, are simply functions that support transactions. PostgreSQL 11 introduced stored procedures, and Yugabyte supports them as well.
+Stored procedures, in large part, are simply functions that support transactions. PostgreSQL 11 introduced stored procedures, and ZNbase supports them as well.
 
 ## Creating a Stored Procedure
 
@@ -54,7 +54,7 @@ CALL stored_procedure_name(argument_list)
 For example, drawing from the [Example workflow](#example-workflow) on this page:
 
 ```sql
-yugabyte=# call move_money(1,2,1000);
+ZNbase=# call move_money(1,2,1000);
 ```
 
 ## Deleting a Stored Procedure
@@ -69,7 +69,7 @@ DROP PROCEDURE [IF EXISTS] stored_procedure_name(argument_list)
 For example,
 
 ```sql
-yugabyte=# drop procedure move_money(integer, integer, decimal);
+ZNbase=# drop procedure move_money(integer, integer, decimal);
 ```
 
 If the name of the stored procedure is not unique (for example, if you had two `insert_data()` procedures, one of which accepted two integers and another which accepted an integer and a varchar), you must specify the data types in the `DROP PROCEDURE` statement. Otherwise, you can omit the data types.

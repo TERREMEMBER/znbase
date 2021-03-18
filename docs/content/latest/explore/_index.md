@@ -2,7 +2,7 @@
 title: Explore features
 headerTitle: Explore features
 linkTitle: Explore features
-description: Explore the features of YugabyteDB on macOS, Linux, Docker, and Kubernetes (Minikube).
+description: Explore the features of ZNbaseDB on macOS, Linux, Docker, and Kubernetes (Minikube).
 headcontent:
 image: /images/section_icons/index/explore.png
 aliases:
@@ -11,7 +11,7 @@ aliases:
   - /latest/explore/high-performance/
   - /latest/explore/planet-scale/
   - /latest/explore/cloud-native/orchestration-readiness/
-section: YUGABYTEDB CORE
+section: ZNbaseDB CORE
 menu:
   latest:
     identifier: explore
@@ -20,7 +20,7 @@ menu:
 
 {{< tip title="Tip" >}}
 
-Use [yb-ctl](../admin/yb-ctl) local cluster management utility to explore the core features of YugabyteDB.
+Use [yb-ctl](../admin/yb-ctl) local cluster management utility to explore the core features of ZNbaseDB.
 
 {{< /tip >}}
 
@@ -67,7 +67,7 @@ Use [yb-ctl](../admin/yb-ctl) local cluster management utility to explore the co
         <div class="title">Transactions</div>
       </div>
       <div class="body">
-        Explore distributed transactions support and other concurrency control features in YugabyteDB.
+        Explore distributed transactions support and other concurrency control features in ZNbaseDB.
       </div>
     </a>
   </div>
@@ -89,7 +89,7 @@ Use [yb-ctl](../admin/yb-ctl) local cluster management utility to explore the co
         <div class="title">Multi-Region Deployments</div>
       </div>
       <div class="body">
-        Multi-region deployment topologies supported by YugabyteDB such as sync and async replication, geo-partitioning, etc.
+        Multi-region deployment topologies supported by ZNbaseDB such as sync and async replication, geo-partitioning, etc.
       </div>
     </a>
   </div>
@@ -137,7 +137,7 @@ Use [yb-ctl](../admin/yb-ctl) local cluster management utility to explore the co
         <div class="title">Change data capture (CDC)</div>
       </div>
       <div class="body">
-        Stream data changes from YugabyteDB to external systems.
+        Stream data changes from ZNbaseDB to external systems.
       </div>
     </a>
   </div>

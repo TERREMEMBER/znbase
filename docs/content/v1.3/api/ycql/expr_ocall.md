@@ -11,7 +11,7 @@ isTocNested: true
 showAsideToc: true
 ---
 
-An expression with operators is a compound expression that combines multiple expressions using builtin operators. The following sections discuss the supported operators in Yugabyte.
+An expression with operators is a compound expression that combines multiple expressions using builtin operators. The following sections discuss the supported operators in ZNbase.
 
 ## Nullary operations
 

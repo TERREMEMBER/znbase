@@ -18,14 +18,14 @@ Python 2.7.10
 
 ## Download
 
-Download the YugabyteDB CE package as shown below.
+Download the ZNbaseDB CE package as shown below.
 
 ```sh
-$ wget https://downloads.yugabyte.com/yugabyte-1.3.2.1-linux.tar.gz
+$ wget https://downloads.ZNbase.com/ZNbase-1.3.2.1-linux.tar.gz
 ```
 
 ```sh
-$ tar xvfz yugabyte-1.3.2.1-linux.tar.gz && cd yugabyte-1.3.2.1/
+$ tar xvfz ZNbase-1.3.2.1-linux.tar.gz && cd ZNbase-1.3.2.1/
 ```
 
 ## Configure

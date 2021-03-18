@@ -23,7 +23,7 @@ The following character types are supported.
 * `char(n)`: fixed-length, blank padded
 * `text`, `varchar`: variable unlimited length
 
-To test YugabyteDB’s support for character types, let’s create a table that has columns with these types specified:
+To test ZNbaseDB’s support for character types, let’s create a table that has columns with these types specified:
 
 ```sql
 CREATE TABLE char_types (
@@ -84,7 +84,7 @@ VALUES
 
 ## `SERIAL` pseudo-type
 
-In YugabyteDB, just as with PostgreSQL, a sequence is a special kind of database object that generates a sequence of integers. A sequence is often used as the primary key column in a table.
+In ZNbaseDB, just as with PostgreSQL, a sequence is a special kind of database object that generates a sequence of integers. A sequence is often used as the primary key column in a table.
 
 By assigning the SERIAL pseudo-type to a column, the following occurs behind the scenes:
 
@@ -101,7 +101,7 @@ YSQL supports the following pseudo-types:
 
 ## Date and time
 
-Temporal data types allow us to store date and/or time data. There are five main types in PostgreSQL, all of which are supported in YugabyteDB.
+Temporal data types allow us to store date and/or time data. There are five main types in PostgreSQL, all of which are supported in ZNbaseDB.
 
 * `DATE`: stores the dates only
 * `TIME`: stores the time of day values
@@ -135,7 +135,7 @@ VALUES
 You can check the data inserted as shown below.
 
 ```
-yugabyte=# select * from temporal_types;
+ZNbase=# select * from temporal_types;
  date_type  | time_type |   timestamp_type    |    timestampz_type     |     interval_type
 ------------+-----------+---------------------+------------------------+------------------------
  2010-06-28 | 12:32:12  | 2016-06-22 19:10:25 | 2016-06-22 19:10:25-07 | 10 years 3 mons 5 days
@@ -224,7 +224,7 @@ UPDATE rock_band set members[2] = 'Waters' where name = 'Pink Floyd';
 ```
 Output:
 ```
-yugabyte=# select * from rock_band where name = 'Pink Floyd';
+ZNbase=# select * from rock_band where name = 'Pink Floyd';
     name    |     members
 ------------+------------------
  Pink Floyd | {Barrett,Waters}
@@ -238,7 +238,7 @@ UPDATE rock_band set members = '{"Mason", "Wright", "Gilmour"}' where name = 'Pi
 ```
 Output:
 ```
-yugabyte=# select * from rock_band where name = 'Pink Floyd';
+ZNbase=# select * from rock_band where name = 'Pink Floyd';
     name    |        members
 ------------+------------------------
  Pink Floyd | {Mason,Wright,Gilmour}
@@ -262,7 +262,7 @@ Output:
 
 ## Enumerations - `ENUM` type
 
-YugabyteDB supports the `ENUM` type in PostgreSQL. Below is an example (adapted from [here](http://postgresguide.com/sexy/enums.html)).
+ZNbaseDB supports the `ENUM` type in PostgreSQL. Below is an example (adapted from [here](http://postgresguide.com/sexy/enums.html)).
 
 ### 1. Create `ENUM`
 ```sql
@@ -309,7 +309,7 @@ INSERT INTO contact_method_info VALUES ('Jeff', 'Email', 'jeff@mail.com')
 
 You can verify as shown below:
 ```
-yugabyte=# select * from contact_method_info;
+ZNbase=# select * from contact_method_info;
  contact_name | contact_method |     value
 --------------+----------------+---------------
  Jeff         | Email          | jeff@mail.com
@@ -319,7 +319,7 @@ yugabyte=# select * from contact_method_info;
 Inserting an invalid `ENUM` value would fail.
 
 ```sql
-yugabyte=# INSERT INTO contact_method_info VALUES ('Jeff', 'Fax', '4563456');
+ZNbase=# INSERT INTO contact_method_info VALUES ('Jeff', 'Fax', '4563456');
 ```
 You should see the following error (note error message is compatible with that of PostgreSQL).
 ```
@@ -370,7 +370,7 @@ SELECT (on_hand.item).name FROM on_hand WHERE (on_hand.item).price > 0.99;
 ```
 Output:
 ```
-yugabyte=# SELECT (item).name FROM on_hand WHERE (item).price > 0.99;
+ZNbase=# SELECT (item).name FROM on_hand WHERE (item).price > 0.99;
     name
 ------------
  fuzzy dice

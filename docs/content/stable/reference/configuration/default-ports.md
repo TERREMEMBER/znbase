@@ -2,7 +2,7 @@
 title: Default ports reference
 headerTitle: Default ports
 linkTitle: Default ports
-description: Default ports for YugabyteDB including client APIs, RPC communication, and monitoring.
+description: Default ports for ZNbaseDB including client APIs, RPC communication, and monitoring.
 section: REFERENCE
 menu:
   stable:
@@ -57,7 +57,7 @@ Along with the above, include the following common ports in firewall rules.
 
 ## Monitoring with Prometheus
 
-Use the following targets to configure [Prometheus](https://prometheus.io/) to scrape available metrics (in [Prometheus exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/#text-based-format)) from the YugabyteDB HTTP endpoint:
+Use the following targets to configure [Prometheus](https://prometheus.io/) to scrape available metrics (in [Prometheus exposition format](https://prometheus.io/docs/instrumenting/exposition_formats/#text-based-format)) from the ZNbaseDB HTTP endpoint:
 
 ```
 <target>/prometheus-metrics
@@ -65,7 +65,7 @@ Use the following targets to configure [Prometheus](https://prometheus.io/) to s
 
 You can access the Prometheus server on port `9090` of the Platform node, and you can see the list of targets at the `http://<yugaware-ip>:9090/targets`. In particular, note port `9300` for node level metrics.
 
-For a quick tutorial on using Prometheus with YugabyteDB, see [Observability with Prometheus](../../../explore/observability).
+For a quick tutorial on using Prometheus with ZNbaseDB, see [Observability with Prometheus](../../../explore/observability).
 
 ### Servers
 

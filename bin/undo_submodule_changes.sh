@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) YugaByte, Inc.
+# Copyright (c) ZNbase, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
 # in compliance with the License.  You may obtain a copy of the License at
@@ -17,7 +17,7 @@
 
 set -euo pipefail
 
-# shellcheck source=submodules/yugabyte-bash-common/src/yugabyte-bash-common.sh
+# shellcheck source=submodules/ZNbase-bash-common/src/ZNbase-bash-common.sh
 . "${BASH_SOURCE%/*}"/../build-support/common-build-env.sh
 
 cd "$YB_SRC_ROOT"

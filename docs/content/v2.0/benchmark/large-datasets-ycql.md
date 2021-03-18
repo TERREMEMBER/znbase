@@ -3,7 +3,7 @@ title: Large datasets
 linkTitle: Large datasets
 description: Large datasets
 image: /images/section_icons/architecture/concepts.png
-headcontent: Testing YugabyteDB with large data sets.
+headcontent: Testing ZNbaseDB with large data sets.
 block_indexing: true
 menu:
   v2.0:
@@ -32,7 +32,7 @@ isTocNested: true
 
 </ul>
 
-Use this benchmark to understand the performance, failure, and scaling characteristics of YugabyteDB with a massive dataset (multiple TB per node). In order to accomplish that, we will do the following:
+Use this benchmark to understand the performance, failure, and scaling characteristics of ZNbaseDB with a massive dataset (multiple TB per node). In order to accomplish that, we will do the following:
 
 - Load 30 billion key-value records
 - Each write operation inserts a single record
@@ -57,13 +57,13 @@ A machine in the Amazon Web Services (AWS) cloud with the following specificatio
 
 ### Cluster creation
 
-Create a standard four-node cluster, with replication factor (RF) of `3`. Pass the following option to the YugabyteDB processes.
+Create a standard four-node cluster, with replication factor (RF) of `3`. Pass the following option to the ZNbaseDB processes.
 
 ```sh
 --yb_num_shards_per_tserver=20
 ```
 
-The `yb_num_shards_per_tserver` was set to `20` (default value is `8`). This is done because the `i3.8xlarge` nodes have four disks. In future, YugabyteDB will automatically pick better defaults for nodes with multiple disks.
+The `yb_num_shards_per_tserver` was set to `20` (default value is `8`). This is done because the `i3.8xlarge` nodes have four disks. In future, ZNbaseDB will automatically pick better defaults for nodes with multiple disks.
 
 Create the `YCQL_ADDRS` environment variable using the `export` command:
 

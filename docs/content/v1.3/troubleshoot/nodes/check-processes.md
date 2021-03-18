@@ -1,7 +1,7 @@
 ---
 title: Check processes
 linkTitle: Check processes
-description: Check YugabyteDB processes
+description: Check ZNbaseDB processes
 block_indexing: true
 menu:
   v1.3:
@@ -11,11 +11,11 @@ isTocNested: true
 showAsideToc: true
 ---
 
-## 1. Are the YugabyteDB processes running?
+## 1. Are the ZNbaseDB processes running?
 
-Connect to the local node where YugabyteDB is running. 
+Connect to the local node where ZNbaseDB is running. 
 
-On the local setup, this is your local machine (or a Docker instance running on your local machine). On a multi-node cluster, you may need to `ssh` into the machines where the Yugabyte nodes are running.
+On the local setup, this is your local machine (or a Docker instance running on your local machine). On a multi-node cluster, you may need to `ssh` into the machines where the ZNbase nodes are running.
 
 ```sh
 $ ps aux | grep yb-tserver

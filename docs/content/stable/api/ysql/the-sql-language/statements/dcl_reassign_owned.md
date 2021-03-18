@@ -47,10 +47,10 @@ Use the `REASSIGN OWNED` statement to change the ownership of database objects o
 
 ## Examples
 
-- Reassign all objects owned by john to yugabyte.
+- Reassign all objects owned by john to ZNbase.
 
 ```plpgsql
-yugabyte=# reassign owned by john to yugabyte;
+ZNbase=# reassign owned by john to ZNbase;
 ```
 
 ## See also

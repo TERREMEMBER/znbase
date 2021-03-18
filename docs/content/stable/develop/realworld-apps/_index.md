@@ -2,7 +2,7 @@
 title: Real-world example applications
 headerTitle: Real-world examples
 linkTitle: Real-world examples
-description: Run real-world YugabyteDB example applications for e-commerce, IoT, and retail analytics.
+description: Run real-world ZNbaseDB example applications for e-commerce, IoT, and retail analytics.
 headcontent: 
 image: /images/section_icons/index/develop.png
 menu:
@@ -11,7 +11,7 @@ menu:
     parent: develop
     weight: 580
 ---
-The following examples illustrate how real-world, end-to-end applications can be built using YugabyteDB and its ecosystem integrations with Apache Spark, Apache Kafka, Spring Boot and KairosDB, just to name a few.
+The following examples illustrate how real-world, end-to-end applications can be built using ZNbaseDB and its ecosystem integrations with Apache Spark, Apache Kafka, Spring Boot and KairosDB, just to name a few.
 
 <div class="row">
   <div class="col-12 col-md-6 col-lg-12 col-xl-6">
@@ -21,7 +21,7 @@ The following examples illustrate how real-world, end-to-end applications can be
         <div class="title">E-Commerce</div>
       </div>
       <div class="body">
-          A distributed E-Commerce app using ReactJS, NodeJS Express and YugabyteDB's YCQL and YEDIS APIs.
+          A distributed E-Commerce app using ReactJS, NodeJS Express and ZNbaseDB's YCQL and YEDIS APIs.
       </div>
     </a>
   </div>
@@ -33,7 +33,7 @@ The following examples illustrate how real-world, end-to-end applications can be
         <div class="title">IoT Fleet Management</div>
       </div>
       <div class="body">
-          A real-time fleet-management app using Confluent Kafka, KSQL, Apache Spark, Spring Boot and YugabyteDB's YCQL API.
+          A real-time fleet-management app using Confluent Kafka, KSQL, Apache Spark, Spring Boot and ZNbaseDB's YCQL API.
       </div>
     </a>
   </div>
@@ -45,7 +45,7 @@ The following examples illustrate how real-world, end-to-end applications can be
         <div class="title">Retail Analytics</div>
       </div>
       <div class="body">
-          Ad-hoc analytics of retail sales data using YugabyteDB's YSQL API.
+          Ad-hoc analytics of retail sales data using ZNbaseDB's YSQL API.
       </div>
     </a>
   </div>

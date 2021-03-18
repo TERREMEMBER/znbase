@@ -24,7 +24,7 @@ Common commands:
 
 ## 1. Create a terraform config file
 
-Create a terraform config file called `yugabyte-db-config.tf` and add following details to it. The terraform module can be found in the [terraform-azure-yugabyte github repository](https://github.com/yugabyte/terraform-azure-yugabyte).
+Create a terraform config file called `ZNbase-db-config.tf` and add following details to it. The terraform module can be found in the [terraform-azure-ZNbase github repository](https://github.com/ZNbase/terraform-azure-ZNbase).
 
 ```sh
 provider "azurerm" {
@@ -35,9 +35,9 @@ provider "azurerm" {
     tenant_id       = "AZURE_TENANT_ID"
 }
 
-module "yugabyte-db-cluster" {
+module "ZNbase-db-cluster" {
   # The source module used for creating AWS clusters.
-  source = "github.com/Yugabyte/terraform-azure-yugabyte"
+  source = "github.com/ZNbase/terraform-azure-ZNbase"
 
   # The name of the cluster to be created, change as per need.
   cluster_name = "test-cluster"
@@ -51,7 +51,7 @@ module "yugabyte-db-cluster" {
   region_name = "YOUR VPC REGION"
 
   # The name of resource  group in which all Azure resource will be created. 
-  resource_group = "test-yugabyte"
+  resource_group = "test-ZNbase"
 
   # Replication factor.
   replication_factor = "3"
@@ -80,7 +80,7 @@ $ terraform apply
 Once the cluster is created, you can go to the URL `http://<node ip or dns name>:7000` to view the UI. You can find the node's ip or dns by running the following:
 
 ```sh
-$ terraform state show azurerm_virtual_machine.Yugabyte-Node[0]
+$ terraform state show azurerm_virtual_machine.ZNbase-Node[0]
 ```
 
 You can access the cluster UI by going to any of the following URLs.
@@ -96,18 +96,18 @@ $ terraform show
 
 The following resources are created by this module:
 
-- `module.azure-yugabyte.azurerm_virtual_machine.Yugabyte-Node` The Azure VM instances.
+- `module.azure-ZNbase.azurerm_virtual_machine.ZNbase-Node` The Azure VM instances.
 
-For cluster named `test-cluster`, the instances will be named `yugabyte-test-cluster-node-1`, `yugabyte-test-cluster-node-2`, `yugabyte-test-cluster-node-3`.
+For cluster named `test-cluster`, the instances will be named `ZNbase-test-cluster-node-1`, `ZNbase-test-cluster-node-2`, `ZNbase-test-cluster-node-3`.
 
-- `module.azure-yugabyte.azurerm_network_security_group.Yugabyte-SG` The security group that allows the various clients to access the YugabyteDB cluster.
+- `module.azure-ZNbase.azurerm_network_security_group.ZNbase-SG` The security group that allows the various clients to access the ZNbaseDB cluster.
 
-For cluster named `test-cluster`, this security group will be named `yugabyte-test-cluster-SG` with the ports 7000, 9000, 9042, 7100, 9200 and 6379 open to all other instances in the same security group.
+For cluster named `test-cluster`, this security group will be named `ZNbase-test-cluster-SG` with the ports 7000, 9000, 9042, 7100, 9200 and 6379 open to all other instances in the same security group.
 
-- `module.azure-yugabyte.null_resource.create_yugabyte_universe` A local script that configures the newly created instances to form a new YugabyteDB universe.
-- `module.azure-yugabyte.azurerm_network_interface.Yugabyte-NIC` The Azure network interface for VM instance. 
+- `module.azure-ZNbase.null_resource.create_ZNbase_universe` A local script that configures the newly created instances to form a new ZNbaseDB universe.
+- `module.azure-ZNbase.azurerm_network_interface.ZNbase-NIC` The Azure network interface for VM instance. 
   
-For cluster named `test-cluster`, the network interface will be named `yugabyte-test-cluster-NIC-1`, `yugabyte-test-cluster-NIC-2`, `yugabyte-test-cluster-NIC-3`.
+For cluster named `test-cluster`, the network interface will be named `ZNbase-test-cluster-NIC-1`, `ZNbase-test-cluster-NIC-2`, `ZNbase-test-cluster-NIC-3`.
 
 ## 4. Destroy the cluster (optional)
 

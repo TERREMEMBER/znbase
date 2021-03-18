@@ -1,4 +1,4 @@
-// Copyright (c) YugaByte, Inc.
+// Copyright (c) ZNbase, Inc.
 import React from 'react';
 import { FormattedDate } from 'react-intl';
 

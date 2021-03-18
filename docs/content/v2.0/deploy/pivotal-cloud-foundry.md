@@ -12,26 +12,26 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This tutorial walks through the steps to create service instance of YugabyteDB in PCF.  
+This tutorial walks through the steps to create service instance of ZNbaseDB in PCF.  
 
 ## Prerequisites
 
-Before creating the Service Instance, you need to have YugabyteDB tile installed in your PCF marketplace. Follow the instructions
-[here](https://docs.pivotal.io/partners/yugabyte-db/).
+Before creating the Service Instance, you need to have ZNbaseDB tile installed in your PCF marketplace. Follow the instructions
+[here](https://docs.pivotal.io/partners/ZNbase-db/).
 
 Also in your YugaWare instance that you brought up in your PCF environment you have configured cloud provider. If not follow the
 instructions [here](../enterprise-edition/configure-cloud-providers/) to setup appropriate cloud
 providers
 
-After installing the tile, you have two ways to create a YugabyteDB instance, one is through the App Manager UI, and other is through
+After installing the tile, you have two ways to create a ZNbaseDB instance, one is through the App Manager UI, and other is through
 Cloud Foundry CLI (cf).
 
 ## Using PCF App Manager
 
-In your PCF App manager, go to marketplace and pick YugabyteDB, it will present you with different service plans,
+In your PCF App manager, go to marketplace and pick ZNbaseDB, it will present you with different service plans,
 each service plan has a small description on what the resource requirements and what it is the intended environment.
 
-![Yugabyte Service Plans](/images/deploy/pivotal-cloud-foundry/service-plan-choices.png)
+![ZNbase Service Plans](/images/deploy/pivotal-cloud-foundry/service-plan-choices.png)
 
 Once you pick the service plan you would be provided with the service instance configuration screen as below
 ![App Manager Config](/images/deploy/pivotal-cloud-foundry/apps-manager-config.png)
@@ -41,7 +41,7 @@ Once you pick the service plan you would be provided with the service instance c
 You can view the marketplace and plan description in cf cli by executing the below command.
 
 ```sh
-$ cf marketplace -s yugabyte-db
+$ cf marketplace -s ZNbase-db
 ```
 
 you would see a table as shown below.
@@ -55,19 +55,19 @@ large          Cores: 16, Memory (GB): 15   paid
 x-large        Cores: 32, Memory (GB): 30   paid
 ```
 
-Once you decide on the service plan you can launch the YugabyteDB service instance by executing the below command.
+Once you decide on the service plan you can launch the ZNbaseDB service instance by executing the below command.
 
 ```sh
-$ cf create-service yugabyte-db x-small yb-demo -c '{"universe_name": "yb-demo"}'
+$ cf create-service ZNbase-db x-small yb-demo -c '{"universe_name": "yb-demo"}'
 ```
 
 ## Service broker override options
 
-This section lists various override options that you can specify when creating a service instance using yugabyte-db service broker.
+This section lists various override options that you can specify when creating a service instance using ZNbase-db service broker.
 
 ### Overriding cloud provider
 
-Based on what cloud providers you have setup in your YugaWare, you can create Yugabyte service instances by providing
+Based on what cloud providers you have setup in your YugaWare, you can create ZNbase service instances by providing
 the overrides as below.
 
 To provision in AWS/GCP cloud, your overrides would include the appropriate `provider_type` and `region_codes` as a array
@@ -128,9 +128,9 @@ in GB for each of those volumes, lets say if you want to have 2 volumes with 100
 }
 ```
 
-### Overriding the YugabyteDB software version to use
+### Overriding the ZNbaseDB software version to use
 
-To override the YugabyteDB software version to use, just include `yb_version` with the desired value. Just make sure that particular
+To override the ZNbaseDB software version to use, just include `yb_version` with the desired value. Just make sure that particular
 version exists in YugaWare.
 
 ```sh

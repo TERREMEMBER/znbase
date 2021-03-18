@@ -1,7 +1,7 @@
 ---
-title: Spring Support for YugabyteDB
+title: Spring Support for ZNbaseDB
 linkTitle: Spring Framework
-description: Spring Support for YugabyteDB
+description: Spring Support for ZNbaseDB
 aliases:
   - /develop/ecosystem-integrations/spring/
 menu:
@@ -13,24 +13,24 @@ isTocNested: true
 showAsideToc: true
 ---
 
-This document describes the Spring Framework support for YugabyteDB.
+This document describes the Spring Framework support for ZNbaseDB.
 
 ## Spring Data Cassandra and YCQL
 
-YCQL provides Cassandra wire-compatible query language for client applications to query the YugabyteDB database. YCQL is integrated with the Spring Data Cassandra project and supports POJO-based annotations, data templates, repositories, and so on. 
+YCQL provides Cassandra wire-compatible query language for client applications to query the ZNbaseDB database. YCQL is integrated with the Spring Data Cassandra project and supports POJO-based annotations, data templates, repositories, and so on. 
 
 The following is a non-exhaustive list of supported features:
 
-- Yugabyte Java driver for YCQL 3.n and 4.n drivers.
+- ZNbase Java driver for YCQL 3.n and 4.n drivers.
 - Automatic implementation of Repository interfaces including support for custom query methods.
 - Build repositories based on common Spring Data interfaces.
 - Synchronous, reactive, and asynchronous YCQL operations.
 
 ### Spring Data Cassandra Dependencies
 
-Spring Data Cassandra projects are bundled with the Apache Cassandra Java driver. To enhance performance, it is recommended to replace this driver with the Yugabyte Java driver for YCQL.
+Spring Data Cassandra projects are bundled with the Apache Cassandra Java driver. To enhance performance, it is recommended to replace this driver with the ZNbase Java driver for YCQL.
 
-**Yugabyte Java Driver YCQL 3.n**
+**ZNbase Java Driver YCQL 3.n**
 
 ```xml
 <dependency>
@@ -47,7 +47,7 @@ Spring Data Cassandra projects are bundled with the Apache Cassandra Java driver
 
 <!-- YCQL Driver -->
 <dependency>
- <groupId>com.yugabyte</groupId>
+ <groupId>com.ZNbase</groupId>
  <artifactId>cassandra-driver-core</artifactId>
  <version>3.8.0-yb-6</version>
 </dependency>
@@ -60,11 +60,11 @@ dependencies {
   compile('org.springframework.data:spring-data-cassandra:2.2.12.RELEASE') { 
   exclude group: "com.datastax.cassandra", name: "cassandra-driver-core" 
 }
-  compile('com.yugabyte:cassandra-driver-core:3.8.0-yb-6')
+  compile('com.ZNbase:cassandra-driver-core:3.8.0-yb-6')
 }
 ```
 
-**Yugabyte Java Driver YCQL 4.n**
+**ZNbase Java Driver YCQL 4.n**
 
 ```xml
 <dependency>
@@ -81,7 +81,7 @@ dependencies {
 
 <!-- YCQL Driver -->
 <dependency>
- <groupId>com.yugabyte</groupId>
+ <groupId>com.ZNbase</groupId>
  <artifactId>java-driver-core</artifactId>
  <version>4.6.0-yb-6</version>
 </dependency>
@@ -94,15 +94,15 @@ dependencies {
   compile('org.springframework.data:spring-data-cassandra:3.0.6.RELEASE') { 
   exclude group: "com.datastax.oss", name: "java-driver-core" 
 }
-  compile('com.yugabyte:java-driver-core:4.6.0-yb-6')
+  compile('com.ZNbase:java-driver-core:4.6.0-yb-6')
 }
 ```
 
-Yugabyte Java driver for YCQL provides support for single hop fetch which enables topology awareness, shard awareness data access using Spring Data Cassandra templates and repositories. In addition, Yugabyte Java drivers for YCQL support distributed transactions in Spring Boot applications using custom query methods.
+ZNbase Java driver for YCQL provides support for single hop fetch which enables topology awareness, shard awareness data access using Spring Data Cassandra templates and repositories. In addition, ZNbase Java drivers for YCQL support distributed transactions in Spring Boot applications using custom query methods.
 
 ### Sample Spring Boot Project
 
-A sample Spring boot project is available at https://github.com/yugabyte/spring-ycql-demo. The following steps show how to incrementally build a Spring boot application using Spring Data Cassandra and YCQL.
+A sample Spring boot project is available at https://github.com/ZNbase/spring-ycql-demo. The following steps show how to incrementally build a Spring boot application using Spring Data Cassandra and YCQL.
 
 #### Use Spring Initializer
 
@@ -110,7 +110,7 @@ A sample Spring boot project is available at https://github.com/yugabyte/spring-
    - Spring Boot Data Cassandra
    - Java 8
 
-2. Update the Maven dependencies to use Yugabyte Java driver for YCQL, as follows:
+2. Update the Maven dependencies to use ZNbase Java driver for YCQL, as follows:
 
 ```xml
    <dependency>
@@ -124,27 +124,27 @@ A sample Spring boot project is available at https://github.com/yugabyte/spring-
      </exclusions>
    </dependency>
    <dependency>
-    <groupId>com.yugabyte</groupId>
+    <groupId>com.ZNbase</groupId>
     <artifactId>java-driver-core</artifactId>
     <version>4.6.0-yb-6</version>
    </dependency>
 ```
 
-3. Configure the Spring boot application to connect to YugabyteDB cluster using following properties in `application.properties` file:
+3. Configure the Spring boot application to connect to ZNbaseDB cluster using following properties in `application.properties` file:
 
 | Property                                | Description                                                  |
 | --------------------------------------- | ------------------------------------------------------------ |
 | spring.data.cassandra.keyspace-name=    | YCQL keyspace                                                |
-| spring.data.cassandra.contact-points=   | YugabyteDB T-servers. Comma separated list of ip-addresses or DNS |
+| spring.data.cassandra.contact-points=   | ZNbaseDB T-servers. Comma separated list of ip-addresses or DNS |
 | spring.data.cassandra.port=             | YCQL port                                                    |
 | spring.data.cassandra.local-datacenter= | Datacenter that is considered "local". Contact points should be from this datacenter. |
 
 #### Set Up Domain Objects and Repositories for YCQL Tables
 
-Create a `Customer` object to provide data access to allow Spring boot applications to manage first and last names of customers in a YugabyteDB table. To represent the object-table mapping to this data at the application level, you need to create a `Customer` Java class, as follows:
+Create a `Customer` object to provide data access to allow Spring boot applications to manage first and last names of customers in a ZNbaseDB table. To represent the object-table mapping to this data at the application level, you need to create a `Customer` Java class, as follows:
 
 ```java
-package com.yugabyte.example.ycqldataaccess;
+package com.ZNbase.example.ycqldataaccess;
 
 public class Customer {
 
@@ -171,12 +171,12 @@ public class Customer {
 
 #### Store and Retrieve Data
 
-Spring Data Cassandra provides the `CassandraRepositories` interface that removes all the boilerplate code and simplifies definition of CRUD operations against YugabyteDB tables. Most of the YugabyteDB connection handling, exception handling, and general error handling is performed by repositories, leaving you to implement the business logic. 
+Spring Data Cassandra provides the `CassandraRepositories` interface that removes all the boilerplate code and simplifies definition of CRUD operations against ZNbaseDB tables. Most of the ZNbaseDB connection handling, exception handling, and general error handling is performed by repositories, leaving you to implement the business logic. 
 
 Create the `CustomerRepository` interface, as follows:
 
 ```java
-package com.yugabyte.example.ycqldataaccess;
+package com.ZNbase.example.ycqldataaccess;
 
 import java.util.Optional;
 import org.springframework.data.cassandra.repository.CassandraRepository;
@@ -188,10 +188,10 @@ public interface CustomerRepository extends CassandraRepository<Customer, String
 }
 ```
 
-The following `YCQLDataAccessApplication.java` is a demonstration of a class that can store and retrieve data from YugabyteDB tables using Cassandra repositories:
+The following `YCQLDataAccessApplication.java` is a demonstration of a class that can store and retrieve data from ZNbaseDB tables using Cassandra repositories:
 
 ```java
-package com.yugabyte.example.ycqldataaccess;
+package com.ZNbase.example.ycqldataaccess;
 
 import java.util.Arrays;
 import java.util.List;
@@ -302,7 +302,7 @@ Using Spring WebFlux and Spring Data reactive repositories, you can implement fu
 
 ### Spring Data Reactive Cassandra Dependencies
 
-Spring Data Reactive Cassandra projects are bundled with the Apache Cassandra Java driver. To enhance performance, it is recommended to replace this driver with Yugabyte Java driver for YCQL, as follows:
+Spring Data Reactive Cassandra projects are bundled with the Apache Cassandra Java driver. To enhance performance, it is recommended to replace this driver with ZNbase Java driver for YCQL, as follows:
 
 ```xml
 <dependency>
@@ -317,7 +317,7 @@ Spring Data Reactive Cassandra projects are bundled with the Apache Cassandra Ja
 </dependency>
 
 <dependency>
-  <groupId>com.yugabyte</groupId>
+  <groupId>com.ZNbase</groupId>
   <artifactId>java-driver-core</artifactId>
   <version>4.6.0-yb-6</version>
 </dependency>
@@ -325,14 +325,14 @@ Spring Data Reactive Cassandra projects are bundled with the Apache Cassandra Ja
 
 ### Sample Spring Boot Project for Reactive
 
-A sample Spring boot project is available at https://github.com/yugabyte/spring-reactive-ycql-client. The following steps show how to incrementally build a Spring boot application using Spring Data Cassandra and YCQL.
+A sample Spring boot project is available at https://github.com/ZNbase/spring-reactive-ycql-client. The following steps show how to incrementally build a Spring boot application using Spring Data Cassandra and YCQL.
 
 #### Use Spring Initializer
 
 1. Navigate to [https://start.spring.io](https://start.spring.io/) to creating a new Spring boot project and select the following dependencies for implementing the Spring boot application:
    - Spring Boot Data Cassandra Reactive
    - Java 8
-2. Update the Maven dependencies to use Yugabyte Java driver for YCQL, as follows:
+2. Update the Maven dependencies to use ZNbase Java driver for YCQL, as follows:
 
 ```xml
 <dependency>
@@ -347,27 +347,27 @@ A sample Spring boot project is available at https://github.com/yugabyte/spring-
 </dependency>
 
 <dependency>
-  <groupId>com.yugabyte</groupId>
+  <groupId>com.ZNbase</groupId>
   <artifactId>java-driver-core</artifactId>
   <version>4.6.0-yb-6</version>
 </dependency>
 ```
 
-3. Configure the Spring boot application to connect to YugabyteDB cluster using following properties in `application.properties` file:
+3. Configure the Spring boot application to connect to ZNbaseDB cluster using following properties in `application.properties` file:
 
 | Property                                | Description                                                  |
 | --------------------------------------- | ------------------------------------------------------------ |
 | spring.data.cassandra.keyspace-name=    | YCQL keyspace                                                |
-| spring.data.cassandra.contact-points=   | YugabyteDB T-servers. Comma separated list of ip-addresses or DNS |
+| spring.data.cassandra.contact-points=   | ZNbaseDB T-servers. Comma separated list of ip-addresses or DNS |
 | spring.data.cassandra.port=             | YCQL port                                                    |
 | spring.data.cassandra.local-datacenter= | Datacenter that is considered "local". Contact points should be from this datacenter. |
 
-#### Set Up Domain Objects and Repositories for YugabyteDB Tables
+#### Set Up Domain Objects and Repositories for ZNbaseDB Tables
 
-Create a `Customer` object to provide data access to allow Spring boot applications to manage first and last names of customers in a YugabyteDB table. To represent the object-table mapping to this data at the application level, you need to create a `Customer` Java class, as follows:
+Create a `Customer` object to provide data access to allow Spring boot applications to manage first and last names of customers in a ZNbaseDB table. To represent the object-table mapping to this data at the application level, you need to create a `Customer` Java class, as follows:
 
 ```java
-package com.yugabyte.example.ycqldataaccess;
+package com.ZNbase.example.ycqldataaccess;
 
 public class Customer {
 
@@ -394,12 +394,12 @@ public class Customer {
 
 #### Store and Retrieve Data
 
-Spring Data Cassandra Reactive provides the `ReactiveCassandraRepositories` interface that removes all the boilerplate code and simplifies definition of CRUD operations against YugabyteDB tables. Most of the YugabyteDB connection handling, exception handling, and general error handling is performed by repositories, leaving you to implement the business logic. 
+Spring Data Cassandra Reactive provides the `ReactiveCassandraRepositories` interface that removes all the boilerplate code and simplifies definition of CRUD operations against ZNbaseDB tables. Most of the ZNbaseDB connection handling, exception handling, and general error handling is performed by repositories, leaving you to implement the business logic. 
 
 Create the `CustomerReactiveRepository` interface, as follows:
 
 ```java
-package com.yugabyte.example.ycqldataaccess;
+package com.ZNbase.example.ycqldataaccess;
 
 import org.springframework.data.cassandra.repository.ReactiveCassandraRepository;
 import reactor.core.publisher.Mono;
@@ -410,10 +410,10 @@ public interface CustomerReactiveRepository extends
 }
 ```
 
-The following `YCQLReactiveDataAccessApplication.java` is a demonstration of a class that can store and retrieve data from YugabyteDB tables using Cassandra repositories:
+The following `YCQLReactiveDataAccessApplication.java` is a demonstration of a class that can store and retrieve data from ZNbaseDB tables using Cassandra repositories:
 
 ```java
-package com.yugabyte.example.ycqldataaccess;
+package com.ZNbase.example.ycqldataaccess;
 
 import java.util.Arrays;
 import java.util.List;
@@ -478,7 +478,7 @@ public class YcqlReactiveDataAccessApplication implements CommandLineRunner {
 
 ## Compatibility Matrix
 
-| **YugabyteDB Java Driver** | **Spring Data Cassandra** |
+| **ZNbaseDB Java Driver** | **Spring Data Cassandra** |
 | -------------------------- | ------------------------- |
 | 3.8.0-yb-6                 | 2.2.12.RELEASE and latest |
 | 4.6.0-yb-6                 | 3.0.6.RELEASE and latest  |

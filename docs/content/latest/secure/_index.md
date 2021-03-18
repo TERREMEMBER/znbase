@@ -2,10 +2,10 @@
 title: Secure
 headerTitle: Secure
 linkTitle: Secure
-description: Secure your deployment of YugabyteDB.
-headcontent: Secure your deployment of YugabyteDB.
+description: Secure your deployment of ZNbaseDB.
+headcontent: Secure your deployment of ZNbaseDB.
 image: /images/section_icons/index/secure.png
-section: YUGABYTEDB CORE
+section: ZNbaseDB CORE
 menu:
   latest:
     identifier: secure
@@ -22,7 +22,7 @@ menu:
       </div>
       <div class="body">
           Consider these security measures when deploying your
-          YugabyteDB cluster.
+          ZNbaseDB cluster.
       </div>
     </a>
   </div>
@@ -34,7 +34,7 @@ menu:
         <div class="title">Enable Authentication</div>
       </div>
       <div class="body">
-          Enable authentication for all clients connecting to YugabyteDB.
+          Enable authentication for all clients connecting to ZNbaseDB.
       </div>
     </a>
   </div>
@@ -83,7 +83,7 @@ menu:
         <div class="title">Encryption at rest</div>
       </div>
       <div class="body">
-          Enable encryption at rest in YugabyteDB (using TLS) to secure and protect data on disk.
+          Enable encryption at rest in ZNbaseDB (using TLS) to secure and protect data on disk.
       </div>
     </a>
   </div>
@@ -109,7 +109,7 @@ menu:
         <div class="title">Column-Level Encryption</div>
       </div>
       <div class="body">
-          Encrypt data present in columns containing sensitive data using per-column encryption at the application layer in YugabyteDB (using symmetric and asymmetric encryption).
+          Encrypt data present in columns containing sensitive data using per-column encryption at the application layer in ZNbaseDB (using symmetric and asymmetric encryption).
       </div>
     </a>
   </div>
@@ -122,7 +122,7 @@ menu:
         <div class="title">Audit Logging</div>
       </div>
       <div class="body">
-          Configure session-level and object-level in YugabyteDB and customize the output to your needs.
+          Configure session-level and object-level in ZNbaseDB and customize the output to your needs.
       </div>
     </a>
   </div>
